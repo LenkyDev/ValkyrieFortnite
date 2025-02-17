@@ -1,0 +1,167 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "Valkyrie",
+	"Description": "",
+	"Category": "Other",
+	"CreatedBy": "Epic Games, Inc.",
+	"CreatedByURL": "http://epicgames.com",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"Installed": false,
+	"Hidden": true,
+	"EnabledByDefault": false,
+	"Modules": [
+		{
+			"Name": "ValkyrieEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "EntityActor",
+			"Enabled": true
+		},
+		{
+			"Name": "PluginUtils",
+			"Enabled": true
+		},
+		{
+			"Name": "Solaris",
+			"Optional": true,
+			"Enabled": false
+		},
+		{
+			"Name": "OnlineSubsystem",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineSubsystemUtils",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineSubsystemMcp",
+			"Enabled": true
+		},
+		{
+			"Name": "ConcertMain",
+			"Enabled": true
+		},
+		{
+			"Name": "ConcertSyncCore",
+			"Enabled": true
+		},
+		{
+			"Name": "EpicCMSUIFramework",
+			"Enabled": true
+		},
+		{
+			"Name": "PluginUtils",
+			"Enabled": true
+		},
+		{
+			"Name": "CommonUI",
+			"Enabled": true
+		},
+		{
+			"Name": "CommonUILegacy",
+			"Enabled": true
+		},
+		{
+			"Name": "ContentBrowserAliasDataSource",
+			"Enabled": true
+		},
+		{
+			"Name": "ContentBrowserFileDataSource",
+			"Enabled": true
+		},
+		{
+			"Name": "PortableObjectFileDataSource",
+			"Enabled": true
+		},
+		{
+			"Name": "DataValidation",
+			"Enabled": true
+		},
+		{
+			"Name": "ValkyrieEngine",
+			"Enabled": true
+		},
+		{
+			"Name": "GameFeatures",
+			"Enabled": true
+		},
+		{
+			"Name": "GameFeatureSet",
+			"Enabled": true
+		},
+		{
+			"Name": "ControlFlows",
+			"Enabled": true
+		},
+		{
+			"Name": "ModelingToolsEditorMode",
+			"Enabled": true
+		},
+		{
+			"Name": "ModelViewViewModel",
+			"Enabled": true
+		},
+		{
+			"Name": "UVEditor",
+			"Enabled": true
+		},
+		{
+			"Name": "SkeinSourceControl",
+			"Enabled": true
+		},
+		{
+			"Name": "StyleSheets",
+			"Enabled": true
+		},
+		{
+			"Name": "LinkCodes",
+			"Enabled": true
+		},
+		{
+			"Name": "UnrealEngineExperimental",
+			"Enabled": true
+		},
+		{
+			"Name": "DeltaFileSystem",
+			"Enabled": true
+		},
+		{
+			"Name": "Emporium",
+			"Enabled": true,
+			"TargetAllowList": [ "Editor" ]
+		},
+		{
+			"Name": "ContentResolver",
+			"Enabled": true
+		},
+		{
+			"Name": "CoopNotes",
+			"Enabled": true,
+			"SupportedTargetPlatforms": [ "Win64" ],
+			"TargetAllowList": [ "Editor" ]
+		},
+		{
+			"Name": "LiveLink",
+			"Enabled": true
+		},
+		{
+			"Name": "EntityFramework",
+			"Enabled": true
+		},
+		{
+			"Name": "Metasound",
+			"Enabled": true
+		}
+	]
+}

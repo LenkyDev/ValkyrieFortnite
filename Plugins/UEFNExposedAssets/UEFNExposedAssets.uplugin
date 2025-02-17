@@ -1,0 +1,12 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "UEFN-Exposed Fortnite Assets",
+	"Description": "A collection of Fortnite assets exposed to UEFN",
+	"Category": "Other",
+	"CreatedBy": "Epic Games, Inc.",
+	"CreatedByURL": "http://epicgames.com",
+	"CanContainContent": true,
+	"EnabledByDefault": true
+}

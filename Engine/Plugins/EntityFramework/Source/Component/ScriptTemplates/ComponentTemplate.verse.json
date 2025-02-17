@@ -1,0 +1,12 @@
+{
+	"Title": "Scene Graph Component",
+	"Description": "Component classes define new behaviors for entities. You can add these components to entity instances either in Verse or in the editor.",
+	"IsComponent": true,
+	"SortPriority": 100,
+	"Replacements": [
+		{
+			"Title": "Component Name",
+			"Token": "new_component_template"
+		}
+	]
+}

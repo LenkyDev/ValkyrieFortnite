@@ -1,0 +1,82 @@
+{
+	"FileVersion": 3,
+	"CanContainContent": true,
+	"NoCode": true,
+	"NoGameFeatureContent": true,
+	"ExplicitlyLoaded": true,
+	"EnabledByDefault": false,
+	"BuiltInInitialFeatureState": "Installed",
+	"BuiltInAutoRegister": true,
+	"BuiltInAutoLoad": false,
+	"BuiltInAutoActivate": false,
+	"EditorCustomVirtualPath": "FNE/FN1",
+	"FortReleaseVersion": "33.30",
+	"VerseVersion": 0,
+	"IsGameFeatureSet": true,
+	"Version": 0,
+	"VersionName": "",
+	"FriendlyName": "",
+	"Description": "",
+	"Category": "",
+	"CreatedBy": "",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"RequiredEntitlements": {
+		"Create": {
+			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad"
+		}
+	},
+	"Plugins": [
+		{
+			"Name": "Accolades",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "AudioPunchberryContent",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FeralCorgiAccolades",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "FeralCorgiMaps",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "FeralCorgiQuests",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "FN1Native",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "PlaytimeRewards",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "VendingMachine",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		}
+	]
+}

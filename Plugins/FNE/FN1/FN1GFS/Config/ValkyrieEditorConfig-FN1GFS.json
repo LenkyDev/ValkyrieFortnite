@@ -1,0 +1,372 @@
+{
+	"ValkyrieEditorUtilitySettings": {
+		"AllowedEditorUtilityActorActions": {
+			"+": [ ]
+		},
+		"AllowedEditorUtilityAssetActions": {
+			"+": [
+                  "/Game/ArtTools/Environment/BlueprintSetup/AAU_IncludeInHLOD.AAU_IncludeInHLOD",
+                  "/Game/ArtTools/Environment/BlueprintSetup/AAU_IncludeInHLOD.AAU_IncludeInHLOD_C",
+			      "/Game/Blueprints/Blutilities/ForTechArt/Actions/StaticMesh_AssetAction.StaticMesh_AssetAction",
+				  "/Game/Blueprints/Blutilities/ForTechArt/Actions/StaticMesh_AssetAction.StaticMesh_AssetAction_C",
+				  "/Game/ArtTools/Environment/BlueprintSetup/AAU_ApplyLODSettings.AAU_ApplyLODSettings",
+                  "/Game/ArtTools/Environment/BlueprintSetup/AAU_ApplyLODSettings.AAU_ApplyLODSettings_C",
+                  "/FN1GFS/Content/Blueprints/ScriptedAssetActions/BP_AssetAU_Tester.BP_AssetAU_Tester",
+                  "/FN1GFS/Content/Blueprints/ScriptedAssetActions/BP_AssetAU_Tester.BP_AssetAU_Tester_C",
+				  "/Game/Blueprints/Blutilities/ForArtists/Actions/EnvArt_Texture_AssetActions.EnvArt_Texture_AssetActions",
+				  "/Game/Blueprints/Blutilities/ForArtists/Actions/EnvArt_Texture_AssetActions.EnvArt_Texture_AssetActions_C"
+
+                  ]
+			},
+		"AllowedEditorUtilityWidgets": {
+			"+": ["/Game/Environments/Blueprints/RunwayGenerator/EUW_Runway_Generator.EUW_Runway_Generator",
+                  "/Game/Environments/Blueprints/RunwayGenerator/EUW_Runway_Generator.EUW_Runway_Generator_C",
+				 "/Game/ArtTools/Environment/EnvironmentActorFinder/EUW_EnvActorFinder.EUW_EnvActorFinder",
+				 "/Game/ArtTools/Environment/EnvironmentActorFinder/EUW_EnvActorFinder.EUW_EnvActorFinder_C",
+				 "/Game/ArtTools/Environment/EnvImpQuickSettings/EUW_EnvImpQuckSettings.EUW_EnvImpQuckSettings",
+				 "/Game/ArtTools/Environment/EnvImpQuickSettings/EUW_EnvImpQuckSettings.EUW_EnvImpQuckSettings_C",
+				 "/Game/Blueprints/Blutilities/ForLDs/WorldPartitionTools/WP_OverlappingActors/WP_OverlappingActors_EUW.WP_OverlappingActors_EUW",
+				 "/Game/Blueprints/Blutilities/ForLDs/WorldPartitionTools/WP_OverlappingActors/WP_OverlappingActors_EUW.WP_OverlappingActors_EUW_C"]
+			}
+	},
+	"ValkyrieEditorSettings": {
+		"AllowedAssetTypes": {
+			"/Script/Blutility.EditorUtilityWidget":		{ "Rules": ["View"] },
+			"/Script/Blutility.EditorUtilityWidgetBlueprint": { "Rules": ["View"] },
+			"/Script/Engine.RuntimeVirtualTexture": { "Rules": ["View","Create"] },
+			"/Script/Engine.VirtualTextureBuilder": { "Rules": ["View"] },
+			"/Script/PCGEditor.PCGBuilderSettings": { "Rules": ["View","Create"] },
+			"/Script/PCG.PCGGraphInstance": { "Rules": ["View"] },
+			"/Script/DaySequence.DaySequence": { "Rules": ["View","Create"] },
+			"/Script/DaySequence.DaySequenceCollectionAsset": { "Rules": ["View","Create"] },
+			"/Script/CommonUI.CommonHardwareVisibilityBorder": { "Rules": [ "View", "Create" ] },
+			"/Script/FortniteGame.FortPoiVolume": { "Rules": ["View","Create"] },
+			"/Script/FortniteGame.FortPoi_DiscoverableComponent": { "Rules": ["View","Create"] },
+			"/Script/Engine.Blueprint": { "Rules": [ "View", "Create", "ModuleAPI" ] },
+			"/Script/Engine.BlueprintGeneratedClass": { "Rules": [ "View", "Create", "ModuleAPI" ] },
+			"/Script/Engine.CompositeDataTable": { "Rules": [ "View", "Create" ] },
+			"/Script/Engine.CurveTable": { "Rules": [ "View", "Create" ] },
+			"/Script/Engine.CompositeCurveTable": { "Rules": [ "View", "Create" ] },
+			"/Script/Engine.DataTable": { "Rules": [ "View", "Create" ] },
+			"/Script/Engine.Font": { "Rules": [ "View" ] }
+		},
+		"AllowedClasses": {
+			"/Script/AmbientAudio.AmbientAudioComponent": { "Visible": true },
+			"/Script/CommonUI.CommonTextBlock": { "Visible": true },
+			"/Script/CommonUI.CommonUserWidget": { "Visible": true },
+			"/Script/Engine.MaterialExpressionMeshPaintTextureObject": { "Visible": true, "Subclasses": "NativeOnly" },
+			"/Script/Engine.TimerHandle": {},
+			"/Script/Engine.RuntimeVirtualTexture": {},
+			"/Script/Engine.VirtualTextureBuilder": {},
+			"/Script/Engine.VirtualTexture2D": {},
+			"/Script/AudioGameplayVolume.ReverbVolumeComponent": { "Visible": true },
+			"/Script/Engine.ModelComponent": { "Visible": true },
+			"/Script/Foliage.ProceduralFoliageBlockingVolume": { "Visible": true },
+			"/Script/Engine.ForceFeedbackComponent": { "Visible": true },
+			"/Script/Engine.CameraActor": { "Visible": true },
+			"/Script/FortniteGame.SimpleDestructiblePropExplosionProxy": { "Visible": true },
+			"/Script/FortniteAI.AthenaNavSystemConfigOverride": { "Visible": true },
+			"/Script/FortniteAI.AthenaNavMesh": { "Visible": true },
+			"/Script/FortniteAI.AthenaNavMesh_Medium": { "Visible": true },
+			"/Script/FortniteAI.FortNavModifierVolume": { "Visible": true },
+			"/Script/FortniteGame.BuildingLevelInstance": { "Visible": true },
+			"/Script/FortniteGame.FortAmbientAudioVolume": { "Visible": true },
+			"/Script/FortniteGame.FortPlayerStartWarmup": { "Visible": true },
+			"/Script/FortniteGame.FortPoiVolume": { "Visible": true },
+			"/Script/FortniteGame.FortPoi_DiscoverableComponent": { "Visible": true },
+			"/Script/FortniteGame.FortWorldManager": { "Visible": true },
+			"/Script/FortniteGame.FortLevelOverlayConfig": {},
+			"/Script/FortniteGame.WorldTileManager": { "Visible": true },
+			"/Script/FortniteUI.FortVisualAttachment": { "Visible": true },
+			"/Script/PCG.PCGComponent": {},
+			"/Script/PCG.PCGGraphInstance": { "Visible": true },
+			"/Script/PCG.PCGLandscapeCache": {},
+			"/Script/PCG.PCGMetadata": {},
+			"/Script/PCG.PCGParamData": {},
+			"/Script/PCG.PCGPartitionActor": {},
+			"/Script/PCG.PCGPointData": {},
+			"/Script/PCG.PCGSchedulingPolicyDistanceAndDirection": {},
+			"/Script/PCG.PCGWorldActor": {},
+			"/Script/PCG.PCGManagedISMComponent": {},
+			"/Script/PCG.PCGManagedActors": {},
+			"/Script/PCGEditor.PCGBuilderSettings": { "Visible": true },
+			"/Script/NavigationSystem.NavModifierVolume": { "Visible": true },
+			"/Script/NavigationSystem.NavMeshBoundsVolume": { "Visible": true },
+			"/Script/AIModule.EQSRenderingComponent": { "Visible": true },
+			"/Script/Engine.LevelScriptBlueprint": { "Visible": true },
+			"/Script/Engine.TriggerVolume": { "Visible": true },
+			"/Script/Engine.RuntimeVirtualTextureComponent": { "Visible": true },
+			"/Script/Engine.RuntimeVirtualTextureVolume": { "Visible": true },
+			"/Script/Engine.NavigationSystemConfig": { "Visible": true },
+			"/Script/Engine.DataTable": { "Visible": true },
+			"/Script/Engine.CompositeDataTable": { "Visible": true },
+			"/Script/Engine.CurveTable": { "Visible": true },
+			"/Script/Engine.CompositeCurveTable": { "Visible": true },
+			"/Script/Engine.InheritableComponentHandler": { "Visible": true },
+			"/Script/Engine.WorldPartitionMiniMapVolume": { "Visible": true },
+			"/Script/StyleSheetsBlueprint.StyleClassBlueprintData": { "Visible": true },
+			"/Script/StyleSheetsBlueprint.WidgetBlueprintExtension_StyleClass": { "Visible": true },
+			"/Script/StyleSheets.WidgetBlueprintGeneratedClassExtension_StyleClass": { "Visible": true },
+			"/Script/UMG.Border": { "Visible": true },
+			"/Script/UMG.BorderSlot": { "Visible": true },
+			"/Script/UMG.HorizontalBox": { "Visible": true },
+			"/Script/UMG.HorizontalBoxSlot": { "Visible": true },
+			"/Script/UMG.Spacer": { "Visible": true },
+			"/Script/UMG.TextBlock": { "Visible": true },
+			"/Script/UMG.VerticalBox": { "Visible": true },
+			"/Script/UMG.VerticalBoxSlot": { "Visible": true },
+			"/Script/AudioWorldization.GameFeatureAction_SetAudioWorldizationSettings": { "Visible": true },
+			"/Script/Engine.MaterialExpressionModulo": { "Visible": true },
+			"/Script/Engine.TextRenderActor": { "Visible": true },
+			"/Script/FeralCorgiGameplayRuntime.FortCheatManager_FeralCorgi": { "Visible": true },
+			"/Script/FortniteGame.FortCinematicCameraActor": { "Visible": true },
+			"/Script/FortniteGame.GameFeatureAction_ActivateControlBusMix": { "Visible": true },
+			"/Script/GameFeatures.GameFeatureAction_AddCheats": { "Visible": true },
+			"/Script/GameFeatures.GameFeatureAction_AddComponents": { "Visible": true },
+			"/Script/SoundLibrary.GameFeatureAction_AddSoundLibraryCollection": { "Visible": true },
+			"/Script/FortniteGame.FortGameFeatureAction_AddMutators": { "Visible": true },			
+			"/Script/FortniteGame.BuildingStaticGeo": { "Visible": true },
+			"/Script/FortniteGame.FortGameState": { "Visible": true },
+			"/Script/FortniteGame.FortPawn": { "Visible": true },
+			"/Script/FN1NativeRuntime.VerseFortniteStormVolumeComponent": {"Visible":  true},
+			"/Script/FN1NativeRuntime.VerseFortniteBusVolumeComponent": {"Visible":  true},
+			"/Game/Athena/Asteria/Environments/Landscape/Materials/DistanceFog/BP_JungleFog.BP_JungleFog_C": { },
+			"/Game/Athena/Balance/MapInfos/DefaultMapInfo.DefaultMapInfo_C": { "Visible": true },
+			"/Game/Athena/BuildingActors/Prop/Athena_Prop_TheHatch.Athena_Prop_TheHatch_C": { "Visible": true },
+			"/Game/Athena/Environments/Blueprints/Athena_Tree_Medium_03_b.Athena_Tree_Medium_03_b_C": { "Visible": true },
+			"/Game/Athena/Environments/Blueprints/Tiered_Athena_FloorLoot_01.Tiered_Athena_FloorLoot_01_C": { "Visible": true },
+			"/Game/Athena/Helios/Actors/BP_POI_Measure_Tool.BP_POI_Measure_Tool_C": { "Visible": true },
+			"/Game/Athena/Helios/Environments/Landscape/WorldBuildingTools/PCGGrass/BP_MeshGrass_CullVolume.BP_MeshGrass_CullVolume_C": { "Visible": true },
+			"/Game/Athena/Helios/Environments/Landscape/WorldBuildingTools/PCGGrass/BP_MeshGrass_GlobalControls.BP_MeshGrass_GlobalControls_C": { "Visible": true },
+			"/Game/Athena/Helios/Environments/Landscape/WorldBuildingTools/PCGGrass/BP_MeshGrass.BP_MeshGrass_C": { "Visible": true },
+			"/Game/Athena/Helios/Environments/Landscape/WorldBuildingTools/PCGGrass/BP_MeshGrassIOComponent.BP_MeshGrassIOComponent_C": { "Visible": true },
+			"/Game/Athena/Helios/Environments/Landscape/WorldBuildingTools/PCGGrass/EUBP_MeshGrassUtilityComponent.EUBP_MeshGrassUtilityComponent_C": { "Visible": true },
+			"/Game/Athena/Items/EnvironmentalItems/B_ActorSpawner_Parent.B_ActorSpawner_Parent_C": { "Visible": true },
+			"/Game/Athena/SafeZone/BP_SafeZoneStorm.BP_SafeZoneStorm_C": { "Visible": true },
+			"/Game/Athena/Sounds/Water/BP_WaterSpline_AudioOnly_Ocean.BP_WaterSpline_AudioOnly_Ocean_C": { "Visible": true },
+			"/Game/Athena/Sounds/Water/BP_WaterSpline_AudioOnly.BP_WaterSpline_AudioOnly_C": { "Visible": true },
+			"/Game/Building/ActorBlueprints/Corner/SM_Trim_Corner_03.SM_Trim_Corner_03_C": { "Visible": true },
+			"/Game/Building/ActorBlueprints/Prop/GuardRail_1.GuardRail_1_C": { "Visible": true },
+			"/Game/Building/ActorBlueprints/Prop/Mansion_Outdoor_Sunchair_01.Mansion_Outdoor_Sunchair_01_C": { "Visible": true },
+			"/Game/Building/ActorBlueprints/Prop/Prop_Sign_Detour.Prop_Sign_Detour_C": { "Visible": true },
+			"/Game/Building/ActorBlueprints/Prop/Prop_Sign_TrailSign_02.Prop_Sign_TrailSign_02_C": { "Visible": true },
+			"/Game/Building/ActorBlueprints/Prop/Prop_Tire_single.Prop_Tire_single_C": { "Visible": true },
+			"/Game/Building/ActorBlueprints/Prop/Ranger_Lightpost.Ranger_Lightpost_C": { "Visible": true },
+			"/Game/Building/ActorBlueprints/Prop/Recreation_Tent.Recreation_Tent_C": { "Visible": true },
+			"/Game/Building/ActorBlueprints/Prop/Streetprop_Contsruction_02.Streetprop_Contsruction_02_C": { "Visible": true },
+			"/Game/Building/ActorBlueprints/Prop/Tree_Log_2.Tree_Log_2_C": { "Visible": true },
+			"/Game/Building/ActorBlueprints/Prop/WildWest_Bottle_02.WildWest_Bottle_02_C": { "Visible": true },
+			"/Game/Building/ActorBlueprints/Roof/Roof_Dock_1Unit.Roof_Dock_1Unit_C": { "Visible": true },
+			"/VendingMachine/Building/ActorBlueprints/Stations/B_Athena_Spawner_VendingMachine_MendingOnly_BlastBerry.B_Athena_Spawner_VendingMachine_MendingOnly_BlastBerry_C": { "Visible": true },
+			"/Game/Building/ActorBlueprints/Wall/Fence_Picket01a.Fence_Picket01a_C": { "Visible": true },
+			"/Game/Building/ActorBlueprints/Wall/ShutterHouse_Solid.ShutterHouse_Solid_C": { "Visible": true },
+			"/BlastBerryMap/Game/TimeOfDay/TODM/DSA_UEFN_Sunflower.DSA_UEFN_Sunflower_C": { "Visible": true },
+			"/Game/Environments/Helios/Props/LightSource/Lightsource_Blacklight_A/Blueprints/BP_Lightsource_Blacklight_A_Orange.BP_Lightsource_Blacklight_A_Orange_C": { },
+			"/Game/Environments/Helios/Props/LightSource/Lightsource_Blacklight_A/Blueprints/BP_Lightsource_Blacklight_C_WithLight.BP_Lightsource_Blacklight_C_WithLight_C": { },
+			"/Game/Environments/Helios/Props/LightSource/LightSource_UtilityCeilingLight_A/Blueprints/BP_LightSource_UtilityCeilingLight_A.BP_LightSource_UtilityCeilingLight_A_C": { },
+			"/Game/Environments/Helios/Props/LightSource/LightSource_UtilityCeilingLight_A/Blueprints/BP_LightSource_UtilityCeilingLight_C_Raft_Tower.BP_LightSource_UtilityCeilingLight_C_Raft_Tower_C": { },
+			"/Game/Environments/Helios/Props/RustBucket/RustBucket_TubeLights_A/Blueprints/BP_RustBucket_TubeLight_A_Orange.BP_RustBucket_TubeLight_A_Orange_C": { },
+			"/Game/Environments/Helios/Props/LightSource/Lightsource_Blacklight_A/Blueprints/BP_Lightsource_Blacklight_A.BP_Lightsource_Blacklight_A_C": { },
+			"/Game/Environments/TechArt/LightCones/Simple/BP_SimpleFarLightConeLimitedRange.BP_SimpleFarLightConeLimitedRange_C": { },
+			"/Game/Environments/TechArt/LightCones/Simple/BP_SimpleFarLightPlaneLimitedRange.BP_SimpleFarLightPlaneLimitedRange_C": { },
+			"/Game/Environments/TechArt/LightCones/BP_LightCone_01_CH5S3_Animated_Raft.BP_LightCone_01_CH5S3_Animated_Raft_C": { },
+			"/Game/TimeOfDay/DaySequence/DaySequenceActors/BR_Ch5/DSA_UEFN_Ch5S1_NoCollection.DSA_UEFN_Ch5S1_NoCollection_C": { "Visible": true },
+			"/Game/TimeOfDay/DaySequence/DaySeqConditionTags/BP_SHDMedium_condition.BP_SHDMedium_condition_C": { },
+			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_Erebus.DSCT_Erebus_C": { },
+			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_GI_Lumen.DSCT_GI_Lumen_C": { },
+			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_GI_Medium.DSCT_GI_Medium_C": { },
+			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_GI_Off.DSCT_GI_Off_C": { },
+			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_Mobile.DSCT_Mobile_C": { },
+			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_PerfMode.DSCT_PerfMode_C": { },
+			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_VolumetricFog.DSCT_VolumetricFog_C": { }
+		},
+		"AllowedMenus": {
+			"LevelEditor.MainMenu": {
+				"AllowList": {
+					"+": [ "ToolsWorkshop" ]
+				}
+			},
+			"LevelEditor.MainMenu.Build": {
+				"AllowList": {
+					"+": [ "BuildPathsOnly", "BuildVirtualTextureOnly", "PCG" ]
+				}
+			},
+			"LevelEditor.MainMenu.ToolsWorkshop": {
+				"AllowList": {
+					"+": [ "ExperiMessage", "LaunchRunwayGenerator", "OverlappingActors", "LaunchOSReviewSetup", "LaunchEnvQuckSettings",
+						"EnvActorFinder" ]
+				}
+			},
+			"UnrealEd.ViewportToolbar.View": {
+				"AllowList": {
+					"+": [ "VisualizeGroupedLOD" ]
+				}
+			},
+			"LevelEditor.ActorContextMenu": {
+				"AllowList": {
+					"+": [ "LevelSubMenu" ]
+				}
+			},
+			"LevelEditor.LevelViewportToolbar.Show": {
+				"AllowList": {
+					"+": [ "Common_Cameras", "Common_Cloud", "Common_Hair", "Common_WidgetComponents", "ShowVolumes", "SFG_Advanced" ]
+				}
+			},
+			"LevelEditor.LevelViewportToolbar.Show.SFG_Advanced": {
+				"AllowList": {
+					"+": [ "Bounds", "InstancedFoliage", "InstancedGrass", "LightRadius" , "TextRender", "Selection", "Splines", "Volumes"]
+				}
+			}, 
+			"LevelEditor.LevelEditorToolBar.AddQuickMenu.Volumes": {
+				"AllowList": {
+					"+": [ "RuntimeVirtualTextureVolume" ]
+				}
+			},
+			"LevelEditor.ActorContextMenu.AddActor": {
+				"DenyList": {
+					"-": [ "RuntimeVirtualTextureVolume" ]
+				}
+			},
+			"LevelEditor.ActorContextMenu.ReplaceActor": {
+				"DenyList": {
+					"-": [ "RuntimeVirtualTextureVolume" ]
+				}
+			},
+			"LevelEditor.EmptySelectionContextMenu.AddActor": {
+				"DenyList": {
+					"-": [ "RuntimeVirtualTextureVolume" ]
+				}
+			},
+			"LevelEditor.LevelEditorSceneOutliner.ContextMenu.AddActor": {
+				"DenyList": {
+					"-": [ "RuntimeVirtualTextureVolume" ]
+				}
+			},
+			"LevelEditor.LevelEditorSceneOutliner.ContextMenu.ReplaceActor": {
+				"DenyList": {
+					"-": [ "RuntimeVirtualTextureVolume" ]
+				}
+			}
+		},
+		"AllowedTabs": {
+			"LevelEditor": {
+	   			"AllowList": {
+					"+": [
+						"/FN1GFS/Content/Blueprints/EUW/ActorMap/WP_ActorMap_EUW.WP_ActorMap_EUW_C_ActiveTab",
+						"/Game/Environments/Blueprints/RunwayGenerator/EUW_Runway_Generator.EUW_Runway_Generator_C_ActiveTab",
+						"/Game/ArtTools/Environment/EnvironmentActorFinder/EUW_EnvActorFinder.EUW_EnvActorFinder_C_ActiveTab",
+						"/Game/ArtTools/Environment/EnvImpQuickSettings/EUW_EnvImpQuckSettings.EUW_EnvImpQuckSettings_C_ActiveTab",
+						"/Game/Environments/Blueprints/OS_Review/EUW_OSReview_Setup.EUW_OSReview_Setup_C_ActiveTab",
+						"/Game/Blueprints/Blutilities/ForLDs/WorldPartitionTools/WP_OverlappingActors/WP_OverlappingActors_EUW.WP_OverlappingActors_EUW_C_ActiveTab"
+						]
+				}
+			}
+		},
+		"AllowedPlacementToolEntries": {
+			"AllowedClasses": {
+				"+": [ "RuntimeVirtualTextureVolume", "DaySequenceModifierVolume", "FortPoiVolume"]
+			}
+		},
+		"AllowedInputCommands": {
+			"": {
+				"AllowList": {
+					"+": [ "LevelInstanceEditorMode", "MeshPaint", "EM_ScriptableToolsEditorMode"]
+				}
+			}
+		},
+		"AllowedEditorModes": {
+			"+": [
+				"MeshPaintMode",
+                "EM_ScriptableToolsEditorMode"
+			]
+		},
+		"AllowedContentBrowserFolders": {
+			"+" : [
+				"/FN1",
+				"/FN1GFS"
+			]
+		},
+		"DefaultLogCategories": {
+			"+": [
+				"LogEditorServer"
+			]
+		},
+		"bShowGFSTextFileAllowedAssetsInContentBrowser": true,
+		"bShowExposedAssetsInContentBrowserForTextureDatas": true,
+		"bShowPromptToRunValidationFixup": false
+	},
+	"ValkyrieWorldPartitionSettings": {
+		"bEnableLevelInstanceSupport": true
+	},
+	"PropertyEditorClassPermissionList": {
+		"+": [
+			{
+				"Type": "/Script/FortniteGame.BuildingLevelInstance",
+				"AllowList": [ "WorldAsset" ]
+			}, 
+			{
+				"Type": "/Script/Engine.RuntimeVirtualTextureComponent",
+				"AllowList": [ "BoundsAlignActor", "bSetBoundsButton", "bSnapBoundsToLandscape", "ExpandBounds", "VirtualTexture", "EnableInGamePerPlatform", "bEnableForNaniteOnly", "bUseMinMaterialQuality", "MinInGameMaterialQuality", "bEnableScalability", 
+				"ScalabilityGroup", "bHidePrimitives", "StreamingTexture", "StreamLowMips", "bBuildStreamingMipsButton", "LossyCompressionAmount", "bUseStreamingMipsFixedColor", "StreamingMipsFixedColor", "bUseStreamingMipsOnly", "bUseStreamingMipsInEditor" ]
+			}, 
+			{
+				"Type": "/Script/Engine.PrimitiveComponent",
+				"AllowList": ["VirtualTextureRenderPassType", "RuntimeVirtualTextures"]
+			}, 
+			{
+				"Type": "/Script/Landscape.Landscape",
+				"AllowList": [ "bSetCreateRuntimeVirtualTextureVolumes", "RuntimeVirtualTextures", "bVirtualTextureRenderWithQuad", "bVirtualTextureRenderWithQuadHQ", "VirtualTextureNumLods", "VirtualTextureLodBias", "VirtualTextureRenderPassType", "bEnableNanite", "bNaniteSkirtEnabled", "NaniteSkirtDepth", "NanitePositionPrecision", "NaniteMaxEdgeLengthFactor", "RebuildNaniteData", "bFillCollisionUnderLandscapeForNavmesh" ]
+			},
+			{
+				"Type": "/Script/Landscape.LandscapeStreamingProxy",
+				"AllowList": [ "RuntimeVirtualTextures", "bVirtualTextureRenderWithQuad", "bVirtualTextureRenderWithQuadHQ", "VirtualTextureNumLods", "VirtualTextureLodBias", "VirtualTextureRenderPassType", "bEnableNanite", "bNaniteSkirtEnabled", "NaniteSkirtDepth", "NanitePositionPrecision", "NaniteMaxEdgeLengthFactor", "RebuildNaniteData", "bFillCollisionUnderLandscapeForNavmesh" ]
+			},
+			{
+				"Type": "/Script/FortniteGame.FortPoiVolume",
+				"AllowList": [ "LocationTags" ]
+			},
+			{
+				"Type": "/Script/FortniteGame.FortPoi_DiscoverableComponent",
+				"AllowList": [ "PlayerFacingName" , "QuestPartOf", "DiscoveredSoundCue", "DiscoverMinimapBitId", "EventDrivenBitIds", "bIsPlayerFacingNameLocalizable", "MapLocationTextLocationOffset"]
+			},
+			{
+				"Type": "/Script/DaySequence.DaySequenceModifierComponent",
+				"AllowList": [ "bUseCollection", "DaySequenceCollection", "Mode" ]
+			},
+			{
+				"Type": "/Game/Creative/Devices/Lighting/BP_DaySequenceModifier_Device.BP_DaySequenceModifier_Device_C",
+				"AllowList": [ "UserDaySequence" ]
+			},
+			{
+				"Type": "/Script/FortniteGame.FortDaySequenceActor",
+				"AllowList": [ "SunAngle", "SkyLightCubeMapBlend" ]
+			},
+			{
+				"Type": "/Script/FortniteGame.FortGameFeatureData",
+				"AllowList": [ "DefaultLootTableData", "DefaultGameData", "PlaylistBaseCurveTableOverrides", "PlaylistBaseDataTableOverrides"]
+			},
+			{
+				"Type": "/Script/FN1NativeRuntime.VerseFortniteStormVolumeComponent",
+				"AllowList": ["SafeZoneVolumes"]
+			},
+			{
+				"Type": "/Script/FN1NativeRuntime.VFortStormVolume",
+				"AllowList": ["VolumeActor", "RejectionChance"]
+			},
+			{
+				"Type": "/Script/FN1NativeRuntime.VerseFortniteBusVolumeComponent",
+				"AllowList": ["DropZone"]
+			},
+			{
+				"Type": "/Game/Athena/Helios/Actors/BP_POI_Measure_Tool.BP_POI_Measure_Tool_C",
+				"AllowList": ["POI_Name_Text", "POI_Size", "POIColor", "ShowStreamingBounds", "ShowMaxGridStreamingBounds", "SnapToBuildingGrid"]
+			}
+		],
+		"-": [
+			{
+				"Type": "/Game/Creative/Devices/Lighting/BP_DaySequenceModifier_Device.BP_DaySequenceModifier_Device_C",
+				"DenyList": [ "UserDaySequence" ]
+			}
+		]
+	}
+}

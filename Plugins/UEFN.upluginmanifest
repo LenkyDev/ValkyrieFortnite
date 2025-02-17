@@ -1,0 +1,5510 @@
+{
+	"Contents": [
+		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/CE_CharacterCameraControl/Plugins/CE_CharacterCameraControl/CE_CharacterCameraControl.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "CE_CharacterCameraControl",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/localhost/CE_CharacterCameraControl",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/CE_Greyboxing/Plugins/CE_Greyboxing/CE_Greyboxing.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "CE_Greyboxing",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/localhost/CE_Greyboxing",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/CE_Landscape/Plugins/CE_Landscape/CE_Landscape.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "CE_Landscape",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/localhost/CE_Landscape",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/CE_Materials/Plugins/CE_Materials/CE_Materials.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "CE_Materials",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/localhost/CE_Materials",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/CE_Modeling/Plugins/CE_Modeling/CE_Modeling.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "CE_Modeling",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/localhost/CE_Modeling",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/CE_UEFN/Plugins/CE_UEFN/CE_UEFN.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "CE_UEFN",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/localhost/CE_UEFN",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/DaySequence_Starter/Plugins/DaySequence_Starter/DaySequence_Starter.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "DaySequence_Starter",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/localhost/DaySequence_Starter",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/FortnitePlaysetTemplate/Plugins/FortnitePlaysetTemplate/FortnitePlaysetTemplate.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "FortnitePlaysetTemplate",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/InvalidDomain/FortnitePlaysetTemplate",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/Lighting_Starter/Plugins/Lighting_Starter/Lighting_Starter.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Lighting_Starter",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/localhost/Lighting_Starter",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/LimeTestTemplate/Plugins/LimeTestTemplate/LimeTestTemplate.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "LimeTestTemplate",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/localhost/LimeTestTemplate",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/Speedway/Plugins/UEFNDesignASpeedwayRace/UEFNDesignASpeedwayRace.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "UEFNDesignASpeedwayRace",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/InvalidDomain/UEFNDesignASpeedwayRace",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/VerseDeviceStarterGames/Plugins/VerseDeviceStarterGames/VerseDeviceStarterGames.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "",
+				"FriendlyName": "VerseDeviceStarterGames",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/InvalidDomain/VerseDeviceStarterGames",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/VKT_Animation101/Plugins/VKT_Animation101/VKT_Animation101.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "",
+				"FriendlyName": "VKT_Animation101",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/localhost/Projects/_VKT_Animation101",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/VKT_ConversationIsland/Plugins/ConversationIsland/ConversationIsland.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "ConversationIsland",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/InvalidDomain/ConversationIsland",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/VKT_Features/Plugins/VKT_Features/VKT_Features.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "",
+				"FriendlyName": "VKT_Features",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/VKT_LavaCave/Plugins/VKT_LavaCave/VKT_LavaCave.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "VKT_LavaCave",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/localhost/VKT_LavaCave",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/VKT_Library/Plugins/VKT_Library/VKT_Library.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "VKT_Library",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/InvalidDomain/VKT_Library",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/VKT_Playset/Plugins/VKT_Playset/VKT_Playset.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/VKT_Talisman_Bridge/Plugins/VKT_Talisman_Bridge/VKT_Talisman_Bridge.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "VKT_Talisman_Bridge",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/InvalidDomain/VKT_Talisman_Bridge",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Samples/Deserted/Plugins/Deserted/Deserted.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Deserted",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/localhost/Deserted",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Samples/VKT_Talisman_Template/Plugins/VKT_Talisman_Template/VKT_Talisman_Template.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "VKT_Talisman_Template",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/InvalidDomain/VKT_Talisman_Template",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Samples/VKT_Village/Plugins/VKT_Village/VKT_Village.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "VKT_Village",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/InvalidDomain/VillageTemplate",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Verse/VKT_ProceduralBuilding/Plugins/VKT_ProceduralBuilding/VKT_ProceduralBuilding.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "VKT_ProceduralBuilding",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/InvalidDomain/VKT_ProceduralBuilding",
+				"VerseVersion": 0,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Verse/VKT_Triad_Infiltration/Plugins/VKT_Triad_Infiltration/VKT_Triad_Infiltration.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "VKT_Triad_Infiltration",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/burgers_jackson@fortnite.com/VKT_Triad_Infiltration",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Verse/VKT_Verse_AI_Stronghold/Plugins/VKT_Verse_AI_Stronghold/VKT_Verse_AI_Stronghold.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "VKT_Verse_AI_Stronghold",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/localhost/VKT_Verse_AI_Stronghold",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Verse/VKT_Verse_Detonation/Plugins/VKT_Verse_Detonation/VKT_Verse_Detonation.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "VKT_Verse_Detonation",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/localhost/VKT_Verse_Detonation",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Verse/VKT_Verse_Elimination/Plugins/VKT_Verse_Elimination/VKT_Verse_Elimination.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "VKT_Verse_Elimination",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/localhost/VKT_Verse_Elimination",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Verse/VKT_Verse_Parkour/Plugins/VKT_Verse_Parkour/VKT_Verse_Parkour.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "",
+				"FriendlyName": "VKT_Verse_Parkour",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/localhost/Projects/_VKT_Verse_Parkour",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Verse/VKT_Verse_PropHunt/Plugins/VKT_Verse_PropHunt/VKT_Verse_PropHunt.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "VKT_Verse_PropHunt",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/localhost/VKT_Verse_PropHunt",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Verse/VKT_Verse_Standup/Plugins/VKT_Verse_Standup/VKT_Verse_Standup.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "VKT_Verse_Standup",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/InvalidDomain/VKT_Verse_Standup",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/DelMarGFS/CompetitiveRaceTrack/Plugins/CompetitiveRaceTrack/CompetitiveRaceTrack.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "CompetitiveRaceTrack",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/InvalidDomain/CompetitiveRaceTrack",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/DelMarGFS/SpeedRunTrack/Plugins/SpeedRunTrack/SpeedRunTrack.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "SpeedRunTrack",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/InvalidDomain/SpeedRunTrack",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/MeltedIronGFS/MeltedIron_Arcade_Template/Plugins/MeltedIron_Arcade_Template/MeltedIron_Arcade_Template.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "MeltedIron_Arcade_Template",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/featurecreep@fortnite.com/MeltedIron_Arcade_Template_Dev",
+				"VerseVersion": 0,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/MeltedIronGFS/MIron_Visuals/Plugins/MIron_Visuals/MIron_Visuals.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "MIron_Visuals",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/featurecreep@fortnite.com/MIron_Visuals_Dev",
+				"VerseVersion": 0,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/LimeGFS/ScarySpace/Plugins/ScarySpace/ScarySpace.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "ScarySpace",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/InvalidDomain/ScarySpace",
+				"VerseVersion": 0,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/LimeGFS/VKT_Cane/Plugins/VKT_Cane/VKT_Cane.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "VKT_Cane",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/sublab_games@fortnite.com/VKT_Cane",
+				"VerseVersion": 0,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Animation/BlendSpaceMotionAnalysis/BlendSpaceMotionAnalysis.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Blendspace Motion Analysis",
+				"Description": "Allows analysis of locomotion/root motion properties in blend spaces",
+				"Category": "BlendSpace",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "BlendSpaceMotionAnalysis",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Animation/MLDeformer/ChaosClothGenerator/ChaosClothGenerator.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "0.0",
+				"FriendlyName": "Chaos Cloth Generator",
+				"Description": "Chaos Cloth Data Generator for ML Deformer",
+				"Category": "Animation",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "https://forums.unrealengine.com/",
+				"CanContainContent": true,
+				"IsExperimentalVersion": true,
+				"Modules": [
+					{
+						"Name": "ChaosClothGenerator",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "ChaosClothAsset",
+						"Enabled": true
+					},
+					{
+						"Name": "GeometryCache",
+						"Enabled": true
+					},
+					{
+						"Name": "MLDeformerFramework",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/ChaosClothAssetEditor/ChaosClothAssetEditor.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.1",
+				"FriendlyName": "Chaos Cloth Asset Editor",
+				"Description": "Editor for modifying cloth assets",
+				"Category": "Other",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "ChaosClothAssetEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					},
+					{
+						"Name": "ChaosClothAssetEditorTools",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					},
+					{
+						"Name": "ChaosClothAssetDataflowNodes",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					},
+					{
+						"Name": "ChaosClothAssetTools",
+						"Type": "UncookedOnly",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "GeometryProcessing",
+						"Enabled": true
+					},
+					{
+						"Name": "ChaosClothAsset",
+						"Enabled": true
+					},
+					{
+						"Name": "ChaosCloth",
+						"Enabled": true
+					},
+					{
+						"Name": "MeshModelingToolsetExp",
+						"Enabled": true,
+						"TargetAllowList": [
+							"Editor"
+						]
+					},
+					{
+						"Name": "BaseCharacterFXEditor",
+						"Enabled": true,
+						"TargetAllowList": [
+							"Editor"
+						]
+					},
+					{
+						"Name": "Dataflow",
+						"Enabled": true
+					},
+					{
+						"Name": "USDImporter",
+						"Enabled": true,
+						"SupportedTargetPlatforms": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/CmdLinkServer/CmdLinkServer.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Command Link Server",
+				"Description": "Listens to and runs console commands from CmdLink",
+				"Category": "Other",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "CmdLinkServer",
+						"Type": "Editor",
+						"LoadingPhase": "PostDefault",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Compositing/OpenColorIO/OpenColorIO.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "0.1",
+				"FriendlyName": "OpenColorIO (OCIO)",
+				"Description": "Provides support for OpenColorIO",
+				"Category": "Rendering",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "OpenColorIO",
+						"Type": "Runtime",
+						"LoadingPhase": "PostConfigInit"
+					},
+					{
+						"Name": "OpenColorIOEditor",
+						"Type": "Editor",
+						"LoadingPhase": "PreDefault",
+						"PlatformAllowList": [
+							"Win64",
+							"Linux",
+							"Mac"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Developer/Concert/ConcertUI/ConcertSharedSlate/ConcertSharedSlate.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.2",
+				"FriendlyName": "Concert Shared Slate",
+				"Description": "Contains UI that is shared for server and client UI modules",
+				"Category": "Networking",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"IsBetaVersion": true,
+				"SupportedPrograms": [
+					"UnrealMultiUserServer",
+					"UnrealMultiUserSlateServer",
+					"UnrealRecoverySvc",
+					"CrashReportClientEditor"
+				],
+				"Modules": [
+					{
+						"Name": "ConcertSharedSlate",
+						"Type": "UncookedOnly",
+						"LoadingPhase": "Default",
+						"ProgramAllowList": [
+							"UnrealMultiUserServer",
+							"UnrealMultiUserSlateServer",
+							"UnrealRecoverySvc",
+							"CrashReportClientEditor"
+						]
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "ConcertMain",
+						"Enabled": true
+					},
+					{
+						"Name": "ConcertSyncCore",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Developer/DumpGPUServices/DumpGPUServices.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Dump GPU Services",
+				"Description": "Implements automatic upload services for the DumpGPU command.",
+				"Category": "Rendering",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"IsExperimentalVersion": true,
+				"Modules": [
+					{
+						"Name": "DumpGPUServices",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"TargetDenyList": [
+							"Server"
+						],
+						"TargetConfigurationDenyList": [
+							"Shipping"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Developer/N10XSourceCodeAccess/N10XSourceCodeAccess.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "10X Editor Integration",
+				"Description": "Allows access to source code in the 10X Editor .",
+				"Category": "Programming",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "N10XSourceCodeAccess",
+						"Type": "UncookedOnly",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Developer/PerforceSourceControl/PerforceSourceControl.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Perforce",
+				"Description": "Perforce source control management",
+				"Category": "Source Control",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "PerforceSourceControl",
+						"Type": "UncookedOnly",
+						"LoadingPhase": "EarliestPossible"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Developer/PixWinPlugin/PixWinPlugin.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "PIX on Windows GPU Capture Plugin",
+				"Description": "PIX on Windows graphics debugger integration.",
+				"Category": "Rendering",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"SupportedTargetPlatforms": [
+					"Win64"
+				],
+				"Modules": [
+					{
+						"Name": "PixWinPlugin",
+						"Type": "DeveloperTool",
+						"LoadingPhase": "PostConfigInit",
+						"PlatformAllowList": [
+							"Win64"
+						],
+						"TargetDenyList": [
+							"Server"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Developer/PropertyAccessNode/PropertyAccessNode.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Property Access Node",
+				"Description": "Blueprint node that allows access to properties via a property path",
+				"Category": "Blueprints",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "PropertyAccessNode",
+						"Type": "UncookedOnly",
+						"LoadingPhase": "PreDefault"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "PropertyAccessEditor",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Developer/RenderDocPlugin/RenderDocPlugin.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "RenderDoc Plugin",
+				"Description": "RenderDoc graphics debugger/profiler integration.",
+				"Category": "Rendering",
+				"CreatedBy": "Fredrik Lindh (Temaran)",
+				"CreatedByURL": "https://github.com/Temaran/UE4RenderDocPlugin",
+				"DocsURL": "https://renderdoc.org/docs/index.html",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "RenderDocPlugin",
+						"Type": "DeveloperTool",
+						"LoadingPhase": "PostConfigInit",
+						"PlatformAllowList": [
+							"Win64",
+							"Linux"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Developer/RiderSourceCodeAccess/RiderSourceCodeAccess.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 2,
+				"VersionName": "1.7",
+				"FriendlyName": "Rider Integration",
+				"Description": "Allows access to source code in Rider.",
+				"Category": "Programming",
+				"CreatedBy": "JetBrains",
+				"CreatedByURL": "https://www.jetbrains.com/",
+				"DocsURL": "https://github.com/JetBrains/RiderSourceCodeAccess",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "RiderSourceCodeAccess",
+						"Type": "EditorNoCommandlet",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Editor/ChangelistReview/ChangelistReview.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Changelist Reviews",
+				"Description": "Review source control changelists",
+				"Category": "Source Control",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "ChangelistReview",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Editor/ConsoleVariablesEditor/ConsoleVariables.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Console Variables Editor",
+				"Description": "Save, load and control Console Variables (cvars) from this panel using Slate.",
+				"Category": "Virtual Production",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "ConsoleVariablesEditor",
+						"Type": "UncookedOnly",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "ConsoleVariablesEditorRuntime",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "ConcertSyncClient",
+						"Enabled": true
+					},
+					{
+						"Name": "ConcertSyncCore",
+						"Enabled": true
+					},
+					{
+						"Name": "ConcertMain",
+						"Enabled": true
+					},
+					{
+						"Name": "ConcertSharedSlate",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Editor/ContentBrowser/ContentBrowserAliasDataSource/ContentBrowserAliasDataSource.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Content Browser - Alias Data Source",
+				"Description": "Data Source plugin providing allowing Content Browser items to appear in other directories other than their original location",
+				"Category": "Content Browser",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "ContentBrowserAliasDataSource",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "ContentBrowserAssetDataSource",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Editor/ContentBrowser/ContentBrowserClassDataSource/ContentBrowserClassDataSource.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Content Browser - Class Data Source",
+				"Description": "Data Source plugin providing Class Data to the Content Browser",
+				"Category": "Content Browser",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "ContentBrowserClassDataSource",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Editor/ContentBrowser/ContentBrowserFileDataSource/ContentBrowserFileDataSource.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Content Browser - File Data Source",
+				"Description": "Data Source plugin providing loose file support for the Content Browser",
+				"Category": "Content Browser",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"SupportedPrograms": [
+					"LiveLinkHub"
+				],
+				"Modules": [
+					{
+						"Name": "ContentBrowserFileDataSource",
+						"Type": "EditorAndProgram",
+						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Editor/CryptoKeys/CryptoKeys.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "CryptoKeys",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "CryptoKeys",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Mac",
+							"Win64",
+							"Linux"
+						]
+					},
+					{
+						"Name": "CryptoKeysOpenSSL",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Mac",
+							"Win64",
+							"Linux"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Editor/CurveEditorTools/CurveEditorTools.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Curve Editor Tools",
+				"Description": "This provides a default set of editing tools for the Curve Editor.",
+				"Category": "Editor",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "CurveEditorTools",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Editor/EditorDebugTools/EditorDebugTools.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "EditorDebugTools",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "EditorDebugTools",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Editor/EngineAssetDefinitions/EngineAssetDefinitions.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Engine Asset Definitions",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "EngineAssetDefinitions",
+						"Type": "Editor",
+						"LoadingPhase": "PostEngineInit"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Editor/Localization/PortableObjectFileDataSource/PortableObjectFileDataSource.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Portable Object File Data Source",
+				"Description": "Data Source plugin providing portable object (PO) file support for the Content Browser",
+				"Category": "Localization",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "PortableObjectFileDataSource",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "ContentBrowserFileDataSource",
+						"Enabled": true,
+						"TargetAllowList": [
+							"Editor"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Editor/MaterialAnalyzer/MaterialAnalyzer.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Material Analyzer",
+				"Description": "Analyzer to discover possible memory savings in material shaders.",
+				"Category": "Editor",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "MaterialAnalyzer",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "AssetManagerEditor",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Editor/MeshLODToolset/MeshLODToolset.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.1",
+				"FriendlyName": "Mesh LOD Toolset",
+				"Description": "A set of modules implementing 3D mesh LOD creation",
+				"Category": "Other",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "MeshLODToolset",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "GeometryProcessing",
+						"Enabled": true
+					},
+					{
+						"Name": "GeometryFlow",
+						"Enabled": true
+					},
+					{
+						"Name": "MeshModelingToolsetExp",
+						"Enabled": true,
+						"TargetAllowList": [
+							"Editor"
+						]
+					},
+					{
+						"Name": "EditorScriptingUtilities",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Editor/ScriptableToolsEditorMode/ScriptableToolsEditorMode.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.1",
+				"FriendlyName": "Scriptable Tools Editor Mode",
+				"Description": "Editor Mode for Scriptable Tools",
+				"Category": "Editor",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "ScriptableToolsEditorMode",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "ScriptableToolsFramework",
+						"Enabled": true
+					},
+					{
+						"Name": "MeshModelingToolset",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Editor/StylusInput/StylusInput.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 2,
+				"VersionName": "2.0",
+				"FriendlyName": "Stylus & Tablet Plugin",
+				"Description": "Support for advanced stylus and tablet inputs such as pressure, stylus and tablet buttons, and pen angles.",
+				"Category": "Input Devices",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "StylusInput",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "StylusInputDebugWidget",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Editor/WorldPartitionHLODUtilities/WorldPartitionHLODUtilities.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "World Partition HLOD Utilities",
+				"Description": "Editor utility classes & HLOD layer asset types",
+				"Category": "Editor",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "WorldPartitionHLODUtilities",
+						"Type": "UncookedOnly",
+						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Enterprise/MDLImporter/MDLImporter.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "MDL Importer",
+				"Description": "Importer for MDL material files.",
+				"Category": "Importers",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"SupportedTargetPlatforms": [
+					"Win64",
+					"Mac",
+					"Linux"
+				],
+				"Modules": [
+					{
+						"Name": "MDLImporter",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Experimental/AdvancedRenamer/AdvancedRenamer.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Batch Renamer",
+				"Description": "Rename multiple selected actors or assets, and standardize their prefixes and suffixes.",
+				"Category": "Experimental",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"IsExperimentalVersion": true,
+				"Modules": [
+					{
+						"Name": "AdvancedRenamer",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Experimental/Animation/SkeletalMeshModelingTools/SkeletalMeshModelingTools.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Skeletal Mesh Editing Tools",
+				"Description": "Create skeletons, paint skin weights and edit skeletal meshes.",
+				"Category": "Animation",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com/",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": true,
+				"Modules": [
+					{
+						"Name": "SkeletalMeshModelingTools",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "ModelingToolsEditorMode",
+						"Enabled": true,
+						"TargetAllowList": [
+							"Editor"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Experimental/BackChannel/BackChannel.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1",
+				"FriendlyName": "BackChannel",
+				"Description": "BackChannel is an experimental plugin that allows external tools and apps to query for and push data into a running Unreal session.",
+				"Category": "Experimental",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "BackChannel",
+						"Type": "RuntimeNoCommandlet",
+						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Experimental/ChaosEditor/ChaosEditor.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "ChaosEditor",
+				"Description": "Destruction Tools",
+				"Category": "Editor",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "FractureEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "PlanarCut",
+						"Enabled": true,
+						"TargetAllowList": [
+							"Editor"
+						]
+					},
+					{
+						"Name": "GeometryCollectionPlugin",
+						"Enabled": true
+					},
+					{
+						"Name": "MeshModelingToolsetExp",
+						"Enabled": true,
+						"TargetAllowList": [
+							"Editor"
+						]
+					},
+					{
+						"Name": "EditorScriptingUtilities",
+						"Enabled": true
+					},
+					{
+						"Name": "Fracture",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Experimental/CharacterFXEditor/BaseCharacterFXEditor/BaseCharacterFXEditor.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.1",
+				"FriendlyName": "BaseCharacterFXEditor",
+				"Description": "Base classes for character FX asset editors",
+				"Category": "Other",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"CanContainContent": true,
+				"IsExperimentalVersion": true,
+				"Modules": [
+					{
+						"Name": "BaseCharacterFXEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "GeometryProcessing",
+						"Enabled": true
+					},
+					{
+						"Name": "MeshModelingToolset",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Experimental/EditorDataStorageFeatures/EditorDataStorageFeatures.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.1",
+				"FriendlyName": "TEDS: Editor Data Storage Features",
+				"Description": "Experimental UI Features for the Editor, built on TEDS: Editor Data Storage.",
+				"Category": "Editor",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"CanContainContent": true,
+				"IsExperimentalVersion": true,
+				"Modules": [
+					{
+						"Name": "TedsRevisionControl",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "TedsAssetData",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "TedsOutliner",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "TedsPropertyEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "TedsDebugger",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "TedsSettings",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "TedsTableViewer",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "TedsContentBrowser",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "TedsStyling",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Experimental/Fracture/Fracture.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.1",
+				"FriendlyName": "Fracture",
+				"Description": "Adds Module for FractureEditor",
+				"Category": "Physics",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "FractureEngine",
+						"Type": "Runtime",
+						"LoadingPhase": "PostEngineInit"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "PlanarCut",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Experimental/GeometryCollectionPlugin/GeometryCollectionPlugin.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.1",
+				"FriendlyName": "Geometry",
+				"Description": "Adds Geometry Collection Container.",
+				"Category": "Geometry",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "GeometryCollectionEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "GeometryCollectionTracks",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "GeometryCollectionSequencer",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "GeometryCollectionNodes",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "GeometryCollectionDepNodes",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "ProceduralMeshComponent",
+						"Enabled": true
+					},
+					{
+						"Name": "ChaosSolverPlugin",
+						"Enabled": true
+					},
+					{
+						"Name": "Dataflow",
+						"Enabled": true
+					},
+					{
+						"Name": "PlanarCut",
+						"Enabled": true
+					},
+					{
+						"Name": "GeometryProcessing",
+						"Enabled": true
+					},
+					{
+						"Name": "Fracture",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Experimental/GeometryFlow/GeometryFlow.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.1",
+				"FriendlyName": "GeometryFlow",
+				"Description": "Geometry DataFlow Graph",
+				"Category": "Geometry",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"CanContainContent": true,
+				"IsExperimentalVersion": true,
+				"Modules": [
+					{
+						"Name": "GeometryFlowCore",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "GeometryFlowMeshProcessing",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "GeometryFlowMeshProcessingEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "GeometryProcessing",
+						"Enabled": true
+					},
+					{
+						"Name": "MeshModelingToolsetExp",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Experimental/InstanceDataObjectFixupTool/InstanceDataObjectFixupTool.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "InstanceDataObject Fixup Tool",
+				"Description": "Editor tool for redirecting loose InstanceDataObject properties",
+				"Category": "Editor",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"IsExperimentalVersion": true,
+				"Modules": [
+					{
+						"Name": "InstanceDataObjectFixupTool",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Experimental/PCGInterops/PCGWaterInterop/PCGWaterInterop.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.1",
+				"FriendlyName": "Procedural Content Generation Framework (PCG) Water Interop",
+				"Description": "Extra plugin for Procedural Content Generation Framework interacting with the Water system.",
+				"Category": "Editor",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "https://docs.unrealengine.com/latest/en-US/procedural-content-generation--framework-in-unreal-engine/",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsExperimentalVersion": true,
+				"Modules": [
+					{
+						"Name": "PCGWaterInterop",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "PCG",
+						"Enabled": true
+					},
+					{
+						"Name": "Water",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Experimental/RemoteSession/RemoteSession.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "RemoteSession",
+				"Description": "A plugin for Unreal that allows one instance to act as a thin-client (rendering and input) to a second instance",
+				"Category": "Experimental",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"Modules": [
+					{
+						"Name": "RemoteSession",
+						"Type": "Runtime",
+						"LoadingPhase": "PostConfigInit",
+						"PlatformDenyList": [
+							"TVOS"
+						]
+					},
+					{
+						"Name": "RemoteSessionEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformDenyList": [
+							"TVOS"
+						]
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "BackChannel",
+						"Enabled": true
+					},
+					{
+						"Name": "AppleImageUtils",
+						"Enabled": true
+					},
+					{
+						"Name": "MediaIOFramework",
+						"Enabled": true
+					},
+					{
+						"Name": "XRBase",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Experimental/SkeletalReduction/SkeletalReduction.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Skeletal Mesh Simplifier (Early Access)",
+				"Description": "A plugin to generate LOD for deforming meshes.",
+				"Category": "Editor",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "SkeletalMeshReduction",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/FastBuildController/FastBuildController.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.1",
+				"FriendlyName": "FastBuild Controller",
+				"Description": "Adds support for shader compiling distribution using FastBuild",
+				"Category": "Build Distribution",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "FastBuildController",
+						"Type": "UncookedOnly",
+						"LoadingPhase": "EarliestPossible",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Importers/AlembicImporter/AlembicImporter.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Alembic Importer",
+				"Description": "Support importing Alembic files",
+				"Category": "Importers",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "https://docs.unrealengine.com/en-US/WorkingWithContent/Importing/AlembicImporter/",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "AlembicImporter",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					},
+					{
+						"Name": "AlembicLibrary",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "GeometryCache",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Importers/USDImporter/USDImporter.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "USD Importer",
+				"Description": "Adds support for importing the USD file format into Unreal Engine",
+				"Category": "Importers",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "USDSchemas",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					},
+					{
+						"Name": "USDStage",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					},
+					{
+						"Name": "USDStageEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					},
+					{
+						"Name": "USDStageImporter",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					},
+					{
+						"Name": "USDStageEditorViewModels",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					},
+					{
+						"Name": "USDExporter",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					},
+					{
+						"Name": "USDClassesEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					},
+					{
+						"Name": "GeometryCacheUSD",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					},
+					{
+						"Name": "USDTests",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "USDCore",
+						"Enabled": true
+					},
+					{
+						"Name": "AnalyticsBlueprintLibrary",
+						"Enabled": true
+					},
+					{
+						"Name": "ControlRig",
+						"Enabled": true
+					},
+					{
+						"Name": "EditorScriptingUtilities",
+						"Enabled": true
+					},
+					{
+						"Name": "GeometryCache",
+						"Enabled": true
+					},
+					{
+						"Name": "Interchange",
+						"Enabled": true,
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					},
+					{
+						"Name": "LevelSequenceEditor",
+						"Enabled": true
+					},
+					{
+						"Name": "LiveLink",
+						"Enabled": true
+					},
+					{
+						"Name": "MDLImporter",
+						"Enabled": true,
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					},
+					{
+						"Name": "PythonScriptPlugin",
+						"Enabled": true
+					},
+					{
+						"Name": "SequencerScripting",
+						"Enabled": true
+					},
+					{
+						"Name": "HairStrands",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/IoStoreInsights/IoStoreInsights.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "IoStore Insights",
+				"Description": "Allows capturing IoStore activity via Unreal Insights",
+				"Category": "Insights",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"SupportedPrograms": [
+					"UnrealInsights"
+				],
+				"Modules": [
+					{
+						"Name": "IoStoreInsights",
+						"Type": "EditorAndProgram",
+						"LoadingPhase": "Default",
+						"ProgramAllowList": [
+							"UnrealInsights"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Media/AndroidMedia/AndroidMedia.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 2,
+				"VersionName": "2.0",
+				"FriendlyName": "Android Media Player",
+				"Description": "Implements a media player using the Android Media library.",
+				"Category": "Media Players",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "https://forums.unrealengine.com/showthread.php?46879-Media-Framework-Documentation-for-4-5-Preview",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "AndroidMedia",
+						"Type": "RuntimeNoCommandlet",
+						"LoadingPhase": "PreLoadingScreen",
+						"PlatformAllowList": [
+							"Android"
+						]
+					},
+					{
+						"Name": "AndroidMediaEditor",
+						"Type": "Editor",
+						"LoadingPhase": "PostEngineInit"
+					},
+					{
+						"Name": "AndroidMediaFactory",
+						"Type": "Editor",
+						"LoadingPhase": "PostEngineInit"
+					},
+					{
+						"Name": "AndroidMediaFactory",
+						"Type": "RuntimeNoCommandlet",
+						"LoadingPhase": "PostEngineInit",
+						"PlatformAllowList": [
+							"Android"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Media/HardwareEncoders/HardwareEncoders.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "0.2",
+				"FriendlyName": "HardwareEncoders",
+				"Description": "Adds support of hardware encoders to AVEncoder",
+				"Category": "Encoders",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "EncoderAMF",
+						"Type": "Runtime",
+						"LoadingPhase": "PostConfigInit",
+						"PlatformAllowList": [
+							"Win64",
+							"Linux"
+						]
+					},
+					{
+						"Name": "EncoderNVENC",
+						"Type": "Runtime",
+						"LoadingPhase": "PostConfigInit",
+						"PlatformAllowList": [
+							"Win64",
+							"Linux"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Media/ImgMedia/ImgMedia.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Image Sequence Media Player",
+				"Description": "Implements a media player for image sequences in EXR and other formats.",
+				"Category": "Media Players",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "https://forums.unrealengine.com/showthread.php?46879-Media-Framework-Documentation-for-4-5-Preview",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "ImgMedia",
+						"Type": "RuntimeNoCommandlet",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "ImgMediaEditor",
+						"Type": "Editor",
+						"LoadingPhase": "PostEngineInit"
+					},
+					{
+						"Name": "ImgMediaEngine",
+						"Type": "RuntimeNoCommandlet",
+						"LoadingPhase": "PreDefault"
+					},
+					{
+						"Name": "ImgMediaFactory",
+						"Type": "Editor",
+						"LoadingPhase": "PostEngineInit"
+					},
+					{
+						"Name": "ImgMediaFactory",
+						"Type": "RuntimeNoCommandlet",
+						"LoadingPhase": "PostEngineInit"
+					},
+					{
+						"Name": "OpenExrWrapper",
+						"Type": "RuntimeNoCommandlet",
+						"LoadingPhase": "PostEngineInit",
+						"PlatformAllowList": [
+							"Mac",
+							"Win64"
+						]
+					},
+					{
+						"Name": "ExrReaderGpu",
+						"Type": "Runtime",
+						"LoadingPhase": "PostConfigInit",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "MediaPlayerEditor",
+						"Enabled": true,
+						"TargetAllowList": [
+							"Editor"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Media/MediaCompositing/MediaCompositing.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Media Compositing",
+				"Description": "Actors, components and Sequencer extensions for compositing media",
+				"Category": "Rendering",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": true,
+				"Modules": [
+					{
+						"Name": "MediaCompositing",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "MediaCompositingEditor",
+						"Type": "Editor",
+						"LoadingPhase": "PostEngineInit"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "ImgMedia",
+						"Enabled": true,
+						"TargetAllowList": [
+							"Editor"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Media/MediaIOFramework/MediaIOFramework.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Media IO Framework",
+				"Description": "Media Framework classes to support Professional Media IO used by the Virtual Production industry.",
+				"Category": "Virtual Production",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "MediaIOCore",
+						"Type": "Runtime",
+						"LoadingPhase": "PostConfigInit"
+					},
+					{
+						"Name": "MediaIOEditor",
+						"Type": "Editor",
+						"LoadingPhase": "PostEngineInit"
+					},
+					{
+						"Name": "GPUTextureTransfer",
+						"Type": "Runtime",
+						"LoadingPhase": "PostConfigInit"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "OpenColorIO",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Media/MediaPlayerEditor/MediaPlayerEditor.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Media Player Editor",
+				"Description": "Content Editor for MediaPlayer Assets.",
+				"Category": "Editor",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "https://forums.unrealengine.com/showthread.php?46879-Media-Framework-Documentation-for-4-5-Preview",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "MediaPlayerEditor",
+						"Type": "Editor",
+						"LoadingPhase": "PostEngineInit"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Messaging/TcpMessaging/TcpMessaging.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "TCP Messaging",
+				"Description": "Adds a TCP connection based transport layer to the messaging sub-system for sending and receiving messages between networked computers and devices.",
+				"Category": "Messaging",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"SupportedPrograms": [
+					"UnrealFrontend",
+					"UnrealInsights"
+				],
+				"Modules": [
+					{
+						"Name": "TcpMessaging",
+						"Type": "Runtime",
+						"LoadingPhase": "PreDefault",
+						"ProgramAllowList": [
+							"UnrealFrontend",
+							"UnrealInsights"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/MovieScene/MoviePipelineMaskRenderPass/MoviePipelineMaskRenderPass.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Movie Render Queue Additional Render Passes",
+				"Description": "Additional render passes for the Movie Render Queue. This currently includes the ObjectId pass (Editor Only) which generates object mattes with some limitations (using the Cryptomatte specification), and a Panoramic pass with better Sequencer integration than the Panoramic Capture plugin.",
+				"Category": "Rendering",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "MoviePipelineMaskRenderPass",
+						"Type": "UncookedOnly",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "MovieRenderPipeline",
+						"Enabled": true
+					},
+					{
+						"Name": "ActorLayerUtilities",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/MovieScene/MovieRenderPipeline/MovieRenderPipeline.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.3",
+				"FriendlyName": "Movie Render Queue",
+				"Description": "Advanced movie rendering pipeline for use in creating rendered cinematics or other multi-media creation.",
+				"Category": "Rendering",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"Modules": [
+					{
+						"Name": "MovieRenderPipelineCore",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Mac",
+							"Win64",
+							"Linux"
+						]
+					},
+					{
+						"Name": "MovieRenderPipelineSettings",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Mac",
+							"Win64",
+							"Linux"
+						]
+					},
+					{
+						"Name": "MovieRenderPipelineRenderPasses",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Mac",
+							"Win64",
+							"Linux"
+						]
+					},
+					{
+						"Name": "MovieRenderPipelineEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "UEOpenExrRTTI",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Mac",
+							"Win64",
+							"Linux"
+						]
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "ActorLayerUtilities",
+						"Enabled": true
+					},
+					{
+						"Name": "ConsoleVariables",
+						"Enabled": true
+					},
+					{
+						"Name": "EditorScriptingUtilities",
+						"Enabled": true
+					},
+					{
+						"Name": "LevelSequenceEditor",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "OpenColorIO",
+						"Enabled": true
+					},
+					{
+						"Name": "SequencerScripting",
+						"Enabled": true
+					},
+					{
+						"Name": "ChaosClothAsset",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/PCGInterops/PCGGeometryScriptInterop/PCGGeometryScriptInterop.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.2",
+				"FriendlyName": "Procedural Content Generation Framework (PCG) Geometry Script Interop",
+				"Description": "Extra plugin for Procedural Content Generation Framework interacting with Geometry Scripts.",
+				"Category": "Editor",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "https://docs.unrealengine.com/latest/en-US/procedural-content-generation--framework-in-unreal-engine/",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "PCGGeometryScriptInterop",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "PCG",
+						"Enabled": true
+					},
+					{
+						"Name": "GeometryScripting",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/RenderGraphInsights/RenderGraphInsights.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "RDG Insights",
+				"Description": "Allows debugging of RDG via Unreal Insights",
+				"Category": "Insights",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"SupportedPrograms": [
+					"UnrealInsights"
+				],
+				"Modules": [
+					{
+						"Name": "RenderGraphInsights",
+						"Type": "EditorAndProgram",
+						"LoadingPhase": "Default",
+						"ProgramAllowList": [
+							"UnrealInsights"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Runtime/ActorLayerUtilities/ActorLayerUtilities.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Actor Layer Utilities",
+				"Description": "Utilites for interacting with actor layers from blueprints",
+				"Category": "Editor",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "ActorLayerUtilities",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "ActorLayerUtilitiesEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Runtime/AndroidBackgroundService/AndroidBackgroundService.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Android Background Service",
+				"Description": "Allows you to use AndroidX WorkManager to perform background work on Android",
+				"Category": "Android Background Service",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"SupportedTargetPlatforms": [
+					"Android"
+				],
+				"Modules": [
+					{
+						"Name": "AndroidBackgroundService",
+						"Type": "RuntimeNoCommandlet",
+						"LoadingPhase": "PreEarlyLoadingScreen",
+						"PlatformAllowList": [
+							"Android"
+						]
+					}
+				],
+				"LocalizationTargets": [
+					{
+						"Name": "AndroidBackgroundService",
+						"LoadingPolicy": "Always",
+						"ConfigGenerationPolicy": "Never"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Runtime/AppleImageUtils/AppleImageUtils.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Apple Image Utils",
+				"Description": "Utilities that operate on CIImage, CVPixelBuffer, IOSurface, etc.",
+				"Category": "Experimental",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"SupportedPrograms": [
+					"LiveLinkHub"
+				],
+				"Modules": [
+					{
+						"Name": "AppleImageUtils",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"ProgramAllowList": [
+							"LiveLinkHub"
+						]
+					},
+					{
+						"Name": "AppleImageUtilsBlueprintSupport",
+						"Type": "UncookedOnly",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Runtime/Firebase/Firebase.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Firebase",
+				"Description": "Support for remote notifications using Firebase",
+				"Category": "Online Platform",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"SupportedTargetPlatforms": [
+					"Android",
+					"IOS"
+				],
+				"Modules": [
+					{
+						"Name": "Firebase",
+						"Type": "Runtime",
+						"LoadingPhase": "PreDefault",
+						"PlatformAllowList": [
+							"Android",
+							"IOS"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Runtime/MobileFSR/MobileFSR.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Mobile FSR",
+				"Description": "Mobile FSR 1.0",
+				"Category": "Rendering",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"SupportedTargetPlatforms": [
+					"IOS",
+					"Android"
+				],
+				"Modules": [
+					{
+						"Name": "MobileFSR",
+						"Type": "Runtime",
+						"LoadingPhase": "PostConfigInit"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Runtime/ScriptableToolsFramework/ScriptableToolsFramework.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.1",
+				"FriendlyName": "Scriptable Tools Framework",
+				"Description": "Blueprint-Scriptable extension to the Interactive Tools Framework",
+				"Category": "Editor",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "ScriptableToolsFramework",
+						"Type": "Runtime",
+						"LoadingPhase": "PreDefault"
+					},
+					{
+						"Name": "EditorScriptableToolsFramework",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "MeshModelingToolset",
+						"Enabled": true
+					},
+					{
+						"Name": "MeshModelingToolsetExp",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Runtime/XRBase/XRBase.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "XRBase",
+				"Description": "XR Base Feature Implementations.  (Generally this plugin will be automatically enabled by another plugin that requires it.)",
+				"Category": "Virtual Reality",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"SupportedPrograms": [
+					"LiveLinkHub"
+				],
+				"Modules": [
+					{
+						"Name": "XRBase",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"ProgramAllowList": [
+							"LiveLinkHub"
+						]
+					},
+					{
+						"Name": "XRBaseEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"ProgramAllowList": [
+							"LiveLinkHub"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Slate/SlateScripting/SlateScripting.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Slate Scripting",
+				"Description": "Allows interacting with Slate through scripting",
+				"Category": "Scripting",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "SlateScriptingCommands",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Tests/PythonAutomationTest/PythonAutomationTest.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Python Automation Test",
+				"Description": "",
+				"Category": "Testing",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "PythonAutomationTest",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "PythonScriptPlugin",
+						"Enabled": true
+					},
+					{
+						"Name": "FunctionalTestingEditor",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/UbaController/UbaController.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.1",
+				"FriendlyName": "UBA Controller",
+				"Description": "Adds support for shader compiling distribution using UnrealBuildAccelerator (UBA)",
+				"Category": "Build Distribution",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"IsExperimentalVersion": true,
+				"SupportedTargetPlatforms": [
+					"Win64"
+				],
+				"Modules": [
+					{
+						"Name": "UbaController",
+						"Type": "Editor",
+						"LoadingPhase": "EarliestPossible",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/VirtualProduction/CameraCalibrationCore/CameraCalibrationCore.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Camera Calibration Core",
+				"Description": "Supports lens distortion and camera calibration.",
+				"Category": "Virtual Production",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"SupportedPrograms": [
+					"LiveLinkHub"
+				],
+				"Modules": [
+					{
+						"Name": "CameraCalibrationCore",
+						"Type": "Runtime",
+						"LoadingPhase": "PostConfigInit",
+						"ProgramAllowList": [
+							"LiveLinkHub"
+						]
+					},
+					{
+						"Name": "CameraCalibrationCoreEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"ProgramAllowList": [
+							"LiveLinkHub"
+						]
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "ProceduralMeshComponent",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/VirtualProduction/CaptureData/CaptureData.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Capture Data",
+				"Description": "Classes releated to captured data",
+				"Category": "Virtual Production",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"CanContainContent": true,
+				"Modules": [
+					{
+						"Name": "CaptureDataCore",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "CaptureDataEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "CaptureDataUtils",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "ImgMedia",
+						"Enabled": true
+					},
+					{
+						"Name": "CameraCalibrationCore",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/VirtualProduction/LensComponent/LensComponent.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Lens Component",
+				"Description": "Implements the Lens Component for adding distortion to a cinematic camera",
+				"Category": "Virtual Production",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"SupportedPrograms": [
+					"LiveLinkHub"
+				],
+				"Modules": [
+					{
+						"Name": "LensComponent",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"ProgramAllowList": [
+							"LiveLinkHub"
+						]
+					},
+					{
+						"Name": "LensComponentEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"ProgramAllowList": [
+							"LiveLinkHub"
+						]
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "CameraCalibrationCore",
+						"Enabled": true
+					},
+					{
+						"Name": "LiveLink",
+						"Enabled": true
+					},
+					{
+						"Name": "Takes",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/XGEController/XGEController.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.1",
+				"FriendlyName": "XGE Controller",
+				"Description": "Adds support for shader compiling distribution using XGE",
+				"Category": "Build Distribution",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "XGEController",
+						"Type": "UncookedOnly",
+						"LoadingPhase": "EarliestPossible",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Runtime/Windows/D3DExternalGPUStatistics/D3DExternalGPUStatistics.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "D3D External GPU Statistics",
+				"Description": "Plugin to find out more detailed GPU usage information on Windows for D3D11, D3D12 and Vulkan using the D3DKMTQueryStatistics() driver backdoor (not available in shipping).",
+				"Category": "Rendering",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"IsExperimentalVersion": true,
+				"SupportedTargetPlatforms": [
+					"Win64"
+				],
+				"Modules": [
+					{
+						"Name": "D3DExternalGPUStatistics",
+						"Type": "Runtime",
+						"LoadingPhase": "PostEngineInit",
+						"PlatformAllowList": [
+							"Win64"
+						],
+						"TargetConfigurationDenyList": [
+							"Shipping"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/ConcertSyncEntity/ConcertSyncEntity.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Concert Sync - Entity",
+				"Description": "Provides entity support for ConcertSyncClient",
+				"Category": "Networking",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "ConcertSyncEntityClient",
+						"Type": "UncookedOnly",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "ConcertSyncClient",
+						"Enabled": true
+					},
+					{
+						"Name": "EntityFramework",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Coop/CoopNotes/CoopNotes.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "CoopNotes",
+				"Description": "Coop Notes POC Unreal editor plugin",
+				"Category": "Other",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"SupportedTargetPlatforms": [
+					"Win64"
+				],
+				"Modules": [
+					{
+						"Name": "CoopNotesRest",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "CoopNotesCore",
+						"Type": "Editor",
+						"LoadingPhase": "PostEngineInit",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "CoopNotesSidePanel",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "OnlineSubsystem",
+						"Enabled": true
+					},
+					{
+						"Name": "OnlineSubsystemEOS",
+						"Enabled": true
+					},
+					{
+						"Name": "JWT",
+						"Enabled": true
+					},
+					{
+						"Name": "PlatformCrypto",
+						"Enabled": true
+					},
+					{
+						"Name": "SkeinSourceControl",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/LocalAssetChanges/LocalAssetChanges.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Local Asset Changes",
+				"Description": "Contains helpers for additional checks of local perforce changes to track packages that have changed.",
+				"Category": "Epic Internal.Fortnite",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "LocalAssetChangesModule",
+						"Type": "Editor",
+						"LoadingPhase": "PostEngineInit"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "DataValidation",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/MetaHuman/MetaHuman.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "5.0.0",
+				"FriendlyName": "MetaHuman",
+				"Description": "The official MetaHuman Unreal Engine toolkit",
+				"Category": "MetaHuman",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"CanContainContent": true,
+				"IsExperimentalVersion": true,
+				"SupportedTargetPlatforms": [
+					"Win64",
+					"Linux"
+				],
+				"Modules": [
+					{
+						"Name": "AutoRigService",
+						"Type": "Editor",
+						"LoadingPhase": "PostEngineInit",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanCore",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanCoreEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanImageViewer",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanMeshTracker",
+						"Type": "Runtime",
+						"LoadingPhase": "PreDefault",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanPipeline",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanFaceContourTracker",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanFaceContourTrackerEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanIdentity",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanIdentityEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanCaptureData",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanCaptureDataEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanCaptureSource",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanFootageIngest",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanDepthGenerator",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanPerformance",
+						"Type": "Editor",
+						"LoadingPhase": "PostEngineInit",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanSequencer",
+						"Type": "Editor",
+						"LoadingPhase": "PostEngineInit",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanCaptureUtils",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanCaptureProtocolStack",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanToolkit",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanSpeech2Face",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanBatchProcessor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanConfig",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanConfigEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanFaceAnimationSolver",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanFaceAnimationSolverEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanFaceFittingSolver",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanFaceFittingSolverEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanPlatform",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanControlsConversionTest",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "DNAInterchange",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					}
+				],
+				"LocalizationTargets": [
+					{
+						"Name": "MetaHuman",
+						"LoadingPolicy": "Editor",
+						"ConfigGenerationPolicy": "User"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "RigLogic",
+						"Enabled": true
+					},
+					{
+						"Name": "NNERuntimeORT",
+						"Enabled": true
+					},
+					{
+						"Name": "MeshModelingToolset",
+						"Enabled": true
+					},
+					{
+						"Name": "ImgMedia",
+						"Enabled": true
+					},
+					{
+						"Name": "CaptureData",
+						"Enabled": true
+					},
+					{
+						"Name": "ProceduralMeshComponent",
+						"Enabled": true
+					},
+					{
+						"Name": "MediaCompositing",
+						"Enabled": true
+					},
+					{
+						"Name": "CameraCalibrationCore",
+						"Enabled": true
+					},
+					{
+						"Name": "LensComponent",
+						"Enabled": true
+					},
+					{
+						"Name": "MediaIOFramework",
+						"Enabled": true
+					},
+					{
+						"Name": "PlatformCrypto",
+						"Enabled": true
+					},
+					{
+						"Name": "Interchange",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/MultiAgentCook/MultiAgentCook.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "MultiAgentCook",
+				"Description": "",
+				"Category": "Editor",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"CanContainContent": false,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "MultiAgentCook",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"TargetAllowList": [
+							"Editor"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/StyleSheetsConverter/StyleSheetsConverter.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Style Sheets Converter",
+				"Description": "Editor tool and blueprint library to convert UWidgets to use StyleSheets tags based on a set of rules.",
+				"Category": "UI",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"Modules": [
+					{
+						"Name": "StyleSheetsConverter",
+						"Type": "Editor",
+						"LoadingPhase": "PreLoadingScreen"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "StyleSheets",
+						"Enabled": true
+					},
+					{
+						"Name": "CommonUI",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/AssetExtractionTool/AssetExtractionTool.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "AssetExtractionTool",
+				"Description": "",
+				"Category": "Editor",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"IsExperimentalVersion": true,
+				"Modules": [
+					{
+						"Name": "AssetExtractionTool",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "ContentBrowserFileDataSource",
+						"Enabled": true
+					},
+					{
+						"Name": "ContentBrowserAliasDataSource",
+						"Enabled": true
+					},
+					{
+						"Name": "GameFeatures",
+						"Enabled": true
+					},
+					{
+						"Name": "PluginReferenceViewer",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/AtomVK/AtomVK.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.8",
+				"FriendlyName": "AtomVK",
+				"Description": "Contains the code to enable atom in UEFN (This should be refactored in the future but logic need to live here now to avoid leaks)",
+				"Category": "Other",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"Modules": [
+					{
+						"Name": "AtomVKEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "AtomFramework",
+						"Enabled": true
+					},
+					{
+						"Name": "ValkyrieFortnite",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/EntityFortnite/EntityFortnite.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "EntityFortnite",
+				"Description": "",
+				"Category": "Entity Fortnite Gameplay Framework",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "EntityFortnite",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "EntityCore",
+						"Enabled": true
+					},
+					{
+						"Name": "EntityActor",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/EpicHardSurfaceQC/EpicHardSurfaceQC.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Epic HardSurface QC Plugin",
+				"Description": "Internal Epic Games HardSurface plugin to support Qualit Control (QC) workflows.",
+				"Category": "Scripting",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "EpicHardSurfaceQCEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "EpicHardSurfaceQCRuntime",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/FXBrowserUtilities/FXBrowserUtilities.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "FXBrowserUtilities",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "Epic Games",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"CanContainContent": true,
+				"Modules": [
+					{
+						"Name": "FXBrowserUtilities",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/ForEngine/Valkyrie/Valkyrie.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Valkyrie",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"Modules": [
+					{
+						"Name": "ValkyrieEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "EntityActor",
+						"Enabled": true
+					},
+					{
+						"Name": "PluginUtils",
+						"Enabled": true
+					},
+					{
+						"Name": "Solaris",
+						"Enabled": false
+					},
+					{
+						"Name": "OnlineSubsystem",
+						"Enabled": true
+					},
+					{
+						"Name": "OnlineSubsystemUtils",
+						"Enabled": true
+					},
+					{
+						"Name": "OnlineSubsystemMcp",
+						"Enabled": true
+					},
+					{
+						"Name": "ConcertMain",
+						"Enabled": true
+					},
+					{
+						"Name": "ConcertSyncCore",
+						"Enabled": true
+					},
+					{
+						"Name": "EpicCMSUIFramework",
+						"Enabled": true
+					},
+					{
+						"Name": "PluginUtils",
+						"Enabled": true
+					},
+					{
+						"Name": "CommonUI",
+						"Enabled": true
+					},
+					{
+						"Name": "CommonUILegacy",
+						"Enabled": true
+					},
+					{
+						"Name": "ContentBrowserAliasDataSource",
+						"Enabled": true
+					},
+					{
+						"Name": "ContentBrowserFileDataSource",
+						"Enabled": true
+					},
+					{
+						"Name": "PortableObjectFileDataSource",
+						"Enabled": true
+					},
+					{
+						"Name": "DataValidation",
+						"Enabled": true
+					},
+					{
+						"Name": "ValkyrieEngine",
+						"Enabled": true
+					},
+					{
+						"Name": "GameFeatures",
+						"Enabled": true
+					},
+					{
+						"Name": "GameFeatureSet",
+						"Enabled": true
+					},
+					{
+						"Name": "ControlFlows",
+						"Enabled": true
+					},
+					{
+						"Name": "ModelingToolsEditorMode",
+						"Enabled": true
+					},
+					{
+						"Name": "ModelViewViewModel",
+						"Enabled": true
+					},
+					{
+						"Name": "UVEditor",
+						"Enabled": true
+					},
+					{
+						"Name": "SkeinSourceControl",
+						"Enabled": true
+					},
+					{
+						"Name": "StyleSheets",
+						"Enabled": true
+					},
+					{
+						"Name": "LinkCodes",
+						"Enabled": true
+					},
+					{
+						"Name": "UnrealEngineExperimental",
+						"Enabled": true
+					},
+					{
+						"Name": "DeltaFileSystem",
+						"Enabled": true
+					},
+					{
+						"Name": "Emporium",
+						"Enabled": true,
+						"TargetAllowList": [
+							"Editor"
+						]
+					},
+					{
+						"Name": "ContentResolver",
+						"Enabled": true
+					},
+					{
+						"Name": "CoopNotes",
+						"Enabled": true,
+						"TargetAllowList": [
+							"Editor"
+						],
+						"SupportedTargetPlatforms": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "LiveLink",
+						"Enabled": true
+					},
+					{
+						"Name": "EntityFramework",
+						"Enabled": true
+					},
+					{
+						"Name": "Metasound",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/FortContentMetaDataWriter/FortContentMetaDataWriter.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Fortnite Content MetaData Writer",
+				"Description": "Writes various metadata to certain types of Fortnite assets upon saving them",
+				"Category": "Content Browser",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "FortContentMetaDataWriter",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/FortniteGizmos/FortniteGizmos.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "FortniteGizmos",
+				"Description": "FortniteGizmos",
+				"Category": "Misc",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"CanContainContent": false,
+				"IsExperimentalVersion": true,
+				"Modules": [
+					{
+						"Name": "FortniteGizmos",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "GizmoEdMode",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/Gbuffer_Turntable/Gbuffer_Turntable.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Gbuffer_Turntable",
+				"Description": "Contains the Gbuffer Turntable level and level check logics.",
+				"Category": "Other",
+				"CreatedBy": "chris.morrison",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"Plugins": [
+					{
+						"Name": "MeshCosmetics",
+						"Enabled": true
+					},
+					{
+						"Name": "SequencerScripting",
+						"Enabled": true
+					},
+					{
+						"Name": "BRCosmetics",
+						"Enabled": true
+					},
+					{
+						"Name": "AnimationBudgetAllocator",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/HUDLayoutSaveTool/HUDLayoutSaveTool.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "HUDLayoutSaveTool",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "HUDLayoutSaveTool",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "EditorScriptingUtilities",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/Lowpoly_Turntable/Lowpoly_Turntable.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Lowpoly_Turntable",
+				"Description": "Lowpoly Turntable Plugin",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"Plugins": [
+					{
+						"Name": "MeshCosmetics",
+						"Enabled": true
+					},
+					{
+						"Name": "Paper2D",
+						"Enabled": true
+					},
+					{
+						"Name": "SequencerScripting",
+						"Enabled": true
+					},
+					{
+						"Name": "AnimationBudgetAllocator",
+						"Enabled": true
+					},
+					{
+						"Name": "Gbuffer_Turntable",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/MetaHumanImport/MetaHumanImport.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1",
+				"FriendlyName": "MetaHuman Import",
+				"Description": "MetaHuman Import for UEFN.",
+				"Category": "Editor",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"SupportedTargetPlatforms": [
+					"Win64"
+				],
+				"Modules": [
+					{
+						"Name": "MetaHumanImport",
+						"Type": "Editor",
+						"LoadingPhase": "PostDefault",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "MetaHumanSDK",
+						"Enabled": true
+					},
+					{
+						"Name": "EditorScriptingUtilities",
+						"Enabled": true
+					},
+					{
+						"Name": "Valkyrie",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/PythonDependenciesPackaged/PythonDependenciesPackaged.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.1",
+				"FriendlyName": "Fortnite Packaged Python Dependencies",
+				"Description": "All required python dependencies of ML Deformer packaged for download through P4",
+				"Category": "Scripting",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "https://forums.unrealengine.com/",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsExperimentalVersion": true,
+				"NoCode": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/Runtime/Analytics/AppsFlyer/AppsFlyer.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "AppsFlyer Analytics Provider",
+				"Description": "AppsFlyer Analytics Provider",
+				"Category": "Analytics",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "https://docs.unrealengine.com/latest/INT/Gameplay/Analytics/index.html",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"SupportedTargetPlatforms": [
+					"Android",
+					"IOS"
+				],
+				"Modules": [
+					{
+						"Name": "AndroidAppsFlyer",
+						"Type": "Runtime",
+						"LoadingPhase": "PreDefault",
+						"PlatformAllowList": [
+							"Android"
+						]
+					},
+					{
+						"Name": "IOSAppsFlyer",
+						"Type": "Runtime",
+						"LoadingPhase": "PreDefault",
+						"PlatformAllowList": [
+							"IOS"
+						]
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "OnlineSubsystemMcp",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/Runtime/CrashReporter/CrashReporter.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "CrashReporter",
+				"Description": "CrashReporter for Android and IOS",
+				"Category": "Analytics",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"SupportedTargetPlatforms": [
+					"IOS",
+					"Android"
+				],
+				"Modules": [
+					{
+						"Name": "CrashReporter",
+						"Type": "Runtime",
+						"LoadingPhase": "PostConfigInit"
+					},
+					{
+						"Name": "CrashReporterEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/Runtime/FortConfigRules/FortConfigRules.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "FortConfigRules",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"SupportedTargetPlatforms": [
+					"IOS"
+				],
+				"Modules": [
+					{
+						"Name": "FortConfigRules",
+						"Type": "ClientOnly",
+						"LoadingPhase": "PreEarlyLoadingScreen",
+						"PlatformAllowList": [
+							"IOS"
+						]
+					}
+				],
+				"LocalizationTargets": [
+					{
+						"Name": "FortConfigRules",
+						"LoadingPolicy": "Always",
+						"ConfigGenerationPolicy": "Never"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/Runtime/RHIPanicSentinel/RHIPanicSentinel.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "RHI Panic Sentinel",
+				"Description": "Handles displaying an error popup when we get an RHI Panic popup.",
+				"Category": "",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"SupportedTargetPlatforms": [
+					"Android"
+				],
+				"Modules": [
+					{
+						"Name": "RHIPanicSentinel",
+						"Type": "ClientOnly",
+						"LoadingPhase": "PreEarlyLoadingScreen",
+						"PlatformAllowList": [
+							"Android"
+						]
+					}
+				],
+				"LocalizationTargets": [
+					{
+						"Name": "RHIPanicSentinel",
+						"LoadingPolicy": "Always",
+						"ConfigGenerationPolicy": "Never"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "CrashReporter",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/SharedIterativeCook/SharedIterativeCook.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Shared Iterative Cook",
+				"Description": "Editor interface to shared iterative cook workflow",
+				"Category": "FortniteGame.SharedIterativeCook",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "SharedIterativeCook",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/StreamingFileBackend/StreamingFileBackend.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "StreamingFileBackend",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"SupportedTargetPlatforms": [
+					"Android",
+					"IOS",
+					"Win64"
+				],
+				"Modules": [
+					{
+						"Name": "StreamingFileBackend",
+						"Type": "Runtime",
+						"LoadingPhase": "EarliestPossible",
+						"PlatformAllowList": [
+							"Android",
+							"IOS",
+							"Win64"
+						]
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "FortInstallBundleManager",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/Tests/BRTests/BRTests.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "BR Tests",
+				"Description": "",
+				"Category": "Epic Internal",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "BRTests",
+						"Type": "RuntimeAndProgram",
+						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/Tests/ValkyrieTests/ValkyrieTests.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Valkyie Tests",
+				"Description": "",
+				"Category": "Epic Internal",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "ValkyrieTests",
+						"Type": "RuntimeAndProgram",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "OnlineSubsystem",
+						"Enabled": true
+					},
+					{
+						"Name": "OnlineSubsystemUtils",
+						"Enabled": true
+					},
+					{
+						"Name": "GameFeatures",
+						"Enabled": true
+					},
+					{
+						"Name": "ValkyrieEngine",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/ValkyrieFortnite/ValkyrieFortnite.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Valkyrie Fortnite",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"Modules": [
+					{
+						"Name": "ValkyrieEarlyStartup",
+						"Type": "Runtime",
+						"LoadingPhase": "PostConfigInit"
+					},
+					{
+						"Name": "ValkyrieCommon",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"TargetAllowList": [
+							"Server",
+							"Editor"
+						]
+					},
+					{
+						"Name": "ValkyrieAccount",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "ValkyriePatchCheck",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "ValkyrieFortniteEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "ValkyrieServer",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "ValkyrieRuntimeServer",
+						"Type": "Runtime",
+						"LoadingPhase": "None",
+						"TargetAllowList": [
+							"Server",
+							"Editor"
+						]
+					},
+					{
+						"Name": "ValkyrieFortniteTests",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"TargetAllowList": [
+							"Editor"
+						]
+					},
+					{
+						"Name": "ValkyrieAutologin",
+						"Type": "Editor",
+						"LoadingPhase": "PostEngineInit"
+					},
+					{
+						"Name": "ValkyrieFortniteRpc",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"TargetAllowList": [
+							"Editor"
+						]
+					},
+					{
+						"Name": "ValkyrieVerseStatistics",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"TargetAllowList": [
+							"Server",
+							"Editor"
+						]
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "Valkyrie",
+						"Enabled": true
+					},
+					{
+						"Name": "ValkyrieValidation",
+						"Enabled": true
+					},
+					{
+						"Name": "EntityFramework",
+						"Enabled": true
+					},
+					{
+						"Name": "FortContentMetaDataWriter",
+						"Enabled": true
+					},
+					{
+						"Name": "FortOnlineConfig",
+						"Enabled": true
+					},
+					{
+						"Name": "OnlineSubsystem",
+						"Enabled": true
+					},
+					{
+						"Name": "OnlineSubsystemMCP",
+						"Enabled": true
+					},
+					{
+						"Name": "OnlineSubsystemEOS",
+						"Enabled": true,
+						"TargetAllowList": [
+							"Editor"
+						]
+					},
+					{
+						"Name": "EOSShared",
+						"Enabled": true
+					},
+					{
+						"Name": "OnlineGameplayFramework",
+						"Enabled": true
+					},
+					{
+						"Name": "ConcertMain",
+						"Enabled": true
+					},
+					{
+						"Name": "ConcertSyncClient",
+						"Enabled": true
+					},
+					{
+						"Name": "ConcertSyncCore",
+						"Enabled": true
+					},
+					{
+						"Name": "ConcertSyncEntity",
+						"Enabled": true
+					},
+					{
+						"Name": "EntityCore",
+						"Enabled": true
+					},
+					{
+						"Name": "EntityActor",
+						"Enabled": true
+					},
+					{
+						"Name": "EntityFortnite",
+						"Enabled": true
+					},
+					{
+						"Name": "GameFeatureSet",
+						"Enabled": true
+					},
+					{
+						"Name": "VerseInterface",
+						"Enabled": true
+					},
+					{
+						"Name": "Solaris",
+						"Enabled": false
+					},
+					{
+						"Name": "VerseGameplayDebug",
+						"Enabled": true
+					},
+					{
+						"Name": "VerseDevices",
+						"Enabled": true
+					},
+					{
+						"Name": "VerseFortnite",
+						"Enabled": false
+					},
+					{
+						"Name": "GameFeatures",
+						"Enabled": true
+					},
+					{
+						"Name": "GameplayMessages",
+						"Enabled": true
+					},
+					{
+						"Name": "ReplicationGraph",
+						"Enabled": true
+					},
+					{
+						"Name": "PlayspaceSystem",
+						"Enabled": true
+					},
+					{
+						"Name": "ControlFlows",
+						"Enabled": true
+					},
+					{
+						"Name": "LiveEditObject",
+						"Enabled": true
+					},
+					{
+						"Name": "MatchmakingService",
+						"Enabled": true
+					},
+					{
+						"Name": "MetaHumanImport",
+						"Enabled": true,
+						"TargetAllowList": [
+							"Editor"
+						],
+						"SupportedTargetPlatforms": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHuman",
+						"Enabled": true,
+						"TargetAllowList": [
+							"Editor"
+						]
+					},
+					{
+						"Name": "LevelSequenceEditor",
+						"Enabled": true
+					},
+					{
+						"Name": "PlatformCrypto",
+						"Enabled": true
+					},
+					{
+						"Name": "DeltaFileSystem",
+						"Enabled": true
+					},
+					{
+						"Name": "SkeinSourceControl",
+						"Enabled": true
+					},
+					{
+						"Name": "Water",
+						"Enabled": true
+					},
+					{
+						"Name": "AssetManagerEditor",
+						"Enabled": true
+					},
+					{
+						"Name": "UEFN",
+						"Enabled": true,
+						"TargetAllowList": [
+							"Editor"
+						]
+					},
+					{
+						"Name": "ItemizationCore",
+						"Enabled": true
+					},
+					{
+						"Name": "FortExternalRpcFramework",
+						"Enabled": true
+					},
+					{
+						"Name": "CommonConversation",
+						"Enabled": true
+					},
+					{
+						"Name": "SpatialMetrics",
+						"Enabled": true
+					},
+					{
+						"Name": "ModelViewViewModel",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/ValkyrieValidation/ValkyrieValidation.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Valkyrie Validation",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"Modules": [
+					{
+						"Name": "ValkyrieValidation",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "PlatformCrypto",
+						"Enabled": true
+					},
+					{
+						"Name": "ValkyrieEngine",
+						"Enabled": true
+					}
+				]
+			}
+		}
+	]
+}

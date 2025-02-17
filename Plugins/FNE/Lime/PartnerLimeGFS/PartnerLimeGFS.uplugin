@@ -1,0 +1,387 @@
+{
+	"FileVersion": 3,
+	"CanContainContent": true,
+	"NoCode": true,
+	"NoGameFeatureContent": true,
+	"ExplicitlyLoaded": true,
+	"EnabledByDefault": false,
+	"BuiltInInitialFeatureState": "Installed",
+	"BuiltInAutoRegister": true,
+	"BuiltInAutoLoad": false,
+	"BuiltInAutoActivate": false,
+	"EditorCustomVirtualPath": "FNE/Lime",
+	"FortReleaseVersion": "33.30",
+	"IsGameFeatureSet": true,
+	"RequiredEntitlements": {
+		"Edit": {
+			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
+			"VKCreateUGCPartnerLime": "d283cfefe4aa485f99e004465f749293"
+		}
+	},
+	"Plugins": [
+		{
+			"Name": "AtomFN",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Containers_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRD_LimeAssemble",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRD_LimeChairDevice",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRD_LimeCollectible",
+			"Activate": true,
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRD_LimeItemSpawner",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEC_ScarySpace",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEC_Space_Monster",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNSpaceIngestion",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Graybox_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Graybox_Composition",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Lime",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "Lime_Cane",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeAISpawner",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeAISpawnerGuard",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeApple",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeAtomAssets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeBanana",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeBow",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeBread",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeBurstPulse",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeCoconut",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeConsumablesCore",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeContainerOverride",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeCornCob",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeCrossbow",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeEditModeOverride",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeEgg",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeEmptyPlot",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeFlintKnock",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeGooGun",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeGrappler",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeGridScaleOverride",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeIslandUIOverride",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeKatana",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeKymera",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeLemonLime",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeMeatCooked",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeMedievalSword",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeMilk",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeNative",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimePatchworkTool",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimePawnOverride",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimePhoneTool",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimePizza",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimePlayerSpawn",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimePropOMatic",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimePumpkin",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeSlapberry",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeSlapJuice",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeSlurpJuice",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeSnowballLauncher",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeWeaponsCore",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "Musical_Walk_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Musical_Walk_Composition",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "MusicalWalk",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "ObstacleCourse",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "PartnerLimeGFSMetaData",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Primitives_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Primitives_Composition",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SpaceIngestion",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Suburban_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Suburban_Composition",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "TownScaper",
+			"Enabled": true,
+			"Optional": true
+		}
+	],
+	"Version": 0,
+	"VersionName": "",
+	"FriendlyName": "",
+	"Description": "",
+	"Category": "",
+	"CreatedBy": "",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false
+}

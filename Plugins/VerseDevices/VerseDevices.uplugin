@@ -1,0 +1,106 @@
+{
+	"FileVersion": 3,
+	"CanContainContent": true,
+	"CanContainVerse": true,
+	"EnabledByDefault": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "VerseDevices",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "VerseDevicesEditor",
+			"Type": "EditorNoCommandlet",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "Curie",
+			"Enabled": true
+		},
+		{
+			"Name": "DataDrivenGameplayEventRouter",
+			"Enabled": true
+		},
+		{
+			"Name": "DeltaFileSystem",
+			"Enabled": true
+		},
+		{
+			"Name": "EntityActor",
+			"Enabled": true
+		},
+		{
+			"Name": "EntityCore",
+			"Enabled": true
+		},
+		{
+			"Name": "EntityFramework",
+			"Enabled": true
+		},
+		{
+			"Name": "PlayspaceSystem",
+			"Enabled": true
+		},
+		{
+			"Name": "GameplayEventRouter",
+			"Enabled": true
+		},
+		{
+			"Name": "Solaris",
+			"Optional": true,
+			"Enabled": false
+		},
+		{
+			"Name": "UnrealEngineExperimental",
+			"Optional": true,
+			"Enabled": false
+		},
+		{
+			"Name": "Verse",
+			"Optional": true,
+			"Enabled": false
+		},
+		{
+			"Name": "VerseColors",
+			"Optional": true,
+			"Enabled": false
+		},
+		{
+			"Name": "VerseEngine",
+			"Optional": true,
+			"Enabled": false
+		},
+		{
+			"Name": "VerseGameplay",
+			"Optional": true,
+			"Enabled": false
+		},
+		{
+			"Name": "VerseGameplayTags",
+			"Optional": true,
+			"Enabled": false
+		},
+		{
+			"Name": "VerseSimulation",
+			"Optional": true,
+			"Enabled": false
+		},
+		{
+			"Name": "VerseFortnite",
+			"Optional": true,
+			"Enabled": false
+		},
+		{
+			"Name": "VerseQuery",
+			"Enabled": true
+		},
+		{
+			"Name": "VerseInput",
+			"Enabled":  true
+		}
+	]
+}

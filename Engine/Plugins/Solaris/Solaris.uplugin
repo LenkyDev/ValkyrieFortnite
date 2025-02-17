@@ -1,0 +1,106 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "Solaris",
+	"Description": "uLang VPL and text scripting.",
+	"Category": "Epic Internal.Fortnite",
+	"CreatedBy": "Epic Games, Inc.",
+	"CreatedByURL": "https://epicgames.com",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EnabledByDefault": false,
+	"CanContainVerse": true,
+	"IsBetaVersion": false,
+	"Installed": false,
+	"SupportedPrograms": [
+		"tLangVPL"
+	],
+	"Modules": [
+		{
+			"Name": "Solaris",
+			"Type": "RuntimeAndProgram",
+			"LoadingPhase": "Default",
+			"ProgramAllowList": [
+				"tLangVPL"
+			],
+			"PlatformDenyList": [ "TVOS" ]
+		},
+		{
+			"Name": "VerseNative",
+			"Type": "Runtime",
+			"LoadingPhase": "EarliestPossible"
+		},
+		{
+			"Name": "SolarisLoadCompiler",
+			"Type": "Runtime",
+			"LoadingPhase": "PreLoadingScreen"
+		},
+		{
+			"Name": "SolarisEditor",
+			"Type": "EditorNoCommandlet",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "SolarisUi",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "SolarisDebugAdapter",
+			"Type": "Runtime",
+			"LoadingPhase": "None"
+		},
+		{
+			"Name": "VerseWorkflowServer",
+			"Type": "EditorNoCommandlet",
+			"LoadingPhase": "None"
+		},
+		{
+			"Name": "VerseMessageServer",
+			"Type": "EditorNoCommandlet",
+			"LoadingPhase": "None"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "VerseInterface",
+			"Enabled": true
+		},
+		{
+			"Name": "VerseVM",
+			"Enabled": true
+		},
+		{
+			"Name": "GameFeatures",
+			"Enabled": true
+		},
+		{
+			"Name": "ContentBrowserFileDataSource",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "ContentBrowserAssetDataSource",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "ContentBrowserAliasDataSource",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "PlatformCrypto",
+			"Enabled": true
+		}
+	],
+	"IsExperimentalVersion": false
+}

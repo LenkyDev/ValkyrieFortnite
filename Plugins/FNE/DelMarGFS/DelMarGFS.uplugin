@@ -1,0 +1,93 @@
+{
+	"FileVersion": 3,
+	"CanContainContent": true,
+	"NoCode": true,
+	"NoGameFeatureContent": true,
+	"ExplicitlyLoaded": true,
+	"EnabledByDefault": false,
+	"BuiltInInitialFeatureState": "Installed",
+	"BuiltInAutoRegister": true,
+	"BuiltInAutoLoad": false,
+	"BuiltInAutoActivate": false,
+	"FortReleaseVersion": "33.30",
+	"IsGameFeatureSet": true,
+	"RequiredEntitlements": {
+		"Edit": {
+			"VKCreateUGCDelMar": "0442386b095842c6bc047b252ecad23c"
+		}
+	},
+	"Plugins": [
+		{
+			"Name": "CosmeticShoes",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRD_DelMarActiveTrackVolume",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRD_DelMarCheckpoint",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRD_DelMarEliminationVolume",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRD_DelMarJellySpawner",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRD_DelMarPlayerStart",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRD_DelMarRaceManager",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRD_DelMarSpeedPad",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRD_DelMarTrack",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "DelMarValidator",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		}
+	],
+	"Version": 0,
+	"VersionName": "",
+	"FriendlyName": "",
+	"Description": "",
+	"Category": "",
+	"CreatedBy": "",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false
+}

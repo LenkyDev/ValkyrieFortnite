@@ -1,0 +1,30 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "VerseVM",
+	"Description": "Verse Virtual Machine",
+	"Category": "Epic Internal.Fortnite",
+	"CreatedBy": "Epic Games, Inc.",
+	"CreatedByURL": "http://epicgames.com",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EnabledByDefault": false,
+	"IsBetaVersion": false,
+	"Installed": false,
+	"SupportedPrograms": [],
+	"Modules": [
+		{
+			"Name": "VerseVMCodeGen",
+			"Type": "RuntimeAndProgram",
+			"LoadingPhase": "None"
+		},
+		{
+			"Name": "VerseVMSocketDebugger",
+			"Type": "Program",
+			"LoadingPhase": "None"
+		}
+	],
+	"IsExperimentalVersion": false
+}

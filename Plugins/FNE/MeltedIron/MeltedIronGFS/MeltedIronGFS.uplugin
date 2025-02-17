@@ -1,0 +1,130 @@
+{
+	"FileVersion": 3,
+	"CanContainContent": true,
+	"NoCode": true,
+	"NoGameFeatureContent": true,
+	"ExplicitlyLoaded": true,
+	"EnabledByDefault": false,
+	"BuiltInInitialFeatureState": "Installed",
+	"BuiltInAutoRegister": true,
+	"BuiltInAutoLoad": false,
+	"BuiltInAutoActivate": false,
+	"EditorCustomVirtualPath": "FNE/MeltedIron",
+	"FortReleaseVersion": "33.30",
+	"IsGameFeatureSet": true,
+	"RequiredEntitlements": {
+		"Create": {
+			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
+			"VKIPAgreement": "32927964d7964134b0f80d20ab02d082"
+		}
+	},
+	"Plugins": [
+		{
+			"Name": "Alien_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Alien_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "ChompyPlugin",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "City_Assets",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "City_Comp",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRD_LinedNotebook",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LinedNotebookConsumables",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LinedNotebookGameplay",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LinedNotebookSupplyDrop",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LinedNotebookVehicle",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "MeltedIronCharacterSpawner",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "MeltedIronCosmetics",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "MeltedIronIslandUIOverride",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "MeltedIronUI",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "Sewer_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Sewer_Comp",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "CR_Legacy",
+			"Enabled": true,
+			"Optional": true
+		}
+	],
+	"Version": 0,
+	"VersionName": "",
+	"FriendlyName": "",
+	"Description": "",
+	"Category": "",
+	"CreatedBy": "",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false
+}

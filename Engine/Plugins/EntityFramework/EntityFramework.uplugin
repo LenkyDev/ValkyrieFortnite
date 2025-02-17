@@ -1,0 +1,140 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "EntityFramework",
+	"VerseScope": "PublicAPI",
+	"Description": "",
+	"Category": "Verse",
+	"CreatedBy": "Epic Games, Inc.",
+	"CreatedByURL": "http://epicgames.com",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EnabledByDefault": false,
+	"CanContainContent": true,
+	"CanContainVerse": true,
+	"IsBetaVersion": true,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "ActorEntity",
+			"Type": "Runtime"
+		},
+		{
+			"Name": "Entity",
+			"Type": "Runtime"
+		},
+		{
+			"Name": "EntityLevel",
+			"Type": "Runtime"
+		},
+		{
+			"Name": "EntityTestSuite",
+			"Type": "Runtime"
+		},
+		{
+			"Name": "Execution",
+			"Type": "Runtime"
+		},
+		{
+			"Name": "ExecutionTestSuite",
+			"Type": "Runtime"
+		},
+		{
+			"Name": "Component",
+			"Type": "Runtime"
+		},
+		{
+			"Name": "ComponentTestSuite",
+			"Type": "Runtime"
+		},
+		{
+			"Name": "EntityEditor",
+			"Type": "Editor"
+		},
+		{
+			"Name": "EntityPrefabEditor",
+			"Type": "Editor"
+		},
+		{
+			"Name": "ComponentEditor",
+			"Type": "Editor"
+		},
+		{
+			"Name": "RigidPhysicsCore",
+			"Type": "Runtime"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "EpicGamesTemporary",
+			"Enabled": true
+		},
+		{
+			"Name": "EpicGamesEngineRestricted",
+			"Enabled": true
+		},
+		{
+			"Name": "VerseColors",
+			"Enabled": true
+		},
+		{
+			"Name": "VerseEngine",
+			"Enabled": true
+		},
+		{
+			"Name": "VerseRestricted",
+			"Enabled": true
+		},
+		{
+			"Name": "VerseSimulation",
+			"Enabled": true
+		},
+		{
+			"Name": "VerseSimulationMetadata",
+			"Enabled": true
+		},
+		{
+			"Name": "MassGameplay",
+			"Enabled": true
+		},
+		{
+			"Name": "Niagara",
+			"Enabled": true
+		},
+		{
+			"Name": "UIFramework",
+			"Enabled": true
+		},
+		{
+			"Name": "EditorDataStorage",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "EditorDataStorageFeatures",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "InstanceDataObjectFixupTool",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "AdvancedRenamer",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		}
+	],
+	"IsExperimentalVersion": false
+}

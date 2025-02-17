@@ -1,0 +1,135 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "Verse Fortnite",
+	"Description": "Verse Fortnite API",
+	"Category": "Verse",
+	"CreatedBy": "Epic Games, Inc.",
+	"CreatedByURL": "http://epicgames.com",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EnabledByDefault": false,
+	"CanContainContent": true,
+	"CanContainVerse": true,
+	"IsBetaVersion": true,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "VerseFortnite",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "VerseFortniteTestSuite",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "AnimNext",
+			"Enabled": false,
+			"Optional": true
+		},
+		{
+			"Name": "AnimNextAnimGraph",
+			"Enabled": false,
+			"Optional": true
+		},
+		{
+			"Name": "AnimPresetsCore",
+			"Enabled": true
+		},
+		{
+			"Name": "Solaris",
+			"Enabled": true
+		},
+		{
+			"Name": "EntityFramework",
+			"Enabled": true
+		},
+		{
+			"Name": "EpicGamesEngine",
+			"Enabled": true
+		},
+		{
+			"Name": "GameplayAbilities",
+			"Enabled": true
+		},
+		{
+			"Name": "GameplayMessages",
+			"Enabled": true
+		},
+		{
+			"Name": "GameplayEventRouter",
+			"Enabled": true
+		},
+		{
+			"Name": "IKRig",
+			"Enabled": true
+		},
+		{
+			"Name": "ModularGameplay",
+			"Enabled": true
+		},
+		{
+			"Name": "LocalizableMessage",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineSubsystem",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineSubsystemMcp",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineSubsystemUtils",
+			"Enabled": true
+		},
+		{
+			"Name": "PlayspaceSystem",
+			"Enabled": true
+		},
+		{
+			"Name": "Verse",
+			"Enabled": true
+		},
+		{
+			"Name": "VerseAbilities",
+			"Enabled": true
+		},
+		{
+			"Name": "VerseEngine",
+			"Enabled": true
+		},
+		{
+			"Name": "VerseRestricted",
+			"Enabled": true
+		},
+		{
+			"Name": "VerseSimulation",
+			"Enabled": true
+		},
+		{
+			"Name": "VerseGameplayTags",
+			"Enabled": true
+		},
+		{
+			"Name": "VerseCamera",
+			"Enabled": true
+		},
+		{
+			"Name": "VerseQuery",
+			"Enabled": true
+		},
+		{
+			"Name": "EditorScriptingUtilities",
+			"TargetAllowList": [ "Editor" ],
+			"Enabled": true
+		}
+	]
+}

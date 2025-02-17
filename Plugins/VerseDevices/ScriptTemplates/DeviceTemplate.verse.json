@@ -1,0 +1,12 @@
+{
+	"Title": "Verse Device",
+	"Description": "Create a new Verse-authored creative device which can be placed in a level.",
+	"IsComponent": false,
+	"SortPriority": 20,
+	"Replacements": [
+		{
+			"Title": "Device Name",
+			"Token": "hello_world_device"
+		}
+	]
+}

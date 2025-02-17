@@ -1,0 +1,15 @@
+{
+	"Title": "Verse Class",	
+	"Description": "Create a new verse class.",
+	"IsComponent": false,
+	"SortPriority": 10,
+	"Replacements": [
+		{
+			"Title": "Class Name",
+			"Token": "new_class_template"
+		}
+	],
+	"RequiredEntitlements": [ 
+		"VKCreateUGCEpicDeveloper" 
+	]
+}

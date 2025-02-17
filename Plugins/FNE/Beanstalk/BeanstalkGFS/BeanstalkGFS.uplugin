@@ -1,0 +1,125 @@
+{
+	"FileVersion": 3,
+	"CanContainContent": true,
+	"ExplicitlyLoaded": true,
+	"NoCode": true,
+	"NoGameFeatureContent": true,
+	"EnabledByDefault": false,
+	"BuiltInInitialFeatureState": "Installed",
+	"BuiltInAutoRegister": true,
+	"BuiltInAutoLoad": false,
+	"BuiltInAutoActivate": false,
+	"FortReleaseVersion": "33.30",
+	"IsGameFeatureSet": true,
+	"Version": 0,
+	"VersionName": "",
+	"FriendlyName": "",
+	"Description": "",
+	"Category": "",
+	"CreatedBy": "",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"EditorCustomVirtualPath": "FNE/Beanstalk",
+	"RequiredEntitlements": {
+		"Edit": {
+			"VKCreateUGCBeanstalk": "294ea7595b5d43ef8a61414e7c1310f3"
+		}
+	},
+	"Plugins": [
+		{
+			"Name": "BeanEmptyPlot1",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "BeanEmptyPlot2",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "BeanEmptyPlot3",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "BeanEmptyPlot4",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Beanstalk",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "BeanstalkCosmetics",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "BeanstalkExperienceSettings",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "BeanstalkFrontend",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "BeanstalkGameDebuggers",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "BeanstalkItems",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "BeanstalkLevel_Composition",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "BeanstalkManagers",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "BeanstalkPawnOverride",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "BeanstalkReplay",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "BeanStarter",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "CosmeticShoes",
+			"Enabled": true,
+			"Optional": true
+		}
+	],
+	"LocalizationTargets": [
+		{
+			"Name": "BeanstalkGFS",
+			"LoadingPolicy": "Game",
+			"ConfigGenerationPolicy": "Auto"
+		}
+	]
+}
