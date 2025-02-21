@@ -9,7 +9,7 @@
 	"BuiltInAutoRegister": true,
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
-	"FortReleaseVersion": "33.30",
+	"FortReleaseVersion": "34.00",
 	"IsGameFeatureSet": true,
 	"Version": 0,
 	"VersionName": "",
@@ -106,11 +106,6 @@
 		},
 		{
 			"Name": "BeanStarter",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "CosmeticShoes",
 			"Enabled": true,
 			"Optional": true
 		}

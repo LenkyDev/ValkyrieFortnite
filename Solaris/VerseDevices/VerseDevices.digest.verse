@@ -10,7 +10,7 @@ using {/UnrealEngine.com/Temporary/SpatialMath}
 # Module import path: /Fortnite.com/Devices
 Devices<public> := module:
     # Module import path: /Fortnite.com/Devices/Animation
-    Animation<public> := module:
+    (/Fortnite.com/Devices:)Animation<public> := module:
 
 
     # Module import path: /Fortnite.com/Devices/CreativeAnimation
@@ -51,13 +51,13 @@ Devices<public> := module:
         # Instead of specifying the actual keyframe positions, we specify the keyframe *deltas*. This allows us to treat the initial position of the prop as keyframe 0 and avoid the question of how to get the prop to its initial location. For a `animation_mode.Loop` animation, the net rotation and translation must both be zero. Each delta is interpreted as a world-space transformation to be concatenated onto the previous transform(s).
         keyframe_delta<native><public> := struct:
             # Target position of the `creative_prop`. This is a world-space coordinate in cm, with the initial position of the `creative_prop` acting as coordinate (0,0).
-            DeltaLocation<native><public>:vector3
+            DeltaLocation<native><public>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
             # Target rotation for the `creative_prop`. Rotations are relative to the starting rotation of the `creative_prop`
-            DeltaRotation<native><public>:rotation
+            DeltaRotation<native><public>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
             # Target scale for the `creative_prop`. Scale is multiplicative to the starting Scale of the `creative_prop`
-            DeltaScale<native><public>:vector3 = external {}
+            DeltaScale<native><public>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
             # Time in seconds the `creative_prop` should animate between its last frame and this frame.
             Time<native><public>:float
@@ -150,19 +150,19 @@ Devices<public> := module:
         OnEnd<native_callable><public>():void = external {}
 
         # Returns the transform of the `creative_device` with units in cm.
-        GetTransform<override>()<transacts>:transform = external {}
+        GetTransform<override>()<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)transform = external {}
 
         # Teleports the `creative_device` to the specified `Position` and `Rotation`.
-        TeleportTo<public>(Position:vector3, Rotation:rotation)<transacts><decides>:void = external {}
+        TeleportTo<public>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts><decides>:void = external {}
 
         # Teleports the `creative_device` to the specified location defined by `Transform`, also applies rotation and scale accordingly.
-        TeleportTo<public>(Transform:transform)<transacts><decides>:void = external {}
+        TeleportTo<public>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform)<transacts><decides>:void = external {}
 
         # Moves the `creative_device` to the specified `Position` and `Rotation` over the specified time, in seconds. If an animation is currently playing on the `creative_device` it will be stopped and put into the `AnimationNotSet` state.
-        MoveTo<public>(Position:vector3, Rotation:rotation, OverTime:float)<suspends>:move_to_result = external {}
+        MoveTo<public>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, OverTime:float)<suspends>:move_to_result = external {}
 
         # Moves the `creative_device` to the specified `Transform` over the specified time, in seconds. If an animation is currently playing on the `creative_device` it will be stopped and put into the `AnimationNotSet` state.
-        MoveTo<public>(Transform:transform, OverTime:float)<suspends>:move_to_result = external {}
+        MoveTo<public>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, OverTime:float)<suspends>:move_to_result = external {}
 
         # Shows this device in the world.
         Show<native><public>()<transacts>:void
@@ -182,7 +182,7 @@ Devices<public> := module:
     # Returns the simulation entity at the root of the experience this `creative_device` is operating within.
     #   * The simulation entity is the rootmost entity in an experience.
     #   * Fails if this `creative_device` is not operating in a context with a valid SimulationEntity.
-    (CreativeDevice:creative_device).GetSimulationEntity<native><public>()<transacts><decides>:entity
+    (CreativeDevice:creative_device).(/Fortnite.com/Devices:)GetSimulationEntity<native><public>()<transacts><decides>:entity
 
     creative_object_interface<native><public> := interface<epic_internal>(positional):
 
@@ -191,19 +191,19 @@ Devices<public> := module:
     creative_object<native><public> := class<epic_internal>(creative_object_interface):
         # Returns the transform of the `creative_object` with units in cm. You must check `creative_object.IsValid` before calling this if there is a possibility the object has been disposed or destroyed by gameplay.
         # Otherwise a runtime error will result.
-        GetTransform<override>()<transacts>:transform = external {}
+        GetTransform<override>()<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)transform = external {}
 
         # Teleports the `creative_object` to the specified `Position` and `Rotation`.
-        TeleportTo<public>(Position:vector3, Rotation:rotation)<transacts><decides>:void = external {}
+        TeleportTo<public>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts><decides>:void = external {}
 
         # Teleports the `creative_object` to the specified location defined by `Transform`, also applies rotation and scale accordingly.
-        TeleportTo<public>(Transform:transform)<transacts><decides>:void = external {}
+        TeleportTo<public>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform)<transacts><decides>:void = external {}
 
         # Moves the `creative_object` to the specified `Position` and `Rotation` over the specified time, in seconds. If an animation is currently playing on the `creative_object` it will be stopped and put into the `AnimationNotSet` state.
-        MoveTo<public>(Position:vector3, Rotation:rotation, OverTime:float)<suspends>:move_to_result = external {}
+        MoveTo<public>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, OverTime:float)<suspends>:move_to_result = external {}
 
         # Moves the `creative_object` to the specified `Transform` over the specified time, in seconds. If an animation is currently playing on the `creative_object` it will be stopped and put into the `AnimationNotSet` state.
-        MoveTo<public>(Transform:transform, OverTime:float)<suspends>:move_to_result = external {}
+        MoveTo<public>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, OverTime:float)<suspends>:move_to_result = external {}
 
     @available {MinUploadedAtFNVersion := 2930}
     # Generates a `creative_object_interface` for every creative object that has been marked with the specified `Tag`. Will not find anything if called on a default constructed object.
@@ -242,7 +242,7 @@ Devices<public> := module:
     # Returns the simulation entity at the root of the experience this `creative_object` is operating within.
     #   * The simulation entity is the rootmost entity in an experience.
     #   * Fails if this `creative_object` is not operating in a context with a valid SimulationEntity.
-    (CreativeObject:creative_object).GetSimulationEntity<native><public>()<transacts><decides>:entity
+    (CreativeObject:creative_object).(/Fortnite.com/Devices:)GetSimulationEntity<native><public>()<transacts><decides>:entity
 
     # A Fortnite prop that has been placed or spawned in the island.
     creative_prop<native><public> := class<concrete><final>(creative_object, invalidatable):
@@ -293,13 +293,13 @@ Devices<public> := module:
     # Returns tuple:
     #  0: Instance of a `creative_prop`. False if no `creative_prop` could be created. See `spawn_prop_result` for failure cases.
     #  1: Success or failure results.
-    SpawnProp<native><public>(Asset:creative_prop_asset, Position:vector3, Rotation:rotation)<transacts>:tuple(?creative_prop, spawn_prop_result)
+    SpawnProp<native><public>(Asset:creative_prop_asset, Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts>:tuple(?creative_prop, spawn_prop_result)
 
     # Spawns a `creative_prop` at the specified `Transform`. `Units are in cm.
     # Returns tuple:
     #  0: Instance of a `creative_prop`. False if no `creative_prop` could be created. See `spawn_prop_result` for failure cases.
     #  1: Success or failure results.
-    SpawnProp<native><public>(Asset:creative_prop_asset, Transform:transform)<transacts>:tuple(?creative_prop, spawn_prop_result)
+    SpawnProp<native><public>(Asset:creative_prop_asset, Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform)<transacts>:tuple(?creative_prop, spawn_prop_result)
 
     # Payload of `device_event_ai_interaction`.
     device_ai_interaction_result<native><public> := struct<epic_internal>:

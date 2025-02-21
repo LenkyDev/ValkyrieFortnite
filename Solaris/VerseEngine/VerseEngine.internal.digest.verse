@@ -1,20 +1,20 @@
 # Module import path: /Verse.org/VerseEngine
 VerseEngine<public> := module:
-    no_param_delegate_signature<public> := type {__():void}
+    no_param_delegate_signature<public> := type {_():void}
 
-    logic_param_delegate_signature<public> := type {__(:logic):void}
+    logic_param_delegate_signature<public> := type {_(:logic):void}
 
-    int_param_delegate_signature<public> := type {__(:int):void}
+    int_param_delegate_signature<public> := type {_(:int):void}
 
-    float_param_delegate_signature<public> := type {__(:float):void}
+    float_param_delegate_signature<public> := type {_(:float):void}
 
-    string_param_delegate_signature<public> := type {__(:string):void}
+    string_param_delegate_signature<public> := type {_(:string):void}
 
     multicast_delegate_base<native><public> := class:
 
 
     multicast_delegate<native><public>(t:type) := class(multicast_delegate_base, subscribable(t)):
-        Subscribe<native><override>(Callback:type {__(:t):void})<transacts>:cancelable
+        Subscribe<native><override>(Callback:type {_(:t):void})<transacts>:cancelable
 
         Broadcast<native><public>(__dupe___unnamed_parameter_25:t):void
 

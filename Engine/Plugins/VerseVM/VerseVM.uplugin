@@ -22,7 +22,7 @@
 		},
 		{
 			"Name": "VerseVMSocketDebugger",
-			"Type": "Program",
+			"Type": "RuntimeAndProgram",
 			"LoadingPhase": "None"
 		}
 	],

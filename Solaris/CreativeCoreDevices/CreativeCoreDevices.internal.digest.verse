@@ -6,19 +6,19 @@ using {/UnrealEngine.com/Temporary/SpatialMath}
 advanced_storm_beacon_device<public> := class<concrete><final>(creative_device_base):
     # Teleports the `advanced_storm_beacon_device` to the specified `Position` and `Rotation`. 
     # Existing storms will not target the new location, but newly generated storms will.
-    TeleportTo<override>(Position:vector3, Rotation:rotation)<transacts><decides>:void = external {}
+    TeleportTo<override>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts><decides>:void = external {}
 
     # Teleports the `advanced_storm_beacon_device` to the specified location defined by `Transform`, also applies rotation and scale accordingly. 
     # Existing storms will not target the new location, but newly generated storms will.
-    TeleportTo<override>(Transform:transform)<transacts><decides>:void = external {}
+    TeleportTo<override>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform)<transacts><decides>:void = external {}
 
     # Moves the `advanced_storm_beacon_device` to the specified `Position` and `Rotation` over the specified time, in seconds. 
     # Existing storms will not target the new location, but newly generated storms will.
-    MoveTo<override>(Position:vector3, Rotation:rotation, OverTime:float)<suspends>:move_to_result = external {}
+    MoveTo<override>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, OverTime:float)<suspends>:move_to_result = external {}
 
     # Moves the `advanced_storm_beacon_device` to the specified `Transform` over the specified time, in seconds. 
     # Existing storms will not target the new location, but newly generated storms will.
-    MoveTo<override>(Transform:transform, OverTime:float)<suspends>:move_to_result = external {}
+    MoveTo<override>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, OverTime:float)<suspends>:move_to_result = external {}
 
 # Used to control a Battle Royale-style storm with up to 50 phases.
 # 
@@ -246,10 +246,10 @@ capture_area_device<public> := class<concrete><final>(creative_device_base):
     GetRadius<public>()<computes><reads>:float = external {}
 
     # Returns an array of agents that are currently occupying the Capture Area.
-    GetAgentsInVolume<epic_internal>()<computes><reads>:[]agent = external {}
+    GetAgentsInVolume<public>()<computes><reads>:[]agent = external {}
 
     # Is true when `Agent` is in the Capture Area.
-    IsInArea<epic_internal>(Agent:agent)<transacts><decides>:void = external {}
+    IsInArea<public>(Agent:agent)<transacts><decides>:void = external {}
 
 # Spawns and tracks a single item as a game objective (e.g. flag).
 capture_item_spawner_device<public> := class<concrete><final>(creative_device_base):
@@ -316,10 +316,10 @@ class_and_team_selector_device<public> := class<concrete><final>(creative_device
 # Used together with `class_selector_device` to create class based gameplay. Defines custom class attributes and inventory loadouts.
 class_designer_device<public> := class<concrete><final>(creative_device_base):
     # Returns an array of agents that are currently of *Class* defined by this device.
-    GetClassMembers<epic_internal>()<computes><reads>:[]agent = external {}
+    GetClassMembers<public>()<computes><reads>:[]agent = external {}
 
     # Is true if `Agent` is on *Class* defined by this device.
-    IsOfClass<epic_internal>(Agent:agent)<transacts><decides>:void = external {}
+    IsOfClass<public>(Agent:agent)<transacts><decides>:void = external {}
 
 # Used to place a collectible item into the world.
 collectible_object_device<public> := class<concrete><final>(creative_device_base):
@@ -335,7 +335,7 @@ collectible_object_device<public> := class<concrete><final>(creative_device_base
 
     # Immediately respawns the object for the instigating agent.
     # This will be affected by the option *Consume If Collected By*.
-    Respawn<public>(Agent:agent):void = external {}
+    (/Fortnite.com/Devices/collectible_object_device:)Respawn<public>(Agent:agent):void = external {}
 
     # Immediately respawns the object for all agents.
     RespawnForAll<public>():void = external {}
@@ -362,7 +362,7 @@ color_changing_tiles_device<public> := class<concrete><final>(creative_device_ba
     Reset<public>():void = external {}
 
     # Sets the color of the tile to `Agent`'s team color.
-    SetTeam<public>(Agent:agent):void = external {}
+    (/Fortnite.com/Devices/color_changing_tiles_device:)SetTeam<public>(Agent:agent):void = external {}
 
 # Used to create a specialized button which can only be activated when `agent`s are carrying specific items.
 conditional_button_device<public> := class<concrete><final>(creative_device_base):
@@ -645,7 +645,7 @@ item_spawner_device<public> := class<concrete><final>(base_item_spawner_device):
     SpawnItem<public>():void = external {}
 
     # Sets device *Respawn Item on Timer* option (see `SetTimeBetweenSpawns`)
-    SetEnableRespawnTimer<public>(Respawn:logic):void = external {}
+    SetEnableRespawnTimer<public>((local:)Respawn:logic):void = external {}
 
     # Returns device *Respawn Item on Timer* option (see `SetTimeBetweenSpawns`)
     GetEnableRespawnTimer<public>()<transacts>:logic = external {}
@@ -776,16 +776,16 @@ perception_trigger_device<public> := class<concrete><final>(trigger_base_device)
     DeviceLosesSightOfAgentEvent<public>:listenable(agent) = external {}
 
     # Returns an array of agents that are currently of the class defined by this device.
-    GetPerceivedAgents<epic_internal>()<computes><reads>:[]agent = external {}
+    GetPerceivedAgents<public>()<computes><reads>:[]agent = external {}
 
     # Succeeds when `Agent` is registered to this checkpoint.
-    IsPerceived<epic_internal>(Agent:agent)<transacts><decides>:void = external {}
+    IsPerceived<public>(Agent:agent)<transacts><decides>:void = external {}
 
     # Returns an array of agents that are currently of the class defined by this device.
-    GetLookingAtDeviceAgents<epic_internal>()<computes><reads>:[]agent = external {}
+    GetLookingAtDeviceAgents<public>()<computes><reads>:[]agent = external {}
 
     # Succeeds when `Agent` is registered to this checkpoint.
-    IsLookingAtDevice<epic_internal>(Agent:agent)<transacts><decides>:void = external {}
+    IsLookingAtDevice<public>(Agent:agent)<transacts><decides>:void = external {}
 
 # A triggered bumper that can knock players back, damage them, and award points.
 pinball_bumper_device<public> := class<concrete><final>(creative_device_base):
@@ -1220,19 +1220,19 @@ storm_controller_device<public> := class<abstract><epic_internal>(creative_devic
 
     # Teleports the `storm_controller_device` to the specified `Position` and `Rotation`. 
     # Existing storms will not target the new location, but newly generated storms will.
-    TeleportTo<override>(Position:vector3, Rotation:rotation)<transacts><decides>:void = external {}
+    TeleportTo<override>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts><decides>:void = external {}
 
     # Teleports the `storm_controller_device` to the specified location defined by `Transform`, also applies rotation and scale accordingly. 
     # Existing storms will not target the new location, but newly generated storms will.
-    TeleportTo<override>(Transform:transform)<transacts><decides>:void = external {}
+    TeleportTo<override>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform)<transacts><decides>:void = external {}
 
     # Moves the `storm_controller_device` to the specified `Position` and `Rotation` over the specified time, in seconds. 
     # Existing storms will not target the new location, but newly generated storms will.
-    MoveTo<override>(Position:vector3, Rotation:rotation, OverTime:float)<suspends>:move_to_result = external {}
+    MoveTo<override>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, OverTime:float)<suspends>:move_to_result = external {}
 
     # Moves the `storm_controller_device` to the specified `Transform` over the specified time, in seconds. 
     # Existing storms will not target the new location, but newly generated storms will.
-    MoveTo<override>(Transform:transform, OverTime:float)<suspends>:move_to_result = external {}
+    MoveTo<override>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, OverTime:float)<suspends>:move_to_result = external {}
 
 # DEPRECATED This device is no longer supported.Used to inform players of other content made by a creator using a Support-A-Creator code. When players activate the device, it will bring up the same Support-A-Creator dialog box they would see in the Creative hub. The Support-A-Creator information shows when the dialog box opens for the player.
 support_a_creator_device<public> := class<concrete><final>(creative_device_base):
@@ -1266,7 +1266,7 @@ team_settings_and_inventory_device<public> := class<concrete><final>(creative_de
     IsOnTeam<public>(Agent:agent)<transacts><decides>:void = external {}
 
     # Returns an array of agents that are currently of the team defined by this device.
-    GetTeamMembers<epic_internal>()<computes><reads>:[]agent = external {}
+    GetTeamMembers<public>()<computes><reads>:[]agent = external {}
 
 # Customizable rift that allows `agent`s to move instantly between locations. You can use this to move players around your island, or create multi-island experiences with teleporters that take players from one island to another.
 teleporter_device<public> := class<concrete><final>(creative_device_base):
@@ -1623,7 +1623,7 @@ tracker_device<public> := class<concrete><final>(creative_device_base):
     HasReachedTarget<public>(Agent:agent)<transacts><decides>:void = external {}
 
     # Returns an array of agents that currently have this tracker active.
-    GetActiveAgents<epic_internal>()<computes><reads>:[]agent = external {}
+    GetActiveAgents<public>()<computes><reads>:[]agent = external {}
 
 # A trap device that destroys the tile it's placed on when activated.
 trick_tile_device<public> := class<concrete><final>(creative_device_base):
@@ -1661,19 +1661,19 @@ trick_tile_device<public> := class<concrete><final>(creative_device_base):
 
     # Teleports the `trick_tile_device` to the specified `Position` and `Rotation`. 
     # Only the trigger will teleport, the target buildings will not change. 
-    TeleportTo<override>(Position:vector3, Rotation:rotation)<transacts><decides>:void = external {}
+    TeleportTo<override>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts><decides>:void = external {}
 
     # Teleports the `trick_tile_device` to the specified location defined by `Transform`, also applies rotation and scale accordingly. 
     # Only the trigger will teleport, the target buildings will not change. 
-    TeleportTo<override>(Transform:transform)<transacts><decides>:void = external {}
+    TeleportTo<override>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform)<transacts><decides>:void = external {}
 
     # Moves the `trick_tile_device` to the specified `Position` and `Rotation` over the specified time, in seconds. 
     # Only the trigger will move, the target buildings will not change. 
-    MoveTo<override>(Position:vector3, Rotation:rotation, OverTime:float)<suspends>:move_to_result = external {}
+    MoveTo<override>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, OverTime:float)<suspends>:move_to_result = external {}
 
     # Moves the `trick_tile_device` to the specified `Transform` over the specified time, in seconds. 
     # Only the trigger will move, the target buildings will not change. 
-    MoveTo<override>(Transform:transform, OverTime:float)<suspends>:move_to_result = external {}
+    MoveTo<override>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, OverTime:float)<suspends>:move_to_result = external {}
 
 # Base class for various specialized trigger devices. See also: * `trigger_device` * `perception_trigger_device` * `attribute_evaluator_device`
 trigger_base_device<public> := class<abstract><epic_internal>(creative_device_base):

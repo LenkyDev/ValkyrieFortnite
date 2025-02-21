@@ -1,3 +1,4 @@
+using {/UnrealEngine.com/EpicGamesRestricted/Network}
 using {/Verse.org/Simulation}
 @experimental
 # An interactable component with a composable feature set.
@@ -18,7 +19,7 @@ basic_interactable_component<native><epic_internal> := class(interactable_compon
 
     @experimental
     # The agents which are currently interacting with this interactable.
-    var<private> InteractingAgents<native><public>:[]agent
+    var<private> InteractingAgents<native><public>:[]agent = external {}
 
     @editable
     @experimental
@@ -68,17 +69,17 @@ interactable_component<native><public> := class<final_super>(component, enableab
     # Event fires when an interaction has completed successfully. Sends the formerly interacting agent. InteractDuration at or below 0 makes this event identical to InteractStartedEvent.
     SucceededEvent<native><public>:listenable(agent) = external {}
 
-    # Event fires when an interaction has ended before completing successfully. Sends the formerly interacting agent.  This event is called on all interacting agents when Disable() is called on the component.
+    # Event fires when an interaction has ended before completing successfully. Sends the formerly interacting agent. interactable_component cannot be canceled, this event is provided for subclasses to fire where appropriate.
     CanceledEvent<native><public>:listenable(agent) = external {}
 
     # Attempt to start an interaction. Fails if the agent does not pass the CanInteract function.
     Start<native><public>(Agent:agent)<transacts><decides>:void
 
     # Returns whether the specified agent can interact.
-    CanInteract<native><native_callable><epic_internal>(Agent:agent)<computes><decides><reads>:void
+    CanInteract<native><native_callable><public>(Agent:agent)<computes><decides><reads>:void
 
     # Returns an appropriate message to display to players to communicate the current state of the interactable.
-    InteractMessage<native><native_callable><epic_internal>(Agent:agent)<computes><decides><reads>:message
+    InteractMessage<native><native_callable><public>(Agent:agent)<computes><decides><reads>:message
 
 @experimental
 # Used to set a cooldown when interacted.
@@ -92,7 +93,7 @@ interactable_cooldown<native><epic_internal> := class<concrete>:
 
     @experimental
     # The remaining cooldown, in seconds, before new interactions can be initiated on this component.
-    var<private> RemainingDuration<public>:float = external {}
+    var<public> RemainingDuration<public>:float = external {}
 
     @experimental
     # Event which fires when the shared cooldown triggers.
@@ -147,7 +148,24 @@ interactable_duration<native><epic_internal> := class<concrete>:
     @experimental
     # The number of seconds an agent must spend interacting with the object to successfully complete an interaction.
     # 0.0 or less results in an immediate successful interaction.
-    var InteractDuration<native><public>:float = external {}
+    # If set during an interaction, the value given will be used for the next interaction and the remaining duration will be updated subtracting the new given value with the current time elapsed.
+    # If the subtraction were zero or less it will immediately conclude.
+    var InteractDuration<public>:float = external {}
+
+    @experimental
+    @replicated("")
+    @editable
+    @display_name("Interact Duration")
+    # Internal InteractDuration value.
+    var _InteractDuration<native><epic_internal>:float = external {}
+
+    @experimental
+    # Interact duration setter.
+    SetInteractDuration<native><epic_internal>(__dupe___unnamed_parameter_76:accessor, InRemainingDuration:float)<transacts>:void
+
+    @experimental
+    # Interact duration getter.
+    GetInteractDuration<native><epic_internal>(__dupe___unnamed_parameter_77:accessor)<transacts>:float
 
     @editable
     @experimental
@@ -178,11 +196,11 @@ interactable_success_limit<native><epic_internal> := class<concrete>:
     @experimental
     # Update the maximum number of successful interactions possible, a value of false is unlimited.
     # If the current number of tracked interactions is greater than the value specified here, all current interactions will be canceled.
-    SetMaxSuccessfulInteractions<native><epic_internal>(__dupe___unnamed_parameter_76:accessor, InMaxSuccessfulInteractions:?int)<transacts>:void
+    SetMaxSuccessfulInteractions<native><epic_internal>(__dupe___unnamed_parameter_78:accessor, InMaxSuccessfulInteractions:?int)<transacts>:void
 
     @experimental
     # Get the maximum number of successful interactions possible.
-    GetMaxSuccessfulInteractions<native><epic_internal>(__dupe___unnamed_parameter_77:accessor)<transacts>:?int
+    GetMaxSuccessfulInteractions<native><epic_internal>(__dupe___unnamed_parameter_79:accessor)<transacts>:?int
 
     @experimental
     # Resets the counter for the times this component has had a successful interaction.

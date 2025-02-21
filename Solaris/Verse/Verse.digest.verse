@@ -346,7 +346,7 @@ Verse<public> := module:
     subscribable<public>(t:type) := interface:
         # Registers `Callback` to be invoked on matching calls to `signable.Signal`.
         # Returns an unsubscriber object. Call `cancelable.Cancel` on the unsubscriber to unregister `Callback`.
-        Subscribe<public>(Callback:type {__(:t):void})<transacts>:cancelable
+        Subscribe<public>(Callback:type {_(:t):void})<transacts>:cancelable
 
     # A parameterless interface implemented by events that can be subscribed to.
     subscribable<public>() := subscribable(tuple())

@@ -73,14 +73,6 @@
 			"LoadingPhase": "PostEngineInit"
 		},
 		{
-			"Name": "ValkyrieFortniteRpc",
-			"Type": "Editor",
-			"LoadingPhase": "Default",
-			"TargetAllowList": [
-				"Editor"
-			]
-		},
-		{
 			"Name": "ValkyrieVerseStatistics",
 			"Type": "Runtime",
 			"LoadingPhase": "Default",
@@ -109,6 +101,14 @@
 		},
 		{
 			"Name": "FortOnlineConfig",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineFrameworkCommon",
+			"Enabled": true
+		},
+		{
+			"Name": "OnlineFrameworkSessionToken",
 			"Enabled": true
 		},
 		{
@@ -211,6 +211,10 @@
 			"Enabled": true
 		},
 		{
+			"Name": "LiveTrace",
+			"Enabled": true
+		},
+		{
 			"Name": "MatchmakingService",
 			"Enabled": true
 		},
@@ -262,10 +266,6 @@
 		},
 		{
 			"Name": "ItemizationCore",
-			"Enabled": true
-		},
-		{
-			"Name": "FortExternalRpcFramework",
 			"Enabled": true
 		},
 		{

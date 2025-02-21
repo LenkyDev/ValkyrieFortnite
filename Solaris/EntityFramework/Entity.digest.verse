@@ -1,5 +1,5 @@
 using {/Verse.org/Simulation}
-using {/UnrealEngine.com/Temporary/SpatialMath}
+using {/Verse.org/SpatialMath}
 using {/Verse.org/Native}
 @experimental
 # Base class for authoring logic and data in the SceneGraph. Using components you
@@ -215,7 +215,7 @@ entity_prefab<native><public> := class<computes><epic_internal>:
 @experimental
 # Interface to provide alternative origin to an entity which is defaulted to its parent. See `transform_component`
 origin<native><public> := interface<epic_internal>:
-    GetTransform<native_callable><public>()<transacts>:transform
+    GetTransform<native_callable><public>()<transacts>:(/Verse.org/SpatialMath:)transform
 
 @experimental
 @available {MinUploadedAtFNVersion := 3200}
@@ -224,7 +224,7 @@ entity_origin<native><public> := class<epic_internal>(origin):
     @editable
     Entity<native><public>:entity
 
-    GetTransform<override>()<transacts>:transform = external {}
+    GetTransform<override>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
 
 @experimental
 # Returns the simulation entity parent for this entity.
@@ -245,28 +245,28 @@ tick_events<native><public> := class<epic_internal>:
 # Stores the transforms for an entity, which are used to position the entity.
 transform_component<native><public> := class<final><final_super>(component):
     # Sets the global transform of the entity.
-    SetGlobalTransform<native><public>(NewGlobalTransform:transform)<transacts>:void
+    SetGlobalTransform<native><public>(NewGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void
 
     # Returns the global transform of the entity.
-    GetGlobalTransform<native><public>()<transacts>:transform
+    GetGlobalTransform<native><public>()<transacts>:(/Verse.org/SpatialMath:)transform
 
     # Sets the local transform of the entity.
-    SetLocalTransform<native><public>(NewLocalTransform:transform)<transacts>:void
+    SetLocalTransform<native><public>(NewLocalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void
 
     @editable
     # LocalTransform to its parent
-    var<private> LocalTransform<native><public>:transform = external {}
+    var<private> LocalTransform<native><public>:(/Verse.org/SpatialMath:)transform = external {}
 
     # alternate origin than the default parent
     var<private> Origin<native><public>:?origin = external {}
 
 @experimental
 # Returns the global transform of this entity, in the case the entity does not have a transform_component it will return the transform of the first parent that has a transform
-(InEntity:entity).GetGlobalTransform<native><public>()<transacts>:transform
+(InEntity:entity).GetGlobalTransform<native><public>()<transacts>:(/Verse.org/SpatialMath:)transform
 
 @experimental
 # Returns the local transform of this entity, in the case the entity does not have a transform_component it will return identity
-(InEntity:entity).GetLocalTransform<native><public>()<transacts>:transform
+(InEntity:entity).GetLocalTransform<native><public>()<transacts>:(/Verse.org/SpatialMath:)transform
 
 @experimental
 # Returns the origin of the entity in any, in the case the entity does not have a transform_component the method will fail
@@ -274,11 +274,11 @@ transform_component<native><public> := class<final><final_super>(component):
 
 @experimental
 # Sets the global transform of this entity, in the case the entity does not have a transform_component it will create one and set its global transform
-(InEntity:entity).SetGlobalTransform<native><public>(NewGlobalTransform:transform)<transacts>:void
+(InEntity:entity).SetGlobalTransform<native><public>(NewGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void
 
 @experimental
 # Sets the local transform of this entity, in the case the entity does not have a transform_component it will create one and set its local transform
-(InEntity:entity).SetLocalTransform<native><public>(NewLocalTransform:transform)<transacts>:void
+(InEntity:entity).SetLocalTransform<native><public>(NewLocalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void
 
 @experimental
 # Sets the origin of this entity, in the case the entity does not have a transform_component it will create one and set its origin. This method fails if it recognized dependency recursion.

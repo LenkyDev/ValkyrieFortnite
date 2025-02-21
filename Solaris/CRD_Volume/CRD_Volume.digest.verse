@@ -6,3 +6,9 @@ volume_device<public> := class<concrete><final>(creative_device_base):
 
     # Signaled when an `agent` exits the device volume.
     AgentExitsEvent<public>:listenable(agent) = external {}
+
+    # Returns an array of agents that are currently occupying the volume.
+    GetAgentsInVolume<public>()<computes><reads>:[]agent = external {}
+
+    # Succeeds when `Agent` is in the volume.
+    IsInVolume<public>(Agent:agent)<transacts><decides>:void = external {}

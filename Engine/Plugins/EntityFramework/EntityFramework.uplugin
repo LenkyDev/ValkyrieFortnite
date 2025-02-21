@@ -64,6 +64,15 @@
 		{
 			"Name": "RigidPhysicsCore",
 			"Type": "Runtime"
+		},
+		{
+			"Name": "EntityRegistry",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "EntityRegistryTestSuite",
+			"Type": "Runtime"
 		}
 	],
 	"Plugins": [
@@ -81,6 +90,10 @@
 		},
 		{
 			"Name": "VerseEngine",
+			"Enabled": true
+		},
+		{
+			"Name": "VerseGameplayTags",
 			"Enabled": true
 		},
 		{
@@ -134,7 +147,11 @@
 			"TargetAllowList": [
 				"Editor"
 			]
-		}
+		},
+		{
+			"Name": "VerseSpatialMath",
+			"Enabled": true
+		},
 	],
 	"IsExperimentalVersion": false
 }

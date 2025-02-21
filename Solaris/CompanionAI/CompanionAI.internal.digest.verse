@@ -98,10 +98,10 @@ CompanionAI<public> := module:
             undefined
 
     @experimental
-    ToString<epic_internal>(Type:command_type)<transacts>:string = external {}
+    (/Fortnite.com/AI/CompanionAI:)ToString<epic_internal>(Type:command_type)<transacts>:string = external {}
 
     @experimental
-    ToString<epic_internal>(Type:entity_type)<transacts>:string = external {}
+    (/Fortnite.com/AI/CompanionAI:)ToString<epic_internal>(Type:entity_type)<transacts>:string = external {}
 
     @experimental
     ping_info<native><epic_internal> := struct:
@@ -112,7 +112,7 @@ CompanionAI<public> := module:
         EntityType<native><public>:entity_type
 
         @experimental
-        Location<native><public>:vector3
+        Location<native><public>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
         @experimental
         LocationOnHorizontalSurface<native><public>:logic

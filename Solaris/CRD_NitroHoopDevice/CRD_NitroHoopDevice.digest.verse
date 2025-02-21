@@ -43,3 +43,11 @@ nitro_hoop_device<public> := class<concrete><final>(creative_device_base):
     # Set the default duration of the cooldown state to `Seconds`.
     #  * `Seconds` is clamped between `1.0` and `60.0`.
     SetDefaultCooldownDuration<public>(Seconds:float):void = external {}
+
+    # Return the duration of the cooldown delay in seconds. This is the delay between triggering a cooldown and entering the cooldown phase.
+    GetCooldownDelay<public>():float = external {}
+
+    # Set the duration of the cooldown delay to `Seconds`. This is the delay between triggering a cooldown and entering the cooldown phase.
+    #  * The cooldown delay does not apply to cooldowns triggered by *StartCooldown* or *Disable*.
+    #  * `Seconds` is clamped between `0.0` and `5.0`.
+    SetCooldownDelay<public>(Seconds:float):void = external {}

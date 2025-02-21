@@ -1,3 +1,5 @@
+using {/Verse.org/Assets}
+using {/Verse.org/Simulation}
 using {/UnrealEngine.com/Temporary/UI}
 using {/UnrealEngine.com/Temporary/SpatialMath}
 dynamic_ui_z_order<native><epic_internal> := enum:
@@ -107,3 +109,28 @@ dynamic_ui_panel<native><epic_internal> := class<final>(widget):
 
     # Removes `scene` from this panel.
     RemoveScene<native><epic_internal>(Scene:dynamic_ui_scene):void
+
+# Returns the `fn_ui_extensions_component` associated with `Player`.
+GetUIExtensionsComponent<native><epic_internal>(Player:player)<transacts><decides>:fn_ui_extensions_component
+
+ui_tab_info<native><epic_internal> := class<epic_internal>:
+    # The text label to be shown on the tab button.
+    Label<native><public>:message
+
+    # Optional icon to be shown on the tab button.
+    Icon<native><public>:?texture = external {}
+
+    # The desired order for the tab. -1 will add tab to the end of the list.
+    SortOrder<native><public>:int = external {}
+
+fn_ui_extension<native><epic_internal> := class<epic_internal>:
+    AddTab<native><epic_internal>(Player:player, TabInfo:ui_tab_info, Widget:widget):void
+
+    RemoveTab<native><epic_internal>(Player:player, TabInfo:ui_tab_info):void
+
+fn_ui_extensions_component<native><epic_internal> := class<epic_internal>:
+    Map<native><public>:fn_ui_extension = external {}
+
+    Inventory<native><public>:fn_ui_extension = external {}
+
+    PostGame<native><public>:fn_ui_extension = external {}

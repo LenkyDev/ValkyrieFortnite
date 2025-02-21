@@ -8,7 +8,7 @@ execution_listenable<native><public> := class<epic_internal>(listenable(float)):
 
     @experimental
     # Subscribe a callback function to this TickEvent phase. The input parameter to your function (DeltaTime) is the time that has passed between the last update and the current update.
-    Subscribe<native><override>(Callback:type {__(:float):void})<transacts>:cancelable
+    Subscribe<native><override>(Callback:type {_(:float):void})<transacts>:cancelable
 
 @experimental
 # Used to subscribe a callback or await an event based callback '
@@ -20,4 +20,4 @@ execution_event<native><public> := class<epic_internal>(listenable(tuple())):
 
     @experimental
     # Subscribe a callback function to this event.
-    Subscribe<native><override>(Callback:type {__():void})<transacts>:cancelable
+    Subscribe<native><override>(Callback:type {_():void})<transacts>:cancelable

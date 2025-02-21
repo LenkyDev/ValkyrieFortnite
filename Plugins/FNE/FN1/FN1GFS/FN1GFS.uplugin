@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/FN1",
-	"FortReleaseVersion": "33.30",
+	"FortReleaseVersion": "34.00",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"Version": 0,
@@ -76,6 +76,11 @@
 			"Name": "VendingMachine",
 			"Enabled": true,
 			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "VividRazorStations",
+			"Enabled": true,
 			"Optional": true
 		}
 	]

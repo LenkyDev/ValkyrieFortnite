@@ -139,6 +139,29 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/VKTemplates/Basic/CE_UserInterfaces/Plugins/CE_UserInterfaces/CE_UserInterfaces.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "CE_UserInterfaces",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/dr3ddd@fortnite.com/CE_UserInterfaces",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
 			"File": "../../../FortniteGame/VKTemplates/Basic/DaySequence_Starter/Plugins/DaySequence_Starter/DaySequence_Starter.uplugin",
 			"Descriptor": 
 			{
@@ -223,29 +246,6 @@
 				"MarketplaceURL": "",
 				"SupportURL": "",
 				"VersePath": "/localhost/LimeTestTemplate",
-				"VerseVersion": 1,
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"CanContainVerse": true,
-				"ExplicitlyLoaded": true
-			}
-		},
-		{
-			"File": "../../../FortniteGame/VKTemplates/Basic/Speedway/Plugins/UEFNDesignASpeedwayRace/UEFNDesignASpeedwayRace.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "1.0",
-				"FriendlyName": "UEFNDesignASpeedwayRace",
-				"Description": "",
-				"Category": "Other",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"VersePath": "/InvalidDomain/UEFNDesignASpeedwayRace",
 				"VerseVersion": 1,
 				"EnabledByDefault": false,
 				"CanContainContent": true,
@@ -493,6 +493,29 @@
 				"MarketplaceURL": "",
 				"SupportURL": "",
 				"VersePath": "/InvalidDomain/VillageTemplate",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/Verse/Speedway/Plugins/UEFNDesignASpeedwayRace/UEFNDesignASpeedwayRace.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "UEFNDesignASpeedwayRace",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/InvalidDomain/UEFNDesignASpeedwayRace",
 				"VerseVersion": 1,
 				"EnabledByDefault": false,
 				"CanContainContent": true,
@@ -844,6 +867,51 @@
 						"Name": "BlendSpaceMotionAnalysis",
 						"Type": "Editor",
 						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Animation/DNACalib/DNACalib.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "6.12.2",
+				"FriendlyName": "DNACalib Plugin v6.12.2",
+				"Description": "3Lateral DNA Calibration tool plugin",
+				"Category": "Animation",
+				"CreatedBy": "3Lateral",
+				"CreatedByURL": "http://www.3lateral.com/",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"CanContainContent": false,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "DNACalibLib",
+						"Type": "Runtime",
+						"LoadingPhase": "PreDefault"
+					},
+					{
+						"Name": "DNACalibLibTest",
+						"Type": "Runtime",
+						"LoadingPhase": "PreDefault",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "DNACalibModule",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "RigLogic",
+						"Enabled": true
 					}
 				]
 			}
@@ -1527,32 +1595,6 @@
 			}
 		},
 		{
-			"File": "../../../Engine/Plugins/Editor/CurveEditorTools/CurveEditorTools.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "1.0",
-				"FriendlyName": "Curve Editor Tools",
-				"Description": "This provides a default set of editing tools for the Curve Editor.",
-				"Category": "Editor",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": true,
-				"CanContainContent": false,
-				"Modules": [
-					{
-						"Name": "CurveEditorTools",
-						"Type": "Editor",
-						"LoadingPhase": "Default"
-					}
-				]
-			}
-		},
-		{
 			"File": "../../../Engine/Plugins/Editor/EditorDebugTools/EditorDebugTools.uplugin",
 			"Descriptor": 
 			{
@@ -2033,67 +2075,53 @@
 			}
 		},
 		{
-			"File": "../../../Engine/Plugins/Experimental/EditorDataStorageFeatures/EditorDataStorageFeatures.uplugin",
+			"File": "../../../Engine/Plugins/Experimental/EditorPerformance/EditorPerformance.uplugin",
 			"Descriptor": 
 			{
 				"FileVersion": 3,
 				"Version": 1,
-				"VersionName": "0.1",
-				"FriendlyName": "TEDS: Editor Data Storage Features",
-				"Description": "Experimental UI Features for the Editor, built on TEDS: Editor Data Storage.",
-				"Category": "Editor",
+				"VersionName": "1.0",
+				"FriendlyName": "Editor Performance",
+				"Description": "Plugin that provides Editor Performance feedback to developers",
+				"Category": "Performance",
 				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "http://epicgames.com",
+				"CreatedByURL": "https://epicgames.com",
 				"DocsURL": "",
 				"MarketplaceURL": "",
 				"SupportURL": "",
-				"CanContainContent": true,
-				"IsExperimentalVersion": true,
+				"EnabledByDefault": true,
+				"CanContainContent": false,
 				"Modules": [
 					{
-						"Name": "TedsRevisionControl",
+						"Name": "EditorPerformance",
 						"Type": "Editor",
-						"LoadingPhase": "Default"
-					},
+						"LoadingPhase": "PostConfigInit"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Experimental/EditorTelemetry/EditorTelemetry.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Editor Telemetry",
+				"Description": "Plugin that emits common telemetry events from the Editor",
+				"Category": "Telemetry",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
 					{
-						"Name": "TedsAssetData",
+						"Name": "EditorTelemetry",
 						"Type": "Editor",
-						"LoadingPhase": "Default"
-					},
-					{
-						"Name": "TedsOutliner",
-						"Type": "Editor",
-						"LoadingPhase": "Default"
-					},
-					{
-						"Name": "TedsPropertyEditor",
-						"Type": "Editor",
-						"LoadingPhase": "Default"
-					},
-					{
-						"Name": "TedsDebugger",
-						"Type": "Editor",
-						"LoadingPhase": "Default"
-					},
-					{
-						"Name": "TedsSettings",
-						"Type": "Editor",
-						"LoadingPhase": "Default"
-					},
-					{
-						"Name": "TedsTableViewer",
-						"Type": "Editor",
-						"LoadingPhase": "Default"
-					},
-					{
-						"Name": "TedsContentBrowser",
-						"Type": "Editor",
-						"LoadingPhase": "Default"
-					},
-					{
-						"Name": "TedsStyling",
-						"Type": "Editor",
-						"LoadingPhase": "Default"
+						"LoadingPhase": "PostConfigInit"
 					}
 				]
 			}
@@ -2273,6 +2301,12 @@
 						"Name": "InstanceDataObjectFixupTool",
 						"Type": "Editor",
 						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "EditorDataStorageFeatures",
+						"Enabled": true
 					}
 				]
 			}
@@ -3924,10 +3958,7 @@
 					{
 						"Name": "MetaHumanCore",
 						"Type": "Runtime",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
+						"LoadingPhase": "Default"
 					},
 					{
 						"Name": "MetaHumanCoreEditor",
@@ -3939,6 +3970,14 @@
 					},
 					{
 						"Name": "MetaHumanImageViewer",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanImageViewerEditor",
 						"Type": "Editor",
 						"LoadingPhase": "Default",
 						"PlatformAllowList": [
@@ -4217,6 +4256,10 @@
 					{
 						"Name": "Interchange",
 						"Enabled": true
+					},
+					{
+						"Name": "DNACalib",
+						"Enabled": true
 					}
 				]
 			}
@@ -4281,6 +4324,39 @@
 					},
 					{
 						"Name": "CommonUI",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/TrajectoryTools/TrajectoryTools.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Trajectory Tools Prototype",
+				"Description": "Tools to work with gameplay trajectories",
+				"Category": "Animation",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"IsExperimentalVersion": true,
+				"Modules": [
+					{
+						"Name": "TrajectoryTools",
+						"Type": "Editor",
+						"LoadingPhase": "PostEngineInit"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "GameplayInsights",
 						"Enabled": true
 					}
 				]
@@ -4845,7 +4921,11 @@
 						"Enabled": true
 					},
 					{
-						"Name": "Valkyrie",
+						"Name": "OnlineSubsystem",
+						"Enabled": true
+					},
+					{
+						"Name": "OnlineSubsystemMcp",
 						"Enabled": true
 					}
 				]
@@ -5258,14 +5338,6 @@
 						"LoadingPhase": "PostEngineInit"
 					},
 					{
-						"Name": "ValkyrieFortniteRpc",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"TargetAllowList": [
-							"Editor"
-						]
-					},
-					{
 						"Name": "ValkyrieVerseStatistics",
 						"Type": "Runtime",
 						"LoadingPhase": "Default",
@@ -5294,6 +5366,14 @@
 					},
 					{
 						"Name": "FortOnlineConfig",
+						"Enabled": true
+					},
+					{
+						"Name": "OnlineFrameworkCommon",
+						"Enabled": true
+					},
+					{
+						"Name": "OnlineFrameworkSessionToken",
 						"Enabled": true
 					},
 					{
@@ -5396,6 +5476,10 @@
 						"Enabled": true
 					},
 					{
+						"Name": "LiveTrace",
+						"Enabled": true
+					},
+					{
 						"Name": "MatchmakingService",
 						"Enabled": true
 					},
@@ -5449,10 +5533,6 @@
 					},
 					{
 						"Name": "ItemizationCore",
-						"Enabled": true
-					},
-					{
-						"Name": "FortExternalRpcFramework",
 						"Enabled": true
 					},
 					{

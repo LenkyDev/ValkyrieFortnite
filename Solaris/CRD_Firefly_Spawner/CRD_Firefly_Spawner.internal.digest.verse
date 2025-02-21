@@ -12,7 +12,7 @@ firefly_spawner_device<public> := class<concrete><final>(creative_device_base):
     Disable<public>():void = external {}
 
     # Spawns new fireflies. The previous fireflies will be destroyed before a new fireflies spawn.
-    Respawn<public>():void = external {}
+    (/Fortnite.com/Devices/firefly_spawner_device:)Respawn<public>():void = external {}
 
     # Resets respawn count.
     ResetRespawnCount<public>():void = external {}

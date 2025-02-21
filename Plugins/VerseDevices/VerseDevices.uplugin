@@ -95,10 +95,6 @@
 			"Enabled": false
 		},
 		{
-			"Name": "VerseQuery",
-			"Enabled": true
-		},
-		{
 			"Name": "VerseInput",
 			"Enabled":  true
 		}

@@ -19,6 +19,22 @@
 | :---: | :---: | :---: |
 |  |  |  |
 
+
+
+### [Classes & Modules][Solaris]
+
+`{AssetName}.deprecated.internal.digest.verse`
+
+- `{AssetName}`: The name of the Class/Module
+
+- `.deprecated`: Indicates this file has been deleted / marked as deprecated
+
+- `.internal`: Indicates this file has been marked as `EpicInternalDigest`
+
+- `.digest`: Indicates this file is a digest
+
+- `.verse`: Indicates this file is a verse file
+
 </details>
 
 ___

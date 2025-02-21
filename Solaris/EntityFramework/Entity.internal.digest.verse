@@ -1,5 +1,5 @@
 using {/UnrealEngine.com/EpicGamesRestricted/Network}
-using {/UnrealEngine.com/Temporary/SpatialMath}
+using {/Verse.org/SpatialMath}
 using {/Verse.org/Assets}
 using {/Verse.org/Native}
 using {/Verse.org/Simulation}
@@ -250,7 +250,7 @@ entity_prefab<native><public> := class<computes><epic_internal>(asset):
 
 @experimental
 @hide_in_editor
-massentity_component<native><epic_internal> := class<final_super><epic_internal>(component):
+mass_component<native><epic_internal> := class<final_super><epic_internal>(component):
     OnUninitializingInternal<native><override>():void
 
     OnAddedToSceneInternal<native><override>():void
@@ -260,7 +260,7 @@ massentity_component<native><epic_internal> := class<final_super><epic_internal>
 @experimental
 # Interface to provide alternative origin to an entity which is defaulted to its parent. See `transform_component`
 origin<native><public> := interface<epic_internal>:
-    GetTransform<native_callable><public>()<transacts>:transform
+    GetTransform<native_callable><public>()<transacts>:(/Verse.org/SpatialMath:)transform
 
 @experimental
 @available {MinUploadedAtFNVersion := 3200}
@@ -270,7 +270,27 @@ entity_origin<native><public> := class<epic_internal>(origin):
     @replicated("")
     Entity<native><public>:entity
 
-    GetTransform<override>()<transacts>:transform = external {}
+    GetTransform<override>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
+
+@import_as("/Script/CoreUObject.UObject")
+actor<native><epic_internal> := class:
+
+
+@experimental
+# class to provide alternative origin to the 'transform_component' as an actor. This class should never be public and is intended for internal use only.
+actor_origin<native><epic_internal> := class(origin):
+    @editable
+    @replicated("RepNotify")
+    Actor<native><epic_internal>:actor
+
+    GetTransform<native><override>()<transacts>:(/Verse.org/SpatialMath:)transform
+
+@experimental
+# Used to attach entities to a socket on an actor.
+socket_origin<native><epic_internal> := class(actor_origin):
+    @editable
+    @replicated("")
+    var SocketName<native><public>:string
 
 @experimental
 replication_component<native><epic_internal> := class<final_super>(component):
@@ -326,18 +346,18 @@ transform_component<native><public> := class<final><final_super>(component):
     OnUninitializingInternal<native><override>():void
 
     # Sets the global transform of the entity.
-    SetGlobalTransform<native><public>(NewGlobalTransform:transform)<transacts>:void
+    SetGlobalTransform<native><public>(NewGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void
 
     # Returns the global transform of the entity.
-    GetGlobalTransform<native><public>()<transacts>:transform
+    GetGlobalTransform<native><public>()<transacts>:(/Verse.org/SpatialMath:)transform
 
     # Sets the local transform of the entity.
-    SetLocalTransform<native><public>(NewLocalTransform:transform)<transacts>:void
+    SetLocalTransform<native><public>(NewLocalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void
 
     @editable
     @replicated("RepNotify")
     # LocalTransform to its parent
-    var<private> LocalTransform<native><public>:transform = external {}
+    var<private> LocalTransform<native><public>:(/Verse.org/SpatialMath:)transform = external {}
 
     @replicated("RepNotify")
     # alternate origin than the default parent
@@ -345,11 +365,11 @@ transform_component<native><public> := class<final><final_super>(component):
 
 @experimental
 # Returns the global transform of this entity, in the case the entity does not have a transform_component it will return the transform of the first parent that has a transform
-(InEntity:entity).GetGlobalTransform<native><public>()<transacts>:transform
+(InEntity:entity).GetGlobalTransform<native><public>()<transacts>:(/Verse.org/SpatialMath:)transform
 
 @experimental
 # Returns the local transform of this entity, in the case the entity does not have a transform_component it will return identity
-(InEntity:entity).GetLocalTransform<native><public>()<transacts>:transform
+(InEntity:entity).GetLocalTransform<native><public>()<transacts>:(/Verse.org/SpatialMath:)transform
 
 @experimental
 # Returns the origin of the entity in any, in the case the entity does not have a transform_component the method will fail
@@ -357,11 +377,11 @@ transform_component<native><public> := class<final><final_super>(component):
 
 @experimental
 # Sets the global transform of this entity, in the case the entity does not have a transform_component it will create one and set its global transform
-(InEntity:entity).SetGlobalTransform<native><public>(NewGlobalTransform:transform)<transacts>:void
+(InEntity:entity).SetGlobalTransform<native><public>(NewGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void
 
 @experimental
 # Sets the local transform of this entity, in the case the entity does not have a transform_component it will create one and set its local transform
-(InEntity:entity).SetLocalTransform<native><public>(NewLocalTransform:transform)<transacts>:void
+(InEntity:entity).SetLocalTransform<native><public>(NewLocalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void
 
 @experimental
 # Sets the origin of this entity, in the case the entity does not have a transform_component it will create one and set its origin. This method fails if it recognized dependency recursion.

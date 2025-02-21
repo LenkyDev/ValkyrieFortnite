@@ -32,6 +32,11 @@
 			"Type": "Runtime",
 			"LoadingPhase": "EarliestPossible"
 		},
+    {
+			"Name": "VersePredicts",
+			"Type": "Runtime",
+      "LoadingPhase": "EarliestPossible"
+    },
 		{
 			"Name": "SolarisLoadCompiler",
 			"Type": "Runtime",

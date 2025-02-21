@@ -3,7 +3,7 @@ using {/UnrealEngine.com/Temporary/SpatialMath}
 using {/Fortnite.com/Playspaces}
 using {/UnrealEngine.com/Temporary/UI}
 # Module import path: /Fortnite.com/UI
-UI<public> := module:
+(/Fortnite.com:)UI<public> := module:
     # Button with text message common base class. Displays a button with a custom message string.
     text_button_base<native><public> := class<abstract><epic_internal>(widget):
         # The text to display to the user. Used only during initialization of the widget and not modified by SetText.
@@ -54,7 +54,7 @@ UI<public> := module:
         ResetElementVisibility<public>(HUDElements:[]hud_element_identifier):void
 
     # Get the `fort_hud_controller` for the current `fort_playspace`.
-    (Playspace:fort_playspace).GetHUDController<native><public>():fort_hud_controller
+    ((local:)Playspace:fort_playspace).GetHUDController<native><public>():fort_hud_controller
 
     creative_hud_identifier_all<public> := class<final>(hud_element_identifier):
 
@@ -153,6 +153,24 @@ UI<public> := module:
 
 
     hud_identifier_world_resource_ingredient<public> := class<final>(hud_element_identifier):
+
+
+    hud_identifier_visual_sound_effect_weapons<public> := class<final>(hud_element_identifier):
+
+
+    hud_identifier_visual_sound_effect_loot<public> := class<final>(hud_element_identifier):
+
+
+    hud_identifier_visual_sound_effect_movement<public> := class<final>(hud_element_identifier):
+
+
+    hud_identifier_visual_sound_effect_vehicle<public> := class<final>(hud_element_identifier):
+
+
+    hud_identifier_visual_sound_effect_healing<public> := class<final>(hud_element_identifier):
+
+
+    hud_identifier_visual_sound_effect_all<public> := class<final>(hud_element_identifier):
 
 
     # Used to identify a HUD element.

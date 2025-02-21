@@ -1,8 +1,9 @@
-using {/Verse.org/Assets}
+using {/Verse.org/Simulation/Tags}
 using {/Verse.org/Native}
+using {/Verse.org/Assets}
 using {/Verse.org/Colors}
 using {/UnrealEngine.com/EpicGamesRestricted/Network}
-using {/UnrealEngine.com/Temporary/SpatialMath}
+using {/Verse.org/SpatialMath}
 using {/Verse.org/Simulation}
 @hide_in_editor
 @experimental
@@ -14,13 +15,6 @@ basic_camera_component<native><epic_internal> := class<final_super>(component):
     OnAddedToSceneInternal<native><override>():void
 
     OnRemovingFromSceneInternal<native><override>():void
-
-    @experimental
-    # Set the field of view of the camera in degrees
-    SetFieldOfView<public>(InFieldOfView:float):void = external {}
-
-    @experimental
-    GetFieldOfView<public>():float = external {}
 
 @experimental
 # A `capsule_light_component` emits light in all directions into the scene from a capsule shaped source with a specified radius and length. A radius and length of 0 makes it a point light. You can use these
@@ -60,6 +54,66 @@ directional_light_component<native><public> := class<final>(light_component):
 
     # Angle subtended by light source in degrees (also known as angular diameter). Defaults to 0.5357 which is the angle for our sun.
     var SourceAngleDegrees<public>:float = external {}
+
+    @editable {EpicOnly := true}
+    @category("directional_light_component|Epic Internal")
+    @experimental
+    # How far, in centimeters, cascaded shadow map dynamic shadows will cover, measured in units from the camera. A value of 0 disables the dynamic shadow
+    DynamicShadowDistance<native><epic_internal>:float = external {}
+
+    @editable_slider(int) {EpicOnly := true, MinValue := option {0}, MaxValue := option {4}}
+    @category("directional_light_component|Epic Internal")
+    @experimental
+    # Number of cascades to split the view frustum into for the whole scene dynamic shadow
+    NumDynamicShadowCascades<native><epic_internal>:int = external {}
+
+    @editable_slider(float) {EpicOnly := true, MinValue := option {1.000000}, MaxValue := option {4.000000}}
+    @category("directional_light_component|Epic Internal")
+    @experimental
+    # Controls whether the cascades are distributed closer to the camera (larger exponent) or further from the camera (smaller exponent)
+    CascadeDistributionExponent<native><epic_internal>:float = external {}
+
+    @editable_slider(float) {EpicOnly := true, MinValue := option {0.000000}, MaxValue := option {0.300000}}
+    @category("directional_light_component|Epic Internal")
+    @experimental
+    # Proportion of the fade region between cascades
+    CascadeTransitionFraction<native><epic_internal>:float = external {}
+
+    @editable_slider(float) {EpicOnly := true, MinValue := option {0.000000}, MaxValue := option {1.000000}}
+    @category("directional_light_component|Epic Internal")
+    @experimental
+    # Controls the size of the fade out region at the far extent of the dynamic shadow's influence
+    CascadeDistanceFadeoutFraction<native><epic_internal>:float = external {}
+
+    @editable_slider(int) {EpicOnly := true, MinValue := option {0}, MaxValue := option {4}}
+    @category("directional_light_component|Epic Internal")
+    @experimental
+    # The number of cascades between DynamicShadowDistance and FarShadowDistance that are covered by Far Shadow Cascades, or zero to disable far shadow cascades
+    FarShadowCascadeCount<native><epic_internal>:int = external {}
+
+    @editable {EpicOnly := true}
+    @category("directional_light_component|Epic Internal")
+    @experimental
+    # Distance, in centimeters, at which the far shadow cascade should end
+    FarShadowDistance<native><epic_internal>:float = external {}
+
+    @editable {EpicOnly := true}
+    @category("directional_light_component|Epic Internal")
+    @experimental
+    # Distance at which the far shadow cascade should end
+    EnableLightShaftOcclusion<native><epic_internal>:logic = external {}
+
+    @editable {EpicOnly := true}
+    @category("directional_light_component|Epic Internal")
+    @experimental
+    # Controls how dark the occlusion masking is
+    OcclusionMaskDarkness<native><epic_internal>:float = external {}
+
+    @editable {EpicOnly := true}
+    @category("directional_light_component|Epic Internal")
+    @experimental
+    # Everything closer to the camera than this distance, measured in centimeters, will occlude light shafts
+    OcclusionDepthRange<native><epic_internal>:float = external {}
 
 # Module import path: /UnrealEngine.com/Temporary/SceneGraph/KeyframedMovement
 # Animate Scene Graph entities with keyframes.
@@ -166,12 +220,15 @@ KeyframedMovement<public> := module:
     @experimental
     # Represents a change in pose and scale over a duration.
     keyframed_movement_delta<native><public> := class<final><concrete>:
+        @editable
         # Represents a change in the transform relative to the previous keyframe or initial animation position.
-        Transform<native><public>:transform = external {}
+        Transform<native><public>:(/Verse.org/SpatialMath:)transform = external {}
 
+        @editable_number(float) {MinValue := option {0.000000}}
         # Duration of this keyframe in seconds.
         Duration<native><public>:float = external {}
 
+        @editable
         # Easing function to use for playback.
         Easing<native><public>:easing_function = external {}
 
@@ -195,7 +252,7 @@ KeyframedMovement<public> := module:
     @experimental
     # Keyframe delta sent to clients to reconstruct the animation frames.
     keyframed_movement_delta_native<native><epic_internal> := struct<concrete>:
-        Transform<native><public>:transform = external {}
+        Transform<native><public>:(/Verse.org/SpatialMath:)transform = external {}
 
         Duration<native><public>:float = external {}
 
@@ -214,7 +271,7 @@ KeyframedMovement<public> := module:
 
         BlendOutDuration<native>:float = external {}
 
-        HaltTransform<native>:transform = external {}
+        HaltTransform<native>:(/Verse.org/SpatialMath:)transform = external {}
 
         Keyframes<native>:[]keyframed_movement_delta_native = external {}
 
@@ -329,6 +386,96 @@ light_component<native><public> := class<abstract><final_super><epic_internal>(c
     # Succeeds if the component is enabled, fails if it's disabled.
     IsEnabled<native><override>()<transacts><decides>:void
 
+    @editable {EpicOnly := true}
+    @category("light_component|Epic Internal")
+    @experimental
+    # Whether to enable lighting on the default channel for all primitives and lights
+    EnableLightingChannel0<native><epic_internal>:logic = external {}
+
+    @editable {EpicOnly := true}
+    @category("light_component|Epic Internal")
+    @experimental
+    # Whether to enable lighting on the first custom channel
+    EnableLightingChannel1<native><epic_internal>:logic = external {}
+
+    @editable {EpicOnly := true}
+    @category("light_component|Epic Internal")
+    @experimental
+    # Whether to enable lighting on the second custom channel
+    EnableLightingChannel2<native><epic_internal>:logic = external {}
+
+    @editable {EpicOnly := true}
+    @category("light_component|Epic Internal")
+    @experimental
+    # Whether the light affects global illumination, when ray-traced global illumination is enabled
+    AffectGlobalIllumination<native><epic_internal>:logic = external {}
+
+    @editable_slider(float) {EpicOnly := true, MinValue := option {0.000000}, MaxValue := option {6.000000}}
+    @category("light_component|Epic Internal")
+    @experimental
+    # Scales the indirect lighting contribution from this light
+    IndirectLightingIntensity<native><epic_internal>:float = external {}
+
+    @editable_slider(float) {EpicOnly := true, MinValue := option {0.250000}, MaxValue := option {4.000000}}
+    @category("light_component|Epic Internal")
+    @experimental
+    # Intensity of the volumetric scattering from this light
+    VolumetricScatteringIntensity<native><epic_internal>:float = external {}
+
+    @editable {EpicOnly := true}
+    @category("light_component|Epic Internal")
+    @experimental
+    # Whether to render light shaft bloom from this light
+    EnableLightShaftBloom<native><epic_internal>:logic = external {}
+
+    @editable {EpicOnly := true}
+    @category("light_component|Epic Internal")
+    @experimental
+    # Scales the additive color
+    BloomScale<native><epic_internal>:float = external {}
+
+    @editable {EpicOnly := true}
+    @category("light_component|Epic Internal")
+    @experimental
+    # Scene color must be larger than this to create bloom in the light shafts
+    BloomThreshold<native><epic_internal>:float = external {}
+
+    @editable {EpicOnly := true}
+    @category("light_component|Epic Internal")
+    @experimental
+    # After exposure is applied, scene color brightness larger than the max brightness will be rescaled down to the max brightness
+    BloomMaxBrightness<native><epic_internal>:float = external {}
+
+    @editable {EpicOnly := true}
+    @category("light_component|Epic Internal")
+    @experimental
+    # Multiplies against scene color to create the bloom color
+    BloomTint<native><epic_internal>:color = external {}
+
+    @editable {EpicOnly := true}
+    @category("light_component|Epic Internal")
+    @experimental
+    # The light function material to be applied to this light
+    LightFunctionMaterial<native><epic_internal>:?material = external {}
+
+    @editable {EpicOnly := true}
+    @category("light_component|Epic Internal")
+    @experimental
+    # Scales the light function projection. X and Y scale in the directions perpendicular to the light's direction, Z scales along the light direction.
+    LightFunctionScale<native><epic_internal>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+    @editable {EpicOnly := true}
+    @category("light_component|Epic Internal")
+    @experimental
+    # Distance, in centimeters, at which the light function should be completely faded to the configured disabled brightness
+    LightFunctionFadeDistance<native><epic_internal>:float = external {}
+
+    @editable_slider(float) {EpicOnly := true, MinValue := option {0.000000}, MaxValue := option {1.000000}}
+    @category("light_component|Epic Internal")
+    @experimental
+    # Brightness factor applied to the light when the light function is specified but disabled
+    LightFunctionDisabledBrightness<native><epic_internal>:float = external {}
+
 @experimental
 # Used to render a `mesh` at the location of this entity. A mesh is a set of polygons that can be used to represent shapes in the world such as:
 #   * foliage and terrain decorations
@@ -397,11 +544,47 @@ mesh_component<native><public> := class<final_super><epic_internal>(component, e
 
     OnPropertyChangedFromVerse<native><override>(PropertyName:string)<transacts>:void
 
-    ___ParameterCollection_On_Collideable_Changed<epic_internal>():void = external {}
+    @editable {EpicOnly := true}
+    @category("mesh_component|Epic Internal")
+    @experimental
+    # Controls whether this mesh should cast a shadow or not
+    CastShadow<native><epic_internal>:logic = external {}
 
-    ___ParameterCollection_On_Queryable_Changed<epic_internal>():void = external {}
+    @editable {EpicOnly := true}
+    @category("mesh_component|Epic Internal")
+    @experimental
+    # Whether this mesh should cast dynamic shadows as if it were a two sided material
+    CastShadowAsTwoSided<native><epic_internal>:logic = external {}
 
-    ___ParameterCollection_On_Visible_Changed<epic_internal>():void = external {}
+    @editable {EpicOnly := true}
+    @category("mesh_component|Epic Internal")
+    @experimental
+    # If true, the mesh will cast shadows even if HiddenInGame is true
+    CastHiddenShadow<native><epic_internal>:logic = external {}
+
+    @editable {EpicOnly := true}
+    @category("mesh_component|Epic Internal")
+    @experimental
+    # Controls whether the mesh should influence indirect lighting
+    AffectDynamicIndirectLighting<native><epic_internal>:logic = external {}
+
+    @editable {EpicOnly := true}
+    @category("mesh_component|Epic Internal")
+    @experimental
+    # Controls whether the mesh should affect indirect lighting when hidden
+    AffectIndirectLightingWhileHidden<native><epic_internal>:logic = external {}
+
+    @editable {EpicOnly := true}
+    @category("mesh_component|Epic Internal")
+    @experimental
+    # Controls the sort priority of this object if it is translucent
+    TranslucencySortPriority<native><epic_internal>:int = external {}
+
+    ___PropertyInterface_On_Collideable_Changed<epic_internal>():void = external {}
+
+    ___PropertyInterface_On_Queryable_Changed<epic_internal>():void = external {}
+
+    ___PropertyInterface_On_Visible_Changed<epic_internal>():void = external {}
 
 @experimental
 # Used to spawn a `particle_system` at the location of this entity. The `particle_system` will simulate while the `particle_system_component` is in the scene.
@@ -461,10 +644,10 @@ hit_result<native><epic_internal> := struct:
     OtherComponent<native><public>:?component
 
     @experimental
-    HitNormal<native><public>:vector3
+    HitNormal<native><public>:(/Verse.org/SpatialMath:)vector3
 
     @experimental
-    HitLocation<native><public>:vector3
+    HitLocation<native><public>:(/Verse.org/SpatialMath:)vector3
 
 @experimental
 physics_component<native><epic_internal> := class<final><final_super>(component, enableable):
@@ -511,27 +694,27 @@ EmptySweepHitsGenerator<native><epic_internal>()<transacts>:generator(sweep_hit)
 @experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would overlap this entity if it were placed at GlobalTransform.
-(Entity:entity).FindOverlapHits<public>(GlobalTransform:transform)<transacts>:generator(overlap_hit) = external {}
+(Entity:entity).FindOverlapHits<public>(GlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:generator(overlap_hit) = external {}
 
 @experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would overlap Volume if they were placed at GlobalTransform. NOTE: This entity defines the context(scene) for the query but does not otherwise take part in the sweep.
-(Entity:entity).FindOverlapHits<public>(GlobalTransform:transform, Volume:collision_volume)<transacts>:generator(overlap_hit) = external {}
+(Entity:entity).FindOverlapHits<public>(GlobalTransform:(/Verse.org/SpatialMath:)transform, Volume:collision_volume)<transacts>:generator(overlap_hit) = external {}
 
 @experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would intersect this entity if it were swept from its location along the Displacement vector.
-(Entity:entity).FindSweepHits<public>(Displacement:vector3)<transacts>:generator(sweep_hit) = external {}
+(Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3)<transacts>:generator(sweep_hit) = external {}
 
 @experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would intersect this entity if it were swept from GlobalTransform along the Displacement vector.
-(Entity:entity).FindSweepHits<public>(Displacement:vector3, StartGlobalTransform:transform)<transacts>:generator(sweep_hit) = external {}
+(Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3, StartGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:generator(sweep_hit) = external {}
 
 @experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would intersect Volume if they were swept from GlobalTransform along the Displacement vector NOTE: This entity defines the context(scene) for the query but does not otherwise take part in the sweep.
-(Entity:entity).FindSweepHits<public>(Displacement:vector3, StartGlobalTransform:transform, Volume:collision_volume)<transacts>:generator(sweep_hit) = external {}
+(Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3, StartGlobalTransform:(/Verse.org/SpatialMath:)transform, Volume:collision_volume)<transacts>:generator(sweep_hit) = external {}
 
 @experimental
 physics_scene_component<native><epic_internal> := class<final><final_super><epic_internal>(component):
@@ -544,16 +727,16 @@ physics_scene_component<native><epic_internal> := class<final><final_super><epic
     OnRemovingFromSceneInternal<native><override>():void
 
     @available {MinUploadedAtFNVersion := 2930}
-    FindShapeOverlaps<native><public>(QueryShape:collision_volume, QueryTransform:transform)<transacts>:generator(overlap_hit)
+    FindShapeOverlaps<native><public>(QueryShape:collision_volume, QueryTransform:(/Verse.org/SpatialMath:)transform)<transacts>:generator(overlap_hit)
 
     @available {MinUploadedAtFNVersion := 2930}
-    FindShapeSweepHits<native><public>(QueryShape:collision_volume, QueryTransform:transform, QueryTraceVector:vector3)<transacts>:generator(sweep_hit)
+    FindShapeSweepHits<native><public>(QueryShape:collision_volume, QueryTransform:(/Verse.org/SpatialMath:)transform, QueryTraceVector:(/Verse.org/SpatialMath:)vector3)<transacts>:generator(sweep_hit)
 
     @available {MinUploadedAtFNVersion := 2930}
-    FindEntityOverlaps<native><public>(QueryEntity:entity, QueryTransform:transform)<transacts>:generator(overlap_hit)
+    FindEntityOverlaps<native><public>(QueryEntity:entity, QueryTransform:(/Verse.org/SpatialMath:)transform)<transacts>:generator(overlap_hit)
 
     @available {MinUploadedAtFNVersion := 2930}
-    FindEntitySweepHits<native><public>(QueryEntity:entity, QueryTransform:transform, QueryTraceVector:vector3)<transacts>:generator(sweep_hit)
+    FindEntitySweepHits<native><public>(QueryEntity:entity, QueryTransform:(/Verse.org/SpatialMath:)transform, QueryTraceVector:(/Verse.org/SpatialMath:)vector3)<transacts>:generator(sweep_hit)
 
 @experimental
 # A `rect_light_component` emits light into the scene from a rectangular plane with a specified width and height. You can use these
@@ -607,10 +790,6 @@ rigid_body_component<native><epic_internal> := class<final><final_super><epic_in
     @experimental
     # Enable/disable spatial queries against this mesh. Disabling this field will also disable EntityEnteredEvent/EntityExitedEvent.
     var Queryable<public>:logic = external {}
-
-    @editable
-    # The collision profile to use for shapes that do not specify their own profile.
-    var CollisionProfile<public>:collision_profile = external {}
 
     EntityEnteredEvent<native><public>:listenable(entity) = external {}
 
@@ -684,6 +863,18 @@ sphere_light_component<native><public> := class<final>(light_component):
     # Radius of the source shape, in centimeters. Note that light shapes which intersect shadow casting geometry can cause shadowing artifacts.
     var SourceRadius<public>:float = external {}
 
+    @editable {EpicOnly := true}
+    @category("sphere_light_component|Epic Internal")
+    @experimental
+    # Whether to use physically based inverse squared distance falloff
+    UseInverseSquaredFalloff<native><epic_internal>:logic = external {}
+
+    @editable_slider(float) {EpicOnly := true, MinValue := option {2.000000}, MaxValue := option {16.000000}}
+    @category("sphere_light_component|Epic Internal")
+    @experimental
+    # Controls the radial falloff of the light when UseInverseSquaredFalloff is disabled
+    LightFalloffExponent<native><epic_internal>:float = external {}
+
 @experimental
 # A `spot_light_component` emits light from a single point in a cone shape. The shape of the light is defined by two cones: the `InnerConeAngleDegrees`
 # and `OuterConeAngleDegrees`. Within the `InnerConeAngleDegrees` the light achieves full brightness. As you go from the extent of the inner radius to the
@@ -708,6 +899,59 @@ spot_light_component<native><public> := class<final>(light_component):
 
     # The light's outer cone shaped angle in degrees. Clamped between 1.0 and 80.0.
     var OuterConeAngleDegrees<public>:float = external {}
+
+    @editable {EpicOnly := true}
+    @category("spot_light_component|Epic Internal")
+    @experimental
+    # Whether to use physically based inverse squared distance falloff
+    UseInverseSquaredFalloff<native><epic_internal>:logic = external {}
+
+    @editable_slider(float) {EpicOnly := true, MinValue := option {2.000000}, MaxValue := option {16.000000}}
+    @category("spot_light_component|Epic Internal")
+    @experimental
+    # Controls the radial falloff of the light when UseInverseSquaredFalloff is disabled
+    LightFalloffExponent<native><epic_internal>:float = external {}
+
+@experimental
+# Used to add tags to an entity. Tagged entities can then be queried using `entity.FindEntitiesWithTag` and `entity.FindParentEntitiesWithTag`.
+#   * Finding entities from the simulation entity for tagged entities only considers any `tag_component` that has run `OnAddedToScene`.
+tag_component<native><public> := class<final><final_super>(component, tag_view):
+    # Determine if TagToCheck is present in this container, also checking against parent tags {"A.1"}.Has("A") will return True, {"A"}.Has("A.1") will return False If TagToCheck is not Valid it will always return False.
+    Has<native><override>(TagToCheck:tag)<computes><decides><reads>:void
+
+    # Checks if this container contains ANY of the tags in the specified container, also checks against parent tags {"A.1"}.HasAny({"A","B"}) will return True, {"A"}.HasAny({"A.1","B"}) will return False If InTags is empty/invalid it will always return False.
+    HasAny<native><override>(InTags:[]tag)<computes><decides><reads>:void
+
+    # Checks if this container contains ALL of the tags in the specified container, also checks against parent tags {"A.1","B.1"}.HasAll({"A","B"}) will return True, {"A","B"}.HasAll({"A.1","B.1"}) will return False If InTags is empty/invalid it will always return True, because there were no failed checks.
+    HasAll<native><override>(InTags:[]tag)<computes><decides><reads>:void
+
+    # Adds a tag to this component. Returns `true` if the tag was not present before being added.
+    AddTag<native><public>(TagToAdd:tag)<transacts>:logic
+
+    # Removes a tag from this component. Returns `true` if the tag was present before being removed.
+    RemoveTag<native><public>(TagToRemove:tag)<transacts>:logic
+
+    OnAddedToSceneInternal<native><override>():void
+
+    OnRemovingFromSceneInternal<native><override>():void
+
+@hide_in_editor
+@experimental
+tag_query_manager_component<native><epic_internal> := class<final_super><epic_internal>(component):
+    OnUninitializingInternal<native><override>():void
+
+@experimental
+@available {MinUploadedAtFNVersion := 2930}
+# Finds all descendant entities including `InEntity` with `Tag` present in their `tag_component`.
+# When querying from the simulation entity, the simulation entity itself is not included in the results.
+# The order of the returned entities is unspecified and subject to change.
+(InEntity:entity).FindDescendantEntitiesWithTag<native><public>(Tag:tag)<transacts>:generator(entity)
+
+@experimental
+@available {MinUploadedAtFNVersion := 2930}
+# Finds all ancestor entities to `InEntity` with `Tag` present in their `tag_component`.
+# The order of the returned entities is unspecified and subject to change.
+(InEntity:entity).FindAncestorEntitiesWithTag<native><public>(Tag:tag)<transacts>:generator(entity)
 
 @experimental
 # A range with a minimum and maximum value. For a value to fall inside of this range, the min value must be less than or equal to the max value.

@@ -6,9 +6,9 @@ ability<native><public> := class:
 
 @experimental
 ability_component<native><public> := class<final_super>(component):
-    GiveAbility<native><public>(Ability:subtype(ability))<transacts><decides>:void
+    GiveAbility<native><public>(ability_type:subtype(ability))<transacts><decides>:void
 
-    ActivateAbility<native><public>(Ability:subtype(ability)):void
+    ActivateAbility<native><public>(ability_type:subtype(ability)):void
 
     GiveAbility<native><epic_internal>(Ability:ability)<transacts><decides>:void
 

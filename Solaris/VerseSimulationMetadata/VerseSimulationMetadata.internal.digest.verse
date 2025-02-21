@@ -68,6 +68,9 @@ Simulation<public> := module:
 
         EditInline<epic_internal>:logic = external {}
 
+        # If true the property will only be displayed if epic developer permission exist.
+        EpicOnly<epic_internal>:logic = external {}
+
     @attribscope_class
     @attribscope_struct
     @attribscope_data

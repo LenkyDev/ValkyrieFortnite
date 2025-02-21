@@ -14,4 +14,4 @@ bridge_component<native><epic_internal> := class<final><final_super>(component):
     OnAddedToSceneInternal<native><override>():void
 
     @experimental
-    AsCreativeDevice<public>(Type:subtype(creative_device_base))<suspends>:?Type = external {}
+    AsCreativeDevice<public>(creative_device_type:subtype(creative_device_base))<suspends>:?creative_device_type = external {}

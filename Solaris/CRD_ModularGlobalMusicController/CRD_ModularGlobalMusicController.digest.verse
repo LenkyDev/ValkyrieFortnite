@@ -1,2 +1,2 @@
-# Define shared settings for Patchwork devices.
+# Provides a shared tempo, key, and timeline for Patchwork devices to follow.
 music_manager_device<public> := class<concrete><final>(patchwork_device):

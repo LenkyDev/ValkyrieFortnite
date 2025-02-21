@@ -9,7 +9,7 @@ using {/UnrealEngine.com/Temporary/SpatialMath}
 AI<public> := module:
     @experimental
     # Result of an AI action
-    ai_action_result<native><public> := enum:
+    ai_action_result<native><public> := enum<open>:
         # The action has been successfully executed
         Success
         # The action has failed during its execution
@@ -21,7 +21,7 @@ AI<public> := module:
 
     focus_interface<native><public> := interface<epic_internal>:
         # Look At specified location. Will never complete unless interrupted.
-        MaintainFocus<public>(Location:vector3)<suspends>:void
+        MaintainFocus<public>(Location:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<suspends>:void
 
         # Look At specified Agent. Will never complete unless interrupted.
         MaintainFocus<public>(Agent:agent)<suspends>:void
@@ -52,75 +52,37 @@ AI<public> := module:
     (InCharacter:fort_character).GetFortGuardActions<native><public>()<transacts><decides>:fort_guard_actions
 
     @experimental
-    # Fortnite Guards AI actions management
-    fort_guard_actions_component<native><public> := class<epic_internal>(fort_npc_actions_component, fort_guard_actions):
-        @experimental
-        # Roam around the current position. Use the fort_leashable_component to specify the radius, else will roam anywhere.
-        RoamAround<native><override>(?MovementType:movement_type = external {})<suspends>:navigation_result
-
-        @experimental
-        # Move in range to attack the current target
-        MoveInRangeToAttack<native><override>()<suspends>:ai_action_result
-
-        @experimental
-        # Play a random emote from the character emotes bank
-        PlayRandomEmote<native><override>()<suspends>:ai_action_result
-
-        @experimental
-        # Revive the specified target
-        Revive<native><override>(Target:agent)<suspends>:ai_action_result
-
-        @experimental
-        # Attack the target
-        Attack<native><override>(Target:fort_target_info)<suspends>:ai_action_result
-
-    @experimental
-    # Fortnite guard perception management
-    fort_guard_perception_component<native><public> := class<epic_internal>(fort_npc_perception_component):
+    # Fortnite NPC perception management
+    fort_guard_perception<native><public> := interface<epic_internal>(fort_npc_perception):
         @experimental
         # Get information about the current target.
-        GetCurrentTargetInfo<native><public>()<computes><decides><reads>:fort_target_info
+        GetCurrentTargetInfo<public>()<computes><decides><reads>:fort_target_info
 
         @experimental
         # Get the current alert level of the guard.
-        GetAlertLevel<native><public>()<computes><reads>:fort_guard_alert_level
+        GetAlertLevel<public>()<computes><reads>:fort_guard_alert_level
 
         @experimental
         # Get the current alert level of a target for the guard.
-        GetAlertLevel<native><public>(Target:entity)<computes><decides><reads>:fort_guard_alert_level
+        GetAlertLevel<public>(Target:entity)<computes><decides><reads>:fort_guard_alert_level
 
         @experimental
         # Event when the alert level of the guard has changed.
-        AlertLevelChangedEvent<native><public>:listenable(fort_guard_alert_level) = external {}
+        AlertLevelChangedEvent<public>:listenable(fort_guard_alert_level)
 
         @experimental
         # Event when the current target has changed.
-        CurrentTargetChangedEvent<native><public>:listenable(fort_target_info) = external {}
+        CurrentTargetChangedEvent<public>:listenable(fort_target_info)
 
     @experimental
-    # Fortnite NPC leash management
-    fort_leashable_component<native><public> := class<final_super><epic_internal>(component, fort_leashable):
-        @experimental
-        # Set custom leash position.
-        #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
-        #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
-        SetLeashPosition<native><override>(Location:vector3, InnerRadius:float, OuterRadius:float):void
-
-        @experimental
-        # Set the agent to be the new center of the leash.
-        #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
-        #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
-        SetLeashAgent<native><override>(Agent:agent, InnerRadius:float, OuterRadius:float):void
-
-        @experimental
-        # Removes the current leash.
-        ClearLeash<native><override>():void
+    # Get the current fort_guard_perception interface for the specified character.
+    (InCharacter:fort_character).GetFortGuardPerception<native><public>()<transacts><decides>:fort_guard_perception
 
     fort_leashable<native><public> := interface<epic_internal>:
         # Set custom leash position.
         #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
         #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
-        SetLeashPosition<public>(Location:vector3, InnerRadius:float, OuterRadius:float):void
+        SetLeashPosition<public>(Location:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, InnerRadius:float, OuterRadius:float):void
 
         # Set the agent to be the new center of the leash.
         #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
@@ -143,76 +105,49 @@ AI<public> := module:
     (InCharacter:fort_character).GetFortNPCActions<native><public>()<transacts><decides>:fort_npc_actions
 
     @experimental
-    # Fortnite NPC AI actions management
-    fort_npc_actions_component<native><public> := class<final_super><epic_internal>(component, fort_npc_actions):
-        @experimental
-        # Return the current destination of the character
-        GetCurrentDestination<native><override>()<transacts><decides>:vector3
-
-        @experimental
-        # Navigate toward the specified target
-        NavigateTo<native><override>(Target:navigation_target, ?MovementType:movement_type = external {}, ?ReachRadius:float = external {}, ?AllowPartialPath:logic = external {})<suspends>:navigation_result
-
-        @experimental
-        # Apply a multiplier on the movement speed (Multiplier is clamped between 0.5 and 2)
-        SetMovementSpeedMultiplier<native><override>(Multiplier:float):void
-
-        @experimental
-        # Stop navigation
-        StopNavigation<native><override>():void
-
-        @experimental
-        # Wait for a specific duration
-        Wait<native><override>(?Duration:float = external {})<suspends>:void
-
-        @experimental
-        # Look At specified location. Will never complete unless interrupted.
-        MaintainFocus<native><override>(Location:vector3)<suspends>:void
-
-        @experimental
-        # Look At specified Agent. Will never complete unless interrupted.
-        MaintainFocus<native><override>(Agent:agent)<suspends>:void
-
-    @experimental
     # Fortnite NPC perception management
-    fort_npc_perception_component<native><public> := class<final_super><epic_internal>(component):
-        @experimental
-        # Information about all detected targets.
-        var<private> DetectedTargets<native><public>:[]fort_target_info
-
+    fort_npc_perception<native><public> := interface<epic_internal>:
         @experimental
         # Get the last known position of a target.
-        GetLastKnownPosition<native><public>(Target:entity)<computes><decides><reads>:vector3
+        GetLastKnownPosition<public>(Target:entity)<computes><decides><reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
         @experimental
         # Event when a target is added.
-        TargetAddedEvent<native><public>:listenable(fort_target_info) = external {}
+        TargetAddedEvent<public>:listenable(fort_target_info)
 
         @experimental
         # Event when the info about a target has been updated.
-        TargetInfoUpdatedEvent<native><public>:listenable(fort_target_info) = external {}
+        TargetInfoUpdatedEvent<public>:listenable(fort_target_info)
 
         @experimental
         # Event when a target was removed.
-        TargetRemovedEvent<native><public>:listenable(entity) = external {}
+        TargetRemovedEvent<public>:listenable(entity)
 
         @experimental
         # Event when a target is seen. Sight sense must be active.
-        TargetSeenEvent<native><public>:listenable(fort_target_info) = external {}
+        TargetSeenEvent<public>:listenable(fort_target_info)
 
         @experimental
         # Event when a target is heard. Hearing sense must be active.
-        TargetHeardEvent<native><public>:listenable(fort_target_info) = external {}
+        TargetHeardEvent<public>:listenable(fort_target_info)
 
         @experimental
         # Event when a target is touched. Touch sense must be active.
-        TargetTouchedEvent<native><public>:listenable(fort_target_info) = external {}
+        TargetTouchedEvent<public>:listenable(fort_target_info)
+
+        @experimental
+        # Information about all detected targets.
+        var<epic_internal> DetectedTargets<public>:[]fort_target_info
+
+    @experimental
+    # Get the current fort_npc_perception interface for the specified character.
+    (InCharacter:fort_character).GetFortNPCPerception<native><public>()<transacts><decides>:fort_npc_perception
 
     navigation_target<native><public> := class<epic_internal>:
 
 
     # Generate a navigation_target from any position
-    MakeNavigationTarget<native><public>(Position:vector3):navigation_target
+    MakeNavigationTarget<native><public>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):navigation_target
 
     # Generate a navigation_target from an agent
     MakeNavigationTarget<native><public>(Target:agent):navigation_target
@@ -245,7 +180,7 @@ AI<public> := module:
 
     navigatable<native><public> := interface<epic_internal>:
         # Return the current destination of the character
-        GetCurrentDestination<public>()<transacts><decides>:vector3
+        GetCurrentDestination<public>()<transacts><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
         # Navigate toward the specified target
         NavigateTo<public>(Target:navigation_target, ?MovementType:movement_type = external {}, ?ReachRadius:float = external {}, ?AllowPartialPath:logic = external {})<suspends>:navigation_result
@@ -328,10 +263,10 @@ Animation<public> := module:
         # An interface for playing an animation on an object.
         play_animation_controller<native><public> := interface<epic_internal>:
             # Play an animation sequence.
-            PlayAndAwait<public>(AnimationSequence:animation_sequence, ?PlayRate:float = external {}, ?StartPositionSeconds:float = external {}, ?BlendInTime:float = external {}, ?BlendOutTime:float = external {})<suspends>:play_animation_result
+            PlayAndAwait<public>(AnimationSequence:animation_sequence, ?PlayRate:float = external {}, ?PlayCount:float = external {}, ?StartPositionSeconds:float = external {}, ?BlendInTime:float = external {}, ?BlendOutTime:float = external {})<suspends>:play_animation_result
 
             # Start an animation sequence and obtain an instance to query and manipulate.
-            Play<public>(AnimationSequence:animation_sequence, ?PlayRate:float = external {}, ?StartPositionSeconds:float = external {}, ?BlendInTime:float = external {}, ?BlendOutTime:float = external {}):play_animation_instance
+            Play<public>(AnimationSequence:animation_sequence, ?PlayRate:float = external {}, ?PlayCount:float = external {}, ?StartPositionSeconds:float = external {}, ?BlendInTime:float = external {}, ?BlendOutTime:float = external {}):play_animation_instance
 
         # An animation instance created from play_animation_controller.Play that can be queried and manipulated.
         play_animation_instance<native><public> := class<epic_internal>:
@@ -379,14 +314,8 @@ Animation<public> := module:
         # Get the play_animation_controller for the specified character.
         (InCharacter:fort_character).GetPlayAnimationController<native><public>()<transacts><decides>:play_animation_controller
 
-        @experimental
-        fort_npc_play_animation_component<native><public> := class<final_super><epic_internal>(component, play_animation_controller):
-            PlayAndAwait<override>(AnimationSequence:animation_sequence, ?PlayRate:float = external {}, ?StartPositionSeconds:float = external {}, ?BlendInTime:float = external {}, ?BlendOutTime:float = external {})<suspends>:play_animation_result = external {}
-
-            Play<override>(AnimationSequence:animation_sequence, ?PlayRate:float = external {}, ?StartPositionSeconds:float = external {}, ?BlendInTime:float = external {}, ?BlendOutTime:float = external {}):play_animation_instance = external {}
-
 # Module import path: /Fortnite.com/Assets
-Assets<public> := module:
+(/Fortnite.com:)Assets<public> := module:
 
 
 # Module import path: /Fortnite.com/Building
@@ -404,10 +333,10 @@ Characters<public> := module:
         EliminatedEvent<public>():listenable(elimination_result)
 
         # Returns the rotation where this `fort_character` is looking or aiming at.
-        GetViewRotation<public>()<transacts>:rotation
+        GetViewRotation<public>()<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
         # Returns the location where this `fort_character` is looking or aiming from.
-        GetViewLocation<public>()<transacts>:vector3
+        GetViewLocation<public>()<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
         # Signaled when this `fort_character` jumps. Returns a listenable with a payload of this `fort_character`.
         JumpedEvent<public>():listenable(fort_character)
@@ -470,7 +399,7 @@ Characters<public> := module:
         IsVulnerable<public>()<transacts><decides>:void
 
         # Teleports this `fort_character` to the provided `Position` and applies the yaw and pitch of `Rotation`. Will fail if the `Position` specified is e.g. outside of the playspace or specifies a place where the character cannot fit.
-        TeleportTo<public>(Position:vector3, Rotation:rotation)<transacts><decides>:void
+        TeleportTo<public>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts><decides>:void
 
     # Returns the `fort_character` for `InAgent`. Fails if `InAgent` is not a `fort_character`.
     (InAgent:agent).GetFortCharacter<native><public>()<transacts><decides>:fort_character
@@ -507,7 +436,7 @@ FortPlayerUtilities<public> := module:
     (InAgent:agent).GetSpectators<native><public>()<transacts>:[]agent
 
     # Respawns the character for `InAgent` at the provided `RespawnPosition` and applies the yaw of `RespawnRotation`.
-    (InAgent:agent).Respawn<native><public>(RespawnPosition:vector3, RespawnRotation:rotation)<transacts>:void
+    (InAgent:agent).Respawn<native><public>(RespawnPosition:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, RespawnRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts>:void
 
 # Module import path: /Fortnite.com/Game
 Game<public> := module:
@@ -526,10 +455,10 @@ Game<public> := module:
         #  - When a new Fortnite round starts
         #  - If a round is ongoing, your callback will be invoked immediately
         # Upon the round ending, all callbacks will be canceled
-        SubscribeRoundStarted<public>(Callback:type {__()<suspends>:void}):cancelable
+        SubscribeRoundStarted<public>(Callback:type {_()<suspends>:void}):cancelable
 
         # Subscribed callbacks will be invoked when a Fortnite round ends
-        SubscribeRoundEnded<public>(Callback:type {__():void}):cancelable
+        SubscribeRoundEnded<public>(Callback:type {_():void}):cancelable
 
     @experimental
     # Returns the round manager from the simulation entity.
@@ -538,7 +467,7 @@ Game<public> := module:
     # Implemented by objects to allow reading position information.
     positional<native><public> := interface<epic_internal>:
         # Returns the transform of the object.
-        GetTransform<public>()<transacts>:transform
+        GetTransform<public>()<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)transform
 
     # Implemented by Fortnite objects that have health state and can be eliminated.
     healthful<native><public> := interface<epic_internal>:

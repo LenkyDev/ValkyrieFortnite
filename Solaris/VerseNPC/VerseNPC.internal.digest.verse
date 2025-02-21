@@ -1,2 +1,2 @@
 # Module import path: /Fortnite.com/VerseNPC/VerseNPC
-VerseNPC<public> := module:
+(/Fortnite.com/VerseNPC:)VerseNPC<public> := module:

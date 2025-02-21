@@ -28,7 +28,7 @@ conversation_device<public> := class<concrete><final>(creative_device_base, enab
     # Ends all active conversations with this device.
     EndConversationForAll<public>():void = external {}
 
-    # Signalled when a choice node tied to this event is selected by an `agent`.
+    # Signaled when a choice node tied to this event is selected by an `agent`.
     # Sends the `agent` that triggered the event, and `EventNumber` is the number specified in the Conversation Event node.
     OnConversationEvent<public>:listenable(tuple(agent, int)) = external {}
 

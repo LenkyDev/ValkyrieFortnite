@@ -5,7 +5,7 @@ using {/UnrealEngine.com/Temporary/SpatialMath}
 using {/Fortnite.com/Playspaces}
 using {/UnrealEngine.com/Temporary/UI}
 # Module import path: /Fortnite.com/UI
-UI<public> := module:
+(/Fortnite.com:)UI<public> := module:
     # Button with text message common base class. Displays a button with a custom message string.
     text_button_base<native><public> := class<abstract><epic_internal>(widget):
         # The text to display to the user. Used only during initialization of the widget and not modified by SetText.
@@ -56,7 +56,7 @@ UI<public> := module:
         ResetElementVisibility<public>(HUDElements:[]hud_element_identifier):void
 
     # Get the `fort_hud_controller` for the current `fort_playspace`.
-    (Playspace:fort_playspace).GetHUDController<native><public>():fort_hud_controller
+    ((local:)Playspace:fort_playspace).GetHUDController<native><public>():fort_hud_controller
 
     creative_hud_identifier_all<public> := class<final>(hud_element_gameplay_tag_identifier_base):
         InternalTag<override>:string = external {}
@@ -161,6 +161,24 @@ UI<public> := module:
     hud_identifier_world_resource_ingredient<public> := class<final>(hud_element_world_resource_identifier_base):
         InternalIndex<override>:int = external {}
 
+    hud_identifier_visual_sound_effect_weapons<public> := class<final>(hud_element_audio_visualizer_identifier_base):
+        HiddenBitmask<override>:int = external {}
+
+    hud_identifier_visual_sound_effect_loot<public> := class<final>(hud_element_audio_visualizer_identifier_base):
+        HiddenBitmask<override>:int = external {}
+
+    hud_identifier_visual_sound_effect_movement<public> := class<final>(hud_element_audio_visualizer_identifier_base):
+        HiddenBitmask<override>:int = external {}
+
+    hud_identifier_visual_sound_effect_vehicle<public> := class<final>(hud_element_audio_visualizer_identifier_base):
+        HiddenBitmask<override>:int = external {}
+
+    hud_identifier_visual_sound_effect_healing<public> := class<final>(hud_element_audio_visualizer_identifier_base):
+        HiddenBitmask<override>:int = external {}
+
+    hud_identifier_visual_sound_effect_all<public> := class<final>(hud_element_audio_visualizer_identifier_base):
+        HiddenBitmask<override>:int = external {}
+
     hud_identifier_game_phase_none<epic_internal> := class<final>(hud_element_game_phase_identifier_base):
         InternalIndex<override>:int = external {}
 
@@ -215,6 +233,11 @@ UI<public> := module:
     hud_element_game_phase_identifier_base<native><epic_internal> := class<abstract><epic_internal>(hud_element_identifier):
         # Internal index converted to EAthenaGamePhaseStep
         InternalIndex<native><epic_internal>:int
+
+    # Base class for hud elements associated with audio visualizer hud elements 
+    hud_element_audio_visualizer_identifier_base<native><epic_internal> := class<abstract><epic_internal>(hud_element_identifier):
+        # Bitmask to be converted to EHiddenSoundIndicatorTypes
+        HiddenBitmask<native><epic_internal>:int
 
     # Slider with a text value. Displays a slider, its progress bar and value.
     slider_regular<native><public> := class<final>(widget):
@@ -296,7 +319,7 @@ UI<public> := module:
 
 
     # Editable text widget contained in a box. Allows the user to type in a custom text. Only permits a single line of text to be entered.
-    editable_text_box<native><epic_internal> := class<final>(editable_text_base):
+    (/Fortnite.com/UI:)editable_text_box<native><epic_internal> := class<final>(editable_text_base):
 
 
     @import_as("/Script/VerseFortniteUI.UVerseFortniteWidgetViewmodel")

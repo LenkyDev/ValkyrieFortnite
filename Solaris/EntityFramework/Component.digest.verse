@@ -1,7 +1,8 @@
+using {/Verse.org/Simulation/Tags}
 using {/Verse.org/Native}
-using {/Verse.org/Simulation}
 using {/Verse.org/Colors}
-using {/UnrealEngine.com/Temporary/SpatialMath}
+using {/Verse.org/Simulation}
+using {/Verse.org/SpatialMath}
 @experimental
 # A `capsule_light_component` emits light in all directions into the scene from a capsule shaped source with a specified radius and length. A radius and length of 0 makes it a point light. You can use these
 # to simulate any kind of light sources that emit in all directions and need an elongated source shape, such as a long light bulb.
@@ -128,12 +129,15 @@ KeyframedMovement<public> := module:
     @experimental
     # Represents a change in pose and scale over a duration.
     keyframed_movement_delta<native><public> := class<final><concrete>:
+        @editable
         # Represents a change in the transform relative to the previous keyframe or initial animation position.
-        Transform<native><public>:transform = external {}
+        Transform<native><public>:(/Verse.org/SpatialMath:)transform = external {}
 
+        @editable_number(float) {MinValue := option {0.000000}}
         # Duration of this keyframe in seconds.
         Duration<native><public>:float = external {}
 
+        @editable
         # Easing function to use for playback.
         Easing<native><public>:easing_function = external {}
 
@@ -304,27 +308,27 @@ particle_system_component<native><public> := class<final_super><epic_internal>(c
 @experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would overlap this entity if it were placed at GlobalTransform.
-(Entity:entity).FindOverlapHits<public>(GlobalTransform:transform)<transacts>:generator(overlap_hit) = external {}
+(Entity:entity).FindOverlapHits<public>(GlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:generator(overlap_hit) = external {}
 
 @experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would overlap Volume if they were placed at GlobalTransform. NOTE: This entity defines the context(scene) for the query but does not otherwise take part in the sweep.
-(Entity:entity).FindOverlapHits<public>(GlobalTransform:transform, Volume:collision_volume)<transacts>:generator(overlap_hit) = external {}
+(Entity:entity).FindOverlapHits<public>(GlobalTransform:(/Verse.org/SpatialMath:)transform, Volume:collision_volume)<transacts>:generator(overlap_hit) = external {}
 
 @experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would intersect this entity if it were swept from its location along the Displacement vector.
-(Entity:entity).FindSweepHits<public>(Displacement:vector3)<transacts>:generator(sweep_hit) = external {}
+(Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3)<transacts>:generator(sweep_hit) = external {}
 
 @experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would intersect this entity if it were swept from GlobalTransform along the Displacement vector.
-(Entity:entity).FindSweepHits<public>(Displacement:vector3, StartGlobalTransform:transform)<transacts>:generator(sweep_hit) = external {}
+(Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3, StartGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:generator(sweep_hit) = external {}
 
 @experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would intersect Volume if they were swept from GlobalTransform along the Displacement vector NOTE: This entity defines the context(scene) for the query but does not otherwise take part in the sweep.
-(Entity:entity).FindSweepHits<public>(Displacement:vector3, StartGlobalTransform:transform, Volume:collision_volume)<transacts>:generator(sweep_hit) = external {}
+(Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3, StartGlobalTransform:(/Verse.org/SpatialMath:)transform, Volume:collision_volume)<transacts>:generator(sweep_hit) = external {}
 
 @experimental
 # A `rect_light_component` emits light into the scene from a rectangular plane with a specified width and height. You can use these
@@ -411,6 +415,38 @@ spot_light_component<native><public> := class<final>(light_component):
 
     # The light's outer cone shaped angle in degrees. Clamped between 1.0 and 80.0.
     var OuterConeAngleDegrees<public>:float = external {}
+
+@experimental
+# Used to add tags to an entity. Tagged entities can then be queried using `entity.FindEntitiesWithTag` and `entity.FindParentEntitiesWithTag`.
+#   * Finding entities from the simulation entity for tagged entities only considers any `tag_component` that has run `OnAddedToScene`.
+tag_component<native><public> := class<final><final_super>(component, tag_view):
+    # Determine if TagToCheck is present in this container, also checking against parent tags {"A.1"}.Has("A") will return True, {"A"}.Has("A.1") will return False If TagToCheck is not Valid it will always return False.
+    Has<native><override>(TagToCheck:tag)<computes><decides><reads>:void
+
+    # Checks if this container contains ANY of the tags in the specified container, also checks against parent tags {"A.1"}.HasAny({"A","B"}) will return True, {"A"}.HasAny({"A.1","B"}) will return False If InTags is empty/invalid it will always return False.
+    HasAny<native><override>(InTags:[]tag)<computes><decides><reads>:void
+
+    # Checks if this container contains ALL of the tags in the specified container, also checks against parent tags {"A.1","B.1"}.HasAll({"A","B"}) will return True, {"A","B"}.HasAll({"A.1","B.1"}) will return False If InTags is empty/invalid it will always return True, because there were no failed checks.
+    HasAll<native><override>(InTags:[]tag)<computes><decides><reads>:void
+
+    # Adds a tag to this component. Returns `true` if the tag was not present before being added.
+    AddTag<native><public>(TagToAdd:tag)<transacts>:logic
+
+    # Removes a tag from this component. Returns `true` if the tag was present before being removed.
+    RemoveTag<native><public>(TagToRemove:tag)<transacts>:logic
+
+@experimental
+@available {MinUploadedAtFNVersion := 2930}
+# Finds all descendant entities including `InEntity` with `Tag` present in their `tag_component`.
+# When querying from the simulation entity, the simulation entity itself is not included in the results.
+# The order of the returned entities is unspecified and subject to change.
+(InEntity:entity).FindDescendantEntitiesWithTag<native><public>(Tag:tag)<transacts>:generator(entity)
+
+@experimental
+@available {MinUploadedAtFNVersion := 2930}
+# Finds all ancestor entities to `InEntity` with `Tag` present in their `tag_component`.
+# The order of the returned entities is unspecified and subject to change.
+(InEntity:entity).FindAncestorEntitiesWithTag<native><public>(Tag:tag)<transacts>:generator(entity)
 
 @experimental
 # A range with a minimum and maximum value. For a value to fall inside of this range, the min value must be less than or equal to the max value.

@@ -1,11 +1,10 @@
 using {/Verse.org/Colors}
-using {/UnrealEngine.com/Temporary/SpatialMath}
 using {/UnrealEngine.com/Abilities}
 using {/Verse.org/Assets}
-using {/Verse.org/Native}
 using {/Verse.org/Simulation/Tags}
 using {/UnrealEngine.com/EpicGamesRestricted/Network}
 using {/Verse.org/Simulation}
+using {/Verse.org/Native}
 using {/UnrealEngine.com/Temporary/SceneGraph}
 @experimental
 inventory_creation_type<native><public> := enum<persistable>:
@@ -62,7 +61,10 @@ inventory_component<native><public> := class<final_super>(component):
 
     RemoveItems<native><final><public>(Item:[]entity)<transacts><decides>:remove_items_result
 
-    GetItems<native><final><public>():[]entity
+    GetItems<native><final><public>()<computes><reads>:[]entity
+
+    @available {MinUploadedAtFNVersion := 2930}
+    FindItems<native><final><public>()<computes><reads>:generator(entity)
 
     InventoryAddedEvent<native><public>:listenable(add_inventory_result) = external {}
 
@@ -80,11 +82,11 @@ inventory_component<native><public> := class<final_super>(component):
     @replicated("")
     var<private> InventoryName<native><public>:string = external {}
 
-    @editable_non_concrete
+    @editable
     @replicated("")
     var<private> InventoryDisplayName<native><public>:message
 
-    @editable_non_concrete
+    @editable
     @replicated("")
     var<private> InventoryDescription<native><public>:message
 
@@ -159,7 +161,7 @@ equippable_inventory_component<native><public> := class(inventory_component):
     @editable
     ShowSlotBindings<native><public>:logic = external {}
 
-    var<private> ActiveItemList<native><public>:[]entity = external {}
+    GetEquippedItems<final><native><public>():[]entity
 
 @experimental
 inventory_backpack_component<public> := class(inventory_component):
@@ -180,6 +182,17 @@ equippable_inventory_hotbar_component<native><public> := class(equippable_invent
     EquipmentRestrictionList<override>:[]equippable_item_restriction_base = external {}
 
     AutoEquipRequirementList<override>:[]item_requirement_base = external {}
+
+@experimental
+(InAgent:agent).GetInventory<native><epic_internal>()<transacts><decides>:inventory_component
+
+@experimental
+inventory_debug<native><epic_internal> := class:
+    AddTestItem<native_callable><public>(InInventory:inventory_component):void = external {}
+
+    AddTestStackableItem<native_callable><public>(InInventory:inventory_component):void = external {}
+
+    RemoveAllItems<native_callable><public>(InInventory:inventory_component):void = external {}
 
 @experimental
 inventory_setup_data_result<native><public> := struct<epic_internal>:
@@ -218,27 +231,25 @@ item_ability_cooldown_velocity_based<native><epic_internal> := class(item_abilit
 
 @experimental
 item_ability_binding<native><final><epic_internal> := class<concrete>:
-    @editable_non_concrete
+    @editable
     var<private> InputAction<native><public>:?input_action(type) = external {}
 
     @editable
     var<private> ActiveState<native><public>:item_state = external {}
 
-    @editable_non_concrete
+    @editable
     var<private> Costs<native><public>:[]item_ability_cost = external {}
 
-    @editable_non_concrete
+    @editable
     var<private> Cooldowns<native><public>:[]item_ability_cooldown = external {}
 
-    @editable_non_concrete
+    @editable
     var<private> Ability<native><public>:?ability = external {}
 
 @experimental
-item_ability_component<native><final><epic_internal> := class(item_component_base):
-    CanMerge<override><native_callable>(OtherComponent:?component)<decides>:void = external {}
-
+item_ability_component<native><final><epic_internal> := class<final_super>(component):
     @editable
-    var<private> Abilities<native><public>:[]item_ability_binding
+    var<private> ItemAbilities<native><public>:[]item_ability_binding
 
 @experimental
 item_attachment_definition<native><epic_internal> := class<unique><concrete>:
@@ -251,72 +262,18 @@ item_mesh_attachment_definition<native><epic_internal> := class<concrete>(item_a
     var AttachToSocketName<native><public>:string = external {}
 
     @editable
-    var OffsetLocation<native><public>:vector3 = external {}
-
-    @editable
-    var OffsetRotation<native><public>:rotation = external {}
-
-    @editable
-    var MeshScale<native><public>:vector3 = external {}
-
-    @editable
-    Mesh<native><public>:mesh = external {}
-
-    @editable
-    AnimationSequence<native><public>:?animation_sequence = external {}
+    EntityToAttach<native><public>:?subtype(entity) = external {}
 
 @experimental
-item_attach_component<native><final><epic_internal> := class(item_component_base):
-    CanMerge<override><native_callable>(OtherComponent:?component)<decides>:void = external {}
-
+item_attach_component<native><final><epic_internal> := class<final_super>(component):
     @editable
     Attachments<native><public>:[]item_attachment_definition = external {}
-
-@experimental
-# Anything using this component should be considered an item. Required to interact with inventories.
-item_component<native><public> := class<final>(item_component_base):
-    OnInitializedInternal<native><override>():void
-
-    CanMerge<override><native_callable>(OtherComponent:?component)<decides>:void = external {}
-
-    ItemChangedAmountEvent<native><public>:listenable(item_amount_change) = external {}
-
-    ItemChangedSlotEvent<native><public>:listenable(item_slot_change) = external {}
-
-    ItemChangedStateEvent<native><public>:listenable(item_state_change) = external {}
-
-    OnItemStateChanged<native><public>()<transacts><decides>:void
-
-    GetItemName<native><epic_internal>():message
-
-    GetItemDescription<native><epic_internal>():message
-
-    GetItemShortDescription<native><epic_internal>():message
-
-    var<private> Amount<native><public>:int = external {}
-
-    var<private> Slot<native><public>:int = external {}
-
-    var<private> State<native><public>:item_state = external {}
-
-    @replicated("")
-    var<private> ItemDefinition<native><epic_internal>:?item_definition_base = external {}
 
 @experimental
 item_state<native><public> := enum:
     NotInInventory
     InInventory
     Equipped
-
-@experimental
-item_component_base<native><public> := class<abstract><final_super><epic_internal>(component):
-    OnInitializedInternal<native><override>():void
-
-    ShouldBeUnique<native><public>()<decides>:void
-
-    CanMerge<native_callable><public>(OtherComponent:?component)<decides>:void = external {}
-
-    Merge<native_callable><public>(OtherComponent:component)<transacts>:void = external {}
 
 @experimental
 item_amount_change<native><public> := struct<epic_internal>:
@@ -343,14 +300,58 @@ item_state_change<native><public> := struct<epic_internal>:
     PreviousState<native><public>:item_state
 
 @experimental
-item_icon_component<native><final><epic_internal> := class(item_component_base):
-    @editable_non_concrete
-    var<private> Icon<native><public>:?texture = external {}
+# Anything using this component should be considered an item. Required to interact with inventories.
+item_component<native><final><public> := class<final_super>(component):
+    OnInitializedInternal<native><override>():void
 
-    CanMerge<override><native>(OtherComponent:?component)<decides>:void
+    GetParentInventory<native><public>()<converges><decides>:inventory_component
+
+    ItemChangedAmountEvent<native><public>:listenable(item_amount_change) = external {}
+
+    ItemChangedSlotEvent<native><public>:listenable(item_slot_change) = external {}
+
+    ItemChangedStateEvent<native><public>:listenable(item_state_change) = external {}
+
+    OnItemStateChanged<native><public>()<transacts><decides>:void
+
+    var<private> State<native><public>:item_state = external {}
+
+    @replicated("")
+    var<private> ItemDefinition<native><epic_internal>:?item_definition_base = external {}
 
 @experimental
-item_definition_base<native><epic_internal> := class<computes><concrete>(asset):
+item_definition_details_component<native><epic_internal> := class(item_details_component):
+    GetItemName<native><override>():message
+
+    GetItemDescription<native><override>():message
+
+    GetItemShortDescription<native><override>():message
+
+@experimental
+item_details_component<native><epic_internal> := class<final_super>(component):
+    GetItemName<native><public>():message
+
+    GetItemDescription<native><public>():message
+
+    GetItemShortDescription<native><public>():message
+
+    @editable
+    ItemName<native><localizes><public>:message = external {}
+
+    @editable
+    ItemDescription<native><localizes><public>:message = external {}
+
+    @editable
+    ItemShortDescription<native><localizes><public>:message = external {}
+
+@experimental
+item_icon_component<native><final><epic_internal> := class<final_super>(component):
+    @editable
+    var<private> Icon<native><public>:?texture = external {}
+
+@experimental
+@import_as("/Script/ItemizationCoreRuntime.UItemDefinitionBase")
+item_definition_base<native><epic_internal> := class:
 
 
 @experimental
@@ -359,7 +360,7 @@ item_owner_pose<native><epic_internal> := class<concrete><unique>(asset):
 
 
 @experimental
-item_owner_pose_component<native><final><epic_internal> := class(item_component_base):
+item_owner_pose_component<native><final><epic_internal> := class<final_super>(component):
     @editable
     OwnerPose<native><public>:?item_owner_pose = external {}
 
@@ -370,7 +371,7 @@ item_owner_pose_component<native><final><epic_internal> := class(item_component_
     var<private> ApplyPoseState<native><public>:item_state_filter = external {}
 
 @experimental
-item_stack_size_component<native><final><epic_internal> := class(item_component_base):
+item_stack_size_component<native><final><epic_internal> := class<final_super>(component):
     @editable
     var<private> StackSize<native><public>:int = external {}
 
@@ -380,10 +381,6 @@ item_stack_size_component<native><final><epic_internal> := class(item_component_
     SetStackSize<native><public>(NewStackSize:int):void
 
     SetMaxStackSize<native><public>(NewMaxStackSize:int):void
-
-    CanMerge<override><native>(OtherComponent:?component)<decides>:void
-
-    Merge<override><native_callable>(OtherComponent:component)<transacts>:void = external {}
 
 @experimental
 item_type<native><public> := class<concrete><unique>:
@@ -397,7 +394,37 @@ item_type<native><public> := class<concrete><unique>:
     ParentType<native><public>:?item_type = external {}
 
 @experimental
-item_type_component<native><final><public> := class(item_component_base):
+DebugItemTypeAmmo<public> := class(item_type):
+    ItemTypeName<override>:string = external {}
+
+    ItemTypeDescription<override>:string = external {}
+
+@experimental
+DebugItemTypeResources<public> := class(item_type):
+    ItemTypeName<override>:string = external {}
+
+    ItemTypeDescription<override>:string = external {}
+
+@experimental
+DebugItemTypeCollectables<public> := class(item_type):
+    ItemTypeName<override>:string = external {}
+
+    ItemTypeDescription<override>:string = external {}
+
+@experimental
+DebugItemTypeCurrencies<public> := class(item_type):
+    ItemTypeName<override>:string = external {}
+
+    ItemTypeDescription<override>:string = external {}
+
+@experimental
+DebugItemTypeBuildTools<public> := class(item_type):
+    ItemTypeName<override>:string = external {}
+
+    ItemTypeDescription<override>:string = external {}
+
+@experimental
+item_type_component<native><final><public> := class<final_super>(component):
     GetItemTypeTags<native><epic_internal>():tag_container
 
     @editable
@@ -418,6 +445,9 @@ item_requirement<native><public> := class(item_requirement_base):
     @editable
     RequirementDescription<native><public>:string = external {}
 
+    @editable
+    ItemTypeRequirement<native><public>:?item_type = external {}
+
 @experimental
 item_rarity<native><public> := class<unique><concrete>:
     @editable
@@ -433,7 +463,7 @@ item_rarity<native><public> := class<unique><concrete>:
     RarityTier<native><public>:float = external {}
 
 @experimental
-item_rarity_component<native><final><public> := class(item_component_base):
+item_rarity_component<native><final><public> := class<final_super>(component):
     @editable
     var<private> Rarity<native><public>:?item_rarity
 

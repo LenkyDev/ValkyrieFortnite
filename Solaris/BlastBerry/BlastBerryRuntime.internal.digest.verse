@@ -16,18 +16,18 @@ Blastberry<public> := module:
 
             InRangeOfGroup<public>(InAgent:agent, RangeSq:float)<transacts>:logic = external {}
 
-            GetAverageTranslation<public>()<transacts><decides>:vector3 = external {}
+            GetAverageTranslation<public>()<transacts><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
-            InSafeZone<public>(SafeZoneCenter:vector3, SafeZoneRadius:float)<transacts>:logic = external {}
+            InSafeZone<public>(SafeZoneCenter:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, SafeZoneRadius:float)<transacts>:logic = external {}
 
             GetGroupWeight<public>()<transacts>:int = external {}
 
             ResetCachedData<public>()<transacts>:void = external {}
 
         respawn_information<native><public> := struct<epic_internal>:
-            SpawnLocation<public>:vector3
+            SpawnLocation<public>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
-            DeathLocation<public>:vector3
+            DeathLocation<public>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
         @import_as("/Script/BlastBerryRuntime.UBlastBerryVerseRespawnLogic")
         blastberry_respawn_logic_base<native><epic_internal> := class<abstract>:
@@ -38,12 +38,12 @@ Blastberry<public> := module:
 
             PlayerRespawned<native_callable><epic_internal>(RespawnedAgent:agent):void = external {}
 
-            EQSQueryCompleted<native_callable><epic_internal>(ResultAgent:agent, ResultLoc:vector3):vector3 = external {}
+            EQSQueryCompleted<native_callable><epic_internal>(ResultAgent:agent, ResultLoc:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
-            RunSoloEQSQuery<native><epic_internal>(RespawningAgent:agent, SpawnLocation:vector3, SafeZoneRadius:float, SafeZoneCenter:vector3):void
+            RunSoloEQSQuery<native><epic_internal>(RespawningAgent:agent, SpawnLocation:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, SafeZoneRadius:float, SafeZoneCenter:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):void
 
-            CalculateRespawnLocation<native_callable><epic_internal>(RespawningAgent:agent, WholeTeamDead:logic, DebugRandRange:float, DebugRandAngle:float):transform = external {}
+            CalculateRespawnLocation<native_callable><epic_internal>(RespawningAgent:agent, WholeTeamDead:logic, DebugRandRange:float, DebugRandAngle:float):(/UnrealEngine.com/Temporary/SpatialMath:)transform = external {}
 
         (InAgent:agent).GetTimeRemainingForRespawn<native><epic_internal>()<transacts><decides>:float
 
-        (InAgent:agent).GetDeathLocation<native><epic_internal>()<transacts><decides>:transform
+        (InAgent:agent).GetDeathLocation<native><epic_internal>()<transacts><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)transform

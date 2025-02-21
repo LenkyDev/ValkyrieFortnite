@@ -1,4 +1,4 @@
-using {/UnrealEngine.com/Temporary/SpatialMath}
+using {/Verse.org/SpatialMath}
 @experimental
 # Specifies how a collision volume pair should interact. See collision_profile.
 collision_interaction<native><public> := enum:
@@ -16,7 +16,7 @@ collision_channel<native><public> := class<concrete><epic_internal>:
 
 @experimental
 # An alias for the function type used to map a collision_channel to a collision_interaction used by  collision_profile.
-collision_channel_to_interaction<public> := type {__(:collision_channel)<computes>:collision_interaction}
+collision_channel_to_interaction<public> := type {_(:collision_channel)<computes>:collision_interaction}
 
 @experimental
 DefaultChannelToInteraction<epic_internal>(__dupe___unnamed_parameter_47:collision_channel)<computes>:collision_interaction = external {}
@@ -41,7 +41,7 @@ collision_profile<native><public> := class<concrete>:
 
 @experimental
 # Create a collision_profile. See the collision_profiles module.
-MakeCollisionProfile<native><public>(ChannelType:subtype(collision_channel), ChannelToInteraction:collision_channel_to_interaction)<converges>:collision_profile
+MakeCollisionProfile<native><public>(channel_type:subtype(collision_channel), ChannelToInteraction:collision_channel_to_interaction)<converges>:collision_profile
 
 # Module import path: /UnrealEngine.com/Temporary/SceneGraph/collision_channels
 # The set of built-in collision_channels. This is a closed set for now.
@@ -115,7 +115,7 @@ overlap_hit<native><public> := struct:
     SourceVolume<native><public>:collision_volume
 
     # The source volume transform
-    SourceGlobalTransform<native><public>:transform
+    SourceGlobalTransform<native><public>:(/Verse.org/SpatialMath:)transform
 
     # The component that was hit by SourceVolume
     TargetComponent<native><public>:component
@@ -133,10 +133,10 @@ sweep_hit<native><public> := struct:
     SourceVolume<native><public>:collision_volume
 
     # The source volume transform at the start of the sweep.
-    SourceStartGlobalTransform<native><public>:transform
+    SourceStartGlobalTransform<native><public>:(/Verse.org/SpatialMath:)transform
 
     # The world-space translation (relative to SourceStartGlobalTransform) of SourceVolume when it touches TargetVolume.
-    SourceHitTranslation<native><public>:vector3 = external {}
+    SourceHitTranslation<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
 
     # The Distance along the sweep at which SourceVolume touches TargetVolume.
     SourceHitDistance<native><public>:float = external {}
@@ -148,13 +148,13 @@ sweep_hit<native><public> := struct:
     TargetVolume<native><public>:collision_element
 
     # The point of contact between SourceVolume and TargetVolume.
-    ContactPosition<native><public>:vector3 = external {}
+    ContactPosition<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
 
     # The normal on TargetVolume at the HitPosition.
-    ContactNormal<native><public>:vector3 = external {}
+    ContactNormal<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
 
     # If TargetVolume is a polygonal object (mesh, convex hull, etc.) and the contact point is on an edge or vertex, this is the most-opposing face normal of the faces that share that edge or vertex. Otherwise it is the same as HitNormal.
-    ContactFaceNormal<native><public>:vector3 = external {}
+    ContactFaceNormal<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
 
 @experimental
 # Collision Volumes represent the collision shapes of meshes. They can be detected by Overlap and Sweep queries and generate collisions in the physics simulation.
@@ -168,10 +168,10 @@ collision_volume<native><public> := class<abstract>:
     var Queryable<public>:logic = external {}
 
     # Get the transform of this volume in the space of its owner (usually a component on an entity)
-    GetLocalTransform<public>()<transacts>:transform = external {}
+    GetLocalTransform<public>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
 
     # Set the transform of this volume in the space of its owner (usually a component on an entity)
-    SetLocalTransform<public>(NewLocalTransform:transform)<transacts>:void = external {}
+    SetLocalTransform<public>(NewLocalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void = external {}
 
 @experimental
 # Base class for collision_volumes that consist of a single volume with a single collision_profile and collision_material for the whole volume. This covers most volume types used in queries and physics, except compound types like a mesh. A query will always return an element rather than a general volume. For example when colliding with a mesh, the element will be a collision_triangle, which is a collision_element and has a single material, rather than a collision_triangle_mesh, which is not an element and has a material palette.
@@ -203,7 +203,7 @@ collision_point<native><public> := class<concrete>(collision_element):
 @experimental
 # An axis-aligned collision box.
 collision_box<native><public> := class(collision_element):
-    var Extents<public>:vector3
+    var Extents<public>:(/Verse.org/SpatialMath:)vector3
 
 @experimental
 collision_volume_internal<native><epic_internal> := class<concrete><epic_internal>(collision_element):

@@ -132,7 +132,7 @@ FN1Native<public> := module:
             EndRadius<native><public>:float = external {}
 
             @editable
-            OverrideEndLocation<native><public>:?vector3 = external {}
+            OverrideEndLocation<native><public>:?(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
             @editable
             EndLocationDistanceMin<native><public>:float = external {}

@@ -17,42 +17,42 @@ Colors<public> := module:
         B<native><public>:float = external {}
 
     # Makes an ACES 2065-1 `color` from the component-wise sum of `c0` and `c1`.
-    operator'+'<native><public>(c0:color, c1:color)<converges>:color
+    (/Verse.org/Colors:)operator'+'<native><public>(c0:color, c1:color)<converges>:color
 
     # Makes an ACES 2065-1 `color` from the component-wise difference of `c0` and `c1`.
-    operator'-'<native><public>(c0:color, c1:color)<converges>:color
+    (/Verse.org/Colors:)operator'-'<native><public>(c0:color, c1:color)<converges>:color
 
     # Makes an ACES 2065-1 `color` from the component-wise product of `c0` and `c1`.
-    operator'*'<native><public>(c0:color, c1:color)<converges>:color
+    (/Verse.org/Colors:)operator'*'<native><public>(c0:color, c1:color)<converges>:color
 
     # Makes an ACES 2065-1 `color` from each component of `c` scaled by `factor`.
-    operator'*'<native><public>(c:color, factor:float)<converges>:color
+    (/Verse.org/Colors:)operator'*'<native><public>(c:color, factor:float)<converges>:color
 
     # Makes an ACES 2065-1 `color` from each component of `c` scaled by `factor`.
-    operator'*'<native><public>(c:color, factor:int)<converges>:color
+    (/Verse.org/Colors:)operator'*'<native><public>(c:color, factor:int)<converges>:color
 
     # Makes an ACES 2065-1 `color` from each component of `c` scaled by `factor`.
-    operator'*'<native><public>(factor:float, c:color)<converges>:color
+    (/Verse.org/Colors:)operator'*'<native><public>(factor:float, c:color)<converges>:color
 
     # Makes an ACES 2065-1 `color` from each component of `c` scaled by `factor`.
-    operator'*'<native><public>(factor:int, c:color)<converges>:color
+    (/Verse.org/Colors:)operator'*'<native><public>(factor:int, c:color)<converges>:color
 
     # Makes an ACES 2065-1 `color` from each component of `c` divided by `factor`.
-    operator'/'<native><public>(c:color, factor:float)<converges><decides>:color
+    (/Verse.org/Colors:)operator'/'<native><public>(c:color, factor:float)<converges><decides>:color
 
     # Makes an ACES 2065-1 `color` from each component of `c` divided by `factor`.
-    operator'/'<native><public>(c:color, factor:int)<converges><decides>:color
+    (/Verse.org/Colors:)operator'/'<native><public>(c:color, factor:int)<converges><decides>:color
 
     # Makes an ACES 2065-1 `color` from sRGB components `Red`, `Green`, and `Blue`.
     # Normal sRGB component values are between `0.0` and `1.0`, but this can handle larger values.
-    MakeColorFromSRGB<native><public>(Red:float, Green:float, Blue:float)<converges>:color
+    MakeColorFromSRGB<native><public>((local:)Red:float, (local:)Green:float, (local:)Blue:float)<converges>:color
 
     # Makes an sRGB `tuple` by converting `InColor` from an ACES 2065-1 `color` to sRGB.
     MakeSRGBFromColor<native><public>(InColor:color)<converges>:tuple(float, float, float)
 
     # Makes an ACES 2065-1 `color` from the integer sRGB components `Red`, `Green`, and `Blue`.
     # Valid sRGB component values are between '0' and '255', inclusive.
-    MakeColorFromSRGBValues<native><public>(Red:int, Green:int, Blue:int)<converges>:color
+    MakeColorFromSRGBValues<native><public>((local:)Red:int, (local:)Green:int, (local:)Blue:int)<converges>:color
 
     # Makes an ACES 2065-1 `color` from a CSS-style sRGB `hexString`. Supported formats are:
     #  * RGB

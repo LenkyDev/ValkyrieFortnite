@@ -125,7 +125,7 @@ VerseFramework<public> := module:
     test_case<public> := struct:
         Name<public>:string
 
-        Func<public>:type {__()<suspends>:void}
+        Func<public>:type {_()<suspends>:void}
 
         Category<public>:[]string
 
@@ -136,13 +136,13 @@ VerseFramework<public> := module:
 
         Cases<public>:[]test_case
 
-        BeforeAllFunc<public>:type {__()<suspends>:void}
+        BeforeAllFunc<public>:type {_()<suspends>:void}
 
-        AfterAllFunc<public>:type {__()<suspends>:void}
+        AfterAllFunc<public>:type {_()<suspends>:void}
 
-        BeforeEachFunc<public>:type {__()<suspends>:void}
+        BeforeEachFunc<public>:type {_()<suspends>:void}
 
-        AfterEachFunc<public>:type {__()<suspends>:void}
+        AfterEachFunc<public>:type {_()<suspends>:void}
 
     test_runner<epic_internal> := class:
         var TestReporter<public>:test_reporter = external {}
@@ -177,7 +177,7 @@ VerseFramework<public> := module:
 
         PrintLogOutput<public>()<transacts>:void = external {}
 
-        Log<public>(Level:log_level, Message:string)<transacts>:void = external {}
+        (/Fortnite.com/VerseInternalTesting/VerseFramework/test_runner:)Log<public>(Level:log_level, Message:string)<transacts>:void = external {}
 
         RecordFlakinessTestResult<public>(TestName:string, Succeeded:logic)<transacts>:void = external {}
 
@@ -203,7 +203,7 @@ VerseFramework<public> := module:
 
         CheckEqual<public>(Expected:int, Actual:int, Message:string):void = external {}
 
-        CheckEqual<public>(Expected:vector3, Actual:vector3, Message:string, ?Tolerance:float = external {}):void = external {}
+        CheckEqual<public>(Expected:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Actual:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Message:string, ?Tolerance:float = external {}):void = external {}
 
         CheckEqual<public>(Expected:vector2, Actual:vector2, Message:string, ?Tolerance:float = external {}):void = external {}
 
@@ -211,7 +211,7 @@ VerseFramework<public> := module:
 
         CheckEqual<public>(Expected:color, Actual:color, Message:string, ?Tolerance:float = external {}):void = external {}
 
-        CheckEqual<public>(Expected:rotation, Actual:rotation, Message:string, ?Tolerance:float = external {}):void = external {}
+        CheckEqual<public>(Expected:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Actual:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Message:string, ?Tolerance:float = external {}):void = external {}
 
         CheckEqualIntArray<public>(Expected:[]int, Actual:[]int, Message:string):void = external {}
 
@@ -219,17 +219,17 @@ VerseFramework<public> := module:
 
         CheckEqual<public>(Expected:float, Actual:float, Message:string, ?Tolerance:float = external {}):void = external {}
 
-        CheckEqual<public>(Expected:transform, Actual:transform, Message:string, ?Tolerance:float = external {}):void = external {}
+        CheckEqual<public>(Expected:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Actual:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Message:string, ?Tolerance:float = external {}):void = external {}
 
-        CheckEqual<public>(Actual:creative_object, Expected:transform, Message:string, ?Tolerance:float = external {}, ?Timeout:float = external {})<suspends>:void = external {}
+        CheckEqual<public>(Actual:creative_object, Expected:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Message:string, ?Tolerance:float = external {}, ?Timeout:float = external {})<suspends>:void = external {}
 
-        CheckEqual<public>(ActualFortCharacter:fort_character, ExpectedTranslation:vector3, Message:string, ?Tolerance:float = external {}, ?Timeout:float = external {}, ?CompareX:logic = external {}, ?CompareY:logic = external {}, ?CompareZ:logic = external {})<suspends>:void = external {}
+        CheckEqual<public>(ActualFortCharacter:fort_character, ExpectedTranslation:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Message:string, ?Tolerance:float = external {}, ?Timeout:float = external {}, ?CompareX:logic = external {}, ?CompareY:logic = external {}, ?CompareZ:logic = external {})<suspends>:void = external {}
 
         CheckEqual<public>(Expected:agent, Actual:agent, Message:string):void = external {}
 
         CheckTrue<public>(Actual:logic, Message:string):void = external {}
 
-        CheckNotEqual<public>(Actual:creative_object, Expected:transform, Message:string, ?Tolerance:float = external {}, ?Timeout:float = external {})<suspends>:void = external {}
+        CheckNotEqual<public>(Actual:creative_object, Expected:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Message:string, ?Tolerance:float = external {}, ?Timeout:float = external {})<suspends>:void = external {}
 
         CheckNotEqual<public>(Expected:string, Actual:string, Message:string):void = external {}
 
@@ -237,7 +237,7 @@ VerseFramework<public> := module:
 
         CheckNotEqual<public>(Expected:float, Actual:float, Message:string):void = external {}
 
-        CheckNotEqual<public>(Expected:transform, Actual:transform, Message:string, ?Tolerance:float = external {}):void = external {}
+        CheckNotEqual<public>(Expected:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Actual:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Message:string, ?Tolerance:float = external {}):void = external {}
 
         CheckNotEqual<public>(Expected:agent, Actual:agent, Message:string):void = external {}
 
@@ -269,7 +269,6 @@ VerseFramework<public> := module:
         @editable
         TestReportName<public>:string = external {}
 
-        @editable
         TestReportVerbosity<public>:log_level = external {}
 
         TestRunner<public>:test_runner = external {}

@@ -53,11 +53,11 @@ automated_turret_device<public> := class<concrete><final>(creative_device_base, 
     # Set the turret to the team with the chosen index number.
     #  * `TeamIndex` is clamped to valid team values, with a minimum of `1`.
     #  * Only usable if `Possible Targets` is not set to `Everyone`.
-    SetTeam<override>(TeamIndex:int):void = external {}
+    (/Fortnite.com/Devices/creative_object:)SetTeam<override>(TeamIndex:int):void = external {}
 
     # Set the turret to the same team as the supplied `Agent`.
     #  * Only usable if `Possible Targets` is not set to `Everyone`.
-    SetTeam<public>(Agent:agent):void = external {}
+    (/Fortnite.com/Devices/automated_turret_device:)SetTeam<public>(Agent:agent):void = external {}
 
     # Returns the `agent` currently targeted by the device.
     GetTarget<public>():?agent = external {}

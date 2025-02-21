@@ -19,7 +19,7 @@ player_checkpoint_device<public> := class<concrete><final>(creative_device_base)
     Register<public>(Agent:agent):void = external {}
 
     # Returns an array of agents that are currently registered to this checkpoint.
-    GetRegisteredAgents<epic_internal>()<computes><reads>:[]agent = external {}
+    GetRegisteredAgents<public>()<computes><reads>:[]agent = external {}
 
     # Succeeds when `Agent` is registered to this checkpoint.
-    IsRegistered<epic_internal>(Agent:agent)<transacts><decides>:void = external {}
+    IsRegistered<public>(Agent:agent)<transacts><decides>:void = external {}

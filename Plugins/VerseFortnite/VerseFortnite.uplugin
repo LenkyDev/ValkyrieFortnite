@@ -103,6 +103,10 @@
 			"Enabled": true
 		},
 		{
+			"Name": "VerseEditableSubclass",
+			"Enabled": true
+		},
+		{
 			"Name": "VerseEngine",
 			"Enabled": true
 		},
@@ -120,10 +124,6 @@
 		},
 		{
 			"Name": "VerseCamera",
-			"Enabled": true
-		},
-		{
-			"Name": "VerseQuery",
 			"Enabled": true
 		},
 		{
