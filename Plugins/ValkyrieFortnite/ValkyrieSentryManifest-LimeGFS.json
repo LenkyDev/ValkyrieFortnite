@@ -12904,6 +12904,7 @@
 			"/CRD_ModularEchoEffect/Device_ModularEchoEffect.Device_ModularEchoEffect_C",
 			"/CRD_ModularEmitter/BP_Device_ModularEmitter.BP_Device_ModularEmitter_C",
 			"/CRD_ModularGlobalMusicController/Device_ModularGlobalMusicController.Device_ModularGlobalMusicController_C",
+			"/CRD_ModularGlobalMusicController/UI/WBP_Fabric_MusicManager_BasicScreen.WBP_Fabric_MusicManager_BasicScreen_C",
 			"/CRD_ModularProgressor/Device_ModularProgressor.Device_ModularProgressor_C",
 			"/CRD_ModularSequencer/BP_Fabric_Sequencer_DownbeatMarking.BP_Fabric_Sequencer_DownbeatMarking_C",
 			"/CRD_ModularSequencer/Device_FabricSequencer.Device_FabricSequencer_C",

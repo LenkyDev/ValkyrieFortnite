@@ -23213,6 +23213,11 @@
 						"Optional": true
 					},
 					{
+						"Name": "LimeFrontend",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
 						"Name": "Locker",
 						"Enabled": true,
 						"Optional": true
@@ -55024,10 +55029,6 @@
 						"Enabled": true
 					},
 					{
-						"Name": "LimeFrontend",
-						"Enabled": true
-					},
-					{
 						"Name": "LimeNative",
 						"Enabled": true
 					},
@@ -57085,6 +57086,9 @@
 						"Enabled": true,
 						"Optional": true
 					}
+				],
+				"DisallowedPlugins": [
+					"LimeFrontend"
 				]
 			}
 		},

@@ -9,7 +9,7 @@
 	"BuiltInAutoRegister": true,
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
-	"FortReleaseVersion": "33.30",
+	"FortReleaseVersion": "34.00",
 	"IsGameFeatureSet": true,
 	"RequiredEntitlements": {
 		"Edit": {
@@ -17,11 +17,6 @@
 		}
 	},
 	"Plugins": [
-		{
-			"Name": "CosmeticShoes",
-			"Enabled": true,
-			"Optional": true
-		},
 		{
 			"Name": "CRD_DelMarActiveTrackVolume",
 			"Enabled": true,

@@ -387,5 +387,11 @@
 	"SupportURL": "",
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
-	"Installed": false
+	"Installed": false,
+	"DisallowedPlugins": [
+		{
+			"Name": "LimeFrontend",
+			"Comment": "Do not include lime front-end into game required code paths."
+		}
+	]
 }
