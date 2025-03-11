@@ -1,6 +1,6 @@
 using {/Verse.org/Simulation}
 using {/Fortnite.com/Game}
-using {/UnrealEngine.com/Temporary/SceneGraph}
+using {/Verse.org/SceneGraph}
 # Module import path: /Fortnite.com/VerseFortniteTestSuite
 VerseFortniteTestSuite<public> := module:
     @hide_in_editor

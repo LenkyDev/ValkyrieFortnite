@@ -1,4 +1,4 @@
-using {/UnrealEngine.com/Temporary/SceneGraph}
+using {/Verse.org/SceneGraph}
 ability<native><public> := class:
     GameplayAbilityPath<native><epic_internal>:?string = external {}
 

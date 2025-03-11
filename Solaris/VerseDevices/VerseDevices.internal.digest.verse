@@ -6,7 +6,7 @@ using {/Fortnite.com/AI}
 using {/Verse.org/Simulation/Tags}
 using {/Fortnite.com/Game}
 using {/Verse.org/Native}
-using {/UnrealEngine.com/Temporary/SceneGraph}
+using {/Verse.org/SceneGraph}
 using {/Verse.org/Assets}
 using {/Fortnite.com/Playspaces}
 using {/UnrealEngine.com/Temporary/SpatialMath}

@@ -372,5 +372,18 @@ using {/Verse.org/Simulation}
     # Succeeds when each component of `V1` and `V2` are within `AbsoluteTolerance` of each other.
     (/UnrealEngine.com/Temporary/SpatialMath:)IsAlmostEqual<public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, AbsoluteTolerance:float)<computes><decides>:void = external {}
 
+@deprecated
+# Module import path: /UnrealEngine.com/Temporary/SceneGraph
+SceneGraph<public> := module:
+    @deprecated
+    # Module import path: /UnrealEngine.com/Temporary/SceneGraph/collision_channels
+    collision_channels<public> := module:
+
+
+    @deprecated
+    # Module import path: /UnrealEngine.com/Temporary/SceneGraph/collision_profiles
+    collision_profiles<public> := module:
+
+
 # Stably sort `Array` using `Less` where `Less` succeeding indicates `Left` should precede `Right`
 SortBy<native><public>(Array:[]t, Less:type {_(:t, :t)<computes><decides>:void} where t:type)<computes>:[]t

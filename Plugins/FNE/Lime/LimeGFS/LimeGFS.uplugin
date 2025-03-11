@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Lime",
-	"FortReleaseVersion": "34.00",
+	"FortReleaseVersion": "34.10",
 	"IsGameFeatureSet": true,
 	"RequiredEntitlements": {
 		"Create": {
@@ -47,6 +47,11 @@
 		},
 		{
 			"Name": "FNEC_Space_Monster",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEC_Spring",
 			"Enabled": true,
 			"Optional": true
 		},

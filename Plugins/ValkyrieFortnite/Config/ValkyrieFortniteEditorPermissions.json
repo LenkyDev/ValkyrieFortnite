@@ -254,6 +254,7 @@
 			"/Script/UMG.SizeBox",
 			"/Script/UMG.UniformGridPanel",
 			"/Script/UMG.WidgetSwitcher",
+			"/Script/UMG.WrapBox",
 			"/Game/Valkyrie/UMG/UEFN_Button_Loud.UEFN_Button_Loud",
 			"/Game/Valkyrie/UMG/UEFN_Button_Quiet.UEFN_Button_Quiet",
 			"/Game/Valkyrie/UMG/UEFN_Button_Regular.UEFN_Button_Regular",
@@ -1944,6 +1945,8 @@
 			"/Script/UMG.WidgetSwitcherSlot":									{  },
 			"/Script/UMG.WidgetTransform":										{  },
 			"/Script/UMG.WidgetTree":											{  },
+			"/Script/UMG.WrapBox":												{ "Visible": true },
+			"/Script/UMG.WrapBoxSlot":											{  },
 			"/Script/UnrealEd.CubeBuilder":										{  },
 			"/Script/UnrealEd.CylinderBuilder":									{  },
 			"/Script/UnrealEd.EdGraphNode_Comment":								{ "Visible": true },
@@ -3013,6 +3016,10 @@
 				"AllowList": [ "ActiveWidgetIndex" ]
 			},
 			{
+				"Type": "/Script/UMG.WrapBox",
+				"AllowList": [ "InnerSlotPadding", "WrapSize", "bExplicitWrapSize", "HorizontalAlignment", "Orientation" ]
+			},
+			{
 				"Type": "/Script/AIModule.AISenseConfig_Sight",
 				"AllowList": [ "SightRadius", "LoseSightRadius", "PeripheralVisionAngleDegrees", "DetectionByAffiliation", "MaxAge" ]
 			},
@@ -3128,7 +3135,7 @@
 			},
 			{
 				"Type": "/Script/CRD_ModalDialogUI.CreativeModalDialogViewmodel",
-				"DenyList": [ "HoveredSound", "PressedSound" ]
+				"DenyList": [ "HoveredSound", "PressedSound" ]				
 			},
 			{
 				"Type": "/CreativeCoreDevices/Creative_Powerup_V2.Creative_Powerup_V2_C",
@@ -3669,7 +3676,7 @@
 			},
 			{
 				"Type": "/Script/DelMarTrackRuntime.DelMarTrack",
-				"AllowList": [ "TrackType", "ShowSplinePointNumbers", "bForceValidOOBTube", "bForceValidTrack" ]
+				"AllowList": [ "TrackType", "bIsIndependent", "ShowSplinePointNumbers", "bForceValidOOBTube", "bForceValidTrack" ]
 			},
 			{
 				"Type": "/Script/DelMarTrackRuntime.DelMarTrackBase",

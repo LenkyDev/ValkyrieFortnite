@@ -1,7 +1,7 @@
 using {/UnrealEngine.com/Temporary/SpatialMath}
 using {/Fortnite.com/AI/CompanionAI/PingCommand}
 using {/Fortnite.com/Characters}
-using {/UnrealEngine.com/Temporary/SceneGraph}
+using {/Verse.org/SceneGraph}
 using {/Verse.org/Native}
 using {/Verse.org/Simulation}
 # Module import path: /Fortnite.com/AI/CompanionAI

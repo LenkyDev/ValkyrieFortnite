@@ -77,12 +77,12 @@ SpatialMath<public> := module:
     (InitialRotation:rotation).UnrotateBy<native><public>(RotationToRemove:rotation)<computes><reads>:rotation
 
     @experimental
-    # Makes an `[]float` with three elements:
+    # Makes a `tuple(float, float, float)` with three elements:
     #  * *yaw* degrees of `rotation`
     #  * *pitch* degrees of `rotation`
     #  * *roll* degrees of `rotation`
     # using the conventions of `MakeRotationFromYawPitchRollDegrees`.
-    (Rotation:rotation).GetYawPitchRollDegrees<native><public>()<computes><reads>:[]float
+    (Rotation:rotation).GetYawPitchRollDegrees<native><public>()<computes><reads>:tuple(float, float, float)
 
     @experimental
     # Makes a `vector3` from the axis of `rotation`.

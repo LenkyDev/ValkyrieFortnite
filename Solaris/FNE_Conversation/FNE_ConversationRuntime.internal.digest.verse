@@ -1,6 +1,6 @@
 using {/Verse.org/Simulation}
 using {/Verse.org/Assets}
-# Module import path: /UnrealEngine.com/Temporary/SceneGraph/FNECon
+# Module import path: /Verse.org/SceneGraph/FNECon
 FNECon<public> := module:
     # Data type used for conversations.
     conversation_database<native><epic_internal> := class<computes><concrete><epic_internal>(asset):
@@ -32,7 +32,7 @@ FNECon<public> := module:
         SetSpeakerName<native><public>(InSpeakerName:message):void
 
         # Gets the speaker's name.
-        GetSpeakerName<native_callable><public>():message = external {}
+        GetSpeakerName<native><public>():message
 
         @editable
         # Determines the range at which a player will be able to see the speech bubble (in meters). If set to less than 2m, the player will not see an indicator speech bubble.

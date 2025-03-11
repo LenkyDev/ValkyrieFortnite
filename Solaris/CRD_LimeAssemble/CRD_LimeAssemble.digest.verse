@@ -16,6 +16,12 @@ assembly_device<public> := class<concrete><final>(creative_device_base, enableab
     # Succeeds if the object is enabled, fails if itâs disabled.
     IsEnabled<override>()<transacts><decides>:void = external {}
 
+    # Show the hologram used to preview the fully assembled device
+    ShowHologram<public>():void = external {}
+
+    # Hide the hologram used to preview the fully assembled device
+    HideHologram<public>():void = external {}
+
     # Initiates the assembly process.
     Assemble<public>():void = external {}
 

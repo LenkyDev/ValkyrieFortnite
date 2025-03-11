@@ -1927,6 +1927,8 @@
 			"/Script/UMG.WidgetSwitcher",
 			"/Script/UMG.WidgetSwitcherSlot",
 			"/Script/UMG.WidgetTree",
+			"/Script/UMG.WrapBox",
+			"/Script/UMG.WrapBoxSlot",
 			"/Script/UMGEditor.WidgetBlueprint",
 			"/Script/UnrealEd.CubeBuilder",
 			"/Script/UnrealEd.CylinderBuilder",
@@ -2213,7 +2215,8 @@
 		"VKCreateUGCEarlyAccess": [],
 		"VKCreateUGCEpicDeveloper": [
 			"/Script/Engine.BlueprintGeneratedClass",
-			"/Script/Entity.EntityPrefab"
+			"/Script/Entity.EntityPrefab",
+			"/Script/NaniteDisplacedMesh.NaniteDisplacedMesh"
 		],
 		"VKCreateUGCPartner": []
 	},
@@ -12563,6 +12566,10 @@
 			"/InterchangeAssets/gltf/Textures/T_White_srgb.T_White_srgb",
 			"/InterchangeAssets/Utilities/New_LUT.New_LUT",
 			"/InterchangeAssets/Utilities/T_Bayer64_Grayscale_64px.T_Bayer64_Grayscale_64px",
+			"/Irwin/Icons/T-Icon-Fauna-Boar.T-Icon-Fauna-Boar",
+			"/Irwin/Icons/T-Icon-Fauna-Chicken.T-Icon-Fauna-Chicken",
+			"/Irwin/Icons/T-Icon-Fauna-Raptor.T-Icon-Fauna-Raptor",
+			"/Irwin/Icons/T-Icon-Fauna-Wolf.T-Icon-Fauna-Wolf",
 			"/MetaHumanUEFN/Common/Mocap/mh_arkit_mapping_pose.mh_arkit_mapping_pose",
 			"/MetaHumanUEFN/Face/Face_Archetype_Skeleton.Face_Archetype_Skeleton",
 			"/MetaHumanUEFN/Face/neckPoses/neckCorr_f_med_nrw_RBFSolver_pose.neckCorr_f_med_nrw_RBFSolver_pose",

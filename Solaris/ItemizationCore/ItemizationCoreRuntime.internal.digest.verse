@@ -5,7 +5,7 @@ using {/Verse.org/Simulation/Tags}
 using {/UnrealEngine.com/EpicGamesRestricted/Network}
 using {/Verse.org/Simulation}
 using {/Verse.org/Native}
-using {/UnrealEngine.com/Temporary/SceneGraph}
+using {/Verse.org/SceneGraph}
 @experimental
 inventory_creation_type<native><public> := enum<persistable>:
     Runtime
@@ -84,11 +84,11 @@ inventory_component<native><public> := class<final_super>(component):
 
     @editable
     @replicated("")
-    var<private> InventoryDisplayName<native><public>:message
+    var<private> InventoryDisplayName<native><public>:message = external {}
 
     @editable
     @replicated("")
-    var<private> InventoryDescription<native><public>:message
+    var<private> InventoryDescription<native><public>:message = external {}
 
     @editable
     ItemRequirement<native><public>:?item_requirement_base = external {}
@@ -201,11 +201,74 @@ inventory_setup_data_result<native><public> := struct<epic_internal>:
     AddedInventoryMap<native><public>:[]tuple(inventory_component, []entity)
 
 @experimental
-inventory_setup_data<native><public> := class<concrete>:
-    ApplyTo<native><public>(Target:inventory_component)<decides>:inventory_setup_data_result
+inventory_starting_item<native><public> := struct<concrete><epic_internal>:
+    @editable
+    ItemDefinition<native>:?item_definition_base = external {}
 
     @editable
-    InventorySetupDataName<native><public>:string = external {}
+    ItemEntityClass<native>:?subtype(entity) = external {}
+
+    @editable_number(int) {MinValue := option {1}}
+    Amount<native>:int = external {}
+
+@experimental
+inventory_properties_base<native><public> := class<epic_internal>:
+    @editable
+    InventoryName<native><public>:string = external {}
+
+    @editable
+    InventoryDisplayName<native><localizes><public>:message = external {}
+
+    @editable
+    InventoryDescription<native><localizes><public>:message = external {}
+
+    @editable
+    PickupPriority<native><public>:int = external {}
+
+    @editable_number(int) {MinValue := option {0}}
+    TotalSlotsOverride<native><public>:int = external {}
+
+    @editable
+    ItemRequirement<native><public>:?item_requirement = external {}
+
+@experimental
+inventory_properties<native><public> := class<epic_internal>(inventory_properties_base):
+    @editable
+    InventoryClass<native><public>:subtype(inventory_component)
+
+@experimental
+equippable_inventory_slot_binding_definition<native><public> := struct<concrete><epic_internal>:
+    @editable_number(int) {MinValue := option {0}}
+    Slot<native><public>:int = external {}
+
+    @editable
+    InputAction<native><public>:input_action(type) = external {}
+
+@experimental
+equippable_inventory_properties<native><public> := class<epic_internal>(inventory_properties_base):
+    @editable
+    InventoryClass<native><public>:subtype(equippable_inventory_component)
+
+    @editable
+    SlotBindings<native><public>:[]equippable_inventory_slot_binding_definition
+
+@experimental
+inventory_setup_data<native><public> := class<abstract>:
+    ApplyTo<public>(Target:inventory_component)<decides>:inventory_setup_data_result
+
+@editable_subclass
+@experimental
+basic_inventory_setup_data<native><public> := class<concrete>(inventory_setup_data):
+    ApplyTo<native><override>(Target:inventory_component)<decides>:inventory_setup_data_result
+
+    @editable
+    EquippableInventoryList<native><public>:[]equippable_inventory_properties = external {}
+
+    @editable
+    InventoryList<native><public>:[]inventory_properties = external {}
+
+    @editable
+    StartingItemList<native><public>:[]inventory_starting_item = external {}
 
 @experimental
 @import_as("/Script/ItemizationCoreRuntime.UItemAbilityCost")
@@ -351,7 +414,7 @@ item_icon_component<native><final><epic_internal> := class<final_super>(componen
 
 @experimental
 @import_as("/Script/ItemizationCoreRuntime.UItemDefinitionBase")
-item_definition_base<native><epic_internal> := class:
+item_definition_base<native><public> := class<epic_internal>:
 
 
 @experimental

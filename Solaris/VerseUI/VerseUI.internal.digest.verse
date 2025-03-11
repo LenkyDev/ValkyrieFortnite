@@ -2,7 +2,7 @@ using {/Verse.org/Assets}
 using {/Verse.org/Colors}
 using {/UnrealEngine.com/Temporary/SpatialMath}
 using {/Verse.org/Simulation}
-using {/UnrealEngine.com/Temporary/SceneGraph}
+using {/Verse.org/SceneGraph}
 # Module import path: /UnrealEngine.com/Temporary/UI
 UI<public> := module:
     @experimental

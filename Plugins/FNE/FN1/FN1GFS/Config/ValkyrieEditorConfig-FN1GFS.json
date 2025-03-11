@@ -360,6 +360,11 @@
 			{
 				"Type": "/Game/Athena/Helios/Actors/BP_POI_Measure_Tool.BP_POI_Measure_Tool_C",
 				"AllowList": ["POI_Name_Text", "POI_Size", "POIColor", "ShowStreamingBounds", "ShowMaxGridStreamingBounds", "SnapToBuildingGrid"]
+			},
+			{
+				"Type": "/FN1GFS/Blueprints/ScriptedTools/MeasurePoints/SupportFiles/BP_MeasureTool_Billboard.BP_MeasureTool_Billboard_C",
+				"AllowList": ["LineNumber", "TotalLen", "TotalRunTime", "ThisLineLen", "ThisLineRunTime", "TextColour", "TextOutlineColour"],
+				"DenyList": ["StaticMesh", "Material", "Mobility", "Rotation"]
 			}
 		],
 		"-": [

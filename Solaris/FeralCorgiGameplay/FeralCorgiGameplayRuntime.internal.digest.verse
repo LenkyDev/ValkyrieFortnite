@@ -146,6 +146,8 @@ SessionAttributesBridge<epic_internal> := module:
 
     IsMinigameInProgress<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
 
+    IsQABackend<native><epic_internal>()<transacts><decides>:void
+
     EndMatch<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
 
     GetMinigameRound<native><epic_internal>((local:)Playspace:fort_playspace)<transacts>:int

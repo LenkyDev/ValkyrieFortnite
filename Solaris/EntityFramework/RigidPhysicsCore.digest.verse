@@ -40,9 +40,9 @@ collision_profile<native><public> := class<concrete>:
 # Create a collision_profile. See the collision_profiles module.
 MakeCollisionProfile<native><public>(channel_type:subtype(collision_channel), ChannelToInteraction:collision_channel_to_interaction)<converges>:collision_profile
 
-# Module import path: /UnrealEngine.com/Temporary/SceneGraph/collision_channels
+# Module import path: /Verse.org/SceneGraph/collision_channels
 # The set of built-in collision_channels. This is a closed set for now.
-collision_channels<public> := module:
+(/Verse.org/SceneGraph:)collision_channels<public> := module:
     @experimental
     stationary<native><public> := class(collision_channel):
 
@@ -67,9 +67,9 @@ collision_channels<public> := module:
     physics<native><public> := class(collision_channel):
 
 
-# Module import path: /UnrealEngine.com/Temporary/SceneGraph/collision_profiles
+# Module import path: /Verse.org/SceneGraph/collision_profiles
 # A set of useful collision profiles. New profiles can be created in Verse code
-collision_profiles<public> := module:
+(/Verse.org/SceneGraph:)collision_profiles<public> := module:
     @experimental
     # Stationary collision channel, Ignore all channels
     StationaryIgnoreAll<public>:collision_profile = external {}

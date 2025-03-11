@@ -44,12 +44,10 @@ using {/Verse.org/Native}
 #   component before it is disposed
 # .
 #   Lifetime Methods:
-#     OnInitialized
-#        OnAddedToScene
-#          OnBeginSimulation -> OnSimulate<suspends>
-#          OnEndSimulation
-#        OnRemovingFromScene
-#     OnUninitializing
+#      OnAddedToScene
+#        OnBeginSimulation -> OnSimulate<suspends>
+#        OnEndSimulation
+#      OnRemovingFromScene
 # ==============================================================================
 component<native><public> := class<abstract><unique><castable><final_super_base>:
     @experimental
@@ -61,7 +59,6 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
     @experimental
     # Called when the component is added to the scene by parenting it under the simulation entity or another entity already in the scene.
     #   * Querying for components in the scene is valid after this phase completes.
-    #   * `OnInitialized` is guaranteed to run before `OnAddedToScene`.
     OnAddedToScene<native><native_callable><protected>():void
 
     @experimental
@@ -94,14 +91,8 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
     @experimental
     # Removes the component from the entity.
     #   * Removed components are removed from the scene and can only be added back to the same entity.
-    #   * Flows through `OnEndSimulation`-> `OnRemovingFromScene`-> `OnUninitializing`.
+    #   * Flows through `OnEndSimulation`-> `OnRemovingFromScene`.
     RemoveFromEntity<native><final><public>():void
-
-    @experimental
-    # Succeeds if the component is currently initialized with its parent entity.
-    #   * After `OnInitialized` is called this call succeeds.
-    #   * After `OnUninitializing` is called this call fails.
-    IsInitialized<native><final><public>()<transacts><decides>:void
 
     @experimental
     # Succeeds if the component is currently in the scene.
@@ -190,9 +181,8 @@ entity<native><public> := class<concrete><unique><transacts><castable>:
     #   Note: When called during the Initialize, AddedToScene or BeginSimulation phase, it will make sure the added component has achieved the corresponding phase.
     #   * Components are added following these rules:
     #       1. All components are added to the entity child list.
-    #       2. All components have `OnInitialized` called.
-    #       3. All components have `OnAddedToScene` called (if this entity is in the scene).
-    #       4. All components have `OnBeginSimulation` called (if this entity is simulating).
+    #       2. All components have `OnAddedToScene` called (if this entity is in the scene).
+    #       3. All components have `OnBeginSimulation` called (if this entity is simulating).
     AddComponents<native><final><public>(Components:[]component):void
 
     @experimental

@@ -1,5 +1,5 @@
 using {/Verse.org/Simulation}
-using {/UnrealEngine.com/Temporary/SceneGraph}
+using {/Verse.org/SceneGraph}
 # Module import path: /UnrealEngine.com/EntityRegistryTestSuite
 EntityRegistryTestSuite<public> := module:
     @hide_in_editor

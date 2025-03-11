@@ -1,4 +1,4 @@
-using {/UnrealEngine.com/Temporary/SceneGraph}
+using {/Verse.org/SceneGraph}
 # Module import path: /UnrealEngine.com/BasicShapes
 BasicShapes<public> := module:
     @experimental

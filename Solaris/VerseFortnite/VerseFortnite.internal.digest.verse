@@ -1,6 +1,6 @@
 using {/Verse.org/Simulation/Tags}
 using {/UnrealEngine.com/Temporary/Diagnostics}
-using {/UnrealEngine.com/Temporary/SceneGraph/VerseCamera}
+using {/Verse.org/SceneGraph/VerseCamera}
 using {/UnrealEngine.com/Abilities}
 using {/Fortnite.com/Game}
 using {/Verse.org/Assets}
@@ -11,7 +11,7 @@ using {/Fortnite.com/Assets}
 using {/Fortnite.com/Characters}
 using {/UnrealEngine.com/Temporary/SpatialMath}
 using {/Verse.org/Simulation}
-using {/UnrealEngine.com/Temporary/SceneGraph}
+using {/Verse.org/SceneGraph}
 # Module import path: /Fortnite.com/AI
 AI<public> := module:
     @experimental
@@ -386,7 +386,7 @@ AI<public> := module:
 
         OnUninitializing<native><override>():void
 
-        var DetectedTargets<override>:[]fort_target_info = external {}
+        var DetectedTargets<override><native>:[]fort_target_info = external {}
 
         @experimental
         # Get the last known position of a target.
@@ -893,6 +893,9 @@ Characters<public> := module:
         # Succeeds if this `fort_character` is in flying locomotion state.
         IsFlying<public>()<transacts><decides>:void
 
+        # Succeeds if this `fort_character` is marked by the enemy team due to a recon grenade or other surveillance device.
+        IsMarked<epic_internal>()<transacts><decides>:void
+
         # Puts this `fort_character` into stasis, preventing certain types of movement specified by `Args`.
         PutInStasis<public>(Args:stasis_args)<transacts>:void
 
@@ -984,6 +987,9 @@ Characters<public> := module:
 
         @experimental
         IsFlying<override>()<transacts><decides>:void = external {}
+
+        @experimental
+        IsMarked<override>()<transacts><decides>:void = external {}
 
         @experimental
         GetHealth<override>()<transacts>:float = external {}

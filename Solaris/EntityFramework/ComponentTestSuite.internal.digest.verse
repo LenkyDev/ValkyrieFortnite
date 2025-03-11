@@ -1,6 +1,6 @@
 using {/Verse.org/Simulation/Tags}
 using {/Verse.org/Simulation}
-using {/UnrealEngine.com/Temporary/SceneGraph}
+using {/Verse.org/SceneGraph}
 # Module import path: /UnrealEngine.com/ComponentTestSuite
 ComponentTestSuite<public> := module:
     @experimental

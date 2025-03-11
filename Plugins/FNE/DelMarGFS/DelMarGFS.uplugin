@@ -9,7 +9,7 @@
 	"BuiltInAutoRegister": true,
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
-	"FortReleaseVersion": "34.00",
+	"FortReleaseVersion": "34.10",
 	"IsGameFeatureSet": true,
 	"RequiredEntitlements": {
 		"Edit": {

@@ -115,7 +115,7 @@ directional_light_component<native><public> := class<final>(light_component):
     # Everything closer to the camera than this distance, measured in centimeters, will occlude light shafts
     OcclusionDepthRange<native><epic_internal>:float = external {}
 
-# Module import path: /UnrealEngine.com/Temporary/SceneGraph/KeyframedMovement
+# Module import path: /Verse.org/SceneGraph/KeyframedMovement
 # Animate Scene Graph entities with keyframes.
 KeyframedMovement<public> := module:
     @experimental
@@ -913,7 +913,7 @@ spot_light_component<native><public> := class<final>(light_component):
     LightFalloffExponent<native><epic_internal>:float = external {}
 
 @experimental
-# Used to add tags to an entity. Tagged entities can then be queried using `entity.FindEntitiesWithTag` and `entity.FindParentEntitiesWithTag`.
+# Used to add tags to an entity. Tagged entities can then be queried using `entity.FindDescendantEntitiesWithTag` and `entity.FindAncestorEntitiesWithTag`.
 #   * Finding entities from the simulation entity for tagged entities only considers any `tag_component` that has run `OnAddedToScene`.
 tag_component<native><public> := class<final><final_super>(component, tag_view):
     # Determine if TagToCheck is present in this container, also checking against parent tags {"A.1"}.Has("A") will return True, {"A"}.Has("A.1") will return False If TagToCheck is not Valid it will always return False.

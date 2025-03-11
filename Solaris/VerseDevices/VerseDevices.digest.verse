@@ -5,7 +5,7 @@ using {/Fortnite.com/AI}
 using {/Verse.org/Native}
 using {/Verse.org/Simulation/Tags}
 using {/Fortnite.com/Game}
-using {/UnrealEngine.com/Temporary/SceneGraph}
+using {/Verse.org/SceneGraph}
 using {/UnrealEngine.com/Temporary/SpatialMath}
 # Module import path: /Fortnite.com/Devices
 Devices<public> := module:

@@ -4,7 +4,7 @@ using {/Verse.org/Simulation/Tags}
 using {/Verse.org/Assets}
 using {/Verse.org/Simulation}
 using {/UnrealEngine.com/EpicGamesRestricted/Network}
-# Module import path: /UnrealEngine.com/Temporary/SceneGraph/VerseCamera
+# Module import path: /Verse.org/SceneGraph/VerseCamera
 VerseCamera<public> := module:
     @experimental
     # Represents the physical body, lens of the camera and other cinematographic qualities, such as sensor size, aspect ratio lock/constraint, focal length, focus distance, post-process settings, etc.

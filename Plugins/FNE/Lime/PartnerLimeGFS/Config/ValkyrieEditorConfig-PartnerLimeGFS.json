@@ -135,9 +135,6 @@
 			"/Script/AtomRuntime.SerializedConnectivityObjects": {},
 			"/Script/AtomRuntime.AtomModelGeometryCollectionImportData": {},
 			"/Script/AtomModelImporterEditor.AtomModelMergeOptions": {},
-			"/AtomFramework/Editor/Processors/AtomBlueprintContainerProcessor.AtomBlueprintContainerProcessor_C": {
-				"Visible": false
-			},
 			"/AtomFramework/Editor/Processors/MP_MergedMeshBase.MP_MergedMeshBase_C": {
 				"Visible": false
 			},
@@ -232,6 +229,11 @@
 			{
 				"Visible": true
 			}
+		},
+		"AllowedEditorModes": {
+			"+": [
+				"EM_AtomEditorMode"
+			]
 		},
         "AllowedEditorPreferencesSections": {
             "ContentPipelines": {

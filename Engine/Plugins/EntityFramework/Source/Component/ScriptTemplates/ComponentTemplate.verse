@@ -1,7 +1,7 @@
 using { /Verse.org }
 using { /Verse.org/Native }
+using { /Verse.org/SceneGraph }
 using { /Verse.org/Simulation }
-using { /UnrealEngine.com/Temporary/SceneGraph }
 
 # A Verse-authored component that can be added to entities
 new_component_template<public> := class<final_super>(component):

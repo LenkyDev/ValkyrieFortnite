@@ -37,6 +37,11 @@
 			"LoadingPhase": "Default"
 		},
 		{
+			"Name": "VkEditorScripting",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
 			"Name": "VkContentService",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
