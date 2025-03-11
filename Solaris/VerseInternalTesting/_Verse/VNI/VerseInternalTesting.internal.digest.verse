@@ -1,0 +1,1 @@
+verse_internal_testing_dummy_vni_function<native><epic_internal>():void
