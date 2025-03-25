@@ -800,6 +800,29 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/VKTemplates/LimeGFS/Lucky_AssemblyDevice/Plugins/Lucky_AssemblyDevice/Lucky_AssemblyDevice.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Lucky_AssemblyDevice",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/thelegogroup@fortnite.com/Lucky_AssemblyDevice",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
 			"File": "../../../FortniteGame/VKTemplates/LimeGFS/ScarySpace/Plugins/ScarySpace/ScarySpace.uplugin",
 			"Descriptor": 
 			{
@@ -839,6 +862,52 @@
 				"SupportURL": "",
 				"VersePath": "/sublab_games@fortnite.com/VKT_Cane",
 				"VerseVersion": 0,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/DarkVortexGFS/DarkVortex_Gameplay_Template/Plugins/DarkVortex_Gameplay_Template/DarkVortex_Gameplay_Template.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "DarkVortex_Gameplay_Template",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/vthompsonmt@fortnite.com/DarkVortex_Gameplay_Template",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/VKTemplates/DarkVortexGFS/DarkVortex_Starter_Island/Plugins/DarkVortex_Starter_Island/DarkVortex_Starter_Island.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "DarkVortex_Starter_Island",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/vthompsonmt@fortnite.com/DarkVortex_Starter_Island",
+				"VerseVersion": 1,
 				"EnabledByDefault": false,
 				"CanContainContent": true,
 				"CanContainVerse": true,

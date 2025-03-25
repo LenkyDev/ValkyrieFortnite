@@ -872,6 +872,12 @@ Characters<public> := module:
         #  - 2: `true` if the character is DBNO. `false` if the character is not DBNO.
         DownButNotOutEvent<epic_internal>():listenable(tuple(fort_character, ?fort_character, logic))
 
+        # Signaled when this `fort_character` is marked by a reconnassaince device 
+        # Sends `tuple` payload:
+        #  - 0: the `fort_character` that was marked. 
+        #  - 1: `true` if the character being marked. `false` if the character is being unmarked.
+        MarkedEvent<epic_internal>():listenable(tuple(fort_character, ?fort_character, logic))
+
         # Succeeds if this `fort_character` is crouching.
         IsCrouching<public>()<transacts><decides>:void
 
@@ -1087,6 +1093,8 @@ Characters<public> := module:
 
         PossessedEvent<override>():listenable(fort_character) = external {}
 
+        MarkedEvent<override>():listenable(tuple(fort_character, logic)) = external {}
+
 # Module import path: /Fortnite.com/FortPlayerUtilities
 FortPlayerUtilities<public> := module:
     # The possible dynamic resolution rendering modes
@@ -1227,19 +1235,6 @@ Game<public> := module:
     @experimental
     # Deactivate a camera component for a player, restoring the player's view target to the default
     (InCameraBehavior:camera_component).DeactivateForPlayer<native><epic_internal>(InPlayer:player)<transacts><decides>:void
-
-    @experimental
-    fort_simulation_entity_controller_component<native><epic_internal> := class<final_super>(component, simulation_entity_interop_handler):
-        OnAddedToScene<override><native><native_callable>():void
-
-        OnRemovingFromScene<override><native><native_callable>():void
-
-        OnUninitializing<override><native><native_callable>():void
-
-        Initialize<override><native_callable>(InteropObject:simulation_interop_object):void = external {}
-
-        # Whether the entities associated with this simulation_entity should wait to start simulating on round start.
-        var StartEntitySimulationOnRoundStart<native><epic_internal>:logic = external {}
 
     # Implemented by objects to allow reading position information.
     positional<native><public> := interface<epic_internal>:

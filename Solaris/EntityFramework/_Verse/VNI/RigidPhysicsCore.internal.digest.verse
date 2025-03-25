@@ -33,19 +33,15 @@ collision_profile<native><public> := class<concrete>:
 
     # How the owning object should interact with other objects.GetChannelInteraction is a function which maps a collision_channel to a collision_interaction. It can be implemented as an simple sequence of if statements. For example, to block all channels except camera:
     #     BlockAllIgnoreCamera(Channel:collision_channel)<computes>:collision_interaction =
-    #         if (collision_channels.camera[Channel]):
+    #         if (CollisionChannels.camera[Channel]):
     #             return collision_interaction.Ignore
     #         return collision_interaction.Block
-    #     MyProfile<public>:collision_profile = MakeCollisionProfile(collision_channels.dynamic, BlockAllIgnoreCamera)
+    #     MyProfile<public>:collision_profile = MakeCollisionProfile(CollisionChannels.dynamic, BlockAllIgnoreCamera)
     GetChannelInteraction<native><public>:collision_channel_to_interaction = external {}
 
-@experimental
-# Create a collision_profile. See the collision_profiles module.
-MakeCollisionProfile<native><public>(channel_type:subtype(collision_channel), ChannelToInteraction:collision_channel_to_interaction)<converges>:collision_profile
-
-# Module import path: /Verse.org/SceneGraph/collision_channels
+# Module import path: /Verse.org/SceneGraph/CollisionChannels
 # The set of built-in collision_channels. This is a closed set for now.
-(/Verse.org/SceneGraph:)collision_channels<public> := module:
+CollisionChannels<public> := module:
     @experimental
     stationary<native><public> := class(collision_channel):
 
@@ -70,9 +66,9 @@ MakeCollisionProfile<native><public>(channel_type:subtype(collision_channel), Ch
     physics<native><public> := class(collision_channel):
 
 
-# Module import path: /Verse.org/SceneGraph/collision_profiles
+# Module import path: /Verse.org/SceneGraph/CollisionProfiles
 # A set of useful collision profiles. New profiles can be created in Verse code
-(/Verse.org/SceneGraph:)collision_profiles<public> := module:
+CollisionProfiles<public> := module:
     @experimental
     # Stationary collision channel, Ignore all channels
     StationaryIgnoreAll<public>:collision_profile = external {}
@@ -105,9 +101,19 @@ MakeCollisionProfile<native><public>(channel_type:subtype(collision_channel), Ch
     # Visibility collision channel, Overlap all channel (used for e.g., visibility testing)
     VisibilityOverlapAll<public>:collision_profile = external {}
 
+@deprecated
+# Module import path: /Verse.org/SceneGraph/collision_channels
+collision_channels<public> := module:
+
+
+@deprecated
+# Module import path: /Verse.org/SceneGraph/collision_profiles
+collision_profiles<public> := module:
+
+
 @experimental
 # The results of an overlap query. See entity.FindOverlapHits(). We will get one overlap_hit for each intersection of any volume in SourceVolumes with any other volume.
-overlap_hit<native><public> := struct:
+overlap_hit<native><public> := struct<epic_internal>:
     # The source component and volume (query input). For compound inputs (like an entity hierarchy) this will be a component/volume in that hierarchy. The SourceTransform is the transform of SourceVolume used for the overlap test. For single volume inputs like a sphere, the Source volume and transform are just the inputs to the overlap test, and the component is false.
     SourceComponent<native><public>:?component
 
@@ -125,7 +131,7 @@ overlap_hit<native><public> := struct:
 
 @experimental
 # The results of a sweep query. See entity.FindSweepHits(). We will get one sweep_hit for each intersection of any volume in SourceVolumes with any other volume.
-sweep_hit<native><public> := struct:
+sweep_hit<native><public> := struct<epic_internal>:
     # The source component and volume (query input). For compound inputs (like an entity hierarchy) this will be a component/volume in that hierarchy. The SourceGlobalTransform is the transform of SourceVolume at the start of the sweep. For single volume inputs like a sphere, the volume and transform are just the inputs to the sweep, and the component is false.
     SourceComponent<native><public>:?component
 

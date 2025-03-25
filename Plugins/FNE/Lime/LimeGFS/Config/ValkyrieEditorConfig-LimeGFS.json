@@ -33,6 +33,7 @@
 			"/LimeAISpawner",
 			"/LimeAISpawnerGuard",
 			"/LimeChair",
+			"/CRD_LimeCollectible",
 			"/LimeConsumablesCore",
 			"/LimeContainerOverride",
 			"/LimeCreativeEditorOnly",
@@ -228,6 +229,7 @@
 			"/Lime/ExperienceSettings/Device_ExperienceSettings_Lime.Device_ExperienceSettings_Lime",
 			"/LimePlayerSpawn/ItemDefinitions/PID_Device_LimePlayerSpawnPad.PID_Device_LimePlayerSpawnPad",
 			"/CRD_LimeChairDevice/SetupAssets/PID_CP_Devices_LimeChairDevice.PID_CP_Devices_LimeChairDevice",
+			"/CRD_LimeCollectible/PID_LimeCollectible.PID_LimeCollectible",
 			"___Devices_End___",
 
 			"/CRD_VerseDevices/UEFNExposedAssets/UEFN_Expose_CRD_Verse.UEFN_Expose_CRD_Verse",

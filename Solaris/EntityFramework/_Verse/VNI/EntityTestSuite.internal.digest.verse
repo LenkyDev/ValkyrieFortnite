@@ -4,6 +4,18 @@ using {/Verse.org/SceneGraph}
 EntityTestSuite<public> := module:
     @hide_in_editor
     @experimental
+    test_contentscope_events_component<native><epic_internal> := class<final_super>(component):
+        KeyframeReachedEvent<native><public>:listenable(tuple()) = external {}
+
+        OnBeginSimulation<override>():void = external {}
+
+    @hide_in_editor
+    @experimental
+    test_contentscope_execution_component<native><epic_internal> := class<final_super>(component):
+        OnBeginSimulation<override>():void = external {}
+
+    @hide_in_editor
+    @experimental
     test_replication_component<native><epic_internal> := class<final_super>(component):
 
 

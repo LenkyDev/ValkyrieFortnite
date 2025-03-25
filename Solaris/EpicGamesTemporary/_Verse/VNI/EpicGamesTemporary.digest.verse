@@ -375,14 +375,6 @@ using {/Verse.org/Simulation}
 @deprecated
 # Module import path: /UnrealEngine.com/Temporary/SceneGraph
 SceneGraph<public> := module:
-    @deprecated
-    # Module import path: /UnrealEngine.com/Temporary/SceneGraph/collision_channels
-    collision_channels<public> := module:
-
-
-    @deprecated
-    # Module import path: /UnrealEngine.com/Temporary/SceneGraph/collision_profiles
-    collision_profiles<public> := module:
 
 
 # Stably sort `Array` using `Less` where `Less` succeeding indicates `Left` should precede `Right`

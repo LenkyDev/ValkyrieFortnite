@@ -295,6 +295,10 @@ replication_component<native><epic_internal> := class<final_super>(component):
     OnRemovingFromSceneInternal<native><override>():void
 
     @editable
+    # Internal only flag to enable or disable replication
+    EnableReplication<native><epic_internal>:logic = external {}
+
+    @editable
     # Internal only flag to make this entity always relevant for replication to clients
     AlwaysRelevant<native><epic_internal>:logic = external {}
 
@@ -308,14 +312,6 @@ simulation_entity<native><epic_internal> := class<concrete><unique><transacts>(e
 #   * The simulation entity is the rootmost entity in an experience.
 #   * Fails if this entity is not currently in the scene.
 (InEntity:entity).GetSimulationEntity<native><public>()<transacts><decides>:entity
-
-@hide_in_editor
-@import_as("/Script/Entity.ASimulationEntity")
-simulation_interop_object<native><epic_internal> := class:
-
-
-simulation_entity_interop_handler<native><epic_internal> := interface<epic_internal>:
-    Initialize<native_callable><epic_internal>(IteropObject:simulation_interop_object):void
 
 @experimental
 # Describes discrete phases of a frame update. Subscribe to members of the tick_events object to run code before or after the physics system has updated your object, allowing you to affect or react to these updates.
@@ -355,6 +351,7 @@ transform_component<native><public> := class<final><final_super>(component):
     # LocalTransform to its parent
     var<private> LocalTransform<native><public>:(/Verse.org/SpatialMath:)transform = external {}
 
+    @editable
     @replicated("RepNotify")
     # alternate origin than the default parent
     var<private> Origin<native><public>:?origin = external {}

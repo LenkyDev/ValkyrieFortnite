@@ -4,5 +4,4 @@ using {/Verse.org/SceneGraph}
 Playspace<public> := module:
     @hide_in_editor
     @experimental
-    playspace_association_component<native><epic_internal> := class<final_super><epic_internal>(component, simulation_entity_interop_handler):
-        Initialize<native><override><native_callable>(IteropObject:simulation_interop_object):void
+    playspace_association_component<native><epic_internal> := class<final_super><epic_internal>(component):

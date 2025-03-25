@@ -1,0 +1,53 @@
+{
+	"_comment_About_This_File": "",
+	"_comment_About_This_File_2": "Overlay defaults",
+	"ValkyrieEditorSettings": {
+		"_comment_AllowedContentBrowserFolders": "Allowed content browser folders when exposing asset aliases",
+		"AllowedContentBrowserFolders": [
+			"/The Walking Dead Universe"
+		],
+		"AllowedClasses":
+		{
+			"/NPCDefault/Types/CharacterType_Custom.CharacterType_Custom_C":																				{ "Visible": true },
+			"/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C":																					{ "Visible": true },
+			"/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C":																			{ "Visible": true },
+			"/DarkVortexMeadowDrosera/CharacterType/BP_MeadowDrosera_CharacterType.BP_MeadowDrosera_CharacterType_C":										{ "Visible": false },
+			"/DarkVortexMeadowDrosera/CharacterType/BP_MeadowDrosera_CharacterType_Random_Default.BP_MeadowDrosera_CharacterType_Random_Default_C":			{ "Visible": true },
+			"/DarkVortexMeadowDrosera/CharacterType/BP_MeadowDrosera_CharacterType_Random_Prisoner.BP_MeadowDrosera_CharacterType_Random_Prisoner_C":		{ "Visible": true },
+			"/DarkVortexMeadowDrosera/CharacterModifiers/CharacterModifier_MeadowDroseraGameplay.CharacterModifier_MeadowDroseraGameplay_C":				{ "Visible": true },
+			"/DarkVortexMeadowDrosera/CharacterModifiers/CharacterModifier_MeadowDroseraBehavior.CharacterModifier_MeadowDroseraBehavior_C":				{ "Visible": true },
+			"/DarkVortexMeadowDrosera/CharacterModifiers/CharacterModifier_MeadowDroseraVerseBehavior.CharacterModifier_MeadowDroseraVerseBehavior_C":		{ "Visible": true }
+		},
+		"_comment_AllowedGatherFolders": "Allowed folders to gather assets from when exposing assets"
+	},
+	"PropertyEditorClassPermissionList":
+	{
+		"+": [
+			{
+				"Type": "/NPCDefault/Types/CharacterType_Custom.CharacterType_Custom_C",
+				"AllowList": [ "DisplayName" ],
+				"bAllowListAllProperties": false,
+				"bAllowListAllSubclassProperties": false
+			},
+			{
+				"Type": "/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C",
+				"AllowList": [ "SelectedAI", "DisplayName" ]
+			},
+			{
+				"Type": "/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C",
+				"AllowList": [ "DisplayName" ], 
+				"DenyList": [ "SelectedAI" ]
+			},
+			{
+				"Type": "/DarkVortexMeadowDrosera/CharacterType/BP_MeadowDrosera_CharacterType_Random_Default.BP_MeadowDrosera_CharacterType_Random_Default_C",
+				"AllowList": [ "DisplayName" ], 
+				"DenyList": [ "SelectedAI" ]
+			},
+			{
+				"Type": "/DarkVortexMeadowDrosera/CharacterType/BP_MeadowDrosera_CharacterType_Random_Prisoner.BP_MeadowDrosera_CharacterType_Random_Prisoner_C",
+				"AllowList": [ "DisplayName" ], 
+				"DenyList": [ "SelectedAI" ]
+			}
+		]
+	}	
+}

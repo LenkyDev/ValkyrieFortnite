@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Lime",
-	"FortReleaseVersion": "34.10",
+	"FortReleaseVersion": "34.20",
 	"IsGameFeatureSet": true,
 	"RequiredEntitlements": {
 		"Edit": {
@@ -189,6 +189,12 @@
 			"Enabled": true,
 			"Activate": true,
 			"Optional": true
+		},
+		{
+			"Name": "LimeExtraAssets",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
 		},
 		{
 			"Name": "LimeFlintKnock",

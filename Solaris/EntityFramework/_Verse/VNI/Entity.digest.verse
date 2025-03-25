@@ -247,6 +247,7 @@ transform_component<native><public> := class<final><final_super>(component):
     # LocalTransform to its parent
     var<private> LocalTransform<native><public>:(/Verse.org/SpatialMath:)transform = external {}
 
+    @editable
     # alternate origin than the default parent
     var<private> Origin<native><public>:?origin = external {}
 

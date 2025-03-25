@@ -9,66 +9,64 @@
 	"BuiltInAutoRegister": true,
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
+	"EditorCustomVirtualPath": "FNE/DarkVortex",
 	"FortReleaseVersion": "34.20",
+	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"RequiredEntitlements": {
-		"Edit": {
-			"VKCreateUGCDelMar": "0442386b095842c6bc047b252ecad23c"
+		"Create": {
+			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
+			"VKIPAgreement": "32927964d7964134b0f80d20ab02d082"
 		}
 	},
 	"Plugins": [
 		{
-			"Name": "CRD_DelMarActiveTrackVolume",
+			"Name": "CR_Legacy",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "DarkV_Meadow_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "DarkV_Meadow_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "DarkVortex_ExtraAssets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "DarkVortexIslandUIOverride",
 			"Enabled": true,
 			"Activate": true,
 			"Optional": true
 		},
 		{
-			"Name": "CRD_DelMarCheckpoint",
+			"Name": "DarkVortexMeadowCassia",
 			"Enabled": true,
 			"Activate": true,
 			"Optional": true
 		},
 		{
-			"Name": "CRD_DelMarEliminationVolume",
+			"Name": "DarkVortexMeadowDrosera",
 			"Enabled": true,
 			"Activate": true,
 			"Optional": true
 		},
 		{
-			"Name": "CRD_DelMarJellySpawner",
+			"Name": "DarkVortexMeadowHeliconia",
 			"Enabled": true,
 			"Activate": true,
 			"Optional": true
 		},
 		{
-			"Name": "CRD_DelMarPlayerStart",
+			"Name": "DarkVortexSharedVFX",
 			"Enabled": true,
-			"Activate": true,
-			"Optional": true
-		},
-		{
-			"Name": "CRD_DelMarRaceManager",
-			"Enabled": true,
-			"Activate": true,
-			"Optional": true
-		},
-		{
-			"Name": "CRD_DelMarSpeedPad",
-			"Enabled": true,
-			"Activate": true,
-			"Optional": true
-		},
-		{
-			"Name": "CRD_DelMarTrack",
-			"Enabled": true,
-			"Activate": true,
-			"Optional": true
-		},
-		{
-			"Name": "DelMarValidator",
-			"Enabled": true,
-			"Activate": true,
 			"Optional": true
 		}
 	],

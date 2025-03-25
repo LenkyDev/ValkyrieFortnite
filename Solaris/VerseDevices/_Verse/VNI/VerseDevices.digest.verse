@@ -267,6 +267,9 @@ Devices<public> := module:
         # Hides the `creative_prop` in the world and disable collisions.
         Hide<native><public>()<transacts>:void
 
+        # Enable/disable whether this prop can be damaged. If disabled, the creative prop will not take damage from attacks.
+        var CanBeDamaged<public>:logic = external {}
+
     # Asset used to spawn `creative_prop` instances.
     creative_prop_asset<native><public> := class<computes><concrete><final><epic_internal>:
 

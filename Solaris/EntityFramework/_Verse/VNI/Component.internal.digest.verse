@@ -280,44 +280,47 @@ KeyframedMovement<public> := module:
     @experimental
     # Provides teleportation and simple keyframe-based animation for an entity. Animations play back in the Pre-Physics tick phase. When animating an entity with a parent_constraint, animation will be relative to the parent entity.
     keyframed_movement_component<native><public> := class<final><final_super>(component):
-        @experimental
         # Pause movement. Subsequently calling Play() will resume from the point in the animation when it was paused.
         Pause<native><public>():void
 
-        @experimental
         # Begin or resume playback.
         Play<native><public>():void
 
-        @experimental
         # Stop and reset transform to the initial state. Subsequently calling Play() will begin the animation anew.
-        Stop<native><public>(?BlendOutTime:float = external {}):void
+        Stop<public>():void = external {}
 
-        @experimental
-        # Stop any ongoing animation, sets the animation path and rebases it relative to the actor's current transform. Does not start playing until you call Play().
-        SetKeyframes<native><public>(RelativeKeyframes:[]keyframed_movement_delta, PlaybackMode:keyframed_movement_playback_mode):void
+        # Stop and reset transform to the initial state. Subsequently calling Play() will begin the animation anew.
+        Stop<native><public>(BlendOutTime:float):void
 
-        @experimental
+        # Get the event that fires when the animation is Stopped.
+        StoppedEvent<native><public>:listenable(tuple()) = external {}
+
+        # Get the event that fires when the animation begins or resumes Playing.
+        PlayedEvent<native><public>:listenable(tuple()) = external {}
+
+        # Get the event that fires when the animation is Paused.
+        PausedEvent<native><public>:listenable(tuple()) = external {}
+
         # Is the animation currently playing?
         IsPlaying<native><public>()<computes><decides><reads>:void
 
-        @experimental
         # Is the animation paused?
         IsPaused<native><public>()<computes><decides><reads>:void
 
-        @experimental
+        # Gets the duration in seconds this keyframed movement will take. Fails if a fixed duration is not known (ex: looping animations).
+        var<private> Duration<native><public>:?float = external {}
+
+        # Get the event that fires when the animations ends, failing if the animation is of infinite duration
+        FinishedEvent<native><public>:listenable(tuple()) = external {}
+
+        # Stop any ongoing animation, sets the animation path and rebases it relative to the actor's current transform. Does not start playing until you call Play().
+        SetKeyframes<native><public>(RelativeKeyframes:[]keyframed_movement_delta, PlaybackMode:keyframed_movement_playback_mode):void
+
         # Is there a valid set of playable keyframes?
         HasValidAnimation<native><public>()<computes><decides><reads>:void
 
-        @experimental
-        GetDuration<native><public>()<computes><decides><reads>:float
-
-        @experimental
         # Signaled when any keyframe is reached. (Keyframe:int, IsReversed:logic).
         KeyframeReachedEvent<native><public>:listenable(tuple(int, logic)) = external {}
-
-        @experimental
-        # Signaled when the entire animation is complete. This will only fire for `OneShot` animations.
-        MovementCompleteEvent<native><public>:listenable(tuple()) = external {}
 
         OnInitializedInternal<native><override>():void
 
@@ -327,22 +330,6 @@ KeyframedMovement<public> := module:
 
         @replicated("RepNotify")
         var _PendingCommand<native><epic_internal>:keyframed_movement_command_data = external {}
-
-        @experimental
-        # Get the event that fires when the animations ends, failing if the animation is of infinite duration
-        GetOnFinishedEvent<public>()<computes><decides><reads>:listenable(tuple()) = external {}
-
-        @experimental
-        # Get the event that fires when the animation is Stopped.
-        GetOnStoppedEvent<public>():listenable(tuple()) = external {}
-
-        @experimental
-        # Get the event that fires when the animation begins or resumes Playing.
-        GetOnPlayedEvent<public>():listenable(tuple()) = external {}
-
-        @experimental
-        # Get the event that fires when the animation is Paused.
-        GetOnPausedEvent<public>():listenable(tuple()) = external {}
 
 @experimental
 # Base class for light components in the SceneGraph.

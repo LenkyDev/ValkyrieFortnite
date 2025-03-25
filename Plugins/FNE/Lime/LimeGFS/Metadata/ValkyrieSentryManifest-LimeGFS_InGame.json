@@ -721,6 +721,8 @@
 		"/CRD_ItemRemover/SetupAssets/PID_Device_ItemRemover.PID_Device_ItemRemover",
 		"/CRD_LimeAssemble/SetupAssets/PID_LimeAssemble.PID_LimeAssemble",
 		"/CRD_LimeChairDevice/SetupAssets/PID_CP_Devices_LimeChairDevice.PID_CP_Devices_LimeChairDevice",
+		"/CRD_LimeCollectible/Currencies/CP_Ingredient_GoldStud.CP_Ingredient_GoldStud",
+		"/CRD_LimeCollectible/PID_LimeCollectible.PID_LimeCollectible",
 		"/CRD_LimeItemSpawner/SetupAssets/PID_CP_Devices_LimeItemSpawner.PID_CP_Devices_LimeItemSpawner",
 		"/CRD_MapDevice/SetupAssets/PID_CP_Devices_MapControllerDevice.PID_CP_Devices_MapControllerDevice",
 		"/CRD_ModalDialog/SetupAssets/PID_Device_PopupDialog.PID_Device_PopupDialog",

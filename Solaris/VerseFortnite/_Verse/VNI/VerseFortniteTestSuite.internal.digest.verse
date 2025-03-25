@@ -47,6 +47,4 @@ VerseFortniteTestSuite<public> := module:
 
         OnEndSimulation<override>():void = external {}
 
-        SetRoundManager<native_callable><protected>(MockRM:fort_round_manager):void = external {}
-
         UnbindEvents<native_callable><protected>():void = external {}

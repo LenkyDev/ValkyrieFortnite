@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Lime",
-	"FortReleaseVersion": "34.10",
+	"FortReleaseVersion": "34.20",
 	"IsGameFeatureSet": true,
 	"RequiredEntitlements": {
 		"Create": {
@@ -32,6 +32,12 @@
 		},
 		{
 			"Name": "CRD_LimeChairDevice",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRD_LimeCollectible",
+			"Activate": true,
 			"Enabled": true,
 			"Optional": true
 		},
@@ -183,7 +189,8 @@
 		{
 			"Name": "LimeExtraAssets",
 			"Enabled": true,
-			"Optional": true
+			"Optional": true,
+			"Activate": true
 		},
 		{
 			"Name": "LimeFlintKnock",

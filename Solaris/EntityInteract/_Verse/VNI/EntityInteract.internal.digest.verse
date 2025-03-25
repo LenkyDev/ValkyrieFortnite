@@ -105,11 +105,11 @@ interactable_cooldown<native><epic_internal> := class<concrete>:
 
     @experimental
     # Set the remaining shared cooldown duration in seconds, affecting all agents.
-    SetRemainingDuration<native><epic_internal>(__dupe___unnamed_parameter_72:accessor, InRemainingDuration:float)<transacts>:void
+    SetRemainingDuration<native><epic_internal>(__dupe___unnamed_parameter_70:accessor, InRemainingDuration:float)<transacts>:void
 
     @experimental
     # Get the remaining shared cooldown duration in seconds, affecting all agents.
-    GetRemainingDuration<native><epic_internal>(__dupe___unnamed_parameter_73:accessor)<transacts>:float
+    GetRemainingDuration<native><epic_internal>(__dupe___unnamed_parameter_71:accessor)<transacts>:float
 
 @experimental
 # Used to set a cooldown per agent when interacted.
@@ -135,11 +135,11 @@ interactable_cooldown_per_agent<native><epic_internal> := class<concrete>:
 
     @experimental
     # Set the remaining shared cooldown duration in seconds, affecting all agents.
-    SetRemainingDurationForAgent<native><epic_internal>(__dupe___unnamed_parameter_74:accessor, Agent:agent, InRemainingDuration:float)<transacts>:void
+    SetRemainingDurationForAgent<native><epic_internal>(__dupe___unnamed_parameter_72:accessor, Agent:agent, InRemainingDuration:float)<transacts>:void
 
     @experimental
     # Get the remaining shared cooldown duration in seconds, affecting all agents.
-    GetRemainingDurationForAgent<native><epic_internal>(__dupe___unnamed_parameter_75:accessor, Agent:agent)<transacts>:float
+    GetRemainingDurationForAgent<native><epic_internal>(__dupe___unnamed_parameter_73:accessor, Agent:agent)<transacts>:float
 
 @experimental
 # Used to set an interaction duration.
@@ -161,11 +161,11 @@ interactable_duration<native><epic_internal> := class<concrete>:
 
     @experimental
     # Interact duration setter.
-    SetInteractDuration<native><epic_internal>(__dupe___unnamed_parameter_76:accessor, InRemainingDuration:float)<transacts>:void
+    SetInteractDuration<native><epic_internal>(__dupe___unnamed_parameter_74:accessor, InRemainingDuration:float)<transacts>:void
 
     @experimental
     # Interact duration getter.
-    GetInteractDuration<native><epic_internal>(__dupe___unnamed_parameter_77:accessor)<transacts>:float
+    GetInteractDuration<native><epic_internal>(__dupe___unnamed_parameter_75:accessor)<transacts>:float
 
     @editable
     @experimental
@@ -196,11 +196,11 @@ interactable_success_limit<native><epic_internal> := class<concrete>:
     @experimental
     # Update the maximum number of successful interactions possible, a value of false is unlimited.
     # If the current number of tracked interactions is greater than the value specified here, all current interactions will be canceled.
-    SetMaxSuccessfulInteractions<native><epic_internal>(__dupe___unnamed_parameter_78:accessor, InMaxSuccessfulInteractions:?int)<transacts>:void
+    SetMaxSuccessfulInteractions<native><epic_internal>(__dupe___unnamed_parameter_76:accessor, InMaxSuccessfulInteractions:?int)<transacts>:void
 
     @experimental
     # Get the maximum number of successful interactions possible.
-    GetMaxSuccessfulInteractions<native><epic_internal>(__dupe___unnamed_parameter_79:accessor)<transacts>:?int
+    GetMaxSuccessfulInteractions<native><epic_internal>(__dupe___unnamed_parameter_77:accessor)<transacts>:?int
 
     @experimental
     # Resets the counter for the times this component has had a successful interaction.

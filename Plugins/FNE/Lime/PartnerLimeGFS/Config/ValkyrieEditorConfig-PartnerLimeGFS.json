@@ -86,6 +86,7 @@
 			"/Script/AtomRuntime.AtomModelAssetSettings": {},
 			"/Script/AtomRuntime.AtomModelSelectionSet": {},
 			"/Script/AtomRuntime.AtomModelProcessorInstance": {},
+			"/Script/AtomRuntime.AtomPrimitiveAssetUserData": {},
 			"/Script/AtomRuntime.AtomPrimitiveBevelOptions": {},
 			"/Script/AtomRuntime.AtomPrimitiveBuildOptions": {},
 			"/Script/AtomRuntime.AtomPrimitiveBuildSettings": {},
