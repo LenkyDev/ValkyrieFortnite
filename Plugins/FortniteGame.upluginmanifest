@@ -18772,6 +18772,84 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/AI/VividRazor_CoffeePuff/VividRazor_CoffeePuff.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"Plugins": [
+					{
+						"Name": "NPCLibrary",
+						"Enabled": true
+					},
+					{
+						"Name": "AICore",
+						"Enabled": true
+					},
+					{
+						"Name": "NPCCore",
+						"Enabled": true
+					},
+					{
+						"Name": "BRCosmetics",
+						"Enabled": true
+					},
+					{
+						"Name": "Lager",
+						"Enabled": true
+					},
+					{
+						"Name": "CoffeePuffGameplay",
+						"Enabled": true
+					},
+					{
+						"Name": "PoppySoap",
+						"Enabled": true
+					},
+					{
+						"Name": "FirePetal_WanderingBoss",
+						"Enabled": true
+					},
+					{
+						"Name": "DemonMaskFire",
+						"Enabled": true
+					},
+					{
+						"Name": "Mantis",
+						"Enabled": true
+					},
+					{
+						"Name": "HookshotGameplay",
+						"Enabled": true
+					},
+					{
+						"Name": "SharedWeaponAnims",
+						"Enabled": true
+					},
+					{
+						"Name": "Energy",
+						"Enabled": true
+					},
+					{
+						"Name": "FortNPCMusic",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/AI/VividRazor_Minions/VividRazor_Minions.uplugin",
 			"Descriptor": 
 			{
@@ -20201,11 +20279,6 @@
 						"Optional": true
 					},
 					{
-						"Name": "Bling",
-						"Enabled": true,
-						"Optional": true
-					},
-					{
 						"Name": "BombableWallsGameplay",
 						"Enabled": true,
 						"Optional": true
@@ -20422,6 +20495,11 @@
 					},
 					{
 						"Name": "CobraDMR",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "CoffeePuffGameplay",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -22168,6 +22246,11 @@
 						"Optional": true
 					},
 					{
+						"Name": "PoppySoapEnvGameplay",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
 						"Name": "PortAShackGameplay",
 						"Enabled": true,
 						"Optional": true
@@ -22734,6 +22817,11 @@
 					},
 					{
 						"Name": "VividRazor_Baron",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "VividRazor_CoffeePuff",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -26634,6 +26722,63 @@
 					},
 					{
 						"Name": "BRCosmetics",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/CoffeePuffGameplay/CoffeePuffGameplay.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"Modules": [
+					{
+						"Name": "CoffeePuffGameplayRuntime",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "Mantis",
+						"Enabled": true
+					},
+					{
+						"Name": "HookshotGameplay",
+						"Enabled": true
+					},
+					{
+						"Name": "PoppySoap",
+						"Enabled": true
+					},
+					{
+						"Name": "AutoAimWeapon",
+						"Enabled": true
+					},
+					{
+						"Name": "SharedWeaponAnims",
+						"Enabled": true
+					},
+					{
+						"Name": "AbilityTargetingFeedbackGameplay",
+						"Enabled": true
+					},
+					{
+						"Name": "AICore",
 						"Enabled": true
 					}
 				]
@@ -124020,43 +124165,6 @@
 			}
 		},
 		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/LTM/Bling/Bling.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"ExplicitlyLoaded": true,
-				"Modules": [
-					{
-						"Name": "BlingRuntime",
-						"Type": "Runtime",
-						"LoadingPhase": "Default"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "FortUILibrary",
-						"Enabled": true
-					},
-					{
-						"Name": "LTMCoreUI",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/LTM/LTMCoreUI/LTMCoreUI.uplugin",
 			"Descriptor": 
 			{
@@ -129966,6 +130074,26 @@
 						"Enabled": true
 					}
 				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/PoppySoapEnvGameplay/PoppySoapEnvGameplay.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true
 			}
 		},
 		{

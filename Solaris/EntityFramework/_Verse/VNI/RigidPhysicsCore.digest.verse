@@ -100,12 +100,12 @@ CollisionProfiles<public> := module:
 
 @deprecated
 # Module import path: /Verse.org/SceneGraph/collision_channels
-collision_channels<public> := module:
+(/Verse.org/SceneGraph:)collision_channels<public> := module:
 
 
 @deprecated
 # Module import path: /Verse.org/SceneGraph/collision_profiles
-collision_profiles<public> := module:
+(/Verse.org/SceneGraph:)collision_profiles<public> := module:
 
 
 @experimental

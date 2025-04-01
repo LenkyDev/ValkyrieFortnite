@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Lime",
-	"FortReleaseVersion": "34.20",
+	"FortReleaseVersion": "34.21",
 	"IsGameFeatureSet": true,
 	"RequiredEntitlements": {
 		"Create": {
