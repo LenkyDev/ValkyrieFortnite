@@ -2,7 +2,7 @@ using {/Verse.org/Simulation/Tags}
 using {/Verse.org/Native}
 using {/Verse.org/Assets}
 using {/Verse.org/Colors}
-using {/UnrealEngine.com/EpicGamesRestricted/Network}
+using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 using {/Verse.org/SpatialMath}
 using {/Verse.org/Simulation}
 @hide_in_editor

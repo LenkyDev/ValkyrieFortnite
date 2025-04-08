@@ -6,7 +6,7 @@ using {/Verse.org/Native}
 using {/Verse.org/Simulation}
 # Base class for creating analytic events from Verse. This would be the only public api, feral_analytics* would not be made public.
 analytics_event_base<native><epic_internal> := class<persistent>:
-    GetEventName<native><epic_internal>():string
+    GetEventName<native_callable><epic_internal>():string = external {}
 
     Send<native><epic_internal>():void
 
@@ -79,6 +79,8 @@ CommonBridge<epic_internal> := module:
     GetVersePlayerId<native><epic_internal>(Player:player)<transacts>:int
 
     SendTestEvent<native><epic_internal>(EventName:string, TargetAgents:[]agent, Params:[string]float)<transacts><decides>:void
+
+    IsCVarEnabled<native><epic_internal>(CVarName:string)<transacts><decides>:void
 
 game_state_component_bridge<native><epic_internal> := class<concrete>:
     SendEvent<native><epic_internal>(EventName:string, TargetAgents:[]agent, Params:[string]float)<transacts><decides>:void

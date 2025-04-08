@@ -36,6 +36,9 @@ UI<public> := module:
         # Removes `Widget` from this `player_ui`.
         RemoveWidget<native><public>(Widget:widget):void
 
+        # Sets the user's focus on this widget. The target widget must be focusable, otherwise this has no effect.
+        SetFocus<native><epic_internal>(Widget:widget):void
+
     # Base class for all UI elements drawn on the `player`'s screen.
     widget<native><public> := class<abstract><unique><epic_internal>:
         # Shows or hides the `widget` without removing itself from the containing `player_ui`.

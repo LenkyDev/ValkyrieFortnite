@@ -229,6 +229,10 @@
 			"/LimeAISpawnerGuard/SpawnDefinitions/Types/CharacterType_LimeGuard.CharacterType_LimeGuard_C":
 			{
 				"Visible": true
+			},
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeCosmeticSpawn.CharacterModifier_LimeCosmeticSpawn_C":
+			{
+				"Visible": true
 			}
 		},
 		"AllowedEditorModes": {

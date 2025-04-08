@@ -262,7 +262,7 @@ VerseFramework<public> := module:
     test_runner_status<public> := enum:
         Pending
         Setup
-        Running
+        (/Fortnite.com/VerseInternalTesting/VerseFramework/test_runner_status:)Running
         Complete
 
     test_runner_device<epic_internal> := class(creative_device):

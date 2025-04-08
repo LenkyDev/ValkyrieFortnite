@@ -1,4 +1,4 @@
-using {/UnrealEngine.com/EpicGamesRestricted/Network}
+using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 using {/Verse.org/Simulation}
 @experimental
 # An interactable component with a composable feature set.

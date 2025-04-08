@@ -23,6 +23,18 @@ rift_point_volume_device<public> := class<concrete><final>(creative_device_base,
     # Sends an event when the Rift Point detonates, passing in the planting `agent`.
     DetonateEvent<public>:listenable(agent) = external {}
 
+    # Sends an event when an `agent` enters the volume.
+    OnAgentEntered<public>:listenable(agent) = external {}
+
+    # Sends an event when an `agent` exits the volume.
+    OnAgentExited<public>:listenable(agent) = external {}
+
+    # Is true when `Agent` is in the volume.
+    IsInVolume<public>(Agent:agent)<transacts><decides>:void = external {}
+
+    # Returns an array of agents that are currently occupying the volume.
+    GetAgentsInVolume<public>()<computes><reads>:[]agent = external {}
+
     # Enables the device, allowing the Rift Point to be planted.
     Enable<override>():void = external {}
 

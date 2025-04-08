@@ -2,7 +2,7 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-34.21-CL-41092960
+# Generated from build: ++Fortnite+Release-34.30-CL-41387772
 #################################################
 
 SceneGraph<public> := module:
@@ -68,7 +68,7 @@ SceneGraph<public> := module:
             # Event that sends the participating agent when a conversation has ended.
             ConversationEndedEvent<native><public>:listenable(agent) = external {}
 
-    using {/UnrealEngine.com/EpicGamesRestricted/Network}
+    using {/Verse.org/Temporary/EpicGamesRestricted/Network}
     @experimental
     # An interactable component with a composable feature set.
     basic_interactable_component<native><epic_internal> := class(interactable_component):
@@ -2094,11 +2094,11 @@ SceneGraph<public> := module:
         # Subscribe a callback function to this event.
         Subscribe<native><override>(Callback:type {_():void})<transacts>:cancelable
 
-using {/UnrealEngine.com/Temporary/SpatialMath}
-using {/Verse.org/Assets}
 using {/Verse.org/Simulation}
 # Module import path: /Verse.org/ControlInput
 ControlInput<public> := module:
+    GetPlayerInputDeprecated<epic_internal>(Player:player)<transacts><decides>:player_input = external {}
+
     input_events<native><public>(t:type) := class:
         ActivationTriggeredEvent<native><public>:listenable(tuple(player, t)) = external {}
 
@@ -2128,6 +2128,9 @@ ControlInput<public> := module:
         MakeVector2InputEvents<native_callable><epic_internal>():input_events(vector2) = external {}
 
         MakeVector3InputEvents<native_callable><epic_internal>():input_events((/UnrealEngine.com/Temporary/SpatialMath:)vector3) = external {}
+
+using {/UnrealEngine.com/Temporary/SpatialMath}
+using {/Verse.org/Assets}
 Simulation<public> := module:
     using {/Verse.org/Native}
     # Module import path: /Verse.org/Simulation/Tags
@@ -2564,6 +2567,16 @@ Assets<public> := module:
         UE5Class<native><epic_internal>:property_interface_UE5_definition
 
         OnPropertyChangedFromVerse<native><override>(PropertyName:string)<transacts>:void
+Temporary<public> := module:
+    # Module import path: /Verse.org/Temporary/EpicGamesRestricted
+    EpicGamesRestricted<public> := module:
+        # Module import path: /Verse.org/Temporary/EpicGamesRestricted/Network
+        Network<public> := module:
+            @attribscope_data
+            @customattribhandler
+            replicated_attribute<epic_internal> := class<computes><internal>(attribute):
+
+            replicated<constructor><epic_internal>(ReplicationArgs:string)<computes>:replicated_attribute = external {}
 
 # Module import path: /Verse.org/VerseEngine
 VerseEngine<public> := module:

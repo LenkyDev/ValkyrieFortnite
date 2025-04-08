@@ -3,7 +3,7 @@ using {/Verse.org/SpatialMath}
 using {/Verse.org/Simulation/Tags}
 using {/Verse.org/Assets}
 using {/Verse.org/Simulation}
-using {/UnrealEngine.com/EpicGamesRestricted/Network}
+using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 # Module import path: /Verse.org/SceneGraph/VerseCamera
 VerseCamera<public> := module:
     @experimental

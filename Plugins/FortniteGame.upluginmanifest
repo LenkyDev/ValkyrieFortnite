@@ -6853,10 +6853,6 @@
 					{
 						"Name": "SteamShared",
 						"Enabled": false
-					},
-					{
-						"Name": "OnlineBase",
-						"Enabled": true
 					}
 				]
 			}
@@ -13835,6 +13831,11 @@
 						"Name": "VerseInput",
 						"Type": "Runtime",
 						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "VerseInputDeprecated",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
 					}
 				],
 				"Plugins": [
@@ -15650,6 +15651,10 @@
 						"Enabled": true
 					},
 					{
+						"Name": "OnlineDependencies",
+						"Enabled": true
+					},
+					{
 						"Name": "OnlineFramework",
 						"Enabled": true
 					},
@@ -15933,6 +15938,10 @@
 				"Plugins": [
 					{
 						"Name": "OnlineFrameworkCommon",
+						"Enabled": true
+					},
+					{
+						"Name": "OnlineDependencies",
 						"Enabled": true
 					},
 					{
@@ -17040,6 +17049,38 @@
 					},
 					{
 						"Name": "OnlineSubsystemUtils",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/ForEngine/Online/OnlineDependencies/OnlineDependencies.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Online Dependencies",
+				"Description": "System for delaying the initialization of online framework components until initialization dependencies have been resolved.",
+				"Category": "Online Platform",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "OnlineDependencies",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "EOSShared",
 						"Enabled": true
 					}
 				]
@@ -20634,6 +20675,11 @@
 						"Optional": true
 					},
 					{
+						"Name": "DashberryMapContent",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
 						"Name": "DealershipProfiler",
 						"Enabled": true,
 						"Optional": true
@@ -21400,6 +21446,11 @@
 					},
 					{
 						"Name": "Gasket",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "GiftedTraveler",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -22301,7 +22352,17 @@
 						"Optional": true
 					},
 					{
+						"Name": "RankedTrooper",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
 						"Name": "Reboot",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "Replay",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -23546,6 +23607,11 @@
 						"Optional": true
 					},
 					{
+						"Name": "JunoTM_BountyBoard",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
 						"Name": "JunoTM_BrickBuilt_Bldg",
 						"Enabled": true,
 						"Optional": true
@@ -23582,6 +23648,11 @@
 					},
 					{
 						"Name": "JunoTM_ConcertStage_Bldg",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "JunoTM_CookFishCollect",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -23741,6 +23812,11 @@
 						"Optional": true
 					},
 					{
+						"Name": "JunoTM_Requests_Prop",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
 						"Name": "JunoTM_RetailClub_Bldg",
 						"Enabled": true,
 						"Optional": true
@@ -23806,7 +23882,7 @@
 						"Optional": true
 					},
 					{
-						"Name": "MusicPassS07",
+						"Name": "MusicPassS08",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -23852,6 +23928,11 @@
 					},
 					{
 						"Name": "SparksAlbumArt",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "SparksCore",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -24398,6 +24479,14 @@
 					},
 					{
 						"Name": "GatedItemGrants",
+						"Enabled": true
+					},
+					{
+						"Name": "FMJamSystem",
+						"Enabled": true
+					},
+					{
+						"Name": "SparksPermanentQuests",
 						"Enabled": true
 					}
 				]
@@ -25355,6 +25444,14 @@
 					},
 					{
 						"Name": "DeployedCoverGameplay",
+						"Enabled": true
+					},
+					{
+						"Name": "AgileChugJugGameplay",
+						"Enabled": true
+					},
+					{
+						"Name": "SunRoseWeaponsGameplay",
 						"Enabled": true
 					}
 				]
@@ -29633,11 +29730,6 @@
 						"Optional": true
 					},
 					{
-						"Name": "FabricDanceEmotes",
-						"Enabled": true,
-						"Optional": true
-					},
-					{
 						"Name": "FabricSettings",
 						"Enabled": true,
 						"Optional": true
@@ -29648,7 +29740,22 @@
 						"Optional": true
 					},
 					{
+						"Name": "Fencing_Assets",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "Fencing_Comp",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
 						"Name": "FeralCorgiGameplay",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "FeralCorgiGameplay_Creative",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -40048,6 +40155,26 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/DashberryMapContent/DashberryMapContent.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/DealershipProfiler/DealershipProfiler.uplugin",
 			"Descriptor": 
 			{
@@ -49819,6 +49946,98 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Events/GiftedTraveler/GiftedTraveler.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"Plugins": [
+					{
+						"Name": "BRCosmetics",
+						"Enabled": true
+					},
+					{
+						"Name": "Events_Shared",
+						"Enabled": true
+					},
+					{
+						"Name": "Hermes",
+						"Enabled": true
+					},
+					{
+						"Name": "BRMapCh6",
+						"Enabled": true
+					},
+					{
+						"Name": "VividRazor_Baron",
+						"Enabled": true
+					},
+					{
+						"Name": "Lager",
+						"Enabled": true
+					},
+					{
+						"Name": "NPCCore",
+						"Enabled": true
+					},
+					{
+						"Name": "FortNPCMusic",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Events/GiftedTraveler_Observer/GiftedTraveler_Observer.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"Plugins": [
+					{
+						"Name": "BRCosmetics",
+						"Enabled": true
+					},
+					{
+						"Name": "Events_Shared",
+						"Enabled": true
+					},
+					{
+						"Name": "Hermes",
+						"Enabled": true
+					},
+					{
+						"Name": "BRMapCh6",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/EvergreenQuest/EvergreenQuest.uplugin",
 			"Descriptor": 
 			{
@@ -49892,6 +50111,10 @@
 						"Enabled": true
 					},
 					{
+						"Name": "MusicEventSystem",
+						"Enabled": true
+					},
+					{
 						"Name": "OnlineFramework",
 						"Enabled": true
 					}
@@ -49899,54 +50122,7 @@
 			}
 		},
 		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/Events/SparksS07/SparksS07.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "1.0",
-				"FriendlyName": "SparksS07",
-				"Description": "",
-				"Category": "Other",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"NoCode": true,
-				"ExplicitlyLoaded": true,
-				"Plugins": [
-					{
-						"Name": "SparksCommon",
-						"Enabled": true
-					},
-					{
-						"Name": "SparksLobby",
-						"Enabled": true
-					},
-					{
-						"Name": "PilgrimQuickplay",
-						"Enabled": true
-					},
-					{
-						"Name": "SparksCameraDirector",
-						"Enabled": true
-					},
-					{
-						"Name": "PilgrimBattleStage",
-						"Enabled": true
-					},
-					{
-						"Name": "FMAudioReactiveData",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/Events/SparksSpotlight/SparksSpotlight_S07_Spot04/SparksSpotlight_S07_Spot04.uplugin",
+			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/Events/SparksSpotlight/SparksSpotlight_S08_Event01/SparksSpotlight_S08_Event01.uplugin",
 			"Descriptor": 
 			{
 				"FileVersion": 3,
@@ -49965,7 +50141,7 @@
 				"ExplicitlyLoaded": true,
 				"LocalizationTargets": [
 					{
-						"Name": "SparksSpotlight_S07_Spot04",
+						"Name": "SparksSpotlight_S08_Event01",
 						"LoadingPolicy": "Game",
 						"ConfigGenerationPolicy": "Auto"
 					}
@@ -50598,10 +50774,6 @@
 						"Enabled": true
 					},
 					{
-						"Name": "SparksDanceEmotes",
-						"Enabled": true
-					},
-					{
 						"Name": "CosmeticsFrameworkLoadouts",
 						"Enabled": true
 					},
@@ -50711,6 +50883,14 @@
 					},
 					{
 						"Name": "SparksEffects",
+						"Enabled": true
+					},
+					{
+						"Name": "SparksMaps",
+						"Enabled": true
+					},
+					{
+						"Name": "SparksStageShow",
 						"Enabled": true
 					}
 				]
@@ -50888,10 +51068,6 @@
 						"Enabled": true
 					},
 					{
-						"Name": "SparksDanceEmotes",
-						"Enabled": true
-					},
-					{
 						"Name": "SparksCosmetics",
 						"Enabled": true
 					},
@@ -50909,6 +51085,10 @@
 					},
 					{
 						"Name": "SparksAudioBase",
+						"Enabled": true
+					},
+					{
+						"Name": "GameFeatures",
 						"Enabled": true
 					}
 				]
@@ -50997,55 +51177,6 @@
 					},
 					{
 						"Name": "FMInWorldKnobs",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/FabricDanceEmotes/FabricDanceEmotes.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"ExplicitlyLoaded": true,
-				"Modules": [
-					{
-						"Name": "FabricDanceEmotes",
-						"Type": "Runtime",
-						"LoadingPhase": "Default"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "Fabric",
-						"Enabled": true
-					},
-					{
-						"Name": "FMCore",
-						"Enabled": true
-					},
-					{
-						"Name": "FMDeviceCables",
-						"Enabled": true
-					},
-					{
-						"Name": "Harmonix",
-						"Enabled": true
-					},
-					{
-						"Name": "BeatSyncedAnim",
 						"Enabled": true
 					}
 				]
@@ -51426,6 +51557,10 @@
 						"Enabled": true
 					},
 					{
+						"Name": "SparksEffects",
+						"Enabled": true
+					},
+					{
 						"Name": "SparksCharacterCommon",
 						"Enabled": true
 					},
@@ -51532,6 +51667,14 @@
 					{
 						"Name": "XpEverywhereUI",
 						"Enabled": true
+					},
+					{
+						"Name": "SparksMaps",
+						"Enabled": true
+					},
+					{
+						"Name": "SparksStageShow",
+						"Enabled": true
 					}
 				]
 			}
@@ -51608,10 +51751,6 @@
 					},
 					{
 						"Name": "SparksMusicPlayspace",
-						"Enabled": true
-					},
-					{
-						"Name": "SparksDanceEmotes",
 						"Enabled": true
 					},
 					{
@@ -51736,6 +51875,10 @@
 					},
 					{
 						"Name": "Proton",
+						"Enabled": true
+					},
+					{
+						"Name": "SparksMaps",
 						"Enabled": true
 					}
 				]
@@ -52006,6 +52149,18 @@
 					{
 						"Name": "SparksEffects",
 						"Enabled": true
+					},
+					{
+						"Name": "SparksStageShow",
+						"Enabled": true
+					},
+					{
+						"Name": "SparksS8",
+						"Enabled": true
+					},
+					{
+						"Name": "DSSNetworkReplayStreamer",
+						"Enabled": true
 					}
 				]
 			}
@@ -52074,6 +52229,10 @@
 					{
 						"Name": "SparksLobby",
 						"Enabled": true
+					},
+					{
+						"Name": "SparksMaps",
+						"Enabled": true
 					}
 				]
 			}
@@ -52116,7 +52275,7 @@
 			}
 		},
 		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/Seasons/MusicPassS07/MusicPassS07.uplugin",
+			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/Seasons/MusicPassS08/MusicPassS08.uplugin",
 			"Descriptor": 
 			{
 				"FileVersion": 3,
@@ -52135,7 +52294,7 @@
 				"ExplicitlyLoaded": true,
 				"LocalizationTargets": [
 					{
-						"Name": "MusicPassS07",
+						"Name": "MusicPassS08",
 						"LoadingPolicy": "Game",
 						"ConfigGenerationPolicy": "Auto"
 					}
@@ -52177,7 +52336,7 @@
 			}
 		},
 		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/Seasons/SparksSeason07/SparksSeason07.uplugin",
+			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/Seasons/SparksSeason08/SparksSeason08.uplugin",
 			"Descriptor": 
 			{
 				"FileVersion": 3,
@@ -52196,17 +52355,12 @@
 				"ExplicitlyLoaded": true,
 				"LocalizationTargets": [
 					{
-						"Name": "SparksSeason07",
+						"Name": "SparksSeason08",
 						"LoadingPolicy": "Game",
 						"ConfigGenerationPolicy": "Auto"
 					}
 				],
 				"Plugins": [
-					{
-						"Name": "SparksPermanentQuests",
-						"Enabled": true,
-						"Optional": true
-					},
 					{
 						"Name": "PilgrimCore",
 						"Enabled": true,
@@ -52248,16 +52402,23 @@
 						"Optional": true
 					},
 					{
-						"Name": "MusicPassCommonData",
-						"Enabled": true,
-						"Optional": true
-					},
-					{
-						"Name": "MusicPassS07",
+						"Name": "SparksPermanentQuests",
 						"Enabled": true
 					},
 					{
-						"Name": "SeasonPass",
+						"Name": "UniversalDailyQuests",
+						"Enabled": true
+					},
+					{
+						"Name": "FortniteCoreUI",
+						"Enabled": true
+					},
+					{
+						"Name": "MusicPassS08",
+						"Enabled": true
+					},
+					{
+						"Name": "SparksCore",
 						"Enabled": true
 					}
 				]
@@ -52809,6 +52970,10 @@
 				],
 				"Plugins": [
 					{
+						"Name": "AnimationBudgetAllocator",
+						"Enabled": true
+					},
+					{
 						"Name": "AudioModulation",
 						"Enabled": true
 					},
@@ -52970,62 +53135,6 @@
 			}
 		},
 		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/SparksDanceEmotes/SparksDanceEmotes.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"ExplicitlyLoaded": true,
-				"Modules": [
-					{
-						"Name": "SparksDanceEmotesRuntime",
-						"Type": "Runtime",
-						"LoadingPhase": "Default"
-					}
-				],
-				"LocalizationTargets": [
-					{
-						"Name": "SparksDanceEmotes",
-						"LoadingPolicy": "Game",
-						"ConfigGenerationPolicy": "Auto"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "Harmonix",
-						"Enabled": true
-					},
-					{
-						"Name": "HarmonixInternal",
-						"Enabled": true
-					},
-					{
-						"Name": "FMCore",
-						"Enabled": true
-					},
-					{
-						"Name": "BeatSyncedAnim",
-						"Enabled": true
-					},
-					{
-						"Name": "SparksMusicPlayspace",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/SparksEffects/SparksEffects.uplugin",
 			"Descriptor": 
 			{
@@ -53118,6 +53227,14 @@
 					{
 						"Name": "FortUILibrary",
 						"Enabled": true
+					},
+					{
+						"Name": "SparksStageShow",
+						"Enabled": true
+					},
+					{
+						"Name": "FortWater",
+						"Enabled": true
 					}
 				]
 			}
@@ -53199,6 +53316,10 @@
 					},
 					{
 						"Name": "FortUILibrary",
+						"Enabled": true
+					},
+					{
+						"Name": "SparksCore",
 						"Enabled": true
 					}
 				]
@@ -53308,6 +53429,26 @@
 					},
 					{
 						"Name": "FortUILibrary",
+						"Enabled": true
+					},
+					{
+						"Name": "SparksEffects",
+						"Enabled": true
+					},
+					{
+						"Name": "FortWater",
+						"Enabled": true
+					},
+					{
+						"Name": "SparksStageShow",
+						"Enabled": true
+					},
+					{
+						"Name": "NiagaraValkyrie",
+						"Enabled": true
+					},
+					{
+						"Name": "EpicBaseTextures",
 						"Enabled": true
 					}
 				]
@@ -53421,6 +53562,45 @@
 					},
 					{
 						"Name": "FortUILibrary",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/SparksSeasonalContent/SparksS8/SparksS8.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "SparksS8",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"NoCode": true,
+				"ExplicitlyLoaded": true,
+				"Plugins": [
+					{
+						"Name": "SparksCommon",
+						"Enabled": true
+					},
+					{
+						"Name": "SparksLobby",
+						"Enabled": true
+					},
+					{
+						"Name": "SparksMaps",
+						"Enabled": true
+					},
+					{
+						"Name": "SparksEffects",
 						"Enabled": true
 					}
 				]
@@ -53712,6 +53892,13 @@
 						"LoadingPhase": "Default"
 					}
 				],
+				"LocalizationTargets": [
+					{
+						"Name": "SparksStageShow",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
 				"Plugins": [
 					{
 						"Name": "GameplayEventRouter",
@@ -53731,6 +53918,10 @@
 					},
 					{
 						"Name": "SparksMusicPlayspace",
+						"Enabled": true
+					},
+					{
+						"Name": "SparksCore",
 						"Enabled": true
 					}
 				]
@@ -54001,11 +54192,6 @@
 						"Optional": true
 					},
 					{
-						"Name": "SparksDanceEmotes",
-						"Enabled": true,
-						"Optional": true
-					},
-					{
 						"Name": "SparksEffects",
 						"Enabled": true,
 						"Optional": true
@@ -54031,12 +54217,12 @@
 						"Optional": true
 					},
 					{
-						"Name": "SparksS07",
+						"Name": "SparksS8",
 						"Enabled": true,
 						"Optional": true
 					},
 					{
-						"Name": "SparksSeason07",
+						"Name": "SparksSeason08",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -54061,7 +54247,7 @@
 						"Optional": true
 					},
 					{
-						"Name": "SparksSpotlight_S07_Spot04",
+						"Name": "SparksSpotlight_S08_Event01",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -55155,6 +55341,32 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/FNE/DarkVortex/DarkVortexCosmetics/DarkVortexCosmetics.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"Plugins": [
+					{
+						"Name": "BRCosmetics",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/FNE/DarkVortex/DarkVortexGFSMetaData/DarkVortexGFSMetaData.uplugin",
 			"Descriptor": 
 			{
@@ -55217,6 +55429,11 @@
 					},
 					{
 						"Name": "DarkV_Meadow_Comp",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "DarkVortexCosmetics",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -55863,6 +56080,56 @@
 					},
 					{
 						"Name": "FortniteCoreUI",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/FNE/Helios/S28/FNEC/Fencing_Assets/Fencing_Assets.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/FNE/Helios/S28/FNEC/Fencing_Comp/Fencing_Comp.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"Plugins": [
+					{
+						"Name": "Fencing_Assets",
+						"Enabled": true
+					},
+					{
+						"Name": "FNEC_Assets",
 						"Enabled": true
 					}
 				]
@@ -61017,6 +61284,27 @@
 						"Enabled": true
 					}
 				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/FeralCorgiGameplay_Creative/FeralCorgiGameplay_Creative.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"NoCode": true,
+				"ExplicitlyLoaded": true
 			}
 		},
 		{
@@ -69940,6 +70228,14 @@
 					},
 					{
 						"Name": "JunoExclusiveUI",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoCraftingBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoNeptune_Enemies",
 						"Enabled": true
 					}
 				]
@@ -82777,6 +83073,72 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoPOI_BruteLair/JunoPOI_BruteLair.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"Plugins": [
+					{
+						"Name": "Encounters",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAI",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoEncountersPOI",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoFactions",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGame",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGameNative",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoProceduralWorld",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoScenarios",
+						"Enabled": true
+					},
+					{
+						"Name": "Lager",
+						"Enabled": true
+					},
+					{
+						"Name": "VariableSelections",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoPOI_FTUE_Klombo/JunoPOI_FTUE_Klombo.uplugin",
 			"Descriptor": 
 			{
@@ -86958,6 +87320,11 @@
 						"Optional": true
 					},
 					{
+						"Name": "JunoPOI_BruteLair",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
 						"Name": "JunoPOI_FTUE_Klombo",
 						"Enabled": true,
 						"Optional": true
@@ -87323,6 +87690,11 @@
 						"Optional": true
 					},
 					{
+						"Name": "JunoTG_CactusRMT_Prop",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
 						"Name": "JunoTG_CarShowroom_Bldg",
 						"Enabled": true,
 						"Optional": true
@@ -87379,6 +87751,11 @@
 					},
 					{
 						"Name": "JunoTG_ConcertStage_Bldg",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "JunoTG_CookFishCollect",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -88083,12 +88460,22 @@
 						"Optional": true
 					},
 					{
+						"Name": "JunoTM_BountyBoard",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
 						"Name": "JunoTM_BrickBuilt_Bldg",
 						"Enabled": true,
 						"Optional": true
 					},
 					{
 						"Name": "JunoTM_BubbleTeaShop_Prop",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "JunoTM_CactusRMT_Prop",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -88149,6 +88536,11 @@
 					},
 					{
 						"Name": "JunoTM_ConcertStage_Bldg",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "JunoTM_CookFishCollect",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -88393,6 +88785,11 @@
 						"Optional": true
 					},
 					{
+						"Name": "JunoTM_Requests_Prop",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
 						"Name": "JunoTM_RetailCinema_Prop",
 						"Enabled": true,
 						"Optional": true
@@ -88588,6 +88985,21 @@
 						"Optional": true
 					},
 					{
+						"Name": "Sprout_Requests",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "SproutAccolades",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "SproutAmbientLife",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
 						"Name": "SproutEnv",
 						"Enabled": true,
 						"Optional": true
@@ -88603,17 +89015,17 @@
 						"Optional": true
 					},
 					{
-						"Name": "SproutRoot",
-						"Enabled": true,
-						"Optional": true
-					},
-					{
 						"Name": "SproutTG_ArtCollective_Bldg",
 						"Enabled": true,
 						"Optional": true
 					},
 					{
 						"Name": "SproutTG_ArtDeco_Bldg",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "SproutTG_BountyBoard",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -88664,6 +89076,11 @@
 					},
 					{
 						"Name": "SproutTG_PizzaShop_Bldg",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "SproutTG_Requests_Prop",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -90394,88 +90811,6 @@
 			}
 		},
 		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTG_AirBubble/JunoTG_AirBubble.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"NoCode": true,
-				"ExplicitlyLoaded": true,
-				"LocalizationTargets": [
-					{
-						"Name": "JunoTG_AirBubble",
-						"LoadingPolicy": "Game",
-						"ConfigGenerationPolicy": "Auto"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "JunoBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAtomAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGameNative",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoCommonArtAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGame",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTheme_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoThemeMinimal_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "Crafting",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoCraftingBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAudioBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTM_AirBubble",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoProceduralWorld",
-						"Enabled": true
-					},
-					{
-						"Name": "BuilderTool",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTG_AnimalRescue_Prop/JunoTG_AnimalRescue_Prop.uplugin",
 			"Descriptor": 
 			{
@@ -90999,6 +91334,88 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTG_CactusRMT_Prop/JunoTG_CactusRMT_Prop.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"NoCode": true,
+				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "JunoTG_CactusRMT_Prop",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "JunoBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAtomAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGameNative",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoCommonArtAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGame",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoTheme_Foundations",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoThemeMinimal_Foundations",
+						"Enabled": true
+					},
+					{
+						"Name": "Crafting",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoCraftingBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAudioBase",
+						"Enabled": true
+					},
+					{
+						"Name": "BuilderTool",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoTM_CactusRMT_Prop",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoTG_MechanicShop_Prop",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTG_CarShowroom_Bldg/JunoTG_CarShowroom_Bldg.uplugin",
 			"Descriptor": 
 			{
@@ -91064,77 +91481,6 @@
 					},
 					{
 						"Name": "JunoTM_CarShowroom_Bldg",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTG_CarShowroom_Prop/JunoTG_CarShowroom_Prop.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"NoCode": true,
-				"ExplicitlyLoaded": true,
-				"Plugins": [
-					{
-						"Name": "JunoBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAtomAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGameNative",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoCommonArtAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGame",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTheme_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoThemeMinimal_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "Crafting",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoCraftingBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAudioBase",
-						"Enabled": true
-					},
-					{
-						"Name": "BuilderTool",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTM_CarShowroom_Prop",
 						"Enabled": true
 					}
 				]
@@ -91880,6 +92226,81 @@
 					},
 					{
 						"Name": "JunoTM_ConcertStage_Bldg",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTG_CookFishCollect/JunoTG_CookFishCollect.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"NoCode": true,
+				"ExplicitlyLoaded": true,
+				"Plugins": [
+					{
+						"Name": "JunoBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAtomAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGameNative",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoCommonArtAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGame",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoTheme_Foundations",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoThemeMinimal_Foundations",
+						"Enabled": true
+					},
+					{
+						"Name": "Crafting",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoCraftingBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAudioBase",
+						"Enabled": true
+					},
+					{
+						"Name": "BuilderTool",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoTM_CookFishCollect",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoProceduralWorld",
 						"Enabled": true
 					}
 				]
@@ -94325,77 +94746,6 @@
 			}
 		},
 		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTG_HoverBoard_Prop/JunoTG_HoverBoard_Prop.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"NoCode": true,
-				"ExplicitlyLoaded": true,
-				"Plugins": [
-					{
-						"Name": "JunoBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAtomAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGameNative",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoCommonArtAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGame",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTheme_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoThemeMinimal_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "Crafting",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoCraftingBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAudioBase",
-						"Enabled": true
-					},
-					{
-						"Name": "BuilderTool",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTM_HoverBoard_Prop",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTG_JobGardener_Prop/JunoTG_JobGardener_Prop.uplugin",
 			"Descriptor": 
 			{
@@ -94943,81 +95293,6 @@
 					},
 					{
 						"Name": "BuilderTool",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTG_PizzaShop_Props/JunoTG_PizzaShop_Props.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"NoCode": true,
-				"ExplicitlyLoaded": true,
-				"Plugins": [
-					{
-						"Name": "JunoBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAtomAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGameNative",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoCommonArtAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGame",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTheme_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoThemeMinimal_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "Crafting",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoCraftingBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAudioBase",
-						"Enabled": true
-					},
-					{
-						"Name": "BuilderTool",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTM_PizzaShop_Props",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoProceduralWorld",
 						"Enabled": true
 					}
 				]
@@ -96123,56 +96398,6 @@
 			}
 		},
 		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTM_AirBubble/JunoTM_AirBubble.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"NoCode": true,
-				"ExplicitlyLoaded": true,
-				"Plugins": [
-					{
-						"Name": "JunoBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGameNative",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoCraftingBase",
-						"Enabled": true
-					},
-					{
-						"Name": "Crafting",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAtomAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoThemeMinimal_Foundations",
-						"Enabled": true
-					}
-				],
-				"DisallowedPlugins": [
-					"JunoGame"
-				]
-			}
-		},
-		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTM_AncientPalace_Prop/JunoTM_AncientPalace_Prop.uplugin",
 			"Descriptor": 
 			{
@@ -96553,6 +96778,56 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTM_BountyBoard/JunoTM_BountyBoard.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"NoCode": true,
+				"ExplicitlyLoaded": true,
+				"Plugins": [
+					{
+						"Name": "JunoBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGameNative",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoCraftingBase",
+						"Enabled": true
+					},
+					{
+						"Name": "Crafting",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAtomAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoThemeMinimal_Foundations",
+						"Enabled": true
+					}
+				],
+				"DisallowedPlugins": [
+					"JunoGame"
+				]
+			}
+		},
+		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTM_BrickBuilt_Bldg/JunoTM_BrickBuilt_Bldg.uplugin",
 			"Descriptor": 
 			{
@@ -96653,7 +96928,7 @@
 			}
 		},
 		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTM_CarShowroom_Bldg/JunoTM_CarShowroom_Bldg.uplugin",
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTM_CactusRMT_Prop/JunoTM_CactusRMT_Prop.uplugin",
 			"Descriptor": 
 			{
 				"FileVersion": 3,
@@ -96671,6 +96946,13 @@
 				"CanContainContent": true,
 				"NoCode": true,
 				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "JunoTM_CactusRMT_Prop",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
 				"Plugins": [
 					{
 						"Name": "JunoBase",
@@ -96695,6 +96977,18 @@
 					{
 						"Name": "JunoThemeMinimal_Foundations",
 						"Enabled": true
+					},
+					{
+						"Name": "JunoBuildingCosmetics",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoThemeMinimal_LionKnightCastle",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoThemeMinimal_AnarchyAcres",
+						"Enabled": true
 					}
 				],
 				"DisallowedPlugins": [
@@ -96703,7 +96997,7 @@
 			}
 		},
 		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTM_CarShowroom_Prop/JunoTM_CarShowroom_Prop.uplugin",
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTM_CarShowroom_Bldg/JunoTM_CarShowroom_Bldg.uplugin",
 			"Descriptor": 
 			{
 				"FileVersion": 3,
@@ -97215,6 +97509,56 @@
 		},
 		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTM_ConcertStage_Bldg/JunoTM_ConcertStage_Bldg.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"NoCode": true,
+				"ExplicitlyLoaded": true,
+				"Plugins": [
+					{
+						"Name": "JunoBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGameNative",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoCraftingBase",
+						"Enabled": true
+					},
+					{
+						"Name": "Crafting",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAtomAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoThemeMinimal_Foundations",
+						"Enabled": true
+					}
+				],
+				"DisallowedPlugins": [
+					"JunoGame"
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTM_CookFishCollect/JunoTM_CookFishCollect.uplugin",
 			"Descriptor": 
 			{
 				"FileVersion": 3,
@@ -99137,56 +99481,6 @@
 			}
 		},
 		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTM_HoverBoard_Prop/JunoTM_HoverBoard_Prop.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"NoCode": true,
-				"ExplicitlyLoaded": true,
-				"Plugins": [
-					{
-						"Name": "JunoBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGameNative",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoCraftingBase",
-						"Enabled": true
-					},
-					{
-						"Name": "Crafting",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAtomAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoThemeMinimal_Foundations",
-						"Enabled": true
-					}
-				],
-				"DisallowedPlugins": [
-					"JunoGame"
-				]
-			}
-		},
-		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTM_JobGardener_Prop/JunoTM_JobGardener_Prop.uplugin",
 			"Descriptor": 
 			{
@@ -99674,56 +99968,6 @@
 			}
 		},
 		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTM_PizzaShop_Props/JunoTM_PizzaShop_Props.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"NoCode": true,
-				"ExplicitlyLoaded": true,
-				"Plugins": [
-					{
-						"Name": "JunoBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGameNative",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoCraftingBase",
-						"Enabled": true
-					},
-					{
-						"Name": "Crafting",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAtomAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoThemeMinimal_Foundations",
-						"Enabled": true
-					}
-				],
-				"DisallowedPlugins": [
-					"JunoGame"
-				]
-			}
-		},
-		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTM_RainbowLute/JunoTM_RainbowLute.uplugin",
 			"Descriptor": 
 			{
@@ -99841,6 +100085,56 @@
 					},
 					{
 						"Name": "JunoBuildingCosmetics",
+						"Enabled": true
+					}
+				],
+				"DisallowedPlugins": [
+					"JunoGame"
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoTM_Requests_Prop/JunoTM_Requests_Prop.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"NoCode": true,
+				"ExplicitlyLoaded": true,
+				"Plugins": [
+					{
+						"Name": "JunoBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGameNative",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoCraftingBase",
+						"Enabled": true
+					},
+					{
+						"Name": "Crafting",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAtomAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoThemeMinimal_Foundations",
 						"Enabled": true
 					}
 				],
@@ -106532,36 +106826,6 @@
 			}
 		},
 		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoVehicleCosmetics/JunoVehicleCosmetics.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"ExplicitlyLoaded": true,
-				"Plugins": [
-					{
-						"Name": "JunoBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAtomAssets",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/JunoVehicles_StarterVehicle/JunoVehicles_StarterVehicle.uplugin",
 			"Descriptor": 
 			{
@@ -107462,6 +107726,47 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutAccolades/SproutAccolades.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "SproutAccolades",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "SproutNative",
+						"Enabled": true
+					},
+					{
+						"Name": "Accolades",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutSmartObject",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutBuilding/SproutBuilding.uplugin",
 			"Descriptor": 
 			{
@@ -107589,6 +107894,67 @@
 					},
 					{
 						"Name": "SproutCore",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutCookFishCollectUI/SproutCookFishCollectUI.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "SproutGameplayPluginTemplate",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "JunoBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGame",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGameNative",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutCore",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutNative",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutGameUI",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutTG_CookFishCollect",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutItems_Handhelds",
 						"Enabled": true
 					}
 				]
@@ -108284,90 +108650,9 @@
 					{
 						"Name": "QuestUI",
 						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutGameplayPluginTemplate/SproutGameplayPluginTemplate.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"ExplicitlyLoaded": true,
-				"LocalizationTargets": [
-					{
-						"Name": "SproutGameplayPluginTemplate",
-						"LoadingPolicy": "Game",
-						"ConfigGenerationPolicy": "Auto"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "JunoBase",
-						"Enabled": true
 					},
 					{
-						"Name": "JunoGame",
-						"Enabled": true
-					},
-					{
-						"Name": "Mantis",
-						"Enabled": true
-					},
-					{
-						"Name": "Crafting",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGameNative",
-						"Enabled": true
-					},
-					{
-						"Name": "FigureCharacter",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAtomAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoCommonArtAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "Energy",
-						"Enabled": true
-					},
-					{
-						"Name": "FortMetaSoundWeapon",
-						"Enabled": true
-					},
-					{
-						"Name": "FigureCosmetics",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutCore",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutNative",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAI",
+						"Name": "SproutTG_CookFishCollect",
 						"Enabled": true
 					}
 				]
@@ -109536,6 +109821,7 @@
 				"SupportURL": "",
 				"EnabledByDefault": false,
 				"CanContainContent": true,
+				"Sealed": true,
 				"NoCode": true,
 				"ExplicitlyLoaded": true,
 				"Plugins": [
@@ -109645,7 +109931,17 @@
 						"Optional": true
 					},
 					{
+						"Name": "JunoTM_BountyBoard",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
 						"Name": "JunoTM_BrickBuilt_Bldg",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "JunoTM_CactusRMT_Prop",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -109835,12 +110131,32 @@
 						"Optional": true
 					},
 					{
+						"Name": "Sprout_JobBoard",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "Sprout_Requests",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "SproutAccolades",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
 						"Name": "SproutAI",
 						"Enabled": true,
 						"Optional": true
 					},
 					{
 						"Name": "SproutConversations",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "SproutCookFishCollectUI",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -110030,6 +110346,11 @@
 						"Optional": true
 					},
 					{
+						"Name": "SproutTG_BountyBoard",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
 						"Name": "SproutTG_BrickBuilt_Bldg",
 						"Enabled": true,
 						"Optional": true
@@ -110041,6 +110362,11 @@
 					},
 					{
 						"Name": "SproutTG_BubbleTeaShop_Prop",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "SproutTG_CactusRMT_Prop",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -110106,6 +110432,11 @@
 					},
 					{
 						"Name": "SproutTG_ConcertStage_Prop",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "SproutTG_CookFishCollect",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -110491,6 +110822,11 @@
 					},
 					{
 						"Name": "SproutTG_RavenCastle_Prop",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "SproutTG_Requests_Prop",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -110993,100 +111329,6 @@
 					},
 					{
 						"Name": "JunoTG_ANP",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutTG_AirBubble_Prop/SproutTG_AirBubble_Prop.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"NoCode": true,
-				"ExplicitlyLoaded": true,
-				"LocalizationTargets": [
-					{
-						"Name": "SproutTG_AirBubble_Prop",
-						"LoadingPolicy": "Game",
-						"ConfigGenerationPolicy": "Auto"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "JunoBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAtomAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGameNative",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoCommonArtAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutCore",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTheme_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoThemeMinimal_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAudioBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTM_AirBubble",
-						"Enabled": true
-					},
-					{
-						"Name": "BuilderTool",
-						"Enabled": true
-					},
-					{
-						"Name": "ItemGameplay",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutSmartObject",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutBuilding",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTG_AirBubble",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutItems_Handhelds",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutNative",
 						"Enabled": true
 					}
 				]
@@ -111628,6 +111870,13 @@
 				"CanContainContent": true,
 				"NoCode": true,
 				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "SproutTG_ArtCollective_Prop",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
 				"Plugins": [
 					{
 						"Name": "JunoBase",
@@ -112124,6 +112373,96 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutTG_BountyBoard/SproutTG_BountyBoard.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"NoCode": true,
+				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "SproutTG_BountyBoard",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "JunoBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAtomAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGameNative",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoCommonArtAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutCore",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoTheme_Foundations",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoThemeMinimal_Foundations",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAudioBase",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutNative",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutJobs_Base",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGame",
+						"Enabled": true
+					},
+					{
+						"Name": "FigureCharacter",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutSmartObject",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoTM_BountyBoard",
+						"Enabled": true
+					},
+					{
+						"Name": "Sprout_JobBoard",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutTG_BrickBuilt_Bldg/SproutTG_BrickBuilt_Bldg.uplugin",
 			"Descriptor": 
 			{
@@ -112399,6 +112738,100 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutTG_CactusRMT_Prop/SproutTG_CactusRMT_Prop.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"NoCode": true,
+				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "SproutTG_CactusRMT_Prop",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "JunoBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAtomAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGameNative",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoCommonArtAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutCore",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoTheme_Foundations",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoThemeMinimal_Foundations",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAudioBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoTM_CactusRMT_Prop",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutNative",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutSmartObject",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGame",
+						"Enabled": true
+					},
+					{
+						"Name": "BuilderTool",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutBuilding",
+						"Enabled": true
+					},
+					{
+						"Name": "ItemGameplay",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoTG_CactusRMT_Prop",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutTG_CarShowroom_Bldg/SproutTG_CarShowroom_Bldg.uplugin",
 			"Descriptor": 
 			{
@@ -112456,93 +112889,6 @@
 					},
 					{
 						"Name": "SproutNative",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutTG_CarShowroom_Prop/SproutTG_CarShowroom_Prop.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"NoCode": true,
-				"ExplicitlyLoaded": true,
-				"Plugins": [
-					{
-						"Name": "JunoBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAtomAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGameNative",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoCommonArtAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutCore",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTheme_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoThemeMinimal_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAudioBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTM_CarShowroom_Prop",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTG_CarShowroom_Prop",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutSmartObject",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutNative",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutBuilding",
-						"Enabled": true
-					},
-					{
-						"Name": "ItemGameplay",
-						"Enabled": true
-					},
-					{
-						"Name": "BuilderTool",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGame",
 						"Enabled": true
 					}
 				]
@@ -113592,6 +113938,13 @@
 				"CanContainContent": true,
 				"NoCode": true,
 				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "SproutTG_CookFishCollect",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
 				"Plugins": [
 					{
 						"Name": "JunoBase",
@@ -113627,6 +113980,66 @@
 					},
 					{
 						"Name": "SproutNative",
+						"Enabled": true
+					},
+					{
+						"Name": "FigureCharacter",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoFishing",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoTM_CookFishCollect",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGame",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutItems_Handhelds",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutSmartObject",
+						"Enabled": true
+					},
+					{
+						"Name": "ItemGameplay",
+						"Enabled": true
+					},
+					{
+						"Name": "BuilderTool",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutBuilding",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutTG_DimSumRestaurant_Prop",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoKlomboGP",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoTM_GameShared",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoTM_SushiRestaurant_Prop",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoSharedAnim",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutJobs_Base",
 						"Enabled": true
 					}
 				]
@@ -114388,69 +114801,6 @@
 			}
 		},
 		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutTG_DirectDasher_Bldg/SproutTG_DirectDasher_Bldg.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"NoCode": true,
-				"ExplicitlyLoaded": true,
-				"Plugins": [
-					{
-						"Name": "JunoBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAtomAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGameNative",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoCommonArtAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutCore",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTheme_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoThemeMinimal_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAudioBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGame",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutNative",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutTG_DurrBurger_Bldg/SproutTG_DurrBurger_Bldg.uplugin",
 			"Descriptor": 
 			{
@@ -114759,73 +115109,6 @@
 					},
 					{
 						"Name": "SproutJobs_Base",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutTG_Experimental/SproutTG_Experimental.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"NoCode": true,
-				"ExplicitlyLoaded": true,
-				"Plugins": [
-					{
-						"Name": "JunoBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAtomAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGameNative",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoCommonArtAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutCore",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTheme_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoThemeMinimal_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAudioBase",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutCreature_Domestic",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutItems_Handhelds",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGame",
 						"Enabled": true
 					}
 				]
@@ -116874,93 +117157,6 @@
 			}
 		},
 		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutTG_HoverBoard_Prop/SproutTG_HoverBoard_Prop.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"NoCode": true,
-				"ExplicitlyLoaded": true,
-				"Plugins": [
-					{
-						"Name": "JunoBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAtomAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGameNative",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoCommonArtAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutCore",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTheme_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoThemeMinimal_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAudioBase",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutNative",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTM_HoverBoard_Prop",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutBuilding",
-						"Enabled": true
-					},
-					{
-						"Name": "BuilderTool",
-						"Enabled": true
-					},
-					{
-						"Name": "ItemGameplay",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutSmartObject",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGame",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTG_HoverBoard_Prop",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutTG_Infection/SproutTG_Infection.uplugin",
 			"Descriptor": 
 			{
@@ -117908,6 +118104,13 @@
 				"CanContainContent": true,
 				"NoCode": true,
 				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "SproutTG_MechanicShop_Prop",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
 				"Plugins": [
 					{
 						"Name": "JunoBase",
@@ -120110,6 +120313,13 @@
 				"CanContainContent": true,
 				"NoCode": true,
 				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "SproutTG_PirateTown_Tower_Bldg",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
 				"Plugins": [
 					{
 						"Name": "JunoBase",
@@ -120224,93 +120434,6 @@
 					},
 					{
 						"Name": "SproutNative",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutTG_PizzaShop_Props/SproutTG_PizzaShop_Props.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"NoCode": true,
-				"ExplicitlyLoaded": true,
-				"Plugins": [
-					{
-						"Name": "JunoBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAtomAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGameNative",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoCommonArtAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutCore",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTheme_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoThemeMinimal_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAudioBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTG_PizzaShop_Props",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutBuilding",
-						"Enabled": true
-					},
-					{
-						"Name": "ItemGameplay",
-						"Enabled": true
-					},
-					{
-						"Name": "BuilderTool",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutSmartObject",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTM_PizzaShop_Props",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutNative",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGame",
 						"Enabled": true
 					}
 				]
@@ -120735,6 +120858,88 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutTG_Requests_Prop/SproutTG_Requests_Prop.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"NoCode": true,
+				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "SproutTG_Requests_Prop",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "JunoBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAtomAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGameNative",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoCommonArtAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutCore",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoTheme_Foundations",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoThemeMinimal_Foundations",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAudioBase",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutNative",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutSmartObject",
+						"Enabled": true
+					},
+					{
+						"Name": "FigureCharacter",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoTM_Requests_Prop",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGame",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutTG_RetailCinema_Bldg/SproutTG_RetailCinema_Bldg.uplugin",
 			"Descriptor": 
 			{
@@ -120831,6 +121036,13 @@
 				"CanContainContent": true,
 				"NoCode": true,
 				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "SproutTG_RetailCinema_Prop",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
 				"Plugins": [
 					{
 						"Name": "JunoBase",
@@ -121562,61 +121774,6 @@
 					},
 					{
 						"Name": "FigureCharacter",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutTG_Template/SproutTG_Template.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"NoCode": true,
-				"ExplicitlyLoaded": true,
-				"Plugins": [
-					{
-						"Name": "JunoBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAtomAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGameNative",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoCommonArtAssets",
-						"Enabled": true
-					},
-					{
-						"Name": "SproutCore",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoTheme_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoThemeMinimal_Foundations",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoAudioBase",
 						"Enabled": true
 					}
 				]
@@ -123269,6 +123426,26 @@
 					{
 						"Name": "SproutTG_SoccerGame",
 						"Enabled": true
+					},
+					{
+						"Name": "SproutTG_Requests_Prop",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutTG_CookFishCollect",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutTG_BountyBoard",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutAmbientLife",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoTG_GenericDecor",
+						"Enabled": true
 					}
 				]
 			}
@@ -123856,6 +124033,48 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/Sprout/SproutAmbientLife/SproutAmbientLife.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"Plugins": [
+					{
+						"Name": "JunoBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGame",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutCore",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAtomAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAudioBase",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/Sprout/SproutQuest_Dailies/SproutQuest_Dailies.uplugin",
 			"Descriptor": 
 			{
@@ -123891,6 +124110,188 @@
 					},
 					{
 						"Name": "FortniteCoreUI",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/Sprout_JobBoard/Sprout_JobBoard.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "SproutGameplayPluginTemplate",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "JunoBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGame",
+						"Enabled": true
+					},
+					{
+						"Name": "Mantis",
+						"Enabled": true
+					},
+					{
+						"Name": "Crafting",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGameNative",
+						"Enabled": true
+					},
+					{
+						"Name": "FigureCharacter",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAtomAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoCommonArtAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "Energy",
+						"Enabled": true
+					},
+					{
+						"Name": "FortMetaSoundWeapon",
+						"Enabled": true
+					},
+					{
+						"Name": "FigureCosmetics",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutCore",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutNative",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAI",
+						"Enabled": true
+					},
+					{
+						"Name": "SparksPermanentQuests",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutJobs_Base",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/Sprout_Requests/Sprout_Requests.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "SproutGameplayPluginTemplate",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "JunoBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGame",
+						"Enabled": true
+					},
+					{
+						"Name": "Mantis",
+						"Enabled": true
+					},
+					{
+						"Name": "Crafting",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGameNative",
+						"Enabled": true
+					},
+					{
+						"Name": "FigureCharacter",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAtomAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoCommonArtAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "Energy",
+						"Enabled": true
+					},
+					{
+						"Name": "FortMetaSoundWeapon",
+						"Enabled": true
+					},
+					{
+						"Name": "FigureCosmetics",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutCore",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutNative",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoAI",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutJobs_Base",
 						"Enabled": true
 					}
 				]
@@ -130663,6 +131064,48 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/RankedTrooper/RankedTrooper.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"Plugins": [
+					{
+						"Name": "BattlePassPermanentQuests",
+						"Enabled": true
+					},
+					{
+						"Name": "OfferCatalog",
+						"Enabled": true
+					},
+					{
+						"Name": "BRCosmetics",
+						"Enabled": true
+					},
+					{
+						"Name": "FortniteCoreUI",
+						"Enabled": true
+					},
+					{
+						"Name": "FortUILibrary",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Reboot/Reboot.uplugin",
 			"Descriptor": 
 			{
@@ -130703,6 +131146,48 @@
 				"Plugins": [
 					{
 						"Name": "JunoTM_Vampire",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Replay/Replay.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"Modules": [
+					{
+						"Name": "ReplayRuntime",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "ReplayUI",
+						"Type": "ClientOnly",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "FortUILibrary",
+						"Enabled": true
+					},
+					{
+						"Name": "FortniteCoreUI",
 						"Enabled": true
 					}
 				]
@@ -137355,6 +137840,14 @@
 					{
 						"Name": "VehicleCosmetics",
 						"Enabled": true
+					},
+					{
+						"Name": "VehicleAudio",
+						"Enabled": true
+					},
+					{
+						"Name": "VehicleCosmeticsAudio",
+						"Enabled": true
 					}
 				]
 			}
@@ -139563,10 +140056,6 @@
 						"Enabled": true
 					},
 					{
-						"Name": "DelMarGame",
-						"Enabled": true
-					},
-					{
 						"Name": "EpicBaseTextures",
 						"Enabled": true
 					},
@@ -139584,10 +140073,6 @@
 					},
 					{
 						"Name": "Hermes",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoBase",
 						"Enabled": true
 					},
 					{
@@ -140153,6 +140638,10 @@
 						"Enabled": true
 					},
 					{
+						"Name": "OnlineDependencies",
+						"Enabled": true
+					},
+					{
 						"Name": "OnlineServices",
 						"Enabled": true
 					},
@@ -140202,6 +140691,10 @@
 				"Plugins": [
 					{
 						"Name": "FNOnlineFramework",
+						"Enabled": true
+					},
+					{
+						"Name": "OnlineDependencies",
 						"Enabled": true
 					},
 					{
@@ -142182,6 +142675,10 @@
 					}
 				],
 				"Plugins": [
+					{
+						"Name": "OnlineDependencies",
+						"Enabled": true
+					},
 					{
 						"Name": "OnlineFramework",
 						"Enabled": true

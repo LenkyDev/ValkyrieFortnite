@@ -1,4 +1,4 @@
-using {/UnrealEngine.com/EpicGamesRestricted/Network}
+using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 using {/Verse.org/SpatialMath}
 using {/Verse.org/Assets}
 using {/Verse.org/Native}

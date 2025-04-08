@@ -2,7 +2,7 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-34.21-CL-41092960
+# Generated from build: ++Fortnite+Release-34.30-CL-41387772
 #################################################
 
 using {/Verse.org/Assets}
@@ -186,6 +186,9 @@ Temporary<public> := module:
 
             # Removes `Widget` from this `player_ui`.
             RemoveWidget<native><public>(Widget:widget):void
+
+            # Sets the user's focus on this widget. The target widget must be focusable, otherwise this has no effect.
+            SetFocus<native><epic_internal>(Widget:widget):void
 
         # Base class for all UI elements drawn on the `player`'s screen.
         widget<native><public> := class<abstract><unique><epic_internal>:
@@ -1477,7 +1480,7 @@ Itemization<public> := module:
     using {/UnrealEngine.com/Abilities}
     using {/Verse.org/Assets}
     using {/Verse.org/Simulation/Tags}
-    using {/UnrealEngine.com/EpicGamesRestricted/Network}
+    using {/Verse.org/Temporary/EpicGamesRestricted/Network}
     using {/Verse.org/Simulation}
     using {/Verse.org/Native}
     using {/Verse.org/SceneGraph}
@@ -2140,12 +2143,3 @@ Abilities<public> := module:
         Name<epic_internal>:string = external {}
 
 
-# Module import path: /UnrealEngine.com/EpicGamesRestricted
-EpicGamesRestricted<public> := module:
-    # Module import path: /UnrealEngine.com/EpicGamesRestricted/Network
-    Network<public> := module:
-        @attribscope_data
-        @customattribhandler
-        replicated_attribute<epic_internal> := class<computes><internal>(attribute):
-
-        replicated<constructor><epic_internal>(ReplicationArgs:string)<computes>:replicated_attribute = external {}

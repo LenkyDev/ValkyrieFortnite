@@ -1,6 +1,6 @@
-# Module import path: /UnrealEngine.com/EpicGamesRestricted
+# Module import path: /Verse.org/Temporary/EpicGamesRestricted
 EpicGamesRestricted<public> := module:
-    # Module import path: /UnrealEngine.com/EpicGamesRestricted/Network
+    # Module import path: /Verse.org/Temporary/EpicGamesRestricted/Network
     Network<public> := module:
         @attribscope_data
         @customattribhandler

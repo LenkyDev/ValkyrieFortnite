@@ -491,8 +491,8 @@ AI<public> := module:
         Unreachable
 
     movement_style<native><epic_internal> := enum:
-        Walking
-        Running
+        (/Fortnite.com/AI/movement_style:)Walking
+        (/Fortnite.com/AI/movement_style:)Running
 
     movement_type<native><public> := class<concrete><final><computes><epic_internal>:
         MovementStyle<native><epic_internal>:movement_style = external {}

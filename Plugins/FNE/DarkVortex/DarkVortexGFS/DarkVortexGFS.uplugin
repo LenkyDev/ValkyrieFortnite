@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/DarkVortex",
-	"FortReleaseVersion": "34.21",
+	"FortReleaseVersion": "34.30",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"RequiredEntitlements": {
@@ -33,6 +33,12 @@
 		{
 			"Name": "DarkV_Meadow_Comp",
 			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "DarkVortexCosmetics",
+			"Enabled": true,
+			"Activate": true,
 			"Optional": true
 		},
 		{
