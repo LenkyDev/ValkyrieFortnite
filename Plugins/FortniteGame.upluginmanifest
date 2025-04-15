@@ -34596,11 +34596,27 @@
 						"Enabled": true
 					},
 					{
+						"Name": "OnlineSubsystem",
+						"Enabled": true
+					},
+					{
+						"Name": "OnlineSubsystemUtils",
+						"Enabled": true
+					},
+					{
+						"Name": "OnlineSubsystemMcp",
+						"Enabled": true
+					},
+					{
 						"Name": "QRCodeGenerator",
 						"Enabled": true
 					},
 					{
 						"Name": "FortUILibrary",
+						"Enabled": true
+					},
+					{
+						"Name": "PlayspaceSystem",
 						"Enabled": true
 					}
 				]
