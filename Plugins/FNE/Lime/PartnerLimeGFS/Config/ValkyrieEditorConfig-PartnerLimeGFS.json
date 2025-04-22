@@ -233,6 +233,18 @@
 			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeCosmeticSpawn.CharacterModifier_LimeCosmeticSpawn_C":
 			{
 				"Visible": true
+			},
+			"/NPCDefault/Types/CharacterType_Custom.CharacterType_Custom_C":						
+			{
+				"Visible": true 
+			},
+			"/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C":							
+			{
+				"Visible": true 
+			},
+			"/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C":					
+			{ 
+				"Visible": true 
 			}
 		},
 		"AllowedEditorModes": {
@@ -350,6 +362,21 @@
 				"DenyList": [ "ColorThemeLibrary" ],
 				"bAllowListAllProperties": true,
 				"bAllowListAllSubclassProperties": true
+			},
+			{
+				"Type": "/NPCDefault/Types/CharacterType_Custom.CharacterType_Custom_C",
+				"AllowList": [ "DisplayName" ],
+				"bAllowListAllProperties": false,
+				"bAllowListAllSubclassProperties": false
+			},
+			{
+				"Type": "/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C",
+				"AllowList": [ "SelectedAI", "DisplayName" ]
+			},
+			{
+				"Type": "/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C",
+				"AllowList": [ "DisplayName" ], 
+				"DenyList": [ "SelectedAI" ]
 			}
         ]
     }

@@ -53,11 +53,6 @@
 			"LoadingPhase": "Default"
 		},
 		{
-			"Name": "SolarisDebugAdapter",
-			"Type": "Runtime",
-			"LoadingPhase": "None"
-		},
-		{
 			"Name": "VerseWorkflowServer",
 			"Type": "EditorNoCommandlet",
 			"LoadingPhase": "None"

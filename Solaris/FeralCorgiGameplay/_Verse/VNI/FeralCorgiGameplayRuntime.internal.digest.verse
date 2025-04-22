@@ -89,21 +89,21 @@ game_state_component_bridge<native><epic_internal> := class<concrete>:
 
 # Module import path: /Fortnite.com/FeralCorgi/PlayerLoadingStatusBridge
 PlayerLoadingStatusBridge<epic_internal> := module:
-    AwaitPlayersLoading<native><epic_internal>((local:)Playspace:fort_playspace)<suspends>:void
+    AwaitPlayersLoading<native><epic_internal>(Playspace:fort_playspace)<suspends>:void
 
-    IsPlayerLoading<native><epic_internal>((local:)Playspace:fort_playspace, Player:player)<transacts><decides>:void
+    IsPlayerLoading<native><epic_internal>(Playspace:fort_playspace, Player:player)<transacts><decides>:void
 
-    GetPlayersLoading<native><epic_internal>((local:)Playspace:fort_playspace)<computes><reads>:[]player
+    GetPlayersLoading<native><epic_internal>(Playspace:fort_playspace)<computes><reads>:[]player
 
-    GetNumPlayersLoading<native><epic_internal>((local:)Playspace:fort_playspace)<computes><reads>:int
+    GetNumPlayersLoading<native><epic_internal>(Playspace:fort_playspace)<computes><reads>:int
 
 # Module import path: /Fortnite.com/FeralCorgi/ReservationHoldingBridge
 ReservationHoldingBridge<epic_internal> := module:
-    EnableLeavingPlayerReservationHolding<native><epic_internal>((local:)Playspace:fort_playspace, HoldingTime:float):void
+    EnableLeavingPlayerReservationHolding<native><epic_internal>(Playspace:fort_playspace, HoldingTime:float):void
 
-    RestoreSessionReservationHoldingSettings<native><epic_internal>((local:)Playspace:fort_playspace):void
+    RestoreSessionReservationHoldingSettings<native><epic_internal>(Playspace:fort_playspace):void
 
-    FreeHeldReservation<native><epic_internal>((local:)Playspace:fort_playspace, Player:player):logic
+    FreeHeldReservation<native><epic_internal>(Playspace:fort_playspace, Player:player):logic
 
 ranked_track_progress<native><epic_internal> := struct<concrete>:
     GameId<native><public>:string = external {}
@@ -132,33 +132,33 @@ ranked_track_progress<native><epic_internal> := struct<concrete>:
 
 # Module import path: /Fortnite.com/FeralCorgi/SessionAttributesBridge
 SessionAttributesBridge<epic_internal> := module:
-    IsRankedMatch<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
+    IsRankedMatch<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
-    IsVKEdit<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
+    IsVKEdit<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
-    IsPlaytest<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
+    IsPlaytest<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
-    IsPrivateMatch<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
+    IsPrivateMatch<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
-    IsUsingCustomMatchKeys<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
+    IsUsingCustomMatchKeys<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
-    IsInEditMode<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
+    IsInEditMode<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
-    IsInPlayMode<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
+    IsInPlayMode<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
-    IsMinigameInProgress<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
+    IsMinigameInProgress<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
     IsQABackend<native><epic_internal>()<transacts><decides>:void
 
-    EndMatch<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
+    EndMatch<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
-    GetMinigameRound<native><epic_internal>((local:)Playspace:fort_playspace)<transacts>:int
+    GetMinigameRound<native><epic_internal>(Playspace:fort_playspace)<transacts>:int
 
-    GetTotalMinigameRounds<native><epic_internal>((local:)Playspace:fort_playspace)<transacts>:int
+    GetTotalMinigameRounds<native><epic_internal>(Playspace:fort_playspace)<transacts>:int
 
     ApplyMatchEarlyLeaveBanhammerToPlayer<native><epic_internal>(Player:player, Details:string):logic
 
-    GetUpdatedRankForPlayers<native><epic_internal>((local:)Playspace:fort_playspace, Players:[]player)<suspends>:[]ranked_track_progress
+    GetUpdatedRankForPlayers<native><epic_internal>(Playspace:fort_playspace, Players:[]player)<suspends>:[]ranked_track_progress
 
 player_display_info<native><epic_internal> := struct:
     Image<native>:texture

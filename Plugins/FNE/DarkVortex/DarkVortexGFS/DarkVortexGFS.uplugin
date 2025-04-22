@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/DarkVortex",
-	"FortReleaseVersion": "34.30",
+	"FortReleaseVersion": "34.40",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"RequiredEntitlements": {

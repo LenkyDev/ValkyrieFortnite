@@ -1,3 +1,5 @@
+using {/Verse.org/Colors}
+using {/Verse.org/Assets}
 using {/Fortnite.com/Devices}
 using {/Verse.org/Native}
 using {/Verse.org/Simulation}
@@ -169,3 +171,17 @@ FN1Native<public> := module:
             GetPhaseIndex<native><epic_internal>()<transacts><decides>:int
 
             SetCurrentPhase<native><epic_internal>(InCurrentPhase:int)<transacts>:void
+
+    player_ui_display_info<native><epic_internal> := struct:
+        Image<native>:texture
+
+        LargeImage<native>:texture
+
+        SmallImage<native>:texture
+
+        SquadColor<native>:color
+
+        CurrentXP<native>:int
+
+    player_ui_display_info_manager<native><epic_internal> := class:
+        GetDisplayInfo<native><epic_internal>(InPlayer:player)<computes><reads>:player_ui_display_info

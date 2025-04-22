@@ -2,7 +2,7 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-34.30-CL-41588354
+# Generated from build: ++Fortnite+Release-34.40-CL-41753727
 #################################################
 
 Devices<public> := module:
@@ -557,6 +557,32 @@ Devices<public> := module:
     # Allows players to change their outfit in game!
     changing_booth_device<public> := class<concrete><final>(creative_device_base):
 
+    # Used to create a light which can have its color and brightness manipulated in response to in-game events.
+    customizable_light_device<public> := class<concrete><final>(creative_device_base):
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Resets the light to its initial state.
+        Reset<public>():void = external {}
+
+        # Turns on the light.
+        TurnOn<public>():void = external {}
+
+        # Turns off the light.
+        TurnOff<public>():void = external {}
+
+        # Toggles between `TurnOn` and `TurnOff`.
+        Toggle<public>():void = external {}
+
+        # Dims the light by *Dimming Amount*.
+        DimLight<public>():void = external {}
+
+        # Brightens the light by *Dimming Amount*.
+        UndimLight<public>():void = external {}
+
     # Used to track and react to how many players are in a particular area, and optionally display that information in game.
     player_counter_device<public> := class<concrete><final>(creative_device_base):
         # Signaled when the player count matches *Target Player Count*. The frequency of evaluation against *Target Player Count* can be controlled through the device settings.
@@ -633,31 +659,46 @@ Devices<public> := module:
         # Returns an array of agents that are currently counted by the device.
         GetCountedAgents<public>()<computes><reads>:[]agent = external {}
 
-    # Used to create a light which can have its color and brightness manipulated in response to in-game events.
-    customizable_light_device<public> := class<concrete><final>(creative_device_base):
+    # Used to mark an `agent`'s position on the minimap and configure the information shown for marked `agent`s.
+    # 
+    # Example configuration options:
+    #  * Health and shield bars for marked players.
+    #  * Distance to a marked player.
+    # 
+    # Example marker appearance options:
+    #  * Customized text label displayed on marked players.
+    #  * Alternative minimap icon and icon color.
+    player_marker_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when the first item type monitored on marked agents has changed.
+        # Sends the marked `agent`.
+        FirstItemValueChangedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when the second item type monitored on marked agents has changed.
+        # Sends the marked `agent`.
+        SecondItemValueChangedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when a marked `agent` meets the quantity condition for the first monitored item type (e.g. Fewer Than, Equal To, More Than X).
+        # Sends the marked `agent`.
+        FirstItemValueReachedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when a marked `agent` meets the quantity condition for the second monitored item type (e.g. Fewer Than, Equal To, More Than X).
+        # Sends the marked `agent`.
+        SecondItemValueReachedEvent<public>:listenable(agent) = external {}
+
         # Enables this device.
         Enable<public>():void = external {}
 
         # Disables this device.
         Disable<public>():void = external {}
 
-        # Resets the light to its initial state.
-        Reset<public>():void = external {}
+        # Attaches a marker to `Agent`.
+        Attach<public>(Agent:agent):void = external {}
 
-        # Turns on the light.
-        TurnOn<public>():void = external {}
+        # Detaches a marker from `Agent`.
+        Detach<public>(Agent:agent):void = external {}
 
-        # Turns off the light.
-        TurnOff<public>():void = external {}
-
-        # Toggles between `TurnOn` and `TurnOff`.
-        Toggle<public>():void = external {}
-
-        # Dims the light by *Dimming Amount*.
-        DimLight<public>():void = external {}
-
-        # Brightens the light by *Dimming Amount*.
-        UndimLight<public>():void = external {}
+        # Detaches markers from all marked `agent`s.
+        DetachFromAll<public>():void = external {}
 
     # Used to manipulate the properties of one or more props in a specified area (e.g. Visibility/Destructibility).
     prop_manipulator_device<public> := class<concrete><final>(creative_device_base):
@@ -703,47 +744,6 @@ Devices<public> := module:
 
         # Sets the *Override Resource* option to *No*.
         DisableResourceNodeOverrides<public>():void = external {}
-
-    # Used to mark an `agent`'s position on the minimap and configure the information shown for marked `agent`s.
-    # 
-    # Example configuration options:
-    #  * Health and shield bars for marked players.
-    #  * Distance to a marked player.
-    # 
-    # Example marker appearance options:
-    #  * Customized text label displayed on marked players.
-    #  * Alternative minimap icon and icon color.
-    player_marker_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when the first item type monitored on marked agents has changed.
-        # Sends the marked `agent`.
-        FirstItemValueChangedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when the second item type monitored on marked agents has changed.
-        # Sends the marked `agent`.
-        SecondItemValueChangedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when a marked `agent` meets the quantity condition for the first monitored item type (e.g. Fewer Than, Equal To, More Than X).
-        # Sends the marked `agent`.
-        FirstItemValueReachedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when a marked `agent` meets the quantity condition for the second monitored item type (e.g. Fewer Than, Equal To, More Than X).
-        # Sends the marked `agent`.
-        SecondItemValueReachedEvent<public>:listenable(agent) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Attaches a marker to `Agent`.
-        Attach<public>(Agent:agent):void = external {}
-
-        # Detaches a marker from `Agent`.
-        Detach<public>(Agent:agent):void = external {}
-
-        # Detaches markers from all marked `agent`s.
-        DetachFromAll<public>():void = external {}
 
     # Used in tandem with `race_manager_device` to define the route players must traverse.
     race_checkpoint_device<public> := class<concrete><final>(creative_device_base):
@@ -861,6 +861,67 @@ Devices<public> := module:
         # Returns the speed (in meters per second) at which the prop mover will move the prop to its destination.
         GetTargetSpeed<public>()<transacts>:float = external {}
 
+    # Used to trigger in game events based on real world time.
+    real_time_clock_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when the optional second *Duration* time has been reached.
+        DurationElapsedEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when the target time is reached.
+        TimeReachedEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when this device is enabled after the target time has been reached.
+        EnablingAfterTimeReachedEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when this device is enabled before the target time has been reached.
+        EnablingBeforeTimeReachedEvent<public>:listenable(tuple()) = external {}
+
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+    # Gives the ability to save player progress, location, resources and stats persistently across games.
+    save_point_device<epic_internal> := class<concrete><final>(creative_device_base):
+        # Signaled when data is saved for an `agent`.
+        ActivationEvent<public>:listenable(agent) = external {}
+
+        # Signaled when data is loaded for an `agent`.
+        LoadedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when data is cleared for an `agent`.
+        ClearedEvent<public>:listenable(agent) = external {}
+
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Save data for `Agent`. This function does nothing if `Agent` is already eliminated.
+        Save<public>(Agent:agent):void = external {}
+
+        # Load data for `Agent`.
+        Load<public>(Agent:agent):void = external {}
+
+        # Clears all saved data for `Agent`.
+        ClearData<public>(Agent:agent):void = external {}
+
+        # Clears all saved data for all `agent`s in the current session.
+        ClearDataForAll<public>():void = external {}
+
+        # Saves Data for all players in the current session.
+        SaveDataForAll<public>():void = external {}
+
+        # Loads Data for all players in the current session.
+        LoadDataForAll<public>():void = external {}
+
+        # Sets whether the `agent`'s data is automatically saved while they play.
+        SetAutoSaveEnabled<public>(Enabled:logic):void = external {}
+
+        # Returns whether the `agent`'s data is automatically saved while they play.
+        GetAutoSaveEnabled<public>()<transacts>:logic = external {}
+
     # Generates an AI bot that spawns in a location and usually attacks players when they come in range.
     sentry_device<public> := class<concrete><final>(creative_device_base):
         # Signaled when the sentry is alerted to an `agent`.
@@ -918,47 +979,6 @@ Devices<public> := module:
         # Resets the alert state.
         ResetAlertCooldown<public>():void = external {}
 
-    # Gives the ability to save player progress, location, resources and stats persistently across games.
-    save_point_device<epic_internal> := class<concrete><final>(creative_device_base):
-        # Signaled when data is saved for an `agent`.
-        ActivationEvent<public>:listenable(agent) = external {}
-
-        # Signaled when data is loaded for an `agent`.
-        LoadedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when data is cleared for an `agent`.
-        ClearedEvent<public>:listenable(agent) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Save data for `Agent`. This function does nothing if `Agent` is already eliminated.
-        Save<public>(Agent:agent):void = external {}
-
-        # Load data for `Agent`.
-        Load<public>(Agent:agent):void = external {}
-
-        # Clears all saved data for `Agent`.
-        ClearData<public>(Agent:agent):void = external {}
-
-        # Clears all saved data for all `agent`s in the current session.
-        ClearDataForAll<public>():void = external {}
-
-        # Saves Data for all players in the current session.
-        SaveDataForAll<public>():void = external {}
-
-        # Loads Data for all players in the current session.
-        LoadDataForAll<public>():void = external {}
-
-        # Sets whether the `agent`'s data is automatically saved while they play.
-        SetAutoSaveEnabled<public>(Enabled:logic):void = external {}
-
-        # Returns whether the `agent`'s data is automatically saved while they play.
-        GetAutoSaveEnabled<public>()<transacts>:logic = external {}
-
     # Controls how the sky looks, as well as giving you options for changing the sun, clouds, stars or other objects in the sky above your island. You can control the sun and moon, and add other atmospheric elements like stars, fog and clouds. You can change the color of your light source, and blend different colors for your island's sky to create the perfect atmosphere for your game.
     skydome_device<public> := class<concrete><final>(creative_device_base):
         # Enables this device.
@@ -966,43 +986,6 @@ Devices<public> := module:
 
         # Disables this device.
         Disable<public>():void = external {}
-
-    # Used to trigger in game events based on real world time.
-    real_time_clock_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when the optional second *Duration* time has been reached.
-        DurationElapsedEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when the target time is reached.
-        TimeReachedEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when this device is enabled after the target time has been reached.
-        EnablingAfterTimeReachedEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when this device is enabled before the target time has been reached.
-        EnablingBeforeTimeReachedEvent<public>:listenable(tuple()) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-    # Used to play streamed music.
-    streaming_radio_device<epic_internal> := class<concrete><final>(creative_device_base):
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Starts playing audio for `Agent`.
-        Play<public>(Agent:agent):void = external {}
-
-        # Stops playing audio for `Agent`.
-        Stop<public>(Agent:agent):void = external {}
-
-        # Changes audio channel for `Agent`.
-        ChangeChannel<public>(Agent:agent):void = external {}
 
     # Used to spawn and configure an aerial supply drop that can provide players with customized weapons/supplies.
     supply_drop_spawner_device<public> := class<concrete><final>(creative_device_base):
@@ -1034,6 +1017,23 @@ Devices<public> := module:
 
         # Unlocks the supply crate so `agent`s can open it.
         Unlock<public>():void = external {}
+
+    # Used to play streamed music.
+    streaming_radio_device<epic_internal> := class<concrete><final>(creative_device_base):
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Starts playing audio for `Agent`.
+        Play<public>(Agent:agent):void = external {}
+
+        # Stops playing audio for `Agent`.
+        Stop<public>(Agent:agent):void = external {}
+
+        # Changes audio channel for `Agent`.
+        ChangeChannel<public>(Agent:agent):void = external {}
 
     # Used to allow agents to turn other linked devices on/off or other custom state changes.
     switch_device<public> := class<concrete><final>(creative_device_base):
@@ -1516,25 +1516,6 @@ Devices<public> := module:
         # Disables this device.
         Disable<public>():void = external {}
 
-    emote_controller_device<epic_internal> := class<concrete><final>(creative_device_base):
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Enables `agent` emote effects.
-        EnableAgentEffects<public>():void = external {}
-
-        # Disables `agent` emote effects.
-        DisableAgentEffects<public>():void = external {}
-
-        # Grants emote item to `Agent`.
-        GrantEmoteItem<public>(Agent:agent):void = external {}
-
-        # Grants emote item all `agent`s.
-        GrantEmoteItemAll<public>():void = external {}
-
     # Used to add fishing mechanics to experiences, such as:
     #  * Fishing competitions between players.
     #  * Collecting fish as a resource.
@@ -1559,6 +1540,25 @@ Devices<public> := module:
 
         # Returns all caught and removed items to the inventory. This only works when *Pool Type* is set to *Device Inventory*.
         Restock<public>():void = external {}
+
+    emote_controller_device<epic_internal> := class<concrete><final>(creative_device_base):
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Enables `agent` emote effects.
+        EnableAgentEffects<public>():void = external {}
+
+        # Disables `agent` emote effects.
+        DisableAgentEffects<public>():void = external {}
+
+        # Grants emote item to `Agent`.
+        GrantEmoteItem<public>(Agent:agent):void = external {}
+
+        # Grants emote item all `agent`s.
+        GrantEmoteItemAll<public>():void = external {}
 
     # Used to transform character appearance.
     character_transformation_device<epic_internal> := class<concrete><final>(creative_device_base):
@@ -1665,16 +1665,13 @@ Devices<public> := module:
             # Disables this device.
             Disable<public>():void = external {}
 
-        # Create drum note patterns for Patchwork devices.
-        drum_sequencer_device<public> := class<concrete><final>(patchwork_device):
-
-        # Modify a setting on another Patchwork device in a regularly repeating pattern.
-        lfo_modulator_device<public> := class<concrete><final>(patchwork_device):
+        cable_splitter_device<public> := class<concrete><final>(patchwork_device):
 
         # Apply a distortion effect to Patchwork audio inputs.
         distortion_effect_device<public> := class<concrete><final>(patchwork_device):
 
-        cable_splitter_device<public> := class<concrete><final>(patchwork_device):
+        # Modify a setting on another Patchwork device in a regularly repeating pattern.
+        lfo_modulator_device<public> := class<concrete><final>(patchwork_device):
 
         # Apply a filter effect to Patchwork audio inputs.
         filter_effect_device<epic_internal> := class<concrete><final>(patchwork_device):
@@ -1686,8 +1683,14 @@ Devices<public> := module:
 
             var FilterType<public>:int = external {}
 
+        # Create drum note patterns for Patchwork devices.
+        drum_sequencer_device<public> := class<concrete><final>(patchwork_device):
+
         # Turn Patchwork note inputs into audio using instrument samples.
         instrument_player_device<public> := class<concrete><final>(patchwork_device):
+
+        # Modify a setting on another Patchwork device when triggered.
+        value_setter_device<public> := class<concrete><final>(patchwork_device):
 
         device_event_noteon<epic_internal> := class(listenable(any)):
             BPEvent<epic_internal>:listenable(tuple(int, float))
@@ -1717,22 +1720,22 @@ Devices<public> := module:
             # Signaled when the device receives a note-off that matches one of the enabled pitches.
             NoteOffReceivedEvent<epic_internal>:listenable(note_off_message) = external {}
 
-        song_sync_device<public> := class<concrete><final>(patchwork_device):
-
-        # Modify a setting on another Patchwork device when triggered.
-        value_setter_device<public> := class<concrete><final>(patchwork_device):
-
-        # Turn Patchwork note inputs into audio using customizable sound synthesis.
-        omega_synthesizer_device<public> := class<concrete><final>(patchwork_device):
-
         # Modify a setting on another Patchwork device in steps over time.
         step_modulator_device<public> := class<concrete><final>(patchwork_device):
 
         # Turn Patchwork note inputs into audio using drum samples.
         drum_player_device<public> := class<concrete><final>(patchwork_device):
 
+        song_sync_device<public> := class<concrete><final>(patchwork_device):
+
+        # Turn Patchwork note inputs into audio using customizable sound synthesis.
+        omega_synthesizer_device<public> := class<concrete><final>(patchwork_device):
+
         # Apply an echo effect to Patchwork audio inputs.
         echo_effect_device<public> := class<concrete><final>(patchwork_device):
+
+        # Transpose Patchwork note inputs to follow a chord progression.
+        note_progressor_device<public> := class<concrete><final>(patchwork_device):
 
         # Output Patchwork audio for players to hear.
         speaker_device<public> := class<concrete><final>(patchwork_device):
@@ -1747,9 +1750,6 @@ Devices<public> := module:
 
             # Returns the number of elapsed beats since the Patchwork timeline has started, for tracking current musical time.
             GetElapsedBeats<epic_internal>()<computes><reads>:float = external {}
-
-        # Transpose Patchwork note inputs to follow a chord progression.
-        note_progressor_device<public> := class<concrete><final>(patchwork_device):
 
     # Creates a chair where `Agent`s can sit.
     chair_device<public> := class<concrete><final>(creative_device_base):
@@ -4667,26 +4667,26 @@ Devices<public> := module:
     # Specialized `vehicle_spawner_device` that allows a helicopter to be configured and spawned.
     vehicle_spawner_helicopter_device<public> := class<concrete><final>(vehicle_spawner_device):
 
+    # Specialized `vehicle_spawner_device` that allows an anti-vehicle turret to be configured and spawned.
+    vehicle_spawner_heavy_turret_device<public> := class<concrete><final>(vehicle_spawner_device):
+
+    # Specialized `vehicle_spawner_device` that allows a UFO to be configured and spawned.
+    vehicle_spawner_ufo_device<public> := class<concrete><final>(vehicle_spawner_device):
+
     # Specialized `vehicle_spawner_device` that allows a siege cannon to be configured and spawned.
     vehicle_spawner_siege_cannon_device<public> := class<concrete><final>(vehicle_spawner_device):
 
     # Specialized `vehicle_spawner_device` that allows a Nitro Drifter sedan to be configured and spawned.
     vehicle_spawner_nitro_drifter_sedan_device<public> := class<concrete><final>(vehicle_spawner_device):
 
-    # Specialized `vehicle_spawner_device` that allows a UFO to be configured and spawned.
-    vehicle_spawner_ufo_device<public> := class<concrete><final>(vehicle_spawner_device):
-
-    # Specialized `vehicle_spawner_device` that allows an anti-vehicle turret to be configured and spawned.
-    vehicle_spawner_heavy_turret_device<public> := class<concrete><final>(vehicle_spawner_device):
-
     # Specialized `vehicle_spawner_device` that allows a sportbike to be configured and spawned.
     vehicle_spawner_sportbike_device<public> := class<concrete><final>(vehicle_spawner_device):
 
-    # Specialized `vehicle_spawner_device` that allows a valet SUV to be configured and spawned.
-    vehicle_spawner_valet_suv_device<public> := class<concrete><final>(vehicle_spawner_device):
-
     # Specialized `vehicle_spawner_device` that allows a tank to be configured and spawned.
     vehicle_spawner_tank_device<public> := class<concrete><final>(vehicle_spawner_device):
+
+    # Specialized `vehicle_spawner_device` that allows a valet SUV to be configured and spawned.
+    vehicle_spawner_valet_suv_device<public> := class<concrete><final>(vehicle_spawner_device):
 
     # Used to spawn NPCs made with Character Definition asset.
     npc_spawner_device<public> := class<concrete><final>(creative_device_base):
@@ -5230,6 +5230,9 @@ Devices<public> := module:
 
         # Whether the vault sequence is currently active and not paused.
         IsSequenceActive<public>()<transacts><decides>:void = external {}
+
+    # Specialized `vehicle_spawner_device` that allows an armored transport to be configured and spawned.
+    vehicle_spawner_armored_transport_device<public> := class<concrete><final>(vehicle_spawner_device):
 
     del_mar_player_start_device<epic_internal> := class<concrete><final>(creative_device_base):
 
@@ -6177,7 +6180,7 @@ UI<public> := module:
         ResetElementsForPlayer<public>(Player:player, HUDElements:[]hud_element_identifier):void
 
     # Get the `fort_hud_controller` for the current `fort_playspace`.
-    ((local:)Playspace:fort_playspace).GetHUDController<native><public>():fort_hud_controller
+    (Playspace:fort_playspace).GetHUDController<native><public>():fort_hud_controller
 
     creative_hud_identifier_all<public> := class<final>(hud_element_gameplay_tag_identifier_base):
         InternalTag<override>:string = external {}
@@ -6545,21 +6548,21 @@ FeralCorgi<public> := module:
 
     # Module import path: /Fortnite.com/FeralCorgi/PlayerLoadingStatusBridge
     PlayerLoadingStatusBridge<epic_internal> := module:
-        AwaitPlayersLoading<native><epic_internal>((local:)Playspace:fort_playspace)<suspends>:void
+        AwaitPlayersLoading<native><epic_internal>(Playspace:fort_playspace)<suspends>:void
 
-        IsPlayerLoading<native><epic_internal>((local:)Playspace:fort_playspace, Player:player)<transacts><decides>:void
+        IsPlayerLoading<native><epic_internal>(Playspace:fort_playspace, Player:player)<transacts><decides>:void
 
-        GetPlayersLoading<native><epic_internal>((local:)Playspace:fort_playspace)<computes><reads>:[]player
+        GetPlayersLoading<native><epic_internal>(Playspace:fort_playspace)<computes><reads>:[]player
 
-        GetNumPlayersLoading<native><epic_internal>((local:)Playspace:fort_playspace)<computes><reads>:int
+        GetNumPlayersLoading<native><epic_internal>(Playspace:fort_playspace)<computes><reads>:int
 
     # Module import path: /Fortnite.com/FeralCorgi/ReservationHoldingBridge
     ReservationHoldingBridge<epic_internal> := module:
-        EnableLeavingPlayerReservationHolding<native><epic_internal>((local:)Playspace:fort_playspace, HoldingTime:float):void
+        EnableLeavingPlayerReservationHolding<native><epic_internal>(Playspace:fort_playspace, HoldingTime:float):void
 
-        RestoreSessionReservationHoldingSettings<native><epic_internal>((local:)Playspace:fort_playspace):void
+        RestoreSessionReservationHoldingSettings<native><epic_internal>(Playspace:fort_playspace):void
 
-        FreeHeldReservation<native><epic_internal>((local:)Playspace:fort_playspace, Player:player):logic
+        FreeHeldReservation<native><epic_internal>(Playspace:fort_playspace, Player:player):logic
 
     ranked_track_progress<native><epic_internal> := struct<concrete>:
         GameId<native><public>:string = external {}
@@ -6588,33 +6591,33 @@ FeralCorgi<public> := module:
 
     # Module import path: /Fortnite.com/FeralCorgi/SessionAttributesBridge
     SessionAttributesBridge<epic_internal> := module:
-        IsRankedMatch<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
+        IsRankedMatch<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
-        IsVKEdit<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
+        IsVKEdit<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
-        IsPlaytest<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
+        IsPlaytest<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
-        IsPrivateMatch<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
+        IsPrivateMatch<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
-        IsUsingCustomMatchKeys<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
+        IsUsingCustomMatchKeys<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
-        IsInEditMode<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
+        IsInEditMode<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
-        IsInPlayMode<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
+        IsInPlayMode<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
-        IsMinigameInProgress<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
+        IsMinigameInProgress<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
         IsQABackend<native><epic_internal>()<transacts><decides>:void
 
-        EndMatch<native><epic_internal>((local:)Playspace:fort_playspace)<transacts><decides>:void
+        EndMatch<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
-        GetMinigameRound<native><epic_internal>((local:)Playspace:fort_playspace)<transacts>:int
+        GetMinigameRound<native><epic_internal>(Playspace:fort_playspace)<transacts>:int
 
-        GetTotalMinigameRounds<native><epic_internal>((local:)Playspace:fort_playspace)<transacts>:int
+        GetTotalMinigameRounds<native><epic_internal>(Playspace:fort_playspace)<transacts>:int
 
         ApplyMatchEarlyLeaveBanhammerToPlayer<native><epic_internal>(Player:player, Details:string):logic
 
-        GetUpdatedRankForPlayers<native><epic_internal>((local:)Playspace:fort_playspace, Players:[]player)<suspends>:[]ranked_track_progress
+        GetUpdatedRankForPlayers<native><epic_internal>(Playspace:fort_playspace, Players:[]player)<suspends>:[]ranked_track_progress
 
     player_display_info<native><epic_internal> := struct:
         Image<native>:texture
@@ -6638,6 +6641,7 @@ QuestUtilities<public> := module:
 
     BroadcastCustomVerb<native><epic_internal>(Author:agent, CustomVerbTagString:string, Amount:int):void
 
+using {/Verse.org/Assets}
 # Module import path: /Fortnite.com/FN1Native
 FN1Native<public> := module:
     # Module import path: /Fortnite.com/FN1Native/FortBus
@@ -6802,6 +6806,21 @@ FN1Native<public> := module:
             GetPhaseIndex<native><epic_internal>()<transacts><decides>:int
 
             SetCurrentPhase<native><epic_internal>(InCurrentPhase:int)<transacts>:void
+
+    player_ui_display_info<native><epic_internal> := struct:
+        Image<native>:texture
+
+        LargeImage<native>:texture
+
+        SmallImage<native>:texture
+
+        SquadColor<native>:color
+
+        CurrentXP<native>:int
+
+    player_ui_display_info_manager<native><epic_internal> := class:
+        GetDisplayInfo<native><epic_internal>(InPlayer:player)<computes><reads>:player_ui_display_info
+
 
 using {/Fortnite.com/Game}
 using {/Verse.org/SceneGraph}
@@ -7732,7 +7751,6 @@ AI<public> := module:
 using {/Fortnite.com/Vehicles}
 using {/UnrealEngine.com/Temporary/Diagnostics}
 using {/Fortnite.com/AI}
-using {/Verse.org/Assets}
 using {/Verse.org/SceneGraph/VerseCamera}
 using {/UnrealEngine.com/Abilities}
 using {/Fortnite.com/Teams}

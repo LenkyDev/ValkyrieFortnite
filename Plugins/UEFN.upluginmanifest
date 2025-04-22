@@ -800,6 +800,29 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/VKTemplates/MeltedIronGFS/Technodrome_Starter_Island/Plugins/Technodrome_Starter_Island/Technodrome_Starter_Island.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Technodrome_Starter_Island",
+				"Description": "",
+				"Category": "Other",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/featurecreep@fortnite.com/Technodrome_Starter_Island",
+				"VerseVersion": 1,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
 			"File": "../../../FortniteGame/VKTemplates/LimeGFS/Lucky_AssemblyDevice/Plugins/Lucky_AssemblyDevice/Lucky_AssemblyDevice.uplugin",
 			"Descriptor": 
 			{
@@ -4427,6 +4450,44 @@
 					{
 						"Name": "GameplayInsights",
 						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Experimental/UnPipe/UnPIpe.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 2,
+				"VersionName": "2.0",
+				"FriendlyName": "UnPipe",
+				"Description": "This plugin is used to load UnPipe for Unreal Editor",
+				"Category": "Pipeline",
+				"CreatedBy": "Epic Games, Inc",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"Modules": [
+					{
+						"Name": "UnPipe",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"TargetConfigurationDenyList": [
+							"Shipping"
+						]
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "PythonScriptPlugin",
+						"Enabled": true,
+						"TargetAllowList": [
+							"Editor"
+						]
 					}
 				]
 			}

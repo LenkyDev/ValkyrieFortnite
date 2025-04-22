@@ -67,7 +67,7 @@ using {/UnrealEngine.com/Temporary/UI}
         ResetElementsForPlayer<public>(Player:player, HUDElements:[]hud_element_identifier):void
 
     # Get the `fort_hud_controller` for the current `fort_playspace`.
-    ((local:)Playspace:fort_playspace).GetHUDController<native><public>():fort_hud_controller
+    (Playspace:fort_playspace).GetHUDController<native><public>():fort_hud_controller
 
     creative_hud_identifier_all<public> := class<final>(hud_element_identifier):
 

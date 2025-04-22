@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Lime",
-	"FortReleaseVersion": "34.30",
+	"FortReleaseVersion": "34.40",
 	"IsGameFeatureSet": true,
 	"RequiredEntitlements": {
 		"Edit": {
@@ -386,6 +386,12 @@
 		{
 			"Name": "TownScaper",
 			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FigureCosmetics",
+			"Enabled": true,
+			"Activate": true,
 			"Optional": true
 		}
 	],
