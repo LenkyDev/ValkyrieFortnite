@@ -236,6 +236,13 @@
 			]
 		},
 		{
+			"Name": "MetaHumanDepthProcessing",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
 			"Name": "LevelSequenceEditor",
 			"Enabled": true
 		},

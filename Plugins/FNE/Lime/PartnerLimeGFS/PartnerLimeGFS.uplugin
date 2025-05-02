@@ -10,8 +10,9 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Lime",
-	"FortReleaseVersion": "34.40",
+	"FortReleaseVersion": "35.00",
 	"IsGameFeatureSet": true,
+	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
 		"Edit": {
 			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
@@ -220,6 +221,12 @@
 			"Optional": true
 		},
 		{
+			"Name": "LimeImpulseGrenade",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
 			"Name": "LimeIslandUIOverride",
 			"Enabled": true,
 			"Activate": true,
@@ -301,6 +308,12 @@
 		{
 			"Name": "LimePumpkin",
 			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeShockwaveGrenade",
+			"Enabled": true,
+			"Activate": true,
 			"Optional": true
 		},
 		{

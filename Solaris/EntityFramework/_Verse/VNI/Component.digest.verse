@@ -166,10 +166,10 @@ KeyframedMovement<public> := module:
         PausedEvent<native><public>:listenable(tuple()) = external {}
 
         # Is the animation currently playing?
-        IsPlaying<native><public>()<computes><decides><reads>:void
+        IsPlaying<native><public>()<reads><decides>:void
 
         # Is the animation paused?
-        IsPaused<native><public>()<computes><decides><reads>:void
+        IsPaused<native><public>()<reads><decides>:void
 
         # Gets the duration in seconds this keyframed movement will take. Fails if a fixed duration is not known (ex: looping animations).
         var<private> Duration<native><public>:?float = external {}
@@ -181,7 +181,7 @@ KeyframedMovement<public> := module:
         SetKeyframes<native><public>(RelativeKeyframes:[]keyframed_movement_delta, PlaybackMode:keyframed_movement_playback_mode):void
 
         # Is there a valid set of playable keyframes?
-        HasValidAnimation<native><public>()<computes><decides><reads>:void
+        HasValidAnimation<native><public>()<reads><decides>:void
 
         # Signaled when any keyframe is reached. (Keyframe:int, IsReversed:logic).
         KeyframeReachedEvent<native><public>:listenable(tuple(int, logic)) = external {}
@@ -229,15 +229,12 @@ light_component<native><public> := class<abstract><final_super><epic_internal>(c
 # Dependencies:
 #   * `transform_component` on the entity positions the mesh.
 mesh_component<native><public> := class<final_super><epic_internal>(component, enableable):
-    @experimental
     # Enables rendering of this mesh.
     Enable<native><override>():void
 
-    @experimental
     # Disables rendering of this mesh.
     Disable<native><override>():void
 
-    @experimental
     # Succeeds if the component is enabled, fails if it's disabled.
     IsEnabled<native><override>()<transacts><decides>:void
 
@@ -408,13 +405,13 @@ spot_light_component<native><public> := class<final>(light_component):
 #   * Finding entities from the simulation entity for tagged entities only considers any `tag_component` that has run `OnAddedToScene`.
 tag_component<native><public> := class<final><final_super>(component, tag_view):
     # Determine if TagToCheck is present in this container, also checking against parent tags {"A.1"}.Has("A") will return True, {"A"}.Has("A.1") will return False If TagToCheck is not Valid it will always return False.
-    Has<native><override>(TagToCheck:tag)<computes><decides><reads>:void
+    Has<native><override>(TagToCheck:tag)<reads><decides>:void
 
     # Checks if this container contains ANY of the tags in the specified container, also checks against parent tags {"A.1"}.HasAny({"A","B"}) will return True, {"A"}.HasAny({"A.1","B"}) will return False If InTags is empty/invalid it will always return False.
-    HasAny<native><override>(InTags:[]tag)<computes><decides><reads>:void
+    HasAny<native><override>(InTags:[]tag)<reads><decides>:void
 
     # Checks if this container contains ALL of the tags in the specified container, also checks against parent tags {"A.1","B.1"}.HasAll({"A","B"}) will return True, {"A","B"}.HasAll({"A.1","B.1"}) will return False If InTags is empty/invalid it will always return True, because there were no failed checks.
-    HasAll<native><override>(InTags:[]tag)<computes><decides><reads>:void
+    HasAll<native><override>(InTags:[]tag)<reads><decides>:void
 
     # Adds a tag to this component. Returns `true` if the tag was not present before being added.
     AddTag<native><public>(TagToAdd:tag)<transacts>:logic

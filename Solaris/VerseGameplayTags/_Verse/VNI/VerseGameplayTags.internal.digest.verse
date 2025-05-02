@@ -11,7 +11,7 @@ Tags<public> := module:
 
 
     # Get a string representation of the gameplay tag. Useful for debugging.
-    (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_28:tag)<computes>:string
+    (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_24:tag)<computes>:string
 
     # Succeeds if Left and Right are equal.
     Equals<native><epic_internal>(Left:tag, Right:tag)<transacts><decides>:void
@@ -25,13 +25,13 @@ Tags<public> := module:
     # A queryable collection of gameplay tags.
     tag_view<native><public> := interface<epic_internal>:
         # Determine if TagToCheck is present in this container, also checking against parent tags {"A.1"}.Has("A") will return True, {"A"}.Has("A.1") will return False If TagToCheck is not Valid it will always return False.
-        Has<public>(TagToCheck:tag)<computes><decides><reads>:void
+        Has<public>(TagToCheck:tag)<reads><decides>:void
 
         # Checks if this container contains ANY of the tags in the specified container, also checks against parent tags {"A.1"}.HasAny({"A","B"}) will return True, {"A"}.HasAny({"A.1","B"}) will return False If InTags is empty/invalid it will always return False.
-        HasAny<public>(InTags:[]tag)<computes><decides><reads>:void
+        HasAny<public>(InTags:[]tag)<reads><decides>:void
 
         # Checks if this container contains ALL of the tags in the specified container, also checks against parent tags {"A.1","B.1"}.HasAll({"A","B"}) will return True, {"A","B"}.HasAll({"A.1","B.1"}) will return False If InTags is empty/invalid it will always return True, because there were no failed checks.
-        HasAll<public>(InTags:[]tag)<computes><decides><reads>:void
+        HasAll<public>(InTags:[]tag)<reads><decides>:void
 
     # A mutable collection of gameplay tags.
     tag_container<native><epic_internal> := class<concrete>(tag_view):
@@ -60,29 +60,29 @@ Tags<public> := module:
         ResetWithSlack<native><epic_internal>(slack:int):void
 
         # Determine if TagToCheck is present in this container, also checking against parent tags {"A.1"}.Has("A") will return True, {"A"}.Has("A.1") will return False If TagToCheck is not Valid it will always return False.
-        Has<native><override>(TagToCheck:tag)<computes><decides><reads>:void
+        Has<native><override>(TagToCheck:tag)<reads><decides>:void
 
         # Checks if this container contains ANY of the tags in the specified container, also checks against parent tags {"A.1"}.HasAny({"A","B"}) will return True, {"A"}.HasAny({"A.1","B"}) will return False If InTags is empty/invalid it will always return False.
-        (/Verse.org/Simulation/Tags/tag_view:)HasAny<native><override>(InTags:[]tag)<computes><decides><reads>:void
+        (/Verse.org/Simulation/Tags/tag_view:)HasAny<native><override>(InTags:[]tag)<reads><decides>:void
 
         # Checks if this container contains ALL of the tags in the specified container, also checks against parent tags {"A.1","B.1"}.HasAll({"A","B"}) will return True, {"A","B"}.HasAll({"A.1","B.1"}) will return False If InTags is empty/invalid it will always return True, because there were no failed checks.
-        (/Verse.org/Simulation/Tags/tag_view:)HasAll<native><override>(InTags:[]tag)<computes><decides><reads>:void
+        (/Verse.org/Simulation/Tags/tag_view:)HasAll<native><override>(InTags:[]tag)<reads><decides>:void
 
         # Checks if this container contains ANY of the tags in the specified container, also checks against parent tags {"A.1"}.HasAny({"A","B"}) will return True, {"A"}.HasAny({"A.1","B"}) will return False If InTags is empty/invalid it will always return False.
-        (/Verse.org/Simulation/Tags/tag_container:)HasAny<native><epic_internal>(InTags:tag_container)<computes><decides><reads>:void
+        (/Verse.org/Simulation/Tags/tag_container:)HasAny<native><epic_internal>(InTags:tag_container)<reads><decides>:void
 
         # Checks if this container contains ALL of the tags in the specified container, also checks against parent tags {"A.1","B.1"}.HasAll({"A","B"}) will return True, {"A","B"}.HasAll({"A.1","B.1"}) will return False If InTags is empty/invalid it will always return True, because there were no failed checks.
-        (/Verse.org/Simulation/Tags/tag_container:)HasAll<native><epic_internal>(InTags:tag_container)<computes><decides><reads>:void
+        (/Verse.org/Simulation/Tags/tag_container:)HasAll<native><epic_internal>(InTags:tag_container)<reads><decides>:void
 
         # Returns the number of explicitly added tags.
-        Num<native><epic_internal>()<computes><reads>:int
+        Num<native><epic_internal>()<reads>:int
 
         @available {MinUploadedAtFNVersion := 2930}
         # Returns a generator for the tags in this container. This is an expensive operation since it will create new tag instances for all tags in the container. Do preferably not use this function for anything else than debugging.
         GetTags<native><epic_internal>()<transacts>:generator(tag)
 
     # Returns abbreviated human readable Tag list. Useful for debugging.
-    (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_31:tag_container)<computes>:string
+    (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_27:tag_container)<computes>:string
 
     @import_as("/Script/VerseGameplayTags.FVerseGameplayTagContainer")
     # Utility structure which allows users to select a gameplay tag when exposed to editor

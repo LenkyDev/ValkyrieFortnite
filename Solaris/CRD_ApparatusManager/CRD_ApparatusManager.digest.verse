@@ -33,7 +33,7 @@ rift_point_volume_device<public> := class<concrete><final>(creative_device_base,
     IsInVolume<public>(Agent:agent)<transacts><decides>:void = external {}
 
     # Returns an array of agents that are currently occupying the volume.
-    GetAgentsInVolume<public>()<computes><reads>:[]agent = external {}
+    GetAgentsInVolume<public>()<reads>:[]agent = external {}
 
     # Enables the device, allowing the Rift Point to be planted.
     Enable<override>():void = external {}

@@ -6,7 +6,6 @@ execution_listenable<native><public> := class<epic_internal>(listenable(float)):
     # Suspends the current task until resumed by a matching call to `signalable.Signal`. Returns the event `payload`.
     Await<native><override>()<suspends>:float
 
-    @experimental
     # Subscribe a callback function to this TickEvent phase. The input parameter to your function (DeltaTime) is the time that has passed between the last update and the current update.
     Subscribe<native><override>(Callback:type {_(:float):void})<transacts>:cancelable
 
@@ -18,6 +17,5 @@ execution_event<native><public> := class<epic_internal>(listenable(tuple())):
     # Suspends the current task until resumed by a matching call to `signalable.Signal`.
     Await<native><override>()<suspends>:tuple()
 
-    @experimental
     # Subscribe a callback function to this event.
     Subscribe<native><override>(Callback:type {_():void})<transacts>:cancelable

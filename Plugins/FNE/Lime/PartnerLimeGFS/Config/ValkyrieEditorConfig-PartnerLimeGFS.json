@@ -230,6 +230,10 @@
 			{
 				"Visible": true
 			},
+			"/LimeExtraAssets/AI/TestPlayers/CharacterType/CharacterType_LimeParticipant.CharacterType_LimeParticipant_C":
+			{
+				"Visible": true
+			},
 			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeCosmeticSpawn.CharacterModifier_LimeCosmeticSpawn_C":
 			{
 				"Visible": true
@@ -291,6 +295,10 @@
 			{
 				"Type": "/LimeAISpawnerGuard/SpawnDefinitions/Types/CharacterType_LimeGuard.CharacterType_LimeGuard_C",
 				"AllowList": [ "DisplayName", "SelectedAI" ]
+			},
+			{
+				"Type": "/LimeExtraAssets/AI/TestPlayers/CharacterType/CharacterType_LimeParticipant.CharacterType_LimeParticipant_C",
+				"AllowList": [ "DisplayName" ]
 			},
 			{
 				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeAwareness.CharacterModifier_LimeAwareness_C",

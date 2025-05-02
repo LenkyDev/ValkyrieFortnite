@@ -1,3 +1,4 @@
+using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 using {/Verse.org/Simulation}
 using {/Verse.org/SceneGraph}
 # Module import path: /UnrealEngine.com/EntityTestSuite
@@ -17,7 +18,8 @@ EntityTestSuite<public> := module:
     @hide_in_editor
     @experimental
     test_replication_component<native><epic_internal> := class<final_super>(component):
-
+        @replicated("")
+        var<private> TestReplicatedSubObject<native><epic_internal>:?test_replication_object = external {}
 
     @hide_in_editor
     @experimental

@@ -184,4 +184,4 @@ FN1Native<public> := module:
         CurrentXP<native>:int
 
     player_ui_display_info_manager<native><epic_internal> := class:
-        GetDisplayInfo<native><epic_internal>(InPlayer:player)<computes><reads>:player_ui_display_info
+        GetDisplayInfo<native><epic_internal>(InPlayer:player)<reads>:player_ui_display_info

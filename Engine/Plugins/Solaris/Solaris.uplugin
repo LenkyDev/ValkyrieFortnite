@@ -32,11 +32,11 @@
 			"Type": "Runtime",
 			"LoadingPhase": "EarliestPossible"
 		},
-    {
+		{
 			"Name": "VersePredicts",
 			"Type": "Runtime",
-      "LoadingPhase": "EarliestPossible"
-    },
+			"LoadingPhase": "EarliestPossible"
+		},
 		{
 			"Name": "SolarisLoadCompiler",
 			"Type": "Runtime",
@@ -96,10 +96,6 @@
 			"TargetAllowList": [
 				"Editor"
 			]
-		},
-		{
-			"Name": "PlatformCrypto",
-			"Enabled": true
 		}
 	],
 	"IsExperimentalVersion": false

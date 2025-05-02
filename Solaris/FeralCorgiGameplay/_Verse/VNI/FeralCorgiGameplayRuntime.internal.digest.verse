@@ -93,9 +93,9 @@ PlayerLoadingStatusBridge<epic_internal> := module:
 
     IsPlayerLoading<native><epic_internal>(Playspace:fort_playspace, Player:player)<transacts><decides>:void
 
-    GetPlayersLoading<native><epic_internal>(Playspace:fort_playspace)<computes><reads>:[]player
+    GetPlayersLoading<native><epic_internal>(Playspace:fort_playspace)<reads>:[]player
 
-    GetNumPlayersLoading<native><epic_internal>(Playspace:fort_playspace)<computes><reads>:int
+    GetNumPlayersLoading<native><epic_internal>(Playspace:fort_playspace)<reads>:int
 
 # Module import path: /Fortnite.com/FeralCorgi/ReservationHoldingBridge
 ReservationHoldingBridge<epic_internal> := module:
@@ -172,4 +172,4 @@ player_display_info<native><epic_internal> := struct:
     CurrentXP<native>:int
 
 player_display_info_manager<native><epic_internal> := class:
-    GetDisplayInfo<native><epic_internal>(InPlayer:player)<computes><reads>:player_display_info
+    GetDisplayInfo<native><epic_internal>(InPlayer:player)<reads>:player_display_info

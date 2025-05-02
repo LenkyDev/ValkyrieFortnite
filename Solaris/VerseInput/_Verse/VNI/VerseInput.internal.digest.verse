@@ -3,7 +3,7 @@ using {/Verse.org/Assets}
 using {/Verse.org/Simulation}
 # Module import path: /Verse.org/ControlInput
 ControlInput<public> := module:
-    input_events<native><public>(t:type) := class:
+    input_events<native><public>(t:type) := class<epic_internal>:
         ActivationTriggeredEvent<native><public>:listenable(tuple(player, t)) = external {}
 
         ActivationCanceledEvent<native><public>:listenable(tuple(player, t, float)) = external {}

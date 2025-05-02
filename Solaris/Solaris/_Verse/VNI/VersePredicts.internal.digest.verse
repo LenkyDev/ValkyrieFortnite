@@ -6,7 +6,7 @@ Predicts<public> := module:
 
     PredictsInitObjectField<native><epic_internal>(SelfID:any, FieldName:string, Value:any)<transacts>:void
 
-    Dictate<native><epic_internal>()<predicts><suspends>:void
+    Dictate<native><epic_internal>()<suspends><predicts>:void
 
     PredictsDebugServerMode<native><epic_internal>()<transacts>:void
 
@@ -14,11 +14,13 @@ Predicts<public> := module:
 
     PredictsDebugFindObjectID<native><epic_internal>(Obj:any)<decides>:int
 
+    PredictsDebugFindObject<native><epic_internal>(ObjectID:int)<decides>:any
+
     PredictsDebugObjectFieldEquals<native><epic_internal>(ObjectID:int, FieldName:string, Value:any)<decides>:void
 
     PredictsDebugReplicateToClient<native><epic_internal>()<transacts>:void
 
-    PredictsDebugRegisterFunc<native><epic_internal>(__dupe___unnamed_parameter_6:string, __dupe___unnamed_parameter_7:type {_()<predicts><suspends>:void})<transacts>:void
+    PredictsDebugRegisterFunc<native><epic_internal>(__dupe___unnamed_parameter_6:string, __dupe___unnamed_parameter_7:type {_()<suspends><predicts>:void})<transacts>:void
 
     PredictsDebugCallFunc<native><epic_internal>(__dupe___unnamed_parameter_8:string)<transacts>:void
 

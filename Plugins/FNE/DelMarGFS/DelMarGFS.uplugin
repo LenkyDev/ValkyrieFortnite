@@ -9,8 +9,9 @@
 	"BuiltInAutoRegister": true,
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
-	"FortReleaseVersion": "34.40",
+	"FortReleaseVersion": "35.00",
 	"IsGameFeatureSet": true,
+	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
 		"Edit": {
 			"VKCreateUGCDelMar": "0442386b095842c6bc047b252ecad23c"

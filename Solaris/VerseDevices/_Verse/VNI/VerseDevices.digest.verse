@@ -233,7 +233,7 @@ Devices<public> := module:
     GetCreativeObjectsWithTags<native><public>(SearchCriteria:tag_search_criteria)<transacts>:[]creative_object_interface
 
     # Returns a queryable `tag_view` which can be used to query the tags on `CreativeObject`.
-    (CreativeObject:creative_object_interface).GetTags<native><public>():tag_view
+    (CreativeObject:creative_object_interface).GetTags<native><public>()<transacts>:tag_view
 
     # Returns the `fort_playspace` that `CreativeObject` belongs to.
     (CreativeObject:creative_object_interface).GetPlayspace<native><public>()<transacts>:fort_playspace

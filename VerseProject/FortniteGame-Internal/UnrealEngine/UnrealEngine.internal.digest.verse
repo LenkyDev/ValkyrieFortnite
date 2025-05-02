@@ -2,7 +2,7 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-34.40-CL-41753727
+# Generated from build: ++Fortnite+Release-35.00-CL-41994699
 #################################################
 
 using {/Verse.org/Assets}
@@ -720,7 +720,7 @@ Temporary<public> := module:
             (/UnrealEngine.com/Temporary/Diagnostics/log:)Print<public>(Message:string, ?Level:log_level = external {})<computes>:void = external {}
 
             # Print message using the given log level
-            (/UnrealEngine.com/Temporary/Diagnostics/log:)Print<epic_internal>(Message:message, ?Level:log_level = external {})<computes><reads>:void = external {}
+            (/UnrealEngine.com/Temporary/Diagnostics/log:)Print<epic_internal>(Message:message, ?Level:log_level = external {})<reads>:void = external {}
 
             # Print diagnostic using the given log level
             (/UnrealEngine.com/Temporary/Diagnostics/log:)Print<public>(Message:diagnostic, ?Level:log_level = external {})<computes>:void = external {}
@@ -777,14 +777,14 @@ Temporary<public> := module:
         (/UnrealEngine.com/Temporary/SpatialMath:)rotation<native><public> := struct<concrete>:
 
         # Makes a `rotation` from `Axis` and `AngleRadians` using a left-handed sign convention (e.g. a positive rotation around +Z takes +X to +Y). If `Axis.IsAlmostZero[]`, make the identity rotation.
-        (/UnrealEngine.com/Temporary/SpatialMath:)MakeRotation<native><public>(Axis:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, AngleRadians:float)<converges><reads>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
+        (/UnrealEngine.com/Temporary/SpatialMath:)MakeRotation<native><public>(Axis:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, AngleRadians:float)<reads><converges>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
         # Makes a `rotation` by applying `YawRightDegrees`, `PitchUpDegrees`, and `RollClockwiseDegrees`, in that order:
         #  * first a *yaw* about the Z axis with a positive angle indicating a clockwise rotation when viewed from above,
         #  * then a *pitch* about the new Y axis with a positive angle indicating 'nose up',
         #  * followed by a *roll* about the new X axis axis with a positive angle indicating a clockwise rotation when viewed along +X.
         # Note that these conventions differ from `MakeRotation` but match `ApplyYaw`, `ApplyPitch`, and `ApplyRoll`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)MakeRotationFromYawPitchRollDegrees<native><public>(YawRightDegrees:float, PitchUpDegrees:float, RollClockwiseDegrees:float)<converges><reads>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
+        (/UnrealEngine.com/Temporary/SpatialMath:)MakeRotationFromYawPitchRollDegrees<native><public>(YawRightDegrees:float, PitchUpDegrees:float, RollClockwiseDegrees:float)<reads><converges>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
         # Makes the identity `rotation`.
         (/UnrealEngine.com/Temporary/SpatialMath:)IdentityRotation<native><public>()<converges>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
@@ -792,10 +792,10 @@ Temporary<public> := module:
         # Returns the 'distance' between `Rotation1` and `Rotation2`. The result will be between:
         #  * `0.0`, representing equivalent rotations and
         #  * `1.0` representing rotations which are 180 degrees apart (i.e., the shortest rotation between them is 180 degrees around some axis).
-        (/UnrealEngine.com/Temporary/SpatialMath:)Distance<native><public>(Rotation1:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Rotation2:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<computes><reads>:float
+        (/UnrealEngine.com/Temporary/SpatialMath:)Distance<native><public>(Rotation1:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Rotation2:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<reads>:float
 
         # Returns the 'smallest angular distance' between `Rotation1` and `Rotation2` in radians.
-        (/UnrealEngine.com/Temporary/SpatialMath:)AngularDistance<native><public>(Rotation1:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Rotation2:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<computes><reads>:float
+        (/UnrealEngine.com/Temporary/SpatialMath:)AngularDistance<native><public>(Rotation1:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Rotation2:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<reads>:float
 
         # Makes a `rotation` by applying `PitchUpRadians` of right-handed rotation around the local +Y axis to `InitialRotation`.
         (InitialRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)ApplyPitch<native><public>(PitchUpRadians:float)<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
@@ -832,14 +832,14 @@ Temporary<public> := module:
         #  * *pitch* degrees of `rotation`
         #  * *roll* degrees of `rotation`
         # using the conventions of `MakeRotationFromYawPitchRollDegrees`.
-        (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)GetYawPitchRollDegrees<native><public>()<computes><reads>:[]float
+        (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)GetYawPitchRollDegrees<native><public>()<reads>:[]float
 
         # Makes a `vector3` from the axis of `rotation`.
         # If `rotation` is nearly identity, this will return the +X axis. See also `GetAngle`.
-        (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)GetAxis<native><public>()<computes><reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+        (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)GetAxis<native><public>()<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
         # Returns the radians of `rotation` around the axis of `rotation`. See also `GetAxis`.
-        (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)GetAngle<native><public>()<computes><reads>:float
+        (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)GetAngle<native><public>()<reads>:float
 
         # Makes the smallest angular `rotation` from `InitialRotation` to `FinalRotation` such that:
         # `InitialRotation.RotateBy(MakeShortestRotationBetween(InitialRotation, FinalRotation)) = FinalRotation` and
@@ -859,16 +859,16 @@ Temporary<public> := module:
         (/UnrealEngine.com/Temporary/SpatialMath:)Slerp<native><public>(InitialRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, FinalRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Parameter:float)<transacts><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
         # Makes a `vector3` by applying `Rotation` to `Vector`.
-        (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)RotateVector<native><public>(Vector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+        (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)RotateVector<native><public>(Vector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
         # Makes a `vector3` by applying the inverse of `Rotation` to `Vector`.
-        (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)UnrotateVector<native><public>(Vector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+        (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)UnrotateVector<native><public>(Vector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
         # Makes a `rotation` by inverting `Rotation` such that `ApplyRotation(Rotation, Rotation.Invert())) = IdentityRotation`.
         (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)Invert<native><public>()<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
         # Returns `Rotation` if it does not contain `NaN`, `Inf` or `-Inf`.
-        (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)IsFinite<native><public>()<converges><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
+        (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)IsFinite<native><public>()<decides><converges>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
         # Makes a unit `vector3` pointing in the local space *forward* direction in world space coordinates.
         # This is equivalent to: `RotateVector(Rotation, vector3{X:=1.0, Y:=0.0, Z:=0.0})`.
@@ -884,43 +884,43 @@ Temporary<public> := module:
 
         # Makes a `string` representation of `rotation` in axis/degrees format with a left-handed sign convention.
         # `ToString(MakeRotation(vector3{X:=1.0, Y:=0.0, Z:=0.0}, PiFloat/2.0))` produces the string: `"Axis: {x=1.000000,y=0.000000,z=0.000000} Angle: 90.000000"`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)ToString<native><public>(Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<computes><reads>:string
+        (/UnrealEngine.com/Temporary/SpatialMath:)ToString<public>(Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<reads>:string = external {}
 
         # Returns radians from `Degrees`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)DegreesToRadians<public>(Degrees:float)<computes><reads>:float = external {}
+        (/UnrealEngine.com/Temporary/SpatialMath:)DegreesToRadians<public>(Degrees:float)<reads>:float = external {}
 
         # Returns degrees from `Radians`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)RadiansToDegrees<public>(Radians:float)<computes><reads>:float = external {}
+        (/UnrealEngine.com/Temporary/SpatialMath:)RadiansToDegrees<public>(Radians:float)<reads>:float = external {}
 
         @experimental
         @available {MinUploadedAtFNVersion := 3400}
         # Util function for converting a `vector3` from /UnrealEngine.com/Temporary/SpatialMath to a `vector3` from /Verse.org/SpatialMath.
-        FromVector3<public>(InVector3:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes><reads>:(/Verse.org/SpatialMath:)vector3 = external {}
+        FromVector3<public>(InVector3:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/Verse.org/SpatialMath:)vector3 = external {}
 
         @experimental
         @available {MinUploadedAtFNVersion := 3400}
         # Util function for converting a `rotation` from /UnrealEngine.com/Temporary/SpatialMath to a `rotation` from /Verse.org/SpatialMath.
-        FromRotation<public>(InRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<computes><reads>:(/Verse.org/SpatialMath:)rotation = external {}
+        FromRotation<public>(InRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<reads>:(/Verse.org/SpatialMath:)rotation = external {}
 
         @experimental
         @available {MinUploadedAtFNVersion := 3400}
         # Util function for converting a `transform` from /UnrealEngine.com/Temporary/SpatialMath to a `transform` from /Verse.org/SpatialMath.
-        FromTransform<public>(InTransform:(/UnrealEngine.com/Temporary/SpatialMath:)transform)<computes><reads>:(/Verse.org/SpatialMath:)transform = external {}
+        FromTransform<public>(InTransform:(/UnrealEngine.com/Temporary/SpatialMath:)transform)<reads>:(/Verse.org/SpatialMath:)transform = external {}
 
         @experimental
         @available {MinUploadedAtFNVersion := 3400}
         # Util function for converting a `vector3` from /Verse.org/SpatialMath to a `vector3` from /UnrealEngine.com/Temporary/SpatialMath.
-        FromVector3<public>(InVector3:(/Verse.org/SpatialMath:)vector3)<computes><reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+        FromVector3<public>(InVector3:(/Verse.org/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
         @experimental
         @available {MinUploadedAtFNVersion := 3400}
         # Util function for converting a `rotation` from /Verse.org/SpatialMath to a `rotation` from /UnrealEngine.com/Temporary/SpatialMath.
-        FromRotation<public>(InRotation:(/Verse.org/SpatialMath:)rotation)<computes><reads>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation = external {}
+        FromRotation<public>(InRotation:(/Verse.org/SpatialMath:)rotation)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation = external {}
 
         @experimental
         @available {MinUploadedAtFNVersion := 3400}
         # Util function for converting a `transform` from /Verse.org/SpatialMath to a `transform` from /UnrealEngine.com/Temporary/SpatialMath.
-        FromTransform<public>(InTransform:(/Verse.org/SpatialMath:)transform)<computes><reads>:(/UnrealEngine.com/Temporary/SpatialMath:)transform = external {}
+        FromTransform<public>(InTransform:(/Verse.org/SpatialMath:)transform)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)transform = external {}
 
         # A combination of scale, rotation, and translation, applied in that order.
         (/UnrealEngine.com/Temporary/SpatialMath:)transform<native><public> := struct<concrete><computes>:
@@ -937,14 +937,14 @@ Temporary<public> := module:
             Translation<native><public>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
         # Makes a `vector3` by applying `InTransform` to `InVector`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)TransformVector<native><public>(InTransform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, InVector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes><reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+        (/UnrealEngine.com/Temporary/SpatialMath:)TransformVector<public>(InTransform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, InVector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
         # Makes a `vector3` by applying `InTransform` to `InVector` without applying `InTransform.Scale`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)TransformVectorNoScale<native><public>(InTransform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, InVector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes><reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+        (/UnrealEngine.com/Temporary/SpatialMath:)TransformVectorNoScale<public>(InTransform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, InVector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
         # Makes a `string` representation of `InTransform` where the result is on the form.
         # `"Scale: {ToString(`InTransform.Scale`)} Rotation: {ToString(`InTransform.Rotation`)} Translation: {ToString(`InTransform.Translation`)}.
-        (/UnrealEngine.com/Temporary/SpatialMath:)ToString<native><epic_internal>(InTransform:(/UnrealEngine.com/Temporary/SpatialMath:)transform)<computes><reads>:string
+        (/UnrealEngine.com/Temporary/SpatialMath:)ToString<epic_internal>(InTransform:(/UnrealEngine.com/Temporary/SpatialMath:)transform)<reads>:string = external {}
 
         # 2-dimensional vector with `float` components.
         vector2<native><public> := struct<concrete><computes><persistable>:
@@ -954,35 +954,47 @@ Temporary<public> := module:
             @editable
             Y<native><public>:float = external {}
 
+        # Makes a unit `vector2` pointing in the positive X axis.
+        XAxis2<epic_internal>()<computes>:vector2 = external {}
+
+        # Makes a unit `vector2` pointing in the positive Y axis.
+        YAxis2<epic_internal>()<computes>:vector2 = external {}
+
+        # Makes a `vector2` with all components `0.0`.
+        Zero2<epic_internal>()<computes>:vector2 = external {}
+
+        # Makes a `vector2` with all components `1.0`.
+        Ones2<epic_internal>()<computes>:vector2 = external {}
+
         # Makes a `vector2` by inverting the `SurfaceNormal` component of `Direction`.
         # Fails if `not SurfaceNormal.MakeUnitVector[]`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)ReflectVector<native><public>(Direction:vector2, SurfaceNormal:vector2)<computes><decides><reads>:vector2
+        (/UnrealEngine.com/Temporary/SpatialMath:)ReflectVector<public>(Direction:vector2, SurfaceNormal:vector2)<reads><decides>:vector2 = external {}
 
         # Returns the dot product of `V1` and `V2`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)DotProduct<native><public>(V1:vector2, V2:vector2)<computes><reads>:float
+        (/UnrealEngine.com/Temporary/SpatialMath:)DotProduct<public>(V1:vector2, V2:vector2)<reads>:float = external {}
 
         # Returns the Euclidean distance between `V1` and `V2`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)Distance<native><public>(V1:vector2, V2:vector2)<computes><reads>:float
+        (/UnrealEngine.com/Temporary/SpatialMath:)Distance<public>(V1:vector2, V2:vector2)<reads>:float = external {}
 
         # Returns the squared Euclidean distance between `V1` and `V2`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)DistanceSquared<native><public>(V1:vector2, V2:vector2)<computes><reads>:float
+        (/UnrealEngine.com/Temporary/SpatialMath:)DistanceSquared<public>(V1:vector2, V2:vector2)<reads>:float = external {}
 
-        # Makes a unit length `vector3` pointing in the same direction of `V`.
+        # Makes a unit length `vector2` pointing in the same direction of `V`.
         # Fails if `V.IsAlmostZero[] or not V.IsFinite[]`.
-        (V:vector2).(/UnrealEngine.com/Temporary/SpatialMath:)MakeUnitVector<native><public>()<computes><decides><reads>:vector2
+        (V:vector2).(/UnrealEngine.com/Temporary/SpatialMath:)MakeUnitVector<public>()<reads><decides>:vector2 = external {}
 
         # Returns the length of `V`.
-        (V:vector2).(/UnrealEngine.com/Temporary/SpatialMath:)Length<public>()<computes><reads>:float = external {}
+        (V:vector2).(/UnrealEngine.com/Temporary/SpatialMath:)Length<public>()<reads>:float = external {}
 
         # Returns the squared length of `V`.
-        (V:vector2).(/UnrealEngine.com/Temporary/SpatialMath:)LengthSquared<public>()<computes><reads>:float = external {}
+        (V:vector2).(/UnrealEngine.com/Temporary/SpatialMath:)LengthSquared<public>()<reads>:float = external {}
 
         # Used to linearly interpolate/extrapolate between `From` (when `Parameter = 0.0`) and `To` (when `Parameter = 1.0`). Expects that all arguments are finite.
         # Returns `From*(1 - Parameter) + To*Parameter`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)Lerp<public>(From:vector2, To:vector2, Parameter:float)<computes><reads>:vector2 = external {}
+        (/UnrealEngine.com/Temporary/SpatialMath:)Lerp<public>(From:vector2, To:vector2, Parameter:float)<reads>:vector2 = external {}
 
         # Makes a `string` representation of `V`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)ToString<native><public>(V:vector2)<computes><reads>:string
+        (/UnrealEngine.com/Temporary/SpatialMath:)ToString<public>(V:vector2)<reads>:string = external {}
 
         # Makes a `vector2` by inverting the signs of `Operand`.
         (/UnrealEngine.com/Temporary/SpatialMath:)prefix'-'<public>(Operand:vector2)<computes>:vector2 = external {}
@@ -1034,10 +1046,10 @@ Temporary<public> := module:
         Equals<public>(V1:vector2i, V2:vector2i)<computes><decides>:vector2i = external {}
 
         # Makes a `string` representation of `V`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)ToString<native><public>(V:vector2i)<computes>:string
+        (/UnrealEngine.com/Temporary/SpatialMath:)ToString<public>(V:vector2i)<computes>:string = external {}
 
         # Makes a `vector2i` by component-wise truncation of `V` to `ints`s.
-        ToVector2i<public>(V:vector2)<computes><decides><reads>:vector2i = external {}
+        ToVector2i<public>(V:vector2)<reads><decides>:vector2i = external {}
 
         # Makes a `vector2i` by inverting the signs of `Operand`.
         (/UnrealEngine.com/Temporary/SpatialMath:)prefix'-'<public>(Operand:vector2i)<computes>:vector2i = external {}
@@ -1082,72 +1094,72 @@ Temporary<public> := module:
 
         # Makes a `vector3` by inverting the `SurfaceNormal` component of `Direction`.
         # Fails if `not SurfaceNormal.MakeUnitVector[]`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)ReflectVector<native><public>(Direction:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, SurfaceNormal:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes><decides><reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+        (/UnrealEngine.com/Temporary/SpatialMath:)ReflectVector<public>(Direction:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, SurfaceNormal:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
         # Returns the dot product of `V1` and `V2`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)DotProduct<native><public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes><reads>:float
+        (/UnrealEngine.com/Temporary/SpatialMath:)DotProduct<public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:float = external {}
 
         # Returns the cross product of `V1` and `V2`.
-        CrossProduct<native><public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes><reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+        CrossProduct<public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
         # Returns the Euclidean distance between `V1` and `V2`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)Distance<native><public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes><reads>:float
+        (/UnrealEngine.com/Temporary/SpatialMath:)Distance<public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:float = external {}
 
         # Returns the squared Euclidean distance between `V1` and `V2`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)DistanceSquared<native><public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes><reads>:float
+        (/UnrealEngine.com/Temporary/SpatialMath:)DistanceSquared<public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:float = external {}
 
         # Returns the 2-D Euclidean distance between `V1` and `V2` by ignoring the difference in `Z`.
-        DistanceXY<native><public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes><reads>:float
+        DistanceXY<public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:float = external {}
 
         # Returns the squared 2-D Euclidean distance between `V1` and `V2` by ignoring their difference in `Z`.
-        DistanceSquaredXY<native><public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes><reads>:float
+        DistanceSquaredXY<public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:float = external {}
 
         # Makes a unit length `vector3` pointing in the same direction of `V`.
         # Fails if `V.IsAlmostZero[] or not V.IsFinite[]`.
-        (V:(/UnrealEngine.com/Temporary/SpatialMath:)vector3).(/UnrealEngine.com/Temporary/SpatialMath:)MakeUnitVector<native><public>()<computes><decides><reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+        (V:(/UnrealEngine.com/Temporary/SpatialMath:)vector3).(/UnrealEngine.com/Temporary/SpatialMath:)MakeUnitVector<public>()<reads><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
         # Makes a `string` representation of `V`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)ToString<native><public>(V:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes><reads>:string
+        (/UnrealEngine.com/Temporary/SpatialMath:)ToString<public>(V:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:string = external {}
 
         # Returns the length of `V`.
-        (V:(/UnrealEngine.com/Temporary/SpatialMath:)vector3).(/UnrealEngine.com/Temporary/SpatialMath:)Length<public>()<computes><reads>:float = external {}
+        (V:(/UnrealEngine.com/Temporary/SpatialMath:)vector3).(/UnrealEngine.com/Temporary/SpatialMath:)Length<public>()<reads>:float = external {}
 
         # Returns the squared length of `V`.
         (V:(/UnrealEngine.com/Temporary/SpatialMath:)vector3).(/UnrealEngine.com/Temporary/SpatialMath:)LengthSquared<public>()<computes>:float = external {}
 
         # Returns the length of `V` as if `V.Z = 0.0`.
-        (V:(/UnrealEngine.com/Temporary/SpatialMath:)vector3).LengthXY<public>()<computes><reads>:float = external {}
+        (V:(/UnrealEngine.com/Temporary/SpatialMath:)vector3).LengthXY<public>()<reads>:float = external {}
 
         # Returns the squared length of `V` as if `V.Z = 0.0`.
-        (V:(/UnrealEngine.com/Temporary/SpatialMath:)vector3).LengthSquaredXY<public>()<computes><reads>:float = external {}
+        (V:(/UnrealEngine.com/Temporary/SpatialMath:)vector3).LengthSquaredXY<public>()<reads>:float = external {}
 
         # Used to linearly interpolate/extrapolate between `From` (when `Parameter = 0.0`) and `To` (when `Parameter = 1.0`). Expects that all arguments are finite.
         # Returns `From*(1 - Parameter) + To*Parameter`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)Lerp<public>(From:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, To:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Parameter:float)<computes><reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+        (/UnrealEngine.com/Temporary/SpatialMath:)Lerp<public>(From:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, To:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Parameter:float)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
         # Makes a `vector3` by inverting the signs of `Operand`.
         (/UnrealEngine.com/Temporary/SpatialMath:)prefix'-'<public>(Operand:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
-        # Makes a `vector3` by component-wise addition of `Left` and `Right`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)operator'+'<public>(Left:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Right:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+        # Makes a `vector3` by component-wise addition of `L` and `R`.
+        (/UnrealEngine.com/Temporary/SpatialMath:)operator'+'<public>(L:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, R:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
-        # Makes a `vector3` by component-wise subtraction of `Right` from `Left`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)operator'-'<public>(Left:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Right:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+        # Makes a `vector3` by component-wise subtraction of `R` from `L`.
+        (/UnrealEngine.com/Temporary/SpatialMath:)operator'-'<public>(L:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, R:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
-        # Makes a `vector3` by component-wise multiplication of `Left` and `Right`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)operator'*'<public>(Left:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Right:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+        # Makes a `vector3` by component-wise multiplication of `L` and `R`.
+        (/UnrealEngine.com/Temporary/SpatialMath:)operator'*'<public>(L:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, R:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
-        # Makes a `vector3` by multiplying the components of `Left` by `Right`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)operator'*'<public>(Left:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Right:float)<computes>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+        # Makes a `vector3` by multiplying the components of `L` by `R`.
+        (/UnrealEngine.com/Temporary/SpatialMath:)operator'*'<public>(L:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, R:float)<computes>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
-        # Makes a `vector3` by multiplying the components of `Right` by `Left`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)operator'*'<public>(Left:float, Right:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+        # Makes a `vector3` by multiplying the components of `R` by `L`.
+        (/UnrealEngine.com/Temporary/SpatialMath:)operator'*'<public>(L:float, R:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
-        # Makes a `vector3` by dividing the components of `Left` by `Right`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)operator'/'<public>(Left:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Right:float)<computes>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+        # Makes a `vector3` by dividing the components of `L` by `R`.
+        (/UnrealEngine.com/Temporary/SpatialMath:)operator'/'<public>(L:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, R:float)<computes>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
-        # Makes a `vector3` by component-wise division of `Left` by `Right`.
-        (/UnrealEngine.com/Temporary/SpatialMath:)operator'/'<public>(Left:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Right:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+        # Makes a `vector3` by component-wise division of `L` by `R`.
+        (/UnrealEngine.com/Temporary/SpatialMath:)operator'/'<public>(L:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, R:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<computes>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
         # Returns `V` if all components are finite.
         # Fails if any of the components are not finite.
@@ -1174,7 +1186,7 @@ Temporary<public> := module:
         GetDuration<public>()<decides>:float
 
         @experimental
-        GetOnFinishedEvent<public>()<computes><decides><reads>:listenable(tuple())
+        GetOnFinishedEvent<public>()<reads><decides>:listenable(tuple())
 
         @experimental
         GetOnStoppedEvent<public>():listenable(tuple())
@@ -1402,6 +1414,7 @@ ComponentTestSuite<public> := module:
     @hide_in_editor
     test_tag_vehicle_car_datsun<native><epic_internal> := class(test_tag_vehicle_car):
 
+using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 # Module import path: /UnrealEngine.com/EntityTestSuite
 EntityTestSuite<public> := module:
     @hide_in_editor
@@ -1419,6 +1432,8 @@ EntityTestSuite<public> := module:
     @hide_in_editor
     @experimental
     test_replication_component<native><epic_internal> := class<final_super>(component):
+        @replicated("")
+        var<private> TestReplicatedSubObject<native><epic_internal>:?test_replication_object = external {}
 
     @hide_in_editor
     @experimental
@@ -1470,11 +1485,6 @@ EntityTestSuite<public> := module:
 
         OnSimulate<override>()<suspends>:void = external {}
 
-# Module import path: /UnrealEngine.com/PlayspaceInternal
-PlayspaceInternal<public> := module:
-    @hide_in_editor
-    @experimental
-    playspace_association_component<native><epic_internal> := class<final_super><epic_internal>(component):
 Itemization<public> := module:
     using {/Verse.org/Colors}
     using {/UnrealEngine.com/Abilities}
@@ -1484,6 +1494,9 @@ Itemization<public> := module:
     using {/Verse.org/Simulation}
     using {/Verse.org/Native}
     using {/Verse.org/SceneGraph}
+    @experimental
+    failure_reason<native><epic_internal> := class:
+
     @experimental
     add_inventory_result<native><epic_internal> := struct<epic_internal>:
         ParentInventory<native><public>:inventory_component
@@ -1526,32 +1539,32 @@ Itemization<public> := module:
 
         OnUninitializingInternal<native><override>():void
 
-        CanAddItem<native><public>(Item:entity)<decides>:void
+        CanAddItem<final><native><public>(Item:entity)<reads>:?failure_reason
 
-        AddItems<native><final><public>(Item:[]entity)<transacts><decides>:add_items_result
+        AddItem<native><final><public>(Item:entity)<transacts><decides>:add_items_result
 
-        CanRemoveItem<native><public>(Item:entity)<decides>:void
+        CanRemoveItem<final><native><public>(Item:entity)<reads>:?failure_reason
 
-        RemoveItems<native><final><public>(Item:[]entity)<transacts><decides>:remove_items_result
+        RemoveItem<native><final><public>(Item:entity)<transacts><decides>:remove_items_result
 
-        GetItems<native><final><public>()<computes><reads>:[]entity
+        GetItems<native><final><public>()<reads>:[]entity
 
         @available {MinUploadedAtFNVersion := 2930}
-        FindItems<native><final><public>()<computes><reads>:generator(entity)
+        FindItems<native><final><public>()<reads>:generator(entity)
 
-        GetItemSlot<native><epic_internal>(Item:entity)<computes><reads>:int
+        GetItemSlot<native><epic_internal>(Item:entity)<reads>:int
 
-        InventoryAddedEvent<native><public>:listenable(add_inventory_result) = external {}
+        InventoryAddedEvent<native><epic_internal>:listenable(add_inventory_result) = external {}
 
-        InventoryRemovedEvent<native><public>:listenable(remove_inventory_result) = external {}
+        InventoryRemovedEvent<native><epic_internal>:listenable(remove_inventory_result) = external {}
 
-        InventoryPropertyChangedEvent<native><public>:listenable(inventory_property_change_result) = external {}
+        InventoryPropertyChangedEvent<native><epic_internal>:listenable(inventory_property_change_result) = external {}
 
-        ItemsAddedEvent<native><public>:listenable(add_items_result) = external {}
+        AddItemsEvent<native><public>:listenable(add_items_result) = external {}
 
-        ItemsRemovedEvent<native><public>:listenable(remove_items_result) = external {}
+        RemoveItemsEvent<native><public>:listenable(remove_items_result) = external {}
 
-        ItemsSlotChangedEvent<native><public>:listenable(change_items_slot_result) = external {}
+        ItemsSlotChangedEvent<native><epic_internal>:listenable(change_items_slot_result) = external {}
 
         AddRule<native><final><public>(Rule:inventory_rule_interface)<decides>:cancelable
 
@@ -1568,9 +1581,6 @@ Itemization<public> := module:
         @editable
         @replicated("")
         var<private> InventoryDescription<native><public>:message = external {}
-
-        @editable
-        ItemRequirement<native><public>:?item_requirement_base = external {}
 
         @editable
         @replicated("")
@@ -1591,45 +1601,6 @@ Itemization<public> := module:
         var<private> InventoryMaxStackSizeOverride<native><public>:int = external {}
 
     @experimental
-    fail_reason<native><epic_internal> := class:
-
-    @experimental
-    inventory_rule_interface<native><epic_internal> := interface<unique>:
-        OnRuleAdded<native_callable><public>(InventoryComponent:inventory_component):void
-
-        CanAddItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity)<computes><reads>:?fail_reason
-
-        CanMergeItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity)<computes><reads>:?fail_reason
-
-        CanRemoveItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity)<computes><reads>:?fail_reason
-
-    @import_as("/Script/ItemizationCoreRuntime.UEquippableItemRestrictionBase")
-    @experimental
-    equippable_item_restriction_base<native><epic_internal> := class<unique><concrete>:
-
-    @experimental
-    active_item_limit_behavior<native><epic_internal> := enum<persistable>:
-        UnequipLeastRecentlyUsed
-        Block
-
-    @experimental
-    equippable_item_restriction<native><epic_internal> := class(equippable_item_restriction_base):
-        AppliesTo<native><public>(Item:entity)<transacts><decides>:void
-
-        GetActiveSlotLimit<native><public>(Item:entity)<transacts><decides>:int
-
-        GetActiveLimitBehaviour<native><public>(Item:entity)<transacts><decides>:active_item_limit_behavior
-
-        @editable
-        ItemRequirement<native><public>:?item_requirement_base = external {}
-
-        @editable
-        ActiveSlotLimit<native><public>:int = external {}
-
-        @editable
-        ActiveLimitBehaviour<native><public>:active_item_limit_behavior = external {}
-
-    @experimental
     equippable_inventory_component<native><epic_internal> := class(inventory_component):
         CanEquipItem<native><public>(Item:entity)<decides>:void
 
@@ -1640,12 +1611,6 @@ Itemization<public> := module:
         GetInputAction<epic_internal>(ItemSlot:int):?input_action(type) = external {}
 
         GetNativeInputAction<native><epic_internal>(ItemSlot:int):?input_action(type)
-
-        @editable
-        EquipmentRestrictionList<native><public>:[]equippable_item_restriction_base = external {}
-
-        @editable
-        AutoEquipRequirementList<native><public>:[]item_requirement_base = external {}
 
         @editable
         SlotBindingList<native><epic_internal>:[]tuple(input_action(type), int) = external {}
@@ -1663,17 +1628,9 @@ Itemization<public> := module:
     equippable_inventory_slot_component<native><epic_internal> := class(equippable_inventory_component):
         var TotalSlots<override>:int = external {}
 
-        EquipmentRestrictionList<override>:[]equippable_item_restriction_base = external {}
-
-        AutoEquipRequirementList<override>:[]item_requirement_base = external {}
-
     @experimental
     equippable_inventory_hotbar_component<native><epic_internal> := class(equippable_inventory_component):
         var TotalSlots<override>:int = external {}
-
-        EquipmentRestrictionList<override>:[]equippable_item_restriction_base = external {}
-
-        AutoEquipRequirementList<override>:[]item_requirement_base = external {}
 
     @experimental
     (InAgent:agent).GetInventory<native><epic_internal>()<transacts><decides>:inventory_component
@@ -1685,6 +1642,16 @@ Itemization<public> := module:
         AddTestStackableItem<native_callable><public>(InInventory:inventory_component):void = external {}
 
         RemoveAllItems<native_callable><public>(InInventory:inventory_component):void = external {}
+
+    @experimental
+    inventory_rule_interface<native><epic_internal> := interface<unique>:
+        OnRuleAdded<native_callable><public>(InventoryComponent:inventory_component):void = external {}
+
+        CanAddItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity)<reads>:?failure_reason = external {}
+
+        CanMergeItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity)<reads>:?failure_reason = external {}
+
+        CanRemoveItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity)<reads>:?failure_reason = external {}
 
     @experimental
     inventory_setup_data_result<native><epic_internal> := struct<epic_internal>:
@@ -1721,7 +1688,7 @@ Itemization<public> := module:
         TotalSlotsOverride<native><public>:int = external {}
 
         @editable
-        ItemRequirement<native><public>:?item_requirement = external {}
+        InventoryRules<native><public>:[]inventory_rule_interface = external {}
 
     @experimental
     inventory_properties<native><epic_internal> := class<epic_internal>(inventory_properties_base):
@@ -1857,35 +1824,64 @@ Itemization<public> := module:
     item_component<native><final><epic_internal> := class<final_super>(component):
         OnInitializedInternal<native><override>():void
 
-        GetParentInventory<native><public>()<converges><decides>:inventory_component
+        GetParentInventory<native><public>()<decides><converges>:inventory_component
 
-        IsItemEquipped<native><public>()<decides>:void
+        IsItemEquipped<native><final><public>()<decides>:void
 
         EquippedChangedEvent<native><public>:listenable(item_equipped_change) = external {}
 
-        ItemChangedSlotEvent<native><public>:listenable(item_slot_change) = external {}
+        @available {MinUploadedAtFNVersion := 3200}
+        MergeableItemComponentClasses<native><public>:[]castable_subtype(item_component) = external {}
+
+        CanMergeInto<final><native_callable><public>(TargetItem:entity)<decides>:void = external {}
+
+        CanMergeIntoInternal<final><native><epic_internal>(TargetItem:entity):tuple(logic, logic)
+
+        MergeInto<final><native_callable><public>(TargetItem:entity, ?TargetAmount:?int = external {})<decides>:void = external {}
+
+        MergeIntoInternal<final><native><epic_internal>(TargetItem:entity, TargetAmount:int)<transacts><decides>:int
+
+        var<protected> StackSize<native><public>:int = external {}
+
+        SetStackSize<final><native><public>(NewStackSize:int):void
+
+        var<protected> MaxStackSize<native><public>:?int = external {}
+
+        SetMaxStackSize<final><native><public>(NewMaxStackSize:int, ?ClampStackSize:logic = external {}):void
 
         StackSizeChangedEvent<native><public>:listenable(item_stack_size_change) = external {}
 
         MaxStackSizeChangedEvent<native><public>:listenable(item_max_stack_size_change) = external {}
 
+        Drop<native><public>()<transacts><decides>:void
+
+        PickUp<native><public>(Inventory:inventory_component)<transacts><decides>:void
+
         @replicated("")
         var<private> ItemDefinition<native><epic_internal>:?item_definition_base = external {}
+
+    @experimental
+    item_mergeable_interface<public> := interface<unique>:
+        CanMergeInto<public>(TargetItem:entity)<reads><decides>:void = external {}
+
+        OnMergeInto<public>(TargetItem:entity, MergeAmount:int):void = external {}
+
+    DefaultItemEmptyString<localizes><epic_internal>:message = external {}
 
     @experimental
     # Component that holds the details of an item.
     item_details_component<native><epic_internal> := class<final_super>(component):
         @editable
         # Name of the item.
-        var<protected> Name<native><localizes><public>:message
+        var<protected> Name<native><public>:message = external {}
 
         @editable
         # Full description of the item.
-        var<protected> Description<native><localizes><public>:message
+        var<protected> Description<native><public>:message = external {}
 
         @editable
         # Short description of the item with only the essential information.
-        var<protected> ShortDescription<native><localizes><public>:message
+        var<protected> ShortDescription<native><public>:message = external {}
 
     @experimental
     # Component that holds the icon of an item.
@@ -1924,26 +1920,6 @@ Itemization<public> := module:
 
     DefaultText<localizes><epic_internal>:message = external {}
 
-    DebugItemTypeAmmoName<localizes><epic_internal>:message = external {}
-
-    DebugItemTypeAmmoDescription<localizes><epic_internal>:message = external {}
-
-    DebugItemTypeResourcesName<localizes><epic_internal>:message = external {}
-
-    DebugItemTypeResourcesDescription<localizes><epic_internal>:message = external {}
-
-    DebugItemTypeCollectablesName<localizes><epic_internal>:message = external {}
-
-    DebugItemTypeCollectablesDescription<localizes><epic_internal>:message = external {}
-
-    DebugItemTypeCurrenciesName<localizes><epic_internal>:message = external {}
-
-    DebugItemTypeCurrenciesDescription<localizes><epic_internal>:message = external {}
-
-    DebugItemTypeBuildToolsName<localizes><epic_internal>:message = external {}
-
-    DebugItemTypeBuildToolsDescription<localizes><epic_internal>:message = external {}
-
     @experimental
     item_type<native><epic_internal> := class<concrete><unique>:
         @editable
@@ -1956,34 +1932,8 @@ Itemization<public> := module:
         ParentType<native><public>:?item_type = external {}
 
     @experimental
-    DebugItemTypeAmmo<epic_internal> := class(item_type):
-        ItemTypeName<override>:message = external {}
-
-        ItemTypeDescription<override>:message = external {}
-
-    @experimental
-    DebugItemTypeResources<epic_internal> := class(item_type):
-        ItemTypeName<override>:message = external {}
-
-        ItemTypeDescription<override>:message = external {}
-
-    @experimental
-    DebugItemTypeCollectables<epic_internal> := class(item_type):
-        ItemTypeName<override>:message = external {}
-
-        ItemTypeDescription<override>:message = external {}
-
-    @experimental
-    DebugItemTypeCurrencies<epic_internal> := class(item_type):
-        ItemTypeName<override>:message = external {}
-
-        ItemTypeDescription<override>:message = external {}
-
-    @experimental
-    DebugItemTypeBuildTools<epic_internal> := class(item_type):
-        ItemTypeName<override>:message = external {}
-
-        ItemTypeDescription<override>:message = external {}
+    item_type_source<native><epic_internal> := class<abstract>:
+        GetItemType<native><native_callable><epic_internal>(Default:item_type):item_type
 
     @experimental
     item_type_component<native><final><epic_internal> := class<final_super>(component):
@@ -1992,22 +1942,8 @@ Itemization<public> := module:
         @editable
         var<private> ItemType<native><public>:item_type
 
-    @import_as("/Script/ItemizationCoreRuntime.UItemRequirementBase")
-    @experimental
-    item_requirement_base<native><epic_internal> := class<unique><concrete>:
-
-    @experimental
-    item_requirement<native><epic_internal> := class(item_requirement_base):
-        CanAcceptItem<native><public>(Item:entity)<transacts><decides>:void
-
         @editable
-        RequirementName<native><public>:string = external {}
-
-        @editable
-        RequirementDescription<native><public>:string = external {}
-
-        @editable
-        ItemTypeRequirement<native><public>:?item_type = external {}
+        ItemTypeSource<native><epic_internal>:?item_type_source = external {}
 
     @experimental
     item_rarity<native><epic_internal> := class<unique><concrete>:

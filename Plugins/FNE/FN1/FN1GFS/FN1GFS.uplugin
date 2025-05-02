@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/FN1",
-	"FortReleaseVersion": "34.40",
+	"FortReleaseVersion": "35.00",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"Version": 0,
@@ -26,6 +26,7 @@
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false,
+	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
 		"Create": {
 			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad"
@@ -76,11 +77,6 @@
 			"Name": "VendingMachine",
 			"Enabled": true,
 			"Activate": true,
-			"Optional": true
-		},
-		{
-			"Name": "VividRazorStations",
-			"Enabled": true,
 			"Optional": true
 		}
 	]

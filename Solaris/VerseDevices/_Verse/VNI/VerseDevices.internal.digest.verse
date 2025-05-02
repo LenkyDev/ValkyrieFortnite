@@ -69,6 +69,13 @@ Devices<public> := module:
             # Default = `InterpolationTypes.Linear`
             Interpolation<native><public>:cubic_bezier_parameters = external {}
 
+        # Animation keyframe delta scale modes.
+        keyframe_delta_scale_mode<native><epic_internal> := enum:
+            # Scale is applied as a multiple of the previous scale.
+            Multiplicative
+            # Scale is applied additively to the previous scale.
+            Additive
+
         # Animation play modes.
         animation_mode<native><public> := enum:
             # Stop after playing the animation once.
@@ -186,7 +193,7 @@ Devices<public> := module:
             IsValid<native><public>()<transacts><decides>:void
 
             # Native implementation of `SetAnimation`.
-            SetAnimationInternal<native><epic_internal>(Keyframes:[]keyframe_delta, ?AnimationMode:animation_mode = external {}):set_animation_result
+            SetAnimationInternal<native><epic_internal>(Keyframes:[]keyframe_delta, ?AnimationMode:animation_mode = external {}, ?DeltaScaleMode:keyframe_delta_scale_mode = external {}):set_animation_result
 
             # Sets the animation for the `animation_controller`. Animations are processed in the order provided in `Keyframes`. See notes in `keyframe_delta` and `animation_mode` for more details on controlling the animations.
             SetAnimation<public>(Keyframes:[]keyframe_delta, ?Mode:animation_mode):void = external {}
@@ -341,7 +348,7 @@ Devices<public> := module:
     GetCreativeObjectsWithTags<native><public>(SearchCriteria:tag_search_criteria)<transacts>:[]creative_object_interface
 
     # Returns a queryable `tag_view` which can be used to query the tags on `CreativeObject`.
-    (CreativeObject:creative_object_interface).GetTags<native><public>():tag_view
+    (CreativeObject:creative_object_interface).GetTags<native><public>()<transacts>:tag_view
 
     # Returns the `fort_playspace` that `CreativeObject` belongs to.
     (CreativeObject:creative_object_interface).GetPlayspace<native><public>()<transacts>:fort_playspace
@@ -426,85 +433,54 @@ Devices<public> := module:
     device_event<native><epic_internal>(t:type) := class<abstract>(listenable(t)):
         EventName<native><public>:string
 
-    # Partial implementation of `device_event(:type)` with no return payload.
-    device_event<epic_internal>() := device_event(tuple())
+        # Subscribes Callback to this event. That same Callback will only be triggered once per event even if it is called with Subscribe more than once.
+        Subscribe<native><override>(Callback:type {_(:t):void})<transacts>:cancelable
+
+        Await<native><override>()<suspends>:t
 
     # Implementation of `device_event(:type)` with no payload.
     device_event_void<native><epic_internal> := class(device_event(tuple())):
-        # Subscribes Callback to this event. That same Callback will only be triggered once per event even if it is called with Subscribe more than once.
-        Subscribe<native><override>(Callback:type {_():void})<transacts>:cancelable
 
-        Await<native><override>()<suspends>:tuple()
 
     # Implementation of `device_event(:type)` with required `agent` payload.
     device_event_agent<native><epic_internal> := class(device_event(agent)):
-        # Subscribes Callback to this event. That same Callback will only be triggered once per event even if it is called with Subscribe more than once.
-        Subscribe<native><override>(Callback:type {_(:agent):void})<transacts>:cancelable
 
-        Await<native><override>()<suspends>:agent
 
     # Implementation of `device_event(:type)` with required `creative_prop` payload.
     device_event_prop<native><epic_internal> := class(device_event(creative_prop)):
-        # Subscribes `Callback` to this event. That same `Callback` will only be triggered once per event even if it is called with `Subscribe` more than once.
-        Subscribe<native><override>(Callback:type {_(:creative_prop):void})<transacts>:cancelable
 
-        Await<native><override>()<suspends>:creative_prop
 
     # Implementation of `device_event(:type)` with optional `agent` payload.
     device_event_optional_agent<native><epic_internal> := class(device_event(?agent)):
-        # Subscribes Callback to this event. That same Callback will only be triggered once per event even if it is called with Subscribe more than once.
-        Subscribe<native><override>(Callback:type {_(:?agent):void})<transacts>:cancelable
 
-        Await<native><override>()<suspends>:?agent
 
     # Implementation of `device_event(:type)` with required `int` payload.
     device_event_int<native><epic_internal> := class(device_event(int)):
-        # Subscribes Callback to this event. That same Callback will only be triggered once per event even if it is called with Subscribe more than once.
-        Subscribe<native><override>(Callback:type {_(:int):void})<transacts>:cancelable
 
-        Await<native><override>()<suspends>:int
 
     # Implementation of `device_event(:type)` with a `tuple(int, float)` payload.
     device_event_int_float<native><epic_internal> := class(device_event(tuple(int, float))):
-        # Subscribes Callback to this event. That same Callback will only be triggered once per event even if it is called with Subscribe more than once.
-        Subscribe<native><override>(Callback:type {_(:int, :float):void})<transacts>:cancelable
 
-        Await<native><override>()<suspends>:tuple(int, float)
 
     # Implementation of `device_event(:type)` with a `tuple(agent, int)` payload.
     device_event_agent_int<native><epic_internal> := class(device_event(tuple(agent, int))):
-        # Subscribes Callback to this event. That same Callback will only be triggered once per event even if it is called with Subscribe more than once.
-        Subscribe<native><override>(Callback:type {_(:agent, :int):void})<transacts>:cancelable
 
-        Await<native><override>()<suspends>:tuple(agent, int)
 
     # Implementation of `device_event(:type)` with a `tuple(agent, float)` payload.
     device_event_agent_float<native><epic_internal> := class(device_event(tuple(agent, float))):
-        # Subscribes Callback to this event. That same Callback will only be triggered once per event even if it is called with Subscribe more than once.
-        Subscribe<native><override>(Callback:type {_(:agent, :float):void})<transacts>:cancelable
 
-        Await<native><override>()<suspends>:tuple(agent, float)
 
     # Implementation of `device_event(:type)` with a `tuple(?agent, int)` payload.
     device_event_optional_agent_int<native><epic_internal> := class(device_event(tuple(?agent, int))):
-        # Subscribes Callback to this event. That same Callback will only be triggered once per event even if it is called with Subscribe more than once.
-        Subscribe<native><override>(Callback:type {_(:?agent, :int):void})<transacts>:cancelable
 
-        Await<native><override>()<suspends>:tuple(?agent, int)
 
     # Implementation of `device_event(:type)` with required `fort_vehicle` payload.
     device_event_vehicle<native><epic_internal> := class(device_event(fort_vehicle)):
-        # Subscribes Callback to this event. That same Callback will only be triggered once per event even if it is called with Subscribe more than once.
-        Subscribe<native><override>(Callback:type {_(:fort_vehicle):void})<transacts>:cancelable
 
-        Await<native><override>()<suspends>:fort_vehicle
 
     # Implementation of `device_event(:type)` with a `tuple(?agent, fort_vehicle, int)` payload.
     device_event_optional_agent_vehicle_int<native><epic_internal> := class(device_event(tuple(?agent, fort_vehicle, int))):
-        # Subscribes Callback to this event. That same Callback will only be triggered once per event even if it is called with Subscribe more than once.
-        Subscribe<native><override>(Callback:type {_(:?agent, :fort_vehicle, :int):void})<transacts>:cancelable
 
-        Await<native><override>()<suspends>:tuple(?agent, fort_vehicle, int)
 
     # Payload of `device_event_ai_interaction`.
     device_ai_interaction_result<native><public> := struct<epic_internal>:
@@ -519,11 +495,6 @@ Devices<public> := module:
         SourceName<native><public>:string
 
         TargetName<native><public>:string
-
-        # Subscribes Callback to this event. That same Callback will only be triggered once per event even if it is called with Subscribe more than once.
-        Subscribe<native><override>(Callback:type {_(:device_ai_interaction_result):void})<transacts>:cancelable
-
-        Await<native><override>()<suspends>:device_ai_interaction_result
 
     function_parameter_base<native><epic_internal> := class<abstract><computes>:
 
@@ -605,28 +576,28 @@ Devices<public> := module:
         FunctionName<native><epic_internal>:string
 
     device_function_get_int<native><epic_internal> := class(device_function_get_base):
-        Invoke<native><epic_internal>()<computes><reads>:int
+        Invoke<native><epic_internal>()<reads>:int
 
     device_function_get_float<native><epic_internal> := class(device_function_get_base):
-        Invoke<native><epic_internal>()<computes><reads>:float
+        Invoke<native><epic_internal>()<reads>:float
 
     device_function_get_logic<native><epic_internal> := class(device_function_get_base):
-        Invoke<native><epic_internal>()<computes><reads>:logic
+        Invoke<native><epic_internal>()<reads>:logic
 
     device_function_get_string<native><epic_internal> := class(device_function_get_base):
-        Invoke<native><epic_internal>()<computes><reads>:string
+        Invoke<native><epic_internal>()<reads>:string
 
     device_function_get_color<native><epic_internal> := class(device_function_get_base):
-        Invoke<native><epic_internal>()<computes><reads>:color
+        Invoke<native><epic_internal>()<reads>:color
 
     device_function_get_agent<native><epic_internal> := class(device_function_get_base):
-        Invoke<native><epic_internal>()<computes><reads>:?agent
+        Invoke<native><epic_internal>()<reads>:?agent
 
     device_function_get_agent_array<native><epic_internal> := class(device_function_get_base):
-        Invoke<native><epic_internal>()<computes><reads>:[]agent
+        Invoke<native><epic_internal>()<reads>:[]agent
 
     device_function_get_vector3<native><epic_internal> := class(device_function_get_base):
-        Invoke<native><epic_internal>()<computes><reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+        Invoke<native><epic_internal>()<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
     device_function_set_multi_parameter_base<native><epic_internal> := class<abstract>(device_function_set_base):
         return_type<native><epic_internal>:?subtype(function_parameter_base) = external {}
@@ -637,7 +608,7 @@ Devices<public> := module:
         parameter_types<native><epic_internal>:[string]subtype(function_parameter_base)
 
     device_function_set_params_by_name_const<native><epic_internal> := class(device_function_set_params_by_name):
-        InvokeConst<native><epic_internal>(NamedParameters:[string]function_parameter_base)<computes><reads>:?function_parameter_base
+        InvokeConst<native><epic_internal>(NamedParameters:[string]function_parameter_base)<reads>:?function_parameter_base
 
     device_function_set_params_by_type<native><epic_internal> := class(device_function_set_multi_parameter_base):
         Invoke<native><epic_internal>(TypeExclusiveParameters:[]function_parameter_base)<transacts>:?function_parameter_base
@@ -645,7 +616,7 @@ Devices<public> := module:
         parameter_types<native><epic_internal>:[]subtype(function_parameter_base)
 
     device_function_set_params_by_type_const<native><epic_internal> := class(device_function_set_params_by_type):
-        InvokeConst<native><epic_internal>(TypeExclusiveParameters:[]function_parameter_base)<computes><reads>:?function_parameter_base
+        InvokeConst<native><epic_internal>(TypeExclusiveParameters:[]function_parameter_base)<reads>:?function_parameter_base
 
     # Class that implements the common logic for a healthful, damageable, healable device.
     device_health<native><epic_internal> := class<epic_internal>(healthful, damageable, healable):

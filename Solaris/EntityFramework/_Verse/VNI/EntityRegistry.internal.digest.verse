@@ -31,21 +31,18 @@ slow_entity_array_copy_query_iterator<native><epic_internal> := class<epic_inter
 @experimental
 @available {MinUploadedAtFNVersion := 3200}
 # Finds all descendant entities including `InEntity` of type `entity_type`.
-# When querying from the simulation entity, the simulation entity itself is not included in the results.
 # The order of the returned entities is unspecified and subject to change.
 (InEntity:entity).FindDescendantEntities<native><public>(entity_type:castable_subtype(entity))<transacts>:generator(entity_type)
 
 @experimental
 @available {MinUploadedAtFNVersion := 3200}
 # Finds all descendant entities including `InEntity` containing a component of type `component_type`.
-# When querying from the simulation entity, the simulation entity itself is not included in the results.
 # The order of the returned entities is unspecified and subject to change.
 (InEntity:entity).FindDescendantEntitiesWithComponent<native><public>(component_type:castable_subtype(component))<transacts>:generator(entity)
 
 @experimental
 @available {MinUploadedAtFNVersion := 3200}
 # Finds all components attached to descendant entities to and including `InEntity` of type `component_type`.
-# When querying from the simulation entity, the simulation entity itself is not included in the results.
 # The order of the returned components is unspecified and subject to change.
 (InEntity:entity).FindDescendantComponents<native><public>(component_type:castable_subtype(component))<transacts>:generator(component_type)
 

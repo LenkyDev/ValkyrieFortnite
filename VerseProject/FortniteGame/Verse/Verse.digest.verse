@@ -2,7 +2,7 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-34.40-CL-41753727
+# Generated from build: ++Fortnite+Release-35.00-CL-41994699
 #################################################
 
 SceneGraph<public> := module:
@@ -34,30 +34,27 @@ SceneGraph<public> := module:
         Start<native><public>(Agent:agent)<transacts><decides>:void
 
         # Returns whether the specified agent can interact.
-        CanInteract<native><native_callable><public>(Agent:agent)<computes><decides><reads>:void
+        CanInteract<native><native_callable><public>(Agent:agent)<reads><decides>:void
 
         # Returns an appropriate message to display to players to communicate the current state of the interactable.
-        InteractMessage<native><native_callable><public>(Agent:agent)<computes><decides><reads>:message
+        InteractMessage<native><native_callable><public>(Agent:agent)<reads><decides>:message
 
     using {/Verse.org/Native}
     @experimental
     @available {MinUploadedAtFNVersion := 3200}
     # Finds all descendant entities including `InEntity` of type `entity_type`.
-    # When querying from the simulation entity, the simulation entity itself is not included in the results.
     # The order of the returned entities is unspecified and subject to change.
     (InEntity:entity).FindDescendantEntities<native><public>(entity_type:castable_subtype(entity))<transacts>:generator(entity_type)
 
     @experimental
     @available {MinUploadedAtFNVersion := 3200}
     # Finds all descendant entities including `InEntity` containing a component of type `component_type`.
-    # When querying from the simulation entity, the simulation entity itself is not included in the results.
     # The order of the returned entities is unspecified and subject to change.
     (InEntity:entity).FindDescendantEntitiesWithComponent<native><public>(component_type:castable_subtype(component))<transacts>:generator(entity)
 
     @experimental
     @available {MinUploadedAtFNVersion := 3200}
     # Finds all components attached to descendant entities to and including `InEntity` of type `component_type`.
-    # When querying from the simulation entity, the simulation entity itself is not included in the results.
     # The order of the returned components is unspecified and subject to change.
     (InEntity:entity).FindDescendantComponents<native><public>(component_type:castable_subtype(component))<transacts>:generator(component_type)
 
@@ -240,10 +237,10 @@ SceneGraph<public> := module:
             PausedEvent<native><public>:listenable(tuple()) = external {}
 
             # Is the animation currently playing?
-            IsPlaying<native><public>()<computes><decides><reads>:void
+            IsPlaying<native><public>()<reads><decides>:void
 
             # Is the animation paused?
-            IsPaused<native><public>()<computes><decides><reads>:void
+            IsPaused<native><public>()<reads><decides>:void
 
             # Gets the duration in seconds this keyframed movement will take. Fails if a fixed duration is not known (ex: looping animations).
             var<private> Duration<native><public>:?float = external {}
@@ -255,7 +252,7 @@ SceneGraph<public> := module:
             SetKeyframes<native><public>(RelativeKeyframes:[]keyframed_movement_delta, PlaybackMode:keyframed_movement_playback_mode):void
 
             # Is there a valid set of playable keyframes?
-            HasValidAnimation<native><public>()<computes><decides><reads>:void
+            HasValidAnimation<native><public>()<reads><decides>:void
 
             # Signaled when any keyframe is reached. (Keyframe:int, IsReversed:logic).
             KeyframeReachedEvent<native><public>:listenable(tuple(int, logic)) = external {}
@@ -303,15 +300,12 @@ SceneGraph<public> := module:
     # Dependencies:
     #   * `transform_component` on the entity positions the mesh.
     mesh_component<native><public> := class<final_super><epic_internal>(component, enableable):
-        @experimental
         # Enables rendering of this mesh.
         Enable<native><override>():void
 
-        @experimental
         # Disables rendering of this mesh.
         Disable<native><override>():void
 
-        @experimental
         # Succeeds if the component is enabled, fails if it's disabled.
         IsEnabled<native><override>()<transacts><decides>:void
 
@@ -482,13 +476,13 @@ SceneGraph<public> := module:
     #   * Finding entities from the simulation entity for tagged entities only considers any `tag_component` that has run `OnAddedToScene`.
     tag_component<native><public> := class<final><final_super>(component, tag_view):
         # Determine if TagToCheck is present in this container, also checking against parent tags {"A.1"}.Has("A") will return True, {"A"}.Has("A.1") will return False If TagToCheck is not Valid it will always return False.
-        Has<native><override>(TagToCheck:tag)<computes><decides><reads>:void
+        Has<native><override>(TagToCheck:tag)<reads><decides>:void
 
         # Checks if this container contains ANY of the tags in the specified container, also checks against parent tags {"A.1"}.HasAny({"A","B"}) will return True, {"A"}.HasAny({"A.1","B"}) will return False If InTags is empty/invalid it will always return False.
-        HasAny<native><override>(InTags:[]tag)<computes><decides><reads>:void
+        HasAny<native><override>(InTags:[]tag)<reads><decides>:void
 
         # Checks if this container contains ALL of the tags in the specified container, also checks against parent tags {"A.1","B.1"}.HasAll({"A","B"}) will return True, {"A","B"}.HasAll({"A.1","B.1"}) will return False If InTags is empty/invalid it will always return True, because there were no failed checks.
-        HasAll<native><override>(InTags:[]tag)<computes><decides><reads>:void
+        HasAll<native><override>(InTags:[]tag)<reads><decides>:void
 
         # Adds a tag to this component. Returns `true` if the tag was not present before being added.
         AddTag<native><public>(TagToAdd:tag)<transacts>:logic
@@ -992,7 +986,6 @@ SceneGraph<public> := module:
         # Suspends the current task until resumed by a matching call to `signalable.Signal`. Returns the event `payload`.
         Await<native><override>()<suspends>:float
 
-        @experimental
         # Subscribe a callback function to this TickEvent phase. The input parameter to your function (DeltaTime) is the time that has passed between the last update and the current update.
         Subscribe<native><override>(Callback:type {_(:float):void})<transacts>:cancelable
 
@@ -1004,7 +997,6 @@ SceneGraph<public> := module:
         # Suspends the current task until resumed by a matching call to `signalable.Signal`.
         Await<native><override>()<suspends>:tuple()
 
-        @experimental
         # Subscribe a callback function to this event.
         Subscribe<native><override>(Callback:type {_():void})<transacts>:cancelable
 
@@ -1017,13 +1009,13 @@ Simulation<public> := module:
         # A queryable collection of gameplay tags.
         tag_view<native><public> := interface<epic_internal>:
             # Determine if TagToCheck is present in this container, also checking against parent tags {"A.1"}.Has("A") will return True, {"A"}.Has("A.1") will return False If TagToCheck is not Valid it will always return False.
-            Has<public>(TagToCheck:tag)<computes><decides><reads>:void
+            Has<public>(TagToCheck:tag)<reads><decides>:void
 
             # Checks if this container contains ANY of the tags in the specified container, also checks against parent tags {"A.1"}.HasAny({"A","B"}) will return True, {"A"}.HasAny({"A.1","B"}) will return False If InTags is empty/invalid it will always return False.
-            HasAny<public>(InTags:[]tag)<computes><decides><reads>:void
+            HasAny<public>(InTags:[]tag)<reads><decides>:void
 
             # Checks if this container contains ALL of the tags in the specified container, also checks against parent tags {"A.1","B.1"}.HasAll({"A","B"}) will return True, {"A","B"}.HasAll({"A.1","B.1"}) will return False If InTags is empty/invalid it will always return True, because there were no failed checks.
-            HasAll<public>(InTags:[]tag)<computes><decides><reads>:void
+            HasAll<public>(InTags:[]tag)<reads><decides>:void
 
         tag_search_sort_type<native><public> := enum:
             Unsorted
@@ -1166,7 +1158,7 @@ Simulation<public> := module:
 
     player<native><public> := class<unique><persistent><module_scoped_var_weak_map_key><epic_internal>(agent):
         # Succeeds when this `player` may be used as a module-scoped `var` `weak_map` key. This coincides with the corresponding player having joined the game and not yet left. Using a `player` as a module-scope `var` `weak_map` key when this method fails results in a runtime error.
-        IsActive<native><public>()<computes><decides><reads>:void
+        IsActive<native><public>()<reads><decides>:void
 
     # Type for which there is a single instance per round.  Use `GetSession` to get the current round's `session` instance. May be used with `weak_map` to implement global variables.
     # Note: may be changed in a future release to a single instance per game. Round-local behavior should not be relied upon.
@@ -1174,7 +1166,7 @@ Simulation<public> := module:
 
     # Returns the `session` corresponding to the current round.  The result can be used with `weak_map` to implement global variables.
     # Note: may be changed in a future release to return a single instance per game. Round-local behavior should not be relied upon.
-    GetSession<native><public>()<computes><reads>:session
+    GetSession<native><public>()<reads>:session
 
     # Waits specified number of seconds and then resumes. If `Seconds` = 0.0 then it waits until next tick/frame/update. If `Seconds` = Inf then it waits forever and only calls back if canceled - such as via `race`. If `Seconds` < 0.0 then it completes immediately and does not yield to other aysnc expressions.
     # Waiting until the next update (0.0) is especially useful in a loop of a coroutine that needs to do some work every update and this yields to other coroutines so that it doesn't hog a processor's resources.
@@ -1276,7 +1268,7 @@ Verse<public> := module:
     operator'+'<public>(Lhs:string, Rhs:diagnostic)<computes>:diagnostic = external {}
 
     # Converts any Verse value into an opaque diagnostic message.
-    ToDiagnostic<native><public>(Value:any)<computes><reads>:diagnostic
+    ToDiagnostic<native><public>(Value:any)<reads>:diagnostic
 
     # Implemented by classes whose instances have limited lifetimes.
     disposable<native><public> := interface:
@@ -1297,9 +1289,7 @@ Verse<public> := module:
     # Halts the Verse runtime with error `Message`.
     Err<native><public>(Message:string)<computes>:false
 
-    # A *recurring*, successively signaled parametric `event` with a `payload` allowing a simple mechanism to coordinate between concurrent tasks:
-    #  * `Await` suspends tasks to wait on this `event`,
-    #  * another task `Signal`s this `event` and resumes the suspended tasks in FIFO order.
+    # A *recurring*, successively signaled parametric `event` with a `payload` allowing a simple mechanism to coordinate between concurrent tasks.
     event<native><public>(t:type) := class(signalable(t), awaitable(t)):
         # Suspends the current task until another task calls `Signal`.
         # If called during another invocation of `Signal`, the the task will still suspend and resume during the next call to `Signal`.
@@ -1315,25 +1305,25 @@ Verse<public> := module:
 
     # Returns the smallest `int` that is greater than or equal to `Val`.
     # Fails if `not IsFinite(Val)`.
-    Ceil<native><public>(Val:float)<computes><decides><reads>:int
+    Ceil<native><public>(Val:float)<reads><decides>:int
 
     # Returns the largest `int` that is less than or equal to `Val`.
     # Fails if `not IsFinite(Val)`.
-    Floor<native><public>(Val:float)<computes><decides><reads>:int
+    Floor<native><public>(Val:float)<reads><decides>:int
 
     # Returns `Val` rounded to the nearest `int`. When the fractional part of `Val` is `0.5`, rounds to the nearest *even* `int` (per the IEEE-754 default rounding mode).
     # Fails if `not IsFinite(Val)`.
-    Round<native><public>(Val:float)<computes><decides><reads>:int
+    Round<native><public>(Val:float)<reads><decides>:int
 
     # Returns the `int` that equals `Val` without the fractional part.
     # Fails if `not IsFinite(val)`.
-    Int<native><public>(Val:float)<computes><decides><reads>:int
+    Int<native><public>(Val:float)<reads><decides>:int
 
     # Makes a `string` representation of `Val`.
-    ToString<native><public>(Val:float)<computes><reads>:string
+    ToString<native><public>(Val:float)<reads>:string
 
     # Returns the number of seconds since January 1, 1970 UTC, ignoring leap seconds. I.e, this function implements Unix time. This function always returns the same value within the same transaction.
-    GetSecondsSinceEpoch<native><public>()<computes><reads>:float
+    GetSecondsSinceEpoch<native><public>()<reads>:float
 
     # Makes a printable `string` representation of `Val`.
     ToString<native><public>(Val:int)<computes>:string
@@ -1356,7 +1346,7 @@ Verse<public> := module:
     message<native><public> := class<epic_internal>:
 
     # Makes a `string` by localizing `Message` based on the current `locale`.
-    Localize<native><public>(Message:message)<computes><reads>:string
+    Localize<native><public>(Message:message)<reads>:string
 
     localizable_value<native><epic_internal> := class:
 
@@ -1407,67 +1397,67 @@ Verse<public> := module:
     @rtfm_always_open
     # Returns the square root of `X` if `X >= 0.0`.
     # Returns `NaN` if `X < 0.0`.
-    Sqrt<native><public>(X:float)<computes><reads>:float
+    Sqrt<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the sine of `X` if `IsFinite(X)`.
     # Returns `NaN` if `not IsFinite(X)
-    Sin<native><public>(X:float)<computes><reads>:float
+    Sin<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the cosine of `X` if `IsFinite(X)`.
     # Returns `NaN` if `not IsFinite(X)
-    Cos<native><public>(X:float)<computes><reads>:float
+    Cos<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the tangent of `X` if `IsFinite(X)`.
     # Returns `NaN` if `not IsFinite(X).
-    Tan<native><public>(X:float)<computes><reads>:float
+    Tan<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the inverse sine (arcsine) of `X` if `-1.0 <= X <= 1.0`.
-    ArcSin<native><public>(X:float)<computes><reads>:float
+    ArcSin<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the inverse cosine (arccosine) of `X` if `-1.0 <= X <= 1.0`.
-    ArcCos<native><public>(X:float)<computes><reads>:float
+    ArcCos<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the inverse tangent (arctangent) of `X` such that:`-PiFloat/2.0 <= ArcTan(x) <= PiFloat/2.0`.
-    ArcTan<native><public>(X:float)<computes><reads>:float
+    ArcTan<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the angle in radians at the origin between a ray pointing to `(X, Y)` and the positive `X` axis such that `-PiFloat < ArcTan(Y, X) <= PiFloat`.
     # Returns 0.0 if `X=0.0 and Y=0.0`.
-    ArcTan<native><public>(Y:float, X:float)<computes><reads>:float
+    ArcTan<native><public>(Y:float, X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the hyperbolic sine of `X`.
-    Sinh<native><public>(X:float)<computes><reads>:float
+    Sinh<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the hyperbolic cosine of `X`.
-    Cosh<native><public>(X:float)<computes><reads>:float
+    Cosh<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the hyperbolic tangent of `X`.
-    Tanh<native><public>(X:float)<computes><reads>:float
+    Tanh<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the inverse hyperbolic sine of `X` if `IsFinite(X)`.
-    ArSinh<native><public>(X:float)<computes><reads>:float
+    ArSinh<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the inverse hyperbolic cosine of `X` if `1.0 <= X`.
-    ArCosh<native><public>(X:float)<computes><reads>:float
+    ArCosh<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the inverse hyperbolic tangent of `X` if `IsFinite(X)`.
-    ArTanh<native><public>(X:float)<computes><reads>:float
+    ArTanh<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns `A` to the power of `B`.
-    Pow<native><public>(A:float, B:float)<computes><reads>:float
+    Pow<native><public>(A:float, B:float)<reads>:float
 
     # Returns `X` if `X` is finite.
     # Fails if `X` is one of:`
@@ -1493,19 +1483,19 @@ Verse<public> := module:
 
     @rtfm_always_open
     # Returns the natural exponent of `X`.
-    Exp<native><public>(X:float)<computes><reads>:float
+    Exp<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the natural logarithm of `X`.
-    Ln<native><public>(X:float)<computes><reads>:float
+    Ln<native><public>(X:float)<reads>:float
 
     # Returns the base `B` logarithm of `X`.
-    Log<public>(B:float, X:float)<computes><reads>:float = external {}
+    Log<public>(B:float, X:float)<reads>:float = external {}
 
     @rtfm_always_open
     # Used to linearly interpolate/extrapolate between `From` (when `Parameter = 0.0`) and `To` (when `Parameter = 1.0`). Expects that all arguments are finite.
     # Returns `From*(1 - Parameter) + To*Parameter`.
-    Lerp<native><public>(From:float, To:float, Parameter:float)<computes><reads>:float
+    Lerp<native><public>(From:float, To:float, Parameter:float)<reads>:float
 
     # Returns the sign of `Val`:
     #   * `1` if `Val > 0`
@@ -1591,10 +1581,10 @@ Colors<public> := module:
     (/Verse.org/Colors:)operator'*'<native><public>(factor:int, c:color)<converges>:color
 
     # Makes an ACES 2065-1 `color` from each component of `c` divided by `factor`.
-    (/Verse.org/Colors:)operator'/'<native><public>(c:color, factor:float)<converges><decides>:color
+    (/Verse.org/Colors:)operator'/'<native><public>(c:color, factor:float)<decides><converges>:color
 
     # Makes an ACES 2065-1 `color` from each component of `c` divided by `factor`.
-    (/Verse.org/Colors:)operator'/'<native><public>(c:color, factor:int)<converges><decides>:color
+    (/Verse.org/Colors:)operator'/'<native><public>(c:color, factor:int)<decides><converges>:color
 
     # Makes an ACES 2065-1 `color` from sRGB components `Red`, `Green`, and `Blue`.
     # Normal sRGB component values are between `0.0` and `1.0`, but this can handle larger values.
@@ -1937,7 +1927,7 @@ SpatialMath<public> := module:
 
     @experimental
     # Makes a `rotation` from `Axis` and `AngleRadians` using a left-handed sign convention (e.g. a positive rotation around +Z takes +X to +Y). If `Axis.IsAlmostZero[]`, make the identity rotation.
-    MakeRotation<native><public>(Axis:vector3, AngleRadians:float)<converges><reads>:rotation
+    MakeRotation<native><public>(Axis:vector3, AngleRadians:float)<reads><converges>:rotation
 
     @experimental
     # Makes a `rotation` by applying `YawRightDegrees`, `PitchUpDegrees`, and `RollClockwiseDegrees`, in that order:
@@ -1945,7 +1935,7 @@ SpatialMath<public> := module:
     #  * then a *pitch* about the new Right axis with a positive angle indicating 'nose up',
     #  * followed by a *roll* about the new Forward axis axis with a positive angle indicating a clockwise rotation when viewed along +X.
     # Note that these conventions differ from `MakeRotation` but match `ApplyYaw`, `ApplyPitch`, and `ApplyRoll`.
-    MakeRotationFromYawPitchRollDegrees<native><public>(YawRightDegrees:float, PitchUpDegrees:float, RollClockwiseDegrees:float)<converges><reads>:rotation
+    MakeRotationFromYawPitchRollDegrees<native><public>(YawRightDegrees:float, PitchUpDegrees:float, RollClockwiseDegrees:float)<reads><converges>:rotation
 
     @experimental
     # Makes the identity `rotation`.
@@ -1955,55 +1945,55 @@ SpatialMath<public> := module:
     # Returns the 'distance' between `Rotation1` and `Rotation2`. The result will be between:
     #  * `0.0`, representing equivalent rotations and
     #  * `1.0` representing rotations which are 180 degrees apart (i.e., the shortest rotation between them is 180 degrees around some axis).
-    Distance<native><public>(Rotation1:rotation, Rotation2:rotation)<computes><reads>:float
+    Distance<native><public>(Rotation1:rotation, Rotation2:rotation)<reads>:float
 
     @experimental
     # Returns the 'smallest angular distance' between `Rotation1` and `Rotation2` in radians.
-    AngularDistance<native><public>(Rotation1:rotation, Rotation2:rotation)<computes><reads>:float
+    AngularDistance<native><public>(Rotation1:rotation, Rotation2:rotation)<reads>:float
 
     @experimental
     # Makes a `rotation` by applying `PitchUpRadians` of right-handed rotation around the local +Right axis to `InitialRotation`.
-    (InitialRotation:rotation).ApplyPitch<native><public>(PitchUpRadians:float)<computes><reads>:rotation
+    (InitialRotation:rotation).ApplyPitch<native><public>(PitchUpRadians:float)<reads>:rotation
 
     @experimental
     # Makes a `rotation` by applying `RollClockwiseRadians` of right-handed rotation around the local +Forward axis to `InitialRotation`.
-    (InitialRotation:rotation).ApplyRoll<native><public>(RollClockwiseRadians:float)<computes><reads>:rotation
+    (InitialRotation:rotation).ApplyRoll<native><public>(RollClockwiseRadians:float)<reads>:rotation
 
     @experimental
     # Makes a `rotation` by applying `YawRightRadians` of left-handed rotation around the local +Up axis to `InitialRotation`.
-    (InitialRotation:rotation).ApplyYaw<native><public>(YawRightRadians:float)<computes><reads>:rotation
+    (InitialRotation:rotation).ApplyYaw<native><public>(YawRightRadians:float)<reads>:rotation
 
     @experimental
     # Makes a `rotation` by applying `AngleRadians` of left-handed rotation around the world +Forward axis to `InitialRotation`.
-    (InitialRotation:rotation).ApplyWorldRotationForward<native><public>(AngleRadians:float)<computes><reads>:rotation
+    (InitialRotation:rotation).ApplyWorldRotationForward<native><public>(AngleRadians:float)<reads>:rotation
 
     @experimental
     # Makes a `rotation` by applying `AngleRadians` of left-handed rotation around the world +Right axis to `InitialRotation`.
-    (InitialRotation:rotation).ApplyWorldRotationRight<native><public>(AngleRadians:float)<computes><reads>:rotation
+    (InitialRotation:rotation).ApplyWorldRotationRight<native><public>(AngleRadians:float)<reads>:rotation
 
     @experimental
     # Makes a `rotation` by applying `AngleRadians` of left-handed rotation around the world +Up axis to `InitialRotation`.
-    (InitialRotation:rotation).ApplyWorldRotationUp<native><public>(AngleRadians:float)<computes><reads>:rotation
+    (InitialRotation:rotation).ApplyWorldRotationUp<native><public>(AngleRadians:float)<reads>:rotation
 
     @experimental
     # Makes a `rotation` by applying `AngleRadians` of left-handed rotation around the local +Forward axis to `InitialRotation`.
-    (InitialRotation:rotation).ApplyLocalRotationForward<public>(AngleRadians:float)<computes><reads>:rotation = external {}
+    (InitialRotation:rotation).ApplyLocalRotationForward<public>(AngleRadians:float)<reads>:rotation = external {}
 
     @experimental
     # Makes a `rotation` by applying `AngleRadians` of left-handed rotation around the local +Right axis to `InitialRotation`.
-    (InitialRotation:rotation).ApplyLocalRotationRight<public>(AngleRadians:float)<computes><reads>:rotation = external {}
+    (InitialRotation:rotation).ApplyLocalRotationRight<public>(AngleRadians:float)<reads>:rotation = external {}
 
     @experimental
     # Makes a `rotation` by applying `AngleRadians` of left-handed rotation around the local +Up axis to `InitialRotation`.
-    (InitialRotation:rotation).ApplyLocalRotationUp<public>(AngleRadians:float)<computes><reads>:rotation = external {}
+    (InitialRotation:rotation).ApplyLocalRotationUp<public>(AngleRadians:float)<reads>:rotation = external {}
 
     @experimental
     # Makes a `rotation` by composing `AdditionalRotation` to `InitialRotation`.
-    (InitialRotation:rotation).RotateBy<native><public>(AdditionalRotation:rotation)<computes><reads>:rotation
+    (InitialRotation:rotation).RotateBy<native><public>(AdditionalRotation:rotation)<reads>:rotation
 
     @experimental
     # Makes a `rotation` by composing the inverse of `RotationToRemove` from `InitialRotation`. such that InitialRotation = RotateBy(UnrotateBy(InitialRotation, RotationToRemove), RotationToRemove). This is equivalent to RotateBy(InitialRotation, InvertRotation(RotationToRemove))
-    (InitialRotation:rotation).UnrotateBy<native><public>(RotationToRemove:rotation)<computes><reads>:rotation
+    (InitialRotation:rotation).UnrotateBy<native><public>(RotationToRemove:rotation)<reads>:rotation
 
     @experimental
     # Makes a `tuple(float, float, float)` with three elements:
@@ -2011,81 +2001,81 @@ SpatialMath<public> := module:
     #  * *pitch* degrees of `rotation`
     #  * *roll* degrees of `rotation`
     # using the conventions of `MakeRotationFromYawPitchRollDegrees`.
-    (Rotation:rotation).GetYawPitchRollDegrees<native><public>()<computes><reads>:tuple(float, float, float)
+    (Rotation:rotation).GetYawPitchRollDegrees<native><public>()<reads>:tuple(float, float, float)
 
     @experimental
     # Makes a `vector3` from the axis of `rotation`.
     # If `rotation` is nearly identity, this will return the +Forward axis. See also `GetAngle`.
-    (Rotation:rotation).GetAxis<native><public>()<computes><reads>:vector3
+    (Rotation:rotation).GetAxis<native><public>()<reads>:vector3
 
     @experimental
     # Returns the radians of left-handed `rotation` around the axis of `rotation`. See also `GetAxis`.
-    (Rotation:rotation).GetAngle<native><public>()<computes><reads>:float
+    (Rotation:rotation).GetAngle<native><public>()<reads>:float
 
     @experimental
     # Makes the smallest angular `rotation` from `InitialRotation` to `FinalRotation` such that:
     # `InitialRotation.RotateBy(MakeShortestRotationBetween(InitialRotation, FinalRotation)) = FinalRotation` and
     # `MakeShortestRotationBetween(InitialRotation, FinalRotation)?.GetAngle()` is as small as possible.
-    MakeShortestRotationBetween<native><public>(InitialRotation:rotation, FinalRotation:rotation)<computes><reads>:rotation
+    MakeShortestRotationBetween<native><public>(InitialRotation:rotation, FinalRotation:rotation)<reads>:rotation
 
     @experimental
     # Makes the smallest angular `rotation` from `InitialVector` to `FinalVector` such that:
     # `InitialVector.RotateBy(MakeShortestRotationBetween(InitialVector, Vector)) = FinalVector` and
     # `MakeShortestRotationBetween(InitialVector, FinalVector)?.GetAngle()` is as small as possible.
-    MakeShortestRotationBetween<native><public>(InitialVector:vector3, FinalVector:vector3)<computes><reads>:rotation
+    MakeShortestRotationBetween<native><public>(InitialVector:vector3, FinalVector:vector3)<reads>:rotation
 
     @experimental
     # Makes a new `rotation` from the component wise subtraction of the Euler angle components in `RotationA` by 
     # the Euler angle components in `RotationB` and ensures the returned value is normalized.
-    MakeComponentWiseDeltaRotation<native><public>(RotationA:rotation, RotationB:rotation)<computes><reads>:rotation
+    MakeComponentWiseDeltaRotation<native><public>(RotationA:rotation, RotationB:rotation)<reads>:rotation
 
     @experimental
     # Used to perform spherical linear interpolation between `From` (when `Parameter = 0.0`) and `To` (when `Parameter = 1.0`). Expects that `0.0 <= Parameter <= 1.0`.
-    Slerp<native><public>(InitialRotation:rotation, FinalRotation:rotation, Parameter:float)<computes><decides><reads>:rotation
+    Slerp<native><public>(InitialRotation:rotation, FinalRotation:rotation, Parameter:float)<reads><decides>:rotation
 
     @experimental
     # Makes a `vector3` by applying `Rotation` to `Vector`.
-    (Rotation:rotation).RotateVector<native><public>(Vector:vector3)<computes><reads>:vector3
+    (Rotation:rotation).RotateVector<native><public>(Vector:vector3)<reads>:vector3
 
     @experimental
     # Makes a `vector3` by applying the inverse of `Rotation` to `Vector`.
-    (Rotation:rotation).UnrotateVector<native><public>(Vector:vector3)<computes><reads>:vector3
+    (Rotation:rotation).UnrotateVector<native><public>(Vector:vector3)<reads>:vector3
 
     @experimental
     # Makes a `rotation` by inverting `Rotation` such that `ApplyRotation(Rotation, Rotation.Invert())) = IdentityRotation`.
-    (Rotation:rotation).Invert<native><public>()<computes><reads>:rotation
+    (Rotation:rotation).Invert<native><public>()<reads>:rotation
 
     @experimental
     # Returns `Rotation` if it does not contain `NaN`, `Inf` or `-Inf`.
-    (Rotation:rotation).(/Verse.org/SpatialMath:)IsFinite<native><public>()<converges><decides>:rotation
+    (Rotation:rotation).(/Verse.org/SpatialMath:)IsFinite<native><public>()<decides><converges>:rotation
 
     @experimental
     # Makes a unit `vector3` pointing in the local space *forward* direction in world space coordinates.
     # This is equivalent to: `RotateVector(Rotation, vector3{Forward:=1.0, Right:=0.0, Up:=0.0})`.
-    (Rotation:rotation).GetLocalForward<public>()<computes><reads>:vector3 = external {}
+    (Rotation:rotation).GetLocalForward<public>()<reads>:vector3 = external {}
 
     @experimental
     # Makes a unit `vector3` pointing in the the local space *right* direction in world space coordinates.
     # This is equivalent to: `RotateVector(Rotation, vector3{Forward:=0.0, Right:=1.0, Up:=0.0})`.
-    (Rotation:rotation).GetLocalRight<public>()<computes><reads>:vector3 = external {}
+    (Rotation:rotation).GetLocalRight<public>()<reads>:vector3 = external {}
 
     @experimental
     # Makes a unit `vector3` pointing in the local space *up* direction in world space coordinates.
     # This is equivalent to: `RotateVector(Rotation, vector3{Forward:=0.0, Right:=0.0, Up:=1.0})`.
-    (Rotation:rotation).GetLocalUp<public>()<computes><reads>:vector3 = external {}
+    (Rotation:rotation).GetLocalUp<public>()<reads>:vector3 = external {}
 
     @experimental
     # Makes a `string` representation of `rotation` in axis/degrees format with a left-handed sign convention.
-    # `ToString(MakeRotation(vector3{Forward:=1.0, Right:=0.0, Up:=0.0}, PiFloat/2.0))` produces the string: `"{Axis = {x=1.000000,y=0.000000,z=0.000000}, Angle = 90.000000}"`.
-    (/Verse.org/SpatialMath:)ToString<native><public>(Rotation:rotation)<computes><reads>:string
+    # `ToString(MakeRotation(vector3{Forward:=1.0, Right:=0.0, Up:=0.0}, PiFloat/2.0))` produces the string: `"{Axis = {Forward = 1.000000, Right = 0.000000, Up = 0.000000}, Angle = 90.000000}"`.
+    (/Verse.org/SpatialMath:)ToString<public>(Rotation:rotation)<reads>:string = external {}
 
     @experimental
     # Returns radians from `Degrees`.
-    DegreesToRadians<public>(Degrees:float)<computes><reads>:float = external {}
+    DegreesToRadians<public>(Degrees:float)<reads>:float = external {}
 
     @experimental
     # Returns degrees from `Radians`.
-    RadiansToDegrees<public>(Radians:float)<computes><reads>:float = external {}
+    RadiansToDegrees<public>(Radians:float)<reads>:float = external {}
 
     @experimental
     @import_as("/*.FVTransform")
@@ -2093,28 +2083,28 @@ SpatialMath<public> := module:
     transform<native><public> := struct<concrete><computes>:
         @editable
         # The location of this `transform`.
-        Translation<native><public>:vector3 = external {}
+        Translation<public>:vector3 = external {}
 
         @editable
         # The rotation of this `transform`.
-        Rotation<native><public>:rotation = external {}
+        Rotation<public>:rotation = external {}
 
         @editable
         # The scale of this `transform`.
-        Scale<native><public>:vector3 = external {}
+        Scale<public>:vector3 = external {}
 
     @experimental
     # Makes a `vector3` by applying `InTransform` to `InVector`.
-    TransformVector<native><public>(InTransform:transform, InVector:vector3)<computes><reads>:vector3
+    TransformVector<public>(InTransform:transform, InVector:vector3)<reads>:vector3 = external {}
 
     @experimental
     # Makes a `vector3` by applying `InTransform` to `InVector` without applying `InTransform.Scale`.
-    TransformVectorNoScale<native><public>(InTransform:transform, InVector:vector3)<computes><reads>:vector3
+    TransformVectorNoScale<public>(InTransform:transform, InVector:vector3)<reads>:vector3 = external {}
 
     @experimental
     # Makes a `string` representation of `InTransform` where the result is on the form.
     # `"{Translation = {ToString(`InTransform.Translation`)}, Rotation = {ToString(`InTransform.Rotation`)}, Scale = {ToString(`InTransform.Scale`)}}".
-    (/Verse.org/SpatialMath:)ToString<native><public>(InTransform:transform)<computes><reads>:string
+    (/Verse.org/SpatialMath:)ToString<public>(InTransform:transform)<reads>:string = external {}
 
     @experimental
     @import_as("/*.FVVector3")
@@ -2122,57 +2112,57 @@ SpatialMath<public> := module:
     vector3<native><public> := struct<concrete><computes><persistable>:
         @editable
         # The Forward (was X) component of this vector.
-        Forward<native><public>:float = external {}
+        Forward<public>:float = external {}
 
         @editable
         # The Right (was Y) component of this vector.
-        Right<native><public>:float = external {}
+        Right<public>:float = external {}
 
         @editable
         # The Up (was Z) component of this vector.
-        Up<native><public>:float = external {}
+        Up<public>:float = external {}
 
     @experimental
     # Makes a `vector3` by inverting the `SurfaceNormal` component of `Direction`.
     # Fails if `not SurfaceNormal.MakeUnitVector[]`.
-    ReflectVector<native><public>(Direction:vector3, SurfaceNormal:vector3)<computes><decides><reads>:vector3
+    ReflectVector<public>(Direction:vector3, SurfaceNormal:vector3)<reads><decides>:vector3 = external {}
 
     @experimental
     # Returns the dot product of `V1` and `V2`.
-    DotProduct<native><public>(V1:vector3, V2:vector3)<computes><reads>:float
+    DotProduct<public>(V1:vector3, V2:vector3)<reads>:float = external {}
 
     @experimental
     # Returns the left-handed cross product of `V1` and `V2`.
-    CrossProductLeftHanded<native><public>(V1:vector3, V2:vector3)<computes><reads>:vector3
+    CrossProductLeftHanded<public>(V1:vector3, V2:vector3)<reads>:vector3 = external {}
 
     @experimental
     # Returns the Euclidean distance between `V1` and `V2`.
-    Distance<native><public>(V1:vector3, V2:vector3)<computes><reads>:float
+    Distance<public>(V1:vector3, V2:vector3)<reads>:float = external {}
 
     @experimental
     # Returns the squared Euclidean distance between `V1` and `V2`.
-    DistanceSquared<native><public>(V1:vector3, V2:vector3)<computes><reads>:float
+    DistanceSquared<public>(V1:vector3, V2:vector3)<reads>:float = external {}
 
     @experimental
     # Returns the 2-D Euclidean distance between `V1` and `V2` by ignoring the difference in `Up`.
-    DistanceForwardRight<native><public>(V1:vector3, V2:vector3)<computes><reads>:float
+    DistanceForwardRight<public>(V1:vector3, V2:vector3)<reads>:float = external {}
 
     @experimental
     # Returns the squared 2-D Euclidean distance between `V1` and `V2` by ignoring their difference in `Up`.
-    DistanceSquaredForwardRight<native><public>(V1:vector3, V2:vector3)<computes><reads>:float
+    DistanceSquaredForwardRight<public>(V1:vector3, V2:vector3)<reads>:float = external {}
 
     @experimental
     # Makes a unit length `vector3` pointing in the same direction of `V`.
     # Fails if `V.IsAlmostZero[] or not V.IsFinite[]`.
-    (V:vector3).MakeUnitVector<native><public>()<computes><decides><reads>:vector3
+    (V:vector3).MakeUnitVector<public>()<reads><decides>:vector3 = external {}
 
     @experimental
     # Makes a `string` representation of `V`.
-    (/Verse.org/SpatialMath:)ToString<native><public>(V:vector3)<computes><reads>:string
+    (/Verse.org/SpatialMath:)ToString<public>(V:vector3)<reads>:string = external {}
 
     @experimental
     # Returns the length of `V`.
-    (V:vector3).Length<public>()<computes><reads>:float = external {}
+    (V:vector3).Length<public>()<reads>:float = external {}
 
     @experimental
     # Returns the squared length of `V`.
@@ -2180,48 +2170,48 @@ SpatialMath<public> := module:
 
     @experimental
     # Returns the length of `V` as if `V.Up = 0.0`.
-    (V:vector3).LengthForwardRight<public>()<computes><reads>:float = external {}
+    (V:vector3).LengthForwardRight<public>()<reads>:float = external {}
 
     @experimental
     # Returns the squared length of `V` as if `V.Up = 0.0`.
-    (V:vector3).LengthSquaredForwardRight<public>()<computes><reads>:float = external {}
+    (V:vector3).LengthSquaredForwardRight<public>()<reads>:float = external {}
 
     @experimental
     # Used to linearly interpolate/extrapolate between `From` (when `Parameter = 0.0`) and `To` (when `Parameter = 1.0`). Expects that all arguments are finite.
     # Returns `From*(1 - Parameter) + To*Parameter`.
-    (/Verse.org/SpatialMath:)Lerp<public>(From:vector3, To:vector3, Parameter:float)<computes><reads>:vector3 = external {}
+    (/Verse.org/SpatialMath:)Lerp<public>(From:vector3, To:vector3, Parameter:float)<reads>:vector3 = external {}
 
     @experimental
     # Makes a `vector3` by inverting the signs of `Operand`.
     (/Verse.org/SpatialMath:)prefix'-'<public>(Operand:vector3)<computes>:vector3 = external {}
 
     @experimental
-    # Makes a `vector3` by component-wise addition of `Left` and `Right`.
-    (/Verse.org/SpatialMath:)operator'+'<public>(Left:vector3, Right:vector3)<computes>:vector3 = external {}
+    # Makes a `vector3` by component-wise addition of `L` and `R`.
+    (/Verse.org/SpatialMath:)operator'+'<public>(L:vector3, R:vector3)<computes>:vector3 = external {}
 
     @experimental
-    # Makes a `vector3` by component-wise subtraction of `Right` from `Left`.
-    (/Verse.org/SpatialMath:)operator'-'<public>(Left:vector3, Right:vector3)<computes>:vector3 = external {}
+    # Makes a `vector3` by component-wise subtraction of `R` from `L`.
+    (/Verse.org/SpatialMath:)operator'-'<public>(L:vector3, R:vector3)<computes>:vector3 = external {}
 
     @experimental
-    # Makes a `vector3` by component-wise multiplication of `Left` and `Right`.
-    (/Verse.org/SpatialMath:)operator'*'<public>(Left:vector3, Right:vector3)<computes>:vector3 = external {}
+    # Makes a `vector3` by component-wise multiplication of `L` and `R`.
+    (/Verse.org/SpatialMath:)operator'*'<public>(L:vector3, R:vector3)<computes>:vector3 = external {}
 
     @experimental
-    # Makes a `vector3` by multiplying the components of `Left` by `Right`.
-    (/Verse.org/SpatialMath:)operator'*'<public>(Left:vector3, Right:float)<computes>:vector3 = external {}
+    # Makes a `vector3` by multiplying the components of `L` by `R`.
+    (/Verse.org/SpatialMath:)operator'*'<public>(L:vector3, Right:float)<computes>:vector3 = external {}
 
     @experimental
-    # Makes a `vector3` by multiplying the components of `Right` by `Left`.
-    (/Verse.org/SpatialMath:)operator'*'<public>(Left:float, Right:vector3)<computes>:vector3 = external {}
+    # Makes a `vector3` by multiplying the components of `R` by `L`.
+    (/Verse.org/SpatialMath:)operator'*'<public>(Left:float, R:vector3)<computes>:vector3 = external {}
 
     @experimental
-    # Makes a `vector3` by dividing the components of `Left` by `Right`.
-    (/Verse.org/SpatialMath:)operator'/'<public>(Left:vector3, Right:float)<computes>:vector3 = external {}
+    # Makes a `vector3` by dividing the components of `L` by `R`.
+    (/Verse.org/SpatialMath:)operator'/'<public>(L:vector3, Right:float)<computes>:vector3 = external {}
 
     @experimental
-    # Makes a `vector3` by component-wise division of `Left` by `Right`.
-    (/Verse.org/SpatialMath:)operator'/'<public>(Left:vector3, Right:vector3)<computes>:vector3 = external {}
+    # Makes a `vector3` by component-wise division of `L` by `R`.
+    (/Verse.org/SpatialMath:)operator'/'<public>(L:vector3, R:vector3)<computes>:vector3 = external {}
 
     @experimental
     # Returns `V` if all components are finite.

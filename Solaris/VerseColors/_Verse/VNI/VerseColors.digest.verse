@@ -38,10 +38,10 @@ Colors<public> := module:
     (/Verse.org/Colors:)operator'*'<native><public>(factor:int, c:color)<converges>:color
 
     # Makes an ACES 2065-1 `color` from each component of `c` divided by `factor`.
-    (/Verse.org/Colors:)operator'/'<native><public>(c:color, factor:float)<converges><decides>:color
+    (/Verse.org/Colors:)operator'/'<native><public>(c:color, factor:float)<decides><converges>:color
 
     # Makes an ACES 2065-1 `color` from each component of `c` divided by `factor`.
-    (/Verse.org/Colors:)operator'/'<native><public>(c:color, factor:int)<converges><decides>:color
+    (/Verse.org/Colors:)operator'/'<native><public>(c:color, factor:int)<decides><converges>:color
 
     # Makes an ACES 2065-1 `color` from sRGB components `Red`, `Green`, and `Blue`.
     # Normal sRGB component values are between `0.0` and `1.0`, but this can handle larger values.

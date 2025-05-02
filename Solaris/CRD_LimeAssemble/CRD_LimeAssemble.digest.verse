@@ -22,6 +22,9 @@ assembly_device<public> := class<concrete><final>(creative_device_base, enableab
     # Hide the hologram used to preview the fully assembled device
     HideHologram<public>():void = external {}
 
+    # Scans for newly created objects and adds them to the assembly where possible
+    UpdateAssembly<public>():void = external {}
+
     # Initiates the assembly process.
     Assemble<public>():void = external {}
 

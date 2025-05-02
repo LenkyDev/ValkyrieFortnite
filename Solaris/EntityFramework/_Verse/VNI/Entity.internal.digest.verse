@@ -1,8 +1,43 @@
 using {/Verse.org/Temporary/EpicGamesRestricted/Network}
-using {/Verse.org/SpatialMath}
 using {/Verse.org/Assets}
-using {/Verse.org/Native}
 using {/Verse.org/Simulation}
+using {/Verse.org/Native}
+using {/Verse.org/SpatialMath}
+@experimental
+@import_as("/*.FBoundedBox")
+# 3-dimensional box.
+bounded_box<native><epic_internal> := struct<concrete>:
+    BoxMin:(/Verse.org/SpatialMath:)vector3 = external {}
+
+    BoxMax:(/Verse.org/SpatialMath:)vector3 = external {}
+
+    Valid:logic = external {}
+
+@experimental
+# Implemented by classes whose instances can provide a bounds.
+bounded<native><epic_internal> := interface:
+    # Returns the associated bounded box for this object, in world space.
+    GetBoundedGlobalBox<native_callable><epic_internal>()<transacts>:bounded_box
+
+    # Returns the associated bounded box for this object, in local space.
+    GetBoundedLocalBox<native_callable><epic_internal>()<transacts>:bounded_box
+
+@experimental
+# Returns the bounds of this entity by accumulating bounded components, not including owned entities, in world space.
+(InEntity:entity).GetSelfGlobalBounds<native><epic_internal>()<transacts>:bounded_box
+
+@experimental
+# Returns the bounds of this entity by accumulating bounded components, including owned entities, in world space.
+(InEntity:entity).GetGlobalBounds<native><epic_internal>()<transacts>:bounded_box
+
+@experimental
+# Returns the bounds of this entity by accumulating bounded components, not including owned entities, in local space.
+(InEntity:entity).GetSelfLocalBounds<native><epic_internal>()<transacts>:bounded_box
+
+@experimental
+# Returns the bounds of this entity by accumulating bounded components, including owned entities, in local space.
+(InEntity:entity).GetLocalBounds<native><epic_internal>()<transacts>:bounded_box
+
 @experimental
 # Base class for authoring logic and data in the SceneGraph. Using components you
 # can author re-usable building blocks of logic and data which can then be added to
@@ -147,7 +182,7 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
 
     OnUninitializingInternal<native><native_callable><epic_internal>():void
 
-    GetDiagnostic<override><native>()<computes><reads>:diagnostic
+    GetDiagnostic<override><native>()<reads>:diagnostic
 
 @experimental
 # An event which can be sent through the scene graph.
@@ -225,7 +260,7 @@ entity<native><public> := class<concrete><unique><transacts><castable>(base_enti
     #       3. All components have `OnBeginSimulation` called (if this entity is simulating).
     AddComponents<native><final><public>(Components:[]component):void
 
-    GetDiagnostic<override><native>()<computes><reads>:diagnostic
+    GetDiagnostic<override><native>()<reads>:diagnostic
 
     @experimental
     # Send a scene event to only this entity. Returns true if the event was consumed.

@@ -9,7 +9,7 @@
 	"BuiltInAutoRegister": true,
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
-	"FortReleaseVersion": "34.40",
+	"FortReleaseVersion": "35.00",
 	"IsGameFeatureSet": true,
 	"Version": 0,
 	"VersionName": "",
@@ -24,6 +24,7 @@
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false,
+	"CookAsDLC": "Creative",
 	"EditorCustomVirtualPath": "FNE/Beanstalk",
 	"RequiredEntitlements": {
 		"Edit": {

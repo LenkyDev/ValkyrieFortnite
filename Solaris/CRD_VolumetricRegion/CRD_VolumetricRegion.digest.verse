@@ -42,7 +42,7 @@ damage_volume_device<public> := class<concrete><final>(effect_volume_device):
     IsInVolume<public>(Agent:agent)<transacts><decides>:void = external {}
 
     # Returns an array of agents that are currently occupying the volume.
-    GetAgentsInVolume<public>()<computes><reads>:[]agent = external {}
+    GetAgentsInVolume<public>()<reads>:[]agent = external {}
 
 # Base class for types of volumes with special gameplay properties.
 effect_volume_device<public> := class<abstract><epic_internal>(creative_device_base):
@@ -88,7 +88,7 @@ mutator_zone_device<public> := class<concrete><final>(effect_volume_device):
     IsInVolume<public>(Agent:agent)<transacts><decides>:void = external {}
 
     # Returns an array of agents that are currently occupying the volume.
-    GetAgentsInVolume<public>()<computes><reads>:[]agent = external {}
+    GetAgentsInVolume<public>()<reads>:[]agent = external {}
 
 # Used to create a zone where players are put into a skydive state. Can customize the amount of force used to push the player, and how fast players are launched into the air. The direction of the push is in relation to the device, so you can rotate and overlap several devices, then use variable speeds to create pneumatic tubes that propel players in different directions. You can even create unique traversal (traveling) options, where players can use these zones to reach places on your island they couldn't reach any other way.
 skydive_volume_device<public> := class<concrete><final>(effect_volume_device):
@@ -118,4 +118,4 @@ skydive_volume_device<public> := class<concrete><final>(effect_volume_device):
     IsInVolume<public>(Agent:agent)<transacts><decides>:void = external {}
 
     # Returns an array of agents that are currently occupying the volume.
-    GetAgentsInVolume<public>()<computes><reads>:[]agent = external {}
+    GetAgentsInVolume<public>()<reads>:[]agent = external {}

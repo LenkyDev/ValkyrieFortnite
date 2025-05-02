@@ -26,7 +26,7 @@ interactable_component<native><public> := class<final_super>(component, enableab
     Start<native><public>(Agent:agent)<transacts><decides>:void
 
     # Returns whether the specified agent can interact.
-    CanInteract<native><native_callable><public>(Agent:agent)<computes><decides><reads>:void
+    CanInteract<native><native_callable><public>(Agent:agent)<reads><decides>:void
 
     # Returns an appropriate message to display to players to communicate the current state of the interactable.
-    InteractMessage<native><native_callable><public>(Agent:agent)<computes><decides><reads>:message
+    InteractMessage<native><native_callable><public>(Agent:agent)<reads><decides>:message

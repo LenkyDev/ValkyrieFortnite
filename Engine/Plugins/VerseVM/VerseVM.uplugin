@@ -26,5 +26,11 @@
 			"LoadingPhase": "None"
 		}
 	],
+	"Plugins": [
+		{
+			"Name": "PlatformCrypto",
+			"Enabled": true
+		}
+	],
 	"IsExperimentalVersion": false
 }

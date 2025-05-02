@@ -2,13 +2,16 @@ using {/Fortnite.com/Characters}
 using {/Verse.org/Colors}
 using {/UnrealEngine.com/Temporary/SpatialMath}
 using {/UnrealEngine.com/Temporary/Diagnostics}
-using {/UnrealEngine.com/Temporary/Testing}
 using {/Fortnite.com/Vehicles}
 using {/Fortnite.com/Game}
 using {/Verse.org/Simulation}
 using {/Fortnite.com/Devices}
+using {/UnrealEngine.com/Temporary/Testing}
 # Module import path: /Fortnite.com/VerseInternalTesting/NexusFramework
 NexusFramework<public> := module:
+    nexus_test_reporter<epic_internal> := class:
+        AddResult<epic_internal>(TestName:string, TestResult:test_result, ContextString:string, TestSuiteName:string):void = external {}
+
     nexus_test_runner<epic_internal> := class(creative_device):
         OnEnd<override>():void = external {}
 
@@ -262,7 +265,7 @@ VerseFramework<public> := module:
     test_runner_status<public> := enum:
         Pending
         Setup
-        Running
+        (/Fortnite.com/VerseInternalTesting/VerseFramework/test_runner_status:)Running
         Complete
 
     test_runner_device<epic_internal> := class(creative_device):

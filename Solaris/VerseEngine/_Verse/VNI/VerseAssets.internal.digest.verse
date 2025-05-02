@@ -34,6 +34,15 @@ Assets<public> := module:
 
         OnPropertyChangedFromVerse<native><override>(PropertyName:string)<transacts>:void
 
+    material_parameter_collection<native><epic_internal> := class<epic_internal>(asset, property_changed_interface):
+        MPCPath<native><epic_internal>:string = external {}
+
+        OnPropertyChangedFromVerse<native><override>(PropertyName:string)<transacts>:void
+
+        var Enabled<public>:logic = external {}
+
+        ___PropertyInterface_On_Enabled_Changed<epic_internal>():void = external {}
+
     particle_system<native><public> := class<computes><final><epic_internal>(client_asset):
 
 
@@ -65,7 +74,7 @@ Assets<public> := module:
 
 
     input_action<native><epic_internal>(t:type) := class<computes><epic_internal>(asset):
-        Path<native><public>:string = external {}
+        Path<native><epic_internal>:string = external {}
 
         RequiredByCompiler<epic_internal>:?t = external {}
 

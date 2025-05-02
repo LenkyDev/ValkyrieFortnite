@@ -1247,6 +1247,7 @@
 			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeCosmeticSpawn.CharacterModifier_LimeCosmeticSpawn",
 			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeEffects.CharacterModifier_LimeEffects",
 			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardBehavior.CharacterModifier_LimeGuardBehavior",
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardInventory.CharacterModifier_LimeGuardInventory",
 			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardPerception.CharacterModifier_LimeGuardPerception",
 			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardVerseBehavior.CharacterModifier_LimeGuardVerseBehavior",
 			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeHealth.CharacterModifier_LimeHealth",
@@ -1257,7 +1258,8 @@
 			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeUI.CharacterModifier_LimeUI",
 			"/LimeAISpawner/UEFNExposedAssets/LimeAISpawner_ExposedAssets.LimeAISpawner_ExposedAssets",
 			"/Wind/Gameplay/WindFields/UEFN_Expose_WindField.UEFN_Expose_WindField",
-			"/VKExposedAssets/UEFNExposedAssets/UEFN_Expose_CreativeSounds.UEFN_Expose_CreativeSounds"
+			"/VKExposedAssets/UEFNExposedAssets/UEFN_Expose_CreativeSounds.UEFN_Expose_CreativeSounds",
+			"/VKExposedAssets/UEFNExposedAssets/UEFN_Expose_CreativeIcons.UEFN_Expose_CreativeIcons"
 		],
 		"_comment_AllowedClasses1": "List of all classes and structs exposed to UEFN, which means they are allowed to be referenced directly by user-created assets and actors.",
 		"_comment_AllowedClasses2": "Classes marked with Visible: true will appear in class pickers such as for Blueprint parent classes, UClass* FProperties, etc.",
@@ -1523,6 +1525,10 @@
 			{
 				"Visible": true
 			},
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardInventory.CharacterModifier_LimeGuardInventory_C":
+			{
+				"Visible": true
+			},
 			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardPerception.CharacterModifier_LimeGuardPerception_C":
 			{
 				"Visible": true
@@ -1559,6 +1565,10 @@
 			{
 				"Visible": true
 			},
+			"/LimeExtraAssets/AI/TestPlayers/CharacterType/CharacterType_LimeParticipant.CharacterType_LimeParticipant_C":
+			{
+				"Visible": true
+			},
 			"/LimeEvade/Components/BP_UserOptionComponent_LimeEvade.BP_UserOptionComponent_LimeEvade_C":
 			{
 			}
@@ -1569,6 +1579,10 @@
 			{
 				"Type": "/LimeAISpawnerGuard/SpawnDefinitions/Types/CharacterType_LimeGuard.CharacterType_LimeGuard_C",
 				"AllowList": [ "DisplayName", "SelectedAI" ]
+			},
+			{
+				"Type": "/LimeExtraAssets/AI/TestPlayers/CharacterType/CharacterType_LimeParticipant.CharacterType_LimeParticipant_C",
+				"AllowList": [ "DisplayName" ]
 			},
 			{
 				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeAwareness.CharacterModifier_LimeAwareness_C",
@@ -1586,6 +1600,11 @@
 				"bAllowListAllProperties": false,
 				"bAllowListAllSubclassProperties": false,
 				"AllowList": [ "SpawnEffect", "DeathEffect" ]
+			},
+			{
+				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardInventory.CharacterModifier_LimeGuardInventory_C",
+				"bAllowListAllProperties": false,
+				"bAllowListAllSubclassProperties": false
 			},
 			{
 				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeHealth.CharacterModifier_LimeHealth_C",

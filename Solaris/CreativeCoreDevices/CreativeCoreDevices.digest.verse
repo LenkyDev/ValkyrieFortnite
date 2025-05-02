@@ -231,16 +231,16 @@ capture_area_device<public> := class<concrete><final>(creative_device_base):
     SetHeight<public>(Height:float):void = external {}
 
     # Returns the *Capture Height* (in meters) of the capture area.
-    GetHeight<public>()<computes><reads>:float = external {}
+    GetHeight<public>()<reads>:float = external {}
 
     # Sets the *Capture Radius* (in meters) of the capture area.
     SetRadius<public>(Radius:float):void = external {}
 
     # Returns the *Capture Radius* (in meters) of the capture area.
-    GetRadius<public>()<computes><reads>:float = external {}
+    GetRadius<public>()<reads>:float = external {}
 
     # Returns an array of agents that are currently occupying the Capture Area.
-    GetAgentsInVolume<public>()<computes><reads>:[]agent = external {}
+    GetAgentsInVolume<public>()<reads>:[]agent = external {}
 
     # Is true when `Agent` is in the Capture Area.
     IsInArea<public>(Agent:agent)<transacts><decides>:void = external {}
@@ -310,7 +310,7 @@ class_and_team_selector_device<public> := class<concrete><final>(creative_device
 # Used together with `class_selector_device` to create class based gameplay. Defines custom class attributes and inventory loadouts.
 class_designer_device<public> := class<concrete><final>(creative_device_base):
     # Returns an array of agents that are currently of *Class* defined by this device.
-    GetClassMembers<public>()<computes><reads>:[]agent = external {}
+    GetClassMembers<public>()<reads>:[]agent = external {}
 
     # Is true if `Agent` is on *Class* defined by this device.
     IsOfClass<public>(Agent:agent)<transacts><decides>:void = external {}
@@ -716,13 +716,13 @@ perception_trigger_device<public> := class<concrete><final>(trigger_base_device)
     DeviceLosesSightOfAgentEvent<public>:listenable(agent) = external {}
 
     # Returns an array of agents that are currently of the class defined by this device.
-    GetPerceivedAgents<public>()<computes><reads>:[]agent = external {}
+    GetPerceivedAgents<public>()<reads>:[]agent = external {}
 
     # Succeeds when `Agent` is registered to this checkpoint.
     IsPerceived<public>(Agent:agent)<transacts><decides>:void = external {}
 
     # Returns an array of agents that are currently of the class defined by this device.
-    GetLookingAtDeviceAgents<public>()<computes><reads>:[]agent = external {}
+    GetLookingAtDeviceAgents<public>()<reads>:[]agent = external {}
 
     # Succeeds when `Agent` is registered to this checkpoint.
     IsLookingAtDevice<public>(Agent:agent)<transacts><decides>:void = external {}
@@ -1197,7 +1197,7 @@ team_settings_and_inventory_device<public> := class<concrete><final>(creative_de
     IsOnTeam<public>(Agent:agent)<transacts><decides>:void = external {}
 
     # Returns an array of agents that are currently of the team defined by this device.
-    GetTeamMembers<public>()<computes><reads>:[]agent = external {}
+    GetTeamMembers<public>()<reads>:[]agent = external {}
 
 # Customizable rift that allows `agent`s to move instantly between locations. You can use this to move players around your island, or create multi-island experiences with teleporters that take players from one island to another.
 teleporter_device<public> := class<concrete><final>(creative_device_base):
@@ -1510,7 +1510,7 @@ tracker_device<public> := class<concrete><final>(creative_device_base):
     HasReachedTarget<public>(Agent:agent)<transacts><decides>:void = external {}
 
     # Returns an array of agents that currently have this tracker active.
-    GetActiveAgents<public>()<computes><reads>:[]agent = external {}
+    GetActiveAgents<public>()<reads>:[]agent = external {}
 
 # A trap device that destroys the tile it's placed on when activated.
 trick_tile_device<public> := class<concrete><final>(creative_device_base):

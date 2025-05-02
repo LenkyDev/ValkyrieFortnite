@@ -906,7 +906,7 @@
 				"DocsURL": "",
 				"MarketplaceURL": "",
 				"SupportURL": "",
-				"VersePath": "/vthompsonmt@fortnite.com/DarkVortex_Gameplay_Template",
+				"VersePath": "/InvalidDomain/DarkVortex_Gameplay_Template",
 				"VerseVersion": 1,
 				"EnabledByDefault": false,
 				"CanContainContent": true,
@@ -1049,6 +1049,41 @@
 			}
 		},
 		{
+			"File": "../../../Engine/Plugins/Animation/SkeletalMeshModelingTools/SkeletalMeshModelingTools.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "Skeletal Mesh Editing Tools",
+				"Description": "Create skeletons, paint skin weights and edit skeletal meshes.",
+				"Category": "Animation",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com/",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": true,
+				"Modules": [
+					{
+						"Name": "SkeletalMeshModelingTools",
+						"Type": "Editor",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "ModelingToolsEditorMode",
+						"Enabled": true,
+						"TargetAllowList": [
+							"Editor"
+						]
+					}
+				]
+			}
+		},
+		{
 			"File": "../../../Engine/Plugins/ChaosClothAssetEditor/ChaosClothAssetEditor.uplugin",
 			"Descriptor": 
 			{
@@ -1110,6 +1145,10 @@
 				"Plugins": [
 					{
 						"Name": "GeometryProcessing",
+						"Enabled": true
+					},
+					{
+						"Name": "ChaosCaching",
 						"Enabled": true
 					},
 					{
@@ -1261,6 +1300,40 @@
 					{
 						"Name": "ConcertSyncCore",
 						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Developer/CustomLaunchUI/CustomLaunchUI.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.1",
+				"FriendlyName": "Custom Launch UI",
+				"Description": "Configure custom project launch profiles.",
+				"Category": "Platform",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"IsBetaVersion": true,
+				"RequiresBuildPlatform": true,
+				"SupportedTargetPlatforms": [
+					"Win64"
+				],
+				"Modules": [
+					{
+						"Name": "CustomLaunchUI",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
 					}
 				]
 			}
@@ -1713,32 +1786,6 @@
 			}
 		},
 		{
-			"File": "../../../Engine/Plugins/Editor/EngineAssetDefinitions/EngineAssetDefinitions.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "1.0",
-				"FriendlyName": "Engine Asset Definitions",
-				"Description": "",
-				"Category": "Other",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "http://epicgames.com",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": true,
-				"CanContainContent": false,
-				"Modules": [
-					{
-						"Name": "EngineAssetDefinitions",
-						"Type": "Editor",
-						"LoadingPhase": "PostEngineInit"
-					}
-				]
-			}
-		},
-		{
 			"File": "../../../Engine/Plugins/Editor/Localization/PortableObjectFileDataSource/PortableObjectFileDataSource.uplugin",
 			"Descriptor": 
 			{
@@ -1948,43 +1995,6 @@
 			}
 		},
 		{
-			"File": "../../../Engine/Plugins/Enterprise/MDLImporter/MDLImporter.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "1.0",
-				"FriendlyName": "MDL Importer",
-				"Description": "Importer for MDL material files.",
-				"Category": "Importers",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"IsBetaVersion": true,
-				"SupportedTargetPlatforms": [
-					"Win64",
-					"Mac",
-					"Linux"
-				],
-				"Modules": [
-					{
-						"Name": "MDLImporter",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64",
-							"Mac",
-							"Linux"
-						]
-					}
-				]
-			}
-		},
-		{
 			"File": "../../../Engine/Plugins/Experimental/AdvancedRenamer/AdvancedRenamer.uplugin",
 			"Descriptor": 
 			{
@@ -2012,36 +2022,34 @@
 			}
 		},
 		{
-			"File": "../../../Engine/Plugins/Experimental/Animation/SkeletalMeshModelingTools/SkeletalMeshModelingTools.uplugin",
+			"File": "../../../Engine/Plugins/Experimental/Animation/TrajectoryTools/TrajectoryTools.uplugin",
 			"Descriptor": 
 			{
 				"FileVersion": 3,
 				"Version": 1,
-				"VersionName": "1.0",
-				"FriendlyName": "Skeletal Mesh Editing Tools",
-				"Description": "Create skeletons, paint skin weights and edit skeletal meshes.",
+				"VersionName": "0.1",
+				"FriendlyName": "Trajectory Tools",
+				"Description": "Workflows for gameplay trajectories, such as extracting them from recordings.",
 				"Category": "Animation",
 				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com/",
+				"CreatedByURL": "",
 				"DocsURL": "",
 				"MarketplaceURL": "",
 				"SupportURL": "",
-				"EnabledByDefault": true,
-				"CanContainContent": true,
+				"EnabledByDefault": false,
+				"CanContainContent": false,
+				"IsExperimentalVersion": true,
 				"Modules": [
 					{
-						"Name": "SkeletalMeshModelingTools",
+						"Name": "TrajectoryTools",
 						"Type": "Editor",
-						"LoadingPhase": "Default"
+						"LoadingPhase": "PostEngineInit"
 					}
 				],
 				"Plugins": [
 					{
-						"Name": "ModelingToolsEditorMode",
-						"Enabled": true,
-						"TargetAllowList": [
-							"Editor"
-						]
+						"Name": "GameplayInsights",
+						"Enabled": true
 					}
 				]
 			}
@@ -2162,32 +2170,6 @@
 					{
 						"Name": "MeshModelingToolset",
 						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../Engine/Plugins/Experimental/EditorPerformance/EditorPerformance.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "1.0",
-				"FriendlyName": "Editor Performance",
-				"Description": "Plugin that provides Editor Performance feedback to developers",
-				"Category": "Performance",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "https://epicgames.com",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": true,
-				"CanContainContent": false,
-				"Modules": [
-					{
-						"Name": "EditorPerformance",
-						"Type": "Editor",
-						"LoadingPhase": "PostConfigInit"
 					}
 				]
 			}
@@ -2318,7 +2300,48 @@
 						"Enabled": true
 					},
 					{
+						"Name": "GeometryDataflow",
+						"Enabled": true
+					},
+					{
 						"Name": "Fracture",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/Experimental/GeometryDataflow/GeometryDataflow.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.1",
+				"FriendlyName": "Geometry Dataflow Nodes",
+				"Description": "Geometry Processing in Dataflow.",
+				"Category": "Geometry",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "GeometryDataflowNodes",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "Dataflow",
+						"Enabled": true
+					},
+					{
+						"Name": "GeometryProcessing",
 						"Enabled": true
 					}
 				]
@@ -2753,15 +2776,6 @@
 						"Enabled": true
 					},
 					{
-						"Name": "MDLImporter",
-						"Enabled": true,
-						"PlatformAllowList": [
-							"Win64",
-							"Mac",
-							"Linux"
-						]
-					},
-					{
 						"Name": "PythonScriptPlugin",
 						"Enabled": true
 					},
@@ -3039,7 +3053,7 @@
 					{
 						"Name": "GPUTextureTransfer",
 						"Type": "Runtime",
-						"LoadingPhase": "PostConfigInit"
+						"LoadingPhase": "Default"
 					}
 				],
 				"Plugins": [
@@ -3106,6 +3120,432 @@
 							"UnrealFrontend",
 							"UnrealInsights"
 						]
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/MetaHuman/MetaHumanAnimator/MetaHuman.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "5.0.0",
+				"FriendlyName": "MetaHuman Animator",
+				"Description": "The official MetaHuman Unreal Engine toolkit",
+				"Category": "MetaHuman",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"CanContainContent": true,
+				"IsExperimentalVersion": true,
+				"SupportedTargetPlatforms": [
+					"Win64",
+					"Linux"
+				],
+				"Modules": [
+					{
+						"Name": "AutoRigService",
+						"Type": "Editor",
+						"LoadingPhase": "PostEngineInit",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanCore",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanCoreEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanImageViewerEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanPipeline",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanFaceContourTracker",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanFaceContourTrackerEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanIdentity",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanIdentityEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanCaptureDataEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanCaptureSource",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanFootageIngest",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanDepthGenerator",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanPerformance",
+						"Type": "Editor",
+						"LoadingPhase": "PostEngineInit",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanSequencer",
+						"Type": "Editor",
+						"LoadingPhase": "PostEngineInit",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanCaptureUtils",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanCaptureProtocolStack",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanToolkit",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanSpeech2Face",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanBatchProcessor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanConfig",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanConfigEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanFaceAnimationSolver",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanFaceAnimationSolverEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanFaceFittingSolver",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanFaceFittingSolverEditor",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanPlatform",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanControlsConversionTest",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "DNAInterchange",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MeshTrackerInterface",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					}
+				],
+				"LocalizationTargets": [
+					{
+						"Name": "MetaHuman",
+						"LoadingPolicy": "Editor",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "RigLogic",
+						"Enabled": true
+					},
+					{
+						"Name": "NNERuntimeORT",
+						"Enabled": true
+					},
+					{
+						"Name": "MeshModelingToolset",
+						"Enabled": true
+					},
+					{
+						"Name": "ImgMedia",
+						"Enabled": true
+					},
+					{
+						"Name": "CaptureData",
+						"Enabled": true
+					},
+					{
+						"Name": "ProceduralMeshComponent",
+						"Enabled": true
+					},
+					{
+						"Name": "MediaCompositing",
+						"Enabled": true
+					},
+					{
+						"Name": "CameraCalibrationCore",
+						"Enabled": true
+					},
+					{
+						"Name": "LensComponent",
+						"Enabled": true
+					},
+					{
+						"Name": "MediaIOFramework",
+						"Enabled": true
+					},
+					{
+						"Name": "PlatformCrypto",
+						"Enabled": true
+					},
+					{
+						"Name": "Interchange",
+						"Enabled": true
+					},
+					{
+						"Name": "LiveLinkHub",
+						"Enabled": true
+					},
+					{
+						"Name": "DNACalib",
+						"Enabled": true
+					},
+					{
+						"Name": "MetaHumanCoreTech",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../Engine/Plugins/MetaHuman/MetaHumanCoreTechLib/MetaHumanCoreTech.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0",
+				"FriendlyName": "MetaHuman Core Tech",
+				"Description": "The core technology behind the MetaHuman and MetaHumanCharacter plugins",
+				"Category": "MetaHuman",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsExperimentalVersion": true,
+				"SupportedTargetPlatforms": [
+					"Win64",
+					"Linux"
+				],
+				"Modules": [
+					{
+						"Name": "MetaHumanCoreTechLib",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanCoreTech",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "MetaHumanImageViewer",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanCaptureData",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MetaHumanPipelineCore",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					}
+				],
+				"LocalizationTargets": [
+					{
+						"Name": "MetaHumanCoreTech",
+						"LoadingPolicy": "Editor",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "MeshModelingToolset",
+						"Enabled": true
+					},
+					{
+						"Name": "EditorScriptingUtilities",
+						"Enabled": true
+					},
+					{
+						"Name": "RigLogic",
+						"Enabled": true
+					},
+					{
+						"Name": "MetaHumanSDK",
+						"Enabled": true
+					},
+					{
+						"Name": "CaptureData",
+						"Enabled": true
 					}
 				]
 			}
@@ -3532,6 +3972,71 @@
 			}
 		},
 		{
+			"File": "../../../Engine/Plugins/Runtime/USDCore/USDCore.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "USD Core",
+				"Description": "Adds support for USD SDK, UE wrapper classes and USD conversion utilities",
+				"Category": "Other",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "https://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"IsBetaVersion": true,
+				"Modules": [
+					{
+						"Name": "UnrealUSDWrapper",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					},
+					{
+						"Name": "USDUtilities",
+						"Type": "Runtime",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64",
+							"Mac",
+							"Linux"
+						]
+					},
+					{
+						"Name": "USDClasses",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "ControlRig",
+						"Enabled": true
+					},
+					{
+						"Name": "GeometryCache",
+						"Enabled": true
+					},
+					{
+						"Name": "HairStrands",
+						"Enabled": true
+					},
+					{
+						"Name": "LiveLink",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
 			"File": "../../../Engine/Plugins/Runtime/XRBase/XRBase.uplugin",
 			"Descriptor": 
 			{
@@ -3753,6 +4258,10 @@
 					},
 					{
 						"Name": "CameraCalibrationCore",
+						"Enabled": true
+					},
+					{
+						"Name": "EditorScriptingUtilities",
 						"Enabled": true
 					}
 				]
@@ -4018,14 +4527,14 @@
 			}
 		},
 		{
-			"File": "../../../Engine/Plugins/MetaHuman/MetaHuman.uplugin",
+			"File": "../../../Engine/Plugins/MetaHumanDepthProcessing/MetaHumanDepthProcessing.uplugin",
 			"Descriptor": 
 			{
 				"FileVersion": 3,
 				"Version": 1,
-				"VersionName": "5.0.0",
-				"FriendlyName": "MetaHuman",
-				"Description": "The official MetaHuman Unreal Engine toolkit",
+				"VersionName": "0",
+				"FriendlyName": "MetaHumanDepthProcessing",
+				"Description": "The core tech underpinning the depth processing pipeline.",
 				"Category": "MetaHuman",
 				"CreatedBy": "Epic Games, Inc.",
 				"CreatedByURL": "http://epicgames.com",
@@ -4040,253 +4549,16 @@
 				],
 				"Modules": [
 					{
-						"Name": "AutoRigService",
-						"Type": "Editor",
-						"LoadingPhase": "PostEngineInit",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanCore",
-						"Type": "Runtime",
-						"LoadingPhase": "Default"
-					},
-					{
-						"Name": "MetaHumanCoreEditor",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanImageViewer",
-						"Type": "Runtime",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanImageViewerEditor",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
 						"Name": "MetaHumanMeshTracker",
+						"Type": "Editor",
+						"LoadingPhase": "Default",
+						"PlatformAllowList": [
+							"Win64"
+						]
+					},
+					{
+						"Name": "MeshTrackerNodes",
 						"Type": "Runtime",
-						"LoadingPhase": "PreDefault",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanPipeline",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanFaceContourTracker",
-						"Type": "Runtime",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanFaceContourTrackerEditor",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanIdentity",
-						"Type": "Runtime",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanIdentityEditor",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanCaptureData",
-						"Type": "Runtime",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanCaptureDataEditor",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanCaptureSource",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanFootageIngest",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanDepthGenerator",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanPerformance",
-						"Type": "Editor",
-						"LoadingPhase": "PostEngineInit",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanSequencer",
-						"Type": "Editor",
-						"LoadingPhase": "PostEngineInit",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanCaptureUtils",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanCaptureProtocolStack",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanToolkit",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanSpeech2Face",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanBatchProcessor",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanConfig",
-						"Type": "Runtime",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanConfigEditor",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanFaceAnimationSolver",
-						"Type": "Runtime",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanFaceAnimationSolverEditor",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanFaceFittingSolver",
-						"Type": "Runtime",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanFaceFittingSolverEditor",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanPlatform",
-						"Type": "Runtime",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "MetaHumanControlsConversionTest",
-						"Type": "Editor",
-						"LoadingPhase": "Default",
-						"PlatformAllowList": [
-							"Win64"
-						]
-					},
-					{
-						"Name": "DNAInterchange",
-						"Type": "Editor",
 						"LoadingPhase": "Default",
 						"PlatformAllowList": [
 							"Win64"
@@ -4295,7 +4567,7 @@
 				],
 				"LocalizationTargets": [
 					{
-						"Name": "MetaHuman",
+						"Name": "MetaHumanDepthProcessing",
 						"LoadingPolicy": "Editor",
 						"ConfigGenerationPolicy": "User"
 					}
@@ -4303,30 +4575,6 @@
 				"Plugins": [
 					{
 						"Name": "RigLogic",
-						"Enabled": true
-					},
-					{
-						"Name": "NNERuntimeORT",
-						"Enabled": true
-					},
-					{
-						"Name": "MeshModelingToolset",
-						"Enabled": true
-					},
-					{
-						"Name": "ImgMedia",
-						"Enabled": true
-					},
-					{
-						"Name": "CaptureData",
-						"Enabled": true
-					},
-					{
-						"Name": "ProceduralMeshComponent",
-						"Enabled": true
-					},
-					{
-						"Name": "MediaCompositing",
 						"Enabled": true
 					},
 					{
@@ -4338,19 +4586,19 @@
 						"Enabled": true
 					},
 					{
-						"Name": "MediaIOFramework",
+						"Name": "DnaCalib",
 						"Enabled": true
 					},
 					{
-						"Name": "PlatformCrypto",
+						"Name": "CaptureData",
 						"Enabled": true
 					},
 					{
-						"Name": "Interchange",
+						"Name": "MetaHumanCoreTech",
 						"Enabled": true
 					},
 					{
-						"Name": "DNACalib",
+						"Name": "MetaHuman",
 						"Enabled": true
 					}
 				]
@@ -4416,39 +4664,6 @@
 					},
 					{
 						"Name": "CommonUI",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
-			"File": "../../../Engine/Plugins/TrajectoryTools/TrajectoryTools.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 1,
-				"VersionName": "1.0",
-				"FriendlyName": "Trajectory Tools Prototype",
-				"Description": "Tools to work with gameplay trajectories",
-				"Category": "Animation",
-				"CreatedBy": "Epic Games, Inc.",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": false,
-				"IsExperimentalVersion": true,
-				"Modules": [
-					{
-						"Name": "TrajectoryTools",
-						"Type": "Editor",
-						"LoadingPhase": "PostEngineInit"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "GameplayInsights",
 						"Enabled": true
 					}
 				]
@@ -4838,6 +5053,42 @@
 					},
 					{
 						"Name": "Metasound",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/FortActorMonitor/Menu/FortActorMonitorMenu.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "0.95",
+				"FriendlyName": "FN Actor Monitor Menu",
+				"Description": "In-game menu for monitoring object values, capturing events on functions and properties, and automating the debugging process on Win64 platforms.",
+				"Category": "Debug",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": true,
+				"CanContainContent": false,
+				"Modules": [
+					{
+						"Name": "FortActorMonitorMenu",
+						"Type": "DeveloperTool",
+						"LoadingPhase": "PreDefault"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "FortImGuiCore",
+						"Enabled": true
+					},
+					{
+						"Name": "FortActorMonitorCore",
 						"Enabled": true
 					}
 				]
@@ -5625,6 +5876,13 @@
 					},
 					{
 						"Name": "MetaHuman",
+						"Enabled": true,
+						"TargetAllowList": [
+							"Editor"
+						]
+					},
+					{
+						"Name": "MetaHumanDepthProcessing",
 						"Enabled": true,
 						"TargetAllowList": [
 							"Editor"

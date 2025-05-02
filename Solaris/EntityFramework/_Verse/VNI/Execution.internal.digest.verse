@@ -2,9 +2,9 @@
 execution_subscription<native><epic_internal> := class(cancelable):
     Cancel<native><override>()<transacts>:void
 
-    RunAfter<native><epic_internal>(__dupe___unnamed_parameter_28:execution_subscription):void
+    RunAfter<native><epic_internal>(__dupe___unnamed_parameter_24:execution_subscription):void
 
-    RunBefore<native><epic_internal>(__dupe___unnamed_parameter_29:execution_subscription):void
+    RunBefore<native><epic_internal>(__dupe___unnamed_parameter_25:execution_subscription):void
 
 @experimental
 # Users to subscribe to, or await on, a DeltaTime based callback from one of the phases in a component's `TickEvents` object.'
@@ -14,7 +14,6 @@ execution_listenable<native><public> := class<epic_internal>(listenable(float)):
     # Suspends the current task until resumed by a matching call to `signalable.Signal`. Returns the event `payload`.
     Await<native><override>()<suspends>:float
 
-    @experimental
     # Subscribe a callback function to this TickEvent phase. The input parameter to your function (DeltaTime) is the time that has passed between the last update and the current update.
     Subscribe<native><override>(Callback:type {_(:float):void})<transacts>:cancelable
 
@@ -26,6 +25,5 @@ execution_event<native><public> := class<epic_internal>(listenable(tuple())):
     # Suspends the current task until resumed by a matching call to `signalable.Signal`.
     Await<native><override>()<suspends>:tuple()
 
-    @experimental
     # Subscribe a callback function to this event.
     Subscribe<native><override>(Callback:type {_():void})<transacts>:cancelable

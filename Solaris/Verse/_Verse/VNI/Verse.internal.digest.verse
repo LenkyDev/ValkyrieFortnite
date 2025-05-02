@@ -57,11 +57,11 @@ Verse<public> := module:
 
     @available {MinUploadedAtFNVersion := 3300}
     # Return an immediate subclass of base_type that is <castable> and <final_super> and is also shared with Instance. Otherwise failure.
-    GetCastableFinalSuperClass<native><epic_internal>(base_type:type, Instance:base_type)<computes><decides><reads>:castable_subtype(base_type)
+    GetCastableFinalSuperClass<native><epic_internal>(base_type:type, Instance:base_type)<reads><decides>:castable_subtype(base_type)
 
     @available {MinUploadedAtFNVersion := 3300}
     # Return an immediate subclass of base_type that is <castable> and <final_super> and is also shared with sub_type. Otherwise failure.
-    GetCastableFinalSuperClassFromType<native><epic_internal>(base_type:type, sub_type:subtype(base_type))<computes><decides><reads>:castable_subtype(base_type)
+    GetCastableFinalSuperClassFromType<native><epic_internal>(base_type:type, sub_type:subtype(base_type))<reads><decides>:castable_subtype(base_type)
 
     accessor<epic_internal> := enum:
         Dummy
@@ -70,7 +70,7 @@ Verse<public> := module:
     diagnostic<native><public> := class<computes><epic_internal>(diagnosable):
         String<native><epic_internal>:string
 
-        GetDiagnostic<override>()<computes><reads>:diagnostic = external {}
+        GetDiagnostic<override>()<reads>:diagnostic = external {}
 
     # Concatenates two diagnostic messages.
     operator'+'<public>(Lhs:diagnostic, Rhs:diagnostic)<computes>:diagnostic = external {}
@@ -82,11 +82,11 @@ Verse<public> := module:
     operator'+'<public>(Lhs:string, Rhs:diagnostic)<computes>:diagnostic = external {}
 
     # Converts any Verse value into an opaque diagnostic message.
-    ToDiagnostic<native><public>(Value:any)<computes><reads>:diagnostic
+    ToDiagnostic<native><public>(Value:any)<reads>:diagnostic
 
     # Provides a hook for class-specific ToDiagnostic behavior; ToDiagnostic will call this interface when provided a class that implements it.
     diagnosable<native><epic_internal> := interface:
-        GetDiagnostic<native_callable><epic_internal>()<computes><reads>:diagnostic
+        GetDiagnostic<native_callable><epic_internal>()<reads>:diagnostic
 
     # Implemented by classes whose instances have limited lifetimes.
     disposable<native><public> := interface:
@@ -107,13 +107,11 @@ Verse<public> := module:
     # Halts the Verse runtime with error `Message`.
     Err<native><public>(Message:string)<computes>:false
 
-    # A *recurring*, successively signaled parametric `event` with a `payload` allowing a simple mechanism to coordinate between concurrent tasks:
-    #  * `Await` suspends tasks to wait on this `event`,
-    #  * another task `Signal`s this `event` and resumes the suspended tasks in FIFO order.
-    event<native><public>(t:type) := class(signalable(t), awaitable(t)):
-        # Returns the number of suspended tasks added by calls to `Await` that have not been resumed by a call to `Signal`.
-        GetAwaitCount<native><epic_internal>():int
+    event_base_intrnl<native><epic_internal> := class:
 
+
+    # A *recurring*, successively signaled parametric `event` with a `payload` allowing a simple mechanism to coordinate between concurrent tasks.
+    event<native><public>(t:type) := class(event_base_intrnl, signalable(t), awaitable(t)):
         # Suspends the current task until another task calls `Signal`.
         # If called during another invocation of `Signal`, the the task will still suspend and resume during the next call to `Signal`.
         Await<native><override>()<suspends>:t
@@ -126,27 +124,34 @@ Verse<public> := module:
     # A *recurring*, successively signaled event allowing a simple mechanism to coordinate between concurrent tasks.
     event<public>() := event(tuple())
 
+    subscribable_event_intrnl<native><epic_internal>(t:type) := class(event(t), listenable(t)):
+        # Registers `Callback` to be invoked each time `Signal` is called.
+        # Call `Cancel` on the returned `cancelable` to unregister `Callback`.
+        Subscribe<native><override>(Callback:type {_(:t):void})<transacts>:cancelable
+
+    subscribable_event_intrnl<epic_internal>() := subscribable_event_intrnl(tuple())
+
     # Returns the smallest `int` that is greater than or equal to `Val`.
     # Fails if `not IsFinite(Val)`.
-    Ceil<native><public>(Val:float)<computes><decides><reads>:int
+    Ceil<native><public>(Val:float)<reads><decides>:int
 
     # Returns the largest `int` that is less than or equal to `Val`.
     # Fails if `not IsFinite(Val)`.
-    Floor<native><public>(Val:float)<computes><decides><reads>:int
+    Floor<native><public>(Val:float)<reads><decides>:int
 
     # Returns `Val` rounded to the nearest `int`. When the fractional part of `Val` is `0.5`, rounds to the nearest *even* `int` (per the IEEE-754 default rounding mode).
     # Fails if `not IsFinite(Val)`.
-    Round<native><public>(Val:float)<computes><decides><reads>:int
+    Round<native><public>(Val:float)<reads><decides>:int
 
     # Returns the `int` that equals `Val` without the fractional part.
     # Fails if `not IsFinite(val)`.
-    Int<native><public>(Val:float)<computes><decides><reads>:int
+    Int<native><public>(Val:float)<reads><decides>:int
 
     # Makes a `string` representation of `Val`.
-    ToString<native><public>(Val:float)<computes><reads>:string
+    ToString<native><public>(Val:float)<reads>:string
 
     # Returns the number of seconds since January 1, 1970 UTC, ignoring leap seconds. I.e, this function implements Unix time. This function always returns the same value within the same transaction.
-    GetSecondsSinceEpoch<native><public>()<computes><reads>:float
+    GetSecondsSinceEpoch<native><public>()<reads>:float
 
     # Makes a printable `string` representation of `Val`.
     ToString<native><public>(Val:int)<computes>:string
@@ -176,7 +181,7 @@ Verse<public> := module:
         Substitutions<native><epic_internal>:[string]localizable_value
 
     # Makes a `string` by localizing `Message` based on the current `locale`.
-    Localize<native><public>(Message:message)<computes><reads>:string
+    Localize<native><public>(Message:message)<reads>:string
 
     localizable_value<native><epic_internal> := class:
 
@@ -232,67 +237,67 @@ Verse<public> := module:
     @rtfm_always_open
     # Returns the square root of `X` if `X >= 0.0`.
     # Returns `NaN` if `X < 0.0`.
-    Sqrt<native><public>(X:float)<computes><reads>:float
+    Sqrt<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the sine of `X` if `IsFinite(X)`.
     # Returns `NaN` if `not IsFinite(X)
-    Sin<native><public>(X:float)<computes><reads>:float
+    Sin<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the cosine of `X` if `IsFinite(X)`.
     # Returns `NaN` if `not IsFinite(X)
-    Cos<native><public>(X:float)<computes><reads>:float
+    Cos<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the tangent of `X` if `IsFinite(X)`.
     # Returns `NaN` if `not IsFinite(X).
-    Tan<native><public>(X:float)<computes><reads>:float
+    Tan<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the inverse sine (arcsine) of `X` if `-1.0 <= X <= 1.0`.
-    ArcSin<native><public>(X:float)<computes><reads>:float
+    ArcSin<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the inverse cosine (arccosine) of `X` if `-1.0 <= X <= 1.0`.
-    ArcCos<native><public>(X:float)<computes><reads>:float
+    ArcCos<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the inverse tangent (arctangent) of `X` such that:`-PiFloat/2.0 <= ArcTan(x) <= PiFloat/2.0`.
-    ArcTan<native><public>(X:float)<computes><reads>:float
+    ArcTan<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the angle in radians at the origin between a ray pointing to `(X, Y)` and the positive `X` axis such that `-PiFloat < ArcTan(Y, X) <= PiFloat`.
     # Returns 0.0 if `X=0.0 and Y=0.0`.
-    ArcTan<native><public>(Y:float, X:float)<computes><reads>:float
+    ArcTan<native><public>(Y:float, X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the hyperbolic sine of `X`.
-    Sinh<native><public>(X:float)<computes><reads>:float
+    Sinh<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the hyperbolic cosine of `X`.
-    Cosh<native><public>(X:float)<computes><reads>:float
+    Cosh<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the hyperbolic tangent of `X`.
-    Tanh<native><public>(X:float)<computes><reads>:float
+    Tanh<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the inverse hyperbolic sine of `X` if `IsFinite(X)`.
-    ArSinh<native><public>(X:float)<computes><reads>:float
+    ArSinh<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the inverse hyperbolic cosine of `X` if `1.0 <= X`.
-    ArCosh<native><public>(X:float)<computes><reads>:float
+    ArCosh<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the inverse hyperbolic tangent of `X` if `IsFinite(X)`.
-    ArTanh<native><public>(X:float)<computes><reads>:float
+    ArTanh<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns `A` to the power of `B`.
-    Pow<native><public>(A:float, B:float)<computes><reads>:float
+    Pow<native><public>(A:float, B:float)<reads>:float
 
     # Returns `X` if `X` is finite.
     # Fails if `X` is one of:`
@@ -318,19 +323,19 @@ Verse<public> := module:
 
     @rtfm_always_open
     # Returns the natural exponent of `X`.
-    Exp<native><public>(X:float)<computes><reads>:float
+    Exp<native><public>(X:float)<reads>:float
 
     @rtfm_always_open
     # Returns the natural logarithm of `X`.
-    Ln<native><public>(X:float)<computes><reads>:float
+    Ln<native><public>(X:float)<reads>:float
 
     # Returns the base `B` logarithm of `X`.
-    Log<public>(B:float, X:float)<computes><reads>:float = external {}
+    Log<public>(B:float, X:float)<reads>:float = external {}
 
     @rtfm_always_open
     # Used to linearly interpolate/extrapolate between `From` (when `Parameter = 0.0`) and `To` (when `Parameter = 1.0`). Expects that all arguments are finite.
     # Returns `From*(1 - Parameter) + To*Parameter`.
-    Lerp<native><public>(From:float, To:float, Parameter:float)<computes><reads>:float
+    Lerp<native><public>(From:float, To:float, Parameter:float)<reads>:float
 
     # Returns the sign of `Val`:
     #   * `1` if `Val > 0`
