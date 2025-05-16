@@ -295,6 +295,7 @@
 			]
 		},
 		"bShowGFSTextFileAllowedAssetsInContentBrowser": true,
+		"bAllowShowUnexposedContent": true,
 		"bShowExposedAssetsInContentBrowserForTextureDatas": true,
 		"bShowPromptToRunValidationFixup": false
 	},

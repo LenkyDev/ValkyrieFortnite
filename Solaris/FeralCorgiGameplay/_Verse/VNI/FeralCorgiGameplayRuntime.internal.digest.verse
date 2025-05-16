@@ -87,6 +87,14 @@ game_state_component_bridge<native><epic_internal> := class<concrete>:
 
     OnReceivedEvent<public>():listenable(tuple(string, []agent, [string]float)) = external {}
 
+# Module import path: /Fortnite.com/FeralCorgi/FeralLoggingBridge
+FeralLoggingBridge<epic_internal> := module:
+    LogMessage<native><epic_internal>(Format:string, ?Args:[]string = external {})<transacts>:void
+
+    LogWarning<native><epic_internal>(Format:string, ?Args:[]string = external {})<transacts>:void
+
+    LogError<native><epic_internal>(Format:string, ?Args:[]string = external {})<transacts>:void
+
 # Module import path: /Fortnite.com/FeralCorgi/PlayerLoadingStatusBridge
 PlayerLoadingStatusBridge<epic_internal> := module:
     AwaitPlayersLoading<native><epic_internal>(Playspace:fort_playspace)<suspends>:void

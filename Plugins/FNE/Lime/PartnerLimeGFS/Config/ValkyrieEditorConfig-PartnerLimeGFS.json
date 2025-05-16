@@ -57,7 +57,6 @@
             ]
         },
 		"AllowedClasses": {
-			"/Script/AtomRuntime.AtomAssetImportData": {},
 			"/Script/AtomRuntime.AtomBoneReference": {},
 			"/Script/AtomRuntime.AtomColor": {},
 			"/Script/AtomRuntime.AtomColorInfo": {},
@@ -67,9 +66,9 @@
 			"/Script/AtomRuntime.AtomCommonPartInstance": {},
 			"/Script/AtomRuntime.AtomCommonPartModelAssetUserData": {},
 			"/Script/AtomRuntime.AtomDecorationAssignment": {},
+			"/Script/AtomRuntime.AtomEditorModePrimitiveUserData": {},
 			"/Script/AtomRuntime.AtomGlueSet": {},
 			"/Script/AtomRuntime.AtomHingedElement": {},
-			"/Script/AtomRuntime.AtomModelMergedMeshImportData": {},
 			"/Script/AtomRuntime.AtomModelAssetUserData": {},
 			"/Script/AtomRuntime.AtomMergedMeshLODDistanceSettings": {},
 			"/Script/AtomRuntime.AtomModelPrimitiveInstance": {},
@@ -134,7 +133,9 @@
 			"/Script/AtomRuntime.PointFieldConnectionInfo": {},
 			"/Script/AtomRuntime.SerializedPlanarConnection": {},
 			"/Script/AtomRuntime.SerializedConnectivityObjects": {},
-			"/Script/AtomRuntime.AtomModelGeometryCollectionImportData": {},
+			"/Script/AtomModelImporterEditor.AtomAssetImportData": {},
+			"/Script/AtomModelImporterEditor.AtomModelMergedMeshImportData": {},
+			"/Script/AtomModelImporterEditor.AtomModelGeometryCollectionImportData": {},
 			"/Script/AtomModelImporterEditor.AtomModelMergeOptions": {},
 			"/AtomFramework/Editor/Processors/MP_MergedMeshBase.MP_MergedMeshBase_C": {
 				"Visible": false
@@ -146,6 +147,9 @@
 				"Visible": true
 			},
 			"/AtomFramework/Editor/Processors/AtomMergedMeshProcessor.AtomMergedMeshProcessor_C": {
+				"Visible": true
+			},
+			"/AtomFramework/Editor/Processors/KragleStaticMeshProcessor.KragleStaticMeshProcessor_C": {
 				"Visible": true
 			},
 			"/AtomFramework/Editor/Processors/AtomMergedMeshWriter.AtomMergedMeshWriter_C": {

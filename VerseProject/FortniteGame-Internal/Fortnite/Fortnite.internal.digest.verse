@@ -2,7 +2,7 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-35.00-CL-41994699
+# Generated from build: ++Fortnite+Release-35.10-CL-42476511
 #################################################
 
 Devices<public> := module:
@@ -381,6 +381,9 @@ Devices<public> := module:
 
         # Changes the Mesh used by this instance.
         SetMesh<native><public>(Mesh:mesh)<transacts>:void
+
+        # Changes the Skeletal Mesh used by this instance.
+        SetSkeletalMesh<native><epic_internal>(SkeletalMesh:skeletal_mesh)<transacts>:void
 
         # Changes the Material of the Mesh used by this instance. Optionally can specify which Mesh element index to apply the material to, otherwise defaults to the 0 (default) Mesh element
         SetMaterial<native><public>(Material:material, ?Index:int = external {})<transacts>:void
@@ -1258,6 +1261,14 @@ FeralCorgi<public> := module:
 
         OnReceivedEvent<public>():listenable(tuple(string, []agent, [string]float)) = external {}
 
+    # Module import path: /Fortnite.com/FeralCorgi/FeralLoggingBridge
+    FeralLoggingBridge<epic_internal> := module:
+        LogMessage<native><epic_internal>(Format:string, ?Args:[]string = external {})<transacts>:void
+
+        LogWarning<native><epic_internal>(Format:string, ?Args:[]string = external {})<transacts>:void
+
+        LogError<native><epic_internal>(Format:string, ?Args:[]string = external {})<transacts>:void
+
     # Module import path: /Fortnite.com/FeralCorgi/PlayerLoadingStatusBridge
     PlayerLoadingStatusBridge<epic_internal> := module:
         AwaitPlayersLoading<native><epic_internal>(Playspace:fort_playspace)<suspends>:void
@@ -1520,15 +1531,15 @@ FN1Native<public> := module:
             SetCurrentPhase<native><epic_internal>(InCurrentPhase:int)<transacts>:void
 
     player_ui_display_info<native><epic_internal> := struct:
-        Image<native>:texture
+        AvatarLargeImage<native>:texture
 
-        LargeImage<native>:texture
+        AvatarSmallImage<native>:texture
 
-        SmallImage<native>:texture
+        AvatarBackgroundColor<native>:color
+
+        AvatarHighlightColor<native>:color
 
         SquadColor<native>:color
-
-        CurrentXP<native>:int
 
     player_ui_display_info_manager<native><epic_internal> := class:
         GetDisplayInfo<native><epic_internal>(InPlayer:player)<reads>:player_ui_display_info

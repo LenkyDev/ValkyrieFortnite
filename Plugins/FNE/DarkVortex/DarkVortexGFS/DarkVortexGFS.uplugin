@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/DarkVortex",
-	"FortReleaseVersion": "35.00",
+	"FortReleaseVersion": "35.10",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
@@ -37,14 +37,14 @@
 			"Optional": true
 		},
 		{
-			"Name": "DarkVortexCosmetics",
+			"Name": "DarkVortex_ExtraAssets",
 			"Enabled": true,
-			"Activate": true,
 			"Optional": true
 		},
 		{
-			"Name": "DarkVortex_ExtraAssets",
+			"Name": "DarkVortexCosmetics",
 			"Enabled": true,
+			"Activate": true,
 			"Optional": true
 		},
 		{
@@ -69,6 +69,11 @@
 			"Name": "DarkVortexMeadowHeliconia",
 			"Enabled": true,
 			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "DarkVortexQuests",
+			"Enabled": true,
 			"Optional": true
 		},
 		{

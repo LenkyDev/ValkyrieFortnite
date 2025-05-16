@@ -377,6 +377,9 @@ Devices<public> := module:
         # Changes the Mesh used by this instance.
         SetMesh<native><public>(Mesh:mesh)<transacts>:void
 
+        # Changes the Skeletal Mesh used by this instance.
+        SetSkeletalMesh<native><epic_internal>(SkeletalMesh:skeletal_mesh)<transacts>:void
+
         # Changes the Material of the Mesh used by this instance. Optionally can specify which Mesh element index to apply the material to, otherwise defaults to the 0 (default) Mesh element
         SetMaterial<native><public>(Material:material, ?Index:int = external {})<transacts>:void
 

@@ -46,11 +46,13 @@
 			"/LimeGFS",
 			"/LimeGFSMetaData",
 			"/LimeGridScaleOverride",
+			"/LimeImpulseGrenade",
 			"/LimeIslandUIOverride",
 			"/LimeKatana",
 			"/LimeMedievalSword",
 			"/LimeNative",
 			"/LimePawnOverride",
+			"/LimeShockwaveGrenade",
 			"/LimeWeaponsCore",
 			"/Containers_Assets",
 			"/Musical_Walk_Assets",
@@ -96,8 +98,10 @@
 			"/LimeCoconut/WID_Lime_Coconut.WID_Lime_Coconut",
 			"/LimeCornCob/WID_Lime_Corn.WID_Lime_Corn",
 			"/LimeEgg/WID_Lime_SpringEgg_Heal.WID_Lime_SpringEgg_Heal",
+			"/LimeImpulseGrenade/WID_LimeImpulseGrenade.WID_LimeImpulseGrenade",
 			"/LimeMeatCooked/WID_Lime_Meat.WID_Lime_Meat",
 			"/LimePizza/WID_Lime_PizzaSlice.WID_Lime_PizzaSlice",
+			"/LimeShockwaveGrenade/WID_Lime_ShockwaveGrenade.WID_Lime_ShockwaveGrenade",
 			"/LimeSlapberry/WID_Lime_SpicyBerry.WID_Lime_SpicyBerry",
 			"/LimeSlapJuice/WID_Lime_Consumable_SlapJuice.WID_Lime_Consumable_SlapJuice",
 			"/LimeSlurpJuice/WID_Lime_Consumable_SlurpJuice.WID_Lime_Consumable_SlurpJuice",
@@ -1269,7 +1273,7 @@
 			"/Script/VerseDevices.ScriptDevice":
 			{
 			},
-			"/Script/AtomRuntime.AtomAssetImportData":
+			"/Script/AtomModelImporterEditor.AtomAssetImportData":
 			{
 			},
 			"/Script/AtomRuntime.AtomBoneReference":
@@ -1305,7 +1309,7 @@
 			"/Script/AtomRuntime.AtomHingedElement":
 			{
 			},
-			"/Script/AtomRuntime.AtomModelMergedMeshImportData":
+			"/Script/AtomModelImporterEditor.AtomModelMergedMeshImportData":
 			{
 			},
 			"/Script/AtomRuntime.AtomTextureImportData":
