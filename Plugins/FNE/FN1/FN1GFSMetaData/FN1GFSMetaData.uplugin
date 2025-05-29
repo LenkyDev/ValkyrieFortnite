@@ -1,0 +1,23 @@
+{
+	"FileVersion": 1,
+	"CanContainContent": true,
+	"ExplicitlyLoaded": true,
+	"EnabledByDefault": false,
+	"BuiltInInitialFeatureState": "Registered",
+	"BuiltInAutoRegister": true,
+	"BuiltInAutoLoad": true,
+	"BuiltInAutoActivate": false,
+	"FortReleaseVersion": "31.40",
+	"EditorCustomVirtualPath": "FNE/FN1",
+	"CookAsDLC": "Creative",
+	"RequiredEntitlements":
+	{
+		"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad"
+	},
+	"Plugins": [
+		{
+			"Name": "CR_Legacy",
+			"Enabled": true
+		}
+	]
+}

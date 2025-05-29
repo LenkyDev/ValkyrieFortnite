@@ -1,0 +1,67 @@
+{
+	"FileVersion": 3,
+	"CanContainContent": true,
+	"NoCode": true,
+	"NoGameFeatureContent": true,
+	"ExplicitlyLoaded": true,
+	"EnabledByDefault": false,
+	"BuiltInInitialFeatureState": "Installed",
+	"BuiltInAutoRegister": true,
+	"BuiltInAutoLoad": false,
+	"BuiltInAutoActivate": false,
+	"EditorCustomVirtualPath": "FM/FriedRice",
+	"FortReleaseVersion": "35.20",
+	"VerseVersion": 0,
+	"IsGameFeatureSet": true,
+	"Version": 0,
+	"VersionName": "",
+	"FriendlyName": "",
+	"Description": "",
+	"Category": "",
+	"CreatedBy": "",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"CookAsDLC": "Creative",
+	"RequiredEntitlements": {
+		"Create": {
+			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
+			"VKCreateUGCFriedRice": "3315dc189efb4a4a95ffaccda3a4e400"
+		}
+	},
+	"Plugins": [
+		{
+			"Name": "FriedRiceAudioBase",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "FriedRiceBase",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FriedRiceGame",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "FriedRiceNative",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "FriedRiceDB",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		}
+	]
+}

@@ -304,7 +304,7 @@ UI<public> := module:
         GetTiling<native><public>():tuple(image_tiling, image_tiling)
 
     # A widget to display a material.
-    material_block<native><epic_internal> := class(widget):
+    material_block<native><public> := class(widget):
         # The image to render. Used only during initialization of the widget and not modified by SetImage.
         DefaultImage<native><public>:material
 

@@ -1,0 +1,28 @@
+{
+    "FileVersion": 3,
+    "CanContainContent": true,
+    "ExplicitlyLoaded": true,
+    "EnabledByDefault": false,
+    "BuiltInInitialFeatureState": "Registered",
+    "BuiltInAutoRegister": true,
+    "BuiltInAutoLoad": true,
+    "BuiltInAutoActivate": false,
+    "FortReleaseVersion": "33.20",
+	"EditorCustomVirtualPath": "FNE/DarkVortex",
+	"CookAsDLC": "Creative",
+	"RequiredEntitlements":
+	{
+		"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
+		"VKCreateUGCDarkVortex": "705f2e02de6a4cc0bec31d977961d416"
+	},
+	"Plugins": [
+		{
+			"Name": "CreativeCoreDevices",
+			"Enabled": true
+		},
+        	{
+			"Name": "CR_Legacy",
+			"Enabled": true
+		}
+	]
+}

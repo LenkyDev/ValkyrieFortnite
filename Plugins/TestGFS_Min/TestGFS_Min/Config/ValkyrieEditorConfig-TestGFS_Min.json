@@ -1,0 +1,16 @@
+{
+	"_comment_About_This_File": "",
+	"_comment_About_This_File_2": "",
+
+	"ValkyrieEditorSettings": {
+
+		"AllowedGatherFolders": [
+			"/TestGFS_Min"
+		],
+
+		"AllowedGatherAssets": [
+			"/Game/UEFNExposedAssets/UEFN_Expose_Water.UEFN_Expose_Water"
+		]
+	}
+
+}

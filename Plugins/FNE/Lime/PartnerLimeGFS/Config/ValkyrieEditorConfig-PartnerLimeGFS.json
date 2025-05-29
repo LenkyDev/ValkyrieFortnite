@@ -182,77 +182,59 @@
 			"/Script/AtomModelImporterEditor.AtomMergedGeometryContainer": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeAwareness.CharacterModifier_LimeAwareness_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeAwareness.CharacterModifier_LimeAwareness_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeEffects.CharacterModifier_LimeEffects_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeEffects.CharacterModifier_LimeEffects_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardBehavior.CharacterModifier_LimeGuardBehavior_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardBehavior.CharacterModifier_LimeGuardBehavior_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardPerception.CharacterModifier_LimeGuardPerception_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardPerception.CharacterModifier_LimeGuardPerception_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardVerseBehavior.CharacterModifier_LimeGuardVerseBehavior_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardVerseBehavior.CharacterModifier_LimeGuardVerseBehavior_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeHealth.CharacterModifier_LimeHealth_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeHealth.CharacterModifier_LimeHealth_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeMovement.CharacterModifier_LimeMovement_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeMovement.CharacterModifier_LimeMovement_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeNavigation.CharacterModifier_LimeNavigation_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeNavigation.CharacterModifier_LimeNavigation_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardInventory.CharacterModifier_LimeGuardInventory_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardInventory.CharacterModifier_LimeGuardInventory_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimePatrolPath.CharacterModifier_LimePatrolPath_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimePatrolPath.CharacterModifier_LimePatrolPath_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeTeam.CharacterModifier_LimeTeam_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeTeam.CharacterModifier_LimeTeam_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeUI.CharacterModifier_LimeUI_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeUI.CharacterModifier_LimeUI_C": {
 				"Visible": true
 			},
-			"/LimeAISpawnerGuard/SpawnDefinitions/Types/CharacterType_LimeGuard.CharacterType_LimeGuard_C":
-			{
+			"/LimeAISpawnerGuard/SpawnDefinitions/Types/CharacterType_LimeGuard.CharacterType_LimeGuard_C": {
 				"Visible": true
 			},
-			"/LimeExtraAssets/AI/TestPlayers/CharacterType/CharacterType_LimeParticipant.CharacterType_LimeParticipant_C":
-			{
+			"/LimeExtraAssets/AI/TestPlayers/CharacterType/CharacterType_LimeParticipant.CharacterType_LimeParticipant_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeCosmeticSpawn.CharacterModifier_LimeCosmeticSpawn_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeCosmeticSpawn.CharacterModifier_LimeCosmeticSpawn_C": {
 				"Visible": true
 			},
-			"/NPCDefault/Types/CharacterType_Custom.CharacterType_Custom_C":						
-			{
-				"Visible": true 
+			"/NPCDefault/Types/CharacterType_Custom.CharacterType_Custom_C": {
+				"Visible": true
 			},
-			"/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C":							
-			{
-				"Visible": true 
+			"/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C": {
+				"Visible": true
 			},
-			"/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C":					
-			{ 
-				"Visible": true 
+			"/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C": {
+				"Visible": true
 			}
 		},
 		"AllowedEditorModes": {

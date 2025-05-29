@@ -271,6 +271,35 @@ UI<public> := module:
         # Gets the tiling option.
         GetTiling<native><public>():tuple(image_tiling, image_tiling)
 
+    # A widget to display a material.
+    material_block<native><public> := class(widget):
+        # The image to render. Used only during initialization of the widget and not modified by SetImage.
+        DefaultImage<native><public>:material
+
+        # Tinting applied to the image. Used only during initialization of the widget and not modified by SetTint.
+        DefaultTint<native><public>:color = external {}
+
+        # The size this widget desired to be displayed in. Used only during initialization of the widget and not modified by SetDesiredSize.
+        DefaultDesiredSize<native><public>:vector2 = external {}
+
+        # Sets the image to render.
+        SetImage<native><public>(InImage:material):void
+
+        # Gets the image to render.
+        GetImage<native><public>():material
+
+        # Sets the tint applied to the image.
+        SetTint<native><public>(InColor:color):void
+
+        # Gets the tint applied to the image.
+        GetTint<native><public>():color
+
+        # Sets the size this widget desired to be displayed in.
+        SetDesiredSize<native><public>(InDesiredSize:vector2):void
+
+        # Gets the size this widget desired to be displayed in.
+        GetDesiredSize<native><public>():vector2
+
     # Overlay is a container consisting of widgets stacked on top of each other.
     overlay<native><public> := class<final>(widget):
         # The child widgets of the overlay. Used only during initialization of the widget and not modified by Add/RemoveWidget.

@@ -1,0 +1,24 @@
+{
+	"FileVersion": 1,
+	"CanContainContent": true,
+	"ExplicitlyLoaded": true,
+	"EnabledByDefault": false,
+	"BuiltInInitialFeatureState": "Registered",
+	"BuiltInAutoRegister": true,
+	"BuiltInAutoLoad": true,
+	"BuiltInAutoActivate": false,
+	"FortReleaseVersion": "35.20",
+	"EditorCustomVirtualPath": "FM/FriedRice",
+	"CookAsDLC": "Creative",
+	"RequiredEntitlements":
+	{			
+		"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
+		"VKCreateUGCFriedRice": "3315dc189efb4a4a95ffaccda3a4e400"		
+	},
+	"Plugins": [		
+        	{
+			"Name": "CR_Legacy",
+			"Enabled": true
+		}
+	]
+}

@@ -15165,6 +15165,44 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/Plugins/CheatExplorer/CheatExplorer.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 1,
+				"VersionName": "1.0",
+				"FriendlyName": "CheatExplorer",
+				"Description": "An in-game tool to display, search and run all cheats, console variables and Rollbacks present in Fortnite and UE",
+				"Category": "Debugging",
+				"CreatedBy": "Epic Games, Inc.",
+				"CreatedByURL": "http://epicgames.com",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"CanContainContent": true,
+				"Modules": [
+					{
+						"Name": "CheatExplorer",
+						"Type": "ClientOnly",
+						"LoadingPhase": "Default",
+						"TargetConfigurationDenyList": [
+							"Shipping"
+						]
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "FortImGuiCore",
+						"Enabled": true
+					},
+					{
+						"Name": "GameFeatures",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
 			"File": "../../../FortniteGame/Plugins/CommChannels/CommChannels.uplugin",
 			"Descriptor": 
 			{
@@ -20832,11 +20870,6 @@
 						"Optional": true
 					},
 					{
-						"Name": "DemonArenaGameplay",
-						"Enabled": true,
-						"Optional": true
-					},
-					{
 						"Name": "DemonMaskContainer",
 						"Enabled": true,
 						"Optional": true
@@ -21352,11 +21385,6 @@
 						"Optional": true
 					},
 					{
-						"Name": "FirePetal_WanderingBoss",
-						"Enabled": true,
-						"Optional": true
-					},
-					{
 						"Name": "FirePetalBoonsGameplay",
 						"Enabled": true,
 						"Optional": true
@@ -21802,6 +21830,11 @@
 						"Optional": true
 					},
 					{
+						"Name": "JethroDevelopment",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
 						"Name": "JethroLager",
 						"Enabled": true,
 						"Optional": true
@@ -21973,6 +22006,11 @@
 					},
 					{
 						"Name": "Mantis",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "MapUIData",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -22599,6 +22637,11 @@
 						"Optional": true
 					},
 					{
+						"Name": "ReplayTesting",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
 						"Name": "ResolveGameplay",
 						"Enabled": true,
 						"Optional": true
@@ -22725,6 +22768,11 @@
 					},
 					{
 						"Name": "SharedWeaponAnims",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "SharpFrog",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -28578,6 +28626,16 @@
 					},
 					{
 						"Name": "AncientWeapon",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "Ares_Assets",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "Ares_Comp",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -37376,6 +37434,10 @@
 						"Enabled": true
 					},
 					{
+						"Name": "BeatSyncedAnim",
+						"Enabled": true
+					},
+					{
 						"Name": "BRCosmetics",
 						"Enabled": true
 					},
@@ -45331,7 +45393,7 @@
 				"DocsURL": "",
 				"MarketplaceURL": "",
 				"SupportURL": "",
-				"VersePath": "/kudozeg@fortnite.com/DelMarOlympus",
+				"VersePath": "/kudozeg@fortnite.com/DelMarOlympus2",
 				"EnabledByDefault": false,
 				"CanContainContent": true,
 				"ExplicitlyLoaded": true,
@@ -48925,107 +48987,6 @@
 			}
 		},
 		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/DemonArenaGameplay/DemonArenaGameplay.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"ExplicitlyLoaded": true,
-				"Modules": [
-					{
-						"Name": "DemonArenaGameplayRuntime",
-						"Type": "Runtime",
-						"LoadingPhase": "Default"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "FirePetal_WanderingBoss",
-						"Enabled": true
-					},
-					{
-						"Name": "PlayspaceSystem",
-						"Enabled": true
-					},
-					{
-						"Name": "GameplayAbilities",
-						"Enabled": true
-					},
-					{
-						"Name": "GameplayEventRouter",
-						"Enabled": true
-					},
-					{
-						"Name": "Lager",
-						"Enabled": true
-					},
-					{
-						"Name": "Hermes",
-						"Enabled": true
-					},
-					{
-						"Name": "Sprites_AirSprite",
-						"Enabled": true
-					},
-					{
-						"Name": "Sprites",
-						"Enabled": true
-					},
-					{
-						"Name": "FortLevelInjecting",
-						"Enabled": true
-					},
-					{
-						"Name": "DirectionalLauncherGameplay",
-						"Enabled": true
-					},
-					{
-						"Name": "BRMapContent",
-						"Enabled": true
-					},
-					{
-						"Name": "BRCoreMaterials",
-						"Enabled": true
-					},
-					{
-						"Name": "MidMatchObjectivesGameplay",
-						"Enabled": true
-					},
-					{
-						"Name": "AIProgressBar",
-						"Enabled": true
-					},
-					{
-						"Name": "AmbientAudioContent",
-						"Enabled": true
-					},
-					{
-						"Name": "AmbientAudioBase",
-						"Enabled": true
-					},
-					{
-						"Name": "RiftPOICosmetics",
-						"Enabled": true
-					},
-					{
-						"Name": "FortUILibrary",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/DemonMaskContainer/DemonMaskContainer.uplugin",
 			"Descriptor": 
 			{
@@ -51174,6 +51135,80 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/Events/SparksPeanutButterQuests/SparksPeanutButterQuests.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "SparksPeanutButterQuests",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "SparksPermanentQuests",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "PilgrimCore",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "PilgrimQuickplay",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "FMJamSystem",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "SparksCosmetics",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "SparksSongTemplates",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "SparksCharacterCommon",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "BRCosmetics",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "PilgrimBattleStage",
+						"Enabled": true,
+						"Optional": true
+					}
+				]
+			}
+		},
+		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/FMAudioReactiveData/FMAudioReactiveData.uplugin",
 			"Descriptor": 
 			{
@@ -51858,6 +51893,10 @@
 					},
 					{
 						"Name": "GameplayEventRouter",
+						"Enabled": true
+					},
+					{
+						"Name": "Niagara",
 						"Enabled": true
 					},
 					{
@@ -52580,6 +52619,278 @@
 					},
 					{
 						"Name": "ToggleScopeModeInput",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/FriedRice/FriedRiceAudioBase/FriedRiceAudioBase.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "FriedRiceAudioBase",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "SpecialEventGameplay",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/FriedRice/FriedRiceBase/FriedRiceBase.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "FriedRiceBase",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/FriedRice/FriedRiceDB/FriedRiceDB.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "FriedRiceDB",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "BRCosmetics",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/FriedRice/FriedRiceGFSMetaData/FriedRiceGFSMetaData.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"Plugins": [
+					{
+						"Name": "CR_Legacy",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/FriedRice/FriedRiceGFS/FriedRiceGFS.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VerseVersion": 0,
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"NoCode": true,
+				"ExplicitlyLoaded": true,
+				"Plugins": [
+					{
+						"Name": "FriedRiceAudioBase",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "FriedRiceBase",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "FriedRiceGame",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "FriedRiceNative",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "FriedRiceDB",
+						"Enabled": true,
+						"Optional": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/FriedRice/FriedRiceGame/FriedRiceGame.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "FriedRiceGame",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "FriedRiceNative",
+						"Enabled": true
+					},
+					{
+						"Name": "FMJamMap",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/FM/FriedRice/FriedRiceNative/FriedRiceNative.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"VersePath": "/Fortnite.com/FriedRice",
+				"VerseScope": "InternalAPI",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"CanContainVerse": true,
+				"ExplicitlyLoaded": true,
+				"Modules": [
+					{
+						"Name": "FriedRiceNativeRuntime",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					}
+				],
+				"LocalizationTargets": [
+					{
+						"Name": "FriedRiceNative",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "PlayspaceSystem",
+						"Enabled": true
+					},
+					{
+						"Name": "GameplayEventRouter",
+						"Enabled": true
+					},
+					{
+						"Name": "Solaris",
+						"Enabled": true
+					},
+					{
+						"Name": "Verse",
+						"Enabled": true
+					},
+					{
+						"Name": "VerseColors",
+						"Enabled": true
+					},
+					{
+						"Name": "VerseEngine",
+						"Enabled": true
+					},
+					{
+						"Name": "VerseSimulation",
 						"Enabled": true
 					}
 				]
@@ -55387,6 +55698,11 @@
 						"Optional": true
 					},
 					{
+						"Name": "SparksPeanutButterQuests",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
 						"Name": "SparksPermanentQuests",
 						"Enabled": true,
 						"Optional": true
@@ -55563,7 +55879,7 @@
 				"FileVersion": 3,
 				"Version": 1,
 				"VersionName": "1.0",
-				"FriendlyName": "Beanstalk AI",
+				"FriendlyName": "BeanstalkAI",
 				"Description": "A plugin containing AI for Beanstalk like to support Test Players.",
 				"Category": "",
 				"CreatedBy": "",
@@ -55888,7 +56204,7 @@
 				"FileVersion": 3,
 				"Version": 1,
 				"VersionName": "1.0",
-				"FriendlyName": "Beanstalk Game Debuggers",
+				"FriendlyName": "BeanstalkGameDebuggers",
 				"Description": "A plugin containing debuggers for various Beanstalk systems. Requires Unreal ImGui: https://github.com/segross/UnrealImGui (c) Sebastian Gross. Uses ImGui: https://github.com/ocornut/imgui (c) Omar Cornut. MIT License.",
 				"Category": "Debugging",
 				"CreatedBy": "Mediatonic",
@@ -56012,7 +56328,7 @@
 				"FileVersion": 3,
 				"Version": 0,
 				"VersionName": "1.0",
-				"FriendlyName": "Beanstalk Managers",
+				"FriendlyName": "BeanstalkManagers",
 				"Description": "Contains Beanstalk related Manager type classes",
 				"Category": "",
 				"CreatedBy": "",
@@ -57425,6 +57741,52 @@
 					},
 					{
 						"Name": "FNEC_Assets",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/FNE/Helios/S29/FNEC/Ares_Assets/Ares_Assets.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/FNE/Helios/S29/FNEC/Ares_Comp/Ares_Comp.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"Plugins": [
+					{
+						"Name": "Ares_Assets",
 						"Enabled": true
 					}
 				]
@@ -58991,6 +59353,10 @@
 					{
 						"Name": "Lime",
 						"Enabled": true
+					},
+					{
+						"Name": "ItemizationCore",
+						"Enabled": true
 					}
 				]
 			}
@@ -59594,6 +59960,10 @@
 					},
 					{
 						"Name": "LimeAtomAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGameNative",
 						"Enabled": true
 					}
 				]
@@ -60489,6 +60859,10 @@
 					{
 						"Name": "LimeAtomAssets",
 						"Enabled": true
+					},
+					{
+						"Name": "JunoGameNative",
+						"Enabled": true
 					}
 				]
 			}
@@ -60534,6 +60908,10 @@
 					},
 					{
 						"Name": "LimeAtomAssets",
+						"Enabled": true
+					},
+					{
+						"Name": "GrappleWeapon",
 						"Enabled": true
 					}
 				]
@@ -60769,6 +61147,10 @@
 					{
 						"Name": "LimeAtomAssets",
 						"Enabled": true
+					},
+					{
+						"Name": "JunoGameNative",
+						"Enabled": true
 					}
 				]
 			}
@@ -60890,6 +61272,10 @@
 					},
 					{
 						"Name": "JunoBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGameNative",
 						"Enabled": true
 					},
 					{
@@ -61145,6 +61531,10 @@
 					{
 						"Name": "ToggleScopeModeInput",
 						"Enabled": true
+					},
+					{
+						"Name": "ItemizationCore",
+						"Enabled": true
 					}
 				]
 			}
@@ -61170,6 +61560,10 @@
 				"Plugins": [
 					{
 						"Name": "Lime",
+						"Enabled": true
+					},
+					{
+						"Name": "FigureCosmetics",
 						"Enabled": true
 					}
 				]
@@ -61614,6 +62008,10 @@
 					},
 					{
 						"Name": "JunoAudioBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGameNative",
 						"Enabled": true
 					},
 					{
@@ -65951,84 +66349,6 @@
 			}
 		},
 		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/FirePetal_WanderingBoss/FirePetal_WanderingBoss.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"ExplicitlyLoaded": true,
-				"Plugins": [
-					{
-						"Name": "NPCLibrary",
-						"Enabled": true
-					},
-					{
-						"Name": "BRCosmetics",
-						"Enabled": true
-					},
-					{
-						"Name": "NPCCore",
-						"Enabled": true
-					},
-					{
-						"Name": "AICore",
-						"Enabled": true
-					},
-					{
-						"Name": "Lager",
-						"Enabled": true
-					},
-					{
-						"Name": "DemonMaskFire",
-						"Enabled": true
-					},
-					{
-						"Name": "TwinStretchCorn",
-						"Enabled": true
-					},
-					{
-						"Name": "MasamuneGameplay",
-						"Enabled": true
-					},
-					{
-						"Name": "KatanaGameplay",
-						"Enabled": true
-					},
-					{
-						"Name": "FirePetalBosses",
-						"Enabled": true
-					},
-					{
-						"Name": "DemonMaskVoid",
-						"Enabled": true
-					},
-					{
-						"Name": "AIProgressBar",
-						"Enabled": true
-					},
-					{
-						"Name": "FirePetalBoonsGameplay",
-						"Enabled": true
-					},
-					{
-						"Name": "FortNPCMusic",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/FlamingHoopsGameplay/FlamingHoopsGameplay.uplugin",
 			"Descriptor": 
 			{
@@ -69438,6 +69758,76 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/JethroDevelopment/JethroDevelopment.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"Plugins": [
+					{
+						"Name": "Galileo",
+						"Enabled": true
+					},
+					{
+						"Name": "PlotTwist",
+						"Enabled": true
+					},
+					{
+						"Name": "JethroWeaponGameplay",
+						"Enabled": true
+					},
+					{
+						"Name": "EchoFlareGameplay",
+						"Enabled": true
+					},
+					{
+						"Name": "JethroLager",
+						"Enabled": true
+					},
+					{
+						"Name": "JethroTV",
+						"Enabled": true
+					},
+					{
+						"Name": "JethroXV",
+						"Enabled": true
+					},
+					{
+						"Name": "JethroV",
+						"Enabled": true
+					},
+					{
+						"Name": "SharpFrog",
+						"Enabled": true
+					},
+					{
+						"Name": "Sprites_AirSprite",
+						"Enabled": true
+					},
+					{
+						"Name": "Sprites_WaterSprite",
+						"Enabled": true
+					},
+					{
+						"Name": "Train",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/JethroLager/JethroLager.uplugin",
 			"Descriptor": 
 			{
@@ -69544,15 +69934,11 @@
 						"Enabled": true
 					},
 					{
-						"Name": "DemonArenaGameplay",
-						"Enabled": true
-					},
-					{
 						"Name": "MidMatchRadioTowerGameplay",
 						"Enabled": true
 					},
 					{
-						"Name": "CosmosGameplay",
+						"Name": "IntercomAudio",
 						"Enabled": true
 					}
 				]
@@ -70050,10 +70436,6 @@
 				"Plugins": [
 					{
 						"Name": "Hermes",
-						"Enabled": true
-					},
-					{
-						"Name": "BRCosmetics",
 						"Enabled": true
 					},
 					{
@@ -71313,67 +71695,6 @@
 			}
 		},
 		{
-			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/DianaQuests/DianaQuests.uplugin",
-			"Descriptor": 
-			{
-				"FileVersion": 3,
-				"Version": 0,
-				"VersionName": "",
-				"FriendlyName": "DianaQuests",
-				"Description": "",
-				"Category": "",
-				"CreatedBy": "",
-				"CreatedByURL": "",
-				"DocsURL": "",
-				"MarketplaceURL": "",
-				"SupportURL": "",
-				"EnabledByDefault": false,
-				"CanContainContent": true,
-				"ExplicitlyLoaded": true,
-				"LocalizationTargets": [
-					{
-						"Name": "DianaQuests",
-						"LoadingPolicy": "Game",
-						"ConfigGenerationPolicy": "Auto"
-					}
-				],
-				"Plugins": [
-					{
-						"Name": "ItemizationCore",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoBase",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoGameNative",
-						"Enabled": true
-					},
-					{
-						"Name": "JunoOsirisGameplay",
-						"Enabled": true
-					},
-					{
-						"Name": "FortniteCoreUI",
-						"Enabled": true
-					},
-					{
-						"Name": "FigureCosmetics",
-						"Enabled": true
-					},
-					{
-						"Name": "DianaCore",
-						"Enabled": true
-					},
-					{
-						"Name": "UniversalDailyQuests",
-						"Enabled": true
-					}
-				]
-			}
-		},
-		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/DianaReadyUpErrorsUI/DianaReadyUpErrorsUI.uplugin",
 			"Descriptor": 
 			{
@@ -71416,6 +71737,10 @@
 					},
 					{
 						"Name": "JunoCoreUI",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoGameUI",
 						"Enabled": true
 					}
 				]
@@ -90562,11 +90887,6 @@
 					},
 					{
 						"Name": "DianaPlaylist",
-						"Enabled": true,
-						"Optional": true
-					},
-					{
-						"Name": "DianaQuests",
 						"Enabled": true,
 						"Optional": true
 					},
@@ -117912,6 +118232,11 @@
 						"Optional": true
 					},
 					{
+						"Name": "SproutTG_JobGardener_UI",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
 						"Name": "SproutTG_JunglePug_Bldg",
 						"Enabled": true,
 						"Optional": true
@@ -118426,6 +118751,10 @@
 					},
 					{
 						"Name": "JunoAudioBase",
+						"Enabled": true
+					},
+					{
+						"Name": "JunoBase",
 						"Enabled": true
 					}
 				]
@@ -124955,6 +125284,44 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutTG_JobGardener_UI/SproutTG_JobGardener_UI.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"NoCode": true,
+				"ExplicitlyLoaded": true,
+				"LocalizationTargets": [
+					{
+						"Name": "SproutTG_JobGardener_UI",
+						"LoadingPolicy": "Game",
+						"ConfigGenerationPolicy": "Auto"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "SproutGameUI",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutTG_JobGardener_Prop",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Juno/SproutTG_JunglePug_Bldg/SproutTG_JunglePug_Bldg.uplugin",
 			"Descriptor": 
 			{
@@ -129546,6 +129913,10 @@
 					},
 					{
 						"Name": "LFNTG_RiotFly_Prop",
+						"Enabled": true
+					},
+					{
+						"Name": "SproutTG_RiotFly_OnlinePolls",
 						"Enabled": true
 					}
 				]
@@ -135742,6 +136113,26 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/MapUIData/MapUIData.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "MapUIData",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true
+			}
+		},
+		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/MarketGameplay/MarketGameplay.uplugin",
 			"Descriptor": 
 			{
@@ -140594,6 +140985,10 @@
 					{
 						"Name": "SaveDataSubsystem",
 						"Enabled": true
+					},
+					{
+						"Name": "ItemizationCore",
+						"Enabled": true
 					}
 				]
 			}
@@ -141344,6 +141739,52 @@
 			}
 		},
 		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/ReplayTesting/ReplayTesting.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"Modules": [
+					{
+						"Name": "ReplayTestingRuntime",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "ReplayTestingUI",
+						"Type": "ClientOnly",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "Replay",
+						"Enabled": true
+					},
+					{
+						"Name": "FortUILibrary",
+						"Enabled": true
+					},
+					{
+						"Name": "FortniteCoreUI",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
 			"File": "../../../FortniteGame/Plugins/GameFeatures/Replay/Replay.uplugin",
 			"Descriptor": 
 			{
@@ -141806,6 +142247,289 @@
 				"EnabledByDefault": false,
 				"CanContainContent": true,
 				"ExplicitlyLoaded": true
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/RipeHoneydewMeshGameplay/RipeHoneydewMeshGameplay.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"Modules": [
+					{
+						"Name": "RipeHoneydewMeshGameplayRuntime",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "MeshNetwork",
+						"Enabled": true
+					},
+					{
+						"Name": "SpecialEventGameplay",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/RipeHoneydewNight/RipeHoneydewNight.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"Plugins": [
+					{
+						"Name": "FortniteCoreUI",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/RipeHoneydewPlaylist/RipeHoneydewPlaylist.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"Modules": [
+					{
+						"Name": "RipeHoneydewPlaylistRuntime",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "RipeHoneydewPlaylistUI",
+						"Type": "ClientOnly",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "SpecialEventGameplay",
+						"Enabled": true
+					},
+					{
+						"Name": "BRMapCh6",
+						"Enabled": true
+					},
+					{
+						"Name": "Energy",
+						"Enabled": true
+					},
+					{
+						"Name": "SpecialEventCountdown",
+						"Enabled": true
+					},
+					{
+						"Name": "Jethro",
+						"Enabled": true
+					},
+					{
+						"Name": "JethroXV",
+						"Enabled": true
+					},
+					{
+						"Name": "JethroTV",
+						"Enabled": true
+					},
+					{
+						"Name": "JethroV",
+						"Enabled": true
+					},
+					{
+						"Name": "FortWater",
+						"Enabled": true
+					},
+					{
+						"Name": "Hermes",
+						"Enabled": true
+					},
+					{
+						"Name": "SentryGameplay",
+						"Enabled": true
+					},
+					{
+						"Name": "FortMetaSoundWeapon",
+						"Enabled": true
+					},
+					{
+						"Name": "RipeHoneydewMeshGameplay",
+						"Enabled": true
+					},
+					{
+						"Name": "VehicleMods",
+						"Enabled": true
+					},
+					{
+						"Name": "Valet",
+						"Enabled": true
+					},
+					{
+						"Name": "ModelViewViewModel",
+						"Enabled": true
+					},
+					{
+						"Name": "FortniteCoreUI",
+						"Enabled": true
+					},
+					{
+						"Name": "EnhancedInput",
+						"Enabled": true
+					},
+					{
+						"Name": "DynamicUI",
+						"Enabled": true
+					},
+					{
+						"Name": "ModularGameplay",
+						"Enabled": true
+					},
+					{
+						"Name": "ControlFlows",
+						"Enabled": true
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/RipeHoneydew/RipeHoneydew.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"Plugins": [
+					{
+						"Name": "Events_Shared",
+						"Enabled": true
+					},
+					{
+						"Name": "BRCosmetics",
+						"Enabled": true
+					},
+					{
+						"Name": "Jethro",
+						"Enabled": true
+					},
+					{
+						"Name": "JethroLager",
+						"Enabled": true
+					},
+					{
+						"Name": "JethroTV",
+						"Enabled": true
+					},
+					{
+						"Name": "JethroXV",
+						"Enabled": true
+					},
+					{
+						"Name": "JethroV",
+						"Enabled": true
+					},
+					{
+						"Name": "JethroWeaponGameplay",
+						"Enabled": true
+					},
+					{
+						"Name": "Hermes",
+						"Enabled": true
+					},
+					{
+						"Name": "BRMapCh6",
+						"Enabled": true
+					},
+					{
+						"Name": "SpecialEventGameplay",
+						"Enabled": true
+					},
+					{
+						"Name": "RipeHoneydewPlaylist",
+						"Enabled": true
+					},
+					{
+						"Name": "PlotTwist",
+						"Enabled": true
+					},
+					{
+						"Name": "FMJamSystem",
+						"Enabled": true
+					},
+					{
+						"Name": "AmbientAudioBase",
+						"Enabled": true
+					},
+					{
+						"Name": "Lager",
+						"Enabled": true
+					},
+					{
+						"Name": "LocomotionInitiative",
+						"Enabled": true
+					},
+					{
+						"Name": "FortMetaSoundWeapon",
+						"Enabled": true
+					},
+					{
+						"Name": "Galileo",
+						"Enabled": true
+					},
+					{
+						"Name": "PilgrimCore",
+						"Enabled": true
+					}
+				]
 			}
 		},
 		{
@@ -144075,6 +144799,92 @@
 						"Name": "SharedWeaponAnimsRuntime",
 						"Type": "Runtime",
 						"LoadingPhase": "Default"
+					}
+				]
+			}
+		},
+		{
+			"File": "../../../FortniteGame/Plugins/GameFeatures/SharpFrog/SharpFrog.uplugin",
+			"Descriptor": 
+			{
+				"FileVersion": 3,
+				"Version": 0,
+				"VersionName": "",
+				"FriendlyName": "",
+				"Description": "",
+				"Category": "",
+				"CreatedBy": "",
+				"CreatedByURL": "",
+				"DocsURL": "",
+				"MarketplaceURL": "",
+				"SupportURL": "",
+				"EnabledByDefault": false,
+				"CanContainContent": true,
+				"ExplicitlyLoaded": true,
+				"Modules": [
+					{
+						"Name": "SharpFrogRuntime",
+						"Type": "Runtime",
+						"LoadingPhase": "Default"
+					},
+					{
+						"Name": "SharpFrogUI",
+						"Type": "ClientOnly",
+						"LoadingPhase": "Default"
+					}
+				],
+				"Plugins": [
+					{
+						"Name": "CommonUI",
+						"Enabled": true
+					},
+					{
+						"Name": "SpecialEventGameplay",
+						"Enabled": true
+					},
+					{
+						"Name": "FortUILibrary",
+						"Enabled": true
+					},
+					{
+						"Name": "CosmosGameplay",
+						"Enabled": true
+					},
+					{
+						"Name": "JethroWeaponGameplay",
+						"Enabled": true
+					},
+					{
+						"Name": "VehicleMods",
+						"Enabled": true
+					},
+					{
+						"Name": "Jethro",
+						"Enabled": true
+					},
+					{
+						"Name": "SpecialAbilitiesQuickbarUI",
+						"Enabled": true
+					},
+					{
+						"Name": "JethroUI",
+						"Enabled": true
+					},
+					{
+						"Name": "FortMetaSoundWeapon",
+						"Enabled": true
+					},
+					{
+						"Name": "JethroTV",
+						"Enabled": true
+					},
+					{
+						"Name": "PlotTwist",
+						"Enabled": true
+					},
+					{
+						"Name": "JethroLager",
+						"Enabled": true
 					}
 				]
 			}
@@ -147090,6 +147900,11 @@
 					},
 					{
 						"Name": "FN1GFSMetaData",
+						"Enabled": true,
+						"Optional": true
+					},
+					{
+						"Name": "FriedRiceGFSMetaData",
 						"Enabled": true,
 						"Optional": true
 					}
