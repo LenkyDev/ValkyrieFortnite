@@ -3,11 +3,11 @@ using {/Verse.org/Native}
 using {/Verse.org/Colors}
 using {/Verse.org/Simulation}
 using {/Verse.org/SpatialMath}
-@experimental
 # A `capsule_light_component` emits light in all directions into the scene from a capsule shaped source with a specified radius and length. A radius and length of 0 makes it a point light. You can use these
 # to simulate any kind of light sources that emit in all directions and need an elongated source shape, such as a long light bulb.
 capsule_light_component<native><public> := class<final>(light_component):
-    # Set the visible light intensity emitted in SI unit Candela./nSpecified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
+    # Set the visible light intensity emitted in SI unit Candela.
+    # Specified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
     var Intensity<public>:float = external {}
 
     # The bounds of the light's visible influence. This clamping of the light's influence is not physically correct but very important for performance,
@@ -21,7 +21,6 @@ capsule_light_component<native><public> := class<final>(light_component):
     # Length of the source capsule shape in centimeters along the local Z axis. Note that light shapes which intersect shadow casting geometry can cause shadowing artifacts.
     var SourceLength<public>:float = external {}
 
-@experimental
 # A `directional_light_component` simulates light that is being emitted from a source that is infinitely far away. This means that all shadows cast by this light will be parallel, making this the ideal choice for simulating sunlight.
 directional_light_component<native><public> := class<final>(light_component):
     # Intensity of the light hitting the surface. In Lux (Lumen per square meter).
@@ -33,12 +32,10 @@ directional_light_component<native><public> := class<final>(light_component):
 # Module import path: /Verse.org/SceneGraph/KeyframedMovement
 # Animate Scene Graph entities with keyframes.
 KeyframedMovement<public> := module:
-    @experimental
     # Base class for an animation easing function.
     easing_function<native><public> := class<abstract><computes><epic_internal>:
         Evaluate<native><public>(Input:float):float
 
-    @experimental
     # Cubic bezier easing function. See CubicBezierEasingFunctions for some basic easing values.
     cubic_bezier_easing_function<native><public> := class<concrete><computes><epic_internal>(easing_function):
         X0<native><public>:float = external {}
@@ -51,7 +48,6 @@ KeyframedMovement<public> := module:
 
         Evaluate<native><override>(Input:float):float
 
-    @experimental
     # `Linear` animations move at a constant speed.
     linear_easing_function<native><public> := class<final><concrete><computes>(cubic_bezier_easing_function):
         X0<override>:float = external {}
@@ -62,7 +58,6 @@ KeyframedMovement<public> := module:
 
         Y1<override>:float = external {}
 
-    @experimental
     # `Ease` animations start slowly, speed up, then end slowly. The speed of the animation is slightly slower at the end than the start.
     ease_cubic_bezier_easing_function<native><public> := class<final><concrete><computes>(cubic_bezier_easing_function):
         X0<override>:float = external {}
@@ -73,7 +68,6 @@ KeyframedMovement<public> := module:
 
         Y1<override>:float = external {}
 
-    @experimental
     # `EaseIn` animations start slow, then speed up towards the end.
     ease_in_cubic_bezier_easing_function<native><public> := class<final><concrete><computes>(cubic_bezier_easing_function):
         X0<override>:float = external {}
@@ -84,7 +78,6 @@ KeyframedMovement<public> := module:
 
         Y1<override>:float = external {}
 
-    @experimental
     # `EaseOut` animations start fast, then slow down towards the end.
     ease_out_cubic_bezier_easing_function<native><public> := class<final><concrete><computes>(cubic_bezier_easing_function):
         X0<override>:float = external {}
@@ -95,7 +88,6 @@ KeyframedMovement<public> := module:
 
         Y1<override>:float = external {}
 
-    @experimental
     # `EaseInOut` animations are similar to `Ease` but the start and end animation speed is symmetric.
     ease_in_out_cubic_bezier_easing_function<native><public> := class<final><concrete><computes>(cubic_bezier_easing_function):
         X0<override>:float = external {}
@@ -106,31 +98,26 @@ KeyframedMovement<public> := module:
 
         Y1<override>:float = external {}
 
-    @experimental
     # Controls how the animation plays back.
     keyframed_movement_playback_mode<native><public> := class<abstract><computes><epic_internal>:
 
 
-    @experimental
     # Play once and stop.
     oneshot_keyframed_movement_playback_mode<native><public> := class<final><concrete><computes>(keyframed_movement_playback_mode):
 
 
-    @experimental
     # Play once and repeat indefinitely.
     loop_keyframed_movement_playback_mode<native><public> := class<final><concrete><computes>(keyframed_movement_playback_mode):
 
 
-    @experimental
     # Play continuously reversing direction at each end.
     pingpong_keyframed_movement_playback_mode<native><public> := class<final><concrete><computes>(keyframed_movement_playback_mode):
 
 
-    @experimental
     # Represents a change in pose and scale over a duration.
     keyframed_movement_delta<native><public> := class<final><concrete>:
         @editable
-        # Represents a change in the transform relative to the previous keyframe or initial animation position.
+        # Represents a change in the transform relative to the previous keyframe or initial animation position. Translation and Scale are interpreted additively.
         Transform<native><public>:(/Verse.org/SpatialMath:)transform = external {}
 
         @editable_number(float) {MinValue := option {0.000000}}
@@ -141,7 +128,6 @@ KeyframedMovement<public> := module:
         # Easing function to use for playback.
         Easing<native><public>:easing_function = external {}
 
-    @experimental
     # Provides teleportation and simple keyframe-based animation for an entity. Animations play back in the Pre-Physics tick phase. When animating an entity with a parent_constraint, animation will be relative to the parent entity.
     keyframed_movement_component<native><public> := class<final><final_super>(component):
         # Pause movement. Subsequently calling Play() will resume from the point in the animation when it was paused.
@@ -186,7 +172,6 @@ KeyframedMovement<public> := module:
         # Signaled when any keyframe is reached. (Keyframe:int, IsReversed:logic).
         KeyframeReachedEvent<native><public>:listenable(tuple(int, logic)) = external {}
 
-@experimental
 # Base class for light components in the SceneGraph.
 # 
 # Dependencies:
@@ -220,7 +205,6 @@ light_component<native><public> := class<abstract><final_super><epic_internal>(c
     # Succeeds if the component is enabled, fails if it's disabled.
     IsEnabled<native><override>()<transacts><decides>:void
 
-@experimental
 # Used to render a `mesh` at the location of this entity. A mesh is a set of polygons that can be used to represent shapes in the world such as:
 #   * foliage and terrain decorations
 #   * movers (for example, doors and lifts)
@@ -238,26 +222,21 @@ mesh_component<native><public> := class<final_super><epic_internal>(component, e
     # Succeeds if the component is enabled, fails if it's disabled.
     IsEnabled<native><override>()<transacts><decides>:void
 
-    @experimental
     # Enable/disable collision on this mesh. If enabled, meshes may collide in the physics simulation.
-    var Collideable<public>:logic = external {}
+    var Collidable<public>:logic = external {}
 
-    @experimental
     # Enable/disable spatial queries against this mesh. Disabling this field will also disable EntityEnteredEvent/EntityExitedEvent.
     var Queryable<public>:logic = external {}
 
     # Enable/disable visibility of this mesh.
     var Visible<public>:logic = external {}
 
-    @experimental
     # Triggered at the beginning of each tick when another entity first overlaps this entity.
     EntityEnteredEvent<native><public>:listenable(entity) = external {}
 
-    @experimental
     # Triggered at the beginning of each tick when another entity is no longer overlapping this entity
     EntityExitedEvent<native><public>:listenable(entity) = external {}
 
-@experimental
 # Used to spawn a `particle_system` at the location of this entity. The `particle_system` will simulate while the `particle_system_component` is in the scene.
 # 
 # Dependencies:
@@ -284,42 +263,36 @@ particle_system_component<native><public> := class<final_super><epic_internal>(c
     # Controls if the `particle_system_component` should play the simulation automatically when added to the scene, or when enabled from a disabled state.
     var<private> AutoPlay<native><public>:logic = external {}
 
-@experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that currently overlap this entity.
 (Entity:entity).FindOverlapHits<public>()<transacts>:generator(overlap_hit) = external {}
 
-@experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would overlap this entity if it were placed at GlobalTransform.
 (Entity:entity).FindOverlapHits<public>(GlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:generator(overlap_hit) = external {}
 
-@experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would overlap Volume if they were placed at GlobalTransform. NOTE: This entity defines the context(scene) for the query but does not otherwise take part in the sweep.
 (Entity:entity).FindOverlapHits<public>(GlobalTransform:(/Verse.org/SpatialMath:)transform, Volume:collision_volume)<transacts>:generator(overlap_hit) = external {}
 
-@experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would intersect this entity if it were swept from its location along the Displacement vector.
 (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3)<transacts>:generator(sweep_hit) = external {}
 
-@experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would intersect this entity if it were swept from GlobalTransform along the Displacement vector.
 (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3, StartGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:generator(sweep_hit) = external {}
 
-@experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would intersect Volume if they were swept from GlobalTransform along the Displacement vector NOTE: This entity defines the context(scene) for the query but does not otherwise take part in the sweep.
 (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3, StartGlobalTransform:(/Verse.org/SpatialMath:)transform, Volume:collision_volume)<transacts>:generator(sweep_hit) = external {}
 
-@experimental
 # A `rect_light_component` emits light into the scene from a rectangular plane with a specified width and height. You can use these
 # to simulate any kind of light sources that have rectangular areas, such as televisions or monitor screens, overhead lighting
 # fixtures, or wall sconces.
 rect_light_component<native><public> := class<final>(light_component):
-    # Set the visible light intensity emitted in SI unit Candela./nSpecified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
+    # Set the visible light intensity emitted in SI unit Candela.
+    # Specified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
     var Intensity<public>:float = external {}
 
     # The bounds of the light's visible influence, in centimeters. This clamping of the light's influence is not physically correct but very important for performance,
@@ -339,7 +312,6 @@ rect_light_component<native><public> := class<final>(light_component):
     # The length of the barn door attached to the light source rect, in centimeters.
     var BarnDoorLength<public>:float = external {}
 
-@experimental
 sound_component<native><public> := class<abstract><final_super><epic_internal>(component, enableable):
     @editable
     var<private> AutoPlay<native><public>:logic = external {}
@@ -362,11 +334,11 @@ sound_component<native><public> := class<abstract><final_super><epic_internal>(c
     @editable
     var<private> Enabled<native><public>:logic = external {}
 
-@experimental
 # A `sphere_light_component` emits light in all directions into the scene from a spherical source shape with a specified radius. A radius of 0 makes it a point light. You can use these
 # to simulate any kind of light sources that emit in all directions, such as a light bulb.
 sphere_light_component<native><public> := class<final>(light_component):
-    # Set the visible light intensity emitted in SI unit Candela./nSpecified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
+    # Set the visible light intensity emitted in SI unit Candela.
+    # Specified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
     var Intensity<public>:float = external {}
 
     # The bounds of the light's visible influence, in centimeters. This clamping of the light's influence is not physically correct but very important for performance,
@@ -377,13 +349,13 @@ sphere_light_component<native><public> := class<final>(light_component):
     # Radius of the source shape, in centimeters. Note that light shapes which intersect shadow casting geometry can cause shadowing artifacts.
     var SourceRadius<public>:float = external {}
 
-@experimental
 # A `spot_light_component` emits light from a single point in a cone shape. The shape of the light is defined by two cones: the `InnerConeAngleDegrees`
 # and `OuterConeAngleDegrees`. Within the `InnerConeAngleDegrees` the light achieves full brightness. As you go from the extent of the inner radius to the
 # extents of the `OuterConeAngleDegrees` a falloff takes place, creating a penumbra, or softening around the `spot_light_component`'s disc of
 # illumination. The Radius of the light defines the length of the cones. More simply, this will work like a flash light or stage can light.
 spot_light_component<native><public> := class<final>(light_component):
-    # Set the visible light intensity emitted in SI unit Candela./nSpecified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
+    # Set the visible light intensity emitted in SI unit Candela.
+    # Specified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
     var Intensity<public>:float = external {}
 
     # The bounds of the light's visible influence, in centimeters. This clamping of the light's influence is not physically correct but very important for performance,

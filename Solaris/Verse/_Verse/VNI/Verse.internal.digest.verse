@@ -129,6 +129,8 @@ Verse<public> := module:
         # Call `Cancel` on the returned `cancelable` to unregister `Callback`.
         Subscribe<native><override>(Callback:type {_(:t):void})<transacts>:cancelable
 
+        Signal<native><override>(Val:t):void
+
     subscribable_event_intrnl<epic_internal>() := subscribable_event_intrnl(tuple())
 
     # Returns the smallest `int` that is greater than or equal to `Val`.

@@ -178,7 +178,6 @@ Devices<public> := module:
     creative_device_asset<native><public> := class<computes><final><epic_internal>:
 
 
-    @experimental
     # Returns the simulation entity at the root of the experience this `creative_device` is operating within.
     #   * The simulation entity is the rootmost entity in an experience.
     #   * Fails if this `creative_device` is not operating in a context with a valid SimulationEntity.
@@ -217,7 +216,6 @@ Devices<public> := module:
     # Generates a `creative_object_interface` for every creative object that has been marked with the specified `Tag`. Will not find anything if called on an `npc_behavior` that is not simulating.
     (InNPCBehavior:npc_behavior).FindCreativeObjectsWithTag<native><public>(Tag:tag)<transacts>:generator(creative_object_interface)
 
-    @experimental
     @available {MinUploadedAtFNVersion := 2930}
     # Generates a `creative_object_interface` for every creative object that has been marked with the specified `Tag`. Will not find anything if called on an `entity` that is not in the scene.
     (InEntity:entity).FindCreativeObjectsWithTag<native><public>(Tag:tag)<transacts>:generator(creative_object_interface)
@@ -238,7 +236,6 @@ Devices<public> := module:
     # Returns the `fort_playspace` that `CreativeObject` belongs to.
     (CreativeObject:creative_object_interface).GetPlayspace<native><public>()<transacts>:fort_playspace
 
-    @experimental
     # Returns the simulation entity at the root of the experience this `creative_object` is operating within.
     #   * The simulation entity is the rootmost entity in an experience.
     #   * Fails if this `creative_object` is not operating in a context with a valid SimulationEntity.

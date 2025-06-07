@@ -16,13 +16,13 @@ basic_camera_component<native><epic_internal> := class<final_super>(component):
 
     OnRemovingFromSceneInternal<native><override>():void
 
-@experimental
 # A `capsule_light_component` emits light in all directions into the scene from a capsule shaped source with a specified radius and length. A radius and length of 0 makes it a point light. You can use these
 # to simulate any kind of light sources that emit in all directions and need an elongated source shape, such as a long light bulb.
 capsule_light_component<native><public> := class<final>(light_component):
     OnAddedToSceneInternal<native><override>():void
 
-    # Set the visible light intensity emitted in SI unit Candela./nSpecified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
+    # Set the visible light intensity emitted in SI unit Candela.
+    # Specified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
     var Intensity<public>:float = external {}
 
     # The bounds of the light's visible influence. This clamping of the light's influence is not physically correct but very important for performance,
@@ -44,7 +44,6 @@ damageable_component<native><epic_internal> := class<final_super>(component):
     @experimental
     DamagedEvent<native><final><public>:listenable(float) = external {}
 
-@experimental
 # A `directional_light_component` simulates light that is being emitted from a source that is infinitely far away. This means that all shadows cast by this light will be parallel, making this the ideal choice for simulating sunlight.
 directional_light_component<native><public> := class<final>(light_component):
     OnAddedToSceneInternal<native><override>():void
@@ -57,73 +56,61 @@ directional_light_component<native><public> := class<final>(light_component):
 
     @editable {EpicOnly := true}
     @category("directional_light_component|Epic Internal")
-    @experimental
     # How far, in centimeters, cascaded shadow map dynamic shadows will cover, measured in units from the camera. A value of 0 disables the dynamic shadow
     DynamicShadowDistance<native><epic_internal>:float = external {}
 
     @editable_slider(int) {EpicOnly := true, MinValue := option {0}, MaxValue := option {4}}
     @category("directional_light_component|Epic Internal")
-    @experimental
     # Number of cascades to split the view frustum into for the whole scene dynamic shadow
     NumDynamicShadowCascades<native><epic_internal>:int = external {}
 
     @editable_slider(float) {EpicOnly := true, MinValue := option {1.000000}, MaxValue := option {4.000000}}
     @category("directional_light_component|Epic Internal")
-    @experimental
     # Controls whether the cascades are distributed closer to the camera (larger exponent) or further from the camera (smaller exponent)
     CascadeDistributionExponent<native><epic_internal>:float = external {}
 
     @editable_slider(float) {EpicOnly := true, MinValue := option {0.000000}, MaxValue := option {0.300000}}
     @category("directional_light_component|Epic Internal")
-    @experimental
     # Proportion of the fade region between cascades
     CascadeTransitionFraction<native><epic_internal>:float = external {}
 
     @editable_slider(float) {EpicOnly := true, MinValue := option {0.000000}, MaxValue := option {1.000000}}
     @category("directional_light_component|Epic Internal")
-    @experimental
     # Controls the size of the fade out region at the far extent of the dynamic shadow's influence
     CascadeDistanceFadeoutFraction<native><epic_internal>:float = external {}
 
     @editable_slider(int) {EpicOnly := true, MinValue := option {0}, MaxValue := option {4}}
     @category("directional_light_component|Epic Internal")
-    @experimental
     # The number of cascades between DynamicShadowDistance and FarShadowDistance that are covered by Far Shadow Cascades, or zero to disable far shadow cascades
     FarShadowCascadeCount<native><epic_internal>:int = external {}
 
     @editable {EpicOnly := true}
     @category("directional_light_component|Epic Internal")
-    @experimental
     # Distance, in centimeters, at which the far shadow cascade should end
     FarShadowDistance<native><epic_internal>:float = external {}
 
     @editable {EpicOnly := true}
     @category("directional_light_component|Epic Internal")
-    @experimental
     # Distance at which the far shadow cascade should end
     EnableLightShaftOcclusion<native><epic_internal>:logic = external {}
 
     @editable {EpicOnly := true}
     @category("directional_light_component|Epic Internal")
-    @experimental
     # Controls how dark the occlusion masking is
     OcclusionMaskDarkness<native><epic_internal>:float = external {}
 
     @editable {EpicOnly := true}
     @category("directional_light_component|Epic Internal")
-    @experimental
     # Everything closer to the camera than this distance, measured in centimeters, will occlude light shafts
     OcclusionDepthRange<native><epic_internal>:float = external {}
 
 # Module import path: /Verse.org/SceneGraph/KeyframedMovement
 # Animate Scene Graph entities with keyframes.
 KeyframedMovement<public> := module:
-    @experimental
     # Base class for an animation easing function.
     easing_function<native><public> := class<abstract><computes><epic_internal>:
         Evaluate<native><public>(Input:float):float
 
-    @experimental
     # Cubic bezier easing function. See CubicBezierEasingFunctions for some basic easing values.
     cubic_bezier_easing_function<native><public> := class<concrete><computes><epic_internal>(easing_function):
         X0<native><public>:float = external {}
@@ -136,7 +123,6 @@ KeyframedMovement<public> := module:
 
         Evaluate<native><override>(Input:float):float
 
-    @experimental
     # `Linear` animations move at a constant speed.
     linear_easing_function<native><public> := class<final><concrete><computes>(cubic_bezier_easing_function):
         X0<override>:float = external {}
@@ -147,7 +133,6 @@ KeyframedMovement<public> := module:
 
         Y1<override>:float = external {}
 
-    @experimental
     # `Ease` animations start slowly, speed up, then end slowly. The speed of the animation is slightly slower at the end than the start.
     ease_cubic_bezier_easing_function<native><public> := class<final><concrete><computes>(cubic_bezier_easing_function):
         X0<override>:float = external {}
@@ -158,7 +143,6 @@ KeyframedMovement<public> := module:
 
         Y1<override>:float = external {}
 
-    @experimental
     # `EaseIn` animations start slow, then speed up towards the end.
     ease_in_cubic_bezier_easing_function<native><public> := class<final><concrete><computes>(cubic_bezier_easing_function):
         X0<override>:float = external {}
@@ -169,7 +153,6 @@ KeyframedMovement<public> := module:
 
         Y1<override>:float = external {}
 
-    @experimental
     # `EaseOut` animations start fast, then slow down towards the end.
     ease_out_cubic_bezier_easing_function<native><public> := class<final><concrete><computes>(cubic_bezier_easing_function):
         X0<override>:float = external {}
@@ -180,7 +163,6 @@ KeyframedMovement<public> := module:
 
         Y1<override>:float = external {}
 
-    @experimental
     # `EaseInOut` animations are similar to `Ease` but the start and end animation speed is symmetric.
     ease_in_out_cubic_bezier_easing_function<native><public> := class<final><concrete><computes>(cubic_bezier_easing_function):
         X0<override>:float = external {}
@@ -197,31 +179,26 @@ KeyframedMovement<public> := module:
         Loop
         PingPong
 
-    @experimental
     # Controls how the animation plays back.
     keyframed_movement_playback_mode<native><public> := class<abstract><computes><epic_internal>:
 
 
-    @experimental
     # Play once and stop.
     oneshot_keyframed_movement_playback_mode<native><public> := class<final><concrete><computes>(keyframed_movement_playback_mode):
 
 
-    @experimental
     # Play once and repeat indefinitely.
     loop_keyframed_movement_playback_mode<native><public> := class<final><concrete><computes>(keyframed_movement_playback_mode):
 
 
-    @experimental
     # Play continuously reversing direction at each end.
     pingpong_keyframed_movement_playback_mode<native><public> := class<final><concrete><computes>(keyframed_movement_playback_mode):
 
 
-    @experimental
     # Represents a change in pose and scale over a duration.
     keyframed_movement_delta<native><public> := class<final><concrete>:
         @editable
-        # Represents a change in the transform relative to the previous keyframe or initial animation position.
+        # Represents a change in the transform relative to the previous keyframe or initial animation position. Translation and Scale are interpreted additively.
         Transform<native><public>:(/Verse.org/SpatialMath:)transform = external {}
 
         @editable_number(float) {MinValue := option {0.000000}}
@@ -232,13 +209,11 @@ KeyframedMovement<public> := module:
         # Easing function to use for playback.
         Easing<native><public>:easing_function = external {}
 
-    @experimental
     # Play Command sent to clients to reconstruct the playback command
     keyframed_movement_net_command<native><epic_internal> := enum:
         PlayFrom
         HaltAt
 
-    @experimental
     # Cubic Bezier function sent to clients to reconstruct the animation curves.
     cubic_bezier_easing_function_native<native><epic_internal> := struct<concrete>:
         X0<native><public>:float = external {}
@@ -249,7 +224,6 @@ KeyframedMovement<public> := module:
 
         Y1<native><public>:float = external {}
 
-    @experimental
     # Keyframe delta sent to clients to reconstruct the animation frames.
     keyframed_movement_delta_native<native><epic_internal> := struct<concrete>:
         Transform<native><public>:(/Verse.org/SpatialMath:)transform = external {}
@@ -258,7 +232,6 @@ KeyframedMovement<public> := module:
 
         Easing<native><public>:cubic_bezier_easing_function_native = external {}
 
-    @experimental
     # Contains all the information needed for the client to reconstruct the entire animation command.
     keyframed_movement_command_data<native><epic_internal> := struct<concrete>:
         Command<native>:keyframed_movement_net_command = external {}
@@ -277,7 +250,6 @@ KeyframedMovement<public> := module:
 
         PlaybackMode<native>:keyframed_movement_playback_mode_native = external {}
 
-    @experimental
     # Provides teleportation and simple keyframe-based animation for an entity. Animations play back in the Pre-Physics tick phase. When animating an entity with a parent_constraint, animation will be relative to the parent entity.
     keyframed_movement_component<native><public> := class<final><final_super>(component):
         # Pause movement. Subsequently calling Play() will resume from the point in the animation when it was paused.
@@ -331,7 +303,6 @@ KeyframedMovement<public> := module:
         @replicated("RepNotify")
         var _PendingCommand<native><epic_internal>:keyframed_movement_command_data = external {}
 
-@experimental
 # Base class for light components in the SceneGraph.
 # 
 # Dependencies:
@@ -375,95 +346,79 @@ light_component<native><public> := class<abstract><final_super><epic_internal>(c
 
     @editable {EpicOnly := true}
     @category("light_component|Epic Internal")
-    @experimental
     # Whether to enable lighting on the default channel for all primitives and lights
     EnableLightingChannel0<native><epic_internal>:logic = external {}
 
     @editable {EpicOnly := true}
     @category("light_component|Epic Internal")
-    @experimental
     # Whether to enable lighting on the first custom channel
     EnableLightingChannel1<native><epic_internal>:logic = external {}
 
     @editable {EpicOnly := true}
     @category("light_component|Epic Internal")
-    @experimental
     # Whether to enable lighting on the second custom channel
     EnableLightingChannel2<native><epic_internal>:logic = external {}
 
     @editable {EpicOnly := true}
     @category("light_component|Epic Internal")
-    @experimental
     # Whether the light affects global illumination, when ray-traced global illumination is enabled
     AffectGlobalIllumination<native><epic_internal>:logic = external {}
 
     @editable_slider(float) {EpicOnly := true, MinValue := option {0.000000}, MaxValue := option {6.000000}}
     @category("light_component|Epic Internal")
-    @experimental
     # Scales the indirect lighting contribution from this light
     IndirectLightingIntensity<native><epic_internal>:float = external {}
 
     @editable_slider(float) {EpicOnly := true, MinValue := option {0.000000}, MaxValue := option {4.000000}}
     @category("light_component|Epic Internal")
-    @experimental
     # Intensity of the volumetric scattering from this light
     VolumetricScatteringIntensity<native><epic_internal>:float = external {}
 
     @editable {EpicOnly := true}
     @category("light_component|Epic Internal")
-    @experimental
     # Whether to render light shaft bloom from this light
     EnableLightShaftBloom<native><epic_internal>:logic = external {}
 
     @editable {EpicOnly := true}
     @category("light_component|Epic Internal")
-    @experimental
     # Scales the additive color
     BloomScale<native><epic_internal>:float = external {}
 
     @editable {EpicOnly := true}
     @category("light_component|Epic Internal")
-    @experimental
     # Scene color must be larger than this to create bloom in the light shafts
     BloomThreshold<native><epic_internal>:float = external {}
 
     @editable {EpicOnly := true}
     @category("light_component|Epic Internal")
-    @experimental
     # After exposure is applied, scene color brightness larger than the max brightness will be rescaled down to the max brightness
     BloomMaxBrightness<native><epic_internal>:float = external {}
 
     @editable {EpicOnly := true}
     @category("light_component|Epic Internal")
-    @experimental
     # Multiplies against scene color to create the bloom color
     BloomTint<native><epic_internal>:color = external {}
 
     @editable {EpicOnly := true}
     @category("light_component|Epic Internal")
-    @experimental
     # The light function material to be applied to this light
     LightFunctionMaterial<native><epic_internal>:?material = external {}
 
     @editable {EpicOnly := true}
     @category("light_component|Epic Internal")
-    @experimental
     # Scales the light function projection. X and Y scale in the directions perpendicular to the light's direction, Z scales along the light direction.
     LightFunctionScale<native><epic_internal>:(/Verse.org/SpatialMath:)vector3 = external {}
 
     @editable {EpicOnly := true}
     @category("light_component|Epic Internal")
-    @experimental
     # Distance, in centimeters, at which the light function should be completely faded to the configured disabled brightness
     LightFunctionFadeDistance<native><epic_internal>:float = external {}
 
     @editable_slider(float) {EpicOnly := true, MinValue := option {0.000000}, MaxValue := option {1.000000}}
     @category("light_component|Epic Internal")
-    @experimental
     # Brightness factor applied to the light when the light function is specified but disabled
     LightFunctionDisabledBrightness<native><epic_internal>:float = external {}
 
-@experimental
 # Used to render a `mesh` at the location of this entity. A mesh is a set of polygons that can be used to represent shapes in the world such as:
 #   * foliage and terrain decorations
 #   * movers (for example, doors and lifts)
@@ -484,9 +439,7 @@ mesh_component<native><public> := class<final_super><epic_internal>(component, e
 
     OnEndSimulationInternal<native><override>():void
 
-    @experimental
     @replicated("RepNotify")
-    @editable
     # The `mesh` to be rendered by this `mesh_component`.
     Mesh<native><epic_internal>:mesh = external {}
 
@@ -507,22 +460,18 @@ mesh_component<native><public> := class<final_super><epic_internal>(component, e
     # Succeeds if the component is enabled, fails if it's disabled.
     IsEnabled<native><override>()<transacts><decides>:void
 
-    @experimental
     # Enable/disable collision on this mesh. If enabled, meshes may collide in the physics simulation.
-    var Collideable<public>:logic = external {}
+    var Collidable<public>:logic = external {}
 
-    @experimental
     # Enable/disable spatial queries against this mesh. Disabling this field will also disable EntityEnteredEvent/EntityExitedEvent.
     var Queryable<public>:logic = external {}
 
     # Enable/disable visibility of this mesh.
     var Visible<public>:logic = external {}
 
-    @experimental
     # Triggered at the beginning of each tick when another entity first overlaps this entity.
     EntityEnteredEvent<native><public>:listenable(entity) = external {}
 
-    @experimental
     # Triggered at the beginning of each tick when another entity is no longer overlapping this entity
     EntityExitedEvent<native><public>:listenable(entity) = external {}
 
@@ -543,31 +492,32 @@ mesh_component<native><public> := class<final_super><epic_internal>(component, e
     @editable {EpicOnly := true}
     @category("mesh_component|Epic Internal")
     @experimental
-    # Controls whether this mesh should cast a shadow or not
+    # Whether to hide this mesh in game, if the mesh is Visible.
+    var HiddenInGame<native><epic_internal>:logic = external {}
+
+    @editable {EpicOnly := true}
+    @category("mesh_component|Epic Internal")
+    # Controls whether this mesh should cast a shadow or not.
     var CastShadow<native><epic_internal>:logic = external {}
 
     @editable {EpicOnly := true}
     @category("mesh_component|Epic Internal")
-    @experimental
-    # Whether this mesh should cast dynamic shadows as if it were a two sided material
+    # Whether this mesh should cast dynamic shadows as if it were a two sided material.
     var CastShadowAsTwoSided<native><epic_internal>:logic = external {}
 
     @editable {EpicOnly := true}
     @category("mesh_component|Epic Internal")
-    @experimental
-    # If true, the mesh will cast shadows even if HiddenInGame is true
+    # If true, the mesh will cast shadows even if HiddenInGame is true.
     var CastHiddenShadow<native><epic_internal>:logic = external {}
 
     @editable {EpicOnly := true}
     @category("mesh_component|Epic Internal")
-    @experimental
-    # Controls whether the mesh should influence indirect lighting
+    # Controls whether the mesh should influence indirect lighting.
     var AffectDynamicIndirectLighting<native><epic_internal>:logic = external {}
 
     @editable {EpicOnly := true}
     @category("mesh_component|Epic Internal")
-    @experimental
-    # Controls whether the mesh should affect indirect lighting when hidden
+    # Controls whether the mesh should affect indirect lighting when hidden.
     var AffectIndirectLightingWhileHidden<native><epic_internal>:logic = external {}
 
     @editable {EpicOnly := true}
@@ -578,9 +528,14 @@ mesh_component<native><public> := class<final_super><epic_internal>(component, e
 
     @editable {EpicOnly := true}
     @category("mesh_component|Epic Internal")
-    @experimental
-    # Controls the sort priority of this object if it is translucent
+    # Controls the sort priority of this mesh if it is translucent.
     var TranslucencySortPriority<native><epic_internal>:int = external {}
+
+    @editable {EpicOnly := true}
+    @category("mesh_component|Epic Internal")
+    @experimental
+    # When enabled this mesh will never be culled by distance.
+    var NeverDistanceCull<native><epic_internal>:logic = external {}
 
     # Returns the bounded box of this components, in world space.
     GetBoundedGlobalBox<override><native>()<reads>:bounded_box
@@ -591,15 +546,14 @@ mesh_component<native><public> := class<final_super><epic_internal>(component, e
     @experimental
     @experimental_always_overridden
     # Cached bounds used when the owning entity is not initialized.
-    CachedLocalBounds<native><epic_internal>:bounded_box
+    CachedLocalBounds<native><epic_internal>:bounded_box = external {}
 
-    ___PropertyInterface_On_Collideable_Changed<epic_internal>():void = external {}
+    ___PropertyInterface_On_Collidable_Changed<epic_internal>():void = external {}
 
     ___PropertyInterface_On_Queryable_Changed<epic_internal>():void = external {}
 
     ___PropertyInterface_On_Visible_Changed<epic_internal>():void = external {}
 
-@experimental
 # Used to spawn a `particle_system` at the location of this entity. The `particle_system` will simulate while the `particle_system_component` is in the scene.
 # 
 # Dependencies:
@@ -637,7 +591,6 @@ particle_system_component<native><public> := class<final_super><epic_internal>(c
     # Controls if the `particle_system_component` should play the simulation automatically when added to the scene, or when enabled from a disabled state.
     var<private> AutoPlay<native><public>:logic = external {}
 
-    @editable
     ParticleSystem<native><epic_internal>:particle_system = external {}
 
     OnPropertyChangedFromVerse<native><override>(PropertyName:string)<transacts>:void
@@ -685,48 +638,38 @@ physics_component<native><epic_internal> := class<final><final_super>(component,
     # Event signaled when the component experiences a blocking hit
     HitEvent<native><public>:listenable(hit_result) = external {}
 
-@experimental
 GetPhysicsSceneForEntity<native><epic_internal>(Entity:entity)<transacts><decides>:physics_scene_component
 
-@experimental
 @available {MinUploadedAtFNVersion := 2930}
 EmptyOverlapHitsGenerator<native><epic_internal>()<transacts>:generator(overlap_hit)
 
-@experimental
 @available {MinUploadedAtFNVersion := 2930}
 EmptySweepHitsGenerator<native><epic_internal>()<transacts>:generator(sweep_hit)
 
-@experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that currently overlap this entity.
 (Entity:entity).FindOverlapHits<public>()<transacts>:generator(overlap_hit) = external {}
 
-@experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would overlap this entity if it were placed at GlobalTransform.
 (Entity:entity).FindOverlapHits<public>(GlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:generator(overlap_hit) = external {}
 
-@experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would overlap Volume if they were placed at GlobalTransform. NOTE: This entity defines the context(scene) for the query but does not otherwise take part in the sweep.
 (Entity:entity).FindOverlapHits<public>(GlobalTransform:(/Verse.org/SpatialMath:)transform, Volume:collision_volume)<transacts>:generator(overlap_hit) = external {}
 
-@experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would intersect this entity if it were swept from its location along the Displacement vector.
 (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3)<transacts>:generator(sweep_hit) = external {}
 
-@experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would intersect this entity if it were swept from GlobalTransform along the Displacement vector.
 (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3, StartGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:generator(sweep_hit) = external {}
 
-@experimental
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would intersect Volume if they were swept from GlobalTransform along the Displacement vector NOTE: This entity defines the context(scene) for the query but does not otherwise take part in the sweep.
 (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3, StartGlobalTransform:(/Verse.org/SpatialMath:)transform, Volume:collision_volume)<transacts>:generator(sweep_hit) = external {}
 
-@experimental
 physics_scene_component<native><epic_internal> := class<final><final_super><epic_internal>(component):
     OnInitializedInternal<native><override>():void
 
@@ -749,13 +692,26 @@ physics_scene_component<native><epic_internal> := class<final><final_super><epic
     FindEntitySweepHits<native><public>(QueryEntity:entity, QueryTransform:(/Verse.org/SpatialMath:)transform, QueryTraceVector:(/Verse.org/SpatialMath:)vector3)<transacts>:generator(sweep_hit)
 
 @experimental
+@import_as("/Script/Component.UPresentationOwner")
+presentation_owner<native><epic_internal> := class<unique><epic_internal>:
+
+
+@experimental
+presentation_component<native><epic_internal> := class<final_super>(component):
+    IsPresentableTo<native><final><public>(ToPlayer:player)<transacts><decides>:void
+
+    AddOwner<native><public>(Player:player):void
+
+    RemoveOwner<native><public>(Player:player):void
+
 # A `rect_light_component` emits light into the scene from a rectangular plane with a specified width and height. You can use these
 # to simulate any kind of light sources that have rectangular areas, such as televisions or monitor screens, overhead lighting
 # fixtures, or wall sconces.
 rect_light_component<native><public> := class<final>(light_component):
     OnAddedToSceneInternal<native><override>():void
 
-    # Set the visible light intensity emitted in SI unit Candela./nSpecified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
+    # Set the visible light intensity emitted in SI unit Candela.
+    # Specified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
     var Intensity<public>:float = external {}
 
     # The bounds of the light's visible influence, in centimeters. This clamping of the light's influence is not physically correct but very important for performance,
@@ -808,7 +764,6 @@ rigid_body_component<native><epic_internal> := class<final><final_super><epic_in
     # The max angular velocity to use for component.
     var MaxAngularVelocityInRadians<public>:float = external {}
 
-@experimental
 metasound_trigger<native><epic_internal> := class<epic_internal>:
     Trigger<native><epic_internal>():void
 
@@ -816,7 +771,6 @@ metasound_trigger<native><epic_internal> := class<epic_internal>:
 
     SoundComponentTarget<native><epic_internal>:?sound_component = external {}
 
-@experimental
 sound_component<native><public> := class<abstract><final_super><epic_internal>(component, property_changed_interface, enableable):
     OnInitializedInternal<native><override>():void
 
@@ -855,13 +809,13 @@ sound_component<native><public> := class<abstract><final_super><epic_internal>(c
 
     OnPropertyChangedFromVerse<native><override>(PropertyName:string)<transacts>:void
 
-@experimental
 # A `sphere_light_component` emits light in all directions into the scene from a spherical source shape with a specified radius. A radius of 0 makes it a point light. You can use these
 # to simulate any kind of light sources that emit in all directions, such as a light bulb.
 sphere_light_component<native><public> := class<final>(light_component):
     OnAddedToSceneInternal<native><override>():void
 
-    # Set the visible light intensity emitted in SI unit Candela./nSpecified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
+    # Set the visible light intensity emitted in SI unit Candela.
+    # Specified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
     var Intensity<public>:float = external {}
 
     # The bounds of the light's visible influence, in centimeters. This clamping of the light's influence is not physically correct but very important for performance,
@@ -874,17 +828,14 @@ sphere_light_component<native><public> := class<final>(light_component):
 
     @editable {EpicOnly := true}
     @category("sphere_light_component|Epic Internal")
-    @experimental
     # Whether to use physically based inverse squared distance falloff
     UseInverseSquaredFalloff<native><epic_internal>:logic = external {}
 
     @editable_slider(float) {EpicOnly := true, MinValue := option {2.000000}, MaxValue := option {16.000000}}
     @category("sphere_light_component|Epic Internal")
-    @experimental
     # Controls the radial falloff of the light when UseInverseSquaredFalloff is disabled
     LightFalloffExponent<native><epic_internal>:float = external {}
 
-@experimental
 # A `spot_light_component` emits light from a single point in a cone shape. The shape of the light is defined by two cones: the `InnerConeAngleDegrees`
 # and `OuterConeAngleDegrees`. Within the `InnerConeAngleDegrees` the light achieves full brightness. As you go from the extent of the inner radius to the
 # extents of the `OuterConeAngleDegrees` a falloff takes place, creating a penumbra, or softening around the `spot_light_component`'s disc of
@@ -892,7 +843,8 @@ sphere_light_component<native><public> := class<final>(light_component):
 spot_light_component<native><public> := class<final>(light_component):
     OnAddedToSceneInternal<native><override>():void
 
-    # Set the visible light intensity emitted in SI unit Candela./nSpecified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
+    # Set the visible light intensity emitted in SI unit Candela.
+    # Specified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
     var Intensity<public>:float = external {}
 
     # The bounds of the light's visible influence, in centimeters. This clamping of the light's influence is not physically correct but very important for performance,
@@ -911,13 +863,11 @@ spot_light_component<native><public> := class<final>(light_component):
 
     @editable {EpicOnly := true}
     @category("spot_light_component|Epic Internal")
-    @experimental
     # Whether to use physically based inverse squared distance falloff
     UseInverseSquaredFalloff<native><epic_internal>:logic = external {}
 
     @editable_slider(float) {EpicOnly := true, MinValue := option {2.000000}, MaxValue := option {16.000000}}
     @category("spot_light_component|Epic Internal")
-    @experimental
     # Controls the radial falloff of the light when UseInverseSquaredFalloff is disabled
     LightFalloffExponent<native><epic_internal>:float = external {}
 

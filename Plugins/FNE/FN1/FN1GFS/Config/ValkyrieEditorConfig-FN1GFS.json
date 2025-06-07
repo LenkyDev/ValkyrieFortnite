@@ -26,7 +26,9 @@
 				 "/Game/ArtTools/Environment/EnvImpQuickSettings/EUW_EnvImpQuckSettings.EUW_EnvImpQuckSettings",
 				 "/Game/ArtTools/Environment/EnvImpQuickSettings/EUW_EnvImpQuckSettings.EUW_EnvImpQuckSettings_C",
 				 "/Game/Blueprints/Blutilities/ForLDs/WorldPartitionTools/WP_OverlappingActors/WP_OverlappingActors_EUW.WP_OverlappingActors_EUW",
-				 "/Game/Blueprints/Blutilities/ForLDs/WorldPartitionTools/WP_OverlappingActors/WP_OverlappingActors_EUW.WP_OverlappingActors_EUW_C"]
+				 "/Game/Blueprints/Blutilities/ForLDs/WorldPartitionTools/WP_OverlappingActors/WP_OverlappingActors_EUW.WP_OverlappingActors_EUW_C",
+				 "/FN1GFS/Blueprints/Blutilities/ToolsWrkshp/ScrTools/SelectionSizer/SupportFiles/BP_EUW_SelSizerActorTypes.BP_EUW_SelSizerActorTypes",
+				 "/FN1GFS/Blueprints/Blutilities/ToolsWrkshp/ScrTools/SelectionSizer/SupportFiles/BP_EUW_SelSizerActorTypes.BP_EUW_SelSizerActorTypes_C"]
 			}
 	},
 	"ValkyrieEditorSettings": {
@@ -48,13 +50,21 @@
 			"/Script/Engine.CurveTable": { "Rules": [ "View", "Create" ] },
 			"/Script/Engine.CompositeCurveTable": { "Rules": [ "View", "Create" ] },
 			"/Script/Engine.DataTable": { "Rules": [ "View", "Create" ] },
-			"/Script/Engine.Font": { "Rules": [ "View" ] }
+			"/Script/Engine.Font": { "Rules": [ "View" ] },
+			"/Script/Engine.MaterialFunction": { "Rules": [ "View", "Create", "ModuleAPI" ] }
 		},
 		"AllowedClasses": {
 			"/Script/AmbientAudio.AmbientAudioComponent": { "Visible": true },
 			"/Script/CommonUI.CommonTextBlock": { "Visible": true },
 			"/Script/CommonUI.CommonUserWidget": { "Visible": true },
+			"/Script/DaySequence.DaySequenceConditionTag": {  },
+			"/Script/DaySequence.DaySequenceConditionSet": {  },
+			"/Script/DaySequence.DaySequence": { "Visible": true },
+			"/Script/DaySequence.DaySequenceCollectionAsset": { "Visible": true },
+			"/Script/DaySequence.DaySequencePlayer": {  },
+			"/Script/DaySequence.DaySequenceModifierVolume": { "Visible": true },
 			"/Script/Engine.MaterialExpressionMeshPaintTextureObject": { "Visible": true, "Subclasses": "NativeOnly" },
+			"/Script/Engine.MaterialExpressionUserSceneTexture": { "Visible": true, "Subclasses": "NativeOnly" },
 			"/Script/Engine.TimerHandle": {},
 			"/Script/Engine.RuntimeVirtualTexture": {},
 			"/Script/Engine.VirtualTextureBuilder": {},
@@ -71,13 +81,15 @@
 			"/Script/FortniteAI.FortNavModifierVolume": { "Visible": true },
 			"/Script/FortniteGame.BuildingLevelInstance": { "Visible": true },
 			"/Script/FortniteGame.FortAmbientAudioVolume": { "Visible": true },
+			"/Script/FortniteGame.FortGameFeatureAction_AlwaysGenerateExternallyReferencablePackages": { "Visible": true },
+			"/Script/FortniteGame.FortLevelOverlayConfig": {},
 			"/Script/FortniteGame.FortPlayerStartWarmup": { "Visible": true },
 			"/Script/FortniteGame.FortPoiVolume": { "Visible": true },
 			"/Script/FortniteGame.FortPoi_DiscoverableComponent": { "Visible": true },
 			"/Script/FortniteGame.FortWorldManager": { "Visible": true },
-			"/Script/FortniteGame.FortLevelOverlayConfig": {},
 			"/Script/FortniteGame.WorldTileManager": { "Visible": true },
 			"/Script/FortniteUI.FortVisualAttachment": { "Visible": true },
+			"/Script/MovieScene.MovieSceneBindingOverrides": {  },
 			"/Script/PCG.PCGComponent": {},
 			"/Script/PCG.PCGGraphInstance": { "Visible": true },
 			"/Script/PCG.PCGLandscapeCache": {},
@@ -173,6 +185,8 @@
 			"/Game/Environments/TechArt/LightCones/Simple/BP_SimpleFarLightPlaneLimitedRange.BP_SimpleFarLightPlaneLimitedRange_C": {},
 			"/Game/Environments/TechArt/LightCones/BP_LightCone_01_CH5S3_Animated_Raft.BP_LightCone_01_CH5S3_Animated_Raft_C": {},
 			"/Game/TimeOfDay/DaySequence/DaySequenceActors/BR_Ch5/DSA_UEFN_Ch5S1_NoCollection.DSA_UEFN_Ch5S1_NoCollection_C": { "Visible": true },
+			"/Game/TimeOfDay/DaySequence/DaySequenceActors/BR_Ch6/DSA_BR_Ch6_Parent.DSA_BR_Ch6_Parent_C": {},
+			"/Game/TimeOfDay/DaySequence/DaySequenceActors/BR_Ch6/DSA_BR_Ch6S1.DSA_BR_Ch6S1_C": {},
 			"/Game/TimeOfDay/DaySequence/DaySeqConditionTags/BP_SHDMedium_condition.BP_SHDMedium_condition_C": {},
 			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_Erebus.DSCT_Erebus_C": {},
 			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_GI_Lumen.DSCT_GI_Lumen_C": {},
@@ -249,6 +263,9 @@
 				"DenyList": {
 					"-": [ "RuntimeVirtualTextureVolume" ]
 				}
+			},
+			"DaySequence.ViewportToolbar": {
+				"AllowList": [ "DaySequencePreviewTime", "OpenRootSequence", "SelectDaySequenceActor", "RefreshDaySequenceActor", "OpenDaySequenceActor", "RespawnDaySequenceActor" ]
 			}
 		},
 		"AllowedTabs": {
@@ -260,7 +277,8 @@
 						"/Game/ArtTools/Environment/EnvironmentActorFinder/EUW_EnvActorFinder.EUW_EnvActorFinder_C_ActiveTab",
 						"/Game/ArtTools/Environment/EnvImpQuickSettings/EUW_EnvImpQuckSettings.EUW_EnvImpQuckSettings_C_ActiveTab",
 						"/Game/Environments/Blueprints/OS_Review/EUW_OSReview_Setup.EUW_OSReview_Setup_C_ActiveTab",
-						"/Game/Blueprints/Blutilities/ForLDs/WorldPartitionTools/WP_OverlappingActors/WP_OverlappingActors_EUW.WP_OverlappingActors_EUW_C_ActiveTab"
+						"/Game/Blueprints/Blutilities/ForLDs/WorldPartitionTools/WP_OverlappingActors/WP_OverlappingActors_EUW.WP_OverlappingActors_EUW_C_ActiveTab",
+						"/FN1GFS/Blueprints/Blutilities/ToolsWrkshp/ScrTools/SelectionSizer/SupportFiles/BP_EUW_SelSizerActorTypes.BP_EUW_SelSizerActorTypes_C_ActiveTab"
 						]
 				}
 			}
@@ -335,7 +353,11 @@
 			},
 			{
 				"Type": "/Script/DaySequence.DaySequenceModifierComponent",
-				"AllowList": [ "bUseCollection", "DaySequenceCollection", "Mode" ]
+				"AllowList": [ "bUseCollection", "DaySequenceCollections", "Mode", "BlendPolicy", "BlendAmount", "Bias", "VolumeShapeComponents", "DayNightCycle", "DayNightCycleTime" ]
+			},
+			{
+				"Type": "/Script/DaySequence.DaySequenceActor",
+				"AllowList": [ "DaySequenceCollections" ]
 			},
 			{
 				"Type": "/Game/Creative/Devices/Lighting/BP_DaySequenceModifier_Device.BP_DaySequenceModifier_Device_C",
@@ -347,7 +369,7 @@
 			},
 			{
 				"Type": "/Script/FortniteGame.FortGameFeatureData",
-				"AllowList": [ "DefaultLootTableData", "DefaultGameData", "PlaylistBaseCurveTableOverrides", "PlaylistBaseDataTableOverrides"]
+				"AllowList": [ "DefaultLootTableData", "DefaultGameData", "PlaylistBaseCurveTableOverrides", "PlaylistBaseDataTableOverrides", "Actions"]
 			},
 			{
 				"Type": "/Script/FN1NativeRuntime.VerseFortniteStormVolumeComponent",
@@ -375,6 +397,14 @@
 			{
 				"Type": "/Game/Creative/Devices/Lighting/BP_DaySequenceModifier_Device.BP_DaySequenceModifier_Device_C",
 				"DenyList": [ "UserDaySequence" ]
+			}
+		]
+	},
+	"PropertyEditorStructPermissionList": {
+		"+": [
+			{
+				"Type": "/Script/ValkyrieEditor.ValkyrieAutoLocalizationSettings",
+				"DenyList": [ "bAutoBuildLocalization" ]
 			}
 		]
 	}

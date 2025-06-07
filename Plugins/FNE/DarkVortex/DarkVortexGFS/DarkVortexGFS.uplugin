@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/DarkVortex",
-	"FortReleaseVersion": "35.20",
+	"FortReleaseVersion": "36.00",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
@@ -69,11 +69,6 @@
 			"Name": "DarkVortexMeadowHeliconia",
 			"Enabled": true,
 			"Activate": true,
-			"Optional": true
-		},
-		{
-			"Name": "DarkVortexQuests",
-			"Enabled": true,
 			"Optional": true
 		},
 		{

@@ -151,6 +151,12 @@ using {/UnrealEngine.com/Temporary/UI}
     creative_hud_identifier_team_info<public> := class<final>(hud_element_gameplay_tag_identifier_base):
         InternalTag<override>:string = external {}
 
+    creative_hud_identifier_text_chat<epic_internal> := class<final>(hud_element_gameplay_tag_identifier_base):
+        InternalTag<override>:string = external {}
+
+    creative_hud_identifier_text_chat_prompt<epic_internal> := class<final>(hud_element_gameplay_tag_identifier_base):
+        InternalTag<override>:string = external {}
+
     player_hud_identifier_all<public> := class<final>(hud_element_gameplay_tag_identifier_base):
         InternalTag<override>:string = external {}
 

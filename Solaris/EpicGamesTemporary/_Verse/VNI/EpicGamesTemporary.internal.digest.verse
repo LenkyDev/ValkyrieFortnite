@@ -9,7 +9,7 @@ using {/Verse.org/Simulation}
 
 
     # Makes a `rotation` from `Axis` and `AngleRadians` using a left-handed sign convention (e.g. a positive rotation around +Z takes +X to +Y). If `Axis.IsAlmostZero[]`, make the identity rotation.
-    (/UnrealEngine.com/Temporary/SpatialMath:)MakeRotation<native><public>(Axis:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, AngleRadians:float)<reads><converges>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
+    MakeRotation<native><public>(Axis:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, AngleRadians:float)<reads><converges>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
     # Makes a `rotation` by applying `YawRightDegrees`, `PitchUpDegrees`, and `RollClockwiseDegrees`, in that order:
     #  * first a *yaw* about the Z axis with a positive angle indicating a clockwise rotation when viewed from above,
@@ -27,16 +27,16 @@ using {/Verse.org/Simulation}
     (/UnrealEngine.com/Temporary/SpatialMath:)Distance<native><public>(Rotation1:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Rotation2:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<reads>:float
 
     # Returns the 'smallest angular distance' between `Rotation1` and `Rotation2` in radians.
-    (/UnrealEngine.com/Temporary/SpatialMath:)AngularDistance<native><public>(Rotation1:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Rotation2:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<reads>:float
+    AngularDistance<native><public>(Rotation1:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Rotation2:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<reads>:float
 
     # Makes a `rotation` by applying `PitchUpRadians` of right-handed rotation around the local +Y axis to `InitialRotation`.
-    (InitialRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)ApplyPitch<native><public>(PitchUpRadians:float)<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
+    (InitialRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).ApplyPitch<native><public>(PitchUpRadians:float)<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
     # Makes a `rotation` by applying `RollClockwiseRadians` of right-handed rotation around the local +X axis to `InitialRotation`.
-    (InitialRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)ApplyRoll<native><public>(RollClockwiseRadians:float)<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
+    (InitialRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).ApplyRoll<native><public>(RollClockwiseRadians:float)<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
     # Makes a `rotation` by applying `YawRightRadians` of left-handed rotation around the local +Z axis to `InitialRotation`.
-    (InitialRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)ApplyYaw<native><public>(YawRightRadians:float)<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
+    (InitialRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).ApplyYaw<native><public>(YawRightRadians:float)<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
     # Makes a `rotation` by applying `AngleRadians` of left-handed rotation around the world +X axis to `InitialRotation`.
     (InitialRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).ApplyWorldRotationX<native><public>(AngleRadians:float)<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
@@ -54,10 +54,10 @@ using {/Verse.org/Simulation}
     (InitialRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).ApplyLocalRotationZ<public>(AngleRadians:float)<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation = external {}
 
     # Makes a `rotation` by composing `AdditionalRotation` to `InitialRotation`.
-    (InitialRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)RotateBy<native><public>(AdditionalRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
+    (InitialRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).RotateBy<native><public>(AdditionalRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
     # Makes a `rotation` by composing the inverse of `RotationToRemove` from `InitialRotation`. such that InitialRotation = RotateBy(UnrotateBy(InitialRotation, RotationToRemove), RotationToRemove). This is equivalent to RotateBy(InitialRotation, InvertRotation(RotationToRemove))
-    (InitialRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)UnrotateBy<native><public>(RotationToRemove:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
+    (InitialRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).UnrotateBy<native><public>(RotationToRemove:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
     # Makes an `[]float` with three elements:
     #  * *yaw* degrees of `rotation`
@@ -71,7 +71,7 @@ using {/Verse.org/Simulation}
     (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)GetAxis<native><public>()<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
     # Returns the radians of `rotation` around the axis of `rotation`. See also `GetAxis`.
-    (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)GetAngle<native><public>()<reads>:float
+    (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).GetAngle<native><public>()<reads>:float
 
     # Makes the smallest angular `rotation` from `InitialRotation` to `FinalRotation` such that:
     # `InitialRotation.RotateBy(MakeShortestRotationBetween(InitialRotation, FinalRotation)) = FinalRotation` and
@@ -85,16 +85,16 @@ using {/Verse.org/Simulation}
 
     # Makes a new `rotation` from the component wise subtraction of the Euler angle components in `RotationA` by 
     # the Euler angle components in `RotationB` and ensures the returned value is normalized.
-    (/UnrealEngine.com/Temporary/SpatialMath:)MakeComponentWiseDeltaRotation<native><public>(RotationA:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, RotationB:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
+    MakeComponentWiseDeltaRotation<native><public>(RotationA:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, RotationB:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
     # Used to perform spherical linear interpolation between `From` (when `Parameter = 0.0`) and `To` (when `Parameter = 1.0`). Expects that `0.0 <= Parameter <= 1.0`.
     (/UnrealEngine.com/Temporary/SpatialMath:)Slerp<native><public>(InitialRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, FinalRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Parameter:float)<transacts><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
     # Makes a `vector3` by applying `Rotation` to `Vector`.
-    (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)RotateVector<native><public>(Vector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+    (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).RotateVector<native><public>(Vector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
     # Makes a `vector3` by applying the inverse of `Rotation` to `Vector`.
-    (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)UnrotateVector<native><public>(Vector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+    (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).UnrotateVector<native><public>(Vector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
     # Makes a `rotation` by inverting `Rotation` such that `ApplyRotation(Rotation, Rotation.Invert())) = IdentityRotation`.
     (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)Invert<native><public>()<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
@@ -104,15 +104,15 @@ using {/Verse.org/Simulation}
 
     # Makes a unit `vector3` pointing in the local space *forward* direction in world space coordinates.
     # This is equivalent to: `RotateVector(Rotation, vector3{X:=1.0, Y:=0.0, Z:=0.0})`.
-    (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)GetLocalForward<public>()<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+    (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).GetLocalForward<public>()<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
     # Makes a unit `vector3` pointing in the the local space *right* direction in world space coordinates.
     # This is equivalent to: `RotateVector(Rotation, vector3{X:=0.0, Y:=1.0, Z:=0.0})`.
-    (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)GetLocalRight<public>()<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+    (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).GetLocalRight<public>()<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
     # Makes a unit `vector3` pointing in the local space *up* direction in world space coordinates.
     # This is equivalent to: `RotateVector(Rotation, vector3{X:=0.0, Y:=0.0, Z:=1.0})`.
-    (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)GetLocalUp<public>()<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+    (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).GetLocalUp<public>()<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
     # Makes a `string` representation of `rotation` in axis/degrees format with a left-handed sign convention.
     # `ToString(MakeRotation(vector3{X:=1.0, Y:=0.0, Z:=0.0}, PiFloat/2.0))` produces the string: `"Axis: {x=1.000000,y=0.000000,z=0.000000} Angle: 90.000000"`.
@@ -124,32 +124,34 @@ using {/Verse.org/Simulation}
     # Returns degrees from `Radians`.
     (/UnrealEngine.com/Temporary/SpatialMath:)RadiansToDegrees<public>(Radians:float)<reads>:float = external {}
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3400}
-    # Util function for converting a `vector3` from /UnrealEngine.com/Temporary/SpatialMath to a `vector3` from /Verse.org/SpatialMath.
+    # Util function for converting a translation/position `vector3` from /UnrealEngine.com/Temporary/SpatialMath to a `vector3` from /Verse.org/SpatialMath.
     FromVector3<public>(InVector3:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/Verse.org/SpatialMath:)vector3 = external {}
 
-    @experimental
+    @available {MinUploadedAtFNVersion := 3600}
+    # Util function for converting a scalar `vector3` from /UnrealEngine.com/Temporary/SpatialMath to a `vector3` from /Verse.org/SpatialMath.
+    FromScalarVector3<public>(InVector3:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/Verse.org/SpatialMath:)vector3 = external {}
+
     @available {MinUploadedAtFNVersion := 3400}
     # Util function for converting a `rotation` from /UnrealEngine.com/Temporary/SpatialMath to a `rotation` from /Verse.org/SpatialMath.
     FromRotation<public>(InRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<reads>:(/Verse.org/SpatialMath:)rotation = external {}
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3400}
     # Util function for converting a `transform` from /UnrealEngine.com/Temporary/SpatialMath to a `transform` from /Verse.org/SpatialMath.
     FromTransform<public>(InTransform:(/UnrealEngine.com/Temporary/SpatialMath:)transform)<reads>:(/Verse.org/SpatialMath:)transform = external {}
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3400}
-    # Util function for converting a `vector3` from /Verse.org/SpatialMath to a `vector3` from /UnrealEngine.com/Temporary/SpatialMath.
+    # Util function for converting a translation/position `vector3` from /Verse.org/SpatialMath to a `vector3` from /UnrealEngine.com/Temporary/SpatialMath.
     FromVector3<public>(InVector3:(/Verse.org/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
-    @experimental
+    @available {MinUploadedAtFNVersion := 3600}
+    # Util function for converting a scalar `vector3` from /Verse.org/SpatialMath to a `vector3` from /UnrealEngine.com/Temporary/SpatialMath.
+    FromScalarVector3<public>(InVector3:(/Verse.org/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+
     @available {MinUploadedAtFNVersion := 3400}
     # Util function for converting a `rotation` from /Verse.org/SpatialMath to a `rotation` from /UnrealEngine.com/Temporary/SpatialMath.
     FromRotation<public>(InRotation:(/Verse.org/SpatialMath:)rotation)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation = external {}
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3400}
     # Util function for converting a `transform` from /Verse.org/SpatialMath to a `transform` from /UnrealEngine.com/Temporary/SpatialMath.
     FromTransform<public>(InTransform:(/Verse.org/SpatialMath:)transform)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)transform = external {}
@@ -169,10 +171,10 @@ using {/Verse.org/Simulation}
         Translation<native><public>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
     # Makes a `vector3` by applying `InTransform` to `InVector`.
-    (/UnrealEngine.com/Temporary/SpatialMath:)TransformVector<public>(InTransform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, InVector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+    TransformVector<public>(InTransform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, InVector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
     # Makes a `vector3` by applying `InTransform` to `InVector` without applying `InTransform.Scale`.
-    (/UnrealEngine.com/Temporary/SpatialMath:)TransformVectorNoScale<public>(InTransform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, InVector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+    TransformVectorNoScale<public>(InTransform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, InVector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
     # Makes a `string` representation of `InTransform` where the result is on the form.
     # `"Scale: {ToString(`InTransform.Scale`)} Rotation: {ToString(`InTransform.Rotation`)} Translation: {ToString(`InTransform.Translation`)}.
@@ -332,7 +334,7 @@ using {/Verse.org/Simulation}
     (/UnrealEngine.com/Temporary/SpatialMath:)DotProduct<public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:float = external {}
 
     # Returns the cross product of `V1` and `V2`.
-    CrossProduct<public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+    (/UnrealEngine.com/Temporary/SpatialMath:)CrossProduct<public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
     # Returns the Euclidean distance between `V1` and `V2`.
     (/UnrealEngine.com/Temporary/SpatialMath:)Distance<public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:float = external {}
@@ -443,4 +445,4 @@ SceneGraph<public> := module:
 
 
 # Stably sort `Array` using `Less` where `Less` succeeding indicates `Left` should precede `Right`
-SortBy<native><public>(Array:[]t, Less:type {_(:t, :t)<computes><decides>:void} where t:type)<computes>:[]t
+SortBy<native><public>((Array:[]t, Less:type {_(:t, :t)<computes><decides>:void}) where t:type)<computes>:[]t

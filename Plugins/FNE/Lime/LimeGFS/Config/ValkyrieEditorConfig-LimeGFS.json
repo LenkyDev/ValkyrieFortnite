@@ -69,7 +69,8 @@
 			"/MusicalWalk",
 			"/ObstacleCourse",
 			"/TownScaper",
-			"/LimeEmptyPlot"
+			"/LimeEmptyPlot",
+			"/CRD_Fillable_Container"
 		],
 		"AllowedGatherAssets": [
 			"___Weapons_Begin___",
@@ -234,6 +235,7 @@
 			"/LimePlayerSpawn/ItemDefinitions/PID_Device_LimePlayerSpawnPad.PID_Device_LimePlayerSpawnPad",
 			"/CRD_LimeChairDevice/SetupAssets/PID_CP_Devices_LimeChairDevice.PID_CP_Devices_LimeChairDevice",
 			"/CRD_LimeCollectible/PID_LimeCollectible.PID_LimeCollectible",
+			"/CRD_Fillable_Container/SetupAssets/PID_CP_Devices_Fillable_Container.PID_CP_Devices_Fillable_Container",
 			"___Devices_End___",
 
 			"/CRD_VerseDevices/UEFNExposedAssets/UEFN_Expose_CRD_Verse.UEFN_Expose_CRD_Verse",
@@ -1573,9 +1575,10 @@
 			{
 				"Visible": true
 			},
-			"/LimeEvade/Components/BP_UserOptionComponent_LimeEvade.BP_UserOptionComponent_LimeEvade_C":
+			"/LimeEvade/Components/BP_UserOptionComponent_LimeEvade.BP_UserOptionComponent_LimeEvade_C": 
 			{
-			}
+			},
+			"/CreativeCoreDevices/ExperienceSettings/BP_UserOptionComponent_Cosmetic.BP_UserOptionComponent_Cosmetic_C": { }
 		}
 	},
 	"PropertyEditorClassPermissionList": {

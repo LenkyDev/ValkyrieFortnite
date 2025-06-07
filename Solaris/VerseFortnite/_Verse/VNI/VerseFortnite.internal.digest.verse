@@ -332,12 +332,10 @@ Game<public> := module:
         @experimental
         DamagedEventWithAgent<native><epic_internal>:listenable(tuple(float, ?agent)) = external {}
 
-    @experimental
     # The subscription type returned from the round manager interfaces.
     fort_round_subscription<native><epic_internal> := class(cancelable):
         Cancel<native><override>()<transacts>:void
 
-    @experimental
     # This interface is implemented by the round manager living on the simulation entity.
     fort_round_manager<native><public> := interface<epic_internal>:
         # Subscribed callbacks will be invoked in two scenarios:
@@ -349,7 +347,6 @@ Game<public> := module:
         # Subscribed callbacks will be invoked when a Fortnite round ends
         SubscribeRoundEnded<public>(Callback:type {_():void}):cancelable
 
-    @experimental
     fort_game_events_component<native><epic_internal> := class<final_super>(component, fort_round_manager):
         OnAddedToScene<override><native><native_callable>():void
 
@@ -374,11 +371,9 @@ Game<public> := module:
         # Subscribed callbacks will be invoked when a Fortnite round ends
         SubscribeRoundEnded<native><override>(Callback:type {_():void}):cancelable
 
-    @experimental
     # Returns the fort game events component, if it exists.
     (InEntity:entity).GetFortGameEvents<epic_internal>()<transacts><decides>:fort_game_events_component = external {}
 
-    @experimental
     # Returns the round manager from the simulation entity.
     (InEntity:entity).GetFortRoundManager<public>()<transacts><decides>:fort_round_manager = external {}
 
@@ -397,6 +392,10 @@ Game<public> := module:
     @experimental
     # Deactivate a camera component for a player, restoring the player's view target to the default
     (InCameraBehavior:camera_component).DeactivateForPlayer<native><epic_internal>(InPlayer:player)<transacts><decides>:void
+
+    @experimental
+    fort_player_camera_activation<native><epic_internal> := class(cancelable):
+        Cancel<native><override>()<transacts>:void
 
     # Implemented by objects to allow reading position information.
     positional<native><public> := interface<epic_internal>:
@@ -611,7 +610,6 @@ Playspaces<public> := module:
         # Signaled when a human `player` abandons the `fort_playspace` via exit match button. Will not fire if the playerleft via a crash, match end, or getting kicked. Returns a subscribable with a payload of the`player` that leftthe `fort_playspace`.
         PlayerAbandonedEvent<epic_internal>():listenable(player)
 
-    @experimental
     # Returns an associated `fort_playspace` for this entity.  * Fails if this entity is not in the scene, and therefore not associated with a playspace.
     (InEntity:entity).GetPlayspaceForEntity<native><public>()<transacts><decides>:fort_playspace
 

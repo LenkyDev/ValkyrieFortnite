@@ -1,7 +1,6 @@
 using {/Verse.org/Simulation}
 using {/Verse.org/SpatialMath}
 using {/Verse.org/Native}
-@experimental
 # Base class for authoring logic and data in the SceneGraph. Using components you
 # can author re-usable building blocks of logic and data which can then be added to
 # entities in the scene.
@@ -50,31 +49,26 @@ using {/Verse.org/Native}
 #      OnRemovingFromScene
 # ==============================================================================
 component<native><public> := class<abstract><unique><castable><final_super_base>:
-    @experimental
     # The parent entity of this component.
     #   * Components must have a parent entity pointer provided when being constructed.
     #   * Components cannot be moved between parents.
     Entity<native><public>:entity
 
-    @experimental
     # Called when the component is added to the scene by parenting it under the simulation entity or another entity already in the scene.
     #   * Querying for components in the scene is valid after this phase completes.
     OnAddedToScene<native><native_callable><protected>():void
 
-    @experimental
     # Called when the component begins simulating within the scene.
     #   * Use this to set up TickEvent callbacks or other setup that must be guaranteed to complete immediately.
     #   * `OnAddedToScene` is guaranteed to run before `OnBeginSimulation`.
     OnBeginSimulation<native><native_callable><protected>():void
 
-    @experimental
     # Called when the component begins simulating within the scene.
     #   * Use this to add asynchronous/suspends update logic for a component.
     #   * `OnBeginSimulation` is guaranteed to run before `OnSimulate`.
     #   * `OnSimulate` will be cancelled before `OnEndSimulation`
     OnSimulate<native_callable><protected>()<suspends>:void = external {}
 
-    @experimental
     # Called when the component ends simulation within the scene.
     #   * Simulation ends on a component when the experience resets, the parent entity is removed from the scene.
     #   * Cached TickEvents cancelables should be canceled in `OnEndSimulation`.
@@ -82,31 +76,26 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
     #   * `OnEndSimulation` is only called on components that have already had `OnBeginSimulation` called.
     OnEndSimulation<native><native_callable><protected>():void
 
-    @experimental
     # Called when the component is about to be removed from the scene.
     #   * Components are removed from a scene when the parent entity is removed from the scene.
     #   * `OnRemovingFromScene` is only called on components that have already had `OnAddedToScene` called.
     OnRemovingFromScene<native><native_callable><protected>():void
 
-    @experimental
     # Removes the component from the entity.
     #   * Removed components are removed from the scene and can only be added back to the same entity.
     #   * Flows through `OnEndSimulation`-> `OnRemovingFromScene`.
     RemoveFromEntity<native><final><public>():void
 
-    @experimental
     # Succeeds if the component is currently in the scene.
     #   * After `OnAddedToScene` is called this call succeeds.
     #   * After `OnRemovingFromScene` is called this call fails.
-    IsInScene<native><final><public>()<transacts><decides>:void
+    IsInScene<native><final><public>()<reads><decides>:void
 
-    @experimental
     # Succeeds if the component is currently simulating.
     #   * After `OnBeginSimulation` is called this call succeeds.
     #   * After `OnEndSimulation` is called this call fails.
-    IsSimulating<native><final><public>()<transacts><decides>:void
+    IsSimulating<native><final><public>()<reads><decides>:void
 
-    @experimental
     # Set callbacks to `TickEvents.PrePhysics` and `TickEvents.PostPhysics` to receive per-frame updates before and after physics is updated on your object.
     var<private> TickEvents<protected>:tick_events = external {}
 
@@ -119,7 +108,6 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
 scene_event<native><public> := interface:
 
 
-@experimental
 # Entities are the base object in the SceneGraph.
 #   * Objects in experiences are constructed of one or more entities.
 #   * Entities are hierarchical. You can query your parent using `GetParent` and add child entities using `AddEntities`.
@@ -139,46 +127,39 @@ scene_event<native><public> := interface:
 #   components allows you to restructure your prefabs throughout production of your experience, without needing to massively
 #   refactor your class structure.
 entity<native><public> := class<concrete><unique><transacts><castable>:
-    @experimental
     # Returns the parent entity of this entity.
     #   * The parent entity controls the lifetime of its child entities and components. When an entity
     #     is removed from the scene, all its child entities and components will be removed as well.
     #   * Method fails if there is currently no parent entity.
-    GetParent<native><final><public>()<transacts><decides>:entity
+    GetParent<native><final><public>()<reads><decides>:entity
 
-    @experimental
     # Removes this entity from its parent. This is used to remove entities from the scene.
     #   * Components on this entity and its children will run through `OnEndSimulation` -> `OnRemovingFromScene`.
     #   * Entity can be added back later by using `NewParent.AddEntities`.
     RemoveFromParent<native><final><public>():void
 
-    @experimental
     # Adds the provided entities as children of this entity.
     #   * If child entity already has a parent, removes the entity from its current parent and adds it to the new one.
     #   * Added child entities will move through their lifetime methods until they match the state of the new parent.
     AddEntities<native><final><public>(NewChildEntities:[]entity):void
 
-    @experimental
     # Returns the child entities belonging to this entity which are accessible from the calling context.
     #   * This method only gets the direct entity children. To query multiple levels down the entity structure use
     #     the Find* query methods instead.
-    GetEntities<native><final><public>()<transacts>:[]entity
+    GetEntities<native><final><public>()<reads>:[]entity
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3200}
     # Succeeds and returns the child component of type `component_type` if it exists and is accessible from the calling context.
-    #   Note: When called during the Initialize, AddedToScene or BeginSimulation phase, it will make sure the returned component has achieved the corresponding phase.
+    #   Note: When called during the AddedToScene or BeginSimulation phase, it will make sure the returned component has achieved the corresponding phase.
     #   Fails if no component of `component_type` exists or can be accessed.
-    GetComponent<native><final><public>(component_type:castable_subtype(component))<transacts><decides>:component_type
+    GetComponent<native><final><public>(component_type:castable_subtype(component))<reads><decides>:component_type
 
-    @experimental
     # Returns the child components belonging to this entity which are accessible from the calling context.
-    GetComponents<native><final><public>()<transacts>:[]component
+    GetComponents<native><final><public>()<reads>:[]component
 
-    @experimental
     # Adds the provided components to the entity.
     #   * If a component is not allowed to be added to this entity it is skipped.
-    #   Note: When called during the Initialize, AddedToScene or BeginSimulation phase, it will make sure the added component has achieved the corresponding phase.
+    #   Note: When called during the AddedToScene or BeginSimulation phase, it will make sure the added component has achieved the corresponding phase.
     #   * Components are added following these rules:
     #       1. All components are added to the entity child list.
     #       2. All components have `OnAddedToScene` called (if this entity is in the scene).
@@ -197,32 +178,27 @@ entity<native><public> := class<concrete><unique><transacts><castable>:
     # Send a scene event to this entity and all of its descendants. OnReceive will be invoked for each entity. Consuming the event at any entity will halt propagation down that subtree. Entities are traversed in breadth-first order, i.e. each layer is evaluated before moving deeper. Returns true if the event was consumed.
     SendDown<final><native><public>(SceneEvent:scene_event):logic
 
-@experimental
 # Reference type to editor defined prefab. Only generated digest code should reference this type.
 entity_prefab<native><public> := class<computes><epic_internal>:
 
 
-@experimental
 # Interface to provide alternative origin to an entity which is defaulted to its parent. See `transform_component`
 origin<native><public> := interface<epic_internal>:
     GetTransform<native_callable><public>()<transacts>:(/Verse.org/SpatialMath:)transform
 
-@experimental
 @available {MinUploadedAtFNVersion := 3200}
 # class to provide alternative origin to the 'transform_component' as an entity
-entity_origin<native><public> := class<epic_internal>(origin):
+entity_origin<native><public> := class<final>(origin):
     @editable
     Entity<native><public>:entity
 
     GetTransform<override>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
 
-@experimental
 # Returns the simulation entity parent for this entity.
 #   * The simulation entity is the rootmost entity in an experience.
 #   * Fails if this entity is not currently in the scene.
 (InEntity:entity).GetSimulationEntity<native><public>()<transacts><decides>:entity
 
-@experimental
 # Describes discrete phases of a frame update. Subscribe to members of the tick_events object to run code before or after the physics system has updated your object, allowing you to affect or react to these updates.
 tick_events<native><public> := class<epic_internal>:
     # Listen `PrePhysics` to run your code before the physics system has updated your object this frame.
@@ -231,50 +207,42 @@ tick_events<native><public> := class<epic_internal>:
     # Listen `PostPhysics` to run your code after the physics system has updated your object this frame.
     PostPhysics<native><public>:execution_listenable = external {}
 
-@experimental
 # Stores the transforms for an entity, which are used to position the entity.
 transform_component<native><public> := class<final><final_super>(component):
-    # Sets the global transform of the entity.
-    SetGlobalTransform<native><public>(NewGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void
+    # Current transform of the entity, globally referenced. Any value set at construction will be overrridden with the calculation from the Local Transform
+    var GlobalTransform<public>:(/Verse.org/SpatialMath:)transform = external {}
 
-    # Returns the global transform of the entity.
-    GetGlobalTransform<native><public>()<transacts>:(/Verse.org/SpatialMath:)transform
+    var<private> GlobalTransformInternal<native><public>:(/Verse.org/SpatialMath:)transform = external {}
 
-    # Sets the local transform of the entity.
-    SetLocalTransform<native><public>(NewLocalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void
+    # LocalTransform to its parent/origin
+    var LocalTransform<public>:(/Verse.org/SpatialMath:)transform = external {}
 
-    @editable
-    # LocalTransform to its parent
-    var<private> LocalTransform<native><public>:(/Verse.org/SpatialMath:)transform = external {}
+    @editable {}
+    var<private> LocalTransformInternal<native><public>:(/Verse.org/SpatialMath:)transform = external {}
 
-    @editable
-    # alternate origin than the default parent
-    var<private> Origin<native><public>:?origin = external {}
+    # alternate origin than the default parent entity
+    var Origin<public>:?origin = external {}
 
-@experimental
+    @editable {}
+    var<private> OriginInternal<native><public>:?origin = external {}
+
 # Returns the global transform of this entity, in the case the entity does not have a transform_component it will return the transform of the first parent that has a transform
 (InEntity:entity).GetGlobalTransform<native><public>()<transacts>:(/Verse.org/SpatialMath:)transform
 
-@experimental
 # Returns the local transform of this entity, in the case the entity does not have a transform_component it will return identity
 (InEntity:entity).GetLocalTransform<native><public>()<transacts>:(/Verse.org/SpatialMath:)transform
 
-@experimental
 # Returns the origin of the entity in any, in the case the entity does not have a transform_component the method will fail
 (InEntity:entity).GetOrigin<native><public>()<transacts><decides>:origin
 
-@experimental
 # Sets the global transform of this entity, in the case the entity does not have a transform_component it will create one and set its global transform
 (InEntity:entity).SetGlobalTransform<native><public>(NewGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void
 
-@experimental
 # Sets the local transform of this entity, in the case the entity does not have a transform_component it will create one and set its local transform
 (InEntity:entity).SetLocalTransform<native><public>(NewLocalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void
 
-@experimental
 # Sets the origin of this entity, in the case the entity does not have a transform_component it will create one and set its origin. This method fails if it recognized dependency recursion.
-(InEntity:entity).SetOrigin<native><public>(NewOrigin:origin)<transacts><decides>:void
+(InEntity:entity).SetOrigin<native><public>(NewOrigin:origin)<transacts>:void
 
-@experimental
 # Resets the origin of this entity, which will now default to its parent
 (InEntity:entity).ResetOrigin<native><public>()<transacts>:void

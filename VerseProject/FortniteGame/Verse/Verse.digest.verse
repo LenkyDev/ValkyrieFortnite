@@ -2,12 +2,42 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-35.20-CL-42911808
+# Generated from build: ++Fortnite+Release-36.00-CL-43214806
 #################################################
 
 SceneGraph<public> := module:
     using {/Verse.org/Simulation}
     @experimental
+    # An interactable component with a composable feature set.
+    basic_interactable_component<native><public> := class(interactable_component):
+        # Attempt to cancel an interaction. Fails if the supplied agent is not currently interacting with the component.
+        Cancel<native><public>(Agent:agent)<transacts><decides>:void
+
+        # Attempt to succeed at an interaction. Success will also happen automatically after InteractDuration has elapsed after starting an interaction. Fails if the supplied agent is not currently interacting with the component.
+        Succeed<native><public>(Agent:agent)<transacts><decides>:void
+
+        # Get the remaining cooldown of the interactable for the supplied agent. This returns the duration left in seconds of either the shared or per agent cooldown, whichever is greater. Returns the same value when called multiple times within a transaction.
+        GetRemainingCooldownDurationAffectingAgent<native><public>(Agent:agent):float
+
+        # The agents which are currently interacting with this interactable.
+        var<private> InteractingAgents<native><public>:[]agent = external {}
+
+        @editable
+        # Cooldowns begin elapsing on successful interactions. A cooldown which applies for all attempts to interact on this component.
+        Cooldown<native><public>:?interactable_cooldown = external {}
+
+        @editable
+        # Cooldowns begin elapsing on successful interactions. A cooldown which applies for future attempts to interact on this component by the agent which succeeded.
+        CooldownPerAgent<native><public>:?interactable_cooldown_per_agent = external {}
+
+        @editable
+        # Success limits prevent new interactions once the component has been successfully interacted with a specified number of times.
+        SuccessLimit<native><public>:?interactable_success_limit = external {}
+
+        @editable
+        # An interaction with a duration does not succeed until the duration has elapsed, and success is not guaranteed as it can be canceled while the duration is active.
+        InteractableDuration<native><public>:?interactable_duration = external {}
+
     # Used to handle general interaction.
     interactable_component<native><public> := class<final_super>(component, enableable):
         # Enable interaction with the component.
@@ -19,8 +49,6 @@ SceneGraph<public> := module:
         # Succeeds if the component is enabled, fails if it’s disabled.
         IsEnabled<native><override>()<transacts><decides>:void
 
-        InteractFinishedEvent<native><public>:listenable(agent) = external {}
-
         # Event fires when an a successful interaction starts. Sends the interacting agent. InteractDuration at or below 0 makes this event identical to InteractSucceededEvent.
         StartedEvent<native><public>:listenable(agent) = external {}
 
@@ -31,7 +59,19 @@ SceneGraph<public> := module:
         CanceledEvent<native><public>:listenable(agent) = external {}
 
         # Attempt to start an interaction. Fails if the agent does not pass the CanInteract function.
-        Start<native><public>(Agent:agent)<transacts><decides>:void
+        Start<native><final><public>(Agent:agent)<transacts><decides>:void
+
+        # Fires the StartedEvent event.
+        SignalStartEvent<native><protected>(Agent:agent)<transacts>:void
+
+        # Fires the SucceededEvent event.
+        SignalSucceedEvent<native><protected>(Agent:agent)<transacts>:void
+
+        # Fires the CanceledEvent event.
+        SignalCancelEvent<native><protected>(Agent:agent)<transacts>:void
+
+        # Called from Start if CanInteract pass successfully to start the interaction. Overriding this function will allow you to create a custom interaction behaviour.
+        OnStarted<native><native_callable><protected>(Agent:agent)<transacts><decides>:void
 
         # Returns whether the specified agent can interact.
         CanInteract<native><native_callable><public>(Agent:agent)<reads><decides>:void
@@ -39,38 +79,96 @@ SceneGraph<public> := module:
         # Returns an appropriate message to display to players to communicate the current state of the interactable.
         InteractMessage<native><native_callable><public>(Agent:agent)<reads><decides>:message
 
-    using {/Verse.org/Native}
     @experimental
+    # Used to set a cooldown when interacted.
+    interactable_cooldown<native><public> := class<concrete>:
+        @editable
+        # The number of seconds after a successful interaction, before being able to initiate a subsequent interaction for anyone.
+        # This is only used if duration is greater than 0.0. Modifying this does not affect the RemainingDuration.
+        # When a cooldown starts on the component all other interactions are canceled.
+        var Duration<native><public>:float = external {}
+
+        # The remaining cooldown, in seconds, before new interactions can be initiated on this component.
+        var<public> RemainingDuration<public>:float = external {}
+
+        # Event which fires when the shared cooldown expires.
+        ExpiredEvent<native><public>:listenable(tuple()) = external {}
+
+    @experimental
+    # Used to set a cooldown per agent when interacted.
+    interactable_cooldown_per_agent<native><public> := class<concrete>:
+        @editable
+        # The duration in seconds after a successful interaction, before the interacting agent can initiate a subsequent interaction.
+        # This is only used if the duration is greater than 0.0. Modifying this does not affect any RemainingPerAgentCooldownDuration.
+        # This property gives other agents time to interact, when there is a limited number of Simultaneous Interactors.
+        var Duration<native><public>:float = external {}
+
+        # The cooldown remaining, in seconds, before a particular agent is able to initiate an interaction on this component.
+        var<private> RemainingDuration<native><public>:[agent]float = external {}
+
+        # Event which fires when the per agent cooldown expires. Sends the agent which was previously affected by the cooldown.
+        ExpiredEvent<native><public>:listenable(agent) = external {}
+
+    @experimental
+    # Used to set an interaction duration.
+    interactable_duration<native><public> := class<concrete>:
+        @editable
+        # The number of seconds an agent must spend interacting with the object to successfully complete an interaction.
+        # 0.0 or less results in an immediate successful interaction.
+        # If set during an interaction, the value given will be used for the next interaction and the remaining duration will be updated subtracting the new given value with the current time elapsed.
+        # If the subtraction were zero or less it will immediately conclude.
+        var InteractDuration<public>:float = external {}
+
+        @editable
+        # The max number of simultaneous interactors. A value of false is unlimited.  This value represents how many agents may have active interactions.
+        # If this changes to a value less than the current number of active interactions, those interactions are not canceled but new interactions will not start.
+        var MaxSimultaneousInteractors<native><public>:?int = external {}
+
+        # Returns an agent’s remaining duration, in seconds, for interaction. Fails if the agent is not interacting with this component.Returns the same value when called multiple times within a transaction.
+        GetRemainingInteractDurationForAgent<final><native><public>(Agent:agent)<reads><decides>:float
+
+        # Sets an agent’s remaining duration, in seconds, for interaction. Fails if the agent is not interacting with this component.
+        SetRemainingInteractDurationForAgent<final><native><public>(Agent:agent, RemainingDuration:float)<transacts>:void
+
+    @experimental
+    # Used to set a limit of times to interact.
+    interactable_success_limit<native><public> := class<concrete>:
+        # The number of times the component can be successfully interacted with. A value of false is unlimited.
+        # When SuccessfulInteractionCount reaches MaxSuccessfulInteractions all active interactions are canceled, and the component cannot be interacted with.
+        var MaxSuccessfulInteractions<public>:?int = external {}
+
+        # The number of times this component has had a successful interaction.
+        var SuccessfulInteractionCount<public>:int = external {}
+
+        # Resets the counter for the times this component has had a successful interaction.
+        ClearSuccessfulInteractionCount<native><public>()<transacts>:void
+
+    using {/Verse.org/Native}
     @available {MinUploadedAtFNVersion := 3200}
     # Finds all descendant entities including `InEntity` of type `entity_type`.
     # The order of the returned entities is unspecified and subject to change.
     (InEntity:entity).FindDescendantEntities<native><public>(entity_type:castable_subtype(entity))<transacts>:generator(entity_type)
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3200}
     # Finds all descendant entities including `InEntity` containing a component of type `component_type`.
     # The order of the returned entities is unspecified and subject to change.
     (InEntity:entity).FindDescendantEntitiesWithComponent<native><public>(component_type:castable_subtype(component))<transacts>:generator(entity)
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3200}
     # Finds all components attached to descendant entities to and including `InEntity` of type `component_type`.
     # The order of the returned components is unspecified and subject to change.
     (InEntity:entity).FindDescendantComponents<native><public>(component_type:castable_subtype(component))<transacts>:generator(component_type)
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3200}
     # Finds all ancestor entities to `InEntity` of type `entity_type`.
     # The order of the returned entities is unspecified and subject to change.
     (InEntity:entity).FindAncestorEntities<native><public>(entity_type:castable_subtype(entity))<transacts>:generator(entity_type)
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3200}
     # Finds all ancestor entities to `InEntity` containing a component of type `component_type`.
     # The order of the returned entities is unspecified and subject to change.
     (InEntity:entity).FindAncestorEntitiesWithComponent<native><public>(component_type:castable_subtype(component))<transacts>:generator(entity)
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3200}
     # Finds all components attached to ancestor entities to `InEntity` of type `component_type`.
     # The order of the returned components is unspecified and subject to change.
@@ -78,11 +176,11 @@ SceneGraph<public> := module:
     using {/Verse.org/Simulation/Tags}
     using {/Verse.org/Colors}
     using {/Verse.org/SpatialMath}
-    @experimental
     # A `capsule_light_component` emits light in all directions into the scene from a capsule shaped source with a specified radius and length. A radius and length of 0 makes it a point light. You can use these
     # to simulate any kind of light sources that emit in all directions and need an elongated source shape, such as a long light bulb.
     capsule_light_component<native><public> := class<final>(light_component):
-        # Set the visible light intensity emitted in SI unit Candela./nSpecified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
+        # Set the visible light intensity emitted in SI unit Candela.
+        # Specified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
         var Intensity<public>:float = external {}
 
         # The bounds of the light's visible influence. This clamping of the light's influence is not physically correct but very important for performance,
@@ -96,7 +194,6 @@ SceneGraph<public> := module:
         # Length of the source capsule shape in centimeters along the local Z axis. Note that light shapes which intersect shadow casting geometry can cause shadowing artifacts.
         var SourceLength<public>:float = external {}
 
-    @experimental
     # A `directional_light_component` simulates light that is being emitted from a source that is infinitely far away. This means that all shadows cast by this light will be parallel, making this the ideal choice for simulating sunlight.
     directional_light_component<native><public> := class<final>(light_component):
         # Intensity of the light hitting the surface. In Lux (Lumen per square meter).
@@ -108,12 +205,10 @@ SceneGraph<public> := module:
     # Module import path: /Verse.org/SceneGraph/KeyframedMovement
     # Animate Scene Graph entities with keyframes.
     KeyframedMovement<public> := module:
-        @experimental
         # Base class for an animation easing function.
         easing_function<native><public> := class<abstract><computes><epic_internal>:
             Evaluate<native><public>(Input:float):float
 
-        @experimental
         # Cubic bezier easing function. See CubicBezierEasingFunctions for some basic easing values.
         cubic_bezier_easing_function<native><public> := class<concrete><computes><epic_internal>(easing_function):
             X0<native><public>:float = external {}
@@ -126,7 +221,6 @@ SceneGraph<public> := module:
 
             Evaluate<native><override>(Input:float):float
 
-        @experimental
         # `Linear` animations move at a constant speed.
         linear_easing_function<native><public> := class<final><concrete><computes>(cubic_bezier_easing_function):
             X0<override>:float = external {}
@@ -137,7 +231,6 @@ SceneGraph<public> := module:
 
             Y1<override>:float = external {}
 
-        @experimental
         # `Ease` animations start slowly, speed up, then end slowly. The speed of the animation is slightly slower at the end than the start.
         ease_cubic_bezier_easing_function<native><public> := class<final><concrete><computes>(cubic_bezier_easing_function):
             X0<override>:float = external {}
@@ -148,7 +241,6 @@ SceneGraph<public> := module:
 
             Y1<override>:float = external {}
 
-        @experimental
         # `EaseIn` animations start slow, then speed up towards the end.
         ease_in_cubic_bezier_easing_function<native><public> := class<final><concrete><computes>(cubic_bezier_easing_function):
             X0<override>:float = external {}
@@ -159,7 +251,6 @@ SceneGraph<public> := module:
 
             Y1<override>:float = external {}
 
-        @experimental
         # `EaseOut` animations start fast, then slow down towards the end.
         ease_out_cubic_bezier_easing_function<native><public> := class<final><concrete><computes>(cubic_bezier_easing_function):
             X0<override>:float = external {}
@@ -170,7 +261,6 @@ SceneGraph<public> := module:
 
             Y1<override>:float = external {}
 
-        @experimental
         # `EaseInOut` animations are similar to `Ease` but the start and end animation speed is symmetric.
         ease_in_out_cubic_bezier_easing_function<native><public> := class<final><concrete><computes>(cubic_bezier_easing_function):
             X0<override>:float = external {}
@@ -181,27 +271,22 @@ SceneGraph<public> := module:
 
             Y1<override>:float = external {}
 
-        @experimental
         # Controls how the animation plays back.
         keyframed_movement_playback_mode<native><public> := class<abstract><computes><epic_internal>:
 
-        @experimental
         # Play once and stop.
         oneshot_keyframed_movement_playback_mode<native><public> := class<final><concrete><computes>(keyframed_movement_playback_mode):
 
-        @experimental
         # Play once and repeat indefinitely.
         loop_keyframed_movement_playback_mode<native><public> := class<final><concrete><computes>(keyframed_movement_playback_mode):
 
-        @experimental
         # Play continuously reversing direction at each end.
         pingpong_keyframed_movement_playback_mode<native><public> := class<final><concrete><computes>(keyframed_movement_playback_mode):
 
-        @experimental
         # Represents a change in pose and scale over a duration.
         keyframed_movement_delta<native><public> := class<final><concrete>:
             @editable
-            # Represents a change in the transform relative to the previous keyframe or initial animation position.
+            # Represents a change in the transform relative to the previous keyframe or initial animation position. Translation and Scale are interpreted additively.
             Transform<native><public>:(/Verse.org/SpatialMath:)transform = external {}
 
             @editable_number(float) {MinValue := option {0.000000}}
@@ -212,7 +297,6 @@ SceneGraph<public> := module:
             # Easing function to use for playback.
             Easing<native><public>:easing_function = external {}
 
-        @experimental
         # Provides teleportation and simple keyframe-based animation for an entity. Animations play back in the Pre-Physics tick phase. When animating an entity with a parent_constraint, animation will be relative to the parent entity.
         keyframed_movement_component<native><public> := class<final><final_super>(component):
             # Pause movement. Subsequently calling Play() will resume from the point in the animation when it was paused.
@@ -257,7 +341,6 @@ SceneGraph<public> := module:
             # Signaled when any keyframe is reached. (Keyframe:int, IsReversed:logic).
             KeyframeReachedEvent<native><public>:listenable(tuple(int, logic)) = external {}
 
-    @experimental
     # Base class for light components in the SceneGraph.
     # 
     # Dependencies:
@@ -291,7 +374,6 @@ SceneGraph<public> := module:
         # Succeeds if the component is enabled, fails if it's disabled.
         IsEnabled<native><override>()<transacts><decides>:void
 
-    @experimental
     # Used to render a `mesh` at the location of this entity. A mesh is a set of polygons that can be used to represent shapes in the world such as:
     #   * foliage and terrain decorations
     #   * movers (for example, doors and lifts)
@@ -309,26 +391,21 @@ SceneGraph<public> := module:
         # Succeeds if the component is enabled, fails if it's disabled.
         IsEnabled<native><override>()<transacts><decides>:void
 
-        @experimental
         # Enable/disable collision on this mesh. If enabled, meshes may collide in the physics simulation.
-        var Collideable<public>:logic = external {}
+        var Collidable<public>:logic = external {}
 
-        @experimental
         # Enable/disable spatial queries against this mesh. Disabling this field will also disable EntityEnteredEvent/EntityExitedEvent.
         var Queryable<public>:logic = external {}
 
         # Enable/disable visibility of this mesh.
         var Visible<public>:logic = external {}
 
-        @experimental
         # Triggered at the beginning of each tick when another entity first overlaps this entity.
         EntityEnteredEvent<native><public>:listenable(entity) = external {}
 
-        @experimental
         # Triggered at the beginning of each tick when another entity is no longer overlapping this entity
         EntityExitedEvent<native><public>:listenable(entity) = external {}
 
-    @experimental
     # Used to spawn a `particle_system` at the location of this entity. The `particle_system` will simulate while the `particle_system_component` is in the scene.
     # 
     # Dependencies:
@@ -355,42 +432,36 @@ SceneGraph<public> := module:
         # Controls if the `particle_system_component` should play the simulation automatically when added to the scene, or when enabled from a disabled state.
         var<private> AutoPlay<native><public>:logic = external {}
 
-    @experimental
     @available {MinUploadedAtFNVersion := 2930}
     # Find all objects in the scene that currently overlap this entity.
     (Entity:entity).FindOverlapHits<public>()<transacts>:generator(overlap_hit) = external {}
 
-    @experimental
     @available {MinUploadedAtFNVersion := 2930}
     # Find all objects in the scene that would overlap this entity if it were placed at GlobalTransform.
     (Entity:entity).FindOverlapHits<public>(GlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:generator(overlap_hit) = external {}
 
-    @experimental
     @available {MinUploadedAtFNVersion := 2930}
     # Find all objects in the scene that would overlap Volume if they were placed at GlobalTransform. NOTE: This entity defines the context(scene) for the query but does not otherwise take part in the sweep.
     (Entity:entity).FindOverlapHits<public>(GlobalTransform:(/Verse.org/SpatialMath:)transform, Volume:collision_volume)<transacts>:generator(overlap_hit) = external {}
 
-    @experimental
     @available {MinUploadedAtFNVersion := 2930}
     # Find all objects in the scene that would intersect this entity if it were swept from its location along the Displacement vector.
     (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3)<transacts>:generator(sweep_hit) = external {}
 
-    @experimental
     @available {MinUploadedAtFNVersion := 2930}
     # Find all objects in the scene that would intersect this entity if it were swept from GlobalTransform along the Displacement vector.
     (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3, StartGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:generator(sweep_hit) = external {}
 
-    @experimental
     @available {MinUploadedAtFNVersion := 2930}
     # Find all objects in the scene that would intersect Volume if they were swept from GlobalTransform along the Displacement vector NOTE: This entity defines the context(scene) for the query but does not otherwise take part in the sweep.
     (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3, StartGlobalTransform:(/Verse.org/SpatialMath:)transform, Volume:collision_volume)<transacts>:generator(sweep_hit) = external {}
 
-    @experimental
     # A `rect_light_component` emits light into the scene from a rectangular plane with a specified width and height. You can use these
     # to simulate any kind of light sources that have rectangular areas, such as televisions or monitor screens, overhead lighting
     # fixtures, or wall sconces.
     rect_light_component<native><public> := class<final>(light_component):
-        # Set the visible light intensity emitted in SI unit Candela./nSpecified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
+        # Set the visible light intensity emitted in SI unit Candela.
+        # Specified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
         var Intensity<public>:float = external {}
 
         # The bounds of the light's visible influence, in centimeters. This clamping of the light's influence is not physically correct but very important for performance,
@@ -410,7 +481,6 @@ SceneGraph<public> := module:
         # The length of the barn door attached to the light source rect, in centimeters.
         var BarnDoorLength<public>:float = external {}
 
-    @experimental
     sound_component<native><public> := class<abstract><final_super><epic_internal>(component, enableable):
         @editable
         var<private> AutoPlay<native><public>:logic = external {}
@@ -433,11 +503,11 @@ SceneGraph<public> := module:
         @editable
         var<private> Enabled<native><public>:logic = external {}
 
-    @experimental
     # A `sphere_light_component` emits light in all directions into the scene from a spherical source shape with a specified radius. A radius of 0 makes it a point light. You can use these
     # to simulate any kind of light sources that emit in all directions, such as a light bulb.
     sphere_light_component<native><public> := class<final>(light_component):
-        # Set the visible light intensity emitted in SI unit Candela./nSpecified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
+        # Set the visible light intensity emitted in SI unit Candela.
+        # Specified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
         var Intensity<public>:float = external {}
 
         # The bounds of the light's visible influence, in centimeters. This clamping of the light's influence is not physically correct but very important for performance,
@@ -448,13 +518,13 @@ SceneGraph<public> := module:
         # Radius of the source shape, in centimeters. Note that light shapes which intersect shadow casting geometry can cause shadowing artifacts.
         var SourceRadius<public>:float = external {}
 
-    @experimental
     # A `spot_light_component` emits light from a single point in a cone shape. The shape of the light is defined by two cones: the `InnerConeAngleDegrees`
     # and `OuterConeAngleDegrees`. Within the `InnerConeAngleDegrees` the light achieves full brightness. As you go from the extent of the inner radius to the
     # extents of the `OuterConeAngleDegrees` a falloff takes place, creating a penumbra, or softening around the `spot_light_component`'s disc of
     # illumination. The Radius of the light defines the length of the cones. More simply, this will work like a flash light or stage can light.
     spot_light_component<native><public> := class<final>(light_component):
-        # Set the visible light intensity emitted in SI unit Candela./nSpecified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
+        # Set the visible light intensity emitted in SI unit Candela.
+        # Specified before ColorFilter (which multiplies each color component after the intensity calculation and can change the effective intensity of the light).
         var Intensity<public>:float = external {}
 
         # The bounds of the light's visible influence, in centimeters. This clamping of the light's influence is not physically correct but very important for performance,
@@ -511,7 +581,6 @@ SceneGraph<public> := module:
         @editable
         Maximum<native><public>:float = external {}
 
-    @experimental
     # Specifies how a collision volume pair should interact. See collision_profile.
     collision_interaction<native><public> := enum:
         # The pair will not be detected by Overlap and Sweep queries. The pair will not collide in the physics simulation.
@@ -521,15 +590,12 @@ SceneGraph<public> := module:
         # The pair will be detected by Overlap and Sweep queries. The pair will collide in the physics simulation.
         Block
 
-    @experimental
     # Every volume has a collision channel as part of its collision_profile. It is used to determine how two volumes interact. See collision_profile.
     collision_channel<native><public> := class<concrete><epic_internal>:
 
-    @experimental
     # An alias for the function type used to map a collision_channel to a collision_interaction used by  collision_profile.
     collision_channel_to_interaction<public> := type {_(:collision_channel)<computes>:collision_interaction}
 
-    @experimental
     # A collision profile determines how a volume interacts with other volumes for Overlap queries, Sweep queries, and physics simulation. When two volumes are being tested to see how they interact, the algorithm looks like this:
     #    GetInteraction(A:collision_profile, B:collision_profile):collision_interaction = 
     #        InteractionA = B.GetChannelInteraction(A.Channel) 
@@ -550,60 +616,45 @@ SceneGraph<public> := module:
     # Module import path: /Verse.org/SceneGraph/CollisionChannels
     # The set of built-in collision_channels. This is a closed set for now.
     CollisionChannels<public> := module:
-        @experimental
         stationary<native><public> := class(collision_channel):
 
-        @experimental
         dynamic<native><public> := class(collision_channel):
 
-        @experimental
         avatar<native><public> := class(collision_channel):
 
-        @experimental
         visibility<native><public> := class(collision_channel):
 
-        @experimental
         camera<native><public> := class(collision_channel):
 
-        @experimental
         physics<native><public> := class(collision_channel):
 
     # Module import path: /Verse.org/SceneGraph/CollisionProfiles
     # A set of useful collision profiles. New profiles can be created in Verse code
     CollisionProfiles<public> := module:
-        @experimental
         # Stationary collision channel, Ignore all channels
         StationaryIgnoreAll<public>:collision_profile = external {}
 
-        @experimental
         # Stationary collision channel, Overlap all channels
         StationaryOverlapAll<public>:collision_profile = external {}
 
-        @experimental
         # Stationary collision channel, Block all channels
         StationaryBlockAll<public>:collision_profile = external {}
 
-        @experimental
         # Dynamic collision channel, Ignore all channels
         DynamicIgnoreAll<public>:collision_profile = external {}
 
-        @experimental
         # Dynamic collision channel, Overlap all channels
         DynamicOverlapAll<public>:collision_profile = external {}
 
-        @experimental
         # Dynamic collision channel, Block all channels
         DynamicBlockAll<public>:collision_profile = external {}
 
-        @experimental
         # Stationary collision channel, Block all channels except visibility (used for e.g., invisible wall, glass)
         StationaryBlockVisible<public>:collision_profile = external {}
 
-        @experimental
         # Visibility collision channel, Overlap all channel (used for e.g., visibility testing)
         VisibilityOverlapAll<public>:collision_profile = external {}
 
-    @experimental
     # The results of an overlap query. See entity.FindOverlapHits(). We will get one overlap_hit for each intersection of any volume in SourceVolumes with any other volume.
     overlap_hit<native><public> := struct<epic_internal>:
         # The source component and volume (query input). For compound inputs (like an entity hierarchy) this will be a component/volume in that hierarchy. The SourceTransform is the transform of SourceVolume used for the overlap test. For single volume inputs like a sphere, the Source volume and transform are just the inputs to the overlap test, and the component is false.
@@ -621,7 +672,6 @@ SceneGraph<public> := module:
         # The volume that was hit by SourceVolume
         TargetVolume<native><public>:collision_element
 
-    @experimental
     # The results of a sweep query. See entity.FindSweepHits(). We will get one sweep_hit for each intersection of any volume in SourceVolumes with any other volume.
     sweep_hit<native><public> := struct<epic_internal>:
         # The source component and volume (query input). For compound inputs (like an entity hierarchy) this will be a component/volume in that hierarchy. The SourceGlobalTransform is the transform of SourceVolume at the start of the sweep. For single volume inputs like a sphere, the volume and transform are just the inputs to the sweep, and the component is false.
@@ -654,14 +704,11 @@ SceneGraph<public> := module:
         # If TargetVolume is a polygonal object (mesh, convex hull, etc.) and the contact point is on an edge or vertex, this is the most-opposing face normal of the faces that share that edge or vertex. Otherwise it is the same as HitNormal.
         ContactFaceNormal<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
 
-    @experimental
     # Collision Volumes represent the collision shapes of meshes. They can be detected by Overlap and Sweep queries and generate collisions in the physics simulation.
     collision_volume<native><public> := class<abstract>:
-        @experimental
         # Enable/disable collision on this volume.
-        var Collideable<public>:logic = external {}
+        var Collidable<public>:logic = external {}
 
-        @experimental
         # Enable/disable spatial queries against this volume.
         var Queryable<public>:logic = external {}
 
@@ -671,14 +718,11 @@ SceneGraph<public> := module:
         # Set the transform of this volume in the space of its owner (usually a component on an entity)
         SetLocalTransform<public>(NewLocalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void = external {}
 
-    @experimental
     # Base class for collision_volumes that consist of a single volume with a single collision_profile and collision_material for the whole volume. This covers most volume types used in queries and physics, except compound types like a mesh. A query will always return an element rather than a general volume. For example when colliding with a mesh, the element will be a collision_triangle, which is a collision_element and has a single material, rather than a collision_triangle_mesh, which is not an element and has a material palette.
     collision_element<native><public> := class<abstract>(collision_volume):
-        @experimental
         # The collision_profile for this volume.
         var CollisionProfile<public>:collision_profile = external {}
 
-    @experimental
     # A collision capsule aligned along the Z axis.
     collision_capsule<native><public> := class(collision_element):
         # The radius of the capsule
@@ -687,23 +731,19 @@ SceneGraph<public> := module:
         # The length of the capsule's cylindrical section (distance between the two end cap centers)
         var Length<public>:float = external {}
 
-    @experimental
     # A collision sphere.
     collision_sphere<native><public> := class(collision_element):
         # The radius of the sphere
         var Radius<public>:float = external {}
 
-    @experimental
     # A collision point.
     collision_point<native><public> := class<concrete>(collision_element):
 
-    @experimental
     # An axis-aligned collision box.
     collision_box<native><public> := class(collision_element):
         var Extents<public>:(/Verse.org/SpatialMath:)vector3
 
 
-    @experimental
     # Base class for authoring logic and data in the SceneGraph. Using components you
     # can author re-usable building blocks of logic and data which can then be added to
     # entities in the scene.
@@ -752,31 +792,26 @@ SceneGraph<public> := module:
     #      OnRemovingFromScene
     # ==============================================================================
     component<native><public> := class<abstract><unique><castable><final_super_base>:
-        @experimental
         # The parent entity of this component.
         #   * Components must have a parent entity pointer provided when being constructed.
         #   * Components cannot be moved between parents.
         Entity<native><public>:entity
 
-        @experimental
         # Called when the component is added to the scene by parenting it under the simulation entity or another entity already in the scene.
         #   * Querying for components in the scene is valid after this phase completes.
         OnAddedToScene<native><native_callable><protected>():void
 
-        @experimental
         # Called when the component begins simulating within the scene.
         #   * Use this to set up TickEvent callbacks or other setup that must be guaranteed to complete immediately.
         #   * `OnAddedToScene` is guaranteed to run before `OnBeginSimulation`.
         OnBeginSimulation<native><native_callable><protected>():void
 
-        @experimental
         # Called when the component begins simulating within the scene.
         #   * Use this to add asynchronous/suspends update logic for a component.
         #   * `OnBeginSimulation` is guaranteed to run before `OnSimulate`.
         #   * `OnSimulate` will be cancelled before `OnEndSimulation`
         OnSimulate<native_callable><protected>()<suspends>:void = external {}
 
-        @experimental
         # Called when the component ends simulation within the scene.
         #   * Simulation ends on a component when the experience resets, the parent entity is removed from the scene.
         #   * Cached TickEvents cancelables should be canceled in `OnEndSimulation`.
@@ -784,31 +819,26 @@ SceneGraph<public> := module:
         #   * `OnEndSimulation` is only called on components that have already had `OnBeginSimulation` called.
         OnEndSimulation<native><native_callable><protected>():void
 
-        @experimental
         # Called when the component is about to be removed from the scene.
         #   * Components are removed from a scene when the parent entity is removed from the scene.
         #   * `OnRemovingFromScene` is only called on components that have already had `OnAddedToScene` called.
         OnRemovingFromScene<native><native_callable><protected>():void
 
-        @experimental
         # Removes the component from the entity.
         #   * Removed components are removed from the scene and can only be added back to the same entity.
         #   * Flows through `OnEndSimulation`-> `OnRemovingFromScene`.
         RemoveFromEntity<native><final><public>():void
 
-        @experimental
         # Succeeds if the component is currently in the scene.
         #   * After `OnAddedToScene` is called this call succeeds.
         #   * After `OnRemovingFromScene` is called this call fails.
-        IsInScene<native><final><public>()<transacts><decides>:void
+        IsInScene<native><final><public>()<reads><decides>:void
 
-        @experimental
         # Succeeds if the component is currently simulating.
         #   * After `OnBeginSimulation` is called this call succeeds.
         #   * After `OnEndSimulation` is called this call fails.
-        IsSimulating<native><final><public>()<transacts><decides>:void
+        IsSimulating<native><final><public>()<reads><decides>:void
 
-        @experimental
         # Set callbacks to `TickEvents.PrePhysics` and `TickEvents.PostPhysics` to receive per-frame updates before and after physics is updated on your object.
         var<private> TickEvents<protected>:tick_events = external {}
 
@@ -820,7 +850,6 @@ SceneGraph<public> := module:
     # An event which can be sent through the scene graph.
     scene_event<native><public> := interface:
 
-    @experimental
     # Entities are the base object in the SceneGraph.
     #   * Objects in experiences are constructed of one or more entities.
     #   * Entities are hierarchical. You can query your parent using `GetParent` and add child entities using `AddEntities`.
@@ -840,46 +869,39 @@ SceneGraph<public> := module:
     #   components allows you to restructure your prefabs throughout production of your experience, without needing to massively
     #   refactor your class structure.
     entity<native><public> := class<concrete><unique><transacts><castable>:
-        @experimental
         # Returns the parent entity of this entity.
         #   * The parent entity controls the lifetime of its child entities and components. When an entity
         #     is removed from the scene, all its child entities and components will be removed as well.
         #   * Method fails if there is currently no parent entity.
-        GetParent<native><final><public>()<transacts><decides>:entity
+        GetParent<native><final><public>()<reads><decides>:entity
 
-        @experimental
         # Removes this entity from its parent. This is used to remove entities from the scene.
         #   * Components on this entity and its children will run through `OnEndSimulation` -> `OnRemovingFromScene`.
         #   * Entity can be added back later by using `NewParent.AddEntities`.
         RemoveFromParent<native><final><public>():void
 
-        @experimental
         # Adds the provided entities as children of this entity.
         #   * If child entity already has a parent, removes the entity from its current parent and adds it to the new one.
         #   * Added child entities will move through their lifetime methods until they match the state of the new parent.
         AddEntities<native><final><public>(NewChildEntities:[]entity):void
 
-        @experimental
         # Returns the child entities belonging to this entity which are accessible from the calling context.
         #   * This method only gets the direct entity children. To query multiple levels down the entity structure use
         #     the Find* query methods instead.
-        GetEntities<native><final><public>()<transacts>:[]entity
+        GetEntities<native><final><public>()<reads>:[]entity
 
-        @experimental
         @available {MinUploadedAtFNVersion := 3200}
         # Succeeds and returns the child component of type `component_type` if it exists and is accessible from the calling context.
-        #   Note: When called during the Initialize, AddedToScene or BeginSimulation phase, it will make sure the returned component has achieved the corresponding phase.
+        #   Note: When called during the AddedToScene or BeginSimulation phase, it will make sure the returned component has achieved the corresponding phase.
         #   Fails if no component of `component_type` exists or can be accessed.
-        GetComponent<native><final><public>(component_type:castable_subtype(component))<transacts><decides>:component_type
+        GetComponent<native><final><public>(component_type:castable_subtype(component))<reads><decides>:component_type
 
-        @experimental
         # Returns the child components belonging to this entity which are accessible from the calling context.
-        GetComponents<native><final><public>()<transacts>:[]component
+        GetComponents<native><final><public>()<reads>:[]component
 
-        @experimental
         # Adds the provided components to the entity.
         #   * If a component is not allowed to be added to this entity it is skipped.
-        #   Note: When called during the Initialize, AddedToScene or BeginSimulation phase, it will make sure the added component has achieved the corresponding phase.
+        #   Note: When called during the AddedToScene or BeginSimulation phase, it will make sure the added component has achieved the corresponding phase.
         #   * Components are added following these rules:
         #       1. All components are added to the entity child list.
         #       2. All components have `OnAddedToScene` called (if this entity is in the scene).
@@ -898,31 +920,26 @@ SceneGraph<public> := module:
         # Send a scene event to this entity and all of its descendants. OnReceive will be invoked for each entity. Consuming the event at any entity will halt propagation down that subtree. Entities are traversed in breadth-first order, i.e. each layer is evaluated before moving deeper. Returns true if the event was consumed.
         SendDown<final><native><public>(SceneEvent:scene_event):logic
 
-    @experimental
     # Reference type to editor defined prefab. Only generated digest code should reference this type.
     entity_prefab<native><public> := class<computes><epic_internal>:
 
-    @experimental
     # Interface to provide alternative origin to an entity which is defaulted to its parent. See `transform_component`
     origin<native><public> := interface<epic_internal>:
         GetTransform<native_callable><public>()<transacts>:(/Verse.org/SpatialMath:)transform
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3200}
     # class to provide alternative origin to the 'transform_component' as an entity
-    entity_origin<native><public> := class<epic_internal>(origin):
+    entity_origin<native><public> := class<final>(origin):
         @editable
         Entity<native><public>:entity
 
         GetTransform<override>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
 
-    @experimental
     # Returns the simulation entity parent for this entity.
     #   * The simulation entity is the rootmost entity in an experience.
     #   * Fails if this entity is not currently in the scene.
     (InEntity:entity).GetSimulationEntity<native><public>()<transacts><decides>:entity
 
-    @experimental
     # Describes discrete phases of a frame update. Subscribe to members of the tick_events object to run code before or after the physics system has updated your object, allowing you to affect or react to these updates.
     tick_events<native><public> := class<epic_internal>:
         # Listen `PrePhysics` to run your code before the physics system has updated your object this frame.
@@ -931,54 +948,45 @@ SceneGraph<public> := module:
         # Listen `PostPhysics` to run your code after the physics system has updated your object this frame.
         PostPhysics<native><public>:execution_listenable = external {}
 
-    @experimental
     # Stores the transforms for an entity, which are used to position the entity.
     transform_component<native><public> := class<final><final_super>(component):
-        # Sets the global transform of the entity.
-        SetGlobalTransform<native><public>(NewGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void
+        # Current transform of the entity, globally referenced. Any value set at construction will be overrridden with the calculation from the Local Transform
+        var GlobalTransform<public>:(/Verse.org/SpatialMath:)transform = external {}
 
-        # Returns the global transform of the entity.
-        GetGlobalTransform<native><public>()<transacts>:(/Verse.org/SpatialMath:)transform
+        var<private> GlobalTransformInternal<native><public>:(/Verse.org/SpatialMath:)transform = external {}
 
-        # Sets the local transform of the entity.
-        SetLocalTransform<native><public>(NewLocalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void
+        # LocalTransform to its parent/origin
+        var LocalTransform<public>:(/Verse.org/SpatialMath:)transform = external {}
 
-        @editable
-        # LocalTransform to its parent
-        var<private> LocalTransform<native><public>:(/Verse.org/SpatialMath:)transform = external {}
+        @editable {}
+        var<private> LocalTransformInternal<native><public>:(/Verse.org/SpatialMath:)transform = external {}
 
-        @editable
-        # alternate origin than the default parent
-        var<private> Origin<native><public>:?origin = external {}
+        # alternate origin than the default parent entity
+        var Origin<public>:?origin = external {}
 
-    @experimental
+        @editable {}
+        var<private> OriginInternal<native><public>:?origin = external {}
+
     # Returns the global transform of this entity, in the case the entity does not have a transform_component it will return the transform of the first parent that has a transform
     (InEntity:entity).GetGlobalTransform<native><public>()<transacts>:(/Verse.org/SpatialMath:)transform
 
-    @experimental
     # Returns the local transform of this entity, in the case the entity does not have a transform_component it will return identity
     (InEntity:entity).GetLocalTransform<native><public>()<transacts>:(/Verse.org/SpatialMath:)transform
 
-    @experimental
     # Returns the origin of the entity in any, in the case the entity does not have a transform_component the method will fail
     (InEntity:entity).GetOrigin<native><public>()<transacts><decides>:origin
 
-    @experimental
     # Sets the global transform of this entity, in the case the entity does not have a transform_component it will create one and set its global transform
     (InEntity:entity).SetGlobalTransform<native><public>(NewGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void
 
-    @experimental
     # Sets the local transform of this entity, in the case the entity does not have a transform_component it will create one and set its local transform
     (InEntity:entity).SetLocalTransform<native><public>(NewLocalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void
 
-    @experimental
     # Sets the origin of this entity, in the case the entity does not have a transform_component it will create one and set its origin. This method fails if it recognized dependency recursion.
-    (InEntity:entity).SetOrigin<native><public>(NewOrigin:origin)<transacts><decides>:void
+    (InEntity:entity).SetOrigin<native><public>(NewOrigin:origin)<transacts>:void
 
-    @experimental
     # Resets the origin of this entity, which will now default to its parent
     (InEntity:entity).ResetOrigin<native><public>()<transacts>:void
-    @experimental
     # Users to subscribe to, or await on, a DeltaTime based callback from one of the phases in a component's `TickEvents` object.'
     # 
     # IMPORTANT: You must keep a pointer on your component to the returned `cancelable`. Otherwise the GC will eventually clean up your subscription and your callback will stop being invoked.
@@ -988,17 +996,6 @@ SceneGraph<public> := module:
 
         # Subscribe a callback function to this TickEvent phase. The input parameter to your function (DeltaTime) is the time that has passed between the last update and the current update.
         Subscribe<native><override>(Callback:type {_(:float):void})<transacts>:cancelable
-
-    @experimental
-    # Used to subscribe a callback or await an event based callback '
-    # 
-    # IMPORTANT: You must keep a pointer on your component to the returned `cancelable`. Otherwise the GC will eventually clean up your subscription and your callback will stop being invoked.
-    execution_event<native><public> := class<epic_internal>(listenable(tuple())):
-        # Suspends the current task until resumed by a matching call to `signalable.Signal`.
-        Await<native><override>()<suspends>:tuple()
-
-        # Subscribe a callback function to this event.
-        Subscribe<native><override>(Callback:type {_():void})<transacts>:cancelable
 
 Simulation<public> := module:
     # Module import path: /Verse.org/Simulation/Tags
@@ -1925,159 +1922,127 @@ SpatialMath<public> := module:
     @import_as("/*.FVRotation")
     rotation<native><public> := struct<concrete>:
 
-    @experimental
-    # Makes a `rotation` from `Axis` and `AngleRadians` using a left-handed sign convention (e.g. a positive rotation around +Z takes +X to +Y). If `Axis.IsAlmostZero[]`, make the identity rotation.
-    MakeRotation<native><public>(Axis:vector3, AngleRadians:float)<reads><converges>:rotation
+    @available {MinUploadedAtFNVersion := 3600}
+    # Makes a `rotation` from `Axis` and `Angle` in radians using a right-handed sign convention (e.g. a positive rotation around Up takes Forward to Left).
+    MakeRotationRadians<native><public>(Axis:vector3, Angle:float)<reads><converges>:rotation
 
-    @experimental
-    # Makes a `rotation` by applying `YawRightDegrees`, `PitchUpDegrees`, and `RollClockwiseDegrees`, in that order:
-    #  * first a *yaw* about the Up axis with a positive angle indicating a clockwise rotation when viewed from above,
-    #  * then a *pitch* about the new Right axis with a positive angle indicating 'nose up',
-    #  * followed by a *roll* about the new Forward axis axis with a positive angle indicating a clockwise rotation when viewed along +X.
-    # Note that these conventions differ from `MakeRotation` but match `ApplyYaw`, `ApplyPitch`, and `ApplyRoll`.
-    MakeRotationFromYawPitchRollDegrees<native><public>(YawRightDegrees:float, PitchUpDegrees:float, RollClockwiseDegrees:float)<reads><converges>:rotation
+    @available {MinUploadedAtFNVersion := 3600}
+    # Degrees version of `MakeRotationRadians`
+    MakeRotationDegrees<public>(Axis:vector3, Angle:float)<reads>:rotation = external {}
 
-    @experimental
+    @available {MinUploadedAtFNVersion := 3600}
+    # Makes a `rotation` by applying a pre-rotation of `YawAngle` followed by `PitchAngle` and then `RollAngle`, in that order:
+    #  * *yaw* is right-handed rotation about the Down axis,
+    #  * *pitch* is right-handed rotation about the Right axis,
+    #  * *roll* is right-handed rotation about the Forward axis.
+    MakeRotationFromYawPitchRollRadians<public>(YawAngle:float, PitchAngle:float, RollAngle:float)<reads>:rotation = external {}
+
+    # Degrees version of `MakeRotationFromYawPitchRollRadians`
+    MakeRotationFromYawPitchRollDegrees<native><public>(YawAngle:float, PitchAngle:float, RollAngle:float)<reads><converges>:rotation
+
+    @available {MinUploadedAtFNVersion := 3600}
+    # Makes a `rotation` by applying a post-rotation of `LeftAxisAngle` followed by `UpAxisAngle` and then `ForwardAxisAngle `in that order. Right-handed convention (e.g. a positive rotation around Up takes +Forward to Left).
+    MakeRotationFromEulerRadians<native><public>(LeftAxisAngle:float, UpAxisAngle:float, ForwardAxisAngle:float)<reads><converges>:rotation
+
+    @available {MinUploadedAtFNVersion := 3600}
+    # Degrees version of `MakeRotationFromEulerRadians`
+    MakeRotationFromEulerDegrees<public>(LeftAxisAngle:float, UpAxisAngle:float, ForwardAxisAngle:float)<reads>:rotation = external {}
+
     # Makes the identity `rotation`.
     IdentityRotation<native><public>()<converges>:rotation
 
-    @experimental
-    # Returns the 'distance' between `Rotation1` and `Rotation2`. The result will be between:
+    # Returns the distance between `Rotation1` and `Rotation2`. The result will be between:
     #  * `0.0`, representing equivalent rotations and
     #  * `1.0` representing rotations which are 180 degrees apart (i.e., the shortest rotation between them is 180 degrees around some axis).
-    Distance<native><public>(Rotation1:rotation, Rotation2:rotation)<reads>:float
+    Distance<native><public>(Rotation1:rotation, Rotation2:rotation)<reads><converges>:float
 
-    @experimental
-    # Returns the 'smallest angular distance' between `Rotation1` and `Rotation2` in radians.
-    AngularDistance<native><public>(Rotation1:rotation, Rotation2:rotation)<reads>:float
+    @available {MinUploadedAtFNVersion := 3600}
+    # Returns the smallest angular distance between `Rotation1` and `Rotation2` in radians.
+    AngularDistanceRadians<native><public>(Rotation1:rotation, Rotation2:rotation)<reads><converges>:float
 
-    @experimental
-    # Makes a `rotation` by applying `PitchUpRadians` of right-handed rotation around the local +Right axis to `InitialRotation`.
-    (InitialRotation:rotation).ApplyPitch<native><public>(PitchUpRadians:float)<reads>:rotation
+    @available {MinUploadedAtFNVersion := 3600}
+    # Degrees version of `AngularDistanceRadians`.
+    AngularDistanceDegrees<public>(Rotation1:rotation, Rotation2:rotation)<reads>:float = external {}
 
-    @experimental
-    # Makes a `rotation` by applying `RollClockwiseRadians` of right-handed rotation around the local +Forward axis to `InitialRotation`.
-    (InitialRotation:rotation).ApplyRoll<native><public>(RollClockwiseRadians:float)<reads>:rotation
+    @available {MinUploadedAtFNVersion := 3600}
+    # Apply a `PreRotation` to `PostRotation` as `v * PreRotation * PostRotation`.
+    (/Verse.org/SpatialMath:)operator'*'<native><public>(PreRotation:rotation, PostRotation:rotation)<reads><converges>:rotation
 
-    @experimental
-    # Makes a `rotation` by applying `YawRightRadians` of left-handed rotation around the local +Up axis to `InitialRotation`.
-    (InitialRotation:rotation).ApplyYaw<native><public>(YawRightRadians:float)<reads>:rotation
-
-    @experimental
-    # Makes a `rotation` by applying `AngleRadians` of left-handed rotation around the world +Forward axis to `InitialRotation`.
-    (InitialRotation:rotation).ApplyWorldRotationForward<native><public>(AngleRadians:float)<reads>:rotation
-
-    @experimental
-    # Makes a `rotation` by applying `AngleRadians` of left-handed rotation around the world +Right axis to `InitialRotation`.
-    (InitialRotation:rotation).ApplyWorldRotationRight<native><public>(AngleRadians:float)<reads>:rotation
-
-    @experimental
-    # Makes a `rotation` by applying `AngleRadians` of left-handed rotation around the world +Up axis to `InitialRotation`.
-    (InitialRotation:rotation).ApplyWorldRotationUp<native><public>(AngleRadians:float)<reads>:rotation
-
-    @experimental
-    # Makes a `rotation` by applying `AngleRadians` of left-handed rotation around the local +Forward axis to `InitialRotation`.
-    (InitialRotation:rotation).ApplyLocalRotationForward<public>(AngleRadians:float)<reads>:rotation = external {}
-
-    @experimental
-    # Makes a `rotation` by applying `AngleRadians` of left-handed rotation around the local +Right axis to `InitialRotation`.
-    (InitialRotation:rotation).ApplyLocalRotationRight<public>(AngleRadians:float)<reads>:rotation = external {}
-
-    @experimental
-    # Makes a `rotation` by applying `AngleRadians` of left-handed rotation around the local +Up axis to `InitialRotation`.
-    (InitialRotation:rotation).ApplyLocalRotationUp<public>(AngleRadians:float)<reads>:rotation = external {}
-
-    @experimental
-    # Makes a `rotation` by composing `AdditionalRotation` to `InitialRotation`.
-    (InitialRotation:rotation).RotateBy<native><public>(AdditionalRotation:rotation)<reads>:rotation
-
-    @experimental
-    # Makes a `rotation` by composing the inverse of `RotationToRemove` from `InitialRotation`. such that InitialRotation = RotateBy(UnrotateBy(InitialRotation, RotationToRemove), RotationToRemove). This is equivalent to RotateBy(InitialRotation, InvertRotation(RotationToRemove))
-    (InitialRotation:rotation).UnrotateBy<native><public>(RotationToRemove:rotation)<reads>:rotation
-
-    @experimental
+    @available {MinUploadedAtFNVersion := 3600}
     # Makes a `tuple(float, float, float)` with three elements:
-    #  * *yaw* degrees of `rotation`
-    #  * *pitch* degrees of `rotation`
-    #  * *roll* degrees of `rotation`
-    # using the conventions of `MakeRotationFromYawPitchRollDegrees`.
-    (Rotation:rotation).GetYawPitchRollDegrees<native><public>()<reads>:tuple(float, float, float)
+    #  * *yaw* of `rotation` in radians
+    #  * *pitch* of `rotation` in radians
+    #  * *roll* of `rotation` in radians
+    # using the conventions of `MakeRotationFromYawPitchRollRadians`.
+    (Rotation:rotation).GetYawPitchRollRadians<public>()<reads>:tuple(float, float, float) = external {}
 
-    @experimental
-    # Makes a `vector3` from the axis of `rotation`.
-    # If `rotation` is nearly identity, this will return the +Forward axis. See also `GetAngle`.
-    (Rotation:rotation).GetAxis<native><public>()<reads>:vector3
+    @available {MinUploadedAtFNVersion := 3600}
+    # Degrees version of `GetYawPitchRollRadians`.
+    (Rotation:rotation).GetYawPitchRollDegrees<native><public>()<reads><converges>:tuple(float, float, float)
 
-    @experimental
-    # Returns the radians of left-handed `rotation` around the axis of `rotation`. See also `GetAxis`.
-    (Rotation:rotation).GetAngle<native><public>()<reads>:float
+    @available {MinUploadedAtFNVersion := 3600}
+    # Makes a `tuple(float, float, float)` with three elements:
+    #  * *left axis* `rotation` in radians
+    #  * *up axis* of `rotation` in radians
+    #  * *forward axis* of `rotation` in radians
+    # using the conventions of `MakeRotationEulerRadians`.
+    (Rotation:rotation).GetEulerRadians<native><public>()<reads><converges>:tuple(float, float, float)
 
-    @experimental
-    # Makes the smallest angular `rotation` from `InitialRotation` to `FinalRotation` such that:
-    # `InitialRotation.RotateBy(MakeShortestRotationBetween(InitialRotation, FinalRotation)) = FinalRotation` and
-    # `MakeShortestRotationBetween(InitialRotation, FinalRotation)?.GetAngle()` is as small as possible.
-    MakeShortestRotationBetween<native><public>(InitialRotation:rotation, FinalRotation:rotation)<reads>:rotation
+    @available {MinUploadedAtFNVersion := 3600}
+    # Degrees version of `GetEulerRadians`.
+    (Rotation:rotation).GetEulerDegrees<public>()<reads>:tuple(float, float, float) = external {}
 
-    @experimental
-    # Makes the smallest angular `rotation` from `InitialVector` to `FinalVector` such that:
-    # `InitialVector.RotateBy(MakeShortestRotationBetween(InitialVector, Vector)) = FinalVector` and
-    # `MakeShortestRotationBetween(InitialVector, FinalVector)?.GetAngle()` is as small as possible.
-    MakeShortestRotationBetween<native><public>(InitialVector:vector3, FinalVector:vector3)<reads>:rotation
+    # Makes a `vector3` from the axis of `rotation` for an right-handed angle.
+    # If `rotation` is nearly identity, this will return the +Forward axis. See also `GetAngleRadians`.
+    (Rotation:rotation).GetAxis<native><public>()<reads><converges>:vector3
 
-    @experimental
-    # Makes a new `rotation` from the component wise subtraction of the Euler angle components in `RotationA` by 
-    # the Euler angle components in `RotationB` and ensures the returned value is normalized.
-    MakeComponentWiseDeltaRotation<native><public>(RotationA:rotation, RotationB:rotation)<reads>:rotation
+    @available {MinUploadedAtFNVersion := 3600}
+    # Returns the radians of right-handed `rotation` around the axis of `rotation`. See also `GetAxis`.
+    (Rotation:rotation).GetAngleRadians<native><public>()<reads><converges>:float
 
-    @experimental
-    # Used to perform spherical linear interpolation between `From` (when `Parameter = 0.0`) and `To` (when `Parameter = 1.0`). Expects that `0.0 <= Parameter <= 1.0`.
-    Slerp<native><public>(InitialRotation:rotation, FinalRotation:rotation, Parameter:float)<reads><decides>:rotation
+    @available {MinUploadedAtFNVersion := 3600}
+    # Degrees version of GetAngleRadians
+    (Rotation:rotation).GetAngleDegrees<public>()<reads>:float = external {}
 
-    @experimental
+    # Makes the smallest angular `rotation` from `InitialVector` to `FinalVector` two vectors of arbitrary length such that:
+    # `InitialVector * MakeShortestRotationBetween(InitialVector, FinalVector) = FinalVector` and
+    # `MakeShortestRotationBetween(InitialVector, FinalVector)?.GetAngleRadians()` is as small as possible.
+    MakeShortestRotationBetween<native><public>(InitialVector:vector3, FinalVector:vector3)<reads><converges>:rotation
+
+    # Used to perform spherical linear interpolation between `From` (when `Ratio = 0.0`) and `To` (when `Ratio = 1.0`). Expects `0.0 <= Ratio <= 1.0`.
+    Slerp<native><public>(InitialRotation:rotation, FinalRotation:rotation, Ratio:float)<reads><converges>:rotation
+
     # Makes a `vector3` by applying `Rotation` to `Vector`.
-    (Rotation:rotation).RotateVector<native><public>(Vector:vector3)<reads>:vector3
+    (/Verse.org/SpatialMath:)operator'*'<native><public>(Vector:vector3, Rotation:rotation)<reads><converges>:vector3
 
-    @experimental
-    # Makes a `vector3` by applying the inverse of `Rotation` to `Vector`.
-    (Rotation:rotation).UnrotateVector<native><public>(Vector:vector3)<reads>:vector3
-
-    @experimental
     # Makes a `rotation` by inverting `Rotation` such that `ApplyRotation(Rotation, Rotation.Invert())) = IdentityRotation`.
-    (Rotation:rotation).Invert<native><public>()<reads>:rotation
+    (Rotation:rotation).Invert<native><public>()<reads><converges>:rotation
 
-    @experimental
     # Returns `Rotation` if it does not contain `NaN`, `Inf` or `-Inf`.
     (Rotation:rotation).(/Verse.org/SpatialMath:)IsFinite<native><public>()<decides><converges>:rotation
 
-    @experimental
-    # Makes a unit `vector3` pointing in the local space *forward* direction in world space coordinates.
-    # This is equivalent to: `RotateVector(Rotation, vector3{Forward:=1.0, Right:=0.0, Up:=0.0})`.
-    (Rotation:rotation).GetLocalForward<public>()<reads>:vector3 = external {}
+    # Makes a unit `vector3` pointing in the *forward* rotated direction.
+    # This is equivalent to: `vector3{Forward:=1.0, Left:=0.0, Up:=0.0} * Rotation`.
+    (Rotation:rotation).GetForwardAxis<public>()<reads>:vector3 = external {}
 
-    @experimental
-    # Makes a unit `vector3` pointing in the the local space *right* direction in world space coordinates.
-    # This is equivalent to: `RotateVector(Rotation, vector3{Forward:=0.0, Right:=1.0, Up:=0.0})`.
-    (Rotation:rotation).GetLocalRight<public>()<reads>:vector3 = external {}
+    # Makes a unit `vector3` pointing in the *left* rotated direction.
+    # This is equivalent to: `vector3{Forward:=0.0, Left:=1.0, Up:=0.0} * Rotation`.
+    (Rotation:rotation).GetLeftAxis<public>()<reads>:vector3 = external {}
 
-    @experimental
-    # Makes a unit `vector3` pointing in the local space *up* direction in world space coordinates.
-    # This is equivalent to: `RotateVector(Rotation, vector3{Forward:=0.0, Right:=0.0, Up:=1.0})`.
-    (Rotation:rotation).GetLocalUp<public>()<reads>:vector3 = external {}
+    # Makes a unit `vector3` pointing in the *up* rotated direction.
+    # This is equivalent to: `vector3{Forward:=0.0, Left:=0.0, Up:=1.0} * Rotation`.
+    (Rotation:rotation).GetUpAxis<public>()<reads>:vector3 = external {}
 
-    @experimental
-    # Makes a `string` representation of `rotation` in axis/degrees format with a left-handed sign convention.
-    # `ToString(MakeRotation(vector3{Forward:=1.0, Right:=0.0, Up:=0.0}, PiFloat/2.0))` produces the string: `"{Axis = {Forward = 1.000000, Right = 0.000000, Up = 0.000000}, Angle = 90.000000}"`.
+    # Makes a `string` representation of `rotation` in axis/degrees format with a right-handed sign convention.
+    # `ToString(MakeRotationRadians(vector3{Left:=0.0, Up:=0.0, Forward:=1.0}, PiFloat/2.0))` produces the string: `"{Axis = {Left=0.000000, Up=0.000000, Forward=1.000000}, Angle = 90.000000}"`.
     (/Verse.org/SpatialMath:)ToString<public>(Rotation:rotation)<reads>:string = external {}
 
-    @experimental
     # Returns radians from `Degrees`.
     DegreesToRadians<public>(Degrees:float)<reads>:float = external {}
 
-    @experimental
     # Returns degrees from `Radians`.
     RadiansToDegrees<public>(Radians:float)<reads>:float = external {}
 
-    @experimental
     @import_as("/*.FVTransform")
     # A combination of scale, rotation, and translation, applied in that order.
     transform<native><public> := struct<concrete><computes>:
@@ -2093,136 +2058,106 @@ SpatialMath<public> := module:
         # The scale of this `transform`.
         Scale<public>:vector3 = external {}
 
-    @experimental
     # Makes a `vector3` by applying `InTransform` to `InVector`.
-    TransformVector<public>(InTransform:transform, InVector:vector3)<reads>:vector3 = external {}
+    (/Verse.org/SpatialMath:)operator'*'<public>(InVector:vector3, InTransform:transform)<reads>:vector3 = external {}
 
-    @experimental
-    # Makes a `vector3` by applying `InTransform` to `InVector` without applying `InTransform.Scale`.
-    TransformVectorNoScale<public>(InTransform:transform, InVector:vector3)<reads>:vector3 = external {}
-
-    @experimental
     # Makes a `string` representation of `InTransform` where the result is on the form.
     # `"{Translation = {ToString(`InTransform.Translation`)}, Rotation = {ToString(`InTransform.Rotation`)}, Scale = {ToString(`InTransform.Scale`)}}".
     (/Verse.org/SpatialMath:)ToString<public>(InTransform:transform)<reads>:string = external {}
 
-    @experimental
     @import_as("/*.FVVector3")
     # 3-dimensional vector with `float` components.
     vector3<native><public> := struct<concrete><computes><persistable>:
         @editable
-        # The Forward (was X) component of this vector.
-        Forward<public>:float = external {}
-
-        @editable
-        # The Right (was Y) component of this vector.
-        Right<public>:float = external {}
+        # The Left (was -Y) component of this vector.
+        Left<public>:float = external {}
 
         @editable
         # The Up (was Z) component of this vector.
         Up<public>:float = external {}
 
-    @experimental
-    # Makes a `vector3` by inverting the `SurfaceNormal` component of `Direction`.
-    # Fails if `not SurfaceNormal.MakeUnitVector[]`.
-    ReflectVector<public>(Direction:vector3, SurfaceNormal:vector3)<reads><decides>:vector3 = external {}
+        @editable
+        # The Forward (was X) component of this vector.
+        Forward<public>:float = external {}
 
-    @experimental
+    # Makes a `vector3` by inverting the `SurfaceNormal` component of `Direction`.
+    ReflectVector<public>(Direction:vector3, SurfaceNormal:vector3)<reads>:vector3 = external {}
+
     # Returns the dot product of `V1` and `V2`.
     DotProduct<public>(V1:vector3, V2:vector3)<reads>:float = external {}
 
-    @experimental
     # Returns the left-handed cross product of `V1` and `V2`.
     CrossProductLeftHanded<public>(V1:vector3, V2:vector3)<reads>:vector3 = external {}
 
-    @experimental
+    @available {MinUploadedAtFNVersion := 3600}
+    # Returns the right-handed cross product of `V1` and `V2`.
+    CrossProduct<public>(V1:vector3, V2:vector3)<reads>:vector3 = external {}
+
     # Returns the Euclidean distance between `V1` and `V2`.
     Distance<public>(V1:vector3, V2:vector3)<reads>:float = external {}
 
-    @experimental
     # Returns the squared Euclidean distance between `V1` and `V2`.
     DistanceSquared<public>(V1:vector3, V2:vector3)<reads>:float = external {}
 
-    @experimental
     # Returns the 2-D Euclidean distance between `V1` and `V2` by ignoring the difference in `Up`.
-    DistanceForwardRight<public>(V1:vector3, V2:vector3)<reads>:float = external {}
+    DistanceForwardLeft<public>(V1:vector3, V2:vector3)<reads>:float = external {}
 
-    @experimental
     # Returns the squared 2-D Euclidean distance between `V1` and `V2` by ignoring their difference in `Up`.
-    DistanceSquaredForwardRight<public>(V1:vector3, V2:vector3)<reads>:float = external {}
+    DistanceSquaredForwardLeft<public>(V1:vector3, V2:vector3)<reads>:float = external {}
 
-    @experimental
     # Makes a unit length `vector3` pointing in the same direction of `V`.
-    # Fails if `V.IsAlmostZero[] or not V.IsFinite[]`.
-    (V:vector3).MakeUnitVector<public>()<reads><decides>:vector3 = external {}
+    (V:vector3).MakeUnitVector<public>()<reads>:vector3 = external {}
 
-    @experimental
     # Makes a `string` representation of `V`.
     (/Verse.org/SpatialMath:)ToString<public>(V:vector3)<reads>:string = external {}
 
-    @experimental
     # Returns the length of `V`.
     (V:vector3).Length<public>()<reads>:float = external {}
 
-    @experimental
     # Returns the squared length of `V`.
     (V:vector3).LengthSquared<public>()<computes>:float = external {}
 
-    @experimental
     # Returns the length of `V` as if `V.Up = 0.0`.
-    (V:vector3).LengthForwardRight<public>()<reads>:float = external {}
+    (V:vector3).LengthForwardLeft<public>()<reads>:float = external {}
 
-    @experimental
     # Returns the squared length of `V` as if `V.Up = 0.0`.
-    (V:vector3).LengthSquaredForwardRight<public>()<reads>:float = external {}
+    (V:vector3).LengthSquaredForwardLeft<public>()<reads>:float = external {}
 
-    @experimental
     # Used to linearly interpolate/extrapolate between `From` (when `Parameter = 0.0`) and `To` (when `Parameter = 1.0`). Expects that all arguments are finite.
     # Returns `From*(1 - Parameter) + To*Parameter`.
     (/Verse.org/SpatialMath:)Lerp<public>(From:vector3, To:vector3, Parameter:float)<reads>:vector3 = external {}
 
-    @experimental
     # Makes a `vector3` by inverting the signs of `Operand`.
     (/Verse.org/SpatialMath:)prefix'-'<public>(Operand:vector3)<computes>:vector3 = external {}
 
-    @experimental
-    # Makes a `vector3` by component-wise addition of `L` and `R`.
-    (/Verse.org/SpatialMath:)operator'+'<public>(L:vector3, R:vector3)<computes>:vector3 = external {}
+    # Makes a `vector3` by component-wise addition of `Left` and `Right`.
+    (/Verse.org/SpatialMath:)operator'+'<public>(Left:vector3, Right:vector3)<computes>:vector3 = external {}
 
-    @experimental
-    # Makes a `vector3` by component-wise subtraction of `R` from `L`.
-    (/Verse.org/SpatialMath:)operator'-'<public>(L:vector3, R:vector3)<computes>:vector3 = external {}
+    # Makes a `vector3` by component-wise subtraction of `Right` from `Left`.
+    (/Verse.org/SpatialMath:)operator'-'<public>(Left:vector3, Right:vector3)<computes>:vector3 = external {}
 
-    @experimental
-    # Makes a `vector3` by component-wise multiplication of `L` and `R`.
-    (/Verse.org/SpatialMath:)operator'*'<public>(L:vector3, R:vector3)<computes>:vector3 = external {}
+    # Makes a `vector3` by component-wise multiplication of `Left` and `Right`.
+    (/Verse.org/SpatialMath:)operator'*'<public>(Left:vector3, Right:vector3)<computes>:vector3 = external {}
 
-    @experimental
-    # Makes a `vector3` by multiplying the components of `L` by `R`.
-    (/Verse.org/SpatialMath:)operator'*'<public>(L:vector3, Right:float)<computes>:vector3 = external {}
+    # Makes a `vector3` by multiplying the components of `Left` by `Right`.
+    (/Verse.org/SpatialMath:)operator'*'<public>(Left:vector3, Right:float)<computes>:vector3 = external {}
 
-    @experimental
-    # Makes a `vector3` by multiplying the components of `R` by `L`.
-    (/Verse.org/SpatialMath:)operator'*'<public>(Left:float, R:vector3)<computes>:vector3 = external {}
+    # Makes a `vector3` by multiplying the components of `Right` by `Left`.
+    (/Verse.org/SpatialMath:)operator'*'<public>(Left:float, Right:vector3)<computes>:vector3 = external {}
 
-    @experimental
-    # Makes a `vector3` by dividing the components of `L` by `R`.
-    (/Verse.org/SpatialMath:)operator'/'<public>(L:vector3, Right:float)<computes>:vector3 = external {}
+    # Makes a `vector3` by dividing the components of `Left` by `Right`.
+    (/Verse.org/SpatialMath:)operator'/'<public>(Left:vector3, Right:float)<computes>:vector3 = external {}
 
-    @experimental
-    # Makes a `vector3` by component-wise division of `L` by `R`.
-    (/Verse.org/SpatialMath:)operator'/'<public>(L:vector3, R:vector3)<computes>:vector3 = external {}
+    # Makes a `vector3` by component-wise division of `Left` by `Right`.
+    (/Verse.org/SpatialMath:)operator'/'<public>(Left:vector3, Right:vector3)<computes>:vector3 = external {}
 
-    @experimental
     # Returns `V` if all components are finite.
     # Fails if any of the components are not finite.
     (V:vector3).(/Verse.org/SpatialMath:)IsFinite<public>()<computes><decides>:vector3 = external {}
 
-    @experimental
     # Succeeds when each component of `V` is within `AbsoluteTolerance` of `0.0`.
     (V:vector3).(/Verse.org/SpatialMath:)IsAlmostZero<public>(AbsoluteTolerance:float)<computes><decides>:void = external {}
 
-    @experimental
     # Succeeds when each component of `V1` and `V2` are within `AbsoluteTolerance` of each other.
     (/Verse.org/SpatialMath:)IsAlmostEqual<public>(V1:vector3, V2:vector3, AbsoluteTolerance:float)<computes><decides>:void = external {}
 
@@ -2243,6 +2178,7 @@ Native<public> := module:
     @attribscope_class
     @attribscope_struct
     @attribscope_enum
+    @attribscope_interface
     import_as_attribute<epic_internal> := class<computes><internal>(attribute):
 
     import_as<constructor><epic_internal>(ImportName:string)<computes>:import_as_attribute = external {}

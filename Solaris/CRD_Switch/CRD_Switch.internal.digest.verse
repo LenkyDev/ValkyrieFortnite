@@ -65,10 +65,10 @@ switch_device<public> := class<concrete><final>(creative_device_base):
     # Clears persistence data for all `agent`s.
     ClearAllPersistenceData<public>():void = external {}
 
-    # Returns the current state of this switch: true (on) or false (off). Use this overload  of `GetCurrentState` when this device has *Store State Per Player* set to *Yes*.
+    # Succeeds if the current state of this switch is on, fails otherwise. Use this overload  of `GetCurrentState` when this device has *Store State Per Player* set to *Yes*.
     GetCurrentState<public>(Agent:agent)<transacts><decides>:void = external {}
 
-    # Returns the current state of this switch: true (on) or false (off). Use this overload  of `GetCurrentState` when this device has *Store State Per Player* set to *No*.
+    # Succeeds if the current state of this switch is on, fails otherwise. Use this overload  of `GetCurrentState` when this device has *Store State Per Player* set to *No*.
     GetCurrentState<public>()<transacts><decides>:void = external {}
 
     # Query whether this device has a single global on/off state, or has a personalized on/off state for each individual agent.

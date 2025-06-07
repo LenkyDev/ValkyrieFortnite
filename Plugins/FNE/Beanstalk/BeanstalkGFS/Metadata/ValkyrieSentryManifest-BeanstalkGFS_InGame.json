@@ -786,6 +786,7 @@
 		"/CRD_DirectionalLauncher/SetupAssets/PID_CP_Device_DLauncherPrimal.PID_CP_Device_DLauncherPrimal",
 		"/CRD_DirectionalLauncher/SetupAssets/PID_CP_Device_DLauncherStandard.PID_CP_Device_DLauncherStandard",
 		"/CRD_EliminationFeed/SetupAssets/PID_CP_Devices_EliminationFeed.PID_CP_Devices_EliminationFeed",
+		"/CRD_Fillable_Container/SetupAssets/PID_CP_Devices_Fillable_Container.PID_CP_Devices_Fillable_Container",
 		"/CRD_GameEnd/SetupAssets/PID_Device_EndGame_V2.PID_Device_EndGame_V2",
 		"/CRD_HUDController/SetupAssets/PID_Device_HUDController_V2.PID_Device_HUDController_V2",
 		"/CRD_InputTrigger/SetupAssets/PID_Device_InputTrigger.PID_Device_InputTrigger",

@@ -24,6 +24,7 @@ Native<public> := module:
     @attribscope_class
     @attribscope_struct
     @attribscope_enum
+    @attribscope_interface
     import_as_attribute<epic_internal> := class<computes><internal>(attribute):
 
 

@@ -103,7 +103,7 @@
 			"Enabled": true
 		},
 		{
-			"Name": "VerseEditableSubclass",
+			"Name": "VerseTypeEditor",
 			"Enabled": true
 		},
 		{

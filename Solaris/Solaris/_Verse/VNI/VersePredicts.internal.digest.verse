@@ -14,14 +14,18 @@ Predicts<public> := module:
 
     PredictsDebugFindObjectID<native><epic_internal>(Obj:any)<decides>:int
 
-    PredictsDebugFindObject<native><epic_internal>(ObjectID:int)<decides>:any
+    PredictsDebugFindObject<native><epic_internal>(ObjectID:int)<transacts><decides>:any
 
     PredictsDebugObjectFieldEquals<native><epic_internal>(ObjectID:int, FieldName:string, Value:any)<decides>:void
 
     PredictsDebugReplicateToClient<native><epic_internal>()<transacts>:void
 
-    PredictsDebugRegisterFunc<native><epic_internal>(__dupe___unnamed_parameter_6:string, __dupe___unnamed_parameter_7:type {_()<suspends><predicts>:void})<transacts>:void
+    PredictsDebugRegisterFunc<native><epic_internal>(__dupe___unnamed_parameter_6:string, __dupe___unnamed_parameter_7:type {_()<predicts>:void})<transacts>:void
 
     PredictsDebugCallFunc<native><epic_internal>(__dupe___unnamed_parameter_8:string)<transacts>:void
 
     PredictsDebugResetAllDataAndCallbacks<native><epic_internal>()<transacts>:void
+
+    PredictsDebugGCPinObject<native><epic_internal>(__dupe___unnamed_parameter_9:any)<transacts>:void
+
+    PredictsDebugGCUnpinObject<native><epic_internal>(__dupe___unnamed_parameter_10:any)<transacts>:void

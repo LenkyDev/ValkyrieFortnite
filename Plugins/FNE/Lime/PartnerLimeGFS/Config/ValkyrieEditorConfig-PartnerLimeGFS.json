@@ -65,6 +65,7 @@
 			"/Script/AtomRuntime.AtomCommonPartDescription": {},
 			"/Script/AtomRuntime.AtomCommonPartInstance": {},
 			"/Script/AtomRuntime.AtomCommonPartModelAssetUserData": {},
+			"/Script/AtomRuntime.AtomCommonPartStaticMeshAssetUserData": {},
 			"/Script/AtomRuntime.AtomDecorationAssignment": {},
 			"/Script/AtomRuntime.AtomEditorModePrimitiveUserData": {},
 			"/Script/AtomRuntime.AtomGlueSet": {},
@@ -153,6 +154,12 @@
 				"Visible": true
 			},
 			"/AtomFramework/Editor/Processors/AtomMergedMeshWriter.AtomMergedMeshWriter_C": {
+				"Visible": true
+			},
+			"/AtomFramework/Editor/Processors/AtomSkeletalMeshProcessor.AtomSkeletalMeshProcessor_C": {
+				"Visible": true
+			},
+			"/AtomFramework/Editor/Processors/AtomSkeletalMeshWriter.AtomSkeletalMeshWriter_C": {
 				"Visible": true
 			},
 			"/AtomFramework/Editor/Processors/AtomGeometryCollectionAndBlueprintWriter.AtomGeometryCollectionAndBlueprintWriter_C": {

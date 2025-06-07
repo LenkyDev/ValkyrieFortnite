@@ -137,7 +137,6 @@ Game<public> := module:
         # `fort_character` that eliminated `EliminatedCharacter` from the match. `EliminatingCharacter` will be false when `EliminatedCharacter` was eliminated through non-character actions, such as environmental damage.
         EliminatingCharacter<native><public>:?fort_character
 
-    @experimental
     # This interface is implemented by the round manager living on the simulation entity.
     fort_round_manager<native><public> := interface<epic_internal>:
         # Subscribed callbacks will be invoked in two scenarios:
@@ -149,7 +148,6 @@ Game<public> := module:
         # Subscribed callbacks will be invoked when a Fortnite round ends
         SubscribeRoundEnded<public>(Callback:type {_():void}):cancelable
 
-    @experimental
     # Returns the round manager from the simulation entity.
     (InEntity:entity).GetFortRoundManager<public>()<transacts><decides>:fort_round_manager = external {}
 
@@ -313,7 +311,6 @@ Playspaces<public> := module:
         # Signaled when a participant `agent` leaves the `fort_playspace`. Returns a subscribable with a payload of the`agent` that left the `fort_playspace`.
         ParticipantRemovedEvent<public>():listenable(agent)
 
-    @experimental
     # Returns an associated `fort_playspace` for this entity.  * Fails if this entity is not in the scene, and therefore not associated with a playspace.
     (InEntity:entity).GetPlayspaceForEntity<native><public>()<transacts><decides>:fort_playspace
 

@@ -713,6 +713,7 @@
 		"/CRD_FabricNoteTrigger/SetupAssets/PID_CP_Devices_FabricNoteTrigger.PID_CP_Devices_FabricNoteTrigger",
 		"/CRD_FabricStepModulator/SetupAssets/PID_CP_Devices_FabricStepModulator.PID_CP_Devices_FabricStepModulator",
 		"/CRD_FabricValueSetter/SetupAssets/PID_CP_Devices_FabricValueSetter.PID_CP_Devices_FabricValueSetter",
+		"/CRD_Fillable_Container/SetupAssets/PID_CP_Devices_Fillable_Container.PID_CP_Devices_Fillable_Container",
 		"/CRD_GameEnd/SetupAssets/PID_Device_EndGame_V2.PID_Device_EndGame_V2",
 		"/CRD_HealPowerup/SetupAssets/PID_Device_HealPowerup.PID_Device_HealPowerup",
 		"/CRD_HUDController/SetupAssets/PID_Device_HUDController_V2.PID_Device_HUDController_V2",

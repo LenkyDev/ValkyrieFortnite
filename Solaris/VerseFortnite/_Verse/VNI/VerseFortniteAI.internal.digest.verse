@@ -1,6 +1,6 @@
-using {/Fortnite.com/Playspaces}
 using {/Verse.org/Assets}
 using {/Fortnite.com/Teams}
+using {/Fortnite.com/Playspaces}
 using {/Verse.org/Native}
 using {/Fortnite.com/Assets}
 using {/Fortnite.com/Characters}
@@ -438,7 +438,7 @@ AI<public> := module:
 
     @experimental
     # Generate a navigation_target from an entity
-    MakeNavigationTarget<native><public>(Entity:entity)<decides>:navigation_target
+    MakeNavigationTarget<native><public>(Entity:entity):navigation_target
 
     # Result of a navigation request
     navigation_result<native><public> := enum:
@@ -496,6 +496,9 @@ AI<public> := module:
 
         # Returns the agent associated with this behavior.
         GetAgent<native><public>()<transacts><decides>:agent
+
+        # Returns the `fort_playspace` associated with this behavior.
+        GetPlayspace<native><epic_internal>()<transacts><decides>:fort_playspace
 
     # Returns the `npc_behavior` for `InAgent`.
     (InAgent:agent).GetNPCBehavior<native><public>()<transacts><decides>:npc_behavior

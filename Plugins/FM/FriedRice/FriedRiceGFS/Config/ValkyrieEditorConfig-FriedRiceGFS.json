@@ -29,13 +29,6 @@
 				 "/Game/Blueprints/Blutilities/ForLDs/WorldPartitionTools/WP_OverlappingActors/WP_OverlappingActors_EUW.WP_OverlappingActors_EUW_C"]
 			}
 	},
-	"ValkyrieUMGSettings": {
-		"AllowedPaletteWidgets": {
-			"+": [
-				"/FortUILibrary/Input/KeybindWidget.KeybindWidget_C"
-			]
-		}
-	},
 	"ValkyrieEditorSettings": {
 		"AllowedAssetTypes": {
 			"/Script/Blutility.EditorUtilityWidget":		{ "Rules": ["View"] },
@@ -190,7 +183,10 @@
 			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_Mobile.DSCT_Mobile_C": { },
 			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_PerfMode.DSCT_PerfMode_C": { },
 			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_VolumetricFog.DSCT_VolumetricFog_C": { },
-			"/FortUILibrary/Input/KeybindWidget.KeybindWidget_C":	{"Visible": true }
+			"/NPCDefault/Types/CharacterType_Custom.CharacterType_Custom_C":						{ "Visible": true },
+			"/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C":							{ "Visible": true },
+			"/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C":					{ "Visible": true },
+			"/NPCDefault/Types/CharacterType_Participant.CharacterType_Participant_C":				{ "Visible": true }
 		},
 		"AllowedMenus": {
 			"LevelEditor.MainMenu": {
@@ -377,10 +373,6 @@
 				"Type": "/FN1GFS/Blueprints/ScriptedTools/MeasurePoints/SupportFiles/BP_MeasureTool_Billboard.BP_MeasureTool_Billboard_C",
 				"AllowList": ["LineNumber", "TotalLen", "TotalRunTime", "ThisLineLen", "ThisLineRunTime", "TextColour", "TextOutlineColour"],
 				"DenyList": ["StaticMesh", "Material", "Mobility", "Rotation"]
-			},
-			{
-				"Type": "/FortUILibrary/Input/KeybindWidget.KeybindWidget_C",
-				"AllowList": [ "BoundAction", "BoundInputAction", "InputContextOverride", "BoundActionFallbacks", "AxisScale", "BoundKeyFallback", "InputTypeOverride", "GamepadTypeOverride", "PresetNameOverride", "ForcedHoldKeybindStatus", "bIsHoldKeybind", "HoldProgressBrush", "KeyBindTextBorder", "bShowUnboundStatus", "bShowUnboundStatusOnTouch", "bUseKeyboardTextureForKeys", "PercentageMaterialParameterName", "BrushSize", "FrameMultiBrush", "DesignTimeKey" ]
 			}
 		],
 		"-": [

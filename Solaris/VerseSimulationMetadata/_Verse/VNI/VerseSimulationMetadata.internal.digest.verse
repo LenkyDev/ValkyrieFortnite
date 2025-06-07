@@ -183,7 +183,7 @@ Simulation<public> := module:
 
     @attribscope_class
     @customattribhandler
-    editable_subclass<epic_internal> := class<computes>(attribute):
+    editor_type<epic_internal> := class<computes>(attribute):
 
 
     @attribscope_class
@@ -228,3 +228,10 @@ Simulation<public> := module:
 
 
     ui_min<constructor><epic_internal>(UIMin:string)<computes>:ui_min_attribute = external {}
+
+    @attribscope_data
+    @customattribhandler
+    units_attribute<epic_internal> := class<computes><internal>(attribute):
+
+
+    units<constructor><epic_internal>(Unit:string)<computes>:units_attribute = external {}

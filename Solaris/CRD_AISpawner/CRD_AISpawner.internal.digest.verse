@@ -24,3 +24,6 @@ npc_spawner_device<public> := class<concrete><final>(creative_device_base):
 
     # Despawns all characters. If set, `Instigator` will be considered as the eliminator of those characters.
     DespawnAll<public>(Instigator:?agent):void = external {}
+
+    # Get all agents created by this device.
+    GetAgents<epic_internal>()<transacts>:[]agent = external {}

@@ -106,6 +106,12 @@ VerseCamera<public> := module:
         @editable
         @replicated("")
         @experimental
+        # Focus distance in centimeters.
+        var FocusDistance<native><epic_internal>:?float = external {}
+
+        @editable
+        @replicated("")
+        @experimental
         # Aperture of the lens in FStop.
         var FStop<native><public>:float = external {}
 
@@ -319,14 +325,18 @@ VerseCamera<public> := module:
     @experimental
     # Camera that is physically based, determining its view properties in a manner more consistent with a physical camera
     physical_camera_component<native><epic_internal> := class<final_super>(camera_component):
+        OnInitializedInternal<native><override>():void
+
+        OnUninitializingInternal<native><override>():void
+
         @experimental
         # Cameraâs body settings.
         #  This contains sensor settings, e.g. film or digital camera sensor, shutter speed, etc
-        var Body<epic_internal>:camera_body = external {}
+        var Body<public>:camera_body = external {}
 
         @experimental
         # Lens of the camera
-        var Lens<epic_internal>:camera_lens = external {}
+        var Lens<public>:camera_lens = external {}
 
     @import_as("/Script/VerseCamera.UVersePlayerCameraViewComponent")
     @experimental
@@ -341,3 +351,9 @@ VerseCamera<public> := module:
     @experimental
     # Get the camera component currently active on the player (activated via camera_component.ActivateForPlayer)
     (Player:player).GetActiveCameraComponent<native><epic_internal>()<transacts><decides>:camera_component
+
+    @experimental
+    # A component that lives on the simulation entity and associates a camera with a player within the confines of that simulation
+    simulation_camera_director_component<native><epic_internal> := class<final_super>(component):
+        # Set the active camera for a player - Fails if the specified entity does not have a camera component
+        SetActiveCamera<native><public>(Player:player, CameraEntity:entity)<transacts><decides>:cancelable

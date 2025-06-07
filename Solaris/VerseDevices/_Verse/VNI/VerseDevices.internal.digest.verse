@@ -262,7 +262,6 @@ Devices<public> := module:
     creative_device_asset<native><public> := class<computes><final><epic_internal>(asset):
 
 
-    @experimental
     # Returns the simulation entity at the root of the experience this `creative_device` is operating within.
     #   * The simulation entity is the rootmost entity in an experience.
     #   * Fails if this `creative_device` is not operating in a context with a valid SimulationEntity.
@@ -332,7 +331,6 @@ Devices<public> := module:
     # Generates a `creative_object_interface` for every creative object that has been marked with the specified `Tag`. Will not find anything if called on an `npc_behavior` that is not simulating.
     (InNPCBehavior:npc_behavior).FindCreativeObjectsWithTag<native><public>(Tag:tag)<transacts>:generator(creative_object_interface)
 
-    @experimental
     @available {MinUploadedAtFNVersion := 2930}
     # Generates a `creative_object_interface` for every creative object that has been marked with the specified `Tag`. Will not find anything if called on an `entity` that is not in the scene.
     (InEntity:entity).FindCreativeObjectsWithTag<native><public>(Tag:tag)<transacts>:generator(creative_object_interface)
@@ -357,7 +355,6 @@ Devices<public> := module:
     # Returns the `entity` associated to that `CreativeObject.
     (CreativeObject:creative_object_interface).(/Fortnite.com/Devices:)GetEntity<native><epic_internal>()<transacts><decides>:entity
 
-    @experimental
     # Returns the simulation entity at the root of the experience this `creative_object` is operating within.
     #   * The simulation entity is the rootmost entity in an experience.
     #   * Fails if this `creative_object` is not operating in a context with a valid SimulationEntity.
@@ -461,6 +458,14 @@ Devices<public> := module:
     device_event_int<native><epic_internal> := class(device_event(int)):
 
 
+    # Implementation of `device_event(:type)` with a `float` payload.
+    device_event_float<native><epic_internal> := class(device_event(float)):
+
+
+    # Implementation of `device_event(:type)` with required `string` payload.
+    device_event_string<native><epic_internal> := class(device_event([]char)):
+
+
     # Implementation of `device_event(:type)` with a `tuple(int, float)` payload.
     device_event_int_float<native><epic_internal> := class(device_event(tuple(int, float))):
 
@@ -475,6 +480,14 @@ Devices<public> := module:
 
     # Implementation of `device_event(:type)` with a `tuple(?agent, int)` payload.
     device_event_optional_agent_int<native><epic_internal> := class(device_event(tuple(?agent, int))):
+
+
+    # Implementation of `device_event(:type)` with a `tuple(player, ?agent)` payload.
+    device_event_player_optional_agent<native><epic_internal> := class(device_event(tuple(player, ?agent))):
+
+
+    # Implementation of `device_event(:type)` with a `tuple(player, creative_device_base)` payload.
+    device_event_player_creative_device<native><epic_internal> := class(device_event(tuple(player, creative_device_base))):
 
 
     # Implementation of `device_event(:type)` with required `fort_vehicle` payload.

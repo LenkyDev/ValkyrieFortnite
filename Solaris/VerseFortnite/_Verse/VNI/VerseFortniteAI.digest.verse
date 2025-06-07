@@ -153,7 +153,7 @@ AI<public> := module:
 
     @experimental
     # Generate a navigation_target from an entity
-    MakeNavigationTarget<native><public>(Entity:entity)<decides>:navigation_target
+    MakeNavigationTarget<native><public>(Entity:entity):navigation_target
 
     # Result of a navigation request
     navigation_result<native><public> := enum:

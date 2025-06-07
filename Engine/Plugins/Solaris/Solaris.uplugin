@@ -48,11 +48,6 @@
 			"LoadingPhase": "Default"
 		},
 		{
-			"Name": "SolarisUi",
-			"Type": "Runtime",
-			"LoadingPhase": "Default"
-		},
-		{
 			"Name": "VerseWorkflowServer",
 			"Type": "EditorNoCommandlet",
 			"LoadingPhase": "None"

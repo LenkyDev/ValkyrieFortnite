@@ -1,7 +1,7 @@
 using {/UnrealEngine.com/Temporary/SpatialMath}
 using {/Verse.org/Assets}
 using {/Verse.org/Simulation}
-# Module import path: /Verse.org/ControlInput
+# Module import path: /UnrealEngine.com/ControlInput
 ControlInput<public> := module:
     input_events<native><public>(t:type) := class<epic_internal>:
         ActivationTriggeredEvent<native><public>:listenable(tuple(player, t)) = external {}
@@ -16,7 +16,7 @@ ControlInput<public> := module:
 
     GetPlayerInput<native><epic_internal>(Player:player)<transacts><decides>:player_input
 
-    MakeInputAsset<native><epic_internal>(InputAction:input_action(t), Path:string where t:type)<converges>:input_action(t)
+    MakeInputAsset<native><epic_internal>((InputAction:input_action(t), Path:string) where t:type)<converges>:input_action(t)
 
     player_input<native><epic_internal> := class:
         AddInputMapping<native><public>(InputMapping:input_mapping):void

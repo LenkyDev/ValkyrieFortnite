@@ -2,6 +2,7 @@ using {/Fortnite.com/Characters}
 using {/Verse.org/Colors}
 using {/UnrealEngine.com/Temporary/SpatialMath}
 using {/UnrealEngine.com/Temporary/Diagnostics}
+using {/Verse.org/SceneGraph}
 using {/Fortnite.com/Vehicles}
 using {/Fortnite.com/Game}
 using {/Verse.org/Simulation}
@@ -131,6 +132,31 @@ VerseFramework<public> := module:
         var ArgAmount<public>:float = external {}
 
         Subscribe<public>(Event:listenable(healing_result)):void = external {}
+
+    device_event_player_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgPlayer<public>:?player = external {}
+
+        Subscribe<public>(Event:listenable(player)):void = external {}
+
+    test_event_entity_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgEntity<public>:?entity = external {}
+
+        Subscribe<public>(Event:listenable(entity)):void = external {}
+
+    test_event_float_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgFloat<public>:?float = external {}
+
+        Subscribe<public>(Event:listenable(float)):void = external {}
+
+    test_event_tuple_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgTuple<public>:?tuple() = external {}
+
+        Subscribe<public>(Event:listenable(tuple())):void = external {}
+
+    test_event_tuple_int_logic_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgTuple<public>:?tuple(int, logic) = external {}
+
+        Subscribe<public>(Event:listenable(tuple(int, logic))):void = external {}
 
     test_case<public> := struct:
         Name<public>:string

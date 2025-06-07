@@ -101,3 +101,6 @@ wildlife_spawner_device<public> := class<concrete><final>(creative_device_base):
 
     # Returns the spawn limit of the device.
     GetSpawnLimit<public>()<transacts>:int = external {}
+
+    # Get all agents created by this device.
+    GetAgents<epic_internal>()<transacts>:[]agent = external {}
