@@ -460,7 +460,7 @@ explosive_device<public> := class<concrete><final>(creative_device_base):
     # Resets this device.
     Reset<public>():void = external {}
 
-    # Triggers this device to explode. Passes `Agent` as the instigator of the explosion.
+    # Triggers this device to explode. Passes `Agent` as the instigator of the resulting `ExplodedEvent`.
     Explode<public>(Agent:agent):void = external {}
 
 # Used to provide fuel sources for vehicles. Can also be used to deal considerable damage to `agent`s and the environment when destroyed.

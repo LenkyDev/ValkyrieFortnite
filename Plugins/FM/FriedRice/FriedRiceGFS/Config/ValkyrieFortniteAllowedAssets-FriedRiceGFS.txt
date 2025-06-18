@@ -833,7 +833,7 @@
 /Clyde/Athena/Apollo/Maps/Landscape/VT/MaterialFunctions/EnableRVT.EnableRVT
 /Clyde/Athena/Apollo/Maps/Landscape/VT/MaterialFunctions/TransformTangentToWorld.TransformTangentToWorld
 /Clyde/Athena/Apollo/Maps/POI/Apollo_POI_MountainBase_001.Apollo_POI_MountainBase_001
-/Clyde/Athena/Apollo/Maps/Season2/Athena/Apollo/Maps/Buildings/5x5/Apollo_5x5_BoxFactory_a.Apollo_5x5_BoxFactory_a
+/Clyde/Athena/Apollo/Maps/Season2/Buildings/5x5/Apollo_5x5_BoxFactory_a.Apollo_5x5_BoxFactory_a
 /Clyde/Athena/Apollo/Maps/Season3/Athena/DrivableVehicles/Meatball/B_Prj_Meatball_Missile_Child_Clyde.B_Prj_Meatball_Missile_Child_Clyde
 /Clyde/Athena/Apollo/Maps/Season3/Athena/DrivableVehicles/Meatball/Meatball_Weapon_Clyde.Meatball_Weapon_Clyde
 /Clyde/Athena/Apollo/Maps/Season3/Athena/DrivableVehicles/Meatball/MeatballVehicle_L_Child_Clyde.MeatballVehicle_L_Child_Clyde
@@ -3798,9 +3798,9 @@
 /Clyde/TimeOfDay/TODM/TODS_Clyde/M_Sky_Clyde.M_Sky_Clyde
 /Clyde/TimeOfDay/TODM/TODS_Clyde/M_Sky_Clyde_Inst.M_Sky_Clyde_Inst
 /Clyde/TimeOfDay/TODM/TODS_Clyde/MF_Helios_Skybox_Clouds_Clyde.MF_Helios_Skybox_Clouds_Clyde
-/Clyde/TimeOfDay/TODM/TODS_Clyde/MV_HeliosVolumetricCloudsV2.MV_HeliosVolumetricCloudsV2
+/Clyde/TimeOfDay/TODM/TODS_Clyde/MV_Clyde_VolumetricCloudsV2.MV_Clyde_VolumetricCloudsV2
+/Clyde/TimeOfDay/TODM/TODS_Clyde/MVI_Clyde_VolumetricCloudsV2.MVI_Clyde_VolumetricCloudsV2
 /Clyde/TimeOfDay/TODM/TODS_Clyde/MVI_HeliosClouds_Clyde.MVI_HeliosClouds_Clyde
-/Clyde/TimeOfDay/TODM/TODS_Clyde/MVI_HeliosVolumetricCloudsV2_Clyde.MVI_HeliosVolumetricCloudsV2_Clyde
 /Clyde/TimeOfDay/TODM/TODS_Clyde/TODS_BPs/DSA_UEFN_DashBerry.DSA_UEFN_DashBerry
 /Clyde/UI/B_ClydePOIName_Manager.B_ClydePOIName_Manager
 /Clyde/UI/Clyde_AthenaInventoryGroupPanel.Clyde_AthenaInventoryGroupPanel
@@ -4933,7 +4933,7 @@
 /Game/Environments/Asteria/Props/Outdoor/Outdoor_ResortChair_A/Blueprints/BP_Outdoor_ResortChair_A_B.BP_Outdoor_ResortChair_A_B
 /Game/Environments/Asteria/Props/Outdoor/Outdoor_ResortTables_A/Blueprints/BP_Outdoor_ResortTable_E_PlaceSetting.BP_Outdoor_ResortTable_E_PlaceSetting
 /Game/Environments/Asteria/Props/Outdoor/Outdoor_ResortTables_A/TextureData/TD_Outdoor_ResortTables_B_B.TD_Outdoor_ResortTables_B_B
-/Game/Environments/Asteria/Props/Outdoor/Outdoor_ResortUmbrella_A/Blueprints/BP_Outdoor_ResortUmbrella_B.BP_Outdoor_ResortUmbrella_B
+/Game/Environments/Asteria/Props/Outdoor/Outdoor_ResortUmbrella_A/Blueprints/BP_Outdoor_ResortUmbrella_A.BP_Outdoor_ResortUmbrella_A
 /Game/Environments/Asteria/Props/Outdoor/Outdoor_ResortUmbrella_A/Meshes/SM_Outdoor_ResortUmbrella_A.SM_Outdoor_ResortUmbrella_A
 /Game/Environments/Asteria/Props/Quarry/Quarry_CraneLarge_A/Textures/T_Quarry_CraneRope_A_D.T_Quarry_CraneRope_A_D
 /Game/Environments/Asteria/Props/Quarry/Quarry_CraneLarge_A/Textures/T_Quarry_CraneRope_A_N.T_Quarry_CraneRope_A_N

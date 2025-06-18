@@ -1,0 +1,39 @@
+{
+	"_comment_About_This_File": "",
+	"_comment_About_This_File_2": "Overlay defaults",
+	"ValkyrieEditorSettings": {
+		"_comment_AllowedContentBrowserFolders": "Allowed content browser folders when exposing asset aliases",
+		"AllowedContentBrowserFolders": [
+			"/Squid Game"
+		],
+		"AllowedAssetTypes": {
+			"/Script/RigVM.RigVMBlueprintGeneratedClass": { "Rules": [ "View" ] }
+		},
+		"AllowedClasses": {
+			"/NPCDefault/Types/CharacterType_Custom.CharacterType_Custom_C": { "Visible": true },
+			"/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C": { "Visible": true },
+			"/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C": { "Visible": true }
+		},
+		"_comment_AllowedGatherFolders": "Allowed folders to gather assets from when exposing assets"
+	},
+	"PropertyEditorClassPermissionList": {
+		"+": [
+			{
+				"Type": "/NPCDefault/Types/CharacterType_Custom.CharacterType_Custom_C",
+				"AllowList": [ "DisplayName" ],
+				"bAllowListAllProperties": false,
+				"bAllowListAllSubclassProperties": false
+			},
+			{
+				"Type": "/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C",
+				"AllowList": [ "SelectedAI", "DisplayName" ]
+			},
+			{
+				"Type": "/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C",
+				"AllowList": [ "DisplayName" ],
+				"DenyList": [ "SelectedAI" ]
+			}
+
+		]
+	}
+}

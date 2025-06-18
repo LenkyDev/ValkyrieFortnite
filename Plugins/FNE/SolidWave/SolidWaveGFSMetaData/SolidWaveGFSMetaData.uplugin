@@ -1,0 +1,41 @@
+{
+	"FileVersion": 3,
+	"CanContainContent": true,
+	"ExplicitlyLoaded": true,
+	"EnabledByDefault": false,
+	"BuiltInInitialFeatureState": "Registered",
+	"BuiltInAutoRegister": true,
+	"BuiltInAutoLoad": true,
+	"BuiltInAutoActivate": false,
+	"FortReleaseVersion": "36.10",
+	"EditorCustomVirtualPath": "FNE/SolidWave",
+	"CookAsDLC": "Creative",
+	"RequiredEntitlements":
+	{
+		"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
+		"VKCreateUGCSolidWave": "947e6f81da204fbdb8363f155fbc80b5"
+	},
+	"Plugins": [
+		{
+			"Name": "CreativeCoreDevices",
+			"Enabled": true
+		},
+		{
+			"Name": "CR_Legacy",
+			"Enabled": true
+		}
+	],
+	"Version": 0,
+	"VersionName": "",
+	"FriendlyName": "",
+	"Description": "",
+	"Category": "",
+	"CreatedBy": "",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false
+}

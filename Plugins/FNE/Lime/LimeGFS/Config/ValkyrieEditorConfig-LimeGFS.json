@@ -65,12 +65,14 @@
 			"/FNEC_ScarySpace",
 			"/FNEC_Space_monster",
 			"/FNEC_Spring",
+			"/FNEC_Seed",
 			"/Lime_Cane",
 			"/MusicalWalk",
 			"/ObstacleCourse",
 			"/TownScaper",
 			"/LimeEmptyPlot",
-			"/CRD_Fillable_Container"
+			"/CRD_Fillable_Container",
+			"/CRD_Simple_Voting_Option"
 		],
 		"AllowedGatherAssets": [
 			"___Weapons_Begin___",
@@ -236,6 +238,8 @@
 			"/CRD_LimeChairDevice/SetupAssets/PID_CP_Devices_LimeChairDevice.PID_CP_Devices_LimeChairDevice",
 			"/CRD_LimeCollectible/PID_LimeCollectible.PID_LimeCollectible",
 			"/CRD_Fillable_Container/SetupAssets/PID_CP_Devices_Fillable_Container.PID_CP_Devices_Fillable_Container",
+			"/CRD_Simple_Voting_Option/SetupAssets/PID_CP_Devices_Simple_Voting_Group.PID_CP_Devices_Simple_Voting_Group",
+			"/CRD_Simple_Voting_Option/SetupAssets/PID_CP_Devices_Simple_Voting_Option.PID_CP_Devices_Simple_Voting_Option",
 			"___Devices_End___",
 
 			"/CRD_VerseDevices/UEFNExposedAssets/UEFN_Expose_CRD_Verse.UEFN_Expose_CRD_Verse",
@@ -1265,7 +1269,9 @@
 			"/LimeAISpawner/UEFNExposedAssets/LimeAISpawner_ExposedAssets.LimeAISpawner_ExposedAssets",
 			"/Wind/Gameplay/WindFields/UEFN_Expose_WindField.UEFN_Expose_WindField",
 			"/VKExposedAssets/UEFNExposedAssets/UEFN_Expose_CreativeSounds.UEFN_Expose_CreativeSounds",
-			"/VKExposedAssets/UEFNExposedAssets/UEFN_Expose_CreativeIcons.UEFN_Expose_CreativeIcons"
+			"/VKExposedAssets/UEFNExposedAssets/UEFN_Expose_CreativeIcons.UEFN_Expose_CreativeIcons",
+			"/LimeBasicBrickGallery_Assets/UEFN_Expose_LimeAtom.UEFN_Expose_LimeAtom",
+			"/LimeAtomAssets/UEFN_Expose_LimeAtom.UEFN_Expose_LimeAtom"
 		],
 		"_comment_AllowedClasses1": "List of all classes and structs exposed to UEFN, which means they are allowed to be referenced directly by user-created assets and actors.",
 		"_comment_AllowedClasses2": "Classes marked with Visible: true will appear in class pickers such as for Blueprint parent classes, UClass* FProperties, etc.",
@@ -1277,6 +1283,41 @@
 			},
 			"/Script/AtomModelImporterEditor.AtomAssetImportData":
 			{
+			},
+			"/Script/AtomModelImporterEditor.AtomModelMergeOptions": 
+			{
+			},
+			"/Script/AtomRuntime.AtomCommonPartStaticMeshAssetUserData": 
+			{
+			},
+			"/Script/AtomRuntime.AtomEditorModePrimitiveUserData": 
+			{
+			},
+			"/Script/AtomRuntime.AtomPrimitiveStaticMeshComponent": 
+			{
+				"Visible": true
+			},			
+			"/Script/AtomRuntime.AtomCollisionComponent": 
+			{
+				"Visible": true
+			},
+			"/Script/AtomRuntime.AtomPrimitiveAssetUserData": 
+			{
+			},
+			"/Script/AtomRuntime.AtomPrimitiveMapping":
+			{
+			},
+			"/Script/AtomRuntime.AtomModelMapping":
+			{
+			},
+			"/Script/LimeNativeEditor.AtomActorValidator_Materials": {
+				"Visible": false
+			},
+			"/Script/LimeNativeEditor.AtomActorValidator_Overlap": {
+				"Visible": false
+			},
+			"/Script/LimeNativeEditor.AtomActorValidator_Scale": {
+				"Visible": false
 			},
 			"/Script/AtomRuntime.AtomBoneReference":
 			{
@@ -1365,6 +1406,9 @@
 			"/Script/AtomRuntime.AtomModelProcessorInstance":
 			{
 			},
+			"/Script/AtomRuntime.AtomPrimitive":
+			{
+			},
 			"/Script/AtomRuntime.AtomPrimitiveBevelOptions":
 			{
 			},
@@ -1375,6 +1419,15 @@
 			{
 			},
 			"/Script/AtomRuntime.AtomPrimitiveCollisionGeometry":
+			{
+			},
+			"/Script/AtomRuntime.AtomPrimitiveCollisionGeometryWrapper":
+			{
+			},
+			"/Script/AtomRuntime.AtomPrimitiveCollisionGeometryBox":
+			{
+			},
+			"/Script/AtomRuntime.AtomPrimitiveCollisionGeometryConvex":
 			{
 			},
 			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeBox":
@@ -1515,6 +1568,10 @@
 			"/CRD_DirectionalLauncher/GA_Launched_LowGravDirectional_Device.GA_Launched_LowGravDirectional_Device_C":
 			{
 			},
+			"/LimeAtomAssets/Processors/LimeMaterialFactory.LimeMaterialFactory_C":
+			{
+				"Visible": true
+			},
 			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeAwareness.CharacterModifier_LimeAwareness_C":
 			{
 				"Visible": true
@@ -1579,7 +1636,12 @@
 			{
 			},
 			"/CreativeCoreDevices/ExperienceSettings/BP_UserOptionComponent_Cosmetic.BP_UserOptionComponent_Cosmetic_C": { }
-		}
+		},
+		"AllowedEditorModes": {
+			"+": [
+				"EM_AtomEditorMode"
+			]
+		}     
 	},
 	"PropertyEditorClassPermissionList": {
 		"+": [
@@ -1655,7 +1717,18 @@
 				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeUI.CharacterModifier_LimeUI_C",
 				"DenyList": [ "HealthBarHeight" ],
 				"bAllowListAllSubclassProperties": true
+			},
+			{
+				"Type": "/Script/AtomRuntime.AtomPrimitiveStaticMeshComponent",
+				"bAllowListAllProperties": true,
+				"bAllowListAllSubclassProperties": true
+			},
+			{
+				"Type": "/Script/AtomRuntime.AtomColorProperty",
+				"bAllowListAllProperties": true,
+				"bAllowListAllSubclassProperties": true
 			}
+
 		]
 	}
 }

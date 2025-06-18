@@ -87,9 +87,12 @@
 			"/Script/FortniteGame.FortPoiVolume": { "Visible": true },
 			"/Script/FortniteGame.FortPoi_DiscoverableComponent": { "Visible": true },
 			"/Script/FortniteGame.FortWorldManager": { "Visible": true },
+			"/Script/FortniteGame.FortAutoRegisterActorComponent": { "Visible": true },
+			"/Script/LaserGameplayRuntime.LaserGridEditorComponent": { "Visible": true },
+			"/Script/FortniteGame.FortTreesHLOD": { "Visible": true },
 			"/Script/FortniteGame.WorldTileManager": { "Visible": true },
 			"/Script/FortniteUI.FortVisualAttachment": { "Visible": true },
-			"/Script/MovieScene.MovieSceneBindingOverrides": {  },
+			"/Script/MovieScene.MovieSceneBindingOverrides": {},
 			"/Script/PCG.PCGComponent": {},
 			"/Script/PCG.PCGGraphInstance": { "Visible": true },
 			"/Script/PCG.PCGLandscapeCache": {},
@@ -97,6 +100,7 @@
 			"/Script/PCG.PCGParamData": {},
 			"/Script/PCG.PCGPartitionActor": {},
 			"/Script/PCG.PCGPointData": {},
+			"/Script/PCG.PCGPointArrayData": {},
 			"/Script/PCG.PCGSchedulingPolicyDistanceAndDirection": {},
 			"/Script/PCG.PCGWorldActor": {},
 			"/Script/PCG.PCGManagedISMComponent": {},
@@ -107,6 +111,7 @@
 			"/Script/AIModule.EQSRenderingComponent": { "Visible": true },
 			"/Script/Engine.LevelScriptBlueprint": { "Visible": true },
 			"/Script/Engine.TriggerVolume": { "Visible": true },
+			"/Script/Engine.KillZVolume": { "Visible": true },
 			"/Script/Engine.RuntimeVirtualTextureComponent": { "Visible": true },
 			"/Script/Engine.RuntimeVirtualTextureVolume": { "Visible": true },
 			"/Script/Engine.NavigationSystemConfig": { "Visible": true },
@@ -195,7 +200,8 @@
 			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_Mobile.DSCT_Mobile_C": {},
 			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_PerfMode.DSCT_PerfMode_C": {},
 			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_VolumetricFog.DSCT_VolumetricFog_C": {},
-			"/Script/MovieSceneTracks.MovieSceneScalabilityCondition": {}
+			"/Script/MovieSceneTracks.MovieSceneScalabilityCondition": {},
+			"/NPCDefault/Types/CharacterType_Participant.CharacterType_Participant_C": { "Visible": true }
 		},
 		"AllowedMenus": {
 			"LevelEditor.MainMenu": {

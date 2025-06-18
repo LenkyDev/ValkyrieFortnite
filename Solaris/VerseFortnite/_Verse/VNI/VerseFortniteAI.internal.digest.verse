@@ -4,6 +4,7 @@ using {/Fortnite.com/Playspaces}
 using {/Verse.org/Native}
 using {/Fortnite.com/Assets}
 using {/Fortnite.com/Characters}
+using {/Verse.org/SpatialMath}
 using {/UnrealEngine.com/Temporary/SpatialMath}
 using {/Verse.org/Simulation}
 using {/Verse.org/SceneGraph}
@@ -67,6 +68,9 @@ AI<public> := module:
     focus_interface<native><public> := interface<epic_internal>:
         # Look At specified location. Will never complete unless interrupted.
         MaintainFocus<public>(Location:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<suspends>:void
+
+        # Look At specified location. Will never complete unless interrupted.
+        MaintainFocus<epic_internal>(Location:(/Verse.org/SpatialMath:)vector3)<suspends>:void
 
         # Look At specified Agent. Will never complete unless interrupted.
         MaintainFocus<public>(Agent:agent)<suspends>:void
@@ -156,6 +160,11 @@ AI<public> := module:
         #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
         SetLeashPosition<native><override>(Location:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, InnerRadius:float, OuterRadius:float):void
 
+        # Set custom leash position.
+        #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
+        #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
+        SetLeashPosition<native><override>(Location:(/Verse.org/SpatialMath:)vector3, InnerRadius:float, OuterRadius:float):void
+
         # Set the agent to be the new center of the leash.
         #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
         #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
@@ -230,6 +239,11 @@ AI<public> := module:
         #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
         SetLeashPosition<public>(Location:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, InnerRadius:float, OuterRadius:float):void
 
+        # Set custom leash position.
+        #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
+        #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
+        SetLeashPosition<epic_internal>(Location:(/Verse.org/SpatialMath:)vector3, InnerRadius:float, OuterRadius:float):void
+
         # Set the agent to be the new center of the leash.
         #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
         #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
@@ -281,6 +295,9 @@ AI<public> := module:
 
         # Wait for a specific duration
         Wait<native><override>(?Duration:float = external {})<suspends>:void
+
+        # Look At specified location. Will never complete unless interrupted.
+        MaintainFocus<native><override>(Location:(/Verse.org/SpatialMath:)vector3)<suspends>:void
 
         # Look At specified location. Will never complete unless interrupted.
         MaintainFocus<native><override>(Location:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<suspends>:void
@@ -431,7 +448,10 @@ AI<public> := module:
 
 
     # Generate a navigation_target from any position
-    MakeNavigationTarget<native><public>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):navigation_target
+    MakeNavigationTarget<native><epic_internal>(Position:(/Verse.org/SpatialMath:)vector3):navigation_target
+
+    # Generate a navigation_target from any position
+    MakeNavigationTarget<public>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):navigation_target = external {}
 
     # Generate a navigation_target from an agent
     MakeNavigationTarget<native><public>(Target:agent):navigation_target
@@ -557,7 +577,7 @@ AI<public> := module:
     # Information about a perceived obstacle.
     fort_obstacle_info<native><epic_internal> := class<epic_internal>:
         @experimental
-        Location<native><public>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+        Location<native><public>:(/Verse.org/SpatialMath:)vector3
 
         @experimental
         Status<native><public>:fort_obstacle_status

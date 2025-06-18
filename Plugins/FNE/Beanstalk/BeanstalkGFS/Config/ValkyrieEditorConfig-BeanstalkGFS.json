@@ -74,6 +74,7 @@
 			"/CRP_VideoScreen",
 			"/CRP_Whitebox",
 			"/CRD_Fillable_Container",
+			"/CRD_Simple_Voting_Option",
 
 			"/MusicBlocks/Playset/PPIDs",
 			"/UEFN_FoliageToolAssets"
@@ -272,6 +273,8 @@
 			"/CRD_CameraModes/SetupAssets/PID_CP_Devices_Orbit.PID_CP_Devices_Orbit",
 			"/CRD_CameraModes/SetupAssets/PID_CP_Devices_FixedPoint.PID_CP_Devices_FixedPoint",
 			"/CRD_Fillable_Container/SetupAssets/PID_CP_Devices_Fillable_Container.PID_CP_Devices_Fillable_Container",
+			"/CRD_Simple_Voting_Option/SetupAssets/PID_CP_Devices_Simple_Voting_Group.PID_CP_Devices_Simple_Voting_Group",
+			"/CRD_Simple_Voting_Option/SetupAssets/PID_CP_Devices_Simple_Voting_Option.PID_CP_Devices_Simple_Voting_Option",
 
 
 			"/BeanstalkExperienceSettings/Device_ExperienceSettings_FallGuys.Device_ExperienceSettings_FallGuys",

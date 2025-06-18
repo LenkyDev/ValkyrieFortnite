@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Lime",
-	"FortReleaseVersion": "36.00",
+	"FortReleaseVersion": "36.10",
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
@@ -19,6 +19,19 @@
 			"VKCreateUGCPartnerLime": "d283cfefe4aa485f99e004465f749293"
 		}
 	},
+	"Version": 0,
+	"VersionName": "",
+	"FriendlyName": "",
+	"Description": "",
+	"Category": "",
+	"CreatedBy": "",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
 	"Plugins": [
 		{
 			"Name": "AtomFN",
@@ -43,8 +56,8 @@
 		},
 		{
 			"Name": "CRD_LimeCollectible",
-			"Activate": true,
 			"Enabled": true,
+			"Activate": true,
 			"Optional": true
 		},
 		{
@@ -53,7 +66,18 @@
 			"Optional": true
 		},
 		{
+			"Name": "FigureCosmetics",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
 			"Name": "FNEC_ScarySpace",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEC_Seed",
 			"Enabled": true,
 			"Optional": true
 		},
@@ -117,9 +141,19 @@
 			"Optional": true
 		},
 		{
+			"Name": "LimeAtomEditor",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "LimeBanana",
 			"Enabled": true,
 			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeBasicBrickGallery_Assets",
+			"Enabled": true,
 			"Optional": true
 		},
 		{
@@ -194,8 +228,8 @@
 		{
 			"Name": "LimeExtraAssets",
 			"Enabled": true,
-			"Optional": true,
-			"Activate": true
+			"Activate": true,
+			"Optional": true
 		},
 		{
 			"Name": "LimeFlintKnock",
@@ -382,11 +416,6 @@
 			"Optional": true
 		},
 		{
-			"Name": "SpaceIngestion",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
 			"Name": "Suburban_Assets",
 			"Enabled": true,
 			"Optional": true
@@ -400,25 +429,6 @@
 			"Name": "TownScaper",
 			"Enabled": true,
 			"Optional": true
-		},
-		{
-			"Name": "FigureCosmetics",
-			"Enabled": true,
-			"Activate": true,
-			"Optional": true
 		}
-	],
-	"Version": 0,
-	"VersionName": "",
-	"FriendlyName": "",
-	"Description": "",
-	"Category": "",
-	"CreatedBy": "",
-	"CreatedByURL": "",
-	"DocsURL": "",
-	"MarketplaceURL": "",
-	"SupportURL": "",
-	"IsBetaVersion": false,
-	"IsExperimentalVersion": false,
-	"Installed": false
+	]
 }

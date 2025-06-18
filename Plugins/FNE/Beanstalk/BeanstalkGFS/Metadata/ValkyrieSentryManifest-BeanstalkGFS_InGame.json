@@ -812,6 +812,8 @@
 		"/CRD_RacingCheckpoint/SetupAssets/Manager/ID/PID_Device_RaceManager_V2.PID_Device_RaceManager_V2",
 		"/CRD_RealTimeClock/SetupAssets/PID_Devices_RealTimeClock_V2.PID_Devices_RealTimeClock_V2",
 		"/CRD_SavePoint/SetupAssets/PID_Device_SavePoint.PID_Device_SavePoint",
+		"/CRD_Simple_Voting_Option/SetupAssets/PID_CP_Devices_Simple_Voting_Group.PID_CP_Devices_Simple_Voting_Group",
+		"/CRD_Simple_Voting_Option/SetupAssets/PID_CP_Devices_Simple_Voting_Option.PID_CP_Devices_Simple_Voting_Option",
 		"/CRD_SkydomeDevice/SetupAssets/PID_CP_Devices_Skydome.PID_CP_Devices_Skydome",
 		"/CRD_SkydomeDevice/SetupAssets/PID_DaySequence_Device.PID_DaySequence_Device",
 		"/CRD_SkydomeDevice/SetupAssets/PID_Device_Skydome.PID_Device_Skydome",

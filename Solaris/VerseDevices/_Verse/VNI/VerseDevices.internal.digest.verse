@@ -374,9 +374,6 @@ Devices<public> := module:
         # Changes the Mesh used by this instance.
         SetMesh<native><public>(Mesh:mesh)<transacts>:void
 
-        # Changes the Skeletal Mesh used by this instance.
-        SetSkeletalMesh<native><epic_internal>(SkeletalMesh:skeletal_mesh)<transacts>:void
-
         # Changes the Material of the Mesh used by this instance. Optionally can specify which Mesh element index to apply the material to, otherwise defaults to the 0 (default) Mesh element
         SetMaterial<native><public>(Material:material, ?Index:int = external {})<transacts>:void
 
@@ -482,6 +479,10 @@ Devices<public> := module:
     device_event_optional_agent_int<native><epic_internal> := class(device_event(tuple(?agent, int))):
 
 
+    # Implementation of `device_event(:type)` with a `tuple(?agent, []agent)` payload.
+    device_event_optional_agent_agent_array<native><epic_internal> := class(device_event(tuple(?agent, []agent))):
+
+
     # Implementation of `device_event(:type)` with a `tuple(player, ?agent)` payload.
     device_event_player_optional_agent<native><epic_internal> := class(device_event(tuple(player, ?agent))):
 
@@ -544,6 +545,9 @@ Devices<public> := module:
 
     function_parameter_vector3<native><epic_internal> := class<computes>(function_parameter_base):
         Value<native><epic_internal>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+
+    function_parameter_transform<native><epic_internal> := class<computes>(function_parameter_base):
+        Value<native><epic_internal>:(/UnrealEngine.com/Temporary/SpatialMath:)transform
 
     function_parameter_texture<native><epic_internal> := class<computes>(function_parameter_base):
         Value<native><epic_internal>:?texture
@@ -614,6 +618,9 @@ Devices<public> := module:
 
     device_function_get_vector3<native><epic_internal> := class(device_function_get_base):
         Invoke<native><epic_internal>()<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+
+    device_function_get_transform<native><epic_internal> := class(device_function_get_base):
+        Invoke<native><epic_internal>()<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)transform
 
     device_function_set_multi_parameter_base<native><epic_internal> := class<abstract>(device_function_set_base):
         return_type<native><epic_internal>:?subtype(function_parameter_base) = external {}

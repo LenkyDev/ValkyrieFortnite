@@ -1,0 +1,136 @@
+{
+	"FileVersion": 3,
+	"CanContainContent": true,
+	"NoCode": true,
+	"NoGameFeatureContent": true,
+	"ExplicitlyLoaded": true,
+	"EnabledByDefault": false,
+	"BuiltInInitialFeatureState": "Installed",
+	"BuiltInAutoRegister": true,
+	"BuiltInAutoLoad": false,
+	"BuiltInAutoActivate": false,
+	"EditorCustomVirtualPath": "FNE/SolidWave",
+	"FortReleaseVersion": "36.10",
+	"VerseVersion": 0,
+	"IsGameFeatureSet": true,
+	"CookAsDLC": "Creative",
+	"RequiredEntitlements": {
+		"Create": {
+			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
+			"VKIPAgreement": "32927964d7964134b0f80d20ab02d082"
+		}
+	},
+	"Plugins": [
+		{
+			"Name": "CR_Legacy",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRD_HidingProp_SwashTide",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "SolidWave_ExtraAssets",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "SolidWaveCosmetics",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SolidWaveIslandUIOverride",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "SolidWaveSwashPulse",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "SolidWaveSwashStone",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "SolidWaveSwashStream",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "SolidWaveSwashWave",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "SolidWaveTags",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "SWave_Beacon_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SWave_Beacon_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SWave_Core_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SWave_Core_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SWave_Matrix_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SWave_Matrix_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SWave_Quill_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SWave_Quill_Comp",
+			"Enabled": true,
+			"Optional": true
+		}
+	],
+	"Version": 0,
+	"VersionName": "",
+	"FriendlyName": "",
+	"Description": "",
+	"Category": "",
+	"CreatedBy": "",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false
+}

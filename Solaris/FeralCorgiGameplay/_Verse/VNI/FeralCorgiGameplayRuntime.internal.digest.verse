@@ -82,8 +82,15 @@ CommonBridge<epic_internal> := module:
 
     IsCVarEnabled<native><epic_internal>(CVarName:string)<transacts><decides>:void
 
+agent_team_balance_result<native><epic_internal> := struct:
+    TeamOneAgents<native>:[]agent = external {}
+
+    TeamTwoAgents<native>:[]agent = external {}
+
 game_state_component_bridge<native><epic_internal> := class<concrete>:
     SendEvent<native><epic_internal>(EventName:string, TargetAgents:[]agent, Params:[string]float)<transacts><decides>:void
+
+    BalanceTeams<native><epic_internal>()<reads>:agent_team_balance_result
 
     OnReceivedEvent<public>():listenable(tuple(string, []agent, [string]float)) = external {}
 
@@ -104,6 +111,8 @@ PlayerLoadingStatusBridge<epic_internal> := module:
     GetPlayersLoading<native><epic_internal>(Playspace:fort_playspace)<reads>:[]player
 
     GetNumPlayersLoading<native><epic_internal>(Playspace:fort_playspace)<reads>:int
+
+    AwaitPlayerReadyForGameplay<native><epic_internal>(Player:player)<suspends>:void
 
 # Module import path: /Fortnite.com/FeralCorgi/ReservationHoldingBridge
 ReservationHoldingBridge<epic_internal> := module:

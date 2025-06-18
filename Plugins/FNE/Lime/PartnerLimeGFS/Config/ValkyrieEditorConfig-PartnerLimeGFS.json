@@ -72,6 +72,7 @@
 			"/Script/AtomRuntime.AtomHingedElement": {},
 			"/Script/AtomRuntime.AtomModelAssetUserData": {},
 			"/Script/AtomRuntime.AtomMergedMeshLODDistanceSettings": {},
+			"/Script/AtomRuntime.AtomModelMapping": {},
 			"/Script/AtomRuntime.AtomModelPrimitiveInstance": {},
 			"/Script/AtomRuntime.AtomModelPart": {},
 			"/Script/AtomRuntime.AtomModelPartColorInfo": {},
@@ -86,11 +87,21 @@
 			"/Script/AtomRuntime.AtomModelAssetSettings": {},
 			"/Script/AtomRuntime.AtomModelSelectionSet": {},
 			"/Script/AtomRuntime.AtomModelProcessorInstance": {},
+			"/Script/AtomRuntime.AtomPrimitive": {},
+			"/Script/AtomRuntime.AtomPrimitiveStaticMeshComponent": {
+				"Visible": true
+			},
+			"/Script/AtomRuntime.AtomCollisionComponent": {
+				"Visible": true
+			},
 			"/Script/AtomRuntime.AtomPrimitiveAssetUserData": {},
 			"/Script/AtomRuntime.AtomPrimitiveBevelOptions": {},
 			"/Script/AtomRuntime.AtomPrimitiveBuildOptions": {},
 			"/Script/AtomRuntime.AtomPrimitiveBuildSettings": {},
 			"/Script/AtomRuntime.AtomPrimitiveCollisionGeometry": {},
+			"/Script/AtomRuntime.AtomPrimitiveCollisionGeometryWrapper": {},
+			"/Script/AtomRuntime.AtomPrimitiveCollisionGeometryBox": {},
+			"/Script/AtomRuntime.AtomPrimitiveCollisionGeometryConvex": {},
 			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeBox": {},
 			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeCapsule": {},
 			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeTube": {},
@@ -104,6 +115,7 @@
 			"/Script/AtomRuntime.AtomPrimitiveGeometryLODs": {},
 			"/Script/AtomRuntime.AtomPrimitiveGeometryContainer": {},
 			"/Script/AtomRuntime.AtomPrimitiveGroup": {},
+			"/Script/AtomRuntime.AtomPrimitiveMapping": {},
 			"/Script/AtomRuntime.AtomPrimitivePhysicsAttributes": {},
 			"/Script/AtomRuntime.AtomPrimitiveUserNote": {},
 			"/Script/AtomRuntime.AtomProcessorResult": {},
@@ -169,6 +181,9 @@
 				"Visible": true
 			},
 			"/AtomFN/Editor/Processors/AtomFNMaterialFactory.AtomFNMaterialFactory_C": {
+				"Visible": true
+			},
+			"/LimeAtomAssets/Processors/LimeMaterialFactory.LimeMaterialFactory_C": {
 				"Visible": true
 			},
 			"/AtomFN/Editor/Processors/BuildingStaticMeshActorProcessor.BuildingStaticMeshActorProcessor_C": {
@@ -242,6 +257,15 @@
 			},
 			"/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C": {
 				"Visible": true
+			},
+			"/Script/LimeNativeEditor.AtomActorValidator_Materials": {
+				"Visible": false
+			},
+			"/Script/LimeNativeEditor.AtomActorValidator_Overlap": {
+				"Visible": false
+			},
+			"/Script/LimeNativeEditor.AtomActorValidator_Scale": {
+				"Visible": false
 			}
 		},
 		"AllowedEditorModes": {
@@ -361,6 +385,11 @@
 			{
 				"Type": "/Script/AtomRuntime.AtomModel",
 				"DenyList": [ "ColorThemeLibrary" ],
+				"bAllowListAllProperties": true,
+				"bAllowListAllSubclassProperties": true
+			},
+			{
+				"Type": "/Script/AtomRuntime.AtomPrimitiveStaticMeshComponent",
 				"bAllowListAllProperties": true,
 				"bAllowListAllSubclassProperties": true
 			},

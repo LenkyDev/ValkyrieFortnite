@@ -146,7 +146,7 @@ AI<public> := module:
 
 
     # Generate a navigation_target from any position
-    MakeNavigationTarget<native><public>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):navigation_target
+    MakeNavigationTarget<public>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):navigation_target = external {}
 
     # Generate a navigation_target from an agent
     MakeNavigationTarget<native><public>(Target:agent):navigation_target
