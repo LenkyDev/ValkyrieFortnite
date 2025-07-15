@@ -7,12 +7,13 @@
 			"/Squid Game"
 		],
 		"AllowedAssetTypes": {
-			"/Script/RigVM.RigVMBlueprintGeneratedClass": { "Rules": [ "View" ] }
+			"/Script/ControlRig.ControlRigBlueprintGeneratedClass": { "Rules": [ "View" ] }
 		},
 		"AllowedClasses": {
 			"/NPCDefault/Types/CharacterType_Custom.CharacterType_Custom_C": { "Visible": true },
 			"/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C": { "Visible": true },
-			"/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C": { "Visible": true }
+			"/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C": { "Visible": true },
+			"/SolidWave_ExtraAssets/SwashEdge/SKM/FN_Swash_Edge_ControlRig.FN_Swash_Edge_ControlRig_C": { "Visible": true}
 		},
 		"_comment_AllowedGatherFolders": "Allowed folders to gather assets from when exposing assets"
 	},

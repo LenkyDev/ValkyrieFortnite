@@ -659,15 +659,15 @@ EmptySweepHitsGenerator<native><epic_internal>()<transacts>:generator(sweep_hit)
 (Entity:entity).FindOverlapHits<public>(GlobalTransform:(/Verse.org/SpatialMath:)transform, Volume:collision_volume)<transacts>:generator(overlap_hit) = external {}
 
 @available {MinUploadedAtFNVersion := 2930}
-# Find all objects in the scene that would intersect this entity if it were swept from its location along the Displacement vector.
+# Find objects in the scene that would intersect this entity if it were swept from its location along the Displacement vector. Returns the first object interacting as collision_interaction.Block, and all objects interacting as collision_interaction.Overlap encountered before the first block. Hits are sorted by hit distance, so the blocking hit will be last.
 (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3)<transacts>:generator(sweep_hit) = external {}
 
 @available {MinUploadedAtFNVersion := 2930}
-# Find all objects in the scene that would intersect this entity if it were swept from GlobalTransform along the Displacement vector.
+# Find objects in the scene that would intersect this entity if it were swept from GlobalTransform along the Displacement vector. Returns the first object interacting as collision_interaction.Block, and all objects interacting as collision_interaction.Overlap encountered before the first block. Hits are sorted by hit distance, so the blocking hit will be last.
 (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3, StartGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:generator(sweep_hit) = external {}
 
 @available {MinUploadedAtFNVersion := 2930}
-# Find all objects in the scene that would intersect Volume if they were swept from GlobalTransform along the Displacement vector NOTE: This entity defines the context(scene) for the query but does not otherwise take part in the sweep.
+# Find all objects in the scene that would intersect Volume if they were swept from GlobalTransform along the Displacement vector Hits are sorted by hit distance. NOTE: This entity defines the context(scene) for the query but does not otherwise take part in the sweep.
 (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3, StartGlobalTransform:(/Verse.org/SpatialMath:)transform, Volume:collision_volume)<transacts>:generator(sweep_hit) = external {}
 
 physics_scene_component<native><epic_internal> := class<final><final_super><epic_internal>(component):

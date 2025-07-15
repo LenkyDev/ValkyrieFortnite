@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/FN1",
-	"FortReleaseVersion": "36.10",
+	"FortReleaseVersion": "36.20",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"Version": 0,
@@ -77,6 +77,26 @@
 			"Name": "VendingMachine",
 			"Enabled": true,
 			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "SWave_Beacon_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SWave_Core_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SWave_Matrix_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SWave_Quill_Assets",
+			"Enabled": true,
 			"Optional": true
 		}
 	]

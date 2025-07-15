@@ -1248,6 +1248,7 @@
 			"/VKExposedAssets/UEFNExposedAssets/UEFN_Expose_NiagaraValidationRuleSets.UEFN_Expose_NiagaraValidationRuleSets",
 			"/VKExposedAssets/UEFNExposedAssets/UEFN_Expose_PhysicalMaterials.UEFN_Expose_PhysicalMaterials",
 			"/VKExposedAssets/UEFNExposedAssets/UEFN_Expose_PostProcess.UEFN_Expose_PostProcess",
+			"/Game/UEFNExposedAssets/Legacy/UEFN_Expose_Legacy_Templates.UEFN_Expose_Legacy_Templates",
 			"/Game/UEFNExposedAssets/UEFN_Expose_Uncategorized.UEFN_Expose_Uncategorized",
 			"/VKExposedAssets/UEFNExposedAssets/UEFN_Expose_VFX.UEFN_Expose_VFX",
 			"/VKExposedAssets/UEFNExposedAssets/UEFN_Expose_Water.UEFN_Expose_Water",
@@ -1570,7 +1571,6 @@
 			},
 			"/LimeAtomAssets/Processors/LimeMaterialFactory.LimeMaterialFactory_C":
 			{
-				"Visible": true
 			},
 			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeAwareness.CharacterModifier_LimeAwareness_C":
 			{

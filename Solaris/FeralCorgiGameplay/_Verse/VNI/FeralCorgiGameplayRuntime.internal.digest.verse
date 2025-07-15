@@ -189,4 +189,4 @@ player_display_info<native><epic_internal> := struct:
     CurrentXP<native>:int
 
 player_display_info_manager<native><epic_internal> := class:
-    GetDisplayInfo<native><epic_internal>(InPlayer:player)<reads>:player_display_info
+    GetDisplayInfo<native><epic_internal>(InAgent:agent)<reads>:player_display_info

@@ -14,8 +14,9 @@
                   "/FN1GFS/Content/Blueprints/ScriptedAssetActions/BP_AssetAU_Tester.BP_AssetAU_Tester",
                   "/FN1GFS/Content/Blueprints/ScriptedAssetActions/BP_AssetAU_Tester.BP_AssetAU_Tester_C",
 				  "/Game/Blueprints/Blutilities/ForArtists/Actions/EnvArt_Texture_AssetActions.EnvArt_Texture_AssetActions",
-				  "/Game/Blueprints/Blutilities/ForArtists/Actions/EnvArt_Texture_AssetActions.EnvArt_Texture_AssetActions_C"
-
+				  "/Game/Blueprints/Blutilities/ForArtists/Actions/EnvArt_Texture_AssetActions.EnvArt_Texture_AssetActions_C",
+				  "/FN1GFS/Blueprints/Blutilities/AssetActions/AssetAction_PluginReferencers.AssetAction_PluginReferencers",
+				  "/FN1GFS/Blueprints/Blutilities/AssetActions/AssetAction_PluginReferencers.AssetAction_PluginReferencers_C"
                   ]
 			},
 		"AllowedEditorUtilityWidgets": {

@@ -38,49 +38,49 @@ Diagnostics<public> := module:
         Clear<native><public>()<transacts>:void
 
         # Draws a sphere at the named location, and using the provided draw parameters.
-        DrawSphere<native><epic_internal>(Center:(/Verse.org/SpatialMath:)vector3, ?Radius:float = external {}, ?Color:color = external {}, ?NumSegments:int = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void
+        DrawSphere<native><public>(Center:(/Verse.org/SpatialMath:)vector3, ?Radius:float = external {}, ?Color:color = external {}, ?NumSegments:int = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void
 
         # Draws a sphere at the named location, and using the provided draw parameters.
         DrawSphere<public>(Center:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, ?Radius:float = external {}, ?Color:color = external {}, ?NumSegments:int = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void = external {}
 
         # Draws a box at the named location, and using the provided draw parameters
-        DrawBox<native><epic_internal>(Center:(/Verse.org/SpatialMath:)vector3, Rotation:(/Verse.org/SpatialMath:)rotation, ?Extent:(/Verse.org/SpatialMath:)vector3 = external {}, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void
+        DrawBox<native><public>(Center:(/Verse.org/SpatialMath:)vector3, Rotation:(/Verse.org/SpatialMath:)rotation, ?Extent:(/Verse.org/SpatialMath:)vector3 = external {}, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void
 
         # Draws a box at the named location, and using the provided draw parameters
         DrawBox<public>(Center:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, ?Extent:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void = external {}
 
         # Draws a capsule at the named location, and using the provided draw parameters.
-        DrawCapsule<native><epic_internal>(Center:(/Verse.org/SpatialMath:)vector3, Rotation:(/Verse.org/SpatialMath:)rotation, ?Height:float = external {}, ?Radius:float = external {}, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void
+        DrawCapsule<native><public>(Center:(/Verse.org/SpatialMath:)vector3, Rotation:(/Verse.org/SpatialMath:)rotation, ?Height:float = external {}, ?Radius:float = external {}, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void
 
         # Draws a capsule at the named location, and using the provided draw parameters.
         DrawCapsule<public>(Center:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, ?Height:float = external {}, ?Radius:float = external {}, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void = external {}
 
         # Draws a cone at the named location, and using the provided draw parameters.
-        DrawCone<native><epic_internal>(Origin:(/Verse.org/SpatialMath:)vector3, Direction:(/Verse.org/SpatialMath:)vector3, ?Height:float = external {}, ?NumSides:int = external {}, ?AngleWidthRadians:float = external {}, ?AngleHeightRadians:float = external {}, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void
+        DrawCone<native><public>(Origin:(/Verse.org/SpatialMath:)vector3, Direction:(/Verse.org/SpatialMath:)vector3, ?Height:float = external {}, ?NumSides:int = external {}, ?AngleWidthRadians:float = external {}, ?AngleHeightRadians:float = external {}, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void
 
         # Draws a cone at the named location, and using the provided draw parameters.
         DrawCone<public>(Origin:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Direction:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, ?Height:float = external {}, ?NumSides:int = external {}, ?AngleWidthRadians:float = external {}, ?AngleHeightRadians:float = external {}, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void = external {}
 
         # Draws a cylinder at the named location, and using the provided draw parameters.
-        DrawCylinder<native><epic_internal>(Start:(/Verse.org/SpatialMath:)vector3, End:(/Verse.org/SpatialMath:)vector3, ?NumSegments:int = external {}, ?Radius:float = external {}, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void
+        DrawCylinder<native><public>(Start:(/Verse.org/SpatialMath:)vector3, End:(/Verse.org/SpatialMath:)vector3, ?NumSegments:int = external {}, ?Radius:float = external {}, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void
 
         # Draws a cylinder at the named location, and using the provided draw parameters.
         DrawCylinder<public>(Start:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, End:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, ?NumSegments:int = external {}, ?Radius:float = external {}, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void = external {}
 
         # Draws a line from Start to End locations, and using the provided draw parameters.
-        DrawLine<native><epic_internal>(Start:(/Verse.org/SpatialMath:)vector3, End:(/Verse.org/SpatialMath:)vector3, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void
+        DrawLine<native><public>(Start:(/Verse.org/SpatialMath:)vector3, End:(/Verse.org/SpatialMath:)vector3, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void
 
         # Draws a line from Start to End locations, and using the provided draw parameters.
         DrawLine<public>(Start:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, End:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void = external {}
 
         # Draws a point at the named location, and using the provided draw parameters.
-        DrawPoint<native><epic_internal>(Position:(/Verse.org/SpatialMath:)vector3, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void
+        DrawPoint<native><public>(Position:(/Verse.org/SpatialMath:)vector3, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void
 
         # Draws a point at the named location, and using the provided draw parameters.
         DrawPoint<public>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void = external {}
 
         # Draws an arrow pointing from Start to End locations, and using the provided draw parameters.
-        DrawArrow<native><epic_internal>(Start:(/Verse.org/SpatialMath:)vector3, End:(/Verse.org/SpatialMath:)vector3, ?ArrowSize:float = external {}, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void
+        DrawArrow<native><public>(Start:(/Verse.org/SpatialMath:)vector3, End:(/Verse.org/SpatialMath:)vector3, ?ArrowSize:float = external {}, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void
 
         # Draws an arrow pointing from Start to End locations, and using the provided draw parameters.
         DrawArrow<public>(Start:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, End:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, ?ArrowSize:float = external {}, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void = external {}

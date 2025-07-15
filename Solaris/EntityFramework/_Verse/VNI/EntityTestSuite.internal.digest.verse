@@ -1,3 +1,4 @@
+using {/Verse.org/Assets}
 using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 using {/Verse.org/Simulation}
 using {/Verse.org/SceneGraph}
@@ -65,3 +66,11 @@ EntityTestSuite<public> := module:
         OnUninitializingInternal<native><override>():void
 
         OnSimulate<override>()<suspends>:void = external {}
+
+    @hide_in_editor
+    test_material_component<native><epic_internal> := class<final_super>(component):
+        OnBeginSimulation<override>():void = external {}
+
+    @hide_in_editor
+    test_material<native><epic_internal> := class(material):
+        ___PropertyInterface_On_BaseColor_Changed<epic_internal>():void = external {}

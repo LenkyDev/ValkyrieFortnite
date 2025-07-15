@@ -270,6 +270,10 @@ AI<public> := module:
         # Add spare ammo for the currently equipped weapon.
         GiveAmmoForCurrentWeapon<epic_internal>(AmmoQuantity:int)<suspends>:void
 
+        @experimental
+        # Equip the best weapon.
+        EquipBestWeapon<epic_internal>():void
+
     @experimental
     # Get the current fort_npc_actions interface for the specified character.
     (InCharacter:fort_character).GetFortNPCActions<native><public>()<transacts><decides>:fort_npc_actions
@@ -313,6 +317,9 @@ AI<public> := module:
 
         # Add spare ammo for the currently equipped weapon.
         GiveAmmoForCurrentWeapon<native><override>(AmmoQuantity:int)<suspends>:void
+
+        # Equip the best weapon.
+        EquipBestWeapon<native><override>():void
 
     @import_as("/Script/VerseFortniteAI.UNPCComponentSettings")
     fort_npc_component_settings<native><epic_internal> := class:

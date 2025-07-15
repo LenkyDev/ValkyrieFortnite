@@ -9,7 +9,7 @@
 	"BuiltInAutoRegister": true,
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
-	"FortReleaseVersion": "36.10",
+	"FortReleaseVersion": "36.20",
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
