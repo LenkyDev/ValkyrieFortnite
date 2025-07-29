@@ -315,6 +315,12 @@ Devices<public> := module:
         # Sets the team to a specific user. 0 is no team.
         SetTeam<native><epic_internal>(TeamIndex:type{_X:int where 0 <= _X, _X <= 255}):void
 
+    # Makes a `string` from `creative_object`.
+    (/Fortnite.com/Devices:)ToString<native><epic_internal>(InCreativeObject:creative_object)<computes>:string
+
+    # Succeeds if Left and Right are equal.
+    (/Fortnite.com/Devices:)Equals<native><epic_internal>(Left:creative_object, Right:creative_object)<transacts><decides>:void
+
     @available {MinUploadedAtFNVersion := 2930}
     # Generates a `creative_object_interface` for every creative object that has been marked with the specified `Tag`. Will not find anything if called on a default constructed object.
     (InMovableObject:creative_movable_object_base).FindCreativeObjectsWithTagInternal<native><epic_internal>(Tag:tag)<transacts>:generator(creative_object_interface)

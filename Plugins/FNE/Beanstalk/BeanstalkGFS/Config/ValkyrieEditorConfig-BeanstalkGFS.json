@@ -1088,7 +1088,11 @@
 		"AllowedClasses": {
 			"/Script/VerseDevices.ScriptDevice": {},
 			"/CRD_DirectionalLauncher/GA_Launched_LowGravDirectional_Device.GA_Launched_LowGravDirectional_Device_C": {},
-			"/CRD_DirectionalLauncher/GA_Launched_Device_Parent.GA_Launched_Device_Parent_C": {}
+			"/CRD_DirectionalLauncher/GA_Launched_Device_Parent.GA_Launched_Device_Parent_C": {},
+			"/Script/Creative_TemporaryTeamsRuntime.FortUserOptionComponent_TemporaryTeams": {},
+			"/Script/Creative_TemporaryTeamsRuntime.FortUserOptionComponent_TemporaryTeams_TeamSettingsAndInventory": {},
+			"/Creative_TemporaryTeams/Components/BP_UserOptionComponent_TemporaryTeams.BP_UserOptionComponent_TemporaryTeams_C": {},
+			"/Creative_TemporaryTeams/Components/BP_TemporaryTeams_TeamSettingsAndInventory.BP_TemporaryTeams_TeamSettingsAndInventory_C": {}
 		}
 	}
 }

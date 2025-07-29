@@ -269,6 +269,9 @@ capture_item_spawner_device<public> := class<concrete><final>(creative_device_ba
     # Sends the `agent` that returned the item.
     ItemReturnedEvent<public>:listenable(agent) = external {}
 
+    # Force the agent to pick up the item.
+    PickUpIItem<epic_internal>(Agent:agent):void = external {}
+
     # Enables this device.
     Enable<public>():void = external {}
 
@@ -1267,6 +1270,24 @@ team_settings_and_inventory_device<public> := class<concrete><final>(creative_de
 
     # Returns an array of agents that are currently of the team defined by this device.
     GetTeamMembers<public>()<reads>:[]agent = external {}
+
+    # Removes the `agent` from its Temporary Team.
+    # Decides based on whether the `agent` was on a Temporary Team.
+    # This will return them to the team they were on before they joined a Temporary Team
+    RemoveTemporaryMemberFromTeam<public>(Agent:agent):void = external {}
+
+    # Returns all temporary team members for this Deviceâs Team Setting Value back to their original Teams.
+    # If the device is configured to All, then this function will remove all Temporary Team members from any Temporary Team they are on, returning them to their original team.
+    RemoveTemporaryMembersFromTeam<public>():void = external {}
+
+    # This variable maps to the AllowTemporaryTeamMemberInvitations user option.
+    # Modifying this value does not affect the state of any existing Temporary Team member.
+    # If a player is currently on a Temporary Team, they will maintain access to the leave team emote regardless of this value.
+    # Available values:
+    # * If this option is unset, use the global setting configured in Island Settings
+    # * If this is set to TRUE, it allows members of this team to Emote and invite other players to their team.
+    # * If this is set to FALSE, it prevents members of this team from using an Emote to invite other players to this team.
+    var AllowTemporaryTeamMemberInvitations<public>:?logic = external {}
 
 # Customizable rift that allows `agent`s to move instantly between locations. You can use this to move players around your island, or create multi-island experiences with teleporters that take players from one island to another.
 teleporter_device<public> := class<concrete><final>(creative_device_base):

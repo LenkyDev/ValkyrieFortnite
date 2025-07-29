@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/SolidWave",
-	"FortReleaseVersion": "36.20",
+	"FortReleaseVersion": "36.30",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
@@ -41,7 +41,8 @@
 		{
 			"Name": "SolidWaveCosmetics",
 			"Enabled": true,
-			"Optional": true
+			"Optional": true,
+			"Activate": true
 		},
 		{
 			"Name": "SolidWaveIslandUIOverride",

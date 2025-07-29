@@ -321,6 +321,9 @@ AI<public> := module:
         # Equip the best weapon.
         EquipBestWeapon<native><override>():void
 
+        # Simulate the Use button.
+        Use<native><epic_internal>(Duration:float)<suspends>:void
+
     @import_as("/Script/VerseFortniteAI.UNPCComponentSettings")
     fort_npc_component_settings<native><epic_internal> := class:
 

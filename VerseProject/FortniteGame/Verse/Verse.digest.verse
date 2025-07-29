@@ -2,7 +2,7 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-36.20-CL-43847582
+# Generated from build: ++Fortnite+Release-36.30-CL-44367537
 #################################################
 
 SceneGraph<public> := module:
@@ -953,19 +953,19 @@ SceneGraph<public> := module:
         # Current transform of the entity, globally referenced. Any value set at construction will be overrridden with the calculation from the Local Transform
         var GlobalTransform<public>:(/Verse.org/SpatialMath:)transform = external {}
 
-        var<private> GlobalTransformInternal<native><public>:(/Verse.org/SpatialMath:)transform = external {}
+        var<private> GlobalTransformInternal<native><private>:(/Verse.org/SpatialMath:)transform = external {}
 
         # LocalTransform to its parent/origin
         var LocalTransform<public>:(/Verse.org/SpatialMath:)transform = external {}
 
         @editable {}
-        var<private> LocalTransformInternal<native><public>:(/Verse.org/SpatialMath:)transform = external {}
+        var<private> LocalTransformInternal<native><private>:(/Verse.org/SpatialMath:)transform = external {}
 
         # alternate origin than the default parent entity
         var Origin<public>:?origin = external {}
 
         @editable {}
-        var<private> OriginInternal<native><public>:?origin = external {}
+        var<private> OriginInternal<native><private>:?origin = external {}
 
     # Returns the global transform of this entity, in the case the entity does not have a transform_component it will return the transform of the first parent that has a transform
     (InEntity:entity).GetGlobalTransform<native><public>()<transacts>:(/Verse.org/SpatialMath:)transform

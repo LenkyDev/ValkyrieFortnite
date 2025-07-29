@@ -52,7 +52,8 @@
 			"/Script/Engine.CompositeCurveTable": { "Rules": [ "View", "Create" ] },
 			"/Script/Engine.DataTable": { "Rules": [ "View", "Create" ] },
 			"/Script/Engine.Font": { "Rules": [ "View" ] },
-			"/Script/Engine.MaterialFunction": { "Rules": [ "View", "Create", "ModuleAPI" ] }
+			"/Script/Engine.MaterialFunction": { "Rules": [ "View", "Create", "ModuleAPI" ] },
+			"/Script/Engine.World": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] }
 		},
 		"AllowedClasses": {
 			"/Script/AmbientAudio.AmbientAudioComponent": { "Visible": true },
@@ -202,7 +203,8 @@
 			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_PerfMode.DSCT_PerfMode_C": {},
 			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_VolumetricFog.DSCT_VolumetricFog_C": {},
 			"/Script/MovieSceneTracks.MovieSceneScalabilityCondition": {},
-			"/NPCDefault/Types/CharacterType_Participant.CharacterType_Participant_C": { "Visible": true }
+			"/NPCDefault/Types/CharacterType_Participant.CharacterType_Participant_C": { "Visible": true },
+			"/NPCDefault/Types/Modifiers/CharacterModifier_Bots.CharacterModifier_Bots_C": { "Visible": true }
 		},
 		"AllowedMenus": {
 			"LevelEditor.MainMenu": {
@@ -398,6 +400,11 @@
 				"Type": "/FN1GFS/Blueprints/ScriptedTools/MeasurePoints/SupportFiles/BP_MeasureTool_Billboard.BP_MeasureTool_Billboard_C",
 				"AllowList": ["LineNumber", "TotalLen", "TotalRunTime", "ThisLineLen", "ThisLineRunTime", "TextColour", "TextOutlineColour"],
 				"DenyList": ["StaticMesh", "Material", "Mobility", "Rotation"]
+			},
+			{
+				"Type": "/NPCDefault/Types/Modifiers/CharacterModifier_Bots.CharacterModifier_Bots_C",
+				"bAllowListAllProperties": true,
+				"bAllowListAllSubclassProperties": true
 			}
 		],
 		"-": [

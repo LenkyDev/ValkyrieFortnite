@@ -158,6 +158,11 @@ VerseFramework<public> := module:
 
         Subscribe<public>(Event:listenable(tuple(int, logic))):void = external {}
 
+    test_event_creative_prop_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgProp<public>:?creative_prop = external {}
+
+        Subscribe<public>(Event:listenable(creative_prop)):void = external {}
+
     test_case<public> := struct:
         Name<public>:string
 
