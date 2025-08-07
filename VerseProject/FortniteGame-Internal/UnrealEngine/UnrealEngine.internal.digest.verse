@@ -2,7 +2,7 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-36.30-CL-44367537
+# Generated from build: ++Fortnite+Release-37.00-CL-44501951
 #################################################
 
 using {/Verse.org/Assets}
@@ -505,6 +505,19 @@ Temporary<public> := module:
             # Empty distance in pixels that surrounds the widget inside the slot. Assumes 1080p resolution.
             Padding<native><public>:margin = external {}
 
+        # Safe zone box is a container of a single child widget slot that ensures its slot content stays out of unsafe zone across platforms.
+        safezone_box<native><epic_internal> := class<final>(widget):
+            # The child widget of the safe zone. Used only during initialization of the widget and not modified by SetWidget.
+            Slot<native><public>:safezone_box_slot
+
+            # Sets the child widget slot.
+            SetWidget<native><public>(InSlot:safezone_box_slot):void
+
+        # Slot for safe zone box widget.
+        safezone_box_slot<native><epic_internal> := struct:
+            # The widget assigned to this slot.
+            Widget<native><public>:widget
+
         # Stack box is a container of a list of widgets stacked either vertically or horizontally.
         stack_box<native><public> := class<final>(widget):
             # The child widgets of the stack box. Used only during initialization of the widget and not modified by Add/RemoveWidget.
@@ -566,6 +579,9 @@ Temporary<public> := module:
             # The color of the displayed text. Used only during initialization of the widget and not modified by SetTextColor.
             DefaultTextColor<native><public>:color = external {}
 
+            # The size of the displayed text. Used only during initialization of the widget and not modified by SetTextSize.
+            DefaultTextSize<native><public>:float = external {}
+
             # The opacity of the displayed text. Used only during initialization of the widget and not modified by SetTextOpacity.
             DefaultTextOpacity<native><public>:type {_X:float where 0.000000 <= _X, _X <= 1.000000} = external {}
 
@@ -599,6 +615,12 @@ Temporary<public> := module:
 
             # Gets the color of the displayed text.
             GetTextColor<native><public>():color
+
+            # Sets the size of the displayed text.
+            SetTextSize<native><public>(InSize:float):void
+
+            # Gets the size of the displayed text.
+            GetTextSize<native><public>():float
 
             # Sets the opacity of the displayed text.
             SetTextOpacity<native><public>(InOpacity:type {_X:float where 0.000000 <= _X, _X <= 1.000000}):void
@@ -1525,6 +1547,7 @@ EntityTestSuite<public> := module:
 
 Itemization<public> := module:
     using {/Verse.org/Colors}
+    using {/Verse.org/VerseEngine}
     using {/UnrealEngine.com/Abilities}
     using {/Verse.org/Assets}
     using {/Verse.org/Simulation/Tags}
@@ -1577,24 +1600,29 @@ Itemization<public> := module:
 
         OnUninitializingInternal<native><override>():void
 
-        CanAddItem<final><native><public>(Item:entity):?failure_reason
+        CanAddItem<final><native><public>(Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {})<transacts>:?failure_reason
 
-        AddItem<native><final><public>(Item:entity)<transacts><decides>:add_items_result
+        AddItem<native><final><public>(Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {})<transacts><decides>:add_items_result
 
-        CanRemoveItem<final><native><public>(Item:entity):?failure_reason
+        CanRemoveItem<final><native><public>(Item:entity)<transacts>:?failure_reason
 
         RemoveItem<native><final><public>(Item:entity)<transacts><decides>:remove_items_result
 
-        GetItems<native><final><public>():[]entity
+        GetItems<native><final><public>()<reads>:[]entity
 
         @available {MinUploadedAtFNVersion := 2930}
         FindItems<native><final><public>()<reads>:generator(entity)
 
         GetItemSlot<native><epic_internal>(Item:entity)<reads>:int
 
-        AddInventory<native><final><public>(Inventory:inventory_component)<transacts><decides>:add_inventory_result
+        AddInventory<native><final><epic_internal>(Inventory:inventory_component)<transacts><decides>:add_inventory_result
 
-        RemoveInventory<native><final><public>(Inventory:inventory_component)<transacts><decides>:remove_inventory_result
+        RemoveInventory<native><final><epic_internal>(Inventory:inventory_component)<transacts><decides>:remove_inventory_result
+
+        GetInventories<native><final><public>()<reads>:[]inventory_component
+
+        @available {MinUploadedAtFNVersion := 2930}
+        FindInventories<native><final><public>()<reads>:generator(inventory_component)
 
         InventoryAddedEvent<native><epic_internal>:listenable(add_inventory_result) = external {}
 
@@ -1614,15 +1642,15 @@ Itemization<public> := module:
 
         @editable
         @replicated("")
-        var<private> InventoryName<native><public>:string = external {}
+        var<private> InventoryName<native><epic_internal>:string = external {}
 
         @editable
         @replicated("")
-        var<private> InventoryDisplayName<native><public>:message = external {}
+        var<private> InventoryDisplayName<native><epic_internal>:message = external {}
 
         @editable
         @replicated("")
-        var<private> InventoryDescription<native><public>:message = external {}
+        var<private> InventoryDescription<native><epic_internal>:message = external {}
 
         @editable
         @replicated("")
@@ -1630,21 +1658,21 @@ Itemization<public> := module:
 
         @editable
         @replicated("")
-        var<private> PickupPriority<native><public>:int = external {}
+        var<private> PickupPriority<native><epic_internal>:int = external {}
 
         @editable
         VerseGameplayTags<native><epic_internal>:tag_container = external {}
 
         @editable
         @replicated("")
-        var<private> EnableItemStacking<native><public>:logic = external {}
+        var<private> EnableItemStacking<native><epic_internal>:logic = external {}
 
         @replicated("")
-        var<private> InventoryMaxStackSizeOverride<native><public>:int = external {}
+        var<private> InventoryMaxStackSizeOverride<native><epic_internal>:int = external {}
 
     @experimental
     equippable_inventory_component<native><epic_internal> := class(inventory_component):
-        CanEquipItem<native><public>(Item:entity)<decides>:void
+        CanEquipItem<native><public>(Item:entity)<transacts><decides>:void
 
         EquipItem<native><public>(Item:entity)<transacts><decides>:void
 
@@ -1664,7 +1692,6 @@ Itemization<public> := module:
 
     @experimental
     inventory_backpack_component<epic_internal> := class(inventory_component):
-        var TotalSlots<override>:int = external {}
 
     @experimental
     equippable_inventory_slot_component<native><epic_internal> := class(equippable_inventory_component):
@@ -1678,18 +1705,24 @@ Itemization<public> := module:
     (InAgent:agent).GetInventory<native><epic_internal>()<transacts><decides>:inventory_component
 
     @experimental
+    itemization_debug_item_component_mergeable<epic_internal> := class(item_component):
+        @available {MinUploadedAtFNVersion := 3200}
+        MergeableItemComponentClasses<override>:[]castable_subtype(item_component) = external {}
+
+    @experimental
     inventory_debug<native><epic_internal> := class:
         AddTestItem<native_callable><public>(InInventory:inventory_component):void = external {}
 
+        # Adds a mergeable item which can be stacked to the inventory.
         AddTestStackableItem<native_callable><public>(InInventory:inventory_component):void = external {}
 
         RemoveAllItems<native_callable><public>(InInventory:inventory_component):void = external {}
 
     @experimental
-    inventory_rule_interface<native><epic_internal> := interface<unique>:
+    inventory_rule_interface<native><epic_internal> := interface<unique><castable>:
         OnRuleAdded<native_callable><public>(InventoryComponent:inventory_component):void = external {}
 
-        CanAddItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity):?failure_reason = external {}
+        CanAddItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {}):?failure_reason = external {}
 
         CanMergeItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity):?failure_reason = external {}
 
@@ -1699,11 +1732,14 @@ Itemization<public> := module:
     inventory_full_failure_reason<epic_internal> := class<final><reads>(failure_reason):
 
     @experimental
+    invalid_item_failure_reason<epic_internal> := class<final><reads>(failure_reason):
+
+    @experimental
     item_limit_inventory_rule<native><epic_internal> := class(inventory_rule_interface):
         @editable
         ItemLimit<native><public>:int = external {}
 
-        CanAddItem<override>(InventoryComponent:inventory_component, Item:entity):?failure_reason = external {}
+        CanAddItem<override>(InventoryComponent:inventory_component, Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {}):?failure_reason = external {}
 
     @experimental
     inventory_setup_data_result<native><epic_internal> := struct<epic_internal>:
@@ -1881,12 +1917,12 @@ Itemization<public> := module:
 
     @experimental
     # Anything using this component should be considered an item. Required to interact with inventories.
-    item_component<native><final><epic_internal> := class<final_super>(component):
+    item_component<native><epic_internal> := class<final_super>(component):
         OnInitializedInternal<native><override>():void
 
         GetParentInventory<native><final><public>()<reads><decides>:inventory_component
 
-        IsItemEquipped<native><final><public>()<decides>:void
+        IsItemEquipped<native><final><public>()<reads><decides>:void
 
         InventoryChangeEvent<native><public>:listenable(item_inventory_change) = external {}
 
@@ -1899,9 +1935,9 @@ Itemization<public> := module:
         @available {MinUploadedAtFNVersion := 3200}
         MergeableItemComponentClasses<native><public>:[]castable_subtype(item_component) = external {}
 
-        CanMergeInto<final><native_callable><public>(TargetItem:entity)<decides>:void = external {}
+        CanMergeInto<final><native_callable><public>(TargetItem:entity)<reads><decides>:void = external {}
 
-        CanMergeIntoInternal<final><native><epic_internal>(TargetItem:entity):tuple(logic, logic)
+        CanMergeIntoInternal<final><native><epic_internal>(TargetItem:entity)<reads>:tuple(logic, logic)
 
         MergeInto<final><native_callable><public>(TargetItem:entity, ?TargetAmount:?int = external {})<transacts><decides>:void = external {}
 
@@ -1927,34 +1963,18 @@ Itemization<public> := module:
         var<private> ItemDefinition<native><epic_internal>:?item_definition_base = external {}
 
     @experimental
-    item_mergeable_interface<public> := interface<unique>:
+    has_item_merge_rules<public> := interface<unique>:
         CanMergeInto<public>(TargetItem:entity)<reads><decides>:void = external {}
 
         OnMergeInto<public>(TargetItem:entity, MergeAmount:int)<transacts>:void = external {}
 
-    DefaultItemEmptyString<localizes><epic_internal>:message = external {}
-
     @experimental
     # Component that holds the details of an item.
-    item_details_component<native><epic_internal> := class<final_super>(component):
-        @editable
-        # Name of the item.
-        var<protected> Name<native><public>:message = external {}
-
-        @editable
-        # Full description of the item.
-        var<protected> Description<native><public>:message = external {}
-
-        @editable
-        # Short description of the item with only the essential information.
-        var<protected> ShortDescription<native><public>:message = external {}
+    item_details_component<native><epic_internal> := class<final_super>(component, has_description):
 
     @experimental
-    # Component that holds the icon of an item.
-    item_icon_component<native><epic_internal> := class<final_super>(component):
-        @editable
-        # Texture used for representing the item in the UI.
-        var<protected> Icon<native><public>:texture
+    # Component that holds the icon for an item.
+    item_icon_component<native><epic_internal> := class<final_super>(component, has_icon):
 
     @experimental
     @import_as("/Script/ItemizationCoreRuntime.UItemDefinitionBase")
@@ -2124,22 +2144,52 @@ Itemization<public> := module:
 
 # Module import path: /UnrealEngine.com/ControlInput
 ControlInput<public> := module:
+    # Input_events is a container for user input events which can be subscribed to.
+    #   * Use the 'GetPlayerInput' and 'GetInputEvents' functions to retrieve an input_events object for a given player.
+    #   * Low-level notifications of current user input: DetectionBeginEvent, DetectionOngoingEvent, and DetectionEndEvent.
+    #   * High-level notifications of triggered events: ActivationTriggeredEvent and ActivationCanceledEvent.
+    # 
+    #                         /—----------<-------\ 
+    #  DetectionBeginEvent -> DetectionOngoingEvent -> ActivationTriggeredEvent -> DetectionEndEvent 
+    #            /\                         /\                                            / 
+    #              \---------------------> ActivationCanceledEvent ----------------------/
     input_events<native><public>(t:type) := class<epic_internal>:
+        # This input has met all required conditions and has successfully fired. Most of the time, you should bind to this event.
+        #  Tuple payload: 0: the player generating this event
+        #                 1: the value generated by the physical input
         ActivationTriggeredEvent<native><public>:listenable(tuple(player, t)) = external {}
 
+        # This input has been canceled before activation. For example, if the key is released before a “Press and Hold” time threshold.
+        #  Tuple payload: 0: the player generating this event
+        #                 1: the value generated by the physical input
+        #                 2: elapsed seconds since detection began
         ActivationCanceledEvent<native><public>:listenable(tuple(player, t, float)) = external {}
 
+        # Detection has started for this input e.g. a required key is now held down. Note: ActivationTriggeredEvent may also occur this frame,
+        #  but this event will always be fired first. DetectionBegin and DetectionEnd will always fire, regardless of whether the input is
+        #  successful or canceled.
+        #  Tuple payload: 0: the player generating this event
+        #                 1: the value generated by the physical input
         DetectionBeginEvent<native><public>:listenable(tuple(player, t)) = external {}
 
+        # Detection for this input is still being processed. For example, a time threshold may not be met.
+        #  Tuple payload: 0: the player generating this event
+        #                 1: the value generated by the physical input
+        #                 2: elapsed seconds since detection began
         DetectionOngoingEvent<native><public>:listenable(tuple(player, t, float)) = external {}
 
+        # Detection has finished e.g. no required keys are now down. Will always fire as a pair with DetectionBegin.
+        #  Tuple payload: 0: the player generating this event
+        #                 1: elapsed seconds since detection began
         DetectionEndEvent<native><public>:listenable(tuple(player, float)) = external {}
 
-    GetPlayerInput<native><epic_internal>(Player:player)<transacts><decides>:player_input
+    # Access input-related data and settings for a player.
+    GetPlayerInput<native><public>(Player:player)<transacts><decides>:player_input
 
     MakeInputAsset<native><epic_internal>((InputAction:input_action(t), Path:string) where t:type)<converges>:input_action(t)
 
-    player_input<native><epic_internal> := class:
+    # This is the main manager class for input-related settings and functions for a player.
+    player_input<native><public> := class:
         AddInputMapping<native><public>(InputMapping:input_mapping):void
 
         RemoveInputMapping<native><public>(InputMapping:input_mapping):void

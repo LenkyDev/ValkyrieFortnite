@@ -2,7 +2,7 @@ using {/Verse.org/Native}
 # Module import path: /Verse.org/Simulation/Tags
 Tags<public> := module:
     # A single gameplay tag, which represents a hierarchical name of the form x.y that is registered in the GameplayTagsManager You can filter the gameplay tags displayed in the editor.
-    tag<native><public> := class<abstract>:
+    tag<native><public> := class<abstract><castable>:
 
 
     @import_as("/Script/VerseGameplayTags.FVerseGameplayTag")
@@ -11,7 +11,7 @@ Tags<public> := module:
 
 
     # Get a string representation of the gameplay tag. Useful for debugging.
-    (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_24:tag)<computes>:string
+    (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_32:tag)<computes>:string
 
     # Succeeds if Left and Right are equal.
     Equals<native><epic_internal>(Left:tag, Right:tag)<transacts><decides>:void
@@ -82,7 +82,7 @@ Tags<public> := module:
         GetTags<native><epic_internal>()<transacts>:generator(tag)
 
     # Returns abbreviated human readable Tag list. Useful for debugging.
-    (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_27:tag_container)<computes>:string
+    (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_35:tag_container)<computes>:string
 
     @import_as("/Script/VerseGameplayTags.FVerseGameplayTagContainer")
     # Utility structure which allows users to select a gameplay tag when exposed to editor

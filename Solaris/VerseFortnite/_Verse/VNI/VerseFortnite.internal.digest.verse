@@ -296,6 +296,9 @@ FortPlayerUtilities<public> := module:
 
     (InAgent:agent).RestartPlayer<native><epic_internal>(RespawnPosition:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, RespawnRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, SpawnOnGround:logic)<transacts>:void
 
+    # Returns the location where the agent was eliminated
+    (InAgent:agent).GetEliminationLocation<native><epic_internal>()<transacts><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+
 # Module import path: /Fortnite.com/Game
 Game<public> := module:
     # Result data for `fort_character` elimination events.

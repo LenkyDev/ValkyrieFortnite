@@ -23,6 +23,10 @@
 		{
 			"Name": "CR_Legacy",
 			"Enabled": true
+		},
+		{
+			"Name": "GFSMetaDataCommon",
+			"Enabled": true
 		}
 	],
 	"Version": 0,

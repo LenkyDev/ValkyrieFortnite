@@ -12,6 +12,7 @@
 	"SupportURL": "",
 	"EnabledByDefault": false,
 	"CanContainVerse": true,
+	"CanContainContent": true,
 	"IsBetaVersion": false,
 	"Installed": false,
 	"SupportedPrograms": [
@@ -35,6 +36,11 @@
 		{
 			"Name": "VersePredicts",
 			"Type": "Runtime",
+			"LoadingPhase": "EarliestPossible"
+		},
+		{
+			"Name": "VersePredictsTesting",
+			"Type": "Program",
 			"LoadingPhase": "EarliestPossible"
 		},
 		{

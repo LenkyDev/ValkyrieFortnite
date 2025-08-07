@@ -8,6 +8,11 @@
 	"BuiltInAutoLoad": true,
 	"BuiltInAutoActivate": false,
 	"FortReleaseVersion": "32.00",
+	"RequiredEntitlements":
+	{
+		"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
+		"VKCreateUGCPartnerLime": "d283cfefe4aa485f99e004465f749293"
+	},
 	"Version": 0,
 	"VersionName": "",
 	"FriendlyName": "",

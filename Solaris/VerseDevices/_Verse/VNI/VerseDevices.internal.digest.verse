@@ -543,6 +543,12 @@ Devices<public> := module:
     function_parameter_agent_array<native><epic_internal> := class<computes>(function_parameter_base):
         Value<native><epic_internal>:[]agent
 
+    function_parameter_device<native><epic_internal> := class<computes>(function_parameter_base):
+        Value<native><epic_internal>:?creative_device_base
+
+    function_parameter_device_array<native><epic_internal> := class<computes>(function_parameter_base):
+        Value<native><epic_internal>:[]creative_device_base
+
     function_parameter_fort_vehicle<native><epic_internal> := class<computes>(function_parameter_base):
         Value<native><epic_internal>:?fort_vehicle
 
@@ -621,6 +627,12 @@ Devices<public> := module:
 
     device_function_get_agent_array<native><epic_internal> := class(device_function_get_base):
         Invoke<native><epic_internal>()<reads>:[]agent
+
+    device_function_get_device<native><epic_internal> := class(device_function_get_base):
+        Invoke<native><epic_internal>()<reads>:?creative_device_base
+
+    device_function_get_device_array<native><epic_internal> := class(device_function_get_base):
+        Invoke<native><epic_internal>()<reads>:[]creative_device_base
 
     device_function_get_vector3<native><epic_internal> := class(device_function_get_base):
         Invoke<native><epic_internal>()<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3

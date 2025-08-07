@@ -1,0 +1,39 @@
+{
+	"_comment_About_This_File": "",
+	"_comment_About_This_File_2": "Overlay defaults",
+	"ValkyrieEditorSettings": {
+		"_comment_AllowedContentBrowserFolders": "Allowed content browser folders when exposing asset aliases.",
+		"_comment_AllowedContentBrowserFolders_2": "When creating this from a Tempalte it will start off with PLUGIN_NAME. This needs to be changed to your Plugin Code Name Instead",
+		"_comment_AllowedContentBrowserFolders_2": "When going to ship, this needs to be changed to point at the final name decided. For example /MeltedIron becaome /TMNT",
+		"AllowedContentBrowserFolders": [
+			"/PerfectKiwi"
+		],
+		"_comment_AllowedClasses_NPCs": "Exposing NPC types by default as those are useful. If this is a restrictive GFS and they shouldn't be here, delete them!",
+		"AllowedClasses":
+		{
+			"/NPCDefault/Types/CharacterType_Custom.CharacterType_Custom_C":						{ "Visible": true },
+			"/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C":							{ "Visible": true },
+			"/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C":					{ "Visible": true }
+		}
+	},
+	"PropertyEditorClassPermissionList":
+	{
+		"+": [
+			{
+				"Type": "/NPCDefault/Types/CharacterType_Custom.CharacterType_Custom_C",
+				"AllowList": [ "DisplayName" ],
+				"bAllowListAllProperties": false,
+				"bAllowListAllSubclassProperties": false
+			},
+			{
+				"Type": "/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C",
+				"AllowList": [ "SelectedAI", "DisplayName" ]
+			},
+			{
+				"Type": "/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C",
+				"AllowList": [ "DisplayName" ], 
+				"DenyList": [ "SelectedAI" ]
+			}
+		]
+	}
+}

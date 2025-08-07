@@ -6,7 +6,7 @@ Predicts<public> := module:
 
     PredictsInitObjectField<native><epic_internal>(SelfID:any, FieldName:string, Value:any)<transacts>:void
 
-    Dictate<native><epic_internal>()<suspends><predicts>:void
+    PredictsIsRunningOnServer<native><epic_internal>()<transacts><decides><predicts>:void
 
     PredictsDebugServerMode<native><epic_internal>()<transacts>:void
 

@@ -30,6 +30,10 @@
 			"Type": "Runtime"
 		},
 		{
+			"Name": "EntityStreaming",
+			"Type": "Runtime"
+		},
+		{
 			"Name": "EntityTestSuite",
 			"Type": "Runtime"
 		},

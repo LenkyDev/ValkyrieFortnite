@@ -1,7 +1,7 @@
 # Module import path: /Verse.org/Simulation/Tags
 Tags<public> := module:
     # A single gameplay tag, which represents a hierarchical name of the form x.y that is registered in the GameplayTagsManager You can filter the gameplay tags displayed in the editor.
-    tag<native><public> := class<abstract>:
+    tag<native><public> := class<abstract><castable>:
 
 
     # A queryable collection of gameplay tags.

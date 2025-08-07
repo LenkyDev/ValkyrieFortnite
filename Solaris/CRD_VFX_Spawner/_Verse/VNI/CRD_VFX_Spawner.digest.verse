@@ -1,5 +1,5 @@
 # Used to place visual effects around your island. You can use these effects to enhance the overall theme and experience of your game.
-vfx_spawner_device<public> := class<concrete><final>(creative_device_base):
+vfx_spawner_device<native><public> := class<concrete><final>(creative_device_base):
     # Signaled when the effect is enabled.
     EffectEnabledEvent<public>:listenable(tuple()) = external {}
 
@@ -13,4 +13,4 @@ vfx_spawner_device<public> := class<concrete><final>(creative_device_base):
     Disable<public>():void = external {}
 
     # Restarts the VFX. Triggers the VFX if it's Burst VFX.
-    Restart<public>():void = external {}
+    Restart<native><public>():void

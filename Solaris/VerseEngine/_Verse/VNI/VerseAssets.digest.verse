@@ -1,3 +1,4 @@
+using {/Verse.org/Simulation}
 # Module import path: /Verse.org/Assets
 Assets<public> := module:
     animation_sequence<native><public> := class<computes><final><epic_internal>:
@@ -16,3 +17,15 @@ Assets<public> := module:
 
 
     texture<native><public> := class<computes><final><epic_internal>:
+
+
+    input_action<native><public>(t:type) := class<computes><epic_internal>:
+
+
+    input_mapping<native><public> := class<computes><epic_internal>:
+
+
+    # Interface that provides an icon.
+    has_icon<public> := interface:
+        @editable
+        var<protected> Icon<public>:texture

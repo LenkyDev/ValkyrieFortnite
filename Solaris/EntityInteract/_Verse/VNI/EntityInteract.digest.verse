@@ -1,5 +1,4 @@
 using {/Verse.org/Simulation}
-@experimental
 # An interactable component with a composable feature set.
 basic_interactable_component<native><public> := class(interactable_component):
     # Attempt to cancel an interaction. Fails if the supplied agent is not currently interacting with the component.
@@ -71,7 +70,6 @@ interactable_component<native><public> := class<final_super>(component, enableab
     # Returns an appropriate message to display to players to communicate the current state of the interactable.
     InteractMessage<native><native_callable><public>(Agent:agent)<reads><decides>:message
 
-@experimental
 # Used to set a cooldown when interacted.
 interactable_cooldown<native><public> := class<concrete>:
     @editable
@@ -86,7 +84,6 @@ interactable_cooldown<native><public> := class<concrete>:
     # Event which fires when the shared cooldown expires.
     ExpiredEvent<native><public>:listenable(tuple()) = external {}
 
-@experimental
 # Used to set a cooldown per agent when interacted.
 interactable_cooldown_per_agent<native><public> := class<concrete>:
     @editable
@@ -101,7 +98,6 @@ interactable_cooldown_per_agent<native><public> := class<concrete>:
     # Event which fires when the per agent cooldown expires. Sends the agent which was previously affected by the cooldown.
     ExpiredEvent<native><public>:listenable(agent) = external {}
 
-@experimental
 # Used to set an interaction duration.
 interactable_duration<native><public> := class<concrete>:
     @editable
@@ -122,7 +118,6 @@ interactable_duration<native><public> := class<concrete>:
     # Sets an agentâs remaining duration, in seconds, for interaction. Fails if the agent is not interacting with this component.
     SetRemainingInteractDurationForAgent<final><native><public>(Agent:agent, RemainingDuration:float)<transacts>:void
 
-@experimental
 # Used to set a limit of times to interact.
 interactable_success_limit<native><public> := class<concrete>:
     # The number of times the component can be successfully interacted with. A value of false is unlimited.

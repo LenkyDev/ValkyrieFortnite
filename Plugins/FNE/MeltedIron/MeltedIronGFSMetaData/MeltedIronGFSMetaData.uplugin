@@ -10,7 +10,7 @@
 	"FortReleaseVersion": "31.30",
 	"EditorCustomVirtualPath": "FNE/MeltedIron",
 	"CookAsDLC": "Creative",
-	"RequiredEntitlements": 
+	"RequiredEntitlements":
 	{
 		"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
 		"VKCreateUGCMeltedIron": "a9acc207966f4da4931fce07ac2fd9c0"
@@ -26,6 +26,10 @@
 		},
 		{
 			"Name": "FortUILibrary",
+			"Enabled": true
+		},
+		{
+			"Name": "GFSMetaDataCommon",
 			"Enabled": true
 		}
 	],

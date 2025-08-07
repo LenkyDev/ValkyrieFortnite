@@ -1,13 +1,13 @@
 {
-    "FileVersion": 3,
-    "CanContainContent": true,
-    "ExplicitlyLoaded": true,
-    "EnabledByDefault": false,
-    "BuiltInInitialFeatureState": "Registered",
-    "BuiltInAutoRegister": true,
-    "BuiltInAutoLoad": true,
-    "BuiltInAutoActivate": false,
-    "FortReleaseVersion": "33.20",
+	"FileVersion": 3,
+	"CanContainContent": true,
+	"ExplicitlyLoaded": true,
+	"EnabledByDefault": false,
+	"BuiltInInitialFeatureState": "Registered",
+	"BuiltInAutoRegister": true,
+	"BuiltInAutoLoad": true,
+	"BuiltInAutoActivate": false,
+	"FortReleaseVersion": "33.20",
 	"EditorCustomVirtualPath": "FNE/DarkVortex",
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements":
@@ -20,9 +20,26 @@
 			"Name": "CreativeCoreDevices",
 			"Enabled": true
 		},
-        	{
+		{
 			"Name": "CR_Legacy",
 			"Enabled": true
+		},
+		{
+			"Name": "GFSMetaDataCommon",
+			"Enabled": true
 		}
-	]
+	],
+	"Version": 0,
+	"VersionName": "",
+	"FriendlyName": "",
+	"Description": "",
+	"Category": "",
+	"CreatedBy": "",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false
 }

@@ -36,7 +36,7 @@
 		"AllowedAssetTypes": {
 			"/Script/Blutility.EditorUtilityWidget":		{ "Rules": ["View"] },
 			"/Script/Blutility.EditorUtilityWidgetBlueprint": { "Rules": ["View"] },
-			"/Script/Engine.RuntimeVirtualTexture": { "Rules": ["View","Create"] },
+			"/Script/Engine.RuntimeVirtualTexture": { "Rules": ["View","Create","ModuleAPI"] },
 			"/Script/Engine.VirtualTextureBuilder": { "Rules": ["View"] },
 			"/Script/PCGEditor.PCGBuilderSettings": { "Rules": ["View","Create"] },
 			"/Script/PCG.PCGGraphInstance": { "Rules": ["View"] },
@@ -53,10 +53,12 @@
 			"/Script/Engine.DataTable": { "Rules": [ "View", "Create" ] },
 			"/Script/Engine.Font": { "Rules": [ "View" ] },
 			"/Script/Engine.MaterialFunction": { "Rules": [ "View", "Create", "ModuleAPI" ] },
-			"/Script/Engine.World": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] }
+			"/Script/Engine.World": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
+			"/Script/Landscape.LandscapeGrassType": { "Rules": ["View","Create","ModuleAPI"] }
 		},
 		"AllowedClasses": {
 			"/Script/AmbientAudio.AmbientAudioComponent": { "Visible": true },
+			"/Script/AudioGameplay.AudioComponentGroup": { "Visible": true },
 			"/Script/CommonUI.CommonTextBlock": { "Visible": true },
 			"/Script/CommonUI.CommonUserWidget": { "Visible": true },
 			"/Script/DaySequence.DaySequenceConditionTag": {  },
@@ -92,6 +94,7 @@
 			"/Script/FortniteGame.FortAutoRegisterActorComponent": { "Visible": true },
 			"/Script/LaserGameplayRuntime.LaserGridEditorComponent": { "Visible": true },
 			"/Script/FortniteGame.FortTreesHLOD": { "Visible": true },
+			"/Script/FortniteGame.FortVehicleItemDefinition": { "Visible": true },
 			"/Script/FortniteGame.WorldTileManager": { "Visible": true },
 			"/Script/FortniteUI.FortVisualAttachment": { "Visible": true },
 			"/Script/MovieScene.MovieSceneBindingOverrides": {},
@@ -204,7 +207,18 @@
 			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_VolumetricFog.DSCT_VolumetricFog_C": {},
 			"/Script/MovieSceneTracks.MovieSceneScalabilityCondition": {},
 			"/NPCDefault/Types/CharacterType_Participant.CharacterType_Participant_C": { "Visible": true },
-			"/NPCDefault/Types/Modifiers/CharacterModifier_Bots.CharacterModifier_Bots_C": { "Visible": true }
+			"/NPCDefault/Types/Modifiers/CharacterModifier_Bots.CharacterModifier_Bots_C": { "Visible": true },
+			"/Script/ValetRuntime.DagwoodNetworkPhysicsComponent": { "Visible": true },
+			"/Script/FortniteGame.FortSkyTubePhysicsComponent": { "Visible": true },
+			"/Script/FortniteGame.FortSoundLibraryComponent": { "Visible": true },
+			"/Script/FortniteGame.FortSplatterSourceComponent": { "Visible": true },
+			"/Script/FortniteGame.FortVehiclePontoonsComponent": { "Visible": true },
+			"/Script/FortniteGame.FortVehicleSeatComponent": { "Visible": true },
+			"/Script/FortniteGame.FortVehicleSkelMeshComponent": { "Visible": true },
+			"/Script/FortniteGame.FortVehicleFuelComponent": { "Visible": true },
+			"/Script/FortniteGame.FortVehiclePhysicsCollisionDamageComponent": { "Visible": true },
+			"/Script/Engine.MeshPaintVirtualTexture": { "Visible": true },
+			"/Script/Engine.BrushComponent": { "Visible": true }
 		},
 		"AllowedMenus": {
 			"LevelEditor.MainMenu": {
@@ -300,14 +314,14 @@
 		"AllowedInputCommands": {
 			"": {
 				"AllowList": {
-					"+": [ "LevelInstanceEditorMode", "MeshPaint", "EM_ScriptableToolsEditorMode"]
+					"+": [ "LevelInstanceEditorMode", "MeshPaint", "ValkyrieFortniteScriptableToolsEditorMode" ]
 				}
 			}
 		},
 		"AllowedEditorModes": {
 			"+": [
 				"MeshPaintMode",
-                "EM_ScriptableToolsEditorMode"
+				"ValkyrieFortniteScriptableToolsEditorMode"
 			]
 		},
 		"AllowedContentBrowserFolders": {
@@ -328,6 +342,9 @@
 	},
 	"ValkyrieWorldPartitionSettings": {
 		"bEnableLevelInstanceSupport": true
+	},
+	"ValkyrieProjectSettings": {
+		"bAutoLocalizationEnabled": false
 	},
 	"PropertyEditorClassPermissionList": {
 		"+": [
@@ -362,7 +379,7 @@
 			},
 			{
 				"Type": "/Script/DaySequence.DaySequenceModifierComponent",
-				"AllowList": [ "bUseCollection", "DaySequenceCollections", "Mode", "BlendPolicy", "BlendAmount", "Bias", "VolumeShapeComponents", "DayNightCycle", "DayNightCycleTime" ]
+				"AllowList": [ "bUseCollection", "DaySequenceCollections", "Mode", "BlendPolicy", "BlendAmount", "BlendTime", "Bias", "VolumeShapeComponents", "DayNightCycle", "DayNightCycleTime", "UserBlendWeight" ]
 			},
 			{
 				"Type": "/Script/DaySequence.DaySequenceActor",

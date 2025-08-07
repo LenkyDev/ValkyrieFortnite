@@ -278,14 +278,14 @@
 		"AllowedInputCommands": {
 			"": {
 				"AllowList": {
-					"+": [ "LevelInstanceEditorMode", "MeshPaint", "EM_ScriptableToolsEditorMode"]
+					"+": [ "LevelInstanceEditorMode", "MeshPaint", "ValkyrieFortniteScriptableToolsEditorMode" ]
 				}
 			}
 		},
 		"AllowedEditorModes": {
 			"+": [
 				"MeshPaintMode",
-                "EM_ScriptableToolsEditorMode"
+				"ValkyrieFortniteScriptableToolsEditorMode"
 			]
 		},
 		"AllowedContentBrowserFolders": {

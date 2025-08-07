@@ -1,6 +1,5 @@
 using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 using {/Verse.org/Simulation}
-@experimental
 # An interactable component with a composable feature set.
 basic_interactable_component<native><public> := class(interactable_component):
     OnInitializedInternal<native><override>():void
@@ -18,18 +17,22 @@ basic_interactable_component<native><public> := class(interactable_component):
     var<private> InteractingAgents<native><public>:[]agent = external {}
 
     @editable
+    @replicated("")
     # Cooldowns begin elapsing on successful interactions. A cooldown which applies for all attempts to interact on this component.
     Cooldown<native><public>:?interactable_cooldown = external {}
 
     @editable
+    @replicated("")
     # Cooldowns begin elapsing on successful interactions. A cooldown which applies for future attempts to interact on this component by the agent which succeeded.
     CooldownPerAgent<native><public>:?interactable_cooldown_per_agent = external {}
 
     @editable
+    @replicated("")
     # Success limits prevent new interactions once the component has been successfully interacted with a specified number of times.
     SuccessLimit<native><public>:?interactable_success_limit = external {}
 
     @editable
+    @replicated("")
     # An interaction with a duration does not succeed until the duration has elapsed, and success is not guaranteed as it can be canceled while the duration is active.
     InteractableDuration<native><public>:?interactable_duration = external {}
 
@@ -82,7 +85,6 @@ interactable_component<native><public> := class<final_super>(component, enableab
     # Returns an appropriate message to display to players to communicate the current state of the interactable.
     InteractMessage<native><native_callable><public>(Agent:agent)<reads><decides>:message
 
-@experimental
 # Used to set a cooldown when interacted.
 interactable_cooldown<native><public> := class<concrete>:
     @editable
@@ -103,7 +105,6 @@ interactable_cooldown<native><public> := class<concrete>:
     # Get the remaining shared cooldown duration in seconds, affecting all agents.
     GetRemainingDuration<native><epic_internal>(__dupe___unnamed_parameter_70:accessor)<transacts>:float
 
-@experimental
 # Used to set a cooldown per agent when interacted.
 interactable_cooldown_per_agent<native><public> := class<concrete>:
     @editable
@@ -124,7 +125,6 @@ interactable_cooldown_per_agent<native><public> := class<concrete>:
     # Get the remaining shared cooldown duration in seconds, affecting all agents.
     GetRemainingDurationForAgent<native><epic_internal>(__dupe___unnamed_parameter_72:accessor, Agent:agent)<transacts>:float
 
-@experimental
 # Used to set an interaction duration.
 interactable_duration<native><public> := class<concrete>:
     @editable
@@ -157,7 +157,6 @@ interactable_duration<native><public> := class<concrete>:
     # Sets an agentâs remaining duration, in seconds, for interaction. Fails if the agent is not interacting with this component.
     SetRemainingInteractDurationForAgent<final><native><public>(Agent:agent, RemainingDuration:float)<transacts>:void
 
-@experimental
 # Used to set a limit of times to interact.
 interactable_success_limit<native><public> := class<concrete>:
     # The number of times the component can be successfully interacted with. A value of false is unlimited.

@@ -1,8 +1,13 @@
 using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 using {/Verse.org/Simulation}
+using {/Verse.org/Assets}
 using {/Verse.org/Native}
 @experimental
 frame_component<native><epic_internal> := class<final_super><abstract>(component):
+
+
+@experimental
+screen_space_ui_display_component<native><epic_internal> := class<final_super>(ui_display_component):
 
 
 @experimental
@@ -23,15 +28,7 @@ ui_display_component<native><epic_internal> := class<abstract><final_super>(comp
 
 @experimental
 world_ui_display_component<native><epic_internal> := class<final_super>(ui_display_component):
-    OnInitializedInternal<native><override>():void
-
-    OnAddedToSceneInternal<native><override>():void
-
-    OnRemovingFromSceneInternal<native><override>():void
-
-    OnBeginSimulationInternal<native><override>():void
-
     @editable
-    @replicated("RepNotify")
-    # Whether or not this frame always faces the camera.
-    var FacingCamera<native><public>:logic = external {}
+    @replicated("")
+    # Material to use for rendering the UI frame.
+    var Material<native><public>:?material = external {}

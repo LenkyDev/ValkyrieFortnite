@@ -2,12 +2,11 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-36.30-CL-44367537
+# Generated from build: ++Fortnite+Release-37.00-CL-44501951
 #################################################
 
 SceneGraph<public> := module:
     using {/Verse.org/Simulation}
-    @experimental
     # An interactable component with a composable feature set.
     basic_interactable_component<native><public> := class(interactable_component):
         # Attempt to cancel an interaction. Fails if the supplied agent is not currently interacting with the component.
@@ -79,7 +78,6 @@ SceneGraph<public> := module:
         # Returns an appropriate message to display to players to communicate the current state of the interactable.
         InteractMessage<native><native_callable><public>(Agent:agent)<reads><decides>:message
 
-    @experimental
     # Used to set a cooldown when interacted.
     interactable_cooldown<native><public> := class<concrete>:
         @editable
@@ -94,7 +92,6 @@ SceneGraph<public> := module:
         # Event which fires when the shared cooldown expires.
         ExpiredEvent<native><public>:listenable(tuple()) = external {}
 
-    @experimental
     # Used to set a cooldown per agent when interacted.
     interactable_cooldown_per_agent<native><public> := class<concrete>:
         @editable
@@ -109,7 +106,6 @@ SceneGraph<public> := module:
         # Event which fires when the per agent cooldown expires. Sends the agent which was previously affected by the cooldown.
         ExpiredEvent<native><public>:listenable(agent) = external {}
 
-    @experimental
     # Used to set an interaction duration.
     interactable_duration<native><public> := class<concrete>:
         @editable
@@ -130,7 +126,6 @@ SceneGraph<public> := module:
         # Sets an agent’s remaining duration, in seconds, for interaction. Fails if the agent is not interacting with this component.
         SetRemainingInteractDurationForAgent<final><native><public>(Agent:agent, RemainingDuration:float)<transacts>:void
 
-    @experimental
     # Used to set a limit of times to interact.
     interactable_success_limit<native><public> := class<concrete>:
         # The number of times the component can be successfully interacted with. A value of false is unlimited.
@@ -1001,7 +996,7 @@ Simulation<public> := module:
     # Module import path: /Verse.org/Simulation/Tags
     Tags<public> := module:
         # A single gameplay tag, which represents a hierarchical name of the form x.y that is registered in the GameplayTagsManager You can filter the gameplay tags displayed in the editor.
-        tag<native><public> := class<abstract>:
+        tag<native><public> := class<abstract><castable>:
 
         # A queryable collection of gameplay tags.
         tag_view<native><public> := interface<epic_internal>:
@@ -1176,6 +1171,7 @@ Simulation<public> := module:
 
     team<native><public> := class<unique><epic_internal>:
 
+using {/Verse.org/Simulation}
 # Module import path: /Verse.org/Assets
 Assets<public> := module:
     animation_sequence<native><public> := class<computes><final><epic_internal>:
@@ -1189,6 +1185,16 @@ Assets<public> := module:
     sound_wave<native><public> := class<computes><final><epic_internal>:
 
     texture<native><public> := class<computes><final><epic_internal>:
+
+    input_action<native><public>(t:type) := class<computes><epic_internal>:
+
+    input_mapping<native><public> := class<computes><epic_internal>:
+
+    # Interface that provides an icon.
+    has_icon<public> := interface:
+        @editable
+        var<protected> Icon<public>:texture
+
 Verse<public> := module:
     using {/Verse.org/Colors}
     # Writes `Message` to a dedicated `Print` log while displaying it in `Color` on the client screen for `Duration` seconds. By default, `Color` is `NamedColors.White` and `Duration` is `2.0` seconds.
@@ -1538,7 +1544,6 @@ Verse<public> := module:
     # A parameterless interface implemented by events that can be subscribed to.
     subscribable<public>() := subscribable(tuple())
 
-using {/Verse.org/Simulation}
 # Module import path: /Verse.org/Colors
 Colors<public> := module:
     # Represents colors as RGB triples in the ACES 2065-1 color space.
@@ -2179,6 +2184,7 @@ Native<public> := module:
     @attribscope_struct
     @attribscope_enum
     @attribscope_interface
+    @attribscope_module
     import_as_attribute<epic_internal> := class<computes><internal>(attribute):
 
     import_as<constructor><epic_internal>(ImportName:string)<computes>:import_as_attribute = external {}

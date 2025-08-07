@@ -1,5 +1,5 @@
 using {/Verse.org/Assets}
-# Module import path: /Fortnite.com/InputDoNotUseYet/Character
+# Module import path: /Fortnite.com/InputExperimental/Character
 Character<epic_internal> := module:
     @experimental
     RangedWeaponMapping<public>:input_mapping = external {}

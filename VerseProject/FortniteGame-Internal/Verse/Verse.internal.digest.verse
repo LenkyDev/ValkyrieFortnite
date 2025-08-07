@@ -2,15 +2,167 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-36.30-CL-44367537
+# Generated from build: ++Fortnite+Release-37.00-CL-44501951
 #################################################
 
 SceneGraph<public> := module:
-    using {/Verse.org/Temporary/EpicGamesRestricted/Network}
+    using {/Verse.org/SpatialMath}
     using {/Verse.org/Simulation}
+    using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/Verse.org/Native}
+    # Enumerated presets for the types of control input variable; Equates to what enhanced input can provide
+    module_input_value_type<native><public> := enum:
+        MBoolean
+        MAxis1D
+        MAxis2D
+        MAxis3D
+        MInteger
+
+    @experimental
+    # Defines each of the vehicle control inputs that the individual module simulations are looking for
+    vehicle_input_setup<native><epic_internal> := struct<epic_internal>:
+        InputName<native><public>:string = external {}
+
+        InputType<native><public>:module_input_value_type = external {}
+
+        InputDecay<native><public>:logic = external {}
+
+    @experimental
+    # Information about a module.
+    module_info<native><epic_internal> := struct<epic_internal>:
+        Entity<native><public>:entity
+
+        SimComponent<native><public>:vehicle_sim_base_component
+
+    @experimental
+    # The modular vehicle simulation component simulates vehicle behaviour
+    modular_vehicle_component<native><epic_internal> := class<final_super><epic_internal>(component):
+        # The component is being initialized, called when it is attached to an entity
+        OnInitializedInternal<native><override>():void
+
+        # The component is being uninitialized, called when it is about to be detached from an entity
+        OnUninitializingInternal<native><override>():void
+
+        # Notification the owner entity was added to a world, create vehicle implementation
+        OnAddedToSceneInternal<native><override>():void
+
+        # Notification the owner entity is about to be removed from world, destroy vehicle implementation
+        OnRemovingFromSceneInternal<native><override>():void
+
+        # Simulation starting, delayed construction possible
+        OnBeginSimulationInternal<native><override>():void
+
+        # Simulation ending
+        OnEndSimulationInternal<native><override>():void
+
+        @experimental
+        ModuleAddedEvent<native><final><epic_internal>:listenable(module_info) = external {}
+
+        @experimental
+        ModuleRemovedEvent<native><final><epic_internal>:listenable(module_info) = external {}
+
+        @experimental
+        @available {MinUploadedAtFNVersion := 2930}
+        CollisionEnteredEvent<native><epic_internal>:listenable(generator(collision_hit)) = external {}
+
+        @experimental
+        @available {MinUploadedAtFNVersion := 2930}
+        CollisionEvent<native><epic_internal>:listenable(generator(collision_hit)) = external {}
+
+        @experimental
+        @available {MinUploadedAtFNVersion := 2930}
+        CollisionExitedEvent<native><epic_internal>:listenable(generator(collision_volume_pair)) = external {}
+
+        # Replace the current control input configuration
+        SetupControlInputConfiguration<native_callable><public>(ControlInputConfigurationIn:[]vehicle_input_setup):void = external {}
+
+        # Replace the current state input configuration
+        SetupStateInputConfiguration<native_callable><public>(StateInputConfigurationIn:[]vehicle_input_setup):void = external {}
+
+        # Apply control input of type MBoolean
+        SetInput<native><public>(InputName:string, Value:logic):void
+
+        # Apply control input of type MInteger
+        SetInput<native><public>(InputName:string, Value:int):void
+
+        # Apply control input of type MAxis1D
+        SetInput<native><public>(InputName:string, Value:float):void
+
+        # Apply control input of type MAxis2D
+        SetInput<native><public>(InputName:string, Value:vector2):void
+
+        # Apply control input of type MAxis3D
+        SetInput<native><public>(InputName:string, Value:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):void
+
+        # Apply state input of type MBoolean
+        SetState<native><public>(InputName:string, Value:logic):void
+
+        # Apply state input of type MInteger
+        SetState<native><public>(InputName:string, Value:int):void
+
+        # Apply state input of type MAxis1D
+        SetState<native><public>(InputName:string, Value:float):void
+
+        # Apply state input of type MAxis2D
+        SetState<native><public>(InputName:string, Value:vector2):void
+
+        # Apply state input of type MAxis3D
+        SetState<native><public>(InputName:string, Value:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):void
+
+    @experimental
+    vehicle_aerofoil_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
+
+    @experimental
+    vehicle_clutch_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
+
+    @experimental
+    vehicle_engine_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
+        GetRPM<epic_internal>(Accessor:accessor)<transacts>:float = external {}
+
+        GetTorque<epic_internal>(Accessor:accessor)<transacts>:float = external {}
+
+    @hide_in_editor
+    @experimental
+    vehicle_sim_base_component<native><epic_internal> := class<final_super><epic_internal>(component):
+
+    @experimental
+    vehicle_suspension_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
+        GetSpringDisplacement<epic_internal>(Accessor:accessor)<transacts>:float = external {}
+
+        GetSpringDisplacementVector<epic_internal>(Accessor:accessor)<transacts>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+        GetSpringSpeed<epic_internal>(Accessor:accessor)<transacts>:float = external {}
+
+        GetImpactNormal<epic_internal>(Accessor:accessor)<transacts>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+    @experimental
+    vehicle_thruster_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
+
+    @experimental
+    vehicle_transmission_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
+        GetCurrentGear<epic_internal>(Accessor:accessor)<transacts>:int = external {}
+
+    @experimental
+    vehicle_wheel_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
+        GetTouchingGround<epic_internal>(Accessor:accessor)<transacts>:logic = external {}
+
+        GetForceIntoSurface<epic_internal>(Accessor:accessor)<transacts>:float = external {}
+
+        GetSlipAngle<epic_internal>(Accessor:accessor)<transacts>:float = external {}
+
+        GetRPM<epic_internal>(Accessor:accessor)<transacts>:float = external {}
+
+        GetAngularPositionDegrees<epic_internal>(Accessor:accessor)<transacts>:float = external {}
+
+        GetSteeringAngleDegrees<epic_internal>(Accessor:accessor)<transacts>:float = external {}
+
+    using {/Verse.org/Temporary/EpicGamesRestricted/Network}
+    using {/Verse.org/Assets}
     @experimental
     frame_component<native><epic_internal> := class<final_super><abstract>(component):
+
+    @experimental
+    screen_space_ui_display_component<native><epic_internal> := class<final_super>(ui_display_component):
 
     @experimental
     @import_as("/Script/UIFramework.UUIFrameworkWidget")
@@ -29,20 +181,12 @@ SceneGraph<public> := module:
 
     @experimental
     world_ui_display_component<native><epic_internal> := class<final_super>(ui_display_component):
-        OnInitializedInternal<native><override>():void
-
-        OnAddedToSceneInternal<native><override>():void
-
-        OnRemovingFromSceneInternal<native><override>():void
-
-        OnBeginSimulationInternal<native><override>():void
-
         @editable
-        @replicated("RepNotify")
-        # Whether or not this frame always faces the camera.
-        var FacingCamera<native><public>:logic = external {}
+        @replicated("")
+        # Material to use for rendering the UI frame.
+        var Material<native><public>:?material = external {}
 
-    using {/Verse.org/Assets}
+
     # Module import path: /Verse.org/SceneGraph/FNECon
     FNECon<public> := module:
         # Data type used for conversations.
@@ -103,7 +247,6 @@ SceneGraph<public> := module:
             # Event that sends the participating agent when a conversation has ended.
             ConversationEndedEvent<native><public>:listenable(agent) = external {}
 
-    @experimental
     # An interactable component with a composable feature set.
     basic_interactable_component<native><public> := class(interactable_component):
         OnInitializedInternal<native><override>():void
@@ -121,18 +264,22 @@ SceneGraph<public> := module:
         var<private> InteractingAgents<native><public>:[]agent = external {}
 
         @editable
+        @replicated("")
         # Cooldowns begin elapsing on successful interactions. A cooldown which applies for all attempts to interact on this component.
         Cooldown<native><public>:?interactable_cooldown = external {}
 
         @editable
+        @replicated("")
         # Cooldowns begin elapsing on successful interactions. A cooldown which applies for future attempts to interact on this component by the agent which succeeded.
         CooldownPerAgent<native><public>:?interactable_cooldown_per_agent = external {}
 
         @editable
+        @replicated("")
         # Success limits prevent new interactions once the component has been successfully interacted with a specified number of times.
         SuccessLimit<native><public>:?interactable_success_limit = external {}
 
         @editable
+        @replicated("")
         # An interaction with a duration does not succeed until the duration has elapsed, and success is not guaranteed as it can be canceled while the duration is active.
         InteractableDuration<native><public>:?interactable_duration = external {}
 
@@ -185,7 +332,6 @@ SceneGraph<public> := module:
         # Returns an appropriate message to display to players to communicate the current state of the interactable.
         InteractMessage<native><native_callable><public>(Agent:agent)<reads><decides>:message
 
-    @experimental
     # Used to set a cooldown when interacted.
     interactable_cooldown<native><public> := class<concrete>:
         @editable
@@ -206,7 +352,6 @@ SceneGraph<public> := module:
         # Get the remaining shared cooldown duration in seconds, affecting all agents.
         GetRemainingDuration<native><epic_internal>(__dupe___unnamed_parameter_70:accessor)<transacts>:float
 
-    @experimental
     # Used to set a cooldown per agent when interacted.
     interactable_cooldown_per_agent<native><public> := class<concrete>:
         @editable
@@ -227,7 +372,6 @@ SceneGraph<public> := module:
         # Get the remaining shared cooldown duration in seconds, affecting all agents.
         GetRemainingDurationForAgent<native><epic_internal>(__dupe___unnamed_parameter_72:accessor, Agent:agent)<transacts>:float
 
-    @experimental
     # Used to set an interaction duration.
     interactable_duration<native><public> := class<concrete>:
         @editable
@@ -260,7 +404,6 @@ SceneGraph<public> := module:
         # Sets an agent’s remaining duration, in seconds, for interaction. Fails if the agent is not interacting with this component.
         SetRemainingInteractDurationForAgent<final><native><public>(Agent:agent, RemainingDuration:float)<transacts>:void
 
-    @experimental
     # Used to set a limit of times to interact.
     interactable_success_limit<native><public> := class<concrete>:
         # The number of times the component can be successfully interacted with. A value of false is unlimited.
@@ -280,7 +423,6 @@ SceneGraph<public> := module:
         # Resets the counter for the times this component has had a successful interaction.
         ClearSuccessfulInteractionCount<native><public>()<transacts>:void
 
-    using {/Verse.org/SpatialMath}
     using {/Verse.org/Simulation/Tags}
     # Module import path: /Verse.org/SceneGraph/VerseCamera
     VerseCamera<public> := module:
@@ -683,6 +825,24 @@ SceneGraph<public> := module:
 
     @hide_in_editor
     level_entity<native><epic_internal> := class<concrete><unique><transacts>(root_entity):
+
+    @experimental
+    streaming_component<native><epic_internal> := class<final_super>(component):
+        @editable
+        @experimental
+        EnableStreaming<native><epic_internal>:?logic = external {}
+
+    @experimental
+    (InEntity:entity).GetEnableStreaming<native><epic_internal>()<transacts>:?logic
+
+    @import_as("/Script/EntityStreaming.UStreamingDataComponentImpl")
+    streaming_data_component_impl<native><epic_internal> := class<abstract>:
+
+    @hide_in_editor
+    streaming_data_component<native><epic_internal> := class<final_super><epic_internal>(component):
+        @experimental
+        Impl<native><epic_internal>:streaming_data_component_impl
+
 
     using {/Verse.org/Colors}
     @hide_in_editor
@@ -1617,6 +1777,7 @@ SceneGraph<public> := module:
         IsEnabled<native><override>()<transacts><decides>:void
 
         @experimental
+        @editable
         @replicated("RepNotify")
         # Message to be displayed on the entity.
         var Message<native><public>:message = external {}
@@ -2204,9 +2365,9 @@ SceneGraph<public> := module:
     execution_subscription<native><epic_internal> := class(cancelable):
         Cancel<native><override>()<transacts>:void
 
-        RunAfter<native><epic_internal>(__dupe___unnamed_parameter_24:execution_subscription):void
+        RunAfter<native><epic_internal>(__dupe___unnamed_parameter_32:execution_subscription):void
 
-        RunBefore<native><epic_internal>(__dupe___unnamed_parameter_25:execution_subscription):void
+        RunBefore<native><epic_internal>(__dupe___unnamed_parameter_33:execution_subscription):void
 
     # Users to subscribe to, or await on, a DeltaTime based callback from one of the phases in a component's `TickEvents` object.'
     # 
@@ -2259,25 +2420,19 @@ SceneGraphTests<public> := module:
         OnBeginSimulation<override>():void = external {}
 
 
-using {/UnrealEngine.com/ControlInput}
-using {/Verse.org/Simulation}
-# Module import path: /Verse.org/ControlInput
-(/Verse.org:)ControlInput<public> := module:
-    GetPlayerInputDeprecated<epic_internal>(Player:player)<transacts><decides>:player_input = external {}
-
 Simulation<public> := module:
     using {/Verse.org/Native}
     # Module import path: /Verse.org/Simulation/Tags
     Tags<public> := module:
         # A single gameplay tag, which represents a hierarchical name of the form x.y that is registered in the GameplayTagsManager You can filter the gameplay tags displayed in the editor.
-        tag<native><public> := class<abstract>:
+        tag<native><public> := class<abstract><castable>:
 
         @import_as("/Script/VerseGameplayTags.FVerseGameplayTag")
         # Utility structure which allows users to select a gameplay tag when exposed to editor
         tag_selector<native><epic_internal> := struct<concrete>:
 
         # Get a string representation of the gameplay tag. Useful for debugging.
-        (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_24:tag)<computes>:string
+        (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_32:tag)<computes>:string
 
         # Succeeds if Left and Right are equal.
         Equals<native><epic_internal>(Left:tag, Right:tag)<transacts><decides>:void
@@ -2348,7 +2503,7 @@ Simulation<public> := module:
             GetTags<native><epic_internal>()<transacts>:generator(tag)
 
         # Returns abbreviated human readable Tag list. Useful for debugging.
-        (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_27:tag_container)<computes>:string
+        (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_35:tag_container)<computes>:string
 
         @import_as("/Script/VerseGameplayTags.FVerseGameplayTagContainer")
         # Utility structure which allows users to select a gameplay tag when exposed to editor
@@ -2632,6 +2787,7 @@ Simulation<public> := module:
 
     team<native><public> := class<unique><epic_internal>:
 
+using {/Verse.org/Simulation}
 using {/Verse.org/Native}
 using {/Verse.org/Restricted}
 # Module import path: /Verse.org/Assets
@@ -2692,14 +2848,19 @@ Assets<public> := module:
 
     texture<native><public> := class<computes><final><epic_internal>(texture_base):
 
-    input_action<native><epic_internal>(t:type) := class<computes><epic_internal>(asset):
+    input_action<native><public>(t:type) := class<computes><epic_internal>(asset):
         Path<native><epic_internal>:string = external {}
 
         RequiredByCompiler<epic_internal>:?t = external {}
 
-    input_mapping<native><epic_internal> := class<computes><epic_internal>(asset):
+    input_mapping<native><public> := class<computes><epic_internal>(asset):
 
     camera_rig_asset<native><epic_internal> := class<computes><epic_internal>(asset):
+
+    # Interface that provides an icon.
+    has_icon<public> := interface:
+        @editable
+        var<protected> Icon<public>:texture
 
     # The UClass generated by the PropertyInterface asset. It represents the property_interface verse class but with UE5 properties.
     property_interface_UE5_definition<native><epic_internal> := class<computes><final>(asset):
@@ -2722,6 +2883,22 @@ Temporary<public> := module:
 
 # Module import path: /Verse.org/VerseEngine
 VerseEngine<public> := module:
+    DefaultEmptyString<localizes><epic_internal>:message = external {}
+
+    # Interface that provides descriptive names or text.
+    has_description<public> := interface:
+        @editable
+        # Name.
+        var<protected> Name<public>:message = external {}
+
+        @editable
+        # Full description.
+        var<protected> Description<public>:message = external {}
+
+        @editable
+        # Short description with only the essential information.
+        var<protected> ShortDescription<public>:message = external {}
+
     subscribable_event<epic_internal>(t:type) := class(subscribable_event_intrnl(t)):
         Broadcast<epic_internal>(Val:t):void = external {}
 
@@ -2919,11 +3096,11 @@ Verse<public> := module:
 
     # A localizable text message.
     message<native><public> := class<epic_internal>:
-        Key<native><epic_internal>:string
+        Key<native><epic_internal>:string = external {}
 
-        DefaultText<native><epic_internal>:string
+        DefaultText<native><epic_internal>:string = external {}
 
-        Substitutions<native><epic_internal>:[string]localizable_value
+        Substitutions<native><epic_internal>:[string]localizable_value = external {}
 
     # Makes a `string` by localizing `Message` based on the current `locale`.
     Localize<native><public>(Message:message)<reads>:string
@@ -3790,7 +3967,7 @@ Predicts<public> := module:
 
     PredictsInitObjectField<native><epic_internal>(SelfID:any, FieldName:string, Value:any)<transacts>:void
 
-    Dictate<native><epic_internal>()<suspends><predicts>:void
+    PredictsIsRunningOnServer<native><epic_internal>()<transacts><decides><predicts>:void
 
     PredictsDebugServerMode<native><epic_internal>()<transacts>:void
 
@@ -3839,6 +4016,7 @@ Native<public> := module:
     @attribscope_struct
     @attribscope_enum
     @attribscope_interface
+    @attribscope_module
     import_as_attribute<epic_internal> := class<computes><internal>(attribute):
 
     import_as<constructor><epic_internal>(ImportName:string)<computes>:import_as_attribute = external {}

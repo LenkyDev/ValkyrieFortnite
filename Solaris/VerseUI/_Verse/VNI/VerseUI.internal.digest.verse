@@ -359,6 +359,19 @@ UI<public> := module:
         # Empty distance in pixels that surrounds the widget inside the slot. Assumes 1080p resolution.
         Padding<native><public>:margin = external {}
 
+    # Safe zone box is a container of a single child widget slot that ensures its slot content stays out of unsafe zone across platforms.
+    safezone_box<native><epic_internal> := class<final>(widget):
+        # The child widget of the safe zone. Used only during initialization of the widget and not modified by SetWidget.
+        Slot<native><public>:safezone_box_slot
+
+        # Sets the child widget slot.
+        SetWidget<native><public>(InSlot:safezone_box_slot):void
+
+    # Slot for safe zone box widget.
+    safezone_box_slot<native><epic_internal> := struct:
+        # The widget assigned to this slot.
+        Widget<native><public>:widget
+
     # Stack box is a container of a list of widgets stacked either vertically or horizontally.
     stack_box<native><public> := class<final>(widget):
         # The child widgets of the stack box. Used only during initialization of the widget and not modified by Add/RemoveWidget.
@@ -420,6 +433,9 @@ UI<public> := module:
         # The color of the displayed text. Used only during initialization of the widget and not modified by SetTextColor.
         DefaultTextColor<native><public>:color = external {}
 
+        # The size of the displayed text. Used only during initialization of the widget and not modified by SetTextSize.
+        DefaultTextSize<native><public>:float = external {}
+
         # The opacity of the displayed text. Used only during initialization of the widget and not modified by SetTextOpacity.
         DefaultTextOpacity<native><public>:type{_X:float where 0.000000 <= _X, _X <= 1.000000} = external {}
 
@@ -453,6 +469,12 @@ UI<public> := module:
 
         # Gets the color of the displayed text.
         GetTextColor<native><public>():color
+
+        # Sets the size of the displayed text.
+        SetTextSize<native><public>(InSize:float):void
+
+        # Gets the size of the displayed text.
+        GetTextSize<native><public>():float
 
         # Sets the opacity of the displayed text.
         SetTextOpacity<native><public>(InOpacity:type{_X:float where 0.000000 <= _X, _X <= 1.000000}):void

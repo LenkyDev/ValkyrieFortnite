@@ -942,6 +942,7 @@ text_display_component<native><epic_internal> := class<final_super>(component, e
     IsEnabled<native><override>()<transacts><decides>:void
 
     @experimental
+    @editable
     @replicated("RepNotify")
     # Message to be displayed on the entity.
     var Message<native><public>:message = external {}

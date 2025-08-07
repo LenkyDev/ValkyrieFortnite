@@ -523,9 +523,17 @@ hud_message_device<public> := class<concrete><final>(creative_device_base):
 
 # Used to grant items to `agent`s. Items can either be dropped at the `agent`'s location or added directly to their inventory.
 item_granter_device<public> := class<concrete><final>(creative_device_base):
+    # Gets or sets the default number of items that will be awarded for all items in the Item Granter that have not been overwritten.
+    # `Count` must be greater than 0.
+    var DefaultItemCount<public>:int = external {}
+
     # Signaled when an item is granted to an `agent`.
     # Sends the `agent` that was granted the item.
     ItemGrantedEvent<public>:listenable(agent) = external {}
+
+    # Signaled when an item is granted to an `agent`.
+    # Sends the `agent` that was granted the item, as well as the number of items granted.
+    GrantItemWithCountEvent<public>:listenable(tuple(agent, int)) = external {}
 
     # Enables this device.
     Enable<public>():void = external {}
@@ -567,6 +575,18 @@ item_granter_device<public> := class<concrete><final>(creative_device_base):
 
     # Returns the current Item Index that this device will grant when activated.
     GetItemIndex<public>()<transacts>:int = external {}
+
+    # Returns the number of items this item granter will award for at the specified index in the Item Granter.
+    # This will return 0 if the index is invalid.
+    # If *Cycle Behavior* is *Stop*, `ItemIndex` is clamped to the number of items in the Item Granter.
+    #  If *Cycle Behavior* is *Wrap*, `ItemIndex` is modulo'd to the number of items in the Item Granter.
+    GetItemGrantCountAtIndex<public>(Index:int)<transacts>:int = external {}
+
+    # Sets the number of items this item granter will award for the item at `ItemIndex`.
+    # `Count` must be greater than 0.
+    # If *Cycle Behavior* is *Stop*, `ItemIndex` is clamped to the number of items in the Item Granter.
+    #  If *Cycle Behavior* is *Wrap*, `ItemIndex` is modulo'd to the number of items in the Item Granter.
+    SetItemGrantCountAtIndex<public>(ItemIndex:int, Count:int):void = external {}
 
     # Restocks this device back to its starting inventory count.
     RestockItems<public>():void = external {}

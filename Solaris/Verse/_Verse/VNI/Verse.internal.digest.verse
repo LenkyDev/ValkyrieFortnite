@@ -176,11 +176,11 @@ Verse<public> := module:
 
     # A localizable text message.
     message<native><public> := class<epic_internal>:
-        Key<native><epic_internal>:string
+        Key<native><epic_internal>:string = external {}
 
-        DefaultText<native><epic_internal>:string
+        DefaultText<native><epic_internal>:string = external {}
 
-        Substitutions<native><epic_internal>:[string]localizable_value
+        Substitutions<native><epic_internal>:[string]localizable_value = external {}
 
     # Makes a `string` by localizing `Message` based on the current `locale`.
     Localize<native><public>(Message:message)<reads>:string

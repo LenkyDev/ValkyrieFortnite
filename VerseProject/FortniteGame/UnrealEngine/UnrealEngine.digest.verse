@@ -2,7 +2,7 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-36.30-CL-44367537
+# Generated from build: ++Fortnite+Release-37.00-CL-44501951
 #################################################
 
 using {/Verse.org/SceneGraph}
@@ -461,6 +461,9 @@ Temporary<public> := module:
             # The color of the displayed text. Used only during initialization of the widget and not modified by SetTextColor.
             DefaultTextColor<native><public>:color = external {}
 
+            # The size of the displayed text. Used only during initialization of the widget and not modified by SetTextSize.
+            DefaultTextSize<native><public>:float = external {}
+
             # The opacity of the displayed text. Used only during initialization of the widget and not modified by SetTextOpacity.
             DefaultTextOpacity<native><public>:type {_X:float where 0.000000 <= _X, _X <= 1.000000} = external {}
 
@@ -494,6 +497,12 @@ Temporary<public> := module:
 
             # Gets the color of the displayed text.
             GetTextColor<native><public>():color
+
+            # Sets the size of the displayed text.
+            SetTextSize<native><public>(InSize:float):void
+
+            # Gets the size of the displayed text.
+            GetTextSize<native><public>():float
 
             # Sets the opacity of the displayed text.
             SetTextOpacity<native><public>(InOpacity:type {_X:float where 0.000000 <= _X, _X <= 1.000000}):void

@@ -86,6 +86,20 @@ VerseFramework<public> := module:
 
         Subscribe<public>(Event:listenable(agent)):void = external {}
 
+    device_event_agent_optional_agent_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgAgent<public>:?agent = external {}
+
+        var ArgOptionalAgent<public>:?agent = external {}
+
+        Subscribe<public>(Event:listenable(tuple(agent, ?agent))):void = external {}
+
+    device_event_optional_agent_agent_array_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgOptionalAgent<public>:?agent = external {}
+
+        var ArgAgentArray<public>:[]agent = external {}
+
+        Subscribe<public>(Event:listenable(tuple(?agent, []agent))):void = external {}
+
     device_event_optional_agent_handler_mock<public> := class(test_device_event_handler_mock):
         var ArgAgent<public>:?agent = external {}
 
