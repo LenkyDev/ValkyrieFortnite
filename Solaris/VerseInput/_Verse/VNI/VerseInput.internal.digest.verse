@@ -1,3 +1,4 @@
+using {/Verse.org/SpatialMath}
 using {/UnrealEngine.com/Temporary/SpatialMath}
 using {/Verse.org/Assets}
 using {/Verse.org/Simulation}
@@ -61,4 +62,4 @@ ControlInput<public> := module:
 
         MakeVector2InputEvents<native_callable><epic_internal>():input_events(vector2) = external {}
 
-        MakeVector3InputEvents<native_callable><epic_internal>():input_events((/UnrealEngine.com/Temporary/SpatialMath:)vector3) = external {}
+        MakeVector3InputEvents<native_callable><epic_internal>():input_events((/Verse.org/SpatialMath:)vector3) = external {}

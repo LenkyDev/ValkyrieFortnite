@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/FN1",
-	"FortReleaseVersion": "37.00",
+	"FortReleaseVersion": "37.10",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"Version": 0,
@@ -101,6 +101,11 @@
 		},
 		{
 			"Name": "SolidWave_ExtraAssets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "PostageMinute",
 			"Enabled": true,
 			"Optional": true
 		}

@@ -309,6 +309,20 @@ Devices<public> := module:
         # Optional agent targeted by `Source`.
         Target<native><public>:?agent
 
+    # Payload of `device_event_carryable_spawner_agent_impact`.
+    carryable_spawner_agent_impact_result<native><public> := struct<epic_internal>:
+        # Agent impacted by the carryable.
+        Target<native><public>:?agent
+
+        # The agent responsible for the impact. Either the thrower, or if none exists, the agent who instigated the carryable to spawn.
+        Source<native><public>:?agent
+
+        # Damage applied by the impact.
+        Damage<native><public>:float
+
+        # Whether the impact was a direct result of being thrown (as opposed to an indirect hit from bouncing or rolling).
+        ImpactedFromThrow<native><public>:logic
+
     # Results for `MoveTo`.
     move_to_result<public> := enum:
         # The destination has been reached.

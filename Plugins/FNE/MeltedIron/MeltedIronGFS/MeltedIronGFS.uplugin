@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/MeltedIron",
-	"FortReleaseVersion": "37.00",
+	"FortReleaseVersion": "37.10",
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
@@ -51,7 +51,8 @@
 		{
 			"Name": "CRD_LinedNotebook",
 			"Enabled": true,
-			"Optional": true
+			"Optional": true,
+			"Activate": true
 		},
 		{
 			"Name": "LinedNotebookConsumables",
@@ -72,7 +73,8 @@
 		{
 			"Name": "LinedNotebookVehicle",
 			"Enabled": true,
-			"Optional": true
+			"Optional": true,
+			"Activate": true
 		},
 		{
 			"Name": "MeltedIronCharacterSpawner",

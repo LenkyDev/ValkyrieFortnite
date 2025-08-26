@@ -102,6 +102,14 @@ FeralLoggingBridge<epic_internal> := module:
 
     LogError<native><epic_internal>(Format:string, ?Args:[]string = external {})<transacts>:void
 
+# Module import path: /Fortnite.com/FeralCorgi/FeralMatchmakingBridge
+FeralMatchmakingBridge<epic_internal> := module:
+    ReadyUpPlayer<native><epic_internal>(Player:player):void
+
+    UnreadyPlayer<native><epic_internal>(Player:player):void
+
+    CanUseReadyUpBridge<native><epic_internal>()<transacts><decides>:void
+
 # Module import path: /Fortnite.com/FeralCorgi/PlayerLoadingStatusBridge
 PlayerLoadingStatusBridge<epic_internal> := module:
     AwaitPlayersLoading<native><epic_internal>(Playspace:fort_playspace)<suspends>:void
@@ -121,6 +129,17 @@ ReservationHoldingBridge<epic_internal> := module:
     RestoreSessionReservationHoldingSettings<native><epic_internal>(Playspace:fort_playspace):void
 
     FreeHeldReservation<native><epic_internal>(Playspace:fort_playspace, Player:player):logic
+
+respawn_query_info<native><epic_internal> := struct:
+    QueryLocation<native><public>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+
+    QueryDirection<native><public>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+
+    QueryScore<native><public>:float = external {}
+
+# Module import path: /Fortnite.com/FeralCorgi/FeralCorgiRespawnLogic
+FeralCorgiRespawnLogic<epic_internal> := module:
+    RunRespawnEQS<native><epic_internal>(InAgent:agent, RespawnQueryLocation:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:respawn_query_info
 
 ranked_track_progress<native><epic_internal> := struct<concrete>:
     GameId<native><public>:string = external {}

@@ -9,24 +9,48 @@ disguise_device<public> := class<concrete><final>(creative_device_base, enableab
     # Removes the disguise applied by this device, if it exists, from the provided `player`.
     RemoveDisguise<public>(Player:player):void = external {}
 
+    # Removes any applied disguise from `player`.
+    # Includes disguises applied by any disguise device, or by a disguise kit.
+    RemoveAnyDisguise<public>(Player:player):void = external {}
+
     # Signaled when a disguise from this device is successfully applied to `player`.
     ApplyDisguiseEvent<public>:listenable(player) = external {}
+
+    # Signaled when any disguise is successfully applied to `player`.
+    # Includes disguises applied by any disguise device, or by a disguise kit.
+    ApplyAnyDisguiseEvent<public>:listenable(player) = external {}
 
     # Signaled when a disguise applied by this device on `player` is broken.
     # The second optional `agent` describes who broke the disguise (the damage source if broken by damage or elimination).
     # The conditions triggering a disguise to break are set in the device's user options.
     BreakDisguiseEvent<public>:listenable(tuple(player, ?agent)) = external {}
 
+    # Signaled when any applied disguise on `player` is broken.
+    # Includes disguises applied by any disguise device, or by a disguise kit.
+    # The second optional `agent` describes who broke the disguise (the damage source if broken by damage or elimination).
+    # The conditions triggering a disguise to break are set in the device's user options.
+    BreakAnyDisguiseEvent<public>:listenable(tuple(player, ?agent)) = external {}
+
     # Signaled when a disguise applied by this device on `player` is removed.
-    # Removal can occur from calling the *Remove Disguise* function, or from getting stomped by another disguise device.
+    # Removal can occur from calling the *Remove Disguise* function, or from getting replaced by another disguise.
     # This event will not trigger if the disguise is broken.
     RemoveDisguiseEvent<public>:listenable(player) = external {}
+
+    # Signaled when any applied disguise on `player` is removed.
+    # Includes disguises applied by any disguise device, or by a disguise kit.
+    # Removal can occur from calling the *Remove Disguise* function, or from getting replaced by another disguise.
+    # This event will not trigger if the disguise is broken.
+    RemoveAnyDisguiseEvent<public>:listenable(player) = external {}
 
     # Succeeds if the provided `player` has a disguise applied from this device.
     IsDisguiseApplied<public>(Player:player)<transacts><decides>:void = external {}
 
+    # Succeeds if the provided `player` has any disguise applied.
+    # Includes disguises applied by any disguise device, or by a disguise kit.
+    IsAnyDisguiseApplied<public>(Player:player)<transacts><decides>:void = external {}
+
     # Maps to the user option for *Should Apply Disguise on Spawn*.
-    #  If this is true, the device will apply a disguise to the player as soon as they spawn, so long as they pass the device's filter options.
+    # If this is true, the device will apply a disguise to the player as soon as they spawn, so long as they pass the device's filter options.
     var ShouldApplyDisguiseOnPlayerSpawn<public>:logic = external {}
 
     # Enables this device, allowing it to listen for inputs.

@@ -1,8 +1,7 @@
 {
 	"_comment_About_This_File": "",
 	"_comment_About_This_File_2": "Overlay defaults",
-	"ValkyrieEditorSettings":
-	{
+	"ValkyrieEditorSettings": {
 		"_comment_AllowedContentBrowserFolders": "Allowed content browser folders when exposing asset aliases",
 		"AllowedContentBrowserFolders": [
 			"/LEGO"
@@ -95,7 +94,6 @@
 			"/LimeCrossbow/Weapons/WoodenBow/Bow_T1/WID_Lime_Crossbow.WID_Lime_Crossbow",
 			"/LimeCrossbow/Weapons/WoodenBow/Bow_T1/WID_Juno_AmmoData_Bow_T1.WID_Juno_AmmoData_Bow_T1",
 			"___Weapons_End___",
-
 			"___Consumables_Begin___",
 			"/Game/Items/ResourcePickups/WoodItemData.WoodItemData",
 			"/Game/Items/ResourcePickups/StoneItemData.StoneItemData",
@@ -114,7 +112,6 @@
 			"/LimeSlapJuice/WID_Lime_Consumable_SlapJuice.WID_Lime_Consumable_SlapJuice",
 			"/LimeSlurpJuice/WID_Lime_Consumable_SlurpJuice.WID_Lime_Consumable_SlurpJuice",
 			"___Consumables_End___",
-
 			"___Devices_Begin___",
 			"/CRD_Accolades/SetupAssets/PID_Device_Accolade.PID_Device_Accolade",
 			"/CRD_Analytic/SetupAssets/PID_Device_AnalyticDevice.PID_Device_AnalyticDevice",
@@ -233,6 +230,7 @@
 			"/CreativeCoreDevices/SetupAssets/PID_Environment_Light_Rig.PID_Environment_Light_Rig",
 			"/CreativeCoreDevices/SetupAssets/PID_Device_HoloScreen.PID_Device_HoloScreen",
 			"/CreativeCoreDevices/SetupAssets/PID_Device_Powerup_VFX.PID_Device_Powerup_VFX",
+			"/CreativeCoreDevices/UEFNExposedAssets/UEFN_Expose_ForValidation.UEFN_Expose_ForValidation",
 			"/CRP_FabricAudio/SetupAssets/Maps/AllAudioGallery/PID_CP_FabricAudio_Gallery_a.PID_CP_FabricAudio_Gallery_a",
 			"/CRP_FabricAudio/SetupAssets/Maps/BassGallery/PID_CP_Devices_FabricAudio_BassGallery_a.PID_CP_Devices_FabricAudio_BassGallery_a",
 			"/CRP_FabricAudio/SetupAssets/Maps/DrumGallery/PID_CP_Devices_FabricAudio_DrumGallery_a.PID_CP_Devices_FabricAudio_DrumGallery_a",
@@ -246,7 +244,6 @@
 			"/CRD_Simple_Voting_Option/SetupAssets/PID_CP_Devices_Simple_Voting_Group.PID_CP_Devices_Simple_Voting_Group",
 			"/CRD_Simple_Voting_Option/SetupAssets/PID_CP_Devices_Simple_Voting_Option.PID_CP_Devices_Simple_Voting_Option",
 			"___Devices_End___",
-
 			"/CRD_VerseDevices/UEFNExposedAssets/UEFN_Expose_CRD_Verse.UEFN_Expose_CRD_Verse",
 			"/CRD_SkydomeDevice/SkyDome_ExposedAssets.SkyDome_ExposedAssets",
 			"/CRD_VFX_Creator/UEFNExposedAssets/UEFN_Expose_VFX_Creator.UEFN_Expose_VFX_Creator",
@@ -1326,40 +1323,21 @@
 		"_comment_AllowedClasses1": "List of all classes and structs exposed to UEFN, which means they are allowed to be referenced directly by user-created assets and actors.",
 		"_comment_AllowedClasses2": "Classes marked with Visible: true will appear in class pickers such as for Blueprint parent classes, UClass* FProperties, etc.",
 		"_comment_AllowedClasses3": "Note: All Blueprints must be listed in FortExposedAssetLists. BPs should only be listed here if they are subclassable (Visible:true), but must still go in a FortExposedAssetList.",
-		"AllowedClasses":
-		{
-			"/Script/VerseDevices.ScriptDevice":
-			{
-			},
-			"/Script/AtomModelImporterEditor.AtomAssetImportData":
-			{
-			},
-			"/Script/AtomModelImporterEditor.AtomModelMergeOptions": 
-			{
-			},
-			"/Script/AtomRuntime.AtomCommonPartStaticMeshAssetUserData": 
-			{
-			},
-			"/Script/AtomRuntime.AtomEditorModePrimitiveUserData": 
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveStaticMeshComponent": 
-			{
-				"Visible": true
-			},			
-			"/Script/AtomRuntime.AtomCollisionComponent": 
-			{
+		"AllowedClasses": {
+			"/Script/VerseDevices.ScriptDevice": {},
+			"/Script/AtomModelImporterEditor.AtomAssetImportData": {},
+			"/Script/AtomModelImporterEditor.AtomModelMergeOptions": {},
+			"/Script/AtomRuntime.AtomCommonPartStaticMeshAssetUserData": {},
+			"/Script/AtomRuntime.AtomEditorModePrimitiveUserData": {},
+			"/Script/AtomRuntime.AtomPrimitiveStaticMeshComponent": {
 				"Visible": true
 			},
-			"/Script/AtomRuntime.AtomPrimitiveAssetUserData": 
-			{
+			"/Script/AtomRuntime.AtomCollisionComponent": {
+				"Visible": true
 			},
-			"/Script/AtomRuntime.AtomPrimitiveMapping":
-			{
-			},
-			"/Script/AtomRuntime.AtomModelMapping":
-			{
-			},
+			"/Script/AtomRuntime.AtomPrimitiveAssetUserData": {},
+			"/Script/AtomRuntime.AtomPrimitiveMapping": {},
+			"/Script/AtomRuntime.AtomModelMapping": {},
 			"/Script/LimeNativeEditor.AtomActorValidator_Materials": {
 				"Visible": false
 			},
@@ -1369,342 +1347,162 @@
 			"/Script/LimeNativeEditor.AtomActorValidator_Scale": {
 				"Visible": false
 			},
-			"/Script/AtomRuntime.AtomBoneReference":
-			{
-			},
-			"/Script/AtomRuntime.AtomColor":
-			{
-			},
-			"/Script/AtomRuntime.AtomColorInfo":
-			{
-			},
-			"/Script/AtomRuntime.AtomColorSurface":
-			{
-			},
-			"/Script/AtomRuntime.AtomCommonPartAndTransform":
-			{
-			},
-			"/Script/AtomRuntime.AtomCommonPartDescription":
-			{
-			},
-			"/Script/AtomRuntime.AtomCommonPartInstance":
-			{
-			},
-			"/Script/AtomRuntime.AtomCommonPartModelAssetUserData":
-			{
-			},
-			"/Script/AtomRuntime.AtomDecorationAssignment":
-			{
-			},
-			"/Script/AtomRuntime.AtomGlueSet":
-			{
-			},
-			"/Script/AtomRuntime.AtomHingedElement":
-			{
-			},
-			"/Script/AtomModelImporterEditor.AtomModelMergedMeshImportData":
-			{
-			},
-			"/Script/AtomRuntime.AtomTextureImportData":
-			{
-			},
-			"/Script/AtomRuntime.AtomModelAssetUserData":
-			{
-			},
-			"/Script/AtomRuntime.AtomMergedMeshLODDistanceSettings":
-			{
-			},
-			"/Script/AtomRuntime.AtomModelPrimitiveInstance":
-			{
-			},
-			"/Script/AtomRuntime.AtomModelPart":
-			{
-			},
-			"/Script/AtomRuntime.AtomModelPartColorInfo":
-			{
-			},
-			"/Script/AtomRuntime.AtomModelPartDecorationInfo":
-			{
-			},
-			"/Script/AtomRuntime.AtomModelPartGuid":
-			{
-			},
-			"/Script/AtomRuntime.AtomModelPartInstanceInfo":
-			{
-			},
-			"/Script/AtomRuntime.AtomModelPartsCollection":
-			{
-			},
-			"/Script/AtomRuntime.AtomModelPrimitive":
-			{
-			},
-			"/Script/AtomRuntime.AtomModelPartReference":
-			{
-			},
-			"/Script/AtomRuntime.AtomModelPrimitiveGroup":
-			{
-			},
-			"/Script/AtomRuntime.AtomModelTags":
-			{
-			},
-			"/Script/AtomRuntime.AtomModelAssetSettings":
-			{
-			},
-			"/Script/AtomRuntime.AtomModelSelectionSet":
-			{
-			},
-			"/Script/AtomRuntime.AtomModelProcessorInstance":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitive":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveBevelOptions":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveBuildOptions":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveBuildSettings":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveCollisionGeometry":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveCollisionGeometryWrapper":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveCollisionGeometryBox":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveCollisionGeometryConvex":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeBox":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeCapsule":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeTube":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeSphere":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeContainer":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveConnection":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveConnectionPointReference":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveCommonPart":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveGeometry":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveGeometryAndTransform":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveGeometryLODs":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveGeometryContainer":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveGroup":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitivePhysicsAttributes":
-			{
-			},
-			"/Script/AtomRuntime.AtomPrimitiveUserNote":
-			{
-			},
-			"/Script/AtomRuntime.AtomProcessorResult":
-			{
-			},
-			"/Script/AtomRuntime.AtomResolvedModelPartReference":
-			{
-			},
-			"/Script/AtomRuntime.AtomRuntimeSettings":
-			{
-			},
-			"/Script/AtomRuntime.AtomSelectionSetPrimitiveGroup":
-			{
-			},
-			"/Script/AtomRuntime.AtomRigidElement":
-			{
-			},
-			"/Script/AtomRuntime.AtomRigidElementConnection":
-			{
-			},
-			"/Script/AtomRuntime.AtomRigidElementIndices":
-			{
-			},
-			"/Script/AtomRuntime.AtomRigidElementSettings":
-			{
-			},
-			"/Script/AtomRuntime.AtomSourceModel":
-			{
-			},
-			"/Script/AtomRuntime.ConnectionField":
-			{
-			},
-			"/Script/AtomRuntime.ConnectionFieldAxle":
-			{
-			},
-			"/Script/AtomRuntime.ConnectionFieldBall":
-			{
-			},
-			"/Script/AtomRuntime.ConnectionFieldContainer":
-			{
-			},
-			"/Script/AtomRuntime.ConnectionFieldFixed":
-			{
-			},
-			"/Script/AtomRuntime.ConnectionFieldGear":
-			{
-			},
-			"/Script/AtomRuntime.ConnectionFieldHinge":
-			{
-			},
-			"/Script/AtomRuntime.ConnectionFieldLine":
-			{
-			},
-			"/Script/AtomRuntime.ConnectionFieldPlanar":
-			{
-			},
-			"/Script/AtomRuntime.ConnectionFieldPoint":
-			{
-			},
-			"/Script/AtomRuntime.ConnectionFieldSlider":
-			{
-			},
-			"/Script/AtomRuntime.ConnectionPoint":
-			{
-			},
-			"/Script/AtomRuntime.ConnectivityFieldReference":
-			{
-			},
-			"/Script/AtomRuntime.HingeFieldConnectionInfo":
-			{
-			},
-			"/Script/AtomRuntime.ModelPrimitiveEntry":
-			{
-			},
-			"/Script/AtomRuntime.PointFieldConnectionInfo":
-			{
-			},
-			"/Script/AtomRuntime.SerializedPlanarConnection":
-			{
-			},
-			"/Script/AtomRuntime.SerializedConnectivityObjects":
-			{
-			},
-			"/Game/Building/ActorBlueprints/Prop/Prop_Desert_MediumRock_06.Prop_Desert_MediumRock_06_C":
-			{
-			},
-			"/Game/Building/ActorBlueprints/Prop/Prop_Desert_LargeRock_05.Prop_Desert_LargeRock_05_C":
-			{
-			},
-			"/Game/Creative/Items/Elemental_Cubes/CP_Cube_Water_4x4_Plane5.CP_Cube_Water_4x4_Plane5_C":
-			{
-			},
-			"/CRD_DirectionalLauncher/GA_Launched_LowGravDirectional_Device.GA_Launched_LowGravDirectional_Device_C":
-			{
-			},
-			"/LimeAtomAssets/Processors/LimeMaterialFactory.LimeMaterialFactory_C":
-			{
-			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeAwareness.CharacterModifier_LimeAwareness_C":
-			{
+			"/Script/AtomRuntime.AtomBoneReference": {},
+			"/Script/AtomRuntime.AtomColor": {},
+			"/Script/AtomRuntime.AtomColorInfo": {},
+			"/Script/AtomRuntime.AtomColorSurface": {},
+			"/Script/AtomRuntime.AtomCommonPartAndTransform": {},
+			"/Script/AtomRuntime.AtomCommonPartDescription": {},
+			"/Script/AtomRuntime.AtomCommonPartInstance": {},
+			"/Script/AtomRuntime.AtomCommonPartModelAssetUserData": {},
+			"/Script/AtomRuntime.AtomDecorationAssignment": {},
+			"/Script/AtomRuntime.AtomGlueSet": {},
+			"/Script/AtomRuntime.AtomHingedElement": {},
+			"/Script/AtomModelImporterEditor.AtomModelMergedMeshImportData": {},
+			"/Script/AtomRuntime.AtomTextureImportData": {},
+			"/Script/AtomRuntime.AtomModelAssetUserData": {},
+			"/Script/AtomRuntime.AtomMergedMeshLODDistanceSettings": {},
+			"/Script/AtomRuntime.AtomModelPrimitiveInstance": {},
+			"/Script/AtomRuntime.AtomModelPart": {},
+			"/Script/AtomRuntime.AtomModelPartColorInfo": {},
+			"/Script/AtomRuntime.AtomModelPartDecorationInfo": {},
+			"/Script/AtomRuntime.AtomModelPartGuid": {},
+			"/Script/AtomRuntime.AtomModelPartInstanceInfo": {},
+			"/Script/AtomRuntime.AtomModelPartsCollection": {},
+			"/Script/AtomRuntime.AtomModelPrimitive": {},
+			"/Script/AtomRuntime.AtomModelPartReference": {},
+			"/Script/AtomRuntime.AtomModelPrimitiveGroup": {},
+			"/Script/AtomRuntime.AtomModelTags": {},
+			"/Script/AtomRuntime.AtomModelAssetSettings": {},
+			"/Script/AtomRuntime.AtomModelSelectionSet": {},
+			"/Script/AtomRuntime.AtomModelProcessorInstance": {},
+			"/Script/AtomRuntime.AtomPrimitive": {},
+			"/Script/AtomRuntime.AtomPrimitiveBevelOptions": {},
+			"/Script/AtomRuntime.AtomPrimitiveBuildOptions": {},
+			"/Script/AtomRuntime.AtomPrimitiveBuildSettings": {},
+			"/Script/AtomRuntime.AtomPrimitiveCollisionGeometry": {},
+			"/Script/AtomRuntime.AtomPrimitiveCollisionGeometryWrapper": {},
+			"/Script/AtomRuntime.AtomPrimitiveCollisionGeometryBox": {},
+			"/Script/AtomRuntime.AtomPrimitiveCollisionGeometryConvex": {},
+			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeBox": {},
+			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeCapsule": {},
+			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeTube": {},
+			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeSphere": {},
+			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeContainer": {},
+			"/Script/AtomRuntime.AtomPrimitiveConnection": {},
+			"/Script/AtomRuntime.AtomPrimitiveConnectionPointReference": {},
+			"/Script/AtomRuntime.AtomPrimitiveCommonPart": {},
+			"/Script/AtomRuntime.AtomPrimitiveGeometry": {},
+			"/Script/AtomRuntime.AtomPrimitiveGeometryAndTransform": {},
+			"/Script/AtomRuntime.AtomPrimitiveGeometryLODs": {},
+			"/Script/AtomRuntime.AtomPrimitiveGeometryContainer": {},
+			"/Script/AtomRuntime.AtomPrimitiveGroup": {},
+			"/Script/AtomRuntime.AtomPrimitivePhysicsAttributes": {},
+			"/Script/AtomRuntime.AtomPrimitiveUserNote": {},
+			"/Script/AtomRuntime.AtomProcessorResult": {},
+			"/Script/AtomRuntime.AtomResolvedModelPartReference": {},
+			"/Script/AtomRuntime.AtomRuntimeSettings": {},
+			"/Script/AtomRuntime.AtomSelectionSetPrimitiveGroup": {},
+			"/Script/AtomRuntime.AtomRigidElement": {},
+			"/Script/AtomRuntime.AtomRigidElementConnection": {},
+			"/Script/AtomRuntime.AtomRigidElementIndices": {},
+			"/Script/AtomRuntime.AtomRigidElementSettings": {},
+			"/Script/AtomRuntime.AtomSourceModel": {},
+			"/Script/AtomRuntime.ConnectionField": {},
+			"/Script/AtomRuntime.ConnectionFieldAxle": {},
+			"/Script/AtomRuntime.ConnectionFieldBall": {},
+			"/Script/AtomRuntime.ConnectionFieldContainer": {},
+			"/Script/AtomRuntime.ConnectionFieldFixed": {},
+			"/Script/AtomRuntime.ConnectionFieldGear": {},
+			"/Script/AtomRuntime.ConnectionFieldHinge": {},
+			"/Script/AtomRuntime.ConnectionFieldLine": {},
+			"/Script/AtomRuntime.ConnectionFieldPlanar": {},
+			"/Script/AtomRuntime.ConnectionFieldPoint": {},
+			"/Script/AtomRuntime.ConnectionFieldSlider": {},
+			"/Script/AtomRuntime.ConnectionPoint": {},
+			"/Script/AtomRuntime.ConnectivityFieldReference": {},
+			"/Script/AtomRuntime.HingeFieldConnectionInfo": {},
+			"/Script/AtomRuntime.ModelPrimitiveEntry": {},
+			"/Script/AtomRuntime.PointFieldConnectionInfo": {},
+			"/Script/AtomRuntime.SerializedPlanarConnection": {},
+			"/Script/AtomRuntime.SerializedConnectivityObjects": {},
+			"/Game/Building/ActorBlueprints/Prop/Prop_Desert_MediumRock_06.Prop_Desert_MediumRock_06_C": {},
+			"/Game/Building/ActorBlueprints/Prop/Prop_Desert_LargeRock_05.Prop_Desert_LargeRock_05_C": {},
+			"/Game/Creative/Items/Elemental_Cubes/CP_Cube_Water_4x4_Plane5.CP_Cube_Water_4x4_Plane5_C": {},
+			"/CRD_DirectionalLauncher/GA_Launched_LowGravDirectional_Device.GA_Launched_LowGravDirectional_Device_C": {},
+			"/LimeAtomAssets/Processors/LimeMaterialFactory.LimeMaterialFactory_C": {},
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeAwareness.CharacterModifier_LimeAwareness_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeCosmeticSpawn.CharacterModifier_LimeCosmeticSpawn_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeCosmeticSpawn.CharacterModifier_LimeCosmeticSpawn_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeEffects.CharacterModifier_LimeEffects_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeEffects.CharacterModifier_LimeEffects_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardBehavior.CharacterModifier_LimeGuardBehavior_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardBehavior.CharacterModifier_LimeGuardBehavior_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardInventory.CharacterModifier_LimeGuardInventory_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardInventory.CharacterModifier_LimeGuardInventory_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardPerception.CharacterModifier_LimeGuardPerception_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardPerception.CharacterModifier_LimeGuardPerception_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardVerseBehavior.CharacterModifier_LimeGuardVerseBehavior_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardVerseBehavior.CharacterModifier_LimeGuardVerseBehavior_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeHealth.CharacterModifier_LimeHealth_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeHealth.CharacterModifier_LimeHealth_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeMovement.CharacterModifier_LimeMovement_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeMovement.CharacterModifier_LimeMovement_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeNavigation.CharacterModifier_LimeNavigation_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeNavigation.CharacterModifier_LimeNavigation_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimePatrolPath.CharacterModifier_LimePatrolPath_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimePatrolPath.CharacterModifier_LimePatrolPath_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeTeam.CharacterModifier_LimeTeam_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeTeam.CharacterModifier_LimeTeam_C": {
 				"Visible": true
 			},
-			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeUI.CharacterModifier_LimeUI_C":
-			{
+			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeUI.CharacterModifier_LimeUI_C": {
 				"Visible": true
 			},
-			"/LimeAISpawnerGuard/SpawnDefinitions/Types/CharacterType_LimeGuard.CharacterType_LimeGuard_C":
-			{
+			"/LimeAISpawnerGuard/SpawnDefinitions/Types/CharacterType_LimeGuard.CharacterType_LimeGuard_C": {
 				"Visible": true
 			},
-			"/LimeExtraAssets/AI/TestPlayers/CharacterType/CharacterType_LimeParticipant.CharacterType_LimeParticipant_C":
-			{
+			"/LimeExtraAssets/AI/TestPlayers/CharacterType/CharacterType_LimeParticipant.CharacterType_LimeParticipant_C": {
 				"Visible": true
 			},
-			"/LimeEvade/Components/BP_UserOptionComponent_LimeEvade.BP_UserOptionComponent_LimeEvade_C": 
-			{
-			},
-			"/CreativeCoreDevices/ExperienceSettings/BP_UserOptionComponent_Cosmetic.BP_UserOptionComponent_Cosmetic_C": { },
-			"/Script/Creative_TemporaryTeamsRuntime.FortUserOptionComponent_TemporaryTeams": { },
-			"/Script/Creative_TemporaryTeamsRuntime.FortUserOptionComponent_TemporaryTeams_TeamSettingsAndInventory": { },
-			"/Creative_TemporaryTeams/Components/BP_UserOptionComponent_TemporaryTeams.BP_UserOptionComponent_TemporaryTeams_C": { },
-			"/Creative_TemporaryTeams/Components/BP_TemporaryTeams_TeamSettingsAndInventory.BP_TemporaryTeams_TeamSettingsAndInventory_C": { }
+			"/LimeEvade/Components/BP_UserOptionComponent_LimeEvade.BP_UserOptionComponent_LimeEvade_C": {},
+			"/CreativeCoreDevices/ExperienceSettings/BP_UserOptionComponent_Cosmetic.BP_UserOptionComponent_Cosmetic_C": {},
+			"/Script/Creative_TemporaryTeamsRuntime.FortUserOptionComponent_TemporaryTeams": {},
+			"/Script/Creative_TemporaryTeamsRuntime.FortUserOptionComponent_TemporaryTeams_TeamSettingsAndInventory": {},
+			"/Creative_TemporaryTeams/Components/BP_UserOptionComponent_TemporaryTeams.BP_UserOptionComponent_TemporaryTeams_C": {},
+			"/Creative_TemporaryTeams/Components/BP_TemporaryTeams_TeamSettingsAndInventory.BP_TemporaryTeams_TeamSettingsAndInventory_C": {}
 		},
 		"AllowedEditorModes": {
 			"+": [
 				"EM_AtomEditorMode"
 			]
-		}     
+		}
 	},
 	"PropertyEditorClassPermissionList": {
 		"+": [
 			{
 				"Type": "/LimeAISpawnerGuard/SpawnDefinitions/Types/CharacterType_LimeGuard.CharacterType_LimeGuard_C",
-				"AllowList": [ "DisplayName", "SelectedAI" ]
+				"AllowList": [
+					"DisplayName",
+					"SelectedAI"
+				]
 			},
 			{
 				"Type": "/LimeExtraAssets/AI/TestPlayers/CharacterType/CharacterType_LimeParticipant.CharacterType_LimeParticipant_C",
-				"AllowList": [ "DisplayName" ]
+				"AllowList": [
+					"DisplayName"
+				]
 			},
 			{
 				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeAwareness.CharacterModifier_LimeAwareness_C",
@@ -1715,13 +1513,18 @@
 				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeCosmeticSpawn.CharacterModifier_LimeCosmeticSpawn_C",
 				"bAllowListAllProperties": true,
 				"bAllowListAllSubclassProperties": true,
-				"DenyList": [ "AssembledMeshSchema" ]
+				"DenyList": [
+					"AssembledMeshSchema"
+				]
 			},
 			{
 				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeEffects.CharacterModifier_LimeEffects_C",
 				"bAllowListAllProperties": false,
 				"bAllowListAllSubclassProperties": false,
-				"AllowList": [ "SpawnEffect", "DeathEffect" ]
+				"AllowList": [
+					"SpawnEffect",
+					"DeathEffect"
+				]
 			},
 			{
 				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardInventory.CharacterModifier_LimeGuardInventory_C",
@@ -1745,21 +1548,44 @@
 			},
 			{
 				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardBehavior.CharacterModifier_LimeGuardBehavior_C",
-				"DenyList": [ "bKeepDefaultBehavior", "bCanUseDiving", "bCanUseGliding", "bCanUseZiplines", "bCanReviveTeammates", "bEnableLeash", "LeashDistance"  ],
+				"DenyList": [
+					"bKeepDefaultBehavior",
+					"bCanUseDiving",
+					"bCanUseGliding",
+					"bCanUseZiplines",
+					"bCanReviveTeammates",
+					"bEnableLeash",
+					"LeashDistance"
+				],
 				"bAllowListAllProperties": true
 			},
 			{
 				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardVerseBehavior.CharacterModifier_LimeGuardVerseBehavior_C",
-				"DenyList": [ "bKeepDefaultBehavior", "bCanUseDiving", "bCanUseGliding", "bCanUseZiplines", "bCanReviveTeammates" ],
+				"DenyList": [
+					"bKeepDefaultBehavior",
+					"bCanUseDiving",
+					"bCanUseGliding",
+					"bCanUseZiplines",
+					"bCanReviveTeammates"
+				],
 				"bAllowListAllProperties": true
 			},
 			{
 				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimePatrolPath.CharacterModifier_LimePatrolPath_C",
-				"AllowList": [ "PatrolPathGroup", "ChangePatrolPathTarget", "ChangePatrolPathTimer" ]
+				"AllowList": [
+					"PatrolPathGroup",
+					"ChangePatrolPathTarget",
+					"ChangePatrolPathTimer"
+				]
 			},
 			{
 				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardPerception.CharacterModifier_LimeGuardPerception_C",
-				"AllowList": [ "bOverrideSightSettings", "SightPerceptionSettings", "bOverrideHearingSettings", "HearingPerceptionSettings" ]
+				"AllowList": [
+					"bOverrideSightSettings",
+					"SightPerceptionSettings",
+					"bOverrideHearingSettings",
+					"HearingPerceptionSettings"
+				]
 			},
 			{
 				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeTeam.CharacterModifier_LimeTeam_C",
@@ -1768,7 +1594,9 @@
 			},
 			{
 				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeUI.CharacterModifier_LimeUI_C",
-				"DenyList": [ "HealthBarHeight" ],
+				"DenyList": [
+					"HealthBarHeight"
+				],
 				"bAllowListAllSubclassProperties": true
 			},
 			{
@@ -1781,7 +1609,6 @@
 				"bAllowListAllProperties": true,
 				"bAllowListAllSubclassProperties": true
 			}
-
 		]
 	}
 }

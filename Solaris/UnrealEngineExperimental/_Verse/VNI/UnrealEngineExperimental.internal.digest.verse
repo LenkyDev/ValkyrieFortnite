@@ -85,6 +85,12 @@ Diagnostics<public> := module:
         # Draws an arrow pointing from Start to End locations, and using the provided draw parameters.
         DrawArrow<public>(Start:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, End:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, ?ArrowSize:float = external {}, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void = external {}
 
+        # Draws a 3D text at the named location, and using the provided draw parameters.
+        DrawText<native><epic_internal>(Text:string, Position:(/Verse.org/SpatialMath:)vector3, ?Color:color = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {}, ?FontScale:float = external {}, ?DrawShadow:logic = external {})<transacts>:void
+
+        # Draws a 3D text at the named location, and using the provided draw parameters.
+        DrawText<epic_internal>(Text:string, Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, ?Color:color = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {}, ?FontScale:float = external {}, ?DrawShadow:logic = external {})<transacts>:void = external {}
+
     # log levels available for various log commands
     log_level<native><public> := enum:
         Debug
@@ -151,8 +157,11 @@ Testing<public> := module:
         # Report a test result of `Result`. `Category` and `SubCategory` are used to calculate test result stats as part of printing the summary.
         ReportTestResult<native><epic_internal>(Message:string, Result:test_result, ?Category:string = external {}, ?SubCategory:string = external {}):void
 
-        # Prints a summary of test results to the log stream and resets the test results.
+        # Prints a summary of test results to the log stream.
         PrintSummary<native><epic_internal>(?Level:log_level = external {}):void
+
+        # Prints a json summary of test results to the log stream.
+        PrintSummaryJson<native><epic_internal>():void
 
         # Returns a string of the test results summary.
         GetSummaryStrings<native><epic_internal>(?Level:log_level = external {}):[]string

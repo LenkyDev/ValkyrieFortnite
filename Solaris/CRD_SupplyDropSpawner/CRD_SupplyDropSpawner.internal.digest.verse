@@ -12,6 +12,10 @@ supply_drop_spawner_device<public> := class<concrete><final>(creative_device_bas
     # Signaled when the supply crate lands for the first time.
     LandingEvent<public>:listenable(tuple()) = external {}
 
+    # Signaled when the supply crate is destroyed.
+    # Sends the destroying `agent`. If no `agent` destroyed the crate then `false` is returned.
+    DestroyCrateEvent<public>:listenable(?agent) = external {}
+
     # Spawns a supply drop provided one hasn't already spawned. *Owning Team* is set to `Agent`'s team.
     Spawn<public>(Agent:agent):void = external {}
 
@@ -29,3 +33,6 @@ supply_drop_spawner_device<public> := class<concrete><final>(creative_device_bas
 
     # Unlocks the supply crate so `agent`s can open it.
     Unlock<public>():void = external {}
+
+    # Destroys supply drops spawned by this device.
+    DestroySpawnedDrops<public>():void = external {}

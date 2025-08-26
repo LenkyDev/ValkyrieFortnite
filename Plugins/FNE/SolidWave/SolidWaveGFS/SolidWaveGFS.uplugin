@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/SolidWave",
-	"FortReleaseVersion": "37.00",
+	"FortReleaseVersion": "37.10",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
@@ -49,6 +49,11 @@
 			"Enabled": true,
 			"Optional": true,
 			"Activate": true
+		},
+		{
+			"Name": "SolidWaveQuest",
+			"Enabled": true,
+			"Optional": true
 		},
 		{
 			"Name": "SolidWaveSwashPulse",

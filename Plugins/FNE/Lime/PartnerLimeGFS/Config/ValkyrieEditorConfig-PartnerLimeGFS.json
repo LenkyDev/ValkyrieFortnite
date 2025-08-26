@@ -249,6 +249,9 @@
 			"/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeCosmeticSpawn.CharacterModifier_LimeCosmeticSpawn_C": {
 				"Visible": true
 			},
+			"/LimeAtomAssets/Processors/LimeBrickLibraryProcessor.LimeBrickLibraryProcessor_C": {
+				"Visible": true
+			},
 			"/NPCDefault/Types/CharacterType_Custom.CharacterType_Custom_C": {
 				"Visible": true
 			},

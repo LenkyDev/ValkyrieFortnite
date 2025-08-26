@@ -46,6 +46,11 @@ carryable_spawner_device<public> := class<concrete><final>(creative_device_base,
     # This includes dropping, throwing, despawning, or force pickup by another player.
     ReleaseEvent<public>:listenable(agent) = external {}
 
+    # Signaled when the carryable collides with an agent.
+    # Damage applied is based off the collision velocity, as well as the device's *Impact Damage* settings.
+    # This event will fire even if the damage applied is 0
+    AgentCollideEvent<public>:listenable(carryable_spawner_agent_impact_result) = external {}
+
     # The `agent` carrying the carryable, if one exists.
     var<private> CarryingAgent<public>:?agent = external {}
 

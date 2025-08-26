@@ -576,13 +576,13 @@ item_granter_device<public> := class<concrete><final>(creative_device_base):
     # Returns the current Item Index that this device will grant when activated.
     GetItemIndex<public>()<transacts>:int = external {}
 
-    # Returns the number of items this item granter will award for at the specified index in the Item Granter.
-    # This will return 0 if the index is invalid.
-    # If *Cycle Behavior* is *Stop*, `ItemIndex` is clamped to the number of items in the Item Granter.
-    #  If *Cycle Behavior* is *Wrap*, `ItemIndex` is modulo'd to the number of items in the Item Granter.
+    # Returns the number of items this Item Granter will award for the item at the specified `Index`.
+    # This will return 0 if `Index` is invalid.
+    # If *Cycle Behavior* is *Stop*, `Index` is clamped to the number of items in the Item Granter.
+    #  If *Cycle Behavior* is *Wrap*, `Index` is modulo'd to the number of items in the Item Granter.
     GetItemGrantCountAtIndex<public>(Index:int)<transacts>:int = external {}
 
-    # Sets the number of items this item granter will award for the item at `ItemIndex`.
+    # Sets the number of items this Item Granter will award for the item at the specified `ItemIndex`.
     # `Count` must be greater than 0.
     # If *Cycle Behavior* is *Stop*, `ItemIndex` is clamped to the number of items in the Item Granter.
     #  If *Cycle Behavior* is *Wrap*, `ItemIndex` is modulo'd to the number of items in the Item Granter.
@@ -1228,7 +1228,7 @@ team_settings_and_inventory_device<public> := class<concrete><final>(creative_de
     # If the device is configured to All, then this function will remove all Temporary Team members from any Temporary Team they are on, returning them to their original team.
     RemoveTemporaryMembersFromTeam<public>():void = external {}
 
-    # This variable maps to the AllowTemporaryTeamMemberInvitations user option.
+    # This variable maps to the 'Dynamic Team Emotes' user option.
     # Modifying this value does not affect the state of any existing Temporary Team member.
     # If a player is currently on a Temporary Team, they will maintain access to the leave team emote regardless of this value.
     # Available values:

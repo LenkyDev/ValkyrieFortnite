@@ -177,6 +177,16 @@ VerseFramework<public> := module:
 
         Subscribe<public>(Event:listenable(creative_prop)):void = external {}
 
+    test_event_int_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgInt<public>:int = external {}
+
+        Subscribe<public>(Event:listenable(int)):void = external {}
+
+    test_event_tuple_agent_vehicle_int_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgTuple<public>:?tuple(?agent, fort_vehicle, int) = external {}
+
+        Subscribe<public>(Event:listenable(tuple(?agent, fort_vehicle, int))):void = external {}
+
     test_case<public> := struct:
         Name<public>:string
 
@@ -203,6 +213,8 @@ VerseFramework<public> := module:
         var TestReporter<public>:test_reporter = external {}
 
         var CurrentTestSuite<public>:string = external {}
+
+        var CurrentFunctionName<public>:string = external {}
 
         var TargetTestSuite<public>:string = external {}
 

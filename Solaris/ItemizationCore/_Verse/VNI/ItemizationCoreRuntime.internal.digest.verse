@@ -123,13 +123,11 @@ inventory_component<native><epic_internal> := class<final_super>(component):
     @replicated("")
     var<private> InventoryMaxStackSizeOverride<native><epic_internal>:int = external {}
 
-@experimental
-equippable_inventory_component<native><epic_internal> := class(inventory_component):
-    CanEquipItem<native><public>(Item:entity)<transacts><decides>:void
+    CanEquipItem<native><epic_internal>(Item:entity)<transacts><decides>:void
 
-    EquipItem<native><public>(Item:entity)<transacts><decides>:void
+    EquipItem<native><epic_internal>(Item:entity)<transacts><decides>:void
 
-    UnequipItem<native><public>(Item:entity)<transacts><decides>:void
+    UnequipItem<native><epic_internal>(Item:entity)<transacts><decides>:void
 
     GetInputAction<epic_internal>(ItemSlot:int):?input_action(type) = external {}
 
@@ -139,20 +137,12 @@ equippable_inventory_component<native><epic_internal> := class(inventory_compone
     SlotBindingList<native><epic_internal>:[]tuple(input_action(type), int) = external {}
 
     @editable
-    ShowSlotBindings<native><public>:logic = external {}
+    ShowSlotBindings<native><epic_internal>:logic = external {}
 
-    GetEquippedItems<final><native><public>():[]entity
-
-@experimental
-inventory_backpack_component<epic_internal> := class(inventory_component):
-
+    GetEquippedItems<final><native><epic_internal>():[]entity
 
 @experimental
-equippable_inventory_slot_component<native><epic_internal> := class(equippable_inventory_component):
-    var TotalSlots<override>:int = external {}
-
-@experimental
-equippable_inventory_hotbar_component<native><epic_internal> := class(equippable_inventory_component):
+inventory_hotbar_component<native><epic_internal> := class(inventory_component):
     var TotalSlots<override>:int = external {}
 
 @experimental
@@ -215,7 +205,10 @@ inventory_starting_item<native><epic_internal> := struct<concrete><epic_internal
     Amount<native>:int = external {}
 
 @experimental
-inventory_properties_base<native><epic_internal> := class<epic_internal>:
+inventory_properties<native><epic_internal> := class<epic_internal>:
+    @editable
+    InventoryClass<native><public>:subtype(inventory_component)
+
     @editable
     InventoryName<native><public>:string = external {}
 
@@ -234,26 +227,16 @@ inventory_properties_base<native><epic_internal> := class<epic_internal>:
     @editable
     InventoryRules<native><public>:[]inventory_rule_interface = external {}
 
-@experimental
-inventory_properties<native><epic_internal> := class<epic_internal>(inventory_properties_base):
     @editable
-    InventoryClass<native><public>:subtype(inventory_component)
+    SlotBindings<native><public>:[]inventory_slot_binding_definition
 
 @experimental
-equippable_inventory_slot_binding_definition<native><epic_internal> := struct<concrete><epic_internal>:
+inventory_slot_binding_definition<native><epic_internal> := struct<concrete><epic_internal>:
     @editable_number(int) {MinValue := option {0}}
     Slot<native><public>:int = external {}
 
     @editable
     InputAction<native><public>:input_action(type) = external {}
-
-@experimental
-equippable_inventory_properties<native><epic_internal> := class<epic_internal>(inventory_properties_base):
-    @editable
-    InventoryClass<native><public>:subtype(equippable_inventory_component)
-
-    @editable
-    SlotBindings<native><public>:[]equippable_inventory_slot_binding_definition
 
 @experimental
 inventory_setup_data<native><epic_internal> := class<abstract>:
@@ -263,9 +246,6 @@ inventory_setup_data<native><epic_internal> := class<abstract>:
 @experimental
 basic_inventory_setup_data<native><epic_internal> := class<concrete>(inventory_setup_data):
     ApplyTo<native><override>(Target:inventory_component)<decides>:inventory_setup_data_result
-
-    @editable
-    EquippableInventoryList<native><public>:[]equippable_inventory_properties = external {}
 
     @editable
     InventoryList<native><public>:[]inventory_properties = external {}
