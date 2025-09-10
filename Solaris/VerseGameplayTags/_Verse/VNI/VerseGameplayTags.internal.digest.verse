@@ -11,7 +11,7 @@ Tags<public> := module:
 
 
     # Get a string representation of the gameplay tag. Useful for debugging.
-    (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_32:tag)<computes>:string
+    (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_36:tag)<computes>:string
 
     # Succeeds if Left and Right are equal.
     Equals<native><epic_internal>(Left:tag, Right:tag)<transacts><decides>:void
@@ -82,7 +82,7 @@ Tags<public> := module:
         GetTags<native><epic_internal>()<transacts>:generator(tag)
 
     # Returns abbreviated human readable Tag list. Useful for debugging.
-    (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_35:tag_container)<computes>:string
+    (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_39:tag_container)<computes>:string
 
     @import_as("/Script/VerseGameplayTags.FVerseGameplayTagContainer")
     # Utility structure which allows users to select a gameplay tag when exposed to editor

@@ -98,6 +98,9 @@ AI<public> := module:
         # Go back to standing
         StandUp<epic_internal>():ai_action_result
 
+        # Start jumping
+        Jump<epic_internal>():ai_action_result
+
         # Change movement speed to sprint and switch to tactical sprint when energy is full.
         TacticalSprint<epic_internal>()<suspends>:ai_action_result
 
@@ -136,6 +139,9 @@ AI<public> := module:
 
         # Go back to standing
         StandUp<native><override>():ai_action_result
+
+        # Start jumping
+        Jump<native><override>():ai_action_result
 
         # Change movement speed to sprint and switch to tactical sprint when energy is full.
         TacticalSprint<native><override>()<suspends>:ai_action_result

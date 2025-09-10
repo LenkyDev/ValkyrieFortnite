@@ -358,6 +358,21 @@ Verse<public> := module:
     # Succeeds if `Val1` and `Val2` are within `AbsoluteTolerance` of each other.
     IsAlmostEqual<public>(Val1:float, Val2:float, AbsoluteTolerance:float)<computes><decides>:void = external {}
 
+    @available {MinUploadedAtFNVersion := 3720}
+    # Implemented by classes that provide a result for an operation, which can fail or be successful
+    result<epic_internal>(success_type:type, error_type:type) := interface<internal>:
+        # Returns the success data of the specified type.
+        GetSuccess<native_callable><public>()<computes><decides>:success_type
+
+        # Returns the error data of the specified type.
+        GetError<native_callable><public>()<computes><decides>:error_type
+
+    @available {MinUploadedAtFNVersion := 3720}
+    MakeSuccess<epic_internal>(Result:success_type where success_type:type):result(success_type, false) = external {}
+
+    @available {MinUploadedAtFNVersion := 3720}
+    MakeError<epic_internal>(Result:error_type where error_type:type):result(false, error_type) = external {}
+
     # A parametric interface implemented by events with a `payload` that can be signaled.
     # Can be used with `awaitable`, `subscribable`, or both (see: `listenable`).
     signalable<public>(payload:type) := interface:

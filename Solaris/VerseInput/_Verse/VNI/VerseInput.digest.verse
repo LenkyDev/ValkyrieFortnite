@@ -1,4 +1,3 @@
-using {/Verse.org/SpatialMath}
 using {/Verse.org/Assets}
 using {/Verse.org/Native}
 using {/Verse.org/Simulation}
@@ -48,8 +47,6 @@ ControlInput<public> := module:
     # Access input-related data and settings for a player.
     GetPlayerInput<native><public>(Player:player)<transacts><decides>:player_input
 
-    MakeInputAsset<native><epic_internal>((InputAction:input_action(t), Path:string) where t:type)<converges>:input_action(t)
-
     @available {MinUploadedAtFNVersion := 3630}
     # This is the main manager class for input-related settings and functions for a player.
     player_input<native><public> := class:
@@ -58,9 +55,3 @@ ControlInput<public> := module:
         RemoveInputMapping<native><public>(InputMapping:input_mapping):void
 
         GetInputEvents<native><public>(ActionToBind:input_action(t) where t:type):input_events(t)
-
-        MakeLogicInputEvents<native_callable><epic_internal>():input_events(logic) = external {}
-
-        MakeFloatInputEvents<native_callable><epic_internal>():input_events(float) = external {}
-
-        MakeVector3InputEvents<native_callable><epic_internal>():input_events((/Verse.org/SpatialMath:)vector3) = external {}

@@ -110,7 +110,7 @@ interactable_duration<native><public> := class<concrete>:
     @editable
     # The max number of simultaneous interactors. A value of false is unlimited.  This value represents how many agents may have active interactions.
     # If this changes to a value less than the current number of active interactions, those interactions are not canceled but new interactions will not start.
-    var MaxSimultaneousInteractors<native><public>:?int = external {}
+    var MaxSimultaneousInteractors<public>:?int = external {}
 
     # Returns an agentâs remaining duration, in seconds, for interaction. Fails if the agent is not interacting with this component.Returns the same value when called multiple times within a transaction.
     GetRemainingInteractDurationForAgent<final><native><public>(Agent:agent)<reads><decides>:float

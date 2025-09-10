@@ -7,6 +7,6 @@ Restricted<public> := module:
 
         Await<native><override>()<suspends>:t
 
-        Signal<native><override>(__dupe___unnamed_parameter_24:t):void
+        Signal<native><override>(__dupe___unnamed_parameter_28:t):void
 
     sticky_event<public>() := sticky_event(void)

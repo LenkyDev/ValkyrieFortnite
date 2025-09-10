@@ -2,7 +2,7 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-37.10-CL-45056983
+# Generated from build: ++Fortnite+Release-37.20-CL-45566402
 #################################################
 
 SceneGraph<public> := module:
@@ -347,10 +347,10 @@ SceneGraph<public> := module:
         ExpiredEvent<native><public>:listenable(tuple()) = external {}
 
         # Set the remaining shared cooldown duration in seconds, affecting all agents.
-        SetRemainingDuration<native><epic_internal>(__dupe___unnamed_parameter_69:accessor, InRemainingDuration:float)<transacts>:void
+        SetRemainingDuration<native><epic_internal>(__dupe___unnamed_parameter_73:accessor, InRemainingDuration:float)<transacts>:void
 
         # Get the remaining shared cooldown duration in seconds, affecting all agents.
-        GetRemainingDuration<native><epic_internal>(__dupe___unnamed_parameter_70:accessor)<transacts>:float
+        GetRemainingDuration<native><epic_internal>(__dupe___unnamed_parameter_74:accessor)<transacts>:float
 
     # Used to set a cooldown per agent when interacted.
     interactable_cooldown_per_agent<native><public> := class<concrete>:
@@ -367,10 +367,10 @@ SceneGraph<public> := module:
         ExpiredEvent<native><public>:listenable(agent) = external {}
 
         # Set the remaining shared cooldown duration in seconds, affecting all agents.
-        SetRemainingDurationForAgent<native><epic_internal>(__dupe___unnamed_parameter_71:accessor, Agent:agent, InRemainingDuration:float)<transacts>:void
+        SetRemainingDurationForAgent<native><epic_internal>(__dupe___unnamed_parameter_75:accessor, Agent:agent, InRemainingDuration:float)<transacts>:void
 
         # Get the remaining shared cooldown duration in seconds, affecting all agents.
-        GetRemainingDurationForAgent<native><epic_internal>(__dupe___unnamed_parameter_72:accessor, Agent:agent)<transacts>:float
+        GetRemainingDurationForAgent<native><epic_internal>(__dupe___unnamed_parameter_76:accessor, Agent:agent)<transacts>:float
 
     # Used to set an interaction duration.
     interactable_duration<native><public> := class<concrete>:
@@ -388,15 +388,27 @@ SceneGraph<public> := module:
         var _InteractDuration<native><epic_internal>:float = external {}
 
         # Interact duration setter.
-        SetInteractDuration<native><epic_internal>(__dupe___unnamed_parameter_73:accessor, InRemainingDuration:float)<transacts>:void
+        SetInteractDuration<native><epic_internal>(__dupe___unnamed_parameter_77:accessor, InRemainingDuration:float)<transacts>:void
 
         # Interact duration getter.
-        GetInteractDuration<native><epic_internal>(__dupe___unnamed_parameter_74:accessor)<transacts>:float
+        GetInteractDuration<native><epic_internal>(__dupe___unnamed_parameter_78:accessor)<transacts>:float
 
         @editable
         # The max number of simultaneous interactors. A value of false is unlimited.  This value represents how many agents may have active interactions.
         # If this changes to a value less than the current number of active interactions, those interactions are not canceled but new interactions will not start.
-        var MaxSimultaneousInteractors<native><public>:?int = external {}
+        var MaxSimultaneousInteractors<public>:?int = external {}
+
+        @replicated("")
+        @editable
+        @display_name("MaxSimultaneousInteractors")
+        # Internal Max Simultaneous Interactors value.
+        var _MaxSimultaneousInteractors<native><epic_internal>:?int = external {}
+
+        # Max Simultaneous Interactors duration setter.
+        SetMaxSimultaneousInteractors<native><epic_internal>(__dupe___unnamed_parameter_79:accessor, InRemainingDuration:?int)<transacts>:void
+
+        # Max Simultaneous Interactors duration getter.
+        GetMaxSimultaneousInteractors<native><epic_internal>(__dupe___unnamed_parameter_80:accessor)<transacts>:?int
 
         # Returns an agent’s remaining duration, in seconds, for interaction. Fails if the agent is not interacting with this component.Returns the same value when called multiple times within a transaction.
         GetRemainingInteractDurationForAgent<final><native><public>(Agent:agent)<reads><decides>:float
@@ -415,10 +427,10 @@ SceneGraph<public> := module:
 
         # Update the maximum number of successful interactions possible, a value of false is unlimited.
         # If the current number of tracked interactions is greater than the value specified here, all current interactions will be canceled.
-        SetMaxSuccessfulInteractions<native><epic_internal>(__dupe___unnamed_parameter_75:accessor, InMaxSuccessfulInteractions:?int)<transacts>:void
+        SetMaxSuccessfulInteractions<native><epic_internal>(__dupe___unnamed_parameter_81:accessor, InMaxSuccessfulInteractions:?int)<transacts>:void
 
         # Get the maximum number of successful interactions possible.
-        GetMaxSuccessfulInteractions<native><epic_internal>(__dupe___unnamed_parameter_76:accessor)<transacts>:?int
+        GetMaxSuccessfulInteractions<native><epic_internal>(__dupe___unnamed_parameter_82:accessor)<transacts>:?int
 
         # Resets the counter for the times this component has had a successful interaction.
         ClearSuccessfulInteractionCount<native><public>()<transacts>:void
@@ -1812,7 +1824,7 @@ SceneGraph<public> := module:
     # An alias for the function type used to map a collision_channel to a collision_interaction used by  collision_profile.
     collision_channel_to_interaction<public> := type {_(:collision_channel)<computes>:collision_interaction}
 
-    DefaultChannelToInteraction<epic_internal>(__dupe___unnamed_parameter_42:collision_channel)<computes>:collision_interaction = external {}
+    DefaultChannelToInteraction<epic_internal>(__dupe___unnamed_parameter_46:collision_channel)<computes>:collision_interaction = external {}
 
     # A collision profile determines how a volume interacts with other volumes for Overlap queries, Sweep queries, and physics simulation. When two volumes are being tested to see how they interact, the algorithm looks like this:
     #    GetInteraction(A:collision_profile, B:collision_profile):collision_interaction = 
@@ -2365,9 +2377,9 @@ SceneGraph<public> := module:
     execution_subscription<native><epic_internal> := class(cancelable):
         Cancel<native><override>()<transacts>:void
 
-        RunAfter<native><epic_internal>(__dupe___unnamed_parameter_32:execution_subscription):void
+        RunAfter<native><epic_internal>(__dupe___unnamed_parameter_36:execution_subscription):void
 
-        RunBefore<native><epic_internal>(__dupe___unnamed_parameter_33:execution_subscription):void
+        RunBefore<native><epic_internal>(__dupe___unnamed_parameter_37:execution_subscription):void
 
     # Users to subscribe to, or await on, a DeltaTime based callback from one of the phases in a component's `TickEvents` object.'
     # 
@@ -2432,7 +2444,7 @@ Simulation<public> := module:
         tag_selector<native><epic_internal> := struct<concrete>:
 
         # Get a string representation of the gameplay tag. Useful for debugging.
-        (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_32:tag)<computes>:string
+        (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_36:tag)<computes>:string
 
         # Succeeds if Left and Right are equal.
         Equals<native><epic_internal>(Left:tag, Right:tag)<transacts><decides>:void
@@ -2503,7 +2515,7 @@ Simulation<public> := module:
             GetTags<native><epic_internal>()<transacts>:generator(tag)
 
         # Returns abbreviated human readable Tag list. Useful for debugging.
-        (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_35:tag_container)<computes>:string
+        (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_39:tag_container)<computes>:string
 
         @import_as("/Script/VerseGameplayTags.FVerseGameplayTagContainer")
         # Utility structure which allows users to select a gameplay tag when exposed to editor
@@ -2912,7 +2924,7 @@ Restricted<public> := module:
 
         Await<native><override>()<suspends>:t
 
-        Signal<native><override>(__dupe___unnamed_parameter_24:t):void
+        Signal<native><override>(__dupe___unnamed_parameter_28:t):void
 
     sticky_event<public>() := sticky_event(void)
 Verse<public> := module:
@@ -3272,6 +3284,21 @@ Verse<public> := module:
 
     # Succeeds if `Val1` and `Val2` are within `AbsoluteTolerance` of each other.
     IsAlmostEqual<public>(Val1:float, Val2:float, AbsoluteTolerance:float)<computes><decides>:void = external {}
+
+    @available {MinUploadedAtFNVersion := 3720}
+    # Implemented by classes that provide a result for an operation, which can fail or be successful
+    result<epic_internal>(success_type:type, error_type:type) := interface<internal>:
+        # Returns the success data of the specified type.
+        GetSuccess<native_callable><public>()<computes><decides>:success_type
+
+        # Returns the error data of the specified type.
+        GetError<native_callable><public>()<computes><decides>:error_type
+
+    @available {MinUploadedAtFNVersion := 3720}
+    MakeSuccess<epic_internal>(Result:success_type where success_type:type):result(success_type, false) = external {}
+
+    @available {MinUploadedAtFNVersion := 3720}
+    MakeError<epic_internal>(Result:error_type where error_type:type):result(false, error_type) = external {}
 
     # A parametric interface implemented by events with a `payload` that can be signaled.
     # Can be used with `awaitable`, `subscribable`, or both (see: `listenable`).

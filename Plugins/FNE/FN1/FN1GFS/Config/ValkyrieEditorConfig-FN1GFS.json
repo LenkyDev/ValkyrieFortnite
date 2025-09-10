@@ -380,16 +380,36 @@
 			{
 				"Type": "/Script/FortniteGame.BuildingLevelInstance",
 				"AllowList": [ "WorldAsset" ]
-			}, 
+			},
 			{
 				"Type": "/Script/Engine.RuntimeVirtualTextureComponent",
-				"AllowList": [ "BoundsAlignActor", "bSetBoundsButton", "bSnapBoundsToLandscape", "ExpandBounds", "VirtualTexture", "EnableInGamePerPlatform", "bEnableForNaniteOnly", "bUseMinMaterialQuality", "MinInGameMaterialQuality", "bEnableScalability", 
-				"ScalabilityGroup", "bHidePrimitives", "StreamingTexture", "StreamLowMips", "bBuildStreamingMipsButton", "LossyCompressionAmount", "bUseStreamingMipsFixedColor", "StreamingMipsFixedColor", "bUseStreamingMipsOnly", "UseStreamingMipsInEditorMode" ]
-			}, 
+				"AllowList": [
+					"BoundsAlignActor",
+					"bSetBoundsButton",
+					"bSnapBoundsToLandscape",
+					"ExpandBounds",
+					"VirtualTexture",
+					"EnableInGamePerPlatform",
+					"bEnableForNaniteOnly",
+					"bUseMinMaterialQuality",
+					"MinInGameMaterialQuality",
+					"bEnableScalability",
+					"ScalabilityGroup",
+					"bHidePrimitives",
+					"StreamingTexture",
+					"StreamLowMips",
+					"bBuildStreamingMipsButton",
+					"LossyCompressionAmount",
+					"bUseStreamingMipsFixedColor",
+					"StreamingMipsFixedColor",
+					"bUseStreamingMipsOnly",
+					"UseStreamingMipsInEditorMode"
+				]
+			},
 			{
 				"Type": "/Script/Engine.PrimitiveComponent",
-				"AllowList": ["VirtualTextureRenderPassType", "RuntimeVirtualTextures", "ExcludeFromHLODLevels"]
-			}, 
+				"AllowList": [ "VirtualTextureRenderPassType", "RuntimeVirtualTextures", "ExcludeFromHLODLevels" ]
+			},
 			{
 				"Type": "/Script/Landscape.Landscape",
 				"AllowList": [ "bSetCreateRuntimeVirtualTextureVolumes", "RuntimeVirtualTextures", "bVirtualTextureRenderWithQuad", "bVirtualTextureRenderWithQuadHQ", "VirtualTextureNumLods", "VirtualTextureLodBias", "VirtualTextureRenderPassType", "bEnableNanite", "bNaniteSkirtEnabled", "NaniteSkirtDepth", "NanitePositionPrecision", "NaniteMaxEdgeLengthFactor", "RebuildNaniteData", "bFillCollisionUnderLandscapeForNavmesh" ]
@@ -404,7 +424,7 @@
 			},
 			{
 				"Type": "/Script/FortniteGame.FortPoi_DiscoverableComponent",
-				"AllowList": [ "PlayerFacingName" , "QuestPartOf", "DiscoveredSoundCue", "DiscoverMinimapBitId", "EventDrivenBitIds", "bIsPlayerFacingNameLocalizable", "MapLocationTextLocationOffset"]
+				"AllowList": [ "PlayerFacingName", "QuestPartOf", "DiscoveredSoundCue", "DiscoverMinimapBitId", "EventDrivenBitIds", "bIsPlayerFacingNameLocalizable", "MapLocationTextLocationOffset" ]
 			},
 			{
 				"Type": "/Script/DaySequence.DaySequenceModifierComponent",
@@ -424,33 +444,37 @@
 			},
 			{
 				"Type": "/Script/FortniteGame.FortGameFeatureData",
-				"AllowList": [ "DefaultLootTableData", "DefaultGameData", "PlaylistBaseCurveTableOverrides", "PlaylistBaseDataTableOverrides", "Actions"]
+				"AllowList": [ "DefaultLootTableData", "DefaultGameData", "PlaylistBaseCurveTableOverrides", "PlaylistBaseDataTableOverrides", "Actions" ]
 			},
 			{
 				"Type": "/Script/FN1NativeRuntime.VerseFortniteStormVolumeComponent",
-				"AllowList": ["SafeZoneVolumes"]
+				"AllowList": [ "SafeZoneVolumes" ]
 			},
 			{
 				"Type": "/Script/FN1NativeRuntime.VFortStormVolume",
-				"AllowList": ["VolumeActor", "RejectionChance"]
+				"AllowList": [ "VolumeActor", "RejectionChance" ]
 			},
 			{
 				"Type": "/Script/FN1NativeRuntime.VerseFortniteBusVolumeComponent",
-				"AllowList": ["DropZone"]
+				"AllowList": [ "DropZone" ]
 			},
 			{
 				"Type": "/Game/Athena/Helios/Actors/BP_POI_Measure_Tool.BP_POI_Measure_Tool_C",
-				"AllowList": ["POI_Name_Text", "POI_Size", "POIColor", "ShowStreamingBounds", "ShowMaxGridStreamingBounds", "SnapToBuildingGrid"]
+				"AllowList": [ "POI_Name_Text", "POI_Size", "POIColor", "ShowStreamingBounds", "ShowMaxGridStreamingBounds", "SnapToBuildingGrid" ]
 			},
 			{
 				"Type": "/FN1GFS/Blueprints/ScriptedTools/MeasurePoints/SupportFiles/BP_MeasureTool_Billboard.BP_MeasureTool_Billboard_C",
-				"AllowList": ["LineNumber", "TotalLen", "TotalRunTime", "ThisLineLen", "ThisLineRunTime", "TextColour", "TextOutlineColour"],
-				"DenyList": ["StaticMesh", "Material", "Mobility", "Rotation"]
+				"AllowList": [ "LineNumber", "TotalLen", "TotalRunTime", "ThisLineLen", "ThisLineRunTime", "TextColour", "TextOutlineColour" ],
+				"DenyList": [ "StaticMesh", "Material", "Mobility", "Rotation" ]
 			},
 			{
 				"Type": "/NPCDefault/Types/Modifiers/CharacterModifier_Bots.CharacterModifier_Bots_C",
 				"bAllowListAllProperties": true,
 				"bAllowListAllSubclassProperties": true
+			},
+			{
+				"Type": "/Script/Engine.BrushComponent",
+				"AllowList": [ "bAlwaysCreatePhysicsState" ]
 			}
 		],
 		"-": [

@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/FN1",
-	"FortReleaseVersion": "37.10",
+	"FortReleaseVersion": "37.20",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"Version": 0,
@@ -106,6 +106,21 @@
 		},
 		{
 			"Name": "PostageMinute",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "StrideMiceMonolithInactive",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "BarnTowelArmoryGameplay",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FlexLegendsENVGameplay",
 			"Enabled": true,
 			"Optional": true
 		}

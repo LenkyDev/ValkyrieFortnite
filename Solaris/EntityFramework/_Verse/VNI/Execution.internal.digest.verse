@@ -1,9 +1,9 @@
 execution_subscription<native><epic_internal> := class(cancelable):
     Cancel<native><override>()<transacts>:void
 
-    RunAfter<native><epic_internal>(__dupe___unnamed_parameter_32:execution_subscription):void
+    RunAfter<native><epic_internal>(__dupe___unnamed_parameter_36:execution_subscription):void
 
-    RunBefore<native><epic_internal>(__dupe___unnamed_parameter_33:execution_subscription):void
+    RunBefore<native><epic_internal>(__dupe___unnamed_parameter_37:execution_subscription):void
 
 # Users to subscribe to, or await on, a DeltaTime based callback from one of the phases in a component's `TickEvents` object.'
 # 

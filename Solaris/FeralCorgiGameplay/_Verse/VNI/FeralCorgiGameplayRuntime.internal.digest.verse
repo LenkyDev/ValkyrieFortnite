@@ -94,6 +94,17 @@ game_state_component_bridge<native><epic_internal> := class<concrete>:
 
     OnReceivedEvent<public>():listenable(tuple(string, []agent, [string]float)) = external {}
 
+elimination_info<native><epic_internal> := struct:
+    WasHeadShot<native>:logic = external {}
+
+    WasBlindShot<native>:logic = external {}
+
+    WasDeadShot<native>:logic = external {}
+
+# Module import path: /Fortnite.com/FeralCorgi/FeralEliminationInfoBridge
+FeralEliminationInfoBridge<epic_internal> := module:
+    GetEliminationInfoForPlayer<native><epic_internal>(Agent:agent)<reads>:elimination_info
+
 # Module import path: /Fortnite.com/FeralCorgi/FeralLoggingBridge
 FeralLoggingBridge<epic_internal> := module:
     LogMessage<native><epic_internal>(Format:string, ?Args:[]string = external {})<transacts>:void
