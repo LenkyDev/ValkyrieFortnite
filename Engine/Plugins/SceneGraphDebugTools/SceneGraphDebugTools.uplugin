@@ -33,6 +33,10 @@
 			"Enabled": true
 		},
 		{
+			"Name": "VerseCamera",
+			"Enabled": true
+		},
+		{
 			"Name": "VerseEngine",
 			"Enabled": true
 		},

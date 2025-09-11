@@ -595,17 +595,6 @@ Devices<public> := module:
         # Determines if a Spire-specific icon should be displayed on the map while the Spire is spawned
         var ShowMapIcon<public>:logic
 
-    # Used to track `agent` events used to generate analytics.
-    analytics_device<public> := class<concrete><final>(creative_device_base):
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Submits an event for `Agent`.
-        Submit<public>(Agent:agent):void = external {}
-
     # Used to set up islands so players will earn Battle Pass XP when they interact with your island. Accolades are achievements or accomplishments that players can complete to earn XP.
     accolades_device<public> := class<concrete><final>(creative_device_base):
         # Signaled when testing the accolade to make sure it is awarded as expected. Only signals within unpublished island environments.
@@ -620,6 +609,17 @@ Devices<public> := module:
 
         # Awards the XP to `agent`.
         Award<public>(Agent:agent):void = external {}
+
+    # Used to track `agent` events used to generate analytics.
+    analytics_device<public> := class<concrete><final>(creative_device_base):
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Submits an event for `Agent`.
+        Submit<public>(Agent:agent):void = external {}
 
     # Used to manage sound buses via control bus mixes set on the Audio Mixer Device.
     audio_mixer_device<public> := class<concrete><final>(creative_device_base):
@@ -812,34 +812,6 @@ Devices<public> := module:
 
         ActivateNoAgentFunction<epic_internal>:device_function_set_params_by_type = external {}
 
-    # Used to focus the camera on specific `agent`s.
-    camera_focus_device<epic_internal> := class<concrete><final>(creative_device_base):
-        # Signaled when the camera focuses on an `agent`.
-        # Sends the `agent` being focused on.
-        FocusOnEvent<public>:listenable(agent) = external {}
-
-        # Signaled when the camera stops focusing on an `agent`.
-        # Sends the `agent` that stopped being focused on.
-        FocusIsDroppedEvent<public>:listenable(agent) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Focuses the camera on `Agent`.
-        Focus<public>(Agent:agent):void = external {}
-
-        # Focuses the camera on all `agent`s.
-        FocusAll<public>():void = external {}
-
-        # Drops focus from `Agent`.
-        DropFocus<public>(Agent:agent):void = external {}
-
-        # Drops focus from all `agent`s.
-        DropFocusForAll<public>():void = external {}
-
     shared_saved_data_device<epic_internal> := class<concrete><final>(creative_device_base):
         # Signaled if the save result is on when the state is checked.
         # Sends the `agent` that initiated the check.
@@ -876,6 +848,34 @@ Devices<public> := module:
 
         # Checks the device state with `Agent` acting as the instigator of the action.
         CheckState<public>(Agent:agent):void = external {}
+
+    # Used to focus the camera on specific `agent`s.
+    camera_focus_device<epic_internal> := class<concrete><final>(creative_device_base):
+        # Signaled when the camera focuses on an `agent`.
+        # Sends the `agent` being focused on.
+        FocusOnEvent<public>:listenable(agent) = external {}
+
+        # Signaled when the camera stops focusing on an `agent`.
+        # Sends the `agent` that stopped being focused on.
+        FocusIsDroppedEvent<public>:listenable(agent) = external {}
+
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Focuses the camera on `Agent`.
+        Focus<public>(Agent:agent):void = external {}
+
+        # Focuses the camera on all `agent`s.
+        FocusAll<public>():void = external {}
+
+        # Drops focus from `Agent`.
+        DropFocus<public>(Agent:agent):void = external {}
+
+        # Drops focus from all `agent`s.
+        DropFocusForAll<public>():void = external {}
 
     # Used to listen for the player activating or releasing certain inputs.
     # The input is defined by the *Input* option.
@@ -935,32 +935,6 @@ Devices<public> := module:
 
     # Allows players to change their outfit in game!
     changing_booth_device<public> := class<concrete><final>(creative_device_base):
-
-    # Used to create a light which can have its color and brightness manipulated in response to in-game events.
-    customizable_light_device<public> := class<concrete><final>(creative_device_base):
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Resets the light to its initial state.
-        Reset<public>():void = external {}
-
-        # Turns on the light.
-        TurnOn<public>():void = external {}
-
-        # Turns off the light.
-        TurnOff<public>():void = external {}
-
-        # Toggles between `TurnOn` and `TurnOff`.
-        Toggle<public>():void = external {}
-
-        # Dims the light by *Dimming Amount*.
-        DimLight<public>():void = external {}
-
-        # Brightens the light by *Dimming Amount*.
-        UndimLight<public>():void = external {}
 
     # Used to track and react to how many players are in a particular area, and optionally display that information in game.
     player_counter_device<public> := class<concrete><final>(creative_device_base):
@@ -1038,6 +1012,73 @@ Devices<public> := module:
         # Returns an array of agents that are currently counted by the device.
         GetCountedAgents<public>()<reads>:[]agent = external {}
 
+    # Used to create a light which can have its color and brightness manipulated in response to in-game events.
+    customizable_light_device<public> := class<concrete><final>(creative_device_base):
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Resets the light to its initial state.
+        Reset<public>():void = external {}
+
+        # Turns on the light.
+        TurnOn<public>():void = external {}
+
+        # Turns off the light.
+        TurnOff<public>():void = external {}
+
+        # Toggles between `TurnOn` and `TurnOff`.
+        Toggle<public>():void = external {}
+
+        # Dims the light by *Dimming Amount*.
+        DimLight<public>():void = external {}
+
+        # Brightens the light by *Dimming Amount*.
+        UndimLight<public>():void = external {}
+
+    # Used to mark an `agent`'s position on the minimap and configure the information shown for marked `agent`s.
+    # 
+    # Example configuration options:
+    #  * Health and shield bars for marked players.
+    #  * Distance to a marked player.
+    # 
+    # Example marker appearance options:
+    #  * Customized text label displayed on marked players.
+    #  * Alternative minimap icon and icon color.
+    player_marker_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when the first item type monitored on marked agents has changed.
+        # Sends the marked `agent`.
+        FirstItemValueChangedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when the second item type monitored on marked agents has changed.
+        # Sends the marked `agent`.
+        SecondItemValueChangedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when a marked `agent` meets the quantity condition for the first monitored item type (e.g. Fewer Than, Equal To, More Than X).
+        # Sends the marked `agent`.
+        FirstItemValueReachedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when a marked `agent` meets the quantity condition for the second monitored item type (e.g. Fewer Than, Equal To, More Than X).
+        # Sends the marked `agent`.
+        SecondItemValueReachedEvent<public>:listenable(agent) = external {}
+
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Attaches a marker to `Agent`.
+        Attach<public>(Agent:agent):void = external {}
+
+        # Detaches a marker from `Agent`.
+        Detach<public>(Agent:agent):void = external {}
+
+        # Detaches markers from all marked `agent`s.
+        DetachFromAll<public>():void = external {}
+
     # Used to manipulate the properties of one or more props in a specified area (e.g. Visibility/Destructibility).
     prop_manipulator_device<public> := class<concrete><final>(creative_device_base):
         # Signaled when props affected by this device are damaged.
@@ -1082,100 +1123,6 @@ Devices<public> := module:
 
         # Sets the *Override Resource* option to *No*.
         DisableResourceNodeOverrides<public>():void = external {}
-
-    # Used to mark an `agent`'s position on the minimap and configure the information shown for marked `agent`s.
-    # 
-    # Example configuration options:
-    #  * Health and shield bars for marked players.
-    #  * Distance to a marked player.
-    # 
-    # Example marker appearance options:
-    #  * Customized text label displayed on marked players.
-    #  * Alternative minimap icon and icon color.
-    player_marker_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when the first item type monitored on marked agents has changed.
-        # Sends the marked `agent`.
-        FirstItemValueChangedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when the second item type monitored on marked agents has changed.
-        # Sends the marked `agent`.
-        SecondItemValueChangedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when a marked `agent` meets the quantity condition for the first monitored item type (e.g. Fewer Than, Equal To, More Than X).
-        # Sends the marked `agent`.
-        FirstItemValueReachedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when a marked `agent` meets the quantity condition for the second monitored item type (e.g. Fewer Than, Equal To, More Than X).
-        # Sends the marked `agent`.
-        SecondItemValueReachedEvent<public>:listenable(agent) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Attaches a marker to `Agent`.
-        Attach<public>(Agent:agent):void = external {}
-
-        # Detaches a marker from `Agent`.
-        Detach<public>(Agent:agent):void = external {}
-
-        # Detaches markers from all marked `agent`s.
-        DetachFromAll<public>():void = external {}
-
-    # Used in tandem with `race_manager_device` to define the route players must traverse.
-    race_checkpoint_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when this checkpoint becomes the next checkpoint that `agent`s need to pass for the first time.
-        # Sends the first `agent` who is now targeting this checkpoint.
-        CheckpointBecomesCurrentForTheFirstTimeEvent<public>:listenable(agent) = external {}
-
-        # Signaled when this checkpoint becomes the current checkpoint for `agent`.
-        # Sends the `agent` who is now targeting this checkpoint.
-        CheckpointBecomesCurrentEvent<public>:listenable(agent) = external {}
-
-        # Signaled when an `agent` passes this checkpoint.
-        # Sends the `agent` that passed this checkpoint.
-        CheckpointCompletedEvent<public>:listenable(agent) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Sets this checkpoint as the current checkpoint for `Agent`. This only functions if `Agent` has not already passed this checkpoint.
-        SetAsCurrentCheckpoint<public>(Agent:agent):void = external {}
-
-    # Used with the `race_checkpoint_device` to create more advanced racing modes.
-    race_manager_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when the race begins.
-        # Sends the `agent` that started the race.
-        RaceBeganEvent<public>:listenable(agent) = external {}
-
-        # Signaled when an `agent` finishes the race.
-        # Sends the `agent` that finished the race.
-        RaceCompletedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when an `agent` completes their first lap.
-        # Sends the `agent` that finished the lap.
-        FirstLapCompletedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when an `agent` completes a lap.
-        # Sends the `agent` that finished the lap.
-        LapCompletedEvent<public>:listenable(agent) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Begins the race.
-        Begin<public>():void = external {}
-
-        # Ends the race.
-        End<public>():void = external {}
 
     # Used to move around a building or prop, and customize responses to various collision event types.
     prop_mover_device<public> := class<concrete><final>(creative_device_base):
@@ -1240,25 +1187,58 @@ Devices<public> := module:
         # Returns the speed (in meters per second) at which the prop mover will move the prop to its destination.
         GetTargetSpeed<public>()<transacts>:float = external {}
 
-    # Used to trigger in game events based on real world time.
-    real_time_clock_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when the optional second *Duration* time has been reached.
-        DurationElapsedEvent<public>:listenable(tuple()) = external {}
+    # Used in tandem with `race_manager_device` to define the route players must traverse.
+    race_checkpoint_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when this checkpoint becomes the next checkpoint that `agent`s need to pass for the first time.
+        # Sends the first `agent` who is now targeting this checkpoint.
+        CheckpointBecomesCurrentForTheFirstTimeEvent<public>:listenable(agent) = external {}
 
-        # Signaled when the target time is reached.
-        TimeReachedEvent<public>:listenable(tuple()) = external {}
+        # Signaled when this checkpoint becomes the current checkpoint for `agent`.
+        # Sends the `agent` who is now targeting this checkpoint.
+        CheckpointBecomesCurrentEvent<public>:listenable(agent) = external {}
 
-        # Signaled when this device is enabled after the target time has been reached.
-        EnablingAfterTimeReachedEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when this device is enabled before the target time has been reached.
-        EnablingBeforeTimeReachedEvent<public>:listenable(tuple()) = external {}
+        # Signaled when an `agent` passes this checkpoint.
+        # Sends the `agent` that passed this checkpoint.
+        CheckpointCompletedEvent<public>:listenable(agent) = external {}
 
         # Enables this device.
         Enable<public>():void = external {}
 
         # Disables this device.
         Disable<public>():void = external {}
+
+        # Sets this checkpoint as the current checkpoint for `Agent`. This only functions if `Agent` has not already passed this checkpoint.
+        SetAsCurrentCheckpoint<public>(Agent:agent):void = external {}
+
+    # Used with the `race_checkpoint_device` to create more advanced racing modes.
+    race_manager_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when the race begins.
+        # Sends the `agent` that started the race.
+        RaceBeganEvent<public>:listenable(agent) = external {}
+
+        # Signaled when an `agent` finishes the race.
+        # Sends the `agent` that finished the race.
+        RaceCompletedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when an `agent` completes their first lap.
+        # Sends the `agent` that finished the lap.
+        FirstLapCompletedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when an `agent` completes a lap.
+        # Sends the `agent` that finished the lap.
+        LapCompletedEvent<public>:listenable(agent) = external {}
+
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Begins the race.
+        Begin<public>():void = external {}
+
+        # Ends the race.
+        End<public>():void = external {}
 
     # Gives the ability to save player progress, location, resources and stats persistently across games.
     save_point_device<epic_internal> := class<concrete><final>(creative_device_base):
@@ -1357,6 +1337,26 @@ Devices<public> := module:
 
         # Resets the alert state.
         ResetAlertCooldown<public>():void = external {}
+
+    # Used to trigger in game events based on real world time.
+    real_time_clock_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when the optional second *Duration* time has been reached.
+        DurationElapsedEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when the target time is reached.
+        TimeReachedEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when this device is enabled after the target time has been reached.
+        EnablingAfterTimeReachedEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when this device is enabled before the target time has been reached.
+        EnablingBeforeTimeReachedEvent<public>:listenable(tuple()) = external {}
+
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
 
     @deprecated
     # Controls how the sky looks, as well as giving you options for changing the sun, clouds, stars or other objects in the sky above your island. You can control the sun and moon, and add other atmospheric elements like stars, fog and clouds. You can change the color of your light source, and blend different colors for your island's sky to create the perfect atmosphere for your game.
@@ -2171,6 +2171,26 @@ Devices<public> := module:
         #  Modifying this value will take effect the next time a player attempts a hidden travel.
         var EnableHiddenTravel<public>:logic = external {}
 
+    # Used to track when agents enter and exit a volume.
+    volume_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when an `agent` enters the device volume.
+        AgentEntersEvent<public>:listenable(agent) = external {}
+
+        # Signaled when an `agent` exits the device volume.
+        AgentExitsEvent<public>:listenable(agent) = external {}
+
+        # Signaled when an `creative_prop` entered the device volume.
+        PropEnterEvent<public>:listenable(creative_prop) = external {}
+
+        # Signaled when an `creative_prop` exited the device volume.
+        PropExitEvent<public>:listenable(creative_prop) = external {}
+
+        # Returns an array of agents that are currently occupying the volume.
+        GetAgentsInVolume<public>()<reads>:[]agent = external {}
+
+        # Succeeds when `Agent` is in the volume.
+        IsInVolume<public>(Agent:agent)<transacts><decides>:void = external {}
+
     # Used to display curated videos onto in-game screens or player HUDs.
     video_player_device<public> := class<concrete><final>(creative_device_base):
         # Signaled when this device becomes the controlling streaming device for the `agent`.
@@ -2217,26 +2237,6 @@ Devices<public> := module:
 
         # If any streaming device has forced control of the stream, this will release it and play the highest priority stream in line.
         ReleaseControl<public>():void = external {}
-
-    # Used to track when agents enter and exit a volume.
-    volume_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when an `agent` enters the device volume.
-        AgentEntersEvent<public>:listenable(agent) = external {}
-
-        # Signaled when an `agent` exits the device volume.
-        AgentExitsEvent<public>:listenable(agent) = external {}
-
-        # Signaled when an `creative_prop` entered the device volume.
-        PropEnterEvent<public>:listenable(creative_prop) = external {}
-
-        # Signaled when an `creative_prop` exited the device volume.
-        PropExitEvent<public>:listenable(creative_prop) = external {}
-
-        # Returns an array of agents that are currently occupying the volume.
-        GetAgentsInVolume<public>()<reads>:[]agent = external {}
-
-        # Succeeds when `Agent` is in the volume.
-        IsInVolume<public>(Agent:agent)<transacts><decides>:void = external {}
 
     # Used to capture `agent` dance moves.
     dance_capture_device<epic_internal> := class<concrete><final>(creative_device_base):
@@ -2354,15 +2354,6 @@ Devices<public> := module:
 
         # Returns the spawn limit of the device.
         GetSpawnLimit<public>()<transacts>:int = external {}
-
-    clapboard_device<epic_internal> := class<concrete><final>(creative_device_base):
-        TimeReachedEvent<public>:listenable(tuple()) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
 
     # Creates an impenetrable zone that can block `agent` movement and weapon fire.
     barrier_device<public> := class<concrete><final>(creative_device_base):
@@ -2492,6 +2483,15 @@ Devices<public> := module:
 
         # Returns an array of agents that are currently occupying the volume.
         GetAgentsInVolume<public>()<reads>:[]agent = external {}
+
+    clapboard_device<epic_internal> := class<concrete><final>(creative_device_base):
+        TimeReachedEvent<public>:listenable(tuple()) = external {}
+
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
 
     # A Destroyable environment prop that when destroyed, drops loot. When players approach the Spire Spike, they start a countdown to a knockback ability. When players are knocked back, they do not receive damage from the knockback ability or take fall damage. They can destroy structures near the knockback location. Damaging the spike can also start the countdown to the knockback or restart the countdown if it is already started.
     spire_spike_device<public> := class<concrete><final>(creative_device_base):
@@ -2675,7 +2675,27 @@ Devices<public> := module:
             # Disables this device.
             Disable<public>():void = external {}
 
-        cable_splitter_device<public> := class<concrete><final>(patchwork_device):
+        # Apply a filter effect to Patchwork audio inputs.
+        filter_effect_device<epic_internal> := class<concrete><final>(patchwork_device):
+            var Cutoff<public>:float = external {}
+
+            var Resonance<public>:float = external {}
+
+            var Mix<public>:float = external {}
+
+            var FilterType<public>:int = external {}
+
+        # Apply a distortion effect to Patchwork audio inputs.
+        distortion_effect_device<public> := class<concrete><final>(patchwork_device):
+            var Mix<epic_internal>:float = external {}
+
+            var Tame<epic_internal>:float = external {}
+
+            var Shatter<epic_internal>:float = external {}
+
+            var Drive<epic_internal>:float = external {}
+
+            var Style<epic_internal>:int = external {}
 
         # Create drum note patterns for Patchwork devices.
         drum_sequencer_device<public> := class<concrete><final>(patchwork_device):
@@ -2701,46 +2721,10 @@ Devices<public> := module:
 
             var FreeSpeedHz<epic_internal>:float = external {}
 
-        # Apply a filter effect to Patchwork audio inputs.
-        filter_effect_device<epic_internal> := class<concrete><final>(patchwork_device):
-            var Cutoff<public>:float = external {}
-
-            var Resonance<public>:float = external {}
-
-            var Mix<public>:float = external {}
-
-            var FilterType<public>:int = external {}
-
         # Adjust Gain of a Patchwork audio signal.
         gain_device<epic_internal> := class<concrete><final>(patchwork_device):
             var Gain<epic_internal>:float = external {}
 
-
-        # Apply a distortion effect to Patchwork audio inputs.
-        distortion_effect_device<public> := class<concrete><final>(patchwork_device):
-            var Mix<epic_internal>:float = external {}
-
-            var Tame<epic_internal>:float = external {}
-
-            var Shatter<epic_internal>:float = external {}
-
-            var Drive<epic_internal>:float = external {}
-
-            var Style<epic_internal>:int = external {}
-
-        # Turn Patchwork note inputs into audio using instrument samples.
-        instrument_player_device<public> := class<concrete><final>(patchwork_device):
-            var Volume<epic_internal>:float = external {}
-
-            var VibratoRate<epic_internal>:float = external {}
-
-            var VibratoAmount<epic_internal>:float = external {}
-
-            var Detune<epic_internal>:float = external {}
-
-            var Instrument<epic_internal>:int = external {}
-
-        song_sync_device<public> := class<concrete><final>(patchwork_device):
 
         device_event_noteon<epic_internal> := class(listenable(any)):
             BPEvent<epic_internal>:listenable(tuple(int, float))
@@ -2770,8 +2754,42 @@ Devices<public> := module:
             # Signaled when the device receives a note-off that matches one of the enabled pitches.
             NoteOffReceivedEvent<epic_internal>:listenable(note_off_message) = external {}
 
+        song_sync_device<public> := class<concrete><final>(patchwork_device):
+
         # Modify a setting on another Patchwork device in steps over time.
         step_modulator_device<public> := class<concrete><final>(patchwork_device):
+
+        # Turn Patchwork note inputs into audio using instrument samples.
+        instrument_player_device<public> := class<concrete><final>(patchwork_device):
+            var Volume<epic_internal>:float = external {}
+
+            var VibratoRate<epic_internal>:float = external {}
+
+            var VibratoAmount<epic_internal>:float = external {}
+
+            var Detune<epic_internal>:float = external {}
+
+            var Instrument<epic_internal>:int = external {}
+
+        cable_splitter_device<public> := class<concrete><final>(patchwork_device):
+
+        # Modify a setting on another Patchwork device when triggered.
+        value_setter_device<public> := class<concrete><final>(patchwork_device):
+
+        # Apply an echo effect to Patchwork audio inputs.
+        echo_effect_device<public> := class<concrete><final>(patchwork_device):
+            var TimingStyle<epic_internal>:int = external {}
+
+            var Mix<epic_internal>:float = external {}
+
+            var Filter<epic_internal>:float = external {}
+
+            var Feedback<epic_internal>:float = external {}
+
+            var BeatDelay<epic_internal>:float = external {}
+
+        # Turn Patchwork note inputs into audio using drum samples.
+        drum_player_device<public> := class<concrete><final>(patchwork_device):
 
         # Turn Patchwork note inputs into audio using customizable sound synthesis.
         omega_synthesizer_device<public> := class<concrete><final>(patchwork_device):
@@ -2789,44 +2807,8 @@ Devices<public> := module:
 
             var Sync<epic_internal>:float = external {}
 
-        # Modify a setting on another Patchwork device when triggered.
-        value_setter_device<public> := class<concrete><final>(patchwork_device):
-
-        # Turn Patchwork note inputs into audio using drum samples.
-        drum_player_device<public> := class<concrete><final>(patchwork_device):
-
-        # Apply an echo effect to Patchwork audio inputs.
-        echo_effect_device<public> := class<concrete><final>(patchwork_device):
-            var TimingStyle<epic_internal>:int = external {}
-
-            var Mix<epic_internal>:float = external {}
-
-            var Filter<epic_internal>:float = external {}
-
-            var Feedback<epic_internal>:float = external {}
-
-            var BeatDelay<epic_internal>:float = external {}
-
         # Transpose Patchwork note inputs to follow a chord progression.
         note_progressor_device<public> := class<concrete><final>(patchwork_device):
-
-        # Provides a shared tempo, key, and timeline for Patchwork devices to follow.
-        music_manager_device<public> := class<concrete><final>(patchwork_device):
-            var TempoBPM<epic_internal>:float = external {}
-
-            var TimeSignatureTop<epic_internal>:int = external {}
-
-            var TimeSignatureBottom<epic_internal>:int = external {}
-
-            var Key<epic_internal>:int = external {}
-
-            var Mode<epic_internal>:int = external {}
-
-            # Returns the number of elapsed beats since the Patchwork timeline has started, for tracking current musical time.
-            GetElapsedBeats<epic_internal>()<reads>:float = external {}
-
-        # Output Patchwork audio for players to hear.
-        speaker_device<public> := class<concrete><final>(patchwork_device):
 
         # Create melodic note patterns for Patchwork devices.
         note_sequencer_device<public> := class<concrete><final>(patchwork_device):
@@ -2845,6 +2827,24 @@ Devices<public> := module:
             var StepRate<epic_internal>:float = external {}
 
             var TimingStyle<epic_internal>:int = external {}
+
+        # Output Patchwork audio for players to hear.
+        speaker_device<public> := class<concrete><final>(patchwork_device):
+
+        # Provides a shared tempo, key, and timeline for Patchwork devices to follow.
+        music_manager_device<public> := class<concrete><final>(patchwork_device):
+            var TempoBPM<epic_internal>:float = external {}
+
+            var TimeSignatureTop<epic_internal>:int = external {}
+
+            var TimeSignatureBottom<epic_internal>:int = external {}
+
+            var Key<epic_internal>:int = external {}
+
+            var Mode<epic_internal>:int = external {}
+
+            # Returns the number of elapsed beats since the Patchwork timeline has started, for tracking current musical time.
+            GetElapsedBeats<epic_internal>()<reads>:float = external {}
 
     # Used in conjunction with `advanced_storm_controller_device` to customize individual storm phases.
     advanced_storm_beacon_device<public> := class<concrete><final>(creative_device_base):
@@ -5631,14 +5631,14 @@ Devices<public> := module:
     # Specialized `vehicle_spawner_device` that allows a helicopter to be configured and spawned.
     vehicle_spawner_helicopter_device<public> := class<concrete><final>(vehicle_spawner_device):
 
-    # Specialized `vehicle_spawner_device` that allows an anti-vehicle turret to be configured and spawned.
-    vehicle_spawner_heavy_turret_device<public> := class<concrete><final>(vehicle_spawner_device):
-
     # Specialized `vehicle_spawner_device` that allows a siege cannon to be configured and spawned.
     vehicle_spawner_siege_cannon_device<public> := class<concrete><final>(vehicle_spawner_device):
 
     # Specialized `vehicle_spawner_device` that allows a UFO to be configured and spawned.
     vehicle_spawner_ufo_device<public> := class<concrete><final>(vehicle_spawner_device):
+
+    # Specialized `vehicle_spawner_device` that allows an anti-vehicle turret to be configured and spawned.
+    vehicle_spawner_heavy_turret_device<public> := class<concrete><final>(vehicle_spawner_device):
 
     # Specialized `vehicle_spawner_device` that allows a Nitro Drifter sedan to be configured and spawned.
     vehicle_spawner_nitro_drifter_sedan_device<public> := class<concrete><final>(vehicle_spawner_device):
@@ -6466,6 +6466,8 @@ Devices<public> := module:
         # Triggers when the Spire shoots its laser attack. Triggers once, even if it shoots at multiple targets
         EndChargeAndFireLaserEvent<public>:listenable(tuple()) = external {}
 
+    del_mar_player_start_device<epic_internal> := class<concrete><final>(creative_device_base):
+
     del_mar_checkpoint_device<epic_internal> := class<concrete><final>(creative_device_base):
 
     # Used to created an EMP Hazard that slows vehicles.
@@ -6473,8 +6475,6 @@ Devices<public> := module:
         # Signaled when a vehicle triggers the EMP Hazard.Sends the `agent` that controls the vehicle.
         EMPHazardTriggeredEvent<public>:listenable(agent) = external {}
 
-
-    del_mar_player_start_device<epic_internal> := class<concrete><final>(creative_device_base):
 
     del_mar_speed_pad_device<epic_internal> := class<concrete><final>(creative_device_base):
 
