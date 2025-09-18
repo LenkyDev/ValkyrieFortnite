@@ -24,6 +24,15 @@ EntityTestSuite<public> := module:
 
 
     @hide_in_editor
+    test_component_dependency_init<native><epic_internal> := class<final_super>(component):
+        @replicated("")
+        var AutoComponent<native><epic_internal>:?component = external {}
+
+    @hide_in_editor
+    test_component_dependency_auto<native><epic_internal> := class<final_super>(component):
+
+
+    @hide_in_editor
     test_component<native><epic_internal> := class<final_super>(component):
 
 

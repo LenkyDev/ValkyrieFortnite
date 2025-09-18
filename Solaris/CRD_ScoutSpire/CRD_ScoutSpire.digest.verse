@@ -9,7 +9,9 @@ scout_spire_device<public> := class<concrete><final>(creative_device_base, has_s
     #  * Does nothing if the Spire is destroyed or already disabled.
     Disable<override>():void = external {}
 
-    # Succeeds if the device is enabled. Fails if the Spire is disabled. While disabled, the Spire is deactivated and will not react to approaching players, nor take damage.
+    # Succeeds if the Spire is enabled and fails if it is disabled.
+    #  * While disabled, the Spire is inactive: it will not react to players or take damage. 
+    #  * If the Spire is currently despawned, this function instead reports the enabled state the Spire will have the next time it is spawned.
     IsEnabled<override>()<transacts><decides>:void = external {}
 
     # Determines the distance where approaching players activate the Spire.

@@ -4,9 +4,10 @@
 	"ValkyrieEditorSettings": {
 		"_comment_AllowedContentBrowserFolders": "Allowed content browser folders when exposing asset aliases.",
 		"_comment_AllowedContentBrowserFolders_2": "When creating this from a Tempalte it will start off with PLUGIN_NAME. This needs to be changed to your Plugin Code Name Instead",
-		"_comment_AllowedContentBrowserFolders_2": "When going to ship, this needs to be changed to point at the final name decided. For example /MeltedIron becaome /TMNT",
+		"_comment_AllowedContentBrowserFolders_3": "When going to ship, this needs to be changed to point at the final name decided. For example /MeltedIron becaome /TMNT",
 		"AllowedContentBrowserFolders": [
-			"/PerfectKiwi"
+			"/PerfectKiwi",
+			"/Akita"
 		],
 		"_comment_AllowedClasses_NPCs": "Exposing NPC types by default as those are useful. If this is a restrictive GFS and they shouldn't be here, delete them!",
 		"AllowedClasses":

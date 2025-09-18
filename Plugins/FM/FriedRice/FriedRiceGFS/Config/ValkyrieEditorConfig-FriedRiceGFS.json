@@ -82,7 +82,7 @@
 			"/Script/FortniteGame.FortWorldManager": { "Visible": true },
 			"/Script/FortniteGame.FortLevelOverlayConfig": {},
 			"/Script/FortniteGame.WorldTileManager": { "Visible": true },
-			"/Script/FortniteUI.FortVisualAttachment": { "Visible": true },
+			"/Script/FortniteUI.FortVisualAttachment": { "Visible": true },			
 			"/Script/PCG.PCGComponent": {},
 			"/Script/PCG.PCGGraphInstance": { "Visible": true },
 			"/Script/PCG.PCGLandscapeCache": {},

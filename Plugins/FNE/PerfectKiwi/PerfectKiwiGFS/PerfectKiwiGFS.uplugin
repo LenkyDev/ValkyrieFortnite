@@ -10,16 +10,169 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/PerfectKiwi",
-	"FortReleaseVersion": "37.00",
+	"FortReleaseVersion": "37.30",
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
 		"Create": {
 			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
-			"VKIPAgreement": "32927964d7964134b0f80d20ab02d082"
+			"VKCreateUGCPerfectKiwi": "56d25e349bad42f9b39adb35b2053997"
+		},
+		"Edit": {
+			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
+			"VKCreateUGCPerfectKiwi": "56d25e349bad42f9b39adb35b2053997"
 		}
 	},
-	"Plugins": [],
+	"Plugins": [
+		{
+			"Name": "Akita_Env_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Akita_Env_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_Comsos_Jelly",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_Cosmos_Sniper",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_ForwardLake_Dire",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_Galileo_Lobster",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_Galileo_Ranged",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_Jethro_Weapons",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEBoldTiger",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEBraveCrown",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEBrightJuice",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNECalmRock",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEChillyHammer",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEClearShell",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNECleverShrimp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNECrustyChain",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEGalileoBun",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEGuineaPig",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "FNEJethroTV",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEJethroXV",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEShockGrenade",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEStarkRifle",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "JethroTV",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "JethroV",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "JethroXV",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "PerfectKiwiCosmetics",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "PerfectKiwiIslandUIOverrides",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "SW_A_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_A_Comp",
+			"Enabled": true,
+			"Optional": true
+		}
+	],
 	"Version": 0,
 	"VersionName": "",
 	"FriendlyName": "",
@@ -32,6 +185,5 @@
 	"SupportURL": "",
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
-	"Installed": false,
-	"Sealed": true
+	"Installed": false
 }

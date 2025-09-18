@@ -584,6 +584,12 @@ Devices<public> := module:
     function_parameter_texture<native><epic_internal> := class<computes>(function_parameter_base):
         Value<native><epic_internal>:?texture
 
+    function_parameter_material<native><epic_internal> := class<computes>(function_parameter_base):
+        Value<native><epic_internal>:?material
+
+    function_parameter_mesh<native><epic_internal> := class<computes>(function_parameter_base):
+        Value<native><epic_internal>:?mesh
+
     device_function<native><epic_internal> := class:
         FunctionName<native><epic_internal>:string
 

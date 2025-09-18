@@ -2,7 +2,7 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-37.20-CL-45679054
+# Generated from build: ++Fortnite+Release-37.30-CL-45814998
 #################################################
 
 SceneGraph<public> := module:
