@@ -82,7 +82,21 @@
 			"/Script/FortniteGame.FortWorldManager": { "Visible": true },
 			"/Script/FortniteGame.FortLevelOverlayConfig": {},
 			"/Script/FortniteGame.WorldTileManager": { "Visible": true },
-			"/Script/FortniteUI.FortVisualAttachment": { "Visible": true },			
+			"/Script/FortniteUI.FortVisualAttachment": { "Visible": true },
+			"/Script/FriedRiceNativeRuntime.FriedRiceShowcaseBadBehaviorSuperlative": { "Visible": true },
+			"/Script/FriedRiceNativeRuntime.FriedRiceShowcaseReactionSuperlative": { "Visible": true },
+			"/Script/FriedRiceNativeRuntime.FriedRiceShowcaseSequenceComponent": { "Visible": true },
+			"/Script/FriedRiceNativeRuntime.FriedRiceShowcaseStageComponent": { "Visible": true },
+			"/Script/FriedRiceNativeRuntime.FriedRiceShowcaseSuperlativeVFXComponent": { "Visible": true },
+			"/Script/FriedRiceNativeRuntime.FriedRiceActivityQueueComponent": { "Visible": true },
+			"/Script/FriedRiceNativeRuntime.ChickenFriedRiceItemSpawner": { "Visible": true },
+			"/Script/FriedRiceNativeRuntime.FriedRiceDoorwayBlocker": { "Visible": true },
+			"/Script/FriedRiceNativeRuntime.FriedRiceExclusivePlayspaceVolume": { "Visible": true },
+			"/Script/PawnVATManagerRuntime.PawnVATPerfWatcher": { "Visible": true },
+			"/Script/PawnVATManagerRuntime.PawnVATManagerComponent": { "Visible": true },
+			"/Script/PawnVATManagerRuntime.PawnVATWorldConditionSchema": { "Visible": true },
+			"/Script/PawnVATManagerRuntime.PawnVATAnimationCondition": { "Visible": true },
+			"/Script/FriedRiceNativeRuntime.FriedRiceJamBorderVisualsDriver": { "Visible": true },
 			"/Script/PCG.PCGComponent": {},
 			"/Script/PCG.PCGGraphInstance": { "Visible": true },
 			"/Script/PCG.PCGLandscapeCache": {},
@@ -178,6 +192,8 @@
 			"/Game/Environments/TechArt/LightCones/Simple/BP_SimpleFarLightPlaneLimitedRange.BP_SimpleFarLightPlaneLimitedRange_C": {},
 			"/Game/Environments/TechArt/LightCones/BP_LightCone_01_CH5S3_Animated_Raft.BP_LightCone_01_CH5S3_Animated_Raft_C": {},
 			"/Game/TimeOfDay/DaySequence/DaySequenceActors/BR_Ch5/DSA_UEFN_Ch5S1_NoCollection.DSA_UEFN_Ch5S1_NoCollection_C": { "Visible": true },
+			"/Game/TimeOfDay/DaySequence/DaySequenceActors/BR_Ch6/DSA_BR_Ch6_Parent.DSA_BR_Ch6_Parent_C": {},
+			"/Game/TimeOfDay/DaySequence/DaySequenceActors/BR_Ch6/DSA_BR_Ch6S1.DSA_BR_Ch6S1_C": { "Visible": true },
 			"/Game/TimeOfDay/DaySequence/DaySeqConditionTags/BP_SHDMedium_condition.BP_SHDMedium_condition_C": {},
 			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_Erebus.DSCT_Erebus_C": {},
 			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_GI_Lumen.DSCT_GI_Lumen_C": {},
@@ -257,6 +273,9 @@
 				"DenyList": {
 					"-": [ "RuntimeVirtualTextureVolume" ]
 				}
+			},
+			"DaySequence.ViewportToolbar": {
+				"AllowList": [ "DaySequencePreviewTime", "OpenRootSequence", "SelectDaySequenceActor", "RefreshDaySequenceActor", "OpenDaySequenceActor", "RespawnDaySequenceActor" ]
 			}
 		},
 		"AllowedTabs": {
@@ -342,7 +361,11 @@
 			},
 			{
 				"Type": "/Script/DaySequence.DaySequenceModifierComponent",
-				"AllowList": [ "bUseCollection", "DaySequenceCollection", "Mode" ]
+				"AllowList": [ "bUseCollection", "DaySequenceCollections", "Mode", "BlendPolicy", "BlendAmount", "BlendTime", "Bias", "VolumeShapeComponents", "DayNightCycle", "DayNightCycleTime", "UserBlendWeight" ]
+			},
+			{
+				"Type": "/Script/DaySequence.DaySequenceActor",
+				"AllowList": [ "DaySequenceCollections" ]
 			},
 			{
 				"Type": "/Game/Creative/Devices/Lighting/BP_DaySequenceModifier_Device.BP_DaySequenceModifier_Device_C",

@@ -2165,6 +2165,8 @@
 		"/FNEJethroXV/SetupAssets/PID_Device_JethroXV_Spawner.PID_Device_JethroXV_Spawner",
 		"/FNEShockGrenade/WIDs/FNE_ShockGrenade.FNE_ShockGrenade",
 		"/FNEStarkRifle/WIDs/WID_Assault_Updated_Stark_FNE_R_Ore_T03.WID_Assault_Updated_Stark_FNE_R_Ore_T03",
+		"/FriedRiceGame/items/WID_Athena_ChickenFriedRiceDashHunter.WID_Athena_ChickenFriedRiceDashHunter",
+		"/FriedRiceGame/items/WID_Athena_ChickenFriedRiceDashPrey.WID_Athena_ChickenFriedRiceDashPrey",
 		"/Fringeplank_Firework/Items/WIDs/WID_Firework_Gun.WID_Firework_Gun",
 		"/Game/Athena/Creative/Consumables/Keycards/AGID_CP_Keycard_Agency.AGID_CP_Keycard_Agency",
 		"/Game/Athena/Creative/Consumables/Keycards/AGID_CP_Keycard_Base.AGID_CP_Keycard_Base",
