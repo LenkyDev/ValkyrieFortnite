@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/FN1",
-	"FortReleaseVersion": "37.31",
+	"FortReleaseVersion": "37.40",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"Version": 0,
@@ -101,6 +101,11 @@
 		},
 		{
 			"Name": "SolidWave_ExtraAssets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "PulseLancer_SmashMap",
 			"Enabled": true,
 			"Optional": true
 		},

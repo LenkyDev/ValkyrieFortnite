@@ -1,0 +1,96 @@
+{
+	"FileVersion": 3,
+	"CanContainContent": true,
+	"NoCode": true,
+	"NoGameFeatureContent": true,
+	"ExplicitlyLoaded": true,
+	"EnabledByDefault": false,
+	"BuiltInInitialFeatureState": "Installed",
+	"BuiltInAutoRegister": true,
+	"BuiltInAutoLoad": false,
+	"BuiltInAutoActivate": false,
+	"EditorCustomVirtualPath": "FNE/BrightCoil",
+	"FortReleaseVersion": "37.40",
+	"IsGameFeatureSet": true,
+	"CookAsDLC": "Creative",
+	"RequiredEntitlements": {
+		"Create": {
+			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
+			"VKIPAgreement": "32927964d7964134b0f80d20ab02d082"
+		}
+	},
+	"Plugins": [
+		{
+			"Name": "BrightCoil_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "BrightCoil_CharacterSpawner",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "BrightCoil_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "BrightCoilCosmetics",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "BrightCoilExtraAssets",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "BrightCoilIslandUIOverrides",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "CRD_BrightCoil_FiendOverrides",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_LemonExam",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "FNE_PoliteDinner",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_ValidCandy",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_WinterDecay",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		}
+	],
+	"Version": 0,
+	"VersionName": "",
+	"FriendlyName": "",
+	"Description": "",
+	"Category": "",
+	"CreatedBy": "",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false
+}

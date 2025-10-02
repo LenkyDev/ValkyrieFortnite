@@ -2,7 +2,7 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-37.31-CL-46047957
+# Generated from build: ++Fortnite+Release-37.40-CL-46295673
 #################################################
 
 SceneGraph<public> := module:
@@ -1287,13 +1287,8 @@ SceneGraph<public> := module:
 
         OnEndSimulationInternal<native><override>():void
 
-        @replicated("RepNotify")
         # The `mesh` to be rendered by this `mesh_component`.
         Mesh<native><epic_internal>:mesh = external {}
-
-        @experimental
-        # Sets the `mesh` to be rendered.
-        SetMesh<native><epic_internal>(InMesh:mesh):void
 
         @experimental
         # Sets the `material` to be applied to the `mesh`.
@@ -2893,26 +2888,23 @@ Temporary<public> := module:
 
             replicated<constructor><epic_internal>(ReplicationArgs:string)<computes>:replicated_attribute = external {}
 
-# Module import path: /Verse.org/VerseEngine
-VerseEngine<public> := module:
-    DefaultEmptyString<localizes><epic_internal>:message = external {}
+@experimental
+# Interface that provides descriptive names or text.
+has_description<public> := interface:
+    @editable
+    # Name.
+    var<protected> Name<public>:message = external {}
 
-    # Interface that provides descriptive names or text.
-    has_description<public> := interface:
-        @editable
-        # Name.
-        var<protected> Name<public>:message = external {}
+    @editable
+    # Full description.
+    var<protected> Description<public>:message = external {}
 
-        @editable
-        # Full description.
-        var<protected> Description<public>:message = external {}
+    @editable
+    # Short description with only the essential information.
+    var<protected> ShortDescription<public>:message = external {}
 
-        @editable
-        # Short description with only the essential information.
-        var<protected> ShortDescription<public>:message = external {}
-
-    subscribable_event<epic_internal>(t:type) := class(subscribable_event_intrnl(t)):
-        Broadcast<epic_internal>(Val:t):void = external {}
+subscribable_event<epic_internal>(t:type) := class(subscribable_event_intrnl(t)):
+    Broadcast<epic_internal>(Val:t):void = external {}
 
 
 # Module import path: /Verse.org/Restricted

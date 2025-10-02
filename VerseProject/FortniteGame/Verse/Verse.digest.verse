@@ -2,7 +2,7 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-37.31-CL-46047957
+# Generated from build: ++Fortnite+Release-37.40-CL-46295673
 #################################################
 
 SceneGraph<public> := module:
@@ -1195,6 +1195,21 @@ Assets<public> := module:
         @editable
         var<protected> Icon<public>:texture
 
+
+@experimental
+# Interface that provides descriptive names or text.
+has_description<public> := interface:
+    @editable
+    # Name.
+    var<protected> Name<public>:message = external {}
+
+    @editable
+    # Full description.
+    var<protected> Description<public>:message = external {}
+
+    @editable
+    # Short description with only the essential information.
+    var<protected> ShortDescription<public>:message = external {}
 Verse<public> := module:
     using {/Verse.org/Colors}
     # Writes `Message` to a dedicated `Print` log while displaying it in `Color` on the client screen for `Duration` seconds. By default, `Color` is `NamedColors.White` and `Duration` is `2.0` seconds.

@@ -2,7 +2,7 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-37.31-CL-46047957
+# Generated from build: ++Fortnite+Release-37.40-CL-46295673
 #################################################
 
 using {/Verse.org/Assets}
@@ -1517,6 +1517,12 @@ EntityTestSuite<public> := module:
     test_component_dependency_auto<native><epic_internal> := class<final_super>(component):
 
     @hide_in_editor
+    test_stable_entity<native><epic_internal> := class<concrete><unique><transacts>(entity):
+
+    @hide_in_editor
+    test_stable_component<native><epic_internal> := class<final_super>(component):
+
+    @hide_in_editor
     test_component<native><epic_internal> := class<final_super>(component):
 
     @hide_in_editor
@@ -1569,7 +1575,7 @@ EntityTestSuite<public> := module:
 Itemization<public> := module:
     using {/Verse.org/Colors}
     using {/Verse.org/Simulation/Tags}
-    using {/Verse.org/VerseEngine}
+    using {/Verse.org}
     using {/UnrealEngine.com/Abilities}
     using {/Verse.org/Simulation}
     using {/Verse.org/Assets}
@@ -1577,7 +1583,11 @@ Itemization<public> := module:
     using {/Verse.org/Native}
     using {/Verse.org/SceneGraph}
     @experimental
-    failure_reason<native><epic_internal> := class<castable><concrete><reads>:
+    copy_from_item<native><epic_internal> := interface<epic_internal>:
+        CopyFromItem<native_callable><epic_internal>(SourceItem:entity)<transacts>:void
+
+    @experimental
+    failure_reason<native><public> := class<castable><concrete><reads>:
 
     @experimental
     add_inventory_result<native><epic_internal> := class<epic_internal>:
@@ -1592,13 +1602,13 @@ Itemization<public> := module:
         Inventory<native><public>:inventory_component
 
     @experimental
-    add_items_result<native><epic_internal> := class<epic_internal>:
+    add_items_result<native><public> := class<epic_internal>:
         Inventory<native><public>:inventory_component
 
         AddedItems<native><public>:[]entity
 
     @experimental
-    remove_items_result<native><epic_internal> := class<epic_internal>:
+    remove_items_result<native><public> := class<epic_internal>:
         Inventory<native><public>:inventory_component
 
         RemovedItems<native><public>:[]entity
@@ -1611,39 +1621,46 @@ Itemization<public> := module:
 
     @experimental
     inventory_property_change_result<native><epic_internal> := struct<epic_internal>:
-        ParentInventory<native><public>:inventory_component
-
         Inventory<native><public>:inventory_component
 
     @experimental
-    inventory_with_priority<native><epic_internal> := class:
+    inventory_with_priority<native><public> := class:
         Inventory<native><public>:inventory_component
 
         Priority<native><public>:float
 
     @experimental
-    add_item_event<native><epic_internal> := class<epic_internal>(scene_event):
+    add_item_event<native><public> := class<epic_internal>(scene_event):
         ItemComponent<native><public>:item_component
 
         var EligibleInventories<native><public>:[]inventory_with_priority
 
     @experimental
-    inventory_component<native><epic_internal> := class<final_super>(component):
+    # Inventory components hold items. An entity with an inventory component can be considered to have an inventory.
+    # The inventory component controls which items can enter or exit.
+    # They also determine whether an item can be equipped.
+    inventory_component<native><public> := class<final_super>(component):
         OnInitializedInternal<native><override>():void
 
         OnUninitializingInternal<native><override>():void
 
+        # Returns a failure reason (such as being full) if the provided item entity cannot be added.
         CanAddItem<final><native><public>(Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {})<transacts>:?failure_reason
 
+        # Adds items to the inventory. Fails if no items could be added.
         AddItem<native><final><public>(Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {})<transacts><decides>:void
 
+        # Returns a failure reason if the provided item is not present or cannot be removed.
         CanRemoveItem<final><native><public>(Item:entity)<transacts>:?failure_reason
 
+        # Removes items from the inventory. Fails if no items could be removed.
         RemoveItem<native><final><public>(Item:entity)<transacts><decides>:void
 
+        # Returns a list of items currently within this inventory only.
         GetItems<native><final><public>()<reads>:[]entity
 
         @available {MinUploadedAtFNVersion := 2930}
+        # Returns a list of all items within this inventory and its descendant inventories.
         FindItems<native><final><public>()<reads>:generator(entity)
 
         GetItemSlot<native><epic_internal>(Item:entity)<reads>:int
@@ -1652,9 +1669,11 @@ Itemization<public> := module:
 
         RemoveInventory<native><final><epic_internal>(Inventory:inventory_component)<transacts><decides>:void
 
+        # Returns a list of sub-inventories of this inventory only.
         GetInventories<native><final><public>()<reads>:[]inventory_component
 
         @available {MinUploadedAtFNVersion := 2930}
+        # Returns a list of all sub-inventories within this inventory and its descendant inventories.
         FindInventories<native><final><public>()<reads>:generator(inventory_component)
 
         InventoryAddedEvent<native><final><epic_internal>:listenable(add_inventory_result) = external {}
@@ -1669,6 +1688,8 @@ Itemization<public> := module:
 
         ItemsSlotChangedEvent<native><final><epic_internal>:listenable(change_items_slot_result) = external {}
 
+        # Adds the provided inventory_rule_interface instance to this inventory's rule list if not already present.
+        # NOTE: this part of the API is likely to change during Experimental.
         AddRule<native><final><public>(Rule:inventory_rule_interface)<transacts><decides>:cancelable
 
         var<private> InventoryRuleList<native><public>:[]inventory_rule_interface = external {}
@@ -1682,7 +1703,7 @@ Itemization<public> := module:
         @replicated("")
         var<private> InventoryDescription<native><epic_internal>:message = external {}
 
-        @replicated("")
+        @replicated("RepNotify")
         var<private> TotalSlots<native><protected>:int = external {}
 
         @replicated("")
@@ -1691,7 +1712,7 @@ Itemization<public> := module:
         @replicated("")
         var<private> EnableItemStacking<native><epic_internal>:logic = external {}
 
-        @replicated("")
+        @replicated("RepNotify")
         var<private> InventoryMaxStackSizeOverride<native><epic_internal>:int = external {}
 
         CanEquipItem<native><epic_internal>(Item:entity)<transacts><decides>:void
@@ -1704,6 +1725,10 @@ Itemization<public> := module:
 
         GetNativeInputAction<native><epic_internal>(ItemSlot:int):?input_action(type)
 
+        GetNavigatePreviousInputAction<native><epic_internal>():?input_action(type)
+
+        GetNavigateNextInputAction<native><epic_internal>():?input_action(type)
+
         SlotBindingList<native><epic_internal>:[]tuple(input_action(type), int) = external {}
 
         ShowSlotBindings<native><epic_internal>:logic = external {}
@@ -1711,10 +1736,12 @@ Itemization<public> := module:
         GetEquippedItems<final><native><epic_internal>():[]entity
 
     @experimental
-    (InAgent:agent).GetInventory<native><epic_internal>()<reads><decides>:inventory_component
+    (InAgent:agent).GetInventory<native><public>()<reads><decides>:inventory_component
 
     @experimental
-    inventory_rule_interface<native><epic_internal> := interface<unique><castable>:
+    # Interface for inventory rules. Used for composable rules for inventories.
+    inventory_rule_interface<native><public> := interface<unique><castable>:
+        # Called after an inventory_rule_interface instance is added to an inventory.
         OnRuleAdded<native_callable><public>(InventoryComponent:inventory_component):void = external {}
 
         CanAddItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {}):?failure_reason = external {}
@@ -1727,7 +1754,7 @@ Itemization<public> := module:
     inventory_full_failure_reason<epic_internal> := class<final><reads>(failure_reason):
 
     @experimental
-    invalid_item_failure_reason<epic_internal> := class<final><reads>(failure_reason):
+    invalid_item_failure_reason<native><public> := class<final><reads>(failure_reason):
 
     @experimental
     item_limit_inventory_rule<native><epic_internal> := class(inventory_rule_interface):
@@ -1878,13 +1905,13 @@ Itemization<public> := module:
         CurrentSlot<native><public>:int
 
     @experimental
-    item_equipped_change<native><epic_internal> := class<epic_internal>:
+    item_equipped_change<native><public> := class<epic_internal>:
         ItemComponent<native><public>:item_component
 
         IsItemEquipped<native><public>:logic
 
     @experimental
-    item_inventory_change<native><epic_internal> := class<epic_internal>:
+    item_inventory_change<native><public> := class<epic_internal>:
         ItemComponent<native><public>:item_component
 
         PreviousInventory<native><public>:?inventory_component
@@ -1892,7 +1919,7 @@ Itemization<public> := module:
         CurrentInventory<native><public>:?inventory_component
 
     @experimental
-    item_stack_size_change<native><epic_internal> := class<epic_internal>:
+    item_stack_size_change<native><public> := class<epic_internal>:
         ItemComponent<native><public>:item_component
 
         PreviousStackSize<native><public>:int
@@ -1900,7 +1927,7 @@ Itemization<public> := module:
         CurrentStackSize<native><public>:int
 
     @experimental
-    item_max_stack_size_change<native><epic_internal> := class<epic_internal>:
+    item_max_stack_size_change<native><public> := class<epic_internal>:
         ItemComponent<native><public>:item_component
 
         PreviousMaxStackSize<native><public>:?int
@@ -1909,11 +1936,13 @@ Itemization<public> := module:
 
     @experimental
     # Anything using this component should be considered an item. Required to interact with inventories.
-    item_component<native><epic_internal> := class<final_super>(component):
+    item_component<native><public> := class<final_super>(component):
         OnInitializedInternal<native><override>():void
 
+        # Returns the inventory_component this item currently resides in. Fails if it cannot find a valid parent inventory.
         GetParentInventory<native><final><public>()<reads><decides>:inventory_component
 
+        # Succeeds if this item is considered currently within an inventory and equipped.
         IsItemEquipped<native><final><public>()<reads><decides>:void
 
         InventoryChangeEvent<native><final><public>:listenable(item_inventory_change) = external {}
@@ -1922,42 +1951,57 @@ Itemization<public> := module:
 
         CloneItem<final><native><epic_internal>()<transacts>:entity
 
+        # Takes the specified amount of this item's stack, reducing this item's stack size in the process.
+        #  If amount is greater than the amount in the stack, the stack amount will be used instead.
+        #  Returns a clone of the item with a stack size equial to the amount it was able to take from the item.
         Take<final><native><public>(Amount:int)<transacts><decides>:entity
 
         @available {MinUploadedAtFNVersion := 3200}
+        # List of item_component classes we can be merged with.
         MergeableItemComponentClasses<native><public>:[]castable_subtype(item_component) = external {}
 
         @editable
+        # Categories which this item can belong to. Note that some projects may only use the first entry.
         Categories<native><public>:[]item_category = external {}
 
+        # Succeeds if this item can be merged into the target item. Merging an entity with itself will always fail.
         CanMergeInto<final><native_callable><public>(TargetItem:entity)<reads><decides>:void = external {}
 
         CanMergeIntoInternal<final><native><epic_internal>(TargetItem:entity)<reads>:tuple(logic, logic)
 
+        # Attempts to merge this item into the specified item. Fails if items cannot be merged or no items are moved.
+        #  If TargetAmount is specified, only that amount will try to be merged into this item.
         MergeInto<final><native_callable><public>(TargetItem:entity, ?TargetAmount:?int = external {})<transacts><decides>:void = external {}
 
         MergeIntoInternal<final><native><epic_internal>(TargetItem:entity, TargetAmount:int)<transacts><decides>:int
 
+        # Current stack size of this item.
         var<protected> StackSize<native><public>:int = external {}
 
+        # Sets the stack size of this item.
         SetStackSize<final><native><public>(NewStackSize:int)<transacts>:void
 
+        # Maximum stack size for this item.
         var<protected> MaxStackSize<native><public>:?int = external {}
 
+        # Sets the maximum stack size for this item. If ClampStackSize is true, StackSize will be clamped to NewMaxStackSize.
         SetMaxStackSize<final><native><public>(NewMaxStackSize:int, ?ClampStackSize:logic = external {})<transacts>:void
 
         StackSizeChangedEvent<native><final><public>:listenable(item_stack_size_change) = external {}
 
         MaxStackSizeChangedEvent<native><final><public>:listenable(item_max_stack_size_change) = external {}
 
+        # Removes the item from its inventory and places it in the simulation world. Works on orphaned items i.e. outside the world or any inventory. Fails if the item is already a pickup.
         Drop<native><public>()<transacts><decides>:void
 
+        # Fails if this item is already in an inventory, or the inventory cannot accept the item.
         PickUp<native><public>(Inventory:inventory_component)<transacts><decides>:void
 
         @replicated("")
         var<private> ItemDefinition<native><epic_internal>:?item_definition_base = external {}
 
     @experimental
+    # Item Merge Rules Interface. Implemented by components that want to participate in item mergeability checks.
     has_item_merge_rules<public> := interface<unique>:
         CanMergeInto<public>(TargetItem:entity)<reads><decides>:void = external {}
 
@@ -1965,11 +2009,11 @@ Itemization<public> := module:
 
     @experimental
     # Component that holds the details of an item.
-    item_details_component<native><epic_internal> := class<final_super>(component, has_description):
+    item_details_component<native><public> := class<final_super>(component, has_description):
 
     @experimental
     # Component that holds the icon for an item.
-    item_icon_component<native><epic_internal> := class<final_super>(component, has_icon):
+    item_icon_component<native><public> := class<final_super>(component, has_icon):
 
     @experimental
     @import_as("/Script/ItemizationCoreRuntime.UItemDefinitionBase")
@@ -1987,13 +2031,19 @@ Itemization<public> := module:
         # Adds a mergeable item which can be stacked to the inventory.
         AddTestStackableItem<native_callable><public>(InInventory:inventory_component):void = external {}
 
+        # Adds an item which is also an inventory (let's call it a bag). There is an object inside the bag.
+        AddTestItemWithInventory<native_callable><public>(InInventory:inventory_component):void = external {}
+
         RemoveAllItems<native_callable><public>(InInventory:inventory_component):void = external {}
 
     @experimental
     @import_as("/Script/ItemizationCoreRuntime.UItemOwnerPoseAsset")
+    # Owner poses let an item affect their owner's default animation stance. 
+    #  For example, to make a character hold an item like a torch, or a 2-handed weapon.
     pose_modifier<native><epic_internal> := class<concrete><unique>(asset):
 
     @experimental
+    # Item component setting owner pose data for this item.
     item_owner_pose_modifier_component<native><final><epic_internal> := class<final_super>(component):
         @editable
         EquippedPose<native><public>:?pose_modifier = external {}

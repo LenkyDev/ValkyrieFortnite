@@ -335,10 +335,6 @@ Game<public> := module:
         @experimental
         DamagedEventWithAgent<native><epic_internal>:listenable(tuple(float, ?agent)) = external {}
 
-    # The subscription type returned from the round manager interfaces.
-    fort_round_subscription<native><epic_internal> := class(cancelable):
-        Cancel<native><override>()<transacts>:void
-
     # This interface is implemented by the round manager living on the simulation entity.
     fort_round_manager<native><public> := interface<epic_internal>:
         # Subscribed callbacks will be invoked in two scenarios:
@@ -351,10 +347,6 @@ Game<public> := module:
         SubscribeRoundEnded<public>(Callback:type {_():void}):cancelable
 
     fort_game_events_component<native><epic_internal> := class<final_super>(component, fort_round_manager):
-        OnAddedToScene<override><native><native_callable>():void
-
-        OnRemovingFromScene<override><native><native_callable>():void
-
         SetupGameEvent<native><epic_internal>:listenable(tuple()) = external {}
 
         RoundWarmupEvent<native><public>:listenable(tuple()) = external {}
@@ -369,7 +361,7 @@ Game<public> := module:
         #  - When a new Fortnite round starts
         #  - If a round is ongoing, your callback will be invoked immediately
         #  Upon the round ending, all callbacks will be canceled
-        SubscribeRoundStarted<native><override>(Callback:type {_()<suspends>:void}):cancelable
+        SubscribeRoundStarted<override>(Callback:type {_()<suspends>:void}):cancelable = external {}
 
         # Subscribed callbacks will be invoked when a Fortnite round ends
         SubscribeRoundEnded<native><override>(Callback:type {_():void}):cancelable

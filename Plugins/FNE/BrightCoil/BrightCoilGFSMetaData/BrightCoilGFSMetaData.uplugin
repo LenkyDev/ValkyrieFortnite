@@ -1,0 +1,46 @@
+{
+	"FileVersion": 3,
+	"CanContainContent": true,
+	"ExplicitlyLoaded": true,
+	"EnabledByDefault": false,
+	"BuiltInInitialFeatureState": "Registered",
+	"BuiltInAutoRegister": true,
+	"BuiltInAutoLoad": true,
+	"builtInAutoActivate": false,
+	"FortReleaseVersion": "36.10",
+	"EditorCustomVirtualPath": "FNE/BrightCoil",
+	"CookAsDLC": "Creative",
+	"RequiredEntitlements":
+	{
+		"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
+		"VKCreateUGCBrightCoil": "a5d2e3713cf746bc93f01b16df2069c6"
+	},
+	"ValkyrieSettings":
+	{
+		"libraryFolderMode": "Absent",
+		"libraryCustomPath": ""
+	},
+	"Version": 0,
+	"VersionName": "",
+	"FriendlyName": "",
+	"Description": "",
+	"Category": "",
+	"CreatedBy": "",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Plugins": [
+		{
+			"Name": "GFSMetaDataCommon",
+			"Enabled": true
+		},
+		{
+			"Name": "CR_Legacy",
+			"Enabled": true
+		}
+	]
+}

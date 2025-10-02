@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/PerfectKiwi",
-	"FortReleaseVersion": "37.31",
+	"FortReleaseVersion": "37.40",
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
@@ -110,6 +110,11 @@
 			"Optional": true
 		},
 		{
+			"Name": "FNEGalileoContainers",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "FNEGuineaPig",
 			"Enabled": true,
 			"Optional": true,
@@ -169,6 +174,11 @@
 		},
 		{
 			"Name": "SW_A_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_B_Assets",
 			"Enabled": true,
 			"Optional": true
 		}

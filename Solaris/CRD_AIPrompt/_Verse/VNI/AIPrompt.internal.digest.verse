@@ -1,4 +1,16 @@
 using {/Verse.org/Simulation}
+using {/Verse.org/SceneGraph}
+@experimental
+# NPC Persona component
+persona_component<native><epic_internal> := class<final_super><epic_internal>(component):
+    var<epic_internal> Name<native><public>:string
+
+    var<epic_internal> Voice<native><public>:string
+
+    var<epic_internal> Personality<native><public>:[]string = external {}
+
+    var<epic_internal> Description<native><public>:[]string = external {}
+
 non_parametric_agent_subscribable_persona_event<epic_internal> := class(subscribable_event_intrnl(agent)):
 
 
@@ -154,6 +166,12 @@ persona_device<native><public> := class<concrete><final>(creative_device_base):
 
     # Removes an agent from the participants.
     RemoveParticipant<public>(Agent:agent):void = external {}
+
+    # Attempts to add a persona on this device.
+    AddPersona<native><epic_internal>(Persona:entity)<transacts><decides>:persona_conversation_target
+
+    # Attempts to remove a persona on this device.
+    RemovePersona<native><epic_internal>(Persona:entity)<transacts>:void
 
     # All the players in the channel with the personas managed by this device.
     var<private> Participants<public>:[]agent = external {}

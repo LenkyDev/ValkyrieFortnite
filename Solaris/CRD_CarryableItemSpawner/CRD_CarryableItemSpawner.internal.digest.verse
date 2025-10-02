@@ -1,3 +1,4 @@
+using {/Verse.org/Assets}
 using {/UnrealEngine.com/Temporary/SpatialMath}
 using {/Verse.org/Simulation}
 # Used to spawn a carryable object into the experience.
@@ -48,7 +49,7 @@ carryable_spawner_device<public> := class<concrete><final>(creative_device_base,
 
     # Signaled when the carryable collides with an agent.
     # Damage applied is based off the collision velocity, as well as the device's *Impact Damage* settings.
-    # This event will fire even if the damage applied is 0
+    # This event will fire even if the damage applied is 0.
     AgentCollideEvent<public>:listenable(carryable_spawner_agent_impact_result) = external {}
 
     # The `agent` carrying the carryable, if one exists.
@@ -98,6 +99,15 @@ carryable_spawner_device<public> := class<concrete><final>(creative_device_base,
     # Maps to the device option for *Explosion Impulse*.
     # Describes the strength of the knockback impulse applied by the carryable explosion.
     var ExplosionImpulse<public>:float = external {}
+
+    # Set the mesh of the carryable.
+    # This will update immediately if already spawned, and also apply to any carryable spawned from this device in the future.
+    SetCarryableMesh<public>(Mesh:mesh):void = external {}
+
+    # Set the material of the carryable. 
+    # Index describes which material index on the mesh the material will apply to.
+    # This will update immediately if already spawned, and also apply to any carryable spawned from this device in the future.
+    SetCarryableMaterial<public>(Material:material, ?Index:int = external {}):void = external {}
 
     # Enables this device, allowing it to listen for inputs and send events.
     Enable<override>():void = external {}

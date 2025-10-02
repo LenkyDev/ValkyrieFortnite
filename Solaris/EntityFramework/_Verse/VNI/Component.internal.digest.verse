@@ -439,13 +439,8 @@ mesh_component<native><public> := class<final_super><epic_internal>(component, e
 
     OnEndSimulationInternal<native><override>():void
 
-    @replicated("RepNotify")
     # The `mesh` to be rendered by this `mesh_component`.
     Mesh<native><epic_internal>:mesh = external {}
-
-    @experimental
-    # Sets the `mesh` to be rendered.
-    SetMesh<native><epic_internal>(InMesh:mesh):void
 
     @experimental
     # Sets the `material` to be applied to the `mesh`.

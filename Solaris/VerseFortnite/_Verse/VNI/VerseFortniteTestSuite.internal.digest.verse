@@ -39,6 +39,8 @@ VerseFortniteTestSuite<public> := module:
 
         var IsInRound<native><public>:logic = external {}
 
+        BeginRoundTaskEndTestEvent<native><public>:event(tuple()) = external {}
+
         OnAddedToScene<override>():void = external {}
 
         OnRemovingFromScene<override>():void = external {}
