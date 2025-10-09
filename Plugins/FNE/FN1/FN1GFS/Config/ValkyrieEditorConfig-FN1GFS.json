@@ -247,7 +247,9 @@
 			"/Script/FortniteAI.FortNavigationGraph": { "Visible": true },
 			"/Script/Foliage.ProceduralFoliageSpawner": { "Visible": true },
 			"/Script/LagerRuntime.FortAthenaLivingWorldVehiclePointProvider": { "Visible": true },
-			"/Script/ValetRuntime.FortDagwoodVehicleConfigs": { "Visible": true }
+			"/Script/ValetRuntime.FortDagwoodVehicleConfigs": { "Visible": true },
+			"/Script/ChaosSolverEngine.ChaosDebugDrawComponent": { "Visible": true },
+			"/Script/NavigationSystem.NavSystemConfigOverride": { "Visible": true }
 		},
 		"AllowedMenus": {
 			"LevelEditor.MainMenu": {

@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Lime",
-	"FortReleaseVersion": "37.40",
+	"FortReleaseVersion": "37.50",
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
@@ -175,6 +175,11 @@
 			"Optional": true
 		},
 		{
+			"Name": "LimeBurstLaser",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "LimeBurstPulse",
 			"Enabled": true,
 			"Activate": true,
@@ -291,6 +296,11 @@
 			"Optional": true
 		},
 		{
+			"Name": "LimeMakeshiftRevolver",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "LimeMeatCooked",
 			"Enabled": true,
 			"Activate": true,
@@ -348,7 +358,22 @@
 			"Optional": true
 		},
 		{
+			"Name": "LimePulseLaser",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimePulseRifle",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "LimePumpkin",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeSaucyTwins",
 			"Enabled": true,
 			"Optional": true
 		},
@@ -380,6 +405,11 @@
 			"Name": "LimeSnowballLauncher",
 			"Enabled": true,
 			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeStingBlaster",
+			"Enabled": true,
 			"Optional": true
 		},
 		{
