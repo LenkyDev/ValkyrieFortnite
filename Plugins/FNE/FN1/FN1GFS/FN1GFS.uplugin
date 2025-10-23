@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/FN1",
-	"FortReleaseVersion": "37.50",
+	"FortReleaseVersion": "37.51",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"Version": 0,
@@ -45,13 +45,35 @@
 			"Optional": true
 		},
 		{
-			"Name": "FeralCorgiAccolades",
+			"Name": "BarnTowelArmoryGameplay",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "DarkV_Meadow_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "DarkVortexMeadowCassia",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "DarkVortexMeadowHeliconia",
 			"Enabled": true,
 			"Activate": true,
 			"Optional": true
 		},
 		{
 			"Name": "DashberryMapContent",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "FeralCorgiAccolades",
 			"Enabled": true,
 			"Activate": true,
 			"Optional": true
@@ -69,6 +91,11 @@
 			"Optional": true
 		},
 		{
+			"Name": "FlexLegendsENVGameplay",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "FN1Native",
 			"Enabled": true,
 			"Activate": true,
@@ -80,9 +107,28 @@
 			"Optional": true
 		},
 		{
-			"Name": "VendingMachine",
+			"Name": "PostageMinute",
 			"Enabled": true,
-			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "PulseLancer_SmashMap",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SolidWave_ExtraAssets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SourSpawnMapContent",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "StrideMiceMonolithInactive",
+			"Enabled": true,
 			"Optional": true
 		},
 		{
@@ -106,38 +152,9 @@
 			"Optional": true
 		},
 		{
-			"Name": "SolidWave_ExtraAssets",
+			"Name": "VendingMachine",
 			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "PulseLancer_SmashMap",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "PostageMinute",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "StrideMiceMonolithInactive",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "BarnTowelArmoryGameplay",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "FlexLegendsENVGameplay",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "SourSpawnMapContent",
-			"Enabled": true,
+			"Activate": true,
 			"Optional": true
 		}
 	]
