@@ -22,7 +22,7 @@
 		{
 			"Name": "Solaris",
 			"Type": "RuntimeAndProgram",
-			"LoadingPhase": "Default",
+			"LoadingPhase": "PreDefault",
 			"ProgramAllowList": [
 				"tLangVPL"
 			],
@@ -52,6 +52,11 @@
 			"Name": "SolarisEditor",
 			"Type": "EditorNoCommandlet",
 			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "SolarisTestUtils",
+			"Type": "Runtime",
+			"LoadingPhase": "None"
 		},
 		{
 			"Name": "VerseWorkflowServer",

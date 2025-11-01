@@ -1,53 +1,34 @@
-using {/Verse.org/SpatialMath}
-using {/Verse.org/Native}
-using {/Verse.org/Simulation/Tags}
-using {/Verse.org/Assets}
-using {/Verse.org/Temporary/EpicGamesRestricted/Network}
-using {/Verse.org/Simulation}
 # Module import path: /Verse.org/SceneGraph/VerseCamera
 VerseCamera<public> := module:
+    using {/Verse.org/Native}
+    using {/Verse.org/SpatialMath}
+    using {/Verse.org/Assets}
+    using {/Verse.org/Temporary/EpicGamesRestricted/Network}
+    using {/Verse.org/Simulation}
     @experimental
     # Camera body settings, e.g. sensor/film settings, shutter speed, etc
     camera_body<native><epic_internal> := class:
-        @editable
-        @replicated("")
-        @experimental
         # Width of camera sensor in millimeters.
-        var SensorWidthMillimeters<native><public>:float = external {}
+        var SensorWidthMillimeters<public>:float = external {}
 
-        @editable
-        @replicated("")
-        @experimental
         # Height of camera sensor in millimeters.
-        var SensorHeightMillimeters<native><public>:float = external {}
+        var SensorHeightMillimeters<public>:float = external {}
 
-        @editable
-        @replicated("")
-        @experimental
         # Horizontal offset of camera sensor.
-        var SensorHorizontalOffsetMillimeters<native><public>:float = external {}
+        var SensorHorizontalOffsetMillimeters<public>:float = external {}
 
-        @editable
-        @replicated("")
-        @experimental
         # Vertical offset of camera sensor.
-        var SensorVerticalOffsetMillimeters<native><public>:float = external {}
+        var SensorVerticalOffsetMillimeters<public>:float = external {}
 
-        @editable
-        @replicated("")
-        @experimental
         # The camera sensor sensitivity to light.
-        var ISO<native><public>:float = external {}
+        var ISO<public>:float = external {}
 
-        @editable
-        @replicated("")
-        @experimental
         # Camera shutter speed.
-        var ShutterSpeed<native><public>:float = external {}
+        var ShutterSpeed<public>:float = external {}
 
     @experimental
     # Represents the physical body, lens of the camera and other cinematographic qualities, such as sensor size, aspect ratio lock/constraint, focal length, focus distance, post-process settings, etc.
-    camera_component<native><epic_internal> := class(basic_camera_component):
+    camera_component<native><epic_internal> := class<final_super><abstract>(component):
         @editable
         @replicated("")
         @experimental
@@ -60,31 +41,62 @@ VerseCamera<public> := module:
         # Optionally override the far clipping plane distance. If value is Inf then use the default settings
         var FarClippingPlaneDistance<native><public>:float = external {}
 
+        @experimental
+        # Get transition to use when exiting this camera mode to transition to the destination camera mode
+        GetExitTransition<native_callable><epic_internal>(DestinationCamera:camera_component)<transacts><decides>:camera_transition = external {}
+
+        @experimental
+        # Get transition to use when entering this camera mode to transition to the specified camera mode
+        GetEnterTransition<native_callable><epic_internal>(SourceCamera:camera_component)<transacts><decides>:camera_transition = external {}
+
+        @experimental
+        GetEnterTransition_Internal<native_callable><epic_internal>(SourceCamera:camera_component)<transacts><decides>:camera_transition = external {}
+
+    # Layer of the camera system - Allows camera operators to modify the camera state at various stages of evaluation
+    camera_layer<native><epic_internal> := enum<open>:
+        Global
+        Visual
+
     @experimental
-    # Component that owns higher level camera behavior. 
-    # Responsible for selecting the best camera mode every update.
-    # Owns a default EvaluationContext, which is responsible for setting the default camera transform, before camera logic is applied
-    camera_director_component<native><epic_internal> := class<final_super>(camera_component):
+    camera_operator_layer<native><epic_internal> := struct:
         @experimental
-        # Determine which camera mode should be active
-        SelectActiveCameraMode<native_callable><public>()<transacts><decides>:camera_mode = external {}
+        CameraEntity<native><public>:entity
 
         @experimental
-        # Add a camera component to the list for consideration
-        AddCameraMode<native><public>(CameraMode:camera_mode):void
+        Priority<native><public>:rational
 
         @experimental
-        # Remove a camera component from the list for consideration
-        RemoveCameraMode<native><public>(CameraMode:camera_mode):void
+        Layer<native><public>:camera_layer
+
+        @experimental
+        ID<native><public>:int
+
+    @experimental
+    camera_operator_layer_cancelable<native><epic_internal> := class(cancelable):
+        @experimental
+        Director<native><epic_internal>:camera_director_component
+
+        @experimental
+        ID<native><public>:int
+
+        Cancel<override><native>()<transacts>:void
+
+    @experimental
+    # Camera director component is responsible for selecting a camera and blending when the active camera changes. 
+    # Also allows global settings to be shared between different cameras (such as post process settings) and modifications to the final blended camera state, such as camera shakes
+    camera_director_component<native><epic_internal> := class<final_super><abstract>(component):
+        @experimental
+        # Decide which camera should be active, called every update for each player that has the camera_director set as their active camera
+        EvaluateActiveCamera<native_callable><epic_internal>()<transacts><decides>:camera_component
 
         @experimental
         # Select a camera transition. Override this function to define camera transition behavior globally for the entire camera director. 
         # The default behavior is to call SourceCameraMode.GetExitTransition[DestinationCameraMode], if this function fails, then we call DestinationCameraMode.GetEnterTransition[SourceCameraMode]. If both failed then we default to an instant pop transition
-        SelectCameraTransition<native_callable><public>(SourceCameraMode:camera_mode, DestinationCameraMode:camera_mode)<transacts><decides>:camera_transition = external {}
+        SelectCameraTransition<native_callable><epic_internal>(SourceCamera:camera_component, DestinationCamera:camera_component)<transacts><decides>:camera_transition = external {}
 
-        @replicated("")
-        @editable
-        var<protected> CameraModes<native><public>:[]camera_mode = external {}
+        @experimental
+        # Add a new camera operator to the specified part of the update, with the specified priority
+        AddCameraOperatorWithPriority<native><epic_internal>(Operator:camera_operator_component, CameraLayer:camera_layer, Priority:rational)<transacts><decides>:cancelable
 
         @replicated("")
         @experimental
@@ -97,130 +109,113 @@ VerseCamera<public> := module:
     @experimental
     # Camera lens settings
     camera_lens<native><epic_internal> := class:
-        @editable
-        @replicated("")
-        @experimental
         # Focal length of the lens in millimeters.
-        var FocalLengthMillimeters<native><public>:float = external {}
+        var FocalLengthMillimeters<public>:float = external {}
 
-        @editable
-        @replicated("")
-        @experimental
-        # Focus distance in centimeters.
-        var FocusDistance<native><epic_internal>:?float = external {}
-
-        @editable
-        @replicated("")
-        @experimental
         # Aperture of the lens in FStop.
-        var FStop<native><public>:float = external {}
+        var FStop<public>:float = external {}
 
-        @editable
-        @replicated("")
-        @experimental
         # Squeeze factor for anamorphic lenses.
-        var SqueezeFactor<native><public>:float = external {}
+        var SqueezeFactor<public>:float = external {}
 
-        @editable
-        @replicated("")
-        @experimental
         # Number of blades of diaphragm.
-        var BladeCount<native><public>:int = external {}
+        var BladeCount<public>:int = external {}
 
-    @experimental
-    verse_camera_mode_tag<native><epic_internal> := class(tag):
-
-
-    @import_as("/Script/VerseCamera.UVerseCameraMode")
-    @experimental
-    camera_mode_base<native><epic_internal> := class<abstract>:
-
-
-    @experimental
-    # A camera mode builds up a camera transform piece by piece by executing a camera rig asset
-    camera_mode<native><epic_internal> := class<concrete>:
-        @editable
-        @experimental
-        @replicated("")
-        CameraModeTag<native><public>:tag_selector = external {}
-
-        @experimental
-        # Get transition to use when exiting this camera mode to transition to the destination camera mode
-        GetExitTransition<native_callable><public>(DestinationCameraMode:camera_mode)<transacts><decides>:camera_transition = external {}
-
-        @experimental
-        # Get transition to use when entering this camera mode to transition to the specified camera mode
-        GetEnterTransition<native_callable><public>(SourceCameraMode:camera_mode)<transacts><decides>:camera_transition = external {}
-
-        @experimental
-        GetEnterTransition_Internal<native_callable><epic_internal>(SourceCameraMode:camera_mode)<transacts><decides>:camera_transition = external {}
-
-        @experimental
-        # Update camera mode
-        Update<native_callable><public>(UpdateParameters:camera_update_parameters):camera_mode_result = external {}
+        # Focus distance in centimeters.
+        var FocusDistance<epic_internal>:?float = external {}
 
     @experimental
     # Get the transform of the player pawn
-    (CameraMode:camera_mode).GetViewTargetTransform<native><epic_internal>(UpdateParameters:camera_update_parameters)<transacts><decides>:(/Verse.org/SpatialMath:)transform
+    (CameraOperator:camera_operator_component).GetViewTargetTransform<native><epic_internal>(UpdateParameters:camera_operator_update_parameters)<transacts><decides>:(/Verse.org/SpatialMath:)transform
 
     @experimental
     # Get the player's control rotation
-    (CameraMode:camera_mode).GetControlRotation<native><epic_internal>(UpdateParameters:camera_update_parameters)<transacts><decides>:(/Verse.org/SpatialMath:)rotation
+    (CameraOperator:camera_operator_component).GetControlRotation<native><epic_internal>(UpdateParameters:camera_operator_update_parameters)<transacts><decides>:(/Verse.org/SpatialMath:)rotation
 
     @experimental
     # Get the transform of the player's camera bone for first person
-    (CameraMode:camera_mode).GetFirstPersonCameraBoneTransform<native><epic_internal>(UpdateParameters:camera_update_parameters)<transacts><decides>:(/Verse.org/SpatialMath:)transform
+    (CameraOperator:camera_operator_component).GetFirstPersonCameraBoneTransform<native><epic_internal>(UpdateParameters:camera_operator_update_parameters)<transacts><decides>:(/Verse.org/SpatialMath:)transform
 
-    camera_projection_mode<native><epic_internal> := enum:
+    @experimental
+    # 1D Perlin Noise
+    (CameraOperator:camera_operator_component).PerlinNoise1D<native><epic_internal>(X:float):float
+
+    @experimental
+    # 2D Perlin Noise
+    (CameraOperator:camera_operator_component).PerlinNoise2D<native><epic_internal>(X:float, Y:float):float
+
+    @experimental
+    # Component that animates the state of a camera component over time
+    camera_operator_component<native><epic_internal> := class<abstract><final_super>(component):
+        @experimental
+        UpdateCamera<native_callable><epic_internal>(UpdateParameters:camera_operator_update_parameters):void
+
+    @experimental
+    # Input parameters to a camera mode update
+    camera_operator_update_parameters<native><epic_internal> := class<final>:
+        @experimental
+        # Input/Output camera state
+        var CameraState<native><public>:camera_state = external {}
+
+        @experimental
+        # Delta time since last update
+        var<private> DeltaTime<native><public>:float = external {}
+
+        @experimental
+        # Player that the camera operator is active for (if any)
+        var<private> Player<native><epic_internal>:?player = external {}
+
+        @experimental
+        # Camera director that camera_operator is running under (if any)
+        var<private> CameraDirector<native><epic_internal>:?camera_director_component = external {}
+
+        @experimental
+        # Is this the first time this camera operator is being updated?
+        var<private> IsFirstUpdate<native><epic_internal>:logic = external {}
+
+    @experimental
+    camera_projection_mode<native><epic_internal> := enum<open>:
         Perspective
         Orthographic
 
     @experimental
-    # Result of executing a camera mode
-    camera_mode_result<native><epic_internal> := class<final>:
+    camera_state<native><epic_internal> := class<epic_internal>:
         @experimental
-        # Output camera render location
-        var CameraRenderLocation<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
-
-        @experimental
-        # Output camera render rotation
-        var CameraRenderRotation<native><public>:(/Verse.org/SpatialMath:)rotation = external {}
+        # Render location of the camera. This render location can be modified by camera directions (like camera shakes), without modifying the physical location of any camera entity
+        var RenderLocation<public>:(/Verse.org/SpatialMath:)vector3 = external {}
 
         @experimental
-        # Lens settings
-        var CameraLens<native><public>:camera_lens = external {}
+        # Render rotation of the camera. This render rotation can be modified by camera directions (like camera shakes), without modifying the physical location of any camera entity
+        var RenderRotation<public>:(/Verse.org/SpatialMath:)rotation = external {}
 
         @experimental
-        # Lens settings
-        var CameraBody<native><public>:camera_body = external {}
+        # Determines how wide the camera projects in orthographic mode, in centimeters - Used only if projection mode is orthographic
+        var OrthographicProjectionWidth<public>:float = external {}
 
         @experimental
-        # Camera projection mode
-        var CameraProjectionMode<native><public>:camera_projection_mode = external {}
+        # Physical camera body settings
+        var Body<native><public>:camera_body = external {}
 
         @experimental
-        # Width of orthographic projection - Only used if CameraProjectionType is Orthographic
-        OrthographicProjectionWidthCentimeters<native><public>:float = external {}
+        # Physical camera lens settings
+        var Lens<native><public>:camera_lens = external {}
 
-    @experimental
-    # Set field of view
-    (Result:camera_mode_result).SetFieldOfView<native><epic_internal>(FieldOfView:float):void
-
-    @experimental
-    # Get field of view
-    (Result:camera_mode_result).GetFieldOfView<native><epic_internal>():float
-
-    @import_as("/Script/VerseCamera.UVerseCameraNode")
-    @experimental
-    camera_operation_base<native><epic_internal> := class<abstract>:
-
-
-    @experimental
-    # A camera operation is a primitive operation that is used to build up a camera transform piece by piece
-    camera_operation<native><epic_internal> := class<concrete><unique>(camera_operation_base):
         @experimental
-        # Called by the camera mode to build up the camera settings
-        Update<native_callable><public>(UpdateParameters:camera_update_parameters):camera_mode_result = external {}
+        # Projection mode - perspective or orthographic
+        var<private> ProjectionMode<native><public>:camera_projection_mode = external {}
+
+        @experimental
+        # How much to apply physical camera settings between 0.0 and 1.0
+        var<private> PhysicalCameraWeight<native><public>:float = external {}
+
+        @experimental
+        # Set horizontal field of view in degrees - Assuming an aspect ratio of 16:9. The camera system will use Hor+ scaling for aspect ratios other than 16:9.
+        # This will modify the focal length of the camera to achieve the requested field of view
+        SetFieldOfView<native><public>(FieldOfView:float):void
+
+        @experimental
+        # Get horizontal field of view in degrees - Assuming an aspect ratio of 16:9. In practice, the actual field of view on an end-user's device may be different due to differing display aspect ratios
+        GetFieldOfView<native><public>():float
 
     @experimental
     # Controls how a camera mode transitions to another
@@ -274,37 +269,6 @@ VerseCamera<public> := module:
         DrivingBlend<native><public>:camera_mode_blend = external {}
 
     @experimental
-    # Input parameters to a camera mode update
-    camera_update_parameters<native><epic_internal> := class<final>:
-        @experimental
-        # Camera director component that this camera_mode is running in
-        var<private> CameraDirectorComponent<native><public>:camera_director_component
-
-        @experimental
-        # Player that the camera director is active for (if any)
-        var<private> Player<native><public>:?player = external {}
-
-        @experimental
-        # Delta time since last update
-        var<private> DeltaTime<native><public>:float = external {}
-
-        @experimental
-        # Initial camera location. By default this is the location of the entity with the active camera_director_component
-        var<private> InitialCameraLocation<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
-
-        @experimental
-        # Initial camera rotation. By default this is the rotation of the entity with the active camera_director_component
-        var<private> InitialCameraRotation<native><public>:(/Verse.org/SpatialMath:)rotation = external {}
-
-    @experimental
-    # A camera mode implemented using a native CameraRig asset
-    native_camera_mode<native><epic_internal> := class<concrete>(camera_mode):
-        @editable
-        @display_name("CameraRig")
-        @experimental
-        CameraRig<native><epic_internal>:camera_rig_asset = external {}
-
-    @experimental
     # Simple orthographic camera.
     orthographic_camera_component<native><epic_internal> := class<final_super>(camera_component):
         @editable
@@ -349,11 +313,58 @@ VerseCamera<public> := module:
 
 
     @experimental
-    # Get the camera component currently active on the player (activated via camera_component.ActivateForPlayer)
-    (Player:player).GetActiveCameraComponent<native><epic_internal>()<transacts><decides>:camera_component
+    camera_mode_with_priority<native><epic_internal> := struct:
+        @experimental
+        CameraEntity<native><public>:entity
+
+        @experimental
+        Priority<native><public>:rational
+
+        @experimental
+        ID<native><public>:int
+
+    @experimental
+    priority_list_camera_director_cancelable<native><epic_internal> := class(cancelable):
+        @experimental
+        Director<native><epic_internal>:priority_list_camera_director_component
+
+        @experimental
+        ID<native><public>:int
+
+        Cancel<override><native>()<transacts>:void
+
+    @experimental
+    # Camera director that maintains a prioritized list of camera modes. The highest priority camera mode is chosen every frame
+    priority_list_camera_director_component<native><epic_internal> := class<final_super>(camera_director_component):
+        # Returns the camera component with the highest priority
+        EvaluateActiveCamera<native><final><override>()<transacts><decides>:camera_component
+
+        @experimental
+        # Add a camera with an associated priority - Fails if CameraEntity does not contain a camera_component
+        AddCameraWithPriority<native><public>(CameraEntity:entity, Priority:rational)<transacts><decides>:cancelable
 
     @experimental
     # A component that lives on the simulation entity and associates a camera with a player within the confines of that simulation
     simulation_camera_director_component<native><epic_internal> := class<final_super>(component):
         # Set the active camera for a player - Fails if the specified entity does not have a camera component
         SetActiveCamera<native><public>(Player:player, CameraEntity:entity)<transacts><decides>:cancelable
+
+    @experimental
+    single_camera_director_cancelable<native><epic_internal> := class(cancelable):
+        @experimental
+        Director<native><epic_internal>:single_camera_director_component
+
+        @experimental
+        CameraEntity<native><public>:entity
+
+        Cancel<override><native>()<transacts>:void
+
+    @experimental
+    # Camera director that has a single active camera mode, that is expliclty set through its SetActiveCamera function
+    single_camera_director_component<native><epic_internal> := class<final_super>(camera_director_component):
+        # Returns the camera component that was set by SetActiveCamera
+        EvaluateActiveCamera<native><final><override>()<transacts><decides>:camera_component
+
+        @experimental
+        # Set the active camera for a player - Fails if the specified entity does not have a camera component
+        SetActiveCamera<native><public>(CameraEntity:entity)<transacts><decides>:cancelable

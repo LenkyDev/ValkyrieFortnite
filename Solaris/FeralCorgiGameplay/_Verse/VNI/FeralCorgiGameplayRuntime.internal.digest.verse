@@ -1,6 +1,5 @@
 using {/Verse.org/Colors}
 using {/Verse.org/Assets}
-using {/Fortnite.com/Playspaces}
 using {/UnrealEngine.com/Temporary/SpatialMath}
 using {/Verse.org/Native}
 using {/Verse.org/Simulation}
@@ -38,6 +37,7 @@ feral_analytics_attributes_request<native><epic_internal> := class<persistent>:
 
 # Module import path: /Fortnite.com/FeralCorgi/AnalyticsBridge
 AnalyticsBridge<epic_internal> := module:
+    using {/Verse.org/Simulation}
     SendELOAnalyticForPlayer<native><epic_internal>(Player:player, MatchPoints:float, TeamPoints:float, IndividualPoints:float):void
 
 apparatus_bridge<native><epic_internal> := class:
@@ -74,6 +74,8 @@ cheat_bridge<native><epic_internal> := class<concrete>(cheat_bridge_base):
 
 # Module import path: /Fortnite.com/FeralCorgi/CommonBridge
 CommonBridge<epic_internal> := module:
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Verse.org/Simulation}
     AgentRespawnCleanup<native><epic_internal>(Agent:agent, RespawnPosition:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):void
 
     GetVersePlayerId<native><epic_internal>(Player:player)<transacts>:int
@@ -103,6 +105,7 @@ elimination_info<native><epic_internal> := struct:
 
 # Module import path: /Fortnite.com/FeralCorgi/FeralEliminationInfoBridge
 FeralEliminationInfoBridge<epic_internal> := module:
+    using {/Verse.org/Simulation}
     GetEliminationInfoForPlayer<native><epic_internal>(Agent:agent)<reads>:elimination_info
 
 # Module import path: /Fortnite.com/FeralCorgi/FeralLoggingBridge
@@ -115,6 +118,7 @@ FeralLoggingBridge<epic_internal> := module:
 
 # Module import path: /Fortnite.com/FeralCorgi/FeralMatchmakingBridge
 FeralMatchmakingBridge<epic_internal> := module:
+    using {/Verse.org/Simulation}
     ReadyUpPlayer<native><epic_internal>(Player:player):void
 
     UnreadyPlayer<native><epic_internal>(Player:player):void
@@ -123,6 +127,8 @@ FeralMatchmakingBridge<epic_internal> := module:
 
 # Module import path: /Fortnite.com/FeralCorgi/PlayerLoadingStatusBridge
 PlayerLoadingStatusBridge<epic_internal> := module:
+    using {/Verse.org/Simulation}
+    using {/Fortnite.com/Playspaces}
     AwaitPlayersLoading<native><epic_internal>(Playspace:fort_playspace)<suspends>:void
 
     IsPlayerLoading<native><epic_internal>(Playspace:fort_playspace, Player:player)<transacts><decides>:void
@@ -135,6 +141,8 @@ PlayerLoadingStatusBridge<epic_internal> := module:
 
 # Module import path: /Fortnite.com/FeralCorgi/ReservationHoldingBridge
 ReservationHoldingBridge<epic_internal> := module:
+    using {/Verse.org/Simulation}
+    using {/Fortnite.com/Playspaces}
     EnableLeavingPlayerReservationHolding<native><epic_internal>(Playspace:fort_playspace, HoldingTime:float):void
 
     RestoreSessionReservationHoldingSettings<native><epic_internal>(Playspace:fort_playspace):void
@@ -150,6 +158,8 @@ respawn_query_info<native><epic_internal> := struct:
 
 # Module import path: /Fortnite.com/FeralCorgi/FeralCorgiRespawnLogic
 FeralCorgiRespawnLogic<epic_internal> := module:
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Verse.org/Simulation}
     RunRespawnEQS<native><epic_internal>(InAgent:agent, RespawnQueryLocation:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:respawn_query_info
 
 ranked_track_progress<native><epic_internal> := struct<concrete>:
@@ -179,6 +189,8 @@ ranked_track_progress<native><epic_internal> := struct<concrete>:
 
 # Module import path: /Fortnite.com/FeralCorgi/SessionAttributesBridge
 SessionAttributesBridge<epic_internal> := module:
+    using {/Verse.org/Simulation}
+    using {/Fortnite.com/Playspaces}
     IsRankedMatch<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
     IsVKEdit<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void

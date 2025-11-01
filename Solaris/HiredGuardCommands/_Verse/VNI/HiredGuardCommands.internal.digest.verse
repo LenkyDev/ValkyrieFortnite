@@ -1,11 +1,11 @@
-using {/UnrealEngine.com/Temporary/SpatialMath}
-using {/Fortnite.com/AI/HiredGuardCommands/PingCommand}
-using {/Verse.org/Native}
-using {/Fortnite.com/Characters}
-using {/Verse.org/SceneGraph}
-using {/Verse.org/Simulation}
 # Module import path: /Fortnite.com/AI/HiredGuardCommands
 HiredGuardCommands<public> := module:
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Fortnite.com/AI/HiredGuardCommands/PingCommand}
+    using {/Verse.org/Native}
+    using {/Fortnite.com/Characters}
+    using {/Verse.org/SceneGraph}
+    using {/Verse.org/Simulation}
     @hide_in_editor
     @experimental
     default_npc_behavior<epic_internal> := class(npc_behavior):

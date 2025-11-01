@@ -1,8 +1,8 @@
-using {/Verse.org/Simulation/Tags}
-using {/Verse.org/Simulation}
-using {/Verse.org/SceneGraph}
 # Module import path: /UnrealEngine.com/ComponentTestSuite
 ComponentTestSuite<public> := module:
+    using {/Verse.org/Simulation/Tags}
+    using {/Verse.org/Simulation}
+    using {/Verse.org/SceneGraph}
     @hide_in_editor
     test_component_key_component_base<native><epic_internal> := class<final_super>(component):
 

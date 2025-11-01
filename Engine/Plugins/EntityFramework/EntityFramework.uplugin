@@ -30,8 +30,22 @@
 			"Type": "Runtime"
 		},
 		{
+			"Name": "EntitySimulation",
+			"Type": "Runtime"
+		},
+		{
 			"Name": "EntityStreaming",
 			"Type": "Runtime"
+		},
+		{
+			"Name": "EntitySequencer",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "EntitySequencerEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
 		},
 		{
 			"Name": "EntityTestSuite",
@@ -155,7 +169,7 @@
 		{
 			"Name": "VerseSpatialMath",
 			"Enabled": true
-		},
+		}
 	],
 	"IsExperimentalVersion": false
 }

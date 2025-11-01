@@ -29,12 +29,12 @@
 	],
 	"Plugins": [
 		{
-			"Name": "AnimNext",
+			"Name": "UAF",
 			"Enabled": false,
 			"Optional": true
 		},
 		{
-			"Name": "AnimNextAnimGraph",
+			"Name": "UAFAnimGraph",
 			"Enabled": false,
 			"Optional": true
 		},
@@ -124,6 +124,10 @@
 		},
 		{
 			"Name": "VerseCamera",
+			"Enabled": true
+		},
+		{
+			"Name": "VerseUI",
 			"Enabled": true
 		},
 		{

@@ -1,15 +1,14 @@
-using {/Verse.org/Assets}
-using {/Fortnite.com/Teams}
-using {/Fortnite.com/Playspaces}
-using {/Verse.org/Native}
-using {/Fortnite.com/Assets}
-using {/Fortnite.com/Characters}
-using {/Verse.org/SpatialMath}
-using {/UnrealEngine.com/Temporary/SpatialMath}
-using {/Verse.org/Simulation}
-using {/Verse.org/SceneGraph}
 # Module import path: /Fortnite.com/AI
 AI<public> := module:
+    using {/Fortnite.com/Teams}
+    using {/Fortnite.com/Playspaces}
+    using {/Verse.org/Native}
+    using {/Fortnite.com/Assets}
+    using {/Fortnite.com/Characters}
+    using {/Verse.org/SpatialMath}
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Verse.org/Simulation}
+    using {/Verse.org/SceneGraph}
     @experimental
     # Result of an AI action
     ai_action_result<native><public> := enum<open>:
@@ -474,7 +473,7 @@ AI<public> := module:
 
     @experimental
     # Generate a navigation_target from an entity
-    MakeNavigationTarget<native><public>(Entity:entity):navigation_target
+    MakeNavigationTargetEntity<native><public>(Entity:entity):navigation_target
 
     # Result of a navigation request
     navigation_result<native><public> := enum:
@@ -725,10 +724,85 @@ AI<public> := module:
         # Specifies if damage perception is enabled.
         SenseEnabled<native><public>:logic = external {}
 
+    @available {MinUploadedAtFNVersion := 3800}
+    # Sidekicks have a mood that modifies their animations to suit that mood.
+    # This is the list of currently supported moods.
+    sidekick_mood<native><public> := enum<open>:
+        Neutral
+        Combat
+        Worried
+        Bored
+
+    @available {MinUploadedAtFNVersion := 3800}
+    # The set of available reactions that can be played on the Sidekick
+    sidekick_reaction<native><public> := enum<open>:
+        Happy
+        Dance
+        Emote
+        Angry
+        Worried
+
+    @available {MinUploadedAtFNVersion := 3800}
+    # Component to manage functionality shared by all Sidekick types.
+    sidekick_component<native><public> := class<abstract><final_super><epic_internal>(component):
+        # By default, Sidekicks will change their mood depending on actions in the game.
+        # This value will lock the Sidekick into the mood passed in, overriding the automatic mood system.
+        var MoodOverride<public>:?sidekick_mood
+
+        # Get the Sidekick's current mood.
+        GetMood<public>()<reads>:sidekick_mood
+
+        # Signaled whenever the Sidekick's mood changes, either via the underlying mood system, or an override is applied. Returns the previous and new mood.
+        ChangeMoodEvent<public>:listenable(tuple(sidekick_mood, sidekick_mood))
+
+        # Request to play a given reaction on the Sidekick.
+        # This reaction is not guaranteed to play immediately; instead, the StartPlayReactionEvent should be used to monitor this.
+        # This will fail if the Sidekick cannot play the given reaction.
+        PlayReaction<public>(Reaction:sidekick_reaction)<transacts><decides>:void
+
+        # Signaled when the Sidekick starts to play a reaction, returns the reaction that started playing.
+        StartPlayReactionEvent<public>:listenable(sidekick_reaction)
+
+        # Signaled when the Sidekick ends playing a reaction, returns the reaction that played.
+        StopPlayReactionEvent<public>:listenable(sidekick_reaction)
+
+    @available {MinUploadedAtFNVersion := 3800}
+    # Component to manage functionality specifically for an NPC Sidekick.
+    npc_sidekick_component<native><public> := class<final_super><epic_internal>(sidekick_component):
+        # By default, Sidekicks will change their mood depending on actions in the game.
+        # This value will lock the Sidekick into the mood passed in, overriding the automatic mood system.
+        var MoodOverride<override>:?sidekick_mood = external {}
+
+        # Get the Sidekick's current mood.
+        GetMood<override><native>()<reads>:sidekick_mood
+
+        # Signaled whenever the Sidekick's mood changes, either via the underlying mood system, or an override is applied. Returns the previous and new mood.
+        ChangeMoodEvent<override><native>:listenable(tuple(sidekick_mood, sidekick_mood)) = external {}
+
+        # Request to play a given reaction on the Sidekick.
+        # This reaction is not guaranteed to play immediately; instead, the StartPlayReactionEvent should be used to monitor this.
+        # This will fail if the Sidekick cannot play the given reaction.
+        PlayReaction<override><native>(Reaction:sidekick_reaction)<transacts><decides>:void
+
+        # Signaled when the Sidekick starts to play a reaction, returns the reaction that started playing.
+        StartPlayReactionEvent<override><native>:listenable(sidekick_reaction) = external {}
+
+        # Signaled when the Sidekick ends playing a reaction, returns the reaction that played.
+        StopPlayReactionEvent<override><native>:listenable(sidekick_reaction) = external {}
+
+        # Apply the look and customizations of agent's currently equipped Sidekick to this Sidekick NPC.
+        # This will fail if the NPC does not use the FortniteSidekick cosmetic look or if the given agent does not have a Sidekick equipped in their locker.
+        ApplyEquippedSidekickCosmetic<native><epic_internal>(Agent:agent)<transacts><decides>:void
+
 # Module import path: /Fortnite.com/Animation
 Animation<public> := module:
     # Module import path: /Fortnite.com/Animation/PlayAnimation
     PlayAnimation<public> := module:
+        using {/Verse.org/Simulation}
+        using {/Verse.org/SceneGraph}
+        using {/Fortnite.com/Characters}
+        using {/Verse.org/Native}
+        using {/Verse.org/Assets}
         # Result of a PlayAndAwait request.
         play_animation_result<native><public> := enum:
             # The animation completed successfully.
@@ -811,6 +885,10 @@ Animation<public> := module:
 
 # Module import path: /Fortnite.com/Assets
 (/Fortnite.com:)Assets<public> := module:
+    using {/Verse.org/Simulation}
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Fortnite.com/Playspaces}
+    using {/Verse.org/Assets}
     emote<native><epic_internal> := class<computes><final><epic_internal>(asset):
 
 

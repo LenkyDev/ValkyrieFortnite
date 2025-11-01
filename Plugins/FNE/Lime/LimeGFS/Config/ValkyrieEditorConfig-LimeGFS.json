@@ -1539,7 +1539,11 @@
 			"/Script/Creative_TemporaryTeamsRuntime.FortUserOptionComponent_TemporaryTeams": {},
 			"/Script/Creative_TemporaryTeamsRuntime.FortUserOptionComponent_TemporaryTeams_TeamSettingsAndInventory": {},
 			"/Creative_TemporaryTeams/Components/BP_UserOptionComponent_TemporaryTeams.BP_UserOptionComponent_TemporaryTeams_C": {},
-			"/Creative_TemporaryTeams/Components/BP_TemporaryTeams_TeamSettingsAndInventory.BP_TemporaryTeams_TeamSettingsAndInventory_C": {}
+			"/Creative_TemporaryTeams/Components/BP_TemporaryTeams_TeamSettingsAndInventory.BP_TemporaryTeams_TeamSettingsAndInventory_C": {},
+			"/Script/CreativeCompanionRuntime.FortUserOptionComponent_Sidekicks": {},
+			"/CreativeCompanion/Assets/BP_FortUserOptionsComponent_Sidekicks.BP_FortUserOptionsComponent_Sidekicks_C": {
+				"Visible": true
+			}
 		},
 		"AllowedEditorModes": {
 			"+": [

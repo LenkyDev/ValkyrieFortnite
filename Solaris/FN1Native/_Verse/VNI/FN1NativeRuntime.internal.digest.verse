@@ -1,13 +1,99 @@
-using {/Verse.org/Colors}
-using {/Verse.org/Assets}
-using {/Fortnite.com/Devices}
-using {/Verse.org/Native}
-using {/Verse.org/Simulation}
-using {/UnrealEngine.com/Temporary/SpatialMath}
 # Module import path: /Fortnite.com/FN1Native
 FN1Native<public> := module:
+    using {/Verse.org/Simulation}
+    using {/Verse.org/Colors}
+    using {/Verse.org/Assets}
+    # Module import path: /Fortnite.com/FN1Native/FortAircraft
+    FortAircraft<public> := module:
+        using {/Verse.org/Native}
+        using {/Verse.org/Simulation}
+        using {/Verse.org/SpatialMath}
+        fort_aircraft_flight_info<native><epic_internal> := class:
+            @editable
+            StartLocation<public>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+            @editable
+            StartRotation<public>:(/Verse.org/SpatialMath:)rotation = external {}
+
+            @editable_number(float) {MinValue := option {0.000000}}
+            Speed<public>:float = external {}
+
+            @editable_number(float) {MinValue := option {0.000000}}
+            Duration<public>:float = external {}
+
+            @editable_number(float) {MinValue := option {0.000000}}
+            DropStartDelay<public>:float = external {}
+
+            @editable_number(float) {MinValue := option {0.000000}}
+            DropEndDelay<public>:float = external {}
+
+            GetStartTransform<native_callable><public>():(/Verse.org/SpatialMath:)transform = external {}
+
+            GetEndLocation<public>():(/Verse.org/SpatialMath:)vector3 = external {}
+
+            GetDropStartLocation<public>():(/Verse.org/SpatialMath:)vector3 = external {}
+
+            GetDropEndLocation<public>():(/Verse.org/SpatialMath:)vector3 = external {}
+
+        @import_as("/Script/VerseFortnite.UVerseFortniteActorWrapper")
+        fort_aircraft_base<native><epic_internal> := class<abstract>:
+
+
+        fort_aircraft<native><epic_internal> := class<concrete><unique><castable><epic_internal>(fort_aircraft_base):
+            Despawn<native><protected>():void
+
+            SetInitialFlightPath<native><protected>(StartLocation:(/Verse.org/SpatialMath:)vector3, StartRotation:(/Verse.org/SpatialMath:)rotation, Speed:float, Duration:float, DropStartDelay:float, DropEndDelay:float):void
+
+            StartFlightPath<native><protected>(FlightStartTime:float):void
+
+            SetFlightTimes<native><protected>(FlightElapsedTime:float, FlightTimestamp:float):void
+
+            SetLocation<native><protected>(Position:(/Verse.org/SpatialMath:)vector3):void
+
+            AddPassengerNative<native><protected>(Agent:agent)<transacts><decides>:void
+
+            RemovePassengerNative<native><protected>(Agent:agent)<transacts><decides>:void
+
+            var FlightInfo<public>:fort_aircraft_flight_info = external {}
+
+            var StartTime<public>:float = external {}
+
+            var EndTime<public>:float = external {}
+
+            var DropStartTime<public>:float = external {}
+
+            var DropEndTime<public>:float = external {}
+
+            var IsInDropZone<public>:logic = external {}
+
+            FlightStartedEvent<public>:subscribable_event_intrnl(fort_aircraft) = external {}
+
+            FlightEndedEvent<public>:subscribable_event_intrnl(fort_aircraft) = external {}
+
+            FlightEnteredDropZoneEvent<public>:subscribable_event_intrnl(fort_aircraft) = external {}
+
+            FlightExitedDropZoneEvent<public>:subscribable_event_intrnl(fort_aircraft) = external {}
+
+            Deinitialize<public>():void = external {}
+
+            GetFlightInfo<native_callable><public>():fort_aircraft_flight_info = external {}
+
+            IsFlying<public>()<decides>:void = external {}
+
+            StartFlight<public>()<suspends>:void = external {}
+
+            GetPassengers<public>()<reads>:[]agent = external {}
+
+            AddPassenger<public>(Passenger:agent)<transacts><decides>:void = external {}
+
+            RemovePassenger<public>(Passenger:agent)<transacts><decides>:void = external {}
+
     # Module import path: /Fortnite.com/FN1Native/FortBus
     FortBus<public> := module:
+        using {/Fortnite.com/Devices}
+        using {/Verse.org/Native}
+        using {/Verse.org/Simulation}
+        using {/UnrealEngine.com/Temporary/SpatialMath}
         fort_battlebus_zone<native><epic_internal> := struct<concrete>:
             @editable
             ZoneMin<native><public>:vector2 = external {}
@@ -56,6 +142,11 @@ FN1Native<public> := module:
 
     # Module import path: /Fortnite.com/FN1Native/GameMode
     GameMode<public> := module:
+        using {/Verse.org/SpatialMath}
+        using {/Verse.org/SceneGraph}
+        using {/Verse.org/Assets}
+        using {/Verse.org/Simulation}
+        using {/Verse.org/Native}
         @import_as("/Script/FN1NativeRuntime.UVerseFortGameMode")
         fort_gamemode_base<native><epic_internal> := class<abstract>:
 
@@ -118,8 +209,80 @@ FN1Native<public> := module:
 
             SetAllowRespawnsOutsideStormPhase<native><public>(bInAllowRespawnsOutsideStormPhase:logic):void
 
+        environment_query<native><epic_internal> := class<computes><final><epic_internal>(asset):
+            AwaitEQSQuery<native><epic_internal>(Owner:entity, Params:[]tuple(string, float))<suspends>:[](/Verse.org/SpatialMath:)vector3
+
+    # Module import path: /Fortnite.com/FN1Native/Matchmaking
+    Matchmaking<public> := module:
+        # Module import path: /Fortnite.com/FN1Native/Matchmaking/FortSessionAttributesBridge
+        FortSessionAttributesBridge<epic_internal> := module:
+            using {/Fortnite.com/Playspaces}
+            IsRankedMatch<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
+
+            GetMaxSquadSize<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:int
+
+            GetMaxPlayerCount<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:int
+
+    # Module import path: /Fortnite.com/FN1Native/FortSafeZone
+    (/Fortnite.com/FN1Native:)FortSafeZone<public> := module:
+        using {/Fortnite.com/Playspaces}
+        using {/UnrealEngine.com/Temporary/SpatialMath}
+        using {/Verse.org/Native}
+        using {/Verse.org/Simulation}
+        fort_safe_zone_damage_info<epic_internal> := class:
+            @editable_number(float) {MinValue := option {0.000000}}
+            DamagePerInterval<public>:float = external {}
+
+            @editable
+            DamageIsPercentageBased<public>:logic = external {}
+
+            @editable_number(float) {MinValue := option {0.000000}}
+            DamageInterval<public>:float = external {}
+
+            @editable_number(float) {MinValue := option {0.000000}}
+            DamageIncrementInitialDelay<public>:float = external {}
+
+            @editable_number(float) {MinValue := option {0.000000}}
+            DamageIncrementInterval<public>:float = external {}
+
+            @editable_number(float) {MinValue := option {0.000000}}
+            DamageIncrementAmount<public>:float = external {}
+
+        @import_as("/Script/VerseFortnite.UVerseFortniteActorWrapper")
+        fort_safe_zone_base<native><epic_internal> := class<abstract>:
+
+
+        fort_safe_zone<native><epic_internal> := class<epic_internal>(fort_safe_zone_base):
+            Despawn<native><protected>():void
+
+            SetCenterAndRadius<native><public>(InCenter:vector2, InRadius:float):void
+
+            UpdateCenterAndRadius<native><public>(EndCenter:vector2, EndRadius:float, Duration:float)<suspends>:void
+
+            GetCenter<native><public>():vector2
+
+            GetRadius<native><public>():float
+
+            var PlayspaceInstance<public>:?fort_playspace = external {}
+
+            Initialize<public>(Playspace:fort_playspace):void = external {}
+
+            Deinitialize<public>()<suspends>:void = external {}
+
+            SetDamageInfo<public>(InDamageInfo:fort_safe_zone_damage_info):void = external {}
+
+            UpdateAgents<public>()<suspends>:void = external {}
+
+        (Agent:agent).MarkInSafeZone<native><epic_internal>(InSafeZone:logic):void
+
+        (Agent:agent).SendOutsideSafeZoneCue<native><epic_internal>():void
+
     # Module import path: /Fortnite.com/FN1Native/FortStorm
     FortStorm<public> := module:
+        using {/Verse.org/Native}
+        using {/Fortnite.com/Devices}
+        using {/UnrealEngine.com/Temporary/SpatialMath}
+        using {/Verse.org/Simulation}
         fort_storm_phase<native><public> := struct<concrete><epic_internal>:
             @editable
             WaitTime<native><public>:float = external {}

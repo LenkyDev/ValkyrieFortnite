@@ -1,7 +1,7 @@
-using {/UnrealEngine.com/Temporary/SpatialMath}
-using {/Verse.org/Assets}
 # Module import path: /UnrealEngine.com/Temporary/WorldPartition/VerseWorldPartition
 VerseWorldPartition<public> := module:
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Verse.org/Assets}
     data_layer_asset<native><epic_internal> := class<concrete><computes><final><epic_internal>(asset):
 
 

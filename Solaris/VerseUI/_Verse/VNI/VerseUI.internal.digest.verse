@@ -1,10 +1,10 @@
-using {/Verse.org/Assets}
-using {/Verse.org/Colors}
-using {/UnrealEngine.com/Temporary/SpatialMath}
-using {/Verse.org/Simulation}
-using {/Verse.org/SceneGraph}
 # Module import path: /UnrealEngine.com/Temporary/UI
 UI<public> := module:
+    using {/Verse.org/Assets}
+    using {/Verse.org/Colors}
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Verse.org/Simulation}
+    using {/Verse.org/SceneGraph}
     @experimental
     local_hud_component<epic_internal> := class<final_super>(component):
         var Canvas<public>:canvas
@@ -36,8 +36,10 @@ UI<public> := module:
         # Removes `Widget` from this `player_ui`.
         RemoveWidget<native><public>(Widget:widget):void
 
-        # Sets the user's focus on this widget. The target widget must be focusable, otherwise this has no effect.
-        SetFocus<native><epic_internal>(Widget:widget):void
+        # Sets the user's focus on this `Widget`. The target `Widget`must be focusable, otherwise this has no effect.
+        # If `SetFocus` is called before `AddWidget`, the `widget` will be focused after `AddWidget` is called, 
+        # unless a SetFocus is called on a different `widget` by the time `AddWidget` is called.
+        SetFocus<native><public>(Widget:widget):void
 
     # Base class for all UI elements drawn on the `player`'s screen.
     widget<native><public> := class<abstract><unique><epic_internal>:
@@ -96,6 +98,25 @@ UI<public> := module:
 
         # The `widget` that triggered the `event`.
         Source<native><public>:widget
+
+    # Module import path: /UnrealEngine.com/Temporary/UI/UIInput
+    UIInput<epic_internal> := module:
+        using {/Verse.org/Assets}
+        Primary_1<epic_internal>:input_action(logic) = external {}
+
+        Primary_2<epic_internal>:input_action(logic) = external {}
+
+        Secondary_1<epic_internal>:input_action(logic) = external {}
+
+        Secondary_2<epic_internal>:input_action(logic) = external {}
+
+        LeftPrimary<epic_internal>:input_action(logic) = external {}
+
+        RightPrimary<epic_internal>:input_action(logic) = external {}
+
+        LeftSecondary<epic_internal>:input_action(logic) = external {}
+
+        RightSecondary<epic_internal>:input_action(logic) = external {}
 
     # Used by `widget.SetVisibility` determine how a `widget` is shown in the user interface.
     widget_visibility<native><public> := enum:
@@ -169,6 +190,14 @@ UI<public> := module:
 
         # Subscribable event that fires when the button is clicked.
         OnClick<public>():listenable(widget_message) = external {}
+
+        OnFocusReceived<epic_internal>():listenable(widget_message) = external {}
+
+        OnFocusReceivedInternal<native><epic_internal>:subscribable_event_intrnl(widget_message) = external {}
+
+        OnFocusLost<epic_internal>():listenable(widget_message) = external {}
+
+        OnFocusLostInternal<native><epic_internal>:subscribable_event_intrnl(widget_message) = external {}
 
     # Slot for button widget.
     button_slot<native><public> := struct:
@@ -486,6 +515,8 @@ UI<public> := module:
     text_block_internal<native><epic_internal> := class(text_base):
 
 
+    ___DefaultEmptyString_Internal<localizes><epic_internal>:message = external {}
+
     # Verse interface to native `umg asset`.
     umg_widget_class_asset<native><epic_internal> := class<computes><final>(client_asset):
 
@@ -494,6 +525,8 @@ UI<public> := module:
     umg_widget<native><epic_internal> := class<epic_internal>(widget):
         # The widget_blueprint asset to create.
         Asset<native><epic_internal>:umg_widget_class_asset
+
+        OnPropertyChanged<native><protected>(PropertyName:string)<transacts>:void
 
         GetViewmodel_<native><epic_internal>(viewmodel_type:type, ViewmodelName:[]char)<transacts>:viewmodel_type
 

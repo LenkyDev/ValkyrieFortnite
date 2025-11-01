@@ -1,7 +1,7 @@
 using {/UnrealEngine.com/Abilities}
-using {/Verse.org/SceneGraph}
 # Module import path: /Fortnite.com/Itemization/AbsoluteDoomItems
 AbsoluteDoomItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_chainsaw<public> := class<final>(entity):
 
@@ -88,6 +88,7 @@ AbsoluteDoomItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/BallisticItems
 BallisticItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_bubble_shield<public> := class<final>(entity):
 
@@ -190,6 +191,7 @@ BallisticItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/CH4S1Items
 CH4S1Items<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_big_bush_bomb<public> := class<final>(entity):
 
@@ -366,8 +368,40 @@ CH4S1Items<public> := module:
     fort_item_twin_mag_smg_uncommon<public> := class<final>(entity):
 
 
+# Module import path: /Fortnite.com/Itemization/CH6MS2Items
+CH6MS2Items<public> := module:
+    using {/Verse.org/SceneGraph}
+    @experimental
+    fort_item_compact_smg_rare<public> := class<final>(entity):
+
+
+    @experimental
+    fort_item_compact_smg_uncommon<public> := class<final>(entity):
+
+
+    @experimental
+    fort_item_enhanced_compact_smg_mythic<public> := class<final>(entity):
+
+
+    @experimental
+    fort_item_suppressed_assault_rifle_common<public> := class<final>(entity):
+
+
+    @experimental
+    fort_item_suppressed_assault_rifle_uncommon<public> := class<final>(entity):
+
+
+    @experimental
+    (/Fortnite.com/Itemization/CH6MS2Items:)fort_item_tactical_shotgun_epic<public> := class<final>(entity):
+
+
+    @experimental
+    (/Fortnite.com/Itemization/CH6MS2Items:)fort_item_tactical_shotgun_legendary<public> := class<final>(entity):
+
+
 # Module import path: /Fortnite.com/Itemization/CreativeItems
 CreativeItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_acorn<public> := class<final>(entity):
 
@@ -754,6 +788,7 @@ CreativeItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/CubedItems
 CubedItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_armored_wall<public> := class<final>(entity):
 
@@ -916,6 +951,7 @@ CubedItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/FlippedItems
 FlippedItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_auto_shotgun_common<public> := class<final>(entity):
 
@@ -1162,6 +1198,7 @@ FlippedItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/FortniteItems
 FortniteItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_air_strike<public> := class<final>(entity):
 
@@ -1356,6 +1393,14 @@ FortniteItems<public> := module:
 
     @experimental
     fort_item_combat_shotgun_uncommon<public> := class<final>(entity):
+
+
+    @experimental
+    fort_item_compact_smg_epic<public> := class<final>(entity):
+
+
+    @experimental
+    fort_item_compact_smg_legendary<public> := class<final>(entity):
 
 
     @experimental
@@ -1895,15 +1940,15 @@ FortniteItems<public> := module:
 
 
     @experimental
-    fort_item_pumpkin_launcher_epic<public> := class<final>(entity):
+    (/Fortnite.com/Itemization/FortniteItems:)fort_item_pumpkin_launcher_epic<public> := class<final>(entity):
 
 
     @experimental
-    fort_item_pumpkin_launcher_legendary<public> := class<final>(entity):
+    (/Fortnite.com/Itemization/FortniteItems:)fort_item_pumpkin_launcher_legendary<public> := class<final>(entity):
 
 
     @experimental
-    fort_item_pumpkin_launcher_rare<public> := class<final>(entity):
+    (/Fortnite.com/Itemization/FortniteItems:)fort_item_pumpkin_launcher_rare<public> := class<final>(entity):
 
 
     @experimental
@@ -2228,6 +2273,7 @@ FortniteItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/FortniteOGItems
 FortniteOGItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_assault_rifle_common_1<public> := class<final>(entity):
 
@@ -2501,11 +2547,11 @@ FortniteOGItems<public> := module:
 
 
     @experimental
-    fort_item_tactical_shotgun_epic<public> := class<final>(entity):
+    (/Fortnite.com/Itemization/FortniteOGItems:)fort_item_tactical_shotgun_epic<public> := class<final>(entity):
 
 
     @experimental
-    fort_item_tactical_shotgun_legendary<public> := class<final>(entity):
+    (/Fortnite.com/Itemization/FortniteOGItems:)fort_item_tactical_shotgun_legendary<public> := class<final>(entity):
 
 
     @experimental
@@ -2542,6 +2588,7 @@ FortniteOGItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/HuntersItems
 HuntersItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_blizzard_grenade<public> := class<final>(entity):
 
@@ -2752,6 +2799,7 @@ HuntersItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/InvasionItems
 InvasionItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_alien_nanites<public> := class<final>(entity):
 
@@ -2818,6 +2866,7 @@ InvasionItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/LastResortItems
 LastResortItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_business_turret<public> := class<final>(entity):
 
@@ -2988,6 +3037,7 @@ LastResortItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/LawlessItems
 LawlessItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_barons_double_down_pistol_mythic<public> := class<final>(entity):
 
@@ -3182,6 +3232,7 @@ LawlessItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/MEGAItems
 MEGAItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_enhanced_havoc_shotgun_mythic<public> := class<final>(entity):
 
@@ -3284,6 +3335,7 @@ MEGAItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/MythsAndMortalsItems
 MythsAndMortalsItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_ares_modular_warforged_assault_rifle_mythic<public> := class<final>(entity):
 
@@ -3446,6 +3498,7 @@ MythsAndMortalsItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/ParadiseItems
 ParadiseItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_birthday_presents<public> := class<final>(entity):
 
@@ -3552,6 +3605,7 @@ ParadiseItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/PrimalItems
 PrimalItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_ammo_arrows<public> := class<final>(entity):
 
@@ -3810,6 +3864,7 @@ PrimalItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/RebellionItems
 RebellionItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_anvil_rocket_launcher_epic<public> := class<final>(entity):
 
@@ -3908,6 +3963,7 @@ RebellionItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/ShockNAwesomeItems
 ShockNAwesomeItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_bug_blaster_epic<public> := class<final>(entity):
 
@@ -4001,6 +4057,18 @@ ShockNAwesomeItems<public> := module:
 
 
     @experimental
+    (/Fortnite.com/Itemization/ShockNAwesomeItems:)fort_item_pumpkin_launcher_epic<public> := class<final>(entity):
+
+
+    @experimental
+    (/Fortnite.com/Itemization/ShockNAwesomeItems:)fort_item_pumpkin_launcher_legendary<public> := class<final>(entity):
+
+
+    @experimental
+    (/Fortnite.com/Itemization/ShockNAwesomeItems:)fort_item_pumpkin_launcher_rare<public> := class<final>(entity):
+
+
+    @experimental
     fort_item_shockwave_launcher_epic<public> := class<final>(entity):
 
 
@@ -4066,6 +4134,7 @@ ShockNAwesomeItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/SuperItems
 SuperItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_ascended_myst_legendary<public> := class<final>(entity):
 
@@ -4212,6 +4281,7 @@ SuperItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/UndergroundItems
 UndergroundItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_ballistic_shield_epic<public> := class<final>(entity):
 
@@ -4442,6 +4512,7 @@ UndergroundItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/VibinItems
 VibinItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_charge_smg_common<public> := class<final>(entity):
 
@@ -4596,6 +4667,7 @@ VibinItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/WildsItems
 WildsItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_cloak_gauntlets<public> := class<final>(entity):
 
@@ -4734,6 +4806,7 @@ WildsItems<public> := module:
 
 # Module import path: /Fortnite.com/Itemization/WreckedItems
 WreckedItems<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     fort_item_heavy_impact_sniper_rifle_epic<public> := class<final>(entity):
 

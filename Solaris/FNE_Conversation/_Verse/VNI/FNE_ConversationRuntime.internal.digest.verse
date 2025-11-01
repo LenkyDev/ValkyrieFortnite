@@ -1,7 +1,7 @@
-using {/Verse.org/Simulation}
-using {/Verse.org/Assets}
 # Module import path: /Verse.org/SceneGraph/FNECon
 FNECon<public> := module:
+    using {/Verse.org/Simulation}
+    using {/Verse.org/Assets}
     # Data type used for conversations.
     conversation_database<native><epic_internal> := class<computes><concrete><epic_internal>(asset):
 

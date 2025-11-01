@@ -1,23 +1,24 @@
-using {/Verse.org/Colors}
-using {/Fortnite.com/Vehicles}
-using {/Verse.org/Simulation}
-using {/UnrealEngine.com/Temporary/Diagnostics}
-using {/Fortnite.com/AI}
-using {/Verse.org/Simulation/Tags}
-using {/Fortnite.com/Game}
-using {/Verse.org/Native}
-using {/Verse.org/SceneGraph}
-using {/Verse.org/Assets}
-using {/Fortnite.com/Playspaces}
-using {/UnrealEngine.com/Temporary/SpatialMath}
 # Module import path: /Fortnite.com/Devices
 Devices<public> := module:
+    using {/Verse.org/Colors}
+    using {/Fortnite.com/Vehicles}
+    using {/Verse.org/Simulation}
+    using {/UnrealEngine.com/Temporary/Diagnostics}
+    using {/Fortnite.com/AI}
+    using {/Verse.org/Simulation/Tags}
+    using {/Fortnite.com/Game}
+    using {/Verse.org/Native}
+    using {/Verse.org/SceneGraph}
+    using {/Verse.org/Assets}
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Fortnite.com/Playspaces}
     # Module import path: /Fortnite.com/Devices/Animation
     (/Fortnite.com/Devices:)Animation<public> := module:
 
 
     # Module import path: /Fortnite.com/Devices/CreativeAnimation
     CreativeAnimation<public> := module:
+        using {/UnrealEngine.com/Temporary/SpatialMath}
         # A structure for defining Bezier interpolation parameters.
         # See https://en.wikipedia.org/wiki/B%C3%A9zier_curve for more info on Bezier curves.
         cubic_bezier_parameters<native><public> := struct<computes>:
@@ -434,6 +435,8 @@ Devices<public> := module:
 
     # Base implementation for events on `creative_device`s.
     device_event<native><epic_internal>(t:type) := class<abstract>(listenable(t)):
+        (/Fortnite.com/Devices/device_event:)Devices_device_event_Variance<private>:?type {_(:t):tuple(t)} = external {}
+
         EventName<native><public>:string
 
         # Subscribes Callback to this event. That same Callback will only be triggered once per event even if it is called with Subscribe more than once.

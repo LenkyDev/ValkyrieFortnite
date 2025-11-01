@@ -1,7 +1,3 @@
-using {/UnrealEngine.com/Temporary/Diagnostics}
-using {/UnrealEngine.com/Temporary/SpatialMath}
-using {/Verse.org/Colors}
-using {/Verse.org/SpatialMath}
 # Module import path: /UnrealEngine.com/Temporary/Curves
 Curves<public> := module:
     editable_curve<native><public> := class<final><concrete>:
@@ -10,6 +6,9 @@ Curves<public> := module:
 
 # Module import path: /UnrealEngine.com/Temporary/Diagnostics
 Diagnostics<public> := module:
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Verse.org/Colors}
+    using {/Verse.org/SpatialMath}
     # Enumerated presets for policies describing a desired draw duration.
     debug_draw_duration_policy<native><public> := enum:
         SingleFrame
@@ -125,6 +124,7 @@ Diagnostics<public> := module:
 
 # Module import path: /UnrealEngine.com/Temporary/Testing
 Testing<public> := module:
+    using {/UnrealEngine.com/Temporary/Diagnostics}
     # test result outcomes
     test_result<native><epic_internal> := enum:
         Passed

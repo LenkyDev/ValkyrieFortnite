@@ -1,26 +1,13 @@
 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_1306_6224)">
-<g clip-path="url(#clip1_1306_6224)">
-<g clip-path="url(#clip2_1306_6224)">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M9.68992 10.42H8.41992L10.3199 6H11.5799L9.68992 10.42Z" fill="white"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M7 7.26L4.6 8.26L7 9.2V10.47L4 8.89V7.58L7 6V7.26Z" fill="white"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M13.25 9.05C13.5 9.02 13.74 9 14 9C14.45 9 14.9 9.05 15.32 9.15L16 8.78V7.58L13 6V7.21L15.4 8.21L13.25 9.05Z" fill="white"/>
-<path opacity="0.25" d="M14 9C15.54 9 16.94 9.58 18 10.54V2H2V14H8.09C8.57 11.16 11.03 9 14 9Z" fill="white"/>
-<path d="M0 0V16H8.09C8.04 15.67 8 15.34 8 15H1V1H19V11.69C19.63 12.64 20 13.78 20 15V0H0Z" fill="white"/>
-<path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd" d="M8.41953 17.18C6.59953 17.54 4.84953 18.49 3.26953 20H10.6895C9.66953 19.32 8.86953 18.34 8.41953 17.18Z" fill="white"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M19 15C19 17.77 16.77 20 14 20C11.23 20 9 17.77 9 15C9 12.23 11.23 10 14 10C16.77 10 19 12.23 19 15ZM11.76 14.43L10.75 15.59L13.44 17.95L17.34 13.44L16.17 12.43L13.28 15.77L11.75 14.43H11.76V14.43Z" fill="#1FE44B"/>
-</g>
-</g>
-</g>
-<defs>
-<clipPath id="clip0_1306_6224">
-<rect width="20" height="20" fill="white"/>
-</clipPath>
-<clipPath id="clip1_1306_6224">
-<rect width="20" height="20" fill="white"/>
-</clipPath>
-<clipPath id="clip2_1306_6224">
-<rect width="20" height="20" fill="white"/>
-</clipPath>
-</defs>
+<path d="M14 8.08V7H11V9.26C11.87 8.65 12.9 8.24 14 8.08Z" fill="white"/>
+<path d="M18 7H15V8C16.08 8 17.09 8.25 18 8.68V7Z" fill="white"/>
+<path d="M18 3H15V6H18V3Z" fill="white"/>
+<path d="M8 15H7V18H8.68C8.25 17.09 8 16.08 8 15Z" fill="white"/>
+<path d="M9.26 11H7V14H8.08C8.24 12.9 8.65 11.88 9.26 11Z" fill="white"/>
+<path d="M6 11H3V14H6V11Z" fill="white"/>
+<path d="M6 15H3V18H6V15Z" fill="white"/>
+<path opacity="0.5" d="M12 1H9V4H12V1Z" fill="white"/>
+<path opacity="0.5" d="M8 5H5V8H8V5Z" fill="white"/>
+<path opacity="0.5" d="M4 0H1V3H4V0Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M20 15C20 17.77 17.77 20 15 20C12.23 20 10 17.77 10 15C10 12.23 12.23 10 15 10C17.77 10 20 12.23 20 15ZM12.76 14.43L11.75 15.59L14.44 17.95L18.34 13.44L17.17 12.43L14.28 15.77L12.75 14.43H12.76Z" fill="#1FE44B"/>
 </svg>

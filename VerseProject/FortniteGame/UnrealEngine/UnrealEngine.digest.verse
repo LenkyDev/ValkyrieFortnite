@@ -2,12 +2,270 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-37.51-CL-46968237
+# Generated from build: ++Fortnite+Release-38.00-CL-47291259
 #################################################
 
-using {/Verse.org/SceneGraph}
+Itemization<public> := module:
+    using {/Verse.org/Assets}
+    using {/Verse.org}
+    using {/Verse.org/Simulation}
+    using {/Verse.org/Native}
+    using {/Verse.org/SceneGraph}
+    @experimental
+    failure_reason<native><public> := class<castable><concrete><reads>:
+
+    @experimental
+    add_items_result<native><public> := class<epic_internal>:
+        Inventory<native><public>:inventory_component
+
+        AddedItems<native><public>:[]entity
+
+    @experimental
+    remove_items_result<native><public> := class<epic_internal>:
+        Inventory<native><public>:inventory_component
+
+        RemovedItems<native><public>:[]entity
+
+    @experimental
+    equip_item_result<native><public> := class<epic_internal>:
+        Inventory<native><public>:inventory_component
+
+        Item<native><public>:entity
+
+    @experimental
+    unequip_item_result<native><public> := class<epic_internal>:
+        Inventory<native><public>:inventory_component
+
+        Item<native><public>:entity
+
+    @experimental
+    inventory_with_priority<native><public> := class:
+        Inventory<native><public>:inventory_component
+
+        Priority<native><public>:float
+
+    @experimental
+    add_item_event<native><public> := class<epic_internal>(scene_event):
+        ItemComponent<native><public>:item_component
+
+        var EligibleInventories<native><public>:[]inventory_with_priority
+
+    @experimental
+    # Inventory components hold items. An entity with an inventory component can be considered to have an inventory.
+    # The inventory component controls which items can enter or exit.
+    # They also determine whether an item can be equipped.
+    inventory_component<native><public> := class<final_super>(component):
+        # Returns a failure reason (such as being full) if the provided item entity cannot be added.
+        CanAddItem<final><native><public>(Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {})<transacts>:?failure_reason
+
+        # Adds items to the inventory. Fails if no items could be added.
+        AddItem<native><final><public>(Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {})<transacts><decides>:void
+
+        # Returns a failure reason if the provided item is not present or cannot be removed.
+        CanRemoveItem<final><native><public>(Item:entity)<transacts>:?failure_reason
+
+        # Removes items from the inventory. Fails if no items could be removed.
+        RemoveItem<native><final><public>(Item:entity)<transacts><decides>:void
+
+        # Returns a list of items within this inventory only.
+        GetItems<native><final><public>()<reads>:[]entity
+
+        @available {MinUploadedAtFNVersion := 3200}
+        # Returns a list of items (of a specific type) within this inventory only.
+        GetItems<native><final><public>(Type:castable_subtype(item_component))<reads>:[]entity
+
+        @available {MinUploadedAtFNVersion := 2930}
+        # Returns a list of all items within this inventory and its descendant inventories.
+        FindItems<native><final><public>()<reads>:generator(entity)
+
+        @available {MinUploadedAtFNVersion := 3200}
+        # Returns a list of all items (of a specific type) within this inventory and its descendant inventories.
+        FindItems<native><final><public>(Type:castable_subtype(item_component))<reads>:[]entity
+
+        # Returns a list of sub-inventories of this inventory only.
+        GetInventories<native><final><public>()<reads>:[]inventory_component
+
+        @available {MinUploadedAtFNVersion := 2930}
+        # Returns a list of all sub-inventories within this inventory and its descendant inventories.
+        FindInventories<native><final><public>()<reads>:generator(inventory_component)
+
+        AddItemsEvent<native><final><public>:listenable(add_items_result) = external {}
+
+        RemoveItemsEvent<native><final><public>:listenable(remove_items_result) = external {}
+
+        # Adds the provided inventory_rule_interface instance to this inventory's rule list if not already present.
+        # NOTE: this part of the API is likely to change during Experimental.
+        AddRule<native><final><public>(Rule:inventory_rule_interface)<transacts><decides>:cancelable
+
+        var<private> InventoryRuleList<native><public>:[]inventory_rule_interface = external {}
+
+        GetEquippedItems<final><native><public>():[]entity
+
+        EquipItemEvent<native><final><public>:listenable(equip_item_result) = external {}
+
+        UnequipItemEvent<native><final><public>:listenable(unequip_item_result) = external {}
+
+    @experimental
+    # Interface for inventory rules. Used for composable rules for inventories.
+    # NOTE: this part of the API is likely to change during Experimental.
+    inventory_rule_interface<native><public> := interface<unique><castable>:
+        # Called after an inventory_rule_interface instance is added to an inventory.
+        OnRuleAdded<native_callable><public>(InventoryComponent:inventory_component):void = external {}
+
+        CanAddItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {}):?failure_reason = external {}
+
+        CanMergeItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity):?failure_reason = external {}
+
+        CanRemoveItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity):?failure_reason = external {}
+
+    @experimental
+    invalid_item_failure_reason<native><public> := class<final><reads>(failure_reason):
+
+    @experimental
+    # item_category is used to classify items.
+    item_category<native><public> := class<castable><concrete><unique><final>:
+
+    @experimental
+    item_equipped_change<native><public> := class<epic_internal>:
+        ItemComponent<native><public>:item_component
+
+        IsItemEquipped<native><public>:logic
+
+    @experimental
+    item_inventory_change<native><public> := class<epic_internal>:
+        ItemComponent<native><public>:item_component
+
+        PreviousInventory<native><public>:?inventory_component
+
+        CurrentInventory<native><public>:?inventory_component
+
+    @experimental
+    item_stack_size_change<native><public> := class<epic_internal>:
+        ItemComponent<native><public>:item_component
+
+        PreviousStackSize<native><public>:int
+
+        CurrentStackSize<native><public>:int
+
+    @experimental
+    item_max_stack_size_change<native><public> := class<epic_internal>:
+        ItemComponent<native><public>:item_component
+
+        PreviousMaxStackSize<native><public>:?int
+
+        CurrentMaxStackSize<native><public>:?int
+
+    @experimental
+    equip_item_error<native><public> := class:
+
+    @experimental
+    equip_item_query_event<native><public> := class(scene_event):
+        Item<native><public>:item_component
+
+        Inventory<native><public>:inventory_component
+
+        var<private> Errors<native><public>:[]equip_item_error = external {}
+
+        Reject<public>(Error:equip_item_error):void = external {}
+
+    @experimental
+    unequip_item_error<native><public> := class:
+
+    @experimental
+    unequip_item_query_event<native><public> := class(scene_event):
+        Item<native><public>:item_component
+
+        Inventory<native><public>:inventory_component
+
+        var<private> Errors<native><public>:[]unequip_item_error = external {}
+
+        Reject<public>(Error:unequip_item_error):void = external {}
+
+    @experimental
+    # Anything using this component should be considered an item. Required to interact with inventories.
+    item_component<native><public> := class<final_super>(component):
+        # Returns the inventory_component this item currently resides in. Fails if it cannot find a valid parent inventory.
+        GetParentInventory<native><final><public>()<reads><decides>:inventory_component
+
+        # Succeeds if this item is considered currently within an inventory and equipped.
+        IsEquipped<native><final><public>()<reads><decides>:void
+
+        # Broadcast when this item changes inventory.
+        ChangeInventoryEvent<native><final><public>:listenable(item_inventory_change) = external {}
+
+        # Broadcast when this item is equipped or unequipped.
+        ChangeEquippedEvent<native><final><public>:listenable(item_equipped_change) = external {}
+
+        @available {MinUploadedAtFNVersion := 3800}
+        # Attempts to equip this item within the inventory it is currently in.
+        # Fails if not in an inventory or if equip_item_query_event contains any errors after querying.
+        Equip<final><native><public>()<transacts>:result(void, []equip_item_error)
+
+        @available {MinUploadedAtFNVersion := 3800}
+        # Attempts to unequip this item.
+        # Fails if not in an inventory, not currently equipped or if unequip_item_query_event contains any errors after querying.
+        Unequip<final><native><public>()<transacts>:result(void, []unequip_item_error)
+
+        # Takes the specified amount of this item's stack, reducing this item's stack size in the process.
+        #  If amount is greater than the amount in the stack, the stack amount will be used instead.
+        #  Returns a clone of the item with a stack size equial to the amount it was able to take from the item.
+        Take<final><native><public>(Amount:int)<transacts><decides>:entity
+
+        @available {MinUploadedAtFNVersion := 3200}
+        # List of item_component classes we can be merged with.
+        MergeableItemComponentClasses<native><public>:[]castable_subtype(item_component) = external {}
+
+        @editable
+        # Categories which this item can belong to. Note that some projects may only use the first entry.
+        Categories<native><public>:[]item_category = external {}
+
+        # Succeeds if this item can be merged into the target item. Merging an entity with itself will always fail.
+        CanMergeInto<final><native_callable><public>(TargetItem:entity)<reads><decides>:void = external {}
+
+        # Attempts to merge this item into the specified item. Fails if items cannot be merged or no items are moved.
+        #  If TargetAmount is specified, only that amount will try to be merged into this item.
+        MergeInto<final><native_callable><public>(TargetItem:entity, ?TargetAmount:?int = external {})<transacts><decides>:void = external {}
+
+        # Current stack size of this item.
+        var<protected> StackSize<native><public>:int = external {}
+
+        # Sets the stack size of this item.
+        SetStackSize<final><native><public>(NewStackSize:int)<transacts>:void
+
+        # Maximum stack size for this item.
+        var<protected> MaxStackSize<native><public>:?int = external {}
+
+        # Sets the maximum stack size for this item. If ClampStackSize is true, StackSize will be clamped to NewMaxStackSize.
+        SetMaxStackSize<final><native><public>(NewMaxStackSize:int, ?ClampStackSize:logic = external {})<transacts>:void
+
+        StackSizeChangedEvent<native><final><public>:listenable(item_stack_size_change) = external {}
+
+        MaxStackSizeChangedEvent<native><final><public>:listenable(item_max_stack_size_change) = external {}
+
+        # Removes the item from its inventory and places it in the simulation world. Works on orphaned items i.e. outside the world or any inventory. Fails if the item is already a pickup.
+        Drop<native><public>()<transacts><decides>:void
+
+        # Fails if this item is already in an inventory, or the inventory cannot accept the item.
+        PickUp<native><public>(Inventory:inventory_component)<transacts><decides>:void
+
+    @experimental
+    # Item Merge Rules Interface. Implemented by components that want to participate in item mergeability checks.
+    has_item_merge_rules<public> := interface<unique>:
+        CanMergeInto<public>(TargetItem:entity)<reads><decides>:void = external {}
+
+        OnMergeInto<public>(TargetItem:entity, MergeAmount:int)<transacts>:void = external {}
+
+    @experimental
+    # Component that holds the details of an item.
+    item_details_component<native><public> := class<final_super>(component, has_description):
+
+    @experimental
+    # Component that holds the icon for an item.
+    item_icon_component<native><public> := class<final_super>(component, has_icon):
+
 # Module import path: /UnrealEngine.com/BasicShapes
 BasicShapes<public> := module:
+    using {/Verse.org/SceneGraph}
     cube<public> := class<final><public>(mesh_component):
 
     sphere<public> := class<final><public>(mesh_component):
@@ -39,7 +297,7 @@ WebAPI<public> := module:
     body_response<native><public> := class<internal>(response):
         GetBody<native><public>()<computes>:string
 
-    MakeClient<constructor><native><public>(ClientId:client_id)<converges>:client
+    MakeClient<native><public>(ClientId:client_id)<converges>:client
 
 JSON<public> := module:
     value<native><public> := class:
@@ -64,19 +322,16 @@ JSON<public> := module:
     # Parse a JSON string returning a value with its contents
     Parse<native><public>(JSONString:string)<transacts><decides>:value
 
-using {/UnrealEngine.com/Temporary/SpatialMath}
-using {/Verse.org/Assets}
-# Module import path: /UnrealEngine.com/Assets
-(/UnrealEngine.com:)Assets<public> := module:
-    SpawnParticleSystem<native><public>(Asset:particle_system, Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, ?Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation = external {}, ?StartDelay:float = external {})<transacts>:cancelable
-
+# Module import path: /UnrealEngine.com/SceneGraph
+(/UnrealEngine.com:)SceneGraph<public> := module:
+    using {/Verse.org/Native}
 Temporary<public> := module:
-    using {/Verse.org/Assets}
-    using {/Verse.org/Colors}
-    using {/UnrealEngine.com/Temporary/SpatialMath}
-    using {/Verse.org/Simulation}
     # Module import path: /UnrealEngine.com/Temporary/UI
     UI<public> := module:
+        using {/Verse.org/Assets}
+        using {/Verse.org/Colors}
+        using {/UnrealEngine.com/Temporary/SpatialMath}
+        using {/Verse.org/Simulation}
         # Returns the `player_ui` associated with `Player`.
         # Fails if there is no `player_ui` associated with `Player`.
         GetPlayerUI<native><public>(Player:player)<transacts><decides>:player_ui
@@ -91,6 +346,11 @@ Temporary<public> := module:
 
             # Removes `Widget` from this `player_ui`.
             RemoveWidget<native><public>(Widget:widget):void
+
+            # Sets the user's focus on this `Widget`. The target `Widget`must be focusable, otherwise this has no effect.
+            # If `SetFocus` is called before `AddWidget`, the `widget` will be focused after `AddWidget` is called, 
+            # unless a SetFocus is called on a different `widget` by the time `AddWidget` is called.
+            SetFocus<native><public>(Widget:widget):void
 
         # Base class for all UI elements drawn on the `player`'s screen.
         widget<native><public> := class<abstract><unique><epic_internal>:
@@ -510,7 +770,6 @@ Temporary<public> := module:
             # Gets the opacity of the displayed text.
             GetTextOpacity<native><public>():type {_X:float where 0.000000 <= _X, _X <= 1.000000}
 
-    using {/Verse.org/SpatialMath}
     # Module import path: /UnrealEngine.com/Temporary/Curves
     Curves<public> := module:
         editable_curve<native><public> := class<final><concrete>:
@@ -519,6 +778,9 @@ Temporary<public> := module:
 
     # Module import path: /UnrealEngine.com/Temporary/Diagnostics
     Diagnostics<public> := module:
+        using {/UnrealEngine.com/Temporary/SpatialMath}
+        using {/Verse.org/Colors}
+        using {/Verse.org/SpatialMath}
         # Enumerated presets for policies describing a desired draw duration.
         debug_draw_duration_policy<native><public> := enum:
             SingleFrame
@@ -621,16 +883,20 @@ Temporary<public> := module:
             # Prints the current script call stack using the given log level
             PrintCallStack<native><public>(?Level:log_level = external {})<computes>:void
 
-    using {/Verse.org/Native}
     # Module import path: /UnrealEngine.com/Temporary/SpatialMath
     (/UnrealEngine.com/Temporary:)SpatialMath<public> := module:
+        using {/Verse.org/SpatialMath}
+        using {/Verse.org/Native}
+        using {/Verse.org/Simulation}
         @editable
         @import_as("/Script/EpicGamesTemporary.FVerseRotation_Deprecated")
         (/UnrealEngine.com/Temporary/SpatialMath:)rotation<native><public> := struct<concrete>:
 
+        @vm_no_effect_token
         # Makes a `rotation` from `Axis` and `AngleRadians` using a left-handed sign convention (e.g. a positive rotation around +Z takes +X to +Y). If `Axis.IsAlmostZero[]`, make the identity rotation.
         MakeRotation<native><public>(Axis:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, AngleRadians:float)<reads><converges>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
+        @vm_no_effect_token
         # Makes a `rotation` by applying `YawRightDegrees`, `PitchUpDegrees`, and `RollClockwiseDegrees`, in that order:
         #  * first a *yaw* about the Z axis with a positive angle indicating a clockwise rotation when viewed from above,
         #  * then a *pitch* about the new Y axis with a positive angle indicating 'nose up',
@@ -641,11 +907,13 @@ Temporary<public> := module:
         # Makes the identity `rotation`.
         (/UnrealEngine.com/Temporary/SpatialMath:)IdentityRotation<native><public>()<converges>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
+        @vm_no_effect_token
         # Returns the 'distance' between `Rotation1` and `Rotation2`. The result will be between:
         #  * `0.0`, representing equivalent rotations and
         #  * `1.0` representing rotations which are 180 degrees apart (i.e., the shortest rotation between them is 180 degrees around some axis).
         (/UnrealEngine.com/Temporary/SpatialMath:)Distance<native><public>(Rotation1:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Rotation2:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<reads>:float
 
+        @vm_no_effect_token
         # Returns the 'smallest angular distance' between `Rotation1` and `Rotation2` in radians.
         AngularDistance<native><public>(Rotation1:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Rotation2:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<reads>:float
 
@@ -679,6 +947,7 @@ Temporary<public> := module:
         # Makes a `rotation` by composing the inverse of `RotationToRemove` from `InitialRotation`. such that InitialRotation = RotateBy(UnrotateBy(InitialRotation, RotationToRemove), RotationToRemove). This is equivalent to RotateBy(InitialRotation, InvertRotation(RotationToRemove))
         (InitialRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).UnrotateBy<native><public>(RotationToRemove:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
+        @vm_no_effect_token
         # Makes an `[]float` with three elements:
         #  * *yaw* degrees of `rotation`
         #  * *pitch* degrees of `rotation`
@@ -686,10 +955,12 @@ Temporary<public> := module:
         # using the conventions of `MakeRotationFromYawPitchRollDegrees`.
         (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)GetYawPitchRollDegrees<native><public>()<reads>:[]float
 
+        @vm_no_effect_token
         # Makes a `vector3` from the axis of `rotation`.
         # If `rotation` is nearly identity, this will return the +X axis. See also `GetAngle`.
         (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)GetAxis<native><public>()<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
+        @vm_no_effect_token
         # Returns the radians of `rotation` around the axis of `rotation`. See also `GetAxis`.
         (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).GetAngle<native><public>()<reads>:float
 
@@ -710,9 +981,11 @@ Temporary<public> := module:
         # Used to perform spherical linear interpolation between `From` (when `Parameter = 0.0`) and `To` (when `Parameter = 1.0`). Expects that `0.0 <= Parameter <= 1.0`.
         (/UnrealEngine.com/Temporary/SpatialMath:)Slerp<native><public>(InitialRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, FinalRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Parameter:float)<transacts><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
+        @vm_no_effect_token
         # Makes a `vector3` by applying `Rotation` to `Vector`.
         (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).RotateVector<native><public>(Vector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
+        @vm_no_effect_token
         # Makes a `vector3` by applying the inverse of `Rotation` to `Vector`.
         (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).UnrotateVector<native><public>(Vector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
@@ -999,208 +1272,20 @@ Temporary<public> := module:
     # Stably sort `Array` using `Less` where `Less` succeeding indicates `Left` should precede `Right`
     SortBy<native><public>((Array:[]t, Less:type {_(:t, :t)<computes><decides>:void}) where t:type)<computes>:[]t
 
-Itemization<public> := module:
+# Module import path: /UnrealEngine.com/Assets
+(/UnrealEngine.com:)Assets<public> := module:
+    using {/Verse.org/SpatialMath}
+    using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/Verse.org/Assets}
-    using {/Verse.org}
-    using {/Verse.org/Simulation}
-    using {/Verse.org/Native}
-    using {/Verse.org/SceneGraph}
-    @experimental
-    failure_reason<native><public> := class<castable><concrete><reads>:
+    SpawnParticleSystem<native><public>(Asset:particle_system, Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, ?Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation = external {}, ?StartDelay:float = external {})<transacts>:cancelable
 
-    @experimental
-    add_items_result<native><public> := class<epic_internal>:
-        Inventory<native><public>:inventory_component
+    SpawnParticleSystem<native><public>(Asset:particle_system, Position:(/Verse.org/SpatialMath:)vector3, ?Rotation:(/Verse.org/SpatialMath:)rotation = external {}, ?StartDelay:float = external {})<transacts>:cancelable
 
-        AddedItems<native><public>:[]entity
-
-    @experimental
-    remove_items_result<native><public> := class<epic_internal>:
-        Inventory<native><public>:inventory_component
-
-        RemovedItems<native><public>:[]entity
-
-    @experimental
-    inventory_with_priority<native><public> := class:
-        Inventory<native><public>:inventory_component
-
-        Priority<native><public>:float
-
-    @experimental
-    add_item_event<native><public> := class<epic_internal>(scene_event):
-        ItemComponent<native><public>:item_component
-
-        var EligibleInventories<native><public>:[]inventory_with_priority
-
-    @experimental
-    # Inventory components hold items. An entity with an inventory component can be considered to have an inventory.
-    # The inventory component controls which items can enter or exit.
-    # They also determine whether an item can be equipped.
-    inventory_component<native><public> := class<final_super>(component):
-        # Returns a failure reason (such as being full) if the provided item entity cannot be added.
-        CanAddItem<final><native><public>(Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {})<transacts>:?failure_reason
-
-        # Adds items to the inventory. Fails if no items could be added.
-        AddItem<native><final><public>(Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {})<transacts><decides>:void
-
-        # Returns a failure reason if the provided item is not present or cannot be removed.
-        CanRemoveItem<final><native><public>(Item:entity)<transacts>:?failure_reason
-
-        # Removes items from the inventory. Fails if no items could be removed.
-        RemoveItem<native><final><public>(Item:entity)<transacts><decides>:void
-
-        # Returns a list of items currently within this inventory only.
-        GetItems<native><final><public>()<reads>:[]entity
-
-        @available {MinUploadedAtFNVersion := 2930}
-        # Returns a list of all items within this inventory and its descendant inventories.
-        FindItems<native><final><public>()<reads>:generator(entity)
-
-        # Returns a list of sub-inventories of this inventory only.
-        GetInventories<native><final><public>()<reads>:[]inventory_component
-
-        @available {MinUploadedAtFNVersion := 2930}
-        # Returns a list of all sub-inventories within this inventory and its descendant inventories.
-        FindInventories<native><final><public>()<reads>:generator(inventory_component)
-
-        AddItemsEvent<native><final><public>:listenable(add_items_result) = external {}
-
-        RemoveItemsEvent<native><final><public>:listenable(remove_items_result) = external {}
-
-        # Adds the provided inventory_rule_interface instance to this inventory's rule list if not already present.
-        # NOTE: this part of the API is likely to change during Experimental.
-        AddRule<native><final><public>(Rule:inventory_rule_interface)<transacts><decides>:cancelable
-
-        var<private> InventoryRuleList<native><public>:[]inventory_rule_interface = external {}
-
-        var<private> TotalSlots<native><protected>:int = external {}
-
-    @experimental
-    (InAgent:agent).GetInventory<native><public>()<reads><decides>:inventory_component
-
-    @experimental
-    # Interface for inventory rules. Used for composable rules for inventories.
-    inventory_rule_interface<native><public> := interface<unique><castable>:
-        # Called after an inventory_rule_interface instance is added to an inventory.
-        OnRuleAdded<native_callable><public>(InventoryComponent:inventory_component):void = external {}
-
-        CanAddItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {}):?failure_reason = external {}
-
-        CanMergeItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity):?failure_reason = external {}
-
-        CanRemoveItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity):?failure_reason = external {}
-
-    @experimental
-    invalid_item_failure_reason<native><public> := class<final><reads>(failure_reason):
-
-    @experimental
-    # item_category is used to classify items.
-    item_category<native><public> := class<castable><concrete><unique><final>:
-
-    @experimental
-    item_equipped_change<native><public> := class<epic_internal>:
-        ItemComponent<native><public>:item_component
-
-        IsItemEquipped<native><public>:logic
-
-    @experimental
-    item_inventory_change<native><public> := class<epic_internal>:
-        ItemComponent<native><public>:item_component
-
-        PreviousInventory<native><public>:?inventory_component
-
-        CurrentInventory<native><public>:?inventory_component
-
-    @experimental
-    item_stack_size_change<native><public> := class<epic_internal>:
-        ItemComponent<native><public>:item_component
-
-        PreviousStackSize<native><public>:int
-
-        CurrentStackSize<native><public>:int
-
-    @experimental
-    item_max_stack_size_change<native><public> := class<epic_internal>:
-        ItemComponent<native><public>:item_component
-
-        PreviousMaxStackSize<native><public>:?int
-
-        CurrentMaxStackSize<native><public>:?int
-
-    @experimental
-    # Anything using this component should be considered an item. Required to interact with inventories.
-    item_component<native><public> := class<final_super>(component):
-        # Returns the inventory_component this item currently resides in. Fails if it cannot find a valid parent inventory.
-        GetParentInventory<native><final><public>()<reads><decides>:inventory_component
-
-        # Succeeds if this item is considered currently within an inventory and equipped.
-        IsItemEquipped<native><final><public>()<reads><decides>:void
-
-        InventoryChangeEvent<native><final><public>:listenable(item_inventory_change) = external {}
-
-        EquippedChangedEvent<native><final><public>:listenable(item_equipped_change) = external {}
-
-        # Takes the specified amount of this item's stack, reducing this item's stack size in the process.
-        #  If amount is greater than the amount in the stack, the stack amount will be used instead.
-        #  Returns a clone of the item with a stack size equial to the amount it was able to take from the item.
-        Take<final><native><public>(Amount:int)<transacts><decides>:entity
-
-        @available {MinUploadedAtFNVersion := 3200}
-        # List of item_component classes we can be merged with.
-        MergeableItemComponentClasses<native><public>:[]castable_subtype(item_component) = external {}
-
-        @editable
-        # Categories which this item can belong to. Note that some projects may only use the first entry.
-        Categories<native><public>:[]item_category = external {}
-
-        # Succeeds if this item can be merged into the target item. Merging an entity with itself will always fail.
-        CanMergeInto<final><native_callable><public>(TargetItem:entity)<reads><decides>:void = external {}
-
-        # Attempts to merge this item into the specified item. Fails if items cannot be merged or no items are moved.
-        #  If TargetAmount is specified, only that amount will try to be merged into this item.
-        MergeInto<final><native_callable><public>(TargetItem:entity, ?TargetAmount:?int = external {})<transacts><decides>:void = external {}
-
-        # Current stack size of this item.
-        var<protected> StackSize<native><public>:int = external {}
-
-        # Sets the stack size of this item.
-        SetStackSize<final><native><public>(NewStackSize:int)<transacts>:void
-
-        # Maximum stack size for this item.
-        var<protected> MaxStackSize<native><public>:?int = external {}
-
-        # Sets the maximum stack size for this item. If ClampStackSize is true, StackSize will be clamped to NewMaxStackSize.
-        SetMaxStackSize<final><native><public>(NewMaxStackSize:int, ?ClampStackSize:logic = external {})<transacts>:void
-
-        StackSizeChangedEvent<native><final><public>:listenable(item_stack_size_change) = external {}
-
-        MaxStackSizeChangedEvent<native><final><public>:listenable(item_max_stack_size_change) = external {}
-
-        # Removes the item from its inventory and places it in the simulation world. Works on orphaned items i.e. outside the world or any inventory. Fails if the item is already a pickup.
-        Drop<native><public>()<transacts><decides>:void
-
-        # Fails if this item is already in an inventory, or the inventory cannot accept the item.
-        PickUp<native><public>(Inventory:inventory_component)<transacts><decides>:void
-
-    @experimental
-    # Item Merge Rules Interface. Implemented by components that want to participate in item mergeability checks.
-    has_item_merge_rules<public> := interface<unique>:
-        CanMergeInto<public>(TargetItem:entity)<reads><decides>:void = external {}
-
-        OnMergeInto<public>(TargetItem:entity, MergeAmount:int)<transacts>:void = external {}
-
-    @experimental
-    # Component that holds the details of an item.
-    item_details_component<native><public> := class<final_super>(component, has_description):
-
-    @experimental
-    # Component that holds the icon for an item.
-    item_icon_component<native><public> := class<final_super>(component, has_icon):
-
-using {/Verse.org/Native}
-using {/Verse.org/Simulation}
 # Module import path: /UnrealEngine.com/ControlInput
 ControlInput<public> := module:
+    using {/Verse.org/Assets}
+    using {/Verse.org/Native}
+    using {/Verse.org/Simulation}
     @available {MinUploadedAtFNVersion := 3630}
     # Input_events is a container for user input events which can be subscribed to.
     #   * Use the 'GetPlayerInput' and 'GetInputEvents' functions to retrieve an input_events object for a given player.
@@ -1212,6 +1297,8 @@ ControlInput<public> := module:
     #            /\                         /\                                            / 
     #              \---------------------> ActivationCanceledEvent ----------------------/
     input_events<native><public>(t:type) := class<epic_internal>:
+        (/UnrealEngine.com/ControlInput/input_events:)ControlInput_input_events_Variance<private>:?type {_():tuple(t)} = external {}
+
         # This input has met all required conditions and has successfully fired. Most of the time, you should bind to this event.
         #  Tuple payload: 0: the player generating this event
         #                 1: the value generated by the physical input

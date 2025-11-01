@@ -20,10 +20,11 @@ persona_prompt_moderated_error<native><public> := class(persona_prompt_error):
 
 
 @experimental
-conversation_target<native><public> := interface<unique><epic_internal>:
-    # Get all the agents currently targeting Self for conversation.
-    GetConversationTargeters<native_callable><public>():[]agent = external {}
+persona_prompt_character_limit_error<native><public> := class(persona_prompt_error):
 
+
+@experimental
+conversation_target<native><public> := interface<unique><epic_internal>:
     # When agent targets Self for conversation.
     AddConversationTargeterEvent<final><public>:listenable(agent) = external {}
 
@@ -38,11 +39,15 @@ conversation_target<native><public> := interface<unique><epic_internal>:
 
     # Listenable which is signaled when the persona starts talking.
     #  1/ The agent (if involved) which prompted the response.
-    #  2/ Cancelable to stop the target from talking.
-    StartSayEvent<public>:listenable(tuple(?agent, cancelable))
+    #  2/ The message being said.
+    #  3/ Cancelable to stop the target from talking.
+    StartSayEvent<public>:listenable(tuple(?agent, message, cancelable))
 
     # Listenable which is signaled when the target stops talking.
     StopSayEvent<public>:listenable(tuple())
+
+    # All the agents currently targeting Self for conversation.
+    var<private> ConversationTargeters<public>:[]agent
 
 @experimental
 # A participant can only speak to one conversation target at a time.
@@ -60,8 +65,8 @@ conversation_target<native><public> := interface<unique><epic_internal>:
 
 @experimental
 persona_conversation_target<native><public> := class(conversation_target):
-    # Get all the agents currently targeting Self for conversation.
-    GetConversationTargeters<native><override>():[]agent
+    # All the agents currently targeting Self for conversation.
+    var ConversationTargeters<override>:[]agent = external {}
 
     # Listenable which is signaled when the player starts prompting the persona.
     StartHearEvent<native><override>:listenable(agent) = external {}
@@ -71,8 +76,9 @@ persona_conversation_target<native><public> := class(conversation_target):
 
     # Listenable which is signaled when the persona starts talking.
     #  1/ The agent (if involved) which prompted the response.
-    #  2/ Cancelable to stop the target from talking.
-    StartSayEvent<native><override>:listenable(tuple(?agent, cancelable)) = external {}
+    #  2/ The message being said.
+    #  3/ Cancelable to stop the target from talking.
+    StartSayEvent<native><override>:listenable(tuple(?agent, message, cancelable)) = external {}
 
     # Listenable which is signaled when the target stops talking.
     StopSayEvent<native><override>:listenable(tuple()) = external {}
@@ -86,6 +92,8 @@ persona_conversation_target<native><public> := class(conversation_target):
 
     # Requests the Persona to talk on the topic provided.
     PromptToTalk<native><public>(Topic:string):void
+
+    SubscribeToResponseType<native><public>(response_type:type, Callback:type {_(:?agent, :response_type):void})<transacts>:cancelable
 
     # Listenable which is signaled when the persona was requested to talk, either by a player or prompt and failed.
     PromptFailureEvent<native><public>:listenable(persona_prompt_error) = external {}
@@ -108,6 +116,12 @@ persona_device<native><public> := class<concrete><final>(creative_device_base):
 
     # Removes an agent from the participants.
     RemoveParticipant<public>(Agent:agent):void = external {}
+
+    # Attempts to add a persona on this device.
+    AddPersona<native><public>((local:)Persona:agent)<transacts><decides>:persona_conversation_target
+
+    # Attempts to remove a persona on this device.
+    RemovePersona<native><public>((local:)Persona:agent)<transacts>:void
 
     # All the players in the channel with the personas managed by this device.
     var<private> Participants<public>:[]agent = external {}

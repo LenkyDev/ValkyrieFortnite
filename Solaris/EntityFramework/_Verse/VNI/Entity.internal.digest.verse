@@ -87,7 +87,7 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
     #   * Components cannot be moved between parents.
     Entity<native><public>:entity
 
-    # Called when the component is added to an entity using `entity.AddEntities`.
+    # Called when the component is added to an entity using `entity.AddComponents`.
     #   * Components can check for dependent sibling components at this stage through `entity.GetComponents`.
     #   * Components can add additional components at this stage using `entity.AddComponents`
     OnInitialized<native><native_callable><epic_internal>():void
@@ -302,13 +302,21 @@ replication_component<native><epic_internal> := class<final_super>(component):
 
     OnEndSimulationInternal<native><override>():void
 
+    @category("Epic Internal")
     @editable
-    # Internal only flag to enable or disable replication
+    # Internal only - Flag to enable or disable replication
     EnableReplication<native><epic_internal>:logic = external {}
 
+    @category("Epic Internal")
     @editable
-    # Internal only flag to make this entity always relevant for replication to clients
+    # Internal only - Flag to make this entity always relevant for replication to clients
     AlwaysRelevant<native><epic_internal>:logic = external {}
+
+    var NetCullDistance<epic_internal>:float = external {}
+
+    SetNetCullDistanceOverride<native><epic_internal>(Override:float)<transacts>:void
+
+    ClearNetCullDistanceOverride<native><epic_internal>()<transacts>:void
 
 @hide_in_editor
 simulation_entity<native><epic_internal> := class<concrete><unique><transacts>(root_entity):
@@ -344,23 +352,11 @@ transform_component<native><public> := class<final><final_super>(component):
     # Current transform of the entity, globally referenced. Any value set at construction will be overrridden with the calculation from the Local Transform
     var GlobalTransform<public>:(/Verse.org/SpatialMath:)transform = external {}
 
-    var<private> GlobalTransformInternal<native><private>:(/Verse.org/SpatialMath:)transform = external {}
-
     # LocalTransform to its parent/origin
     var LocalTransform<public>:(/Verse.org/SpatialMath:)transform = external {}
 
-    @editable {}
-    @display_name("LocalTransform")
-    @replicated("RepNotify")
-    var<private> LocalTransformInternal<native><private>:(/Verse.org/SpatialMath:)transform = external {}
-
     # alternate origin than the default parent entity
     var Origin<public>:?origin = external {}
-
-    @editable {}
-    @display_name("Origin")
-    @replicated("RepNotify")
-    var<private> OriginInternal<native><private>:?origin = external {}
 
 # Returns the global transform of this entity, in the case the entity does not have a transform_component it will return the transform of the first parent that has a transform
 (InEntity:entity).GetGlobalTransform<native><public>()<transacts>:(/Verse.org/SpatialMath:)transform

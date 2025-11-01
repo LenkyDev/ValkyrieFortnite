@@ -55,7 +55,7 @@
 			"/Script/Engine.CurveLinearColor": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/Engine.DataTable": { "Rules": [ "View", "Create" ] },
 			"/Script/Engine.Font": { "Rules": [ "View" ] },
-			"/Script/Engine.MaterialFunction": { "Rules": [ "View", "Create", "ModuleAPI" ] },
+			"/Script/Engine.MaterialFunction": { "Rules": [ "View", "Create" ] },
 			"/Script/Engine.SoundConcurrency": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/Engine.World": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/Engine.Texture2DArray": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
@@ -131,6 +131,7 @@
 			"/Script/PCGEditor.PCGBuilderSettings": { "Visible": true },
 			"/Script/NavigationSystem.NavModifierVolume": { "Visible": true },
 			"/Script/NavigationSystem.NavMeshBoundsVolume": { "Visible": true },
+			"/Script/AIModule.EnvQuery": { "Visible": true },
 			"/Script/AIModule.EQSRenderingComponent": { "Visible": true },
 			"/Script/Engine.LevelScriptBlueprint": { "Visible": true },
 			"/Script/Engine.TriggerVolume": { "Visible": true },
@@ -224,6 +225,9 @@
 			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_PerfMode.DSCT_PerfMode_C": {},
 			"/Game/TimeOfDay/TODM_Sequence/Scalability/DSCT_VolumetricFog.DSCT_VolumetricFog_C": {},
 			"/Script/MovieSceneTracks.MovieSceneScalabilityCondition": {},
+			"/NPCDefault/Types/CharacterType_Custom.CharacterType_Custom_C": { "Visible": true },
+			"/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C": { "Visible": true },
+			"/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C": { "Visible": true },
 			"/NPCDefault/Types/CharacterType_Participant.CharacterType_Participant_C": { "Visible": true },
 			"/NPCDefault/Types/Modifiers/CharacterModifier_Bots.CharacterModifier_Bots_C": { "Visible": true },
 			"/Script/ValetRuntime.DagwoodNetworkPhysicsComponent": { "Visible": true },
@@ -249,7 +253,10 @@
 			"/Script/LagerRuntime.FortAthenaLivingWorldVehiclePointProvider": { "Visible": true },
 			"/Script/ValetRuntime.FortDagwoodVehicleConfigs": { "Visible": true },
 			"/Script/ChaosSolverEngine.ChaosDebugDrawComponent": { "Visible": true },
-			"/Script/NavigationSystem.NavSystemConfigOverride": { "Visible": true }
+			"/Script/NavigationSystem.NavSystemConfigOverride": { "Visible": true },
+			"/Game/Athena/Aircraft/AthenaAircraft.AthenaAircraft_C": { "Visible": true },
+			"/Game/Athena/SafeZone/SafeZoneIndicator.SafeZoneIndicator_C": { "Visible": true },
+			"/Script/FortniteGame.FortInGameMapManagerAthena": { "Visible": true }
 		},
 		"AllowedMenus": {
 			"LevelEditor.MainMenu": {

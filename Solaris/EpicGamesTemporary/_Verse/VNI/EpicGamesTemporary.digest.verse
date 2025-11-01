@@ -1,16 +1,18 @@
-using {/Verse.org/SpatialMath}
-using {/Verse.org/Native}
-using {/Verse.org/Simulation}
 # Module import path: /UnrealEngine.com/Temporary/SpatialMath
 (/UnrealEngine.com/Temporary:)SpatialMath<public> := module:
+    using {/Verse.org/SpatialMath}
+    using {/Verse.org/Native}
+    using {/Verse.org/Simulation}
     @editable
     @import_as("/Script/EpicGamesTemporary.FVerseRotation_Deprecated")
     (/UnrealEngine.com/Temporary/SpatialMath:)rotation<native><public> := struct<concrete>:
 
 
+    @vm_no_effect_token
     # Makes a `rotation` from `Axis` and `AngleRadians` using a left-handed sign convention (e.g. a positive rotation around +Z takes +X to +Y). If `Axis.IsAlmostZero[]`, make the identity rotation.
     MakeRotation<native><public>(Axis:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, AngleRadians:float)<reads><converges>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
+    @vm_no_effect_token
     # Makes a `rotation` by applying `YawRightDegrees`, `PitchUpDegrees`, and `RollClockwiseDegrees`, in that order:
     #  * first a *yaw* about the Z axis with a positive angle indicating a clockwise rotation when viewed from above,
     #  * then a *pitch* about the new Y axis with a positive angle indicating 'nose up',
@@ -21,11 +23,13 @@ using {/Verse.org/Simulation}
     # Makes the identity `rotation`.
     (/UnrealEngine.com/Temporary/SpatialMath:)IdentityRotation<native><public>()<converges>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
+    @vm_no_effect_token
     # Returns the 'distance' between `Rotation1` and `Rotation2`. The result will be between:
     #  * `0.0`, representing equivalent rotations and
     #  * `1.0` representing rotations which are 180 degrees apart (i.e., the shortest rotation between them is 180 degrees around some axis).
     (/UnrealEngine.com/Temporary/SpatialMath:)Distance<native><public>(Rotation1:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Rotation2:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<reads>:float
 
+    @vm_no_effect_token
     # Returns the 'smallest angular distance' between `Rotation1` and `Rotation2` in radians.
     AngularDistance<native><public>(Rotation1:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Rotation2:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<reads>:float
 
@@ -59,6 +63,7 @@ using {/Verse.org/Simulation}
     # Makes a `rotation` by composing the inverse of `RotationToRemove` from `InitialRotation`. such that InitialRotation = RotateBy(UnrotateBy(InitialRotation, RotationToRemove), RotationToRemove). This is equivalent to RotateBy(InitialRotation, InvertRotation(RotationToRemove))
     (InitialRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).UnrotateBy<native><public>(RotationToRemove:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
+    @vm_no_effect_token
     # Makes an `[]float` with three elements:
     #  * *yaw* degrees of `rotation`
     #  * *pitch* degrees of `rotation`
@@ -66,10 +71,12 @@ using {/Verse.org/Simulation}
     # using the conventions of `MakeRotationFromYawPitchRollDegrees`.
     (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)GetYawPitchRollDegrees<native><public>()<reads>:[]float
 
+    @vm_no_effect_token
     # Makes a `vector3` from the axis of `rotation`.
     # If `rotation` is nearly identity, this will return the +X axis. See also `GetAngle`.
     (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).(/UnrealEngine.com/Temporary/SpatialMath:)GetAxis<native><public>()<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
+    @vm_no_effect_token
     # Returns the radians of `rotation` around the axis of `rotation`. See also `GetAxis`.
     (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).GetAngle<native><public>()<reads>:float
 
@@ -90,9 +97,11 @@ using {/Verse.org/Simulation}
     # Used to perform spherical linear interpolation between `From` (when `Parameter = 0.0`) and `To` (when `Parameter = 1.0`). Expects that `0.0 <= Parameter <= 1.0`.
     (/UnrealEngine.com/Temporary/SpatialMath:)Slerp<native><public>(InitialRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, FinalRotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Parameter:float)<transacts><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)rotation
 
+    @vm_no_effect_token
     # Makes a `vector3` by applying `Rotation` to `Vector`.
     (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).RotateVector<native><public>(Vector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
+    @vm_no_effect_token
     # Makes a `vector3` by applying the inverse of `Rotation` to `Vector`.
     (Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation).UnrotateVector<native><public>(Vector:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 

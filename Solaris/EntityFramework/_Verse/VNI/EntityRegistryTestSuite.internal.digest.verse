@@ -1,7 +1,7 @@
-using {/Verse.org/Simulation}
-using {/Verse.org/SceneGraph}
 # Module import path: /UnrealEngine.com/EntityRegistryTestSuite
 EntityRegistryTestSuite<public> := module:
+    using {/Verse.org/Simulation}
+    using {/Verse.org/SceneGraph}
     @hide_in_editor
     entity_registry_test_entity<native><epic_internal> := class(entity):
 

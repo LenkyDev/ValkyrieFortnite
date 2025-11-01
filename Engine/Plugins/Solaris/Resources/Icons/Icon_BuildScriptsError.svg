@@ -1,21 +1,13 @@
 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_637_3266)">
-<g clip-path="url(#clip1_637_3266)">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M9.68992 10.42H8.41992L10.3199 6H11.5799L9.68992 10.42Z" fill="white"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M7 7.26L4.6 8.26L7 9.2V10.47L4 8.89V7.58L7 6V7.26Z" fill="white"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M13.25 9.05C13.5 9.02 13.74 9 14 9C14.45 9 14.9 9.05 15.32 9.15L16 8.78V7.58L13 6V7.21L15.4 8.21L13.25 9.05Z" fill="white"/>
-<path opacity="0.25" d="M14 9C15.54 9 16.94 9.58 18 10.54V2H2V14H8.09C8.57 11.16 11.03 9 14 9Z" fill="white"/>
-<path d="M0 0V16H8.09C8.04 15.67 8 15.34 8 15H1V1H19V11.69C19.63 12.64 20 13.78 20 15V0H0Z" fill="white"/>
-<path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd" d="M8.42002 17.1801C6.60002 17.5401 4.85002 18.4901 3.27002 20.0001H10.69C9.67002 19.3201 8.87002 18.3401 8.42002 17.1801Z" fill="white"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M18.6499 13.09C18.4099 12.48 18.0299 11.92 17.5599 11.46C17.0899 10.99 16.5399 10.63 15.9299 10.37C15.3199 10.11 14.6599 9.98997 14.0099 9.99997C13.0199 9.99997 12.0499 10.29 11.2299 10.83C10.5099 11.31 9.92986 11.96 9.53986 12.74C9.14986 13.51 8.96986 14.37 9.00986 15.23C9.04986 16.1 9.31986 16.93 9.77986 17.67C10.2399 18.4 10.8799 19 11.6499 19.4C12.4199 19.81 13.2599 20.01 14.1299 19.99C14.9999 19.97 15.8399 19.72 16.5699 19.28C17.2999 18.84 17.9299 18.21 18.3599 17.46C18.7799 16.7 19.0199 15.86 19.0199 14.99C19.0199 14.33 18.8999 13.68 18.6499 13.07V13.09ZM17.0099 16H11.0099V14H17.0099V16Z" fill="#EF3535"/>
-</g>
-</g>
-<defs>
-<clipPath id="clip0_637_3266">
-<rect width="20" height="20" fill="white"/>
-</clipPath>
-<clipPath id="clip1_637_3266">
-<rect width="20" height="20" fill="white"/>
-</clipPath>
-</defs>
+<path d="M14 8.08V7H11V9.26C11.87 8.65 12.9 8.24 14 8.08Z" fill="white"/>
+<path d="M18 7H15V8C16.08 8 17.09 8.25 18 8.68V7Z" fill="white"/>
+<path d="M18 3H15V6H18V3Z" fill="white"/>
+<path d="M6 15H3V18H6V15Z" fill="white"/>
+<path d="M8 15H7V18H8.68C8.25 17.09 8 16.08 8 15Z" fill="white"/>
+<path d="M9.26 11H7V14H8.08C8.24 12.9 8.65 11.88 9.26 11Z" fill="white"/>
+<path d="M6 11H3V14H6V11Z" fill="white"/>
+<path opacity="0.5" d="M12 1H9V4H12V1Z" fill="white"/>
+<path opacity="0.5" d="M8 5H5V8H8V5Z" fill="white"/>
+<path opacity="0.5" d="M4 0H1V3H4V0Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M15 10C12.23 10 10 12.23 10 15C10 17.77 12.23 20 15 20C17.77 20 20 17.77 20 15C20 12.23 17.77 10 15 10ZM18 15.5H12V14.5H18V15.5Z" fill="#EF3535"/>
 </svg>

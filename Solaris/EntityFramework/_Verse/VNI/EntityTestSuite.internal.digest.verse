@@ -1,9 +1,9 @@
-using {/Verse.org/Assets}
-using {/Verse.org/Temporary/EpicGamesRestricted/Network}
-using {/Verse.org/Simulation}
-using {/Verse.org/SceneGraph}
 # Module import path: /UnrealEngine.com/EntityTestSuite
 EntityTestSuite<public> := module:
+    using {/Verse.org/Assets}
+    using {/Verse.org/Temporary/EpicGamesRestricted/Network}
+    using {/Verse.org/Simulation}
+    using {/Verse.org/SceneGraph}
     @hide_in_editor
     test_contentscope_events_component<native><epic_internal> := class<final_super>(component):
         KeyframeReachedEvent<native><public>:listenable(tuple()) = external {}
@@ -39,6 +39,10 @@ EntityTestSuite<public> := module:
     @hide_in_editor
     test_stable_component<native><epic_internal> := class<final_super>(component):
 
+
+    @hide_in_editor
+    test_netculldistance<native><epic_internal> := class<final_super>(component):
+        OnSimulate<override>()<suspends>:void = external {}
 
     @hide_in_editor
     test_component<native><epic_internal> := class<final_super>(component):

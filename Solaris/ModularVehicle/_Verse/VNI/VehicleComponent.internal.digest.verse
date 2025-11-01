@@ -135,11 +135,27 @@ vehicle_thruster_component<native><epic_internal> := class<final><epic_internal>
 
 
 @experimental
+# gear change event data
+gear_change_info<native><epic_internal> := struct<epic_internal>:
+    ChangedToGear<native><public>:int
+
+@experimental
 vehicle_transmission_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
+    @experimental
+    GearChangeEvent<native><final><epic_internal>:listenable(gear_change_info) = external {}
+
     GetCurrentGear<epic_internal>(Accessor:accessor)<transacts>:int = external {}
 
 @experimental
+# wheel contact event
+wheel_touch_change_info<native><epic_internal> := struct<epic_internal>:
+    IsInContact<native><public>:logic
+
+@experimental
 vehicle_wheel_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
+    @experimental
+    WheelTouchChangeEvent<native><final><epic_internal>:listenable(wheel_touch_change_info) = external {}
+
     GetTouchingGround<epic_internal>(Accessor:accessor)<transacts>:logic = external {}
 
     GetForceIntoSurface<epic_internal>(Accessor:accessor)<transacts>:float = external {}

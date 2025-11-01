@@ -137,10 +137,10 @@ inventory_view_model_component<native><epic_internal> := class<final><final_supe
     PropertyInterface<public>:InventoryPropertyInterface = external {}
 
 @experimental
-(Inventory:inventory_component).RegisterPropertyInterface<native><epic_internal>(PropertyInterface:parameterized_property_interface, Identifier:string)<transacts><decides>:void
+(Inventory:inventory_component).RegisterPropertyInterface<native><epic_internal>(PropertyInterface:parameterized_property_interface, Identifier:string)<transacts><decides>:cancelable
 
 @experimental
-(Item:item_component).RegisterPropertyInterface<native><epic_internal>(PropertyInterface:parameterized_property_interface, Identifier:string)<transacts><decides>:void
+(Item:item_component).RegisterPropertyInterface<native><epic_internal>(PropertyInterface:parameterized_property_interface, Identifier:string)<transacts><decides>:cancelable
 
 InventoryPropertyInterface_asset<epic_internal>:property_interface_UE5_definition = external {}
 
@@ -221,6 +221,9 @@ InventoryItemPropertyInterface<epic_internal> := class<public>(parameterized_pro
     @replicated("RepNotify=___PropertyInterface_On_CycleNextInputAction_Changed")
     var CycleNextInputAction<public>:input_action(type) = external {}
 
+    @replicated("RepNotify=___PropertyInterface_On_SlotSize_Changed")
+    var SlotSize<public>:int = external {}
+
     ___PropertyInterface_On_IsValid_Changed<epic_internal>():void = external {}
 
     ___PropertyInterface_On_IsActive_Changed<epic_internal>():void = external {}
@@ -258,3 +261,5 @@ InventoryItemPropertyInterface<epic_internal> := class<public>(parameterized_pro
     ___PropertyInterface_On_CyclePreviousInputAction_Changed<epic_internal>():void = external {}
 
     ___PropertyInterface_On_CycleNextInputAction_Changed<epic_internal>():void = external {}
+
+    ___PropertyInterface_On_SlotSize_Changed<epic_internal>():void = external {}

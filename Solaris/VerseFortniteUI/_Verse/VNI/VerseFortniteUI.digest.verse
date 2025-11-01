@@ -1,10 +1,10 @@
-using {/Verse.org/Colors}
-using {/UnrealEngine.com/Temporary/SpatialMath}
-using {/Fortnite.com/Playspaces}
-using {/Verse.org/Simulation}
-using {/UnrealEngine.com/Temporary/UI}
 # Module import path: /Fortnite.com/UI
 (/Fortnite.com:)UI<public> := module:
+    using {/Verse.org/Colors}
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Fortnite.com/Playspaces}
+    using {/Verse.org/Simulation}
+    using {/UnrealEngine.com/Temporary/UI}
     # Button with text message common base class. Displays a button with a custom message string.
     text_button_base<native><public> := class<abstract><epic_internal>(widget):
         # The text to display to the user. Used only during initialization of the widget and not modified by SetText.

@@ -1,9 +1,9 @@
-using {/Verse.org/Assets}
-using {/Verse.org/Colors}
-using {/UnrealEngine.com/Temporary/SpatialMath}
-using {/Verse.org/Simulation}
 # Module import path: /UnrealEngine.com/Temporary/UI
 UI<public> := module:
+    using {/Verse.org/Assets}
+    using {/Verse.org/Colors}
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Verse.org/Simulation}
     # Returns the `player_ui` associated with `Player`.
     # Fails if there is no `player_ui` associated with `Player`.
     GetPlayerUI<native><public>(Player:player)<transacts><decides>:player_ui
@@ -18,6 +18,11 @@ UI<public> := module:
 
         # Removes `Widget` from this `player_ui`.
         RemoveWidget<native><public>(Widget:widget):void
+
+        # Sets the user's focus on this `Widget`. The target `Widget`must be focusable, otherwise this has no effect.
+        # If `SetFocus` is called before `AddWidget`, the `widget` will be focused after `AddWidget` is called, 
+        # unless a SetFocus is called on a different `widget` by the time `AddWidget` is called.
+        SetFocus<native><public>(Widget:widget):void
 
     # Base class for all UI elements drawn on the `player`'s screen.
     widget<native><public> := class<abstract><unique><epic_internal>:

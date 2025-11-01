@@ -21,4 +21,4 @@ response<native><public> := class<internal>:
 body_response<native><public> := class<internal>(response):
     GetBody<native><public>()<computes>:string
 
-MakeClient<constructor><native><public>(ClientId:client_id)<converges>:client
+MakeClient<native><public>(ClientId:client_id)<converges>:client

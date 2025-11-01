@@ -1,4 +1,6 @@
+using {/Verse.org/Native}
 using {/Verse.org/Simulation}
+using {/Verse.org/Assets}
 using {/Verse.org/SceneGraph}
 @experimental
 # NPC Persona component
@@ -6,6 +8,8 @@ persona_component<native><epic_internal> := class<final_super><epic_internal>(co
     var<epic_internal> Name<native><public>:string
 
     var<epic_internal> Voice<native><public>:string
+
+    var<epic_internal> Icon<native><public>:texture_base = external {}
 
     var<epic_internal> Personality<native><public>:[]string = external {}
 
@@ -35,10 +39,17 @@ persona_prompt_moderated_error<native><public> := class(persona_prompt_error):
 
 
 @experimental
-conversation_target<native><public> := interface<unique><epic_internal>:
-    # Get all the agents currently targeting Self for conversation.
-    GetConversationTargeters<native_callable><public>():[]agent = external {}
+persona_prompt_character_limit_error<native><public> := class(persona_prompt_error):
 
+
+@available {MinUploadedAtFNVersion := 3800}
+MakePersonaSuccessResult<native_callable><epic_internal>(Result:success_type where success_type:type):result(success_type, false) = external {}
+
+@available {MinUploadedAtFNVersion := 3800}
+MakePersonaErrorResult<native_callable><epic_internal>(Result:error_type where error_type:type):result(false, error_type) = external {}
+
+@experimental
+conversation_target<native><public> := interface<unique><epic_internal>:
     # Succeeds if the agent can target Self for conversation.
     CanConversationTargeterBeAdded<native_callable><epic_internal>(ConversationTargeter:agent)<reads><decides>:void = external {}
 
@@ -56,14 +67,15 @@ conversation_target<native><public> := interface<unique><epic_internal>:
 
     # Listenable which is signaled when the persona starts talking.
     #  1/ The agent (if involved) which prompted the response.
-    #  2/ Cancelable to stop the target from talking.
-    StartSayEvent<public>:listenable(tuple(?agent, cancelable))
+    #  2/ The message being said.
+    #  3/ Cancelable to stop the target from talking.
+    StartSayEvent<public>:listenable(tuple(?agent, message, cancelable))
 
     # Listenable which is signaled when the target stops talking.
     StopSayEvent<public>:listenable(tuple())
 
     # All the agents currently targeting Self for conversation.
-    var ConversationTargeters<epic_internal>:[]agent
+    var<private> ConversationTargeters<public>:[]agent
 
     # Allow player to to talk to this persona.
     AddPlayer<native_callable><epic_internal>(Player:agent)<transacts><decides>:void = external {}
@@ -93,8 +105,8 @@ conversation_target<native><public> := interface<unique><epic_internal>:
 
 @experimental
 persona_conversation_target<native><public> := class(conversation_target):
-    # Get all the agents currently targeting Self for conversation.
-    GetConversationTargeters<native><override>():[]agent
+    # All the agents currently targeting Self for conversation.
+    var ConversationTargeters<override>:[]agent = external {}
 
     # Fails if the participant is not in the list of participants
     CanConversationTargeterBeAdded<override><native>(ConversationTargeter:agent)<reads><decides>:void
@@ -107,8 +119,9 @@ persona_conversation_target<native><public> := class(conversation_target):
 
     # Listenable which is signaled when the persona starts talking.
     #  1/ The agent (if involved) which prompted the response.
-    #  2/ Cancelable to stop the target from talking.
-    StartSayEvent<native><override>:listenable(tuple(?agent, cancelable)) = external {}
+    #  2/ The message being said.
+    #  3/ Cancelable to stop the target from talking.
+    StartSayEvent<native><override>:listenable(tuple(?agent, message, cancelable)) = external {}
 
     # Listenable which is signaled when the target stops talking.
     StopSayEvent<native><override>:listenable(tuple()) = external {}
@@ -129,13 +142,18 @@ persona_conversation_target<native><public> := class(conversation_target):
     # Requests the Persona to talk on the topic provided.
     PromptToTalk<native><public>(Topic:string):void
 
+    SubscribeToResponseType<native><public>(response_type:type, Callback:type {_(:?agent, :response_type):void})<transacts>:cancelable
+
     # Listenable which is signaled when the persona was requested to talk, either by a player or prompt and failed.
     PromptFailureEvent<native><public>:listenable(persona_prompt_error) = external {}
 
-    # Link this device to a agent.
-    LinkToAgent<native><epic_internal>(Agent:agent)<transacts><decides>:void
+    # Returns a diagnostic of the Persona facts, both static and dynamic.
+    DiagnoseFacts<native><epic_internal>()<reads>:diagnostic
 
 persona_utterance<native><epic_internal> := class(cancelable):
+    Cancel<native><override>()<transacts>:void
+
+persona_type_subscription<native><epic_internal> := class(cancelable):
     Cancel<native><override>()<transacts>:void
 
 @experimental
@@ -154,8 +172,11 @@ persona_device<native><public> := class<concrete><final>(creative_device_base):
     # Adds a fact which is assessed at when the device, or a persona is prompted. The fact is generated by calling the FactFunc.
     AddDynamicFact<native><epic_internal>(FactFunc:type {_()<reads>:string})<transacts>:cancelable
 
-    # Prompt the device without addressing any particular persona. Only the device facts are known to the prompt.
-    Prompt<native><epic_internal>(UserPrompt:string)<suspends>:result([]char, persona_prompt_error)
+    @available {MinUploadedAtFNVersion := 3800}
+    # The result will conform to the result type. The result type must be a struct which can contain
+    # numeric types, messages, bools and enums, as well as structs or arrays which only contain those types, anything else results in an error.
+    # Use the names of the fields and name of the type of the struct to direct the prompt or facts on how to fill out the data structure.
+    Prompt<native><epic_internal>(UserPrompt:string, response_type:type)<suspends>:result(response_type, persona_prompt_error)
 
     # Removes all conversation history from the device.
     ClearHistory<native><public>()<transacts>:void
@@ -168,10 +189,10 @@ persona_device<native><public> := class<concrete><final>(creative_device_base):
     RemoveParticipant<public>(Agent:agent):void = external {}
 
     # Attempts to add a persona on this device.
-    AddPersona<native><epic_internal>(Persona:entity)<transacts><decides>:persona_conversation_target
+    AddPersona<native><public>((local:)Persona:agent)<transacts><decides>:persona_conversation_target
 
     # Attempts to remove a persona on this device.
-    RemovePersona<native><epic_internal>(Persona:entity)<transacts>:void
+    RemovePersona<native><public>((local:)Persona:agent)<transacts>:void
 
     # All the players in the channel with the personas managed by this device.
     var<private> Participants<public>:[]agent = external {}

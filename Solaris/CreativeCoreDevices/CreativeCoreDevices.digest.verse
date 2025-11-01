@@ -521,6 +521,18 @@ hud_message_device<public> := class<concrete><final>(creative_device_base):
     # Sets the *Message* to be displayed when the HUD message is activated. `Text` is clamped to 150 characters.
     SetText<public>(Text:message):void = external {}
 
+    # Clears all queued *Messages* from all players that are affected by this HUD Message Device.
+    ClearAllMessages<public>():void = external {}
+
+    # Called when a *Message* has been Shown on-screen. Returns an `Agent` if it was Shown on a specified `Agent`'s screen.
+    ShowMessageEvent<public>:listenable(agent) = external {}
+
+    # Called when a *Message* has been Hidden on-screen. Returns an `Agent` if it was Hidden from a specified `Agent`'s screen.
+    HideMessageEvent<public>:listenable(agent) = external {}
+
+    # Called when all queued *Messages* from all players that are affected by this HUD Message Device have been cleared.
+    ClearAllMessagesEvent<public>:listenable(agent) = external {}
+
 # Used to grant items to `agent`s. Items can either be dropped at the `agent`'s location or added directly to their inventory.
 item_granter_device<public> := class<concrete><final>(creative_device_base):
     # Gets or sets the default number of items that will be awarded for all items in the Item Granter that have not been overwritten.

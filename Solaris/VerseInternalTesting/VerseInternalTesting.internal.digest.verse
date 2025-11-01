@@ -1,15 +1,8 @@
-using {/Fortnite.com/Characters}
-using {/Verse.org/Colors}
-using {/UnrealEngine.com/Temporary/SpatialMath}
-using {/UnrealEngine.com/Temporary/Diagnostics}
-using {/Verse.org/SceneGraph}
-using {/Fortnite.com/Vehicles}
-using {/Fortnite.com/Game}
-using {/Verse.org/Simulation}
-using {/Fortnite.com/Devices}
-using {/UnrealEngine.com/Temporary/Testing}
 # Module import path: /Fortnite.com/VerseInternalTesting/NexusFramework
 NexusFramework<public> := module:
+    using {/Verse.org/Simulation}
+    using {/Fortnite.com/Devices}
+    using {/UnrealEngine.com/Temporary/Testing}
     nexus_test_reporter<epic_internal> := class:
         AddResult<epic_internal>(TestName:string, TestResult:test_result, ContextString:string, TestSuiteName:string):void = external {}
 
@@ -41,6 +34,16 @@ NexusFramework<public> := module:
 
 # Module import path: /Fortnite.com/VerseInternalTesting/VerseFramework
 VerseFramework<public> := module:
+    using {/Fortnite.com/Characters}
+    using {/Verse.org/Colors}
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/UnrealEngine.com/Temporary/Diagnostics}
+    using {/UnrealEngine.com/Temporary/Testing}
+    using {/Verse.org/SceneGraph}
+    using {/Fortnite.com/Vehicles}
+    using {/Verse.org/Simulation}
+    using {/Fortnite.com/Game}
+    using {/Fortnite.com/Devices}
     test_device<epic_internal> := class(creative_device):
         var TestRunner<public>:test_runner = external {}
 
@@ -187,6 +190,36 @@ VerseFramework<public> := module:
 
         Subscribe<public>(Event:listenable(tuple(?agent, fort_vehicle, int))):void = external {}
 
+    node_status<epic_internal> := enum<open>:
+        Pending
+        Available
+        Passed
+        Failed
+        Skipped
+        Blocked
+
+    node<epic_internal> := class:
+
+
+    test_suite_node<epic_internal> := class(node):
+        TestSuite<epic_internal>:test_suite
+
+    test_case_node<epic_internal> := class(node):
+        TestCase<epic_internal>:test_case
+
+    dependency_tree<epic_internal> := class:
+        AddNode<public>(InNode:node):void = external {}
+
+        GetNode<public>(Name:string)<transacts><decides>:node = external {}
+
+        AddDependency<public>(NodeName:string, PreReqName:string):void = external {}
+
+        GetAvailableNodes<public>():[]node = external {}
+
+        SetNodeStatusByName<epic_internal>(Name:string, Status:node_status):void = external {}
+
+        SetNodeStatus<epic_internal>(Node:node, Status:node_status):void = external {}
+
     test_case<public> := struct:
         Name<public>:string
 
@@ -195,6 +228,8 @@ VerseFramework<public> := module:
         Category<public>:[]string
 
         TimeoutOverride<public>:?float = external {}
+
+        Dependencies<public>:[]string = external {}
 
     test_suite<public> := struct:
         Name<public>:string
@@ -208,6 +243,27 @@ VerseFramework<public> := module:
         BeforeEachFunc<public>:type {_()<suspends>:void}
 
         AfterEachFunc<public>:type {_()<suspends>:void}
+
+        Dependencies<public>:[]string = external {}
+
+    test_case_plan<epic_internal> := class:
+        TestCase<epic_internal>:test_case
+
+        Dependencies<epic_internal>:[]string
+
+        var Status<epic_internal>:node_status = external {}
+
+    test_suite_plan<epic_internal> := class:
+        TestSuite<epic_internal>:test_suite
+
+        Dependencies<epic_internal>:[]string
+
+        TestCasePlan<epic_internal>:[]test_case_plan = external {}
+
+        var Status<epic_internal>:node_status = external {}
+
+    test_plan<epic_internal> := class:
+
 
     test_runner<epic_internal> := class:
         var TestReporter<public>:test_reporter = external {}
@@ -261,6 +317,10 @@ VerseFramework<public> := module:
         AddExcludeFilter<public>(Filter:string)<transacts>:void = external {}
 
         IsTestCaseIncluded<public>(TestCase:test_case)<transacts><decides>:void = external {}
+
+        BuildRunPlan<public>():void = external {}
+
+        BuildSuiteRunPlan<public>(TestSuite:test_suite):[]test_case_plan = external {}
 
         Run<public>()<suspends>:void = external {}
 
@@ -325,6 +385,8 @@ VerseFramework<public> := module:
         GetDisplayTime<public>(DurationInSec:float):string = external {}
 
         RunTestSuites<public>()<suspends>:void = external {}
+
+        RaiseTestFailure<public>(Error:string)<transacts>:void = external {}
 
     test_runner_status<public> := enum:
         Pending

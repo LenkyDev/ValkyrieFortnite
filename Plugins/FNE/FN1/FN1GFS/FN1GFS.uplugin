@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/FN1",
-	"FortReleaseVersion": "37.51",
+	"FortReleaseVersion": "38.00",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"Version": 0,
@@ -46,11 +46,6 @@
 		},
 		{
 			"Name": "BarnTowelArmoryGameplay",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "DarkV_Meadow_Assets",
 			"Enabled": true,
 			"Optional": true
 		},
@@ -102,12 +97,12 @@
 			"Optional": true
 		},
 		{
-			"Name": "PlaytimeRewards",
+			"Name": "FNE_UI",
 			"Enabled": true,
 			"Optional": true
 		},
 		{
-			"Name": "PostageMinute",
+			"Name": "PlaytimeRewards",
 			"Enabled": true,
 			"Optional": true
 		},
@@ -123,11 +118,6 @@
 		},
 		{
 			"Name": "SourSpawnMapContent",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "StrideMiceMonolithInactive",
 			"Enabled": true,
 			"Optional": true
 		},

@@ -20,6 +20,18 @@ remove_items_result<native><public> := class<epic_internal>:
     RemovedItems<native><public>:[]entity
 
 @experimental
+equip_item_result<native><public> := class<epic_internal>:
+    Inventory<native><public>:inventory_component
+
+    Item<native><public>:entity
+
+@experimental
+unequip_item_result<native><public> := class<epic_internal>:
+    Inventory<native><public>:inventory_component
+
+    Item<native><public>:entity
+
+@experimental
 inventory_with_priority<native><public> := class:
     Inventory<native><public>:inventory_component
 
@@ -48,12 +60,20 @@ inventory_component<native><public> := class<final_super>(component):
     # Removes items from the inventory. Fails if no items could be removed.
     RemoveItem<native><final><public>(Item:entity)<transacts><decides>:void
 
-    # Returns a list of items currently within this inventory only.
+    # Returns a list of items within this inventory only.
     GetItems<native><final><public>()<reads>:[]entity
+
+    @available {MinUploadedAtFNVersion := 3200}
+    # Returns a list of items (of a specific type) within this inventory only.
+    GetItems<native><final><public>(Type:castable_subtype(item_component))<reads>:[]entity
 
     @available {MinUploadedAtFNVersion := 2930}
     # Returns a list of all items within this inventory and its descendant inventories.
     FindItems<native><final><public>()<reads>:generator(entity)
+
+    @available {MinUploadedAtFNVersion := 3200}
+    # Returns a list of all items (of a specific type) within this inventory and its descendant inventories.
+    FindItems<native><final><public>(Type:castable_subtype(item_component))<reads>:[]entity
 
     # Returns a list of sub-inventories of this inventory only.
     GetInventories<native><final><public>()<reads>:[]inventory_component
@@ -72,13 +92,15 @@ inventory_component<native><public> := class<final_super>(component):
 
     var<private> InventoryRuleList<native><public>:[]inventory_rule_interface = external {}
 
-    var<private> TotalSlots<native><protected>:int = external {}
+    GetEquippedItems<final><native><public>():[]entity
 
-@experimental
-(InAgent:agent).GetInventory<native><public>()<reads><decides>:inventory_component
+    EquipItemEvent<native><final><public>:listenable(equip_item_result) = external {}
+
+    UnequipItemEvent<native><final><public>:listenable(unequip_item_result) = external {}
 
 @experimental
 # Interface for inventory rules. Used for composable rules for inventories.
+# NOTE: this part of the API is likely to change during Experimental.
 inventory_rule_interface<native><public> := interface<unique><castable>:
     # Called after an inventory_rule_interface instance is added to an inventory.
     OnRuleAdded<native_callable><public>(InventoryComponent:inventory_component):void = external {}
@@ -129,17 +151,57 @@ item_max_stack_size_change<native><public> := class<epic_internal>:
     CurrentMaxStackSize<native><public>:?int
 
 @experimental
+equip_item_error<native><public> := class:
+
+
+@experimental
+equip_item_query_event<native><public> := class(scene_event):
+    Item<native><public>:item_component
+
+    Inventory<native><public>:inventory_component
+
+    var<private> Errors<native><public>:[]equip_item_error = external {}
+
+    Reject<public>(Error:equip_item_error):void = external {}
+
+@experimental
+unequip_item_error<native><public> := class:
+
+
+@experimental
+unequip_item_query_event<native><public> := class(scene_event):
+    Item<native><public>:item_component
+
+    Inventory<native><public>:inventory_component
+
+    var<private> Errors<native><public>:[]unequip_item_error = external {}
+
+    Reject<public>(Error:unequip_item_error):void = external {}
+
+@experimental
 # Anything using this component should be considered an item. Required to interact with inventories.
 item_component<native><public> := class<final_super>(component):
     # Returns the inventory_component this item currently resides in. Fails if it cannot find a valid parent inventory.
     GetParentInventory<native><final><public>()<reads><decides>:inventory_component
 
     # Succeeds if this item is considered currently within an inventory and equipped.
-    IsItemEquipped<native><final><public>()<reads><decides>:void
+    IsEquipped<native><final><public>()<reads><decides>:void
 
-    InventoryChangeEvent<native><final><public>:listenable(item_inventory_change) = external {}
+    # Broadcast when this item changes inventory.
+    ChangeInventoryEvent<native><final><public>:listenable(item_inventory_change) = external {}
 
-    EquippedChangedEvent<native><final><public>:listenable(item_equipped_change) = external {}
+    # Broadcast when this item is equipped or unequipped.
+    ChangeEquippedEvent<native><final><public>:listenable(item_equipped_change) = external {}
+
+    @available {MinUploadedAtFNVersion := 3800}
+    # Attempts to equip this item within the inventory it is currently in.
+    # Fails if not in an inventory or if equip_item_query_event contains any errors after querying.
+    Equip<final><native><public>()<transacts>:result(void, []equip_item_error)
+
+    @available {MinUploadedAtFNVersion := 3800}
+    # Attempts to unequip this item.
+    # Fails if not in an inventory, not currently equipped or if unequip_item_query_event contains any errors after querying.
+    Unequip<final><native><public>()<transacts>:result(void, []unequip_item_error)
 
     # Takes the specified amount of this item's stack, reducing this item's stack size in the process.
     #  If amount is greater than the amount in the stack, the stack amount will be used instead.

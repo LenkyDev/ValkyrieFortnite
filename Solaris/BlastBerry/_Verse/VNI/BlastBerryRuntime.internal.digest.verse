@@ -1,12 +1,12 @@
-using {/Fortnite.com/Playspaces}
-using {/Verse.org/Native}
-using {/UnrealEngine.com/Temporary/SpatialMath}
-using {/Verse.org/Simulation}
-using {/Fortnite.com/FortSafeZone}
 # Module import path: /Fortnite.com/Blastberry
 Blastberry<public> := module:
     # Module import path: /Fortnite.com/Blastberry/Respawn
     Respawn<public> := module:
+        using {/Fortnite.com/Playspaces}
+        using {/Verse.org/Native}
+        using {/UnrealEngine.com/Temporary/SpatialMath}
+        using {/Verse.org/Simulation}
+        using {/Fortnite.com/FortSafeZone}
         team_translation_group<epic_internal> := class:
             SafeZone<epic_internal>:fort_storm_safe_zone
 

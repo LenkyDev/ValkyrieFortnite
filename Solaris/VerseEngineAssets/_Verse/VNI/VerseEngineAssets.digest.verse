@@ -1,6 +1,6 @@
-using {/Verse.org/SceneGraph}
 # Module import path: /UnrealEngine.com/BasicShapes
 BasicShapes<public> := module:
+    using {/Verse.org/SceneGraph}
     cube<public> := class<final><public>(mesh_component):
 
 

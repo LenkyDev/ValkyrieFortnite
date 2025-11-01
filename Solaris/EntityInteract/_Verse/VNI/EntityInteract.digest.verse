@@ -40,7 +40,7 @@ interactable_component<native><public> := class<final_super>(component, enableab
     # Succeeds if the component is enabled, fails if itâs disabled.
     IsEnabled<native><override>()<transacts><decides>:void
 
-    # Event fires when an a successful interaction starts. Sends the interacting agent. InteractDuration at or below 0 makes this event identical to InteractSucceededEvent.
+    # Event fires when a successful interaction starts. Sends the interacting agent. InteractDuration at or below 0 makes this event identical to InteractSucceededEvent.
     StartedEvent<native><public>:listenable(agent) = external {}
 
     # Event fires when an interaction has completed successfully. Sends the formerly interacting agent. InteractDuration at or below 0 makes this event identical to InteractStartedEvent.

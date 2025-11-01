@@ -1,7 +1,7 @@
-using {/Verse.org/Assets}
-using {/Verse.org/SceneGraph}
 # Module import path: /UnrealEngine.com/BasicShapes
 BasicShapes<public> := module:
+    using {/Verse.org/Assets}
+    using {/Verse.org/SceneGraph}
     cube<public> := class<final><public>(mesh_component):
         Mesh<override>:mesh = external {}
 

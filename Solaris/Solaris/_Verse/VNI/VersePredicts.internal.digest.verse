@@ -1,10 +1,10 @@
 # Module import path: /Verse.org/Predicts
 Predicts<public> := module:
-    PredictsServerRegisterObject<native><epic_internal>(__dupe___unnamed_parameter_4:any)<transacts>:any
+    PredictsServerRegisterObject<native><epic_internal>(__dupe___unnamed_parameter_16:any)<transacts>:any
 
-    PredictsObjectIdOf<native><epic_internal>(__dupe___unnamed_parameter_5:any)<transacts>:any
+    PredictsObjectIdOf<native><epic_internal>(__dupe___unnamed_parameter_17:any)<transacts>:any
 
-    PredictsInitObjectField<native><epic_internal>(SelfID:any, FieldName:string, Value:any)<transacts>:void
+    PredictsServerMarkObjectField<native><epic_internal>(Obj:any, FieldName:string)<transacts>:void
 
     PredictsIsRunningOnServer<native><epic_internal>()<transacts><decides><predicts>:void
 
@@ -12,20 +12,28 @@ Predicts<public> := module:
 
     PredictsDebugClientMode<native><epic_internal>()<transacts>:void
 
-    PredictsDebugFindObjectID<native><epic_internal>(Obj:any)<decides>:int
+    PredictsDebugIsFrankenServer<native><epic_internal>()<transacts><decides>:void
+
+    PredictsDebugIsFrankenClient<native><epic_internal>()<transacts><decides>:void
+
+    PredictsDebugIsFrankenTest<native><epic_internal>()<transacts><decides>:void
+
+    PredictsDebugFindObjectID<native><epic_internal>(Obj:any)<transacts><decides>:int
 
     PredictsDebugFindObject<native><epic_internal>(ObjectID:int)<transacts><decides>:any
 
-    PredictsDebugObjectFieldEquals<native><epic_internal>(ObjectID:int, FieldName:string, Value:any)<decides>:void
+    PredictsDebugNameObject<native><epic_internal>(Obj:any, Name:string)<transacts><decides>:void
+
+    PredictsDebugFindObjectNamed<native><epic_internal>(Name:string)<transacts><decides>:any
 
     PredictsDebugReplicateToClient<native><epic_internal>()<transacts>:void
 
-    PredictsDebugRegisterFunc<native><epic_internal>(__dupe___unnamed_parameter_6:string, __dupe___unnamed_parameter_7:type {_()<predicts>:void})<transacts>:void
+    PredictsDebugRegisterFunc<native><epic_internal>(__dupe___unnamed_parameter_18:string, __dupe___unnamed_parameter_19:type {_()<predicts>:void})<transacts>:void
 
-    PredictsDebugCallFunc<native><epic_internal>(__dupe___unnamed_parameter_8:string)<transacts>:void
+    PredictsDebugCallFunc<native><epic_internal>(__dupe___unnamed_parameter_20:string)<transacts>:void
 
     PredictsDebugResetAllDataAndCallbacks<native><epic_internal>()<transacts>:void
 
-    PredictsDebugGCPinObject<native><epic_internal>(__dupe___unnamed_parameter_9:any)<transacts>:void
+    PredictsDebugGCPinObject<native><epic_internal>(__dupe___unnamed_parameter_21:any)<transacts>:void
 
-    PredictsDebugGCUnpinObject<native><epic_internal>(__dupe___unnamed_parameter_10:any)<transacts>:void
+    PredictsDebugGCUnpinObject<native><epic_internal>(__dupe___unnamed_parameter_22:any)<transacts>:void

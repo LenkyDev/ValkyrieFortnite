@@ -7,7 +7,7 @@
 	"BuiltInAutoRegister": true,
 	"BuiltInAutoLoad": true,
 	"builtInAutoActivate": false,
-	"FortReleaseVersion": "36.10",
+	"FortReleaseVersion": "37.40",
 	"EditorCustomVirtualPath": "FNE/BrightCoil",
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements":

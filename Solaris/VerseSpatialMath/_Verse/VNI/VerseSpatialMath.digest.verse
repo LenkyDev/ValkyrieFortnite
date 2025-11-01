@@ -1,12 +1,13 @@
-using {/Verse.org/Simulation}
-using {/Verse.org/Native}
 # Module import path: /Verse.org/SpatialMath
 SpatialMath<public> := module:
+    using {/Verse.org/Simulation}
+    using {/Verse.org/Native}
     @import_as("/*.FVRotation")
     rotation<native><public> := struct<concrete>:
 
 
     @available {MinUploadedAtFNVersion := 3600}
+    @vm_no_effect_token
     # Makes a `rotation` from `Axis` and `Angle` in radians using a right-handed sign convention (e.g. a positive rotation around Up takes Forward to Left).
     MakeRotationRadians<native><public>(Axis:vector3, Angle:float)<reads><converges>:rotation
 
@@ -21,10 +22,12 @@ SpatialMath<public> := module:
     #  * *roll* is right-handed rotation about the Forward axis.
     MakeRotationFromYawPitchRollRadians<public>(YawAngle:float, PitchAngle:float, RollAngle:float)<reads>:rotation = external {}
 
+    @vm_no_effect_token
     # Degrees version of `MakeRotationFromYawPitchRollRadians`
     MakeRotationFromYawPitchRollDegrees<native><public>(YawAngle:float, PitchAngle:float, RollAngle:float)<reads><converges>:rotation
 
     @available {MinUploadedAtFNVersion := 3600}
+    @vm_no_effect_token
     # Makes a `rotation` by applying a post-rotation of `LeftAxisAngle` followed by `UpAxisAngle` and then `ForwardAxisAngle `in that order. Right-handed convention (e.g. a positive rotation around Up takes +Forward to Left).
     MakeRotationFromEulerRadians<native><public>(LeftAxisAngle:float, UpAxisAngle:float, ForwardAxisAngle:float)<reads><converges>:rotation
 
@@ -35,12 +38,14 @@ SpatialMath<public> := module:
     # Makes the identity `rotation`.
     IdentityRotation<native><public>()<converges>:rotation
 
+    @vm_no_effect_token
     # Returns the distance between `Rotation1` and `Rotation2`. The result will be between:
     #  * `0.0`, representing equivalent rotations and
     #  * `1.0` representing rotations which are 180 degrees apart (i.e., the shortest rotation between them is 180 degrees around some axis).
     Distance<native><public>(Rotation1:rotation, Rotation2:rotation)<reads><converges>:float
 
     @available {MinUploadedAtFNVersion := 3600}
+    @vm_no_effect_token
     # Returns the smallest angular distance between `Rotation1` and `Rotation2` in radians.
     AngularDistanceRadians<native><public>(Rotation1:rotation, Rotation2:rotation)<reads><converges>:float
 
@@ -49,6 +54,7 @@ SpatialMath<public> := module:
     AngularDistanceDegrees<public>(Rotation1:rotation, Rotation2:rotation)<reads>:float = external {}
 
     @available {MinUploadedAtFNVersion := 3600}
+    @vm_no_effect_token
     # Apply a `PreRotation` to `PostRotation` as `v * PreRotation * PostRotation`.
     (/Verse.org/SpatialMath:)operator'*'<native><public>(PreRotation:rotation, PostRotation:rotation)<reads><converges>:rotation
 
@@ -61,10 +67,12 @@ SpatialMath<public> := module:
     (Rotation:rotation).GetYawPitchRollRadians<public>()<reads>:tuple(float, float, float) = external {}
 
     @available {MinUploadedAtFNVersion := 3600}
+    @vm_no_effect_token
     # Degrees version of `GetYawPitchRollRadians`.
     (Rotation:rotation).GetYawPitchRollDegrees<native><public>()<reads><converges>:tuple(float, float, float)
 
     @available {MinUploadedAtFNVersion := 3600}
+    @vm_no_effect_token
     # Makes a `tuple(float, float, float)` with three elements:
     #  * *left axis* `rotation` in radians
     #  * *up axis* of `rotation` in radians
@@ -76,11 +84,13 @@ SpatialMath<public> := module:
     # Degrees version of `GetEulerRadians`.
     (Rotation:rotation).GetEulerDegrees<public>()<reads>:tuple(float, float, float) = external {}
 
+    @vm_no_effect_token
     # Makes a `vector3` from the axis of `rotation` for an right-handed angle.
     # If `rotation` is nearly identity, this will return the +Forward axis. See also `GetAngleRadians`.
     (Rotation:rotation).GetAxis<native><public>()<reads><converges>:vector3
 
     @available {MinUploadedAtFNVersion := 3600}
+    @vm_no_effect_token
     # Returns the radians of right-handed `rotation` around the axis of `rotation`. See also `GetAxis`.
     (Rotation:rotation).GetAngleRadians<native><public>()<reads><converges>:float
 
@@ -88,17 +98,21 @@ SpatialMath<public> := module:
     # Degrees version of GetAngleRadians
     (Rotation:rotation).GetAngleDegrees<public>()<reads>:float = external {}
 
+    @vm_no_effect_token
     # Makes the smallest angular `rotation` from `InitialVector` to `FinalVector` two vectors of arbitrary length such that:
     # `InitialVector * MakeShortestRotationBetween(InitialVector, FinalVector) = FinalVector` and
     # `MakeShortestRotationBetween(InitialVector, FinalVector)?.GetAngleRadians()` is as small as possible.
     MakeShortestRotationBetween<native><public>(InitialVector:vector3, FinalVector:vector3)<reads><converges>:rotation
 
+    @vm_no_effect_token
     # Used to perform spherical linear interpolation between `From` (when `Ratio = 0.0`) and `To` (when `Ratio = 1.0`). Expects `0.0 <= Ratio <= 1.0`.
     Slerp<native><public>(InitialRotation:rotation, FinalRotation:rotation, Ratio:float)<reads><converges>:rotation
 
+    @vm_no_effect_token
     # Makes a `vector3` by applying `Rotation` to `Vector`.
     (/Verse.org/SpatialMath:)operator'*'<native><public>(Vector:vector3, Rotation:rotation)<reads><converges>:vector3
 
+    @vm_no_effect_token
     # Makes a `rotation` by inverting `Rotation` such that `ApplyRotation(Rotation, Rotation.Invert())) = IdentityRotation`.
     (Rotation:rotation).Invert<native><public>()<reads><converges>:rotation
 

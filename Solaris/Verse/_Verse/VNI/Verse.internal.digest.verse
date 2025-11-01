@@ -1,7 +1,7 @@
-using {/Verse.org/Concurrency}
-using {/Verse.org/Native}
 # Module import path: /Verse.org/Verse
 Verse<public> := module:
+    using {/Verse.org/Concurrency}
+    using {/Verse.org/Native}
     # Makes a flattened `array` by concatenating the elements of `Arrays`.
     Concatenate<public>(Arrays:[][]t where t:type)<computes>:[]t = external {}
 
@@ -63,6 +63,103 @@ Verse<public> := module:
     # Return an immediate subclass of base_type that is <castable> and <final_super> and is also shared with sub_type. Otherwise failure.
     GetCastableFinalSuperClassFromType<native><epic_internal>(base_type:type, sub_type:subtype(base_type))<reads><decides>:castable_subtype(base_type)
 
+    @experimental
+    # A `classifiable_subset` is a container that holds a set of elements. A classifiable_subset can hold multiple elements of the same type.
+    classifiable_subset<native><public>(element_type:type) := class<final><reads><internal>(diagnosable):
+        (/Verse.org/Verse/classifiable_subset:)Verse_classifiable_subset_Variance<private>:?type {_():tuple(element_type)} = external {}
+
+        # Temporary function for constraining variance correctly.
+        CovarianceConstraint<protected>():?element_type = external {}
+
+        GetDiagnostic<override><native>()<reads>:diagnostic
+
+    @experimental
+    # A `classifiable_subset_key` is used to remove dynamically added elements from a `classifiable_subset`. The returned key will also work in resulting sets from usage of the `+` operator as well as `FilterByType`.
+    classifiable_subset_key<native><epic_internal>(element_type:type) := class<final><unique><transacts><internal>(diagnosable):
+        (/Verse.org/Verse/classifiable_subset_key:)Verse_classifiable_subset_key_Variance<private>:?type {_():tuple(element_type)} = external {}
+
+        # Temporary function for constraining variance correctly.
+        CovarianceConstraint<protected>():?element_type = external {}
+
+        GetDiagnostic<override><native>()<reads>:diagnostic
+
+    @experimental
+    # Constructs a `classifiable_subset` containing the `InElements`.
+    MakeClassifiableSubset<native><public>(InElements:[]t where t:type)<reads><converges>:classifiable_subset(t)
+
+    @experimental
+    @available {MinUploadedAtFNVersion := 3800}
+    # Succeeds if `element_type` is present in `InSet`.
+    (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).Contains<public>(element_type:castable_subtype(k))<reads><decides>:void = external {}
+
+    @experimental
+    @available {MinUploadedAtFNVersion := 3800}
+    # Succeeds if all the `element_types` are present in `InSet`.
+    (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).ContainsAll<public>(element_types:[]castable_subtype(k))<reads><decides>:void = external {}
+
+    @experimental
+    @available {MinUploadedAtFNVersion := 3800}
+    # Succeeds if any of the `element_types` are present in `InSet`.
+    (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).ContainsAny<public>(element_types:[]castable_subtype(k))<reads><decides>:void = external {}
+
+    @experimental
+    # Returns a new set that is the union of all elements in `InSetL` set and `InSetR`.
+    operator'+'<native><public>((InSetL:classifiable_subset(t), InSetR:classifiable_subset(t)) where t:type)<transacts>:classifiable_subset(t)
+
+    @experimental
+    @available {MinUploadedAtFNVersion := 3800}
+    # Returns a new set that contains all the elements in `InSet` that are of type `element_type`.
+    (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).FilterByType<native><public>(element_type:castable_subtype(k))<transacts>:classifiable_subset(t)
+
+    @experimental
+    # TEMPORARY. Acts as a wrapper class for a classifiable_subset until `ref` keyword exists. This wrapper class will be removed once https://jira.it.epicgames.com/browse/SOL-7982 is complete.
+    classifiable_subset_var<native><epic_internal>(element_type:type) := class<final><reads><internal>(diagnosable):
+        (/Verse.org/Verse/classifiable_subset_var:)Verse_classifiable_subset_var_Variance<private>:?type {_(:element_type):tuple(element_type)} = external {}
+
+        # Returns the underlying `classifiable_subset`.
+        Read<native><public>()<reads>:classifiable_subset(element_type)
+
+        # Writes `InSet` to the underlying `classifiable_subset`.
+        Write<native><public>(InSet:classifiable_subset(element_type))<writes>:void
+
+        GetDiagnostic<override>()<reads>:diagnostic = external {}
+
+    @experimental
+    # TEMPORARY. Constructs a `classifiable_subset_var` containing the `InElements`.
+    MakeClassifiableSubsetVar<native><epic_internal>(InElements:[]t where t:type)<reads><converges>:classifiable_subset_var(t)
+
+    @experimental
+    # TEMPORARY. Adds `InElement` to `InSet` and returns a `classifiable_subset_key` for removing that very element from `InSet` again. This function will operate directly on classifiable_subset once https://jira.it.epicgames.com/browse/SOL-7982 is complete.
+    (InSet:classifiable_subset_var(t) where t:type).Add<native><epic_internal>(InElement:t)<transacts>:classifiable_subset_key(t)
+
+    @experimental
+    # TEMPORARY. Removes the element corresponding to `InKey` from `InSet`, fails if the element was not present in `InSet` before trying to remove it. This function will operate directly on classifiable_subset once https://jira.it.epicgames.com/browse/SOL-7982 is complete.
+    (InSet:classifiable_subset_var(t) where t:type).Remove<native><epic_internal>(InKey:classifiable_subset_key(t))<transacts><decides>:void
+
+    @experimental
+    @available {MinUploadedAtFNVersion := 3800}
+    # TEMPORARY. Succeeds if `element_type` is present in `InSet`.
+    (InSet:classifiable_subset_var(t) where t:castable_subtype(k), k:type).Contains<epic_internal>(element_type:castable_subtype(k))<reads><decides>:void = external {}
+
+    @experimental
+    @available {MinUploadedAtFNVersion := 3800}
+    # TEMPORARY. Succeeds if all the `element_types` are present in `InSet`.
+    (InSet:classifiable_subset_var(t) where t:castable_subtype(k), k:type).ContainsAll<epic_internal>(element_types:[]castable_subtype(k))<reads><decides>:void = external {}
+
+    @experimental
+    @available {MinUploadedAtFNVersion := 3800}
+    # TEMPORARY. Succeeds if any of the `element_types` are present in `InSet`.
+    (InSet:classifiable_subset_var(t) where t:castable_subtype(k), k:type).ContainsAny<epic_internal>(element_types:[]castable_subtype(k))<reads><decides>:void = external {}
+
+    @experimental
+    # TEMPORARY. Returns a new set that is the union of all elements in `InSetL` set and `InSetR`.
+    operator'+'<epic_internal>((InSetL:classifiable_subset_var(t), InSetR:classifiable_subset_var(t)) where t:type)<transacts>:classifiable_subset(t) = external {}
+
+    @experimental
+    @available {MinUploadedAtFNVersion := 3800}
+    # TEMPORARY. Returns a new set that contains all the elements in `InSet` that are of type `element_type`.
+    (InSet:classifiable_subset_var(t) where t:castable_subtype(k), k:type).FilterByType<epic_internal>(element_type:castable_subtype(k))<transacts>:classifiable_subset(t) = external {}
+
     accessor<epic_internal> := enum:
         Dummy
 
@@ -112,6 +209,8 @@ Verse<public> := module:
 
     # A *recurring*, successively signaled parametric `event` with a `payload` allowing a simple mechanism to coordinate between concurrent tasks.
     event<native><public>(t:type) := class(event_base_intrnl, signalable(t), awaitable(t)):
+        (/Verse.org/Verse/event:)Verse_event_Variance<private>:?type {_(:t):tuple(t)} = external {}
+
         # Suspends the current task until another task calls `Signal`.
         # If called during another invocation of `Signal`, the the task will still suspend and resume during the next call to `Signal`.
         Await<native><override>()<suspends>:t
@@ -125,6 +224,8 @@ Verse<public> := module:
     event<public>() := event(tuple())
 
     subscribable_event_intrnl<native><epic_internal>(t:type) := class(event(t), listenable(t)):
+        (/Verse.org/Verse/subscribable_event_intrnl:)Verse_subscribable_event_intrnl_Variance<private>:?type {_(:t):tuple(t)} = external {}
+
         # Registers `Callback` to be invoked each time `Signal` is called.
         # Call `Cancel` on the returned `cancelable` to unregister `Callback`.
         Subscribe<native><override>(Callback:type {_(:t):void})<transacts>:cancelable
@@ -165,7 +266,7 @@ Verse<public> := module:
 
     # A parametric interface combining `awaitable` and `subscribable`.
     listenable<public>(payload:type) := interface(awaitable(payload), subscribable(payload)):
-
+        (/Verse.org/Verse/listenable:)Verse_listenable_Variance<private>:?type {_():tuple()} = external {}
 
     # A parameterless interface combining `awaitable` and `subscribable`.
     listenable<public>() := listenable(tuple())
@@ -236,67 +337,82 @@ Verse<public> := module:
     # Returns `NaN` if either `X` or `Y` are `NaN`.
     Max<public>(X:float, Y:float)<computes>:float = external {}
 
+    @vm_no_effect_token
     @rtfm_always_open
     # Returns the square root of `X` if `X >= 0.0`.
     # Returns `NaN` if `X < 0.0`.
     Sqrt<native><public>(X:float)<reads>:float
 
+    @vm_no_effect_token
     @rtfm_always_open
     # Returns the sine of `X` if `IsFinite(X)`.
     # Returns `NaN` if `not IsFinite(X)
     Sin<native><public>(X:float)<reads>:float
 
+    @vm_no_effect_token
     @rtfm_always_open
     # Returns the cosine of `X` if `IsFinite(X)`.
     # Returns `NaN` if `not IsFinite(X)
     Cos<native><public>(X:float)<reads>:float
 
+    @vm_no_effect_token
     @rtfm_always_open
     # Returns the tangent of `X` if `IsFinite(X)`.
     # Returns `NaN` if `not IsFinite(X).
     Tan<native><public>(X:float)<reads>:float
 
+    @vm_no_effect_token
     @rtfm_always_open
     # Returns the inverse sine (arcsine) of `X` if `-1.0 <= X <= 1.0`.
     ArcSin<native><public>(X:float)<reads>:float
 
+    @vm_no_effect_token
     @rtfm_always_open
     # Returns the inverse cosine (arccosine) of `X` if `-1.0 <= X <= 1.0`.
     ArcCos<native><public>(X:float)<reads>:float
 
+    @vm_no_effect_token
     @rtfm_always_open
     # Returns the inverse tangent (arctangent) of `X` such that:`-PiFloat/2.0 <= ArcTan(x) <= PiFloat/2.0`.
     ArcTan<native><public>(X:float)<reads>:float
 
+    @vm_no_effect_token
     @rtfm_always_open
     # Returns the angle in radians at the origin between a ray pointing to `(X, Y)` and the positive `X` axis such that `-PiFloat < ArcTan(Y, X) <= PiFloat`.
     # Returns 0.0 if `X=0.0 and Y=0.0`.
     ArcTan<native><public>(Y:float, X:float)<reads>:float
 
+    @vm_no_effect_token
     @rtfm_always_open
     # Returns the hyperbolic sine of `X`.
     Sinh<native><public>(X:float)<reads>:float
 
+    @vm_no_effect_token
     @rtfm_always_open
     # Returns the hyperbolic cosine of `X`.
     Cosh<native><public>(X:float)<reads>:float
 
+    @vm_no_effect_token
     @rtfm_always_open
     # Returns the hyperbolic tangent of `X`.
     Tanh<native><public>(X:float)<reads>:float
 
+    @vm_no_effect_token
     @rtfm_always_open
     # Returns the inverse hyperbolic sine of `X` if `IsFinite(X)`.
     ArSinh<native><public>(X:float)<reads>:float
 
+    @vm_no_effect_token
     @rtfm_always_open
     # Returns the inverse hyperbolic cosine of `X` if `1.0 <= X`.
     ArCosh<native><public>(X:float)<reads>:float
 
+    @vm_no_effect_token
     @rtfm_always_open
     # Returns the inverse hyperbolic tangent of `X` if `IsFinite(X)`.
     ArTanh<native><public>(X:float)<reads>:float
 
+    @vm_no_effect_token
     @rtfm_always_open
     # Returns `A` to the power of `B`.
     Pow<native><public>(A:float, B:float)<reads>:float
@@ -323,10 +439,12 @@ Verse<public> := module:
     # Fails if `Y=0`.
     Mod<native><public>(X:int, Y:int)<computes><decides>:int
 
+    @vm_no_effect_token
     @rtfm_always_open
     # Returns the natural exponent of `X`.
     Exp<native><public>(X:float)<reads>:float
 
+    @vm_no_effect_token
     @rtfm_always_open
     # Returns the natural logarithm of `X`.
     Ln<native><public>(X:float)<reads>:float
@@ -334,6 +452,7 @@ Verse<public> := module:
     # Returns the base `B` logarithm of `X`.
     Log<public>(B:float, X:float)<reads>:float = external {}
 
+    @vm_no_effect_token
     @rtfm_always_open
     # Used to linearly interpolate/extrapolate between `From` (when `Parameter = 0.0`) and `To` (when `Parameter = 1.0`). Expects that all arguments are finite.
     # Returns `From*(1 - Parameter) + To*Parameter`.
@@ -358,24 +477,34 @@ Verse<public> := module:
     # Succeeds if `Val1` and `Val2` are within `AbsoluteTolerance` of each other.
     IsAlmostEqual<public>(Val1:float, Val2:float, AbsoluteTolerance:float)<computes><decides>:void = external {}
 
-    @available {MinUploadedAtFNVersion := 3720}
+    @available {MinUploadedAtFNVersion := 3800}
     # Implemented by classes that provide a result for an operation, which can fail or be successful
-    result<epic_internal>(success_type:type, error_type:type) := interface<internal>:
+    result<public>(success_type:type, error_type:type) := interface<internal>:
+        (/Verse.org/Verse/result:)Verse_result_Variance<private>:?type {_():tuple(success_type, error_type)} = external {}
+
         # Returns the success data of the specified type.
         GetSuccess<native_callable><public>()<computes><decides>:success_type
 
         # Returns the error data of the specified type.
         GetError<native_callable><public>()<computes><decides>:error_type
 
-    @available {MinUploadedAtFNVersion := 3720}
-    MakeSuccess<epic_internal>(Result:success_type where success_type:type):result(success_type, false) = external {}
+    @available {MinUploadedAtFNVersion := 3800}
+    MakeSuccess<public>(Result:success_type where success_type:type):result(success_type, false) = external {}
 
-    @available {MinUploadedAtFNVersion := 3720}
-    MakeError<epic_internal>(Result:error_type where error_type:type):result(false, error_type) = external {}
+    @available {MinUploadedAtFNVersion := 3800}
+    MakeError<public>(Result:error_type where error_type:type):result(false, error_type) = external {}
+
+    @available {MinUploadedAtFNVersion := 3800}
+    # Implemented by classes whose instances can change visibility to be shown or hidden.
+    showable<native><public> := interface:
+        # Set this value to hide or show the class.
+        var Show<public>:logic
 
     # A parametric interface implemented by events with a `payload` that can be signaled.
     # Can be used with `awaitable`, `subscribable`, or both (see: `listenable`).
     signalable<public>(payload:type) := interface:
+        (/Verse.org/Verse/signalable:)Verse_signalable_Variance<private>:?type {_(:payload):tuple()} = external {}
+
         # Concurrently resumes the tasks waiting for this event in `awaitable.Await` and synchronously invokes any callbacks added to this event by `subscribable.Subscribe`.
         Signal<native_callable><public>(Val:payload):void
 
@@ -394,6 +523,8 @@ Verse<public> := module:
     # A parametric interface implemented by events with a `payload` that can be subscribed to.
     # Matched with `signalable.`
     subscribable<public>(t:type) := interface:
+        (/Verse.org/Verse/subscribable:)Verse_subscribable_Variance<private>:?type {_():tuple(t)} = external {}
+
         # Registers `Callback` to be invoked on matching calls to `signable.Signal`.
         # Returns an unsubscriber object. Call `cancelable.Cancel` on the unsubscriber to unregister `Callback`.
         Subscribe<public>(Callback:type {_(:t):void})<transacts>:cancelable

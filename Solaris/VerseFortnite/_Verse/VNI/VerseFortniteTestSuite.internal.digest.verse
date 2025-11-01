@@ -1,8 +1,8 @@
-using {/Verse.org/Simulation}
-using {/Fortnite.com/Game}
-using {/Verse.org/SceneGraph}
 # Module import path: /Fortnite.com/VerseFortniteTestSuite
 VerseFortniteTestSuite<public> := module:
+    using {/Verse.org/Simulation}
+    using {/Fortnite.com/Game}
+    using {/Verse.org/SceneGraph}
     @hide_in_editor
     @experimental
     fort_game_events_testing_component<native><epic_internal> := class<final_super>(component):

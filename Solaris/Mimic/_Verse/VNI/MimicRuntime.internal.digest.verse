@@ -1,8 +1,3 @@
-llm_response<native><epic_internal> := class:
-    ResponseMessage<native><public>:string
-
-    ResponseData<native><public>:string
-
 @experimental
 llm_session<native><epic_internal> := class<concrete><final>:
     # Adds a fact to the llm, returns a cancelable which revokes the fact.
@@ -13,3 +8,15 @@ llm_session<native><epic_internal> := class<concrete><final>:
 
 llm_fact<native><epic_internal> := class(cancelable):
     Cancel<native><override>()<transacts>:void
+
+llm_string<native><epic_internal> := class:
+    Value<native><epic_internal>:string
+
+MakeLLMString<native_callable><epic_internal>(String:string):llm_string = external {}
+
+MakeLLMStringMessage<localizes><native_callable><epic_internal>(LLMString:llm_string):message = external {}
+
+localizable_llm_string<native><epic_internal> := class(localizable_value):
+    Value<native><epic_internal>:string
+
+(/Fortnite.com/Mimic:)MakeLocalizableValue<epic_internal>(V:llm_string):localizable_llm_string = external {}

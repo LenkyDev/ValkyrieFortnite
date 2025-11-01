@@ -1,15 +1,13 @@
-using {/Fortnite.com/Teams}
-using {/Verse.org/SceneGraph}
-using {/Fortnite.com/Characters}
-using {/UnrealEngine.com/Temporary/SpatialMath}
-using {/Verse.org/Simulation}
-using {/Fortnite.com/Game}
 # Module import path: /Fortnite.com/Building
 Building<public> := module:
 
 
 # Module import path: /Fortnite.com/Characters
 Characters<public> := module:
+    using {/Verse.org/SceneGraph}
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Verse.org/Simulation}
+    using {/Fortnite.com/Game}
     # Main API implemented by Fortnite characters.
     fort_character<native><public> := interface<unique><epic_internal>(positional, healable, healthful, damageable, shieldable, game_action_instigator, game_action_causer):
         # Returns the agent associated with this `fort_character`. Use this when interacting with APIs that require an `agent` reference.
@@ -87,6 +85,9 @@ Characters<public> := module:
         # Teleports this `fort_character` to the provided `Position` and applies the yaw and pitch of `Rotation`. Will fail if the `Position` specified is e.g. outside of the playspace or specifies a place where the character cannot fit.
         TeleportTo<public>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts><decides>:void
 
+        # Returns the entity associated with this `fort_character`. Use this when interacting with APIs that require an `entity` reference.
+        GetEntity<public>()<transacts><decides>:entity
+
     # Returns the `fort_character` for `InAgent`. Fails if `InAgent` is not a `fort_character`.
     (InAgent:agent).GetFortCharacter<native><public>()<transacts><decides>:fort_character
 
@@ -109,6 +110,8 @@ Characters<public> := module:
 
 # Module import path: /Fortnite.com/FortPlayerUtilities
 FortPlayerUtilities<public> := module:
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Verse.org/Simulation}
     # Sends `InPlayer` back to the main game lobby.
     (InPlayer:player).SendToLobby<native><public>()<transacts>:void
 
@@ -129,6 +132,9 @@ FortPlayerUtilities<public> := module:
 
 # Module import path: /Fortnite.com/Game
 Game<public> := module:
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Verse.org/SceneGraph}
+    using {/Fortnite.com/Characters}
     # Result data for `fort_character` elimination events.
     elimination_result<native><public> := struct<epic_internal>:
         # The `fort_character` eliminated from the match by `EliminatingCharacter`.
@@ -286,6 +292,9 @@ Game<public> := module:
 
 # Module import path: /Fortnite.com/Playspaces
 Playspaces<public> := module:
+    using {/Verse.org/SceneGraph}
+    using {/Fortnite.com/Teams}
+    using {/Verse.org/Simulation}
     # A nested container that scopes objects, style, gameplay rules, visuals, etc. All objects and players in an experience will belong to a fort_playspace. There is typically one `fort_playspace` for an entire experience, though this may change in the future as the platform evolves.
     # 
     # To access the `fort_playspace` for a `creative_device` use `creative_device.GetPlayspace`.
@@ -320,6 +329,7 @@ FortSafeZone<public> := module:
 
 # Module import path: /Fortnite.com/Teams
 Teams<public> := module:
+    using {/Verse.org/Simulation}
     # A generic set of team attitudes. Use this enum to model relationship behavior between your experience's agents/teams.
     team_attitude<native><public> := enum:
         # Agents/teams are friends. In Fortnite games two `agent`s on the same `team` are `friendly`.
@@ -367,6 +377,9 @@ Teams<public> := module:
 
 # Module import path: /Fortnite.com/Vehicles
 Vehicles<public> := module:
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Fortnite.com/Game}
+    using {/Fortnite.com/Characters}
     # Returns the `fort_vehicle` for `InCharacter`.
     # Fails if `InCharacter` is not associated with a `fort_vehicle`.
     (InCharacter:fort_character).GetVehicle<native><public>()<transacts><decides>:fort_vehicle

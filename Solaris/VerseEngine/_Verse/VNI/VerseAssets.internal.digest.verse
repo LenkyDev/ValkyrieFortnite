@@ -1,8 +1,8 @@
-using {/Verse.org/Simulation}
-using {/Verse.org/Native}
-using {/Verse.org/Restricted}
 # Module import path: /Verse.org/Assets
 Assets<public> := module:
+    using {/Verse.org/Simulation}
+    using {/Verse.org/Native}
+    using {/Verse.org/Restricted}
     # Create an asset reference to the given internal asset path
     MakeAsset<native><epic_internal>(asset_type:subtype(asset), AssetPath:string)<converges>:asset_type
 
@@ -75,6 +75,8 @@ Assets<public> := module:
 
 
     input_action<native><public>(t:type) := class<computes><epic_internal>(asset):
+        (/Verse.org/Assets/input_action:)Assets_input_action_Variance<private>:?type {_():tuple(t)} = external {}
+
         Path<native><epic_internal>:string = external {}
 
         RequiredByCompiler<epic_internal>:?t = external {}

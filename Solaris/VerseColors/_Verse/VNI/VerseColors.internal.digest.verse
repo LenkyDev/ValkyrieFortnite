@@ -1,6 +1,7 @@
-using {/Verse.org/Simulation}
 # Module import path: /Verse.org/Colors
 Colors<public> := module:
+    using {/Verse.org/Native}
+    using {/Verse.org/Simulation}
     # Represents colors as RGB triples in the ACES 2065-1 color space.
     # Component values are linear (i.e. `*gamma* = 1.0`).
     color<native><public> := struct<concrete><computes><persistable>:
@@ -375,3 +376,35 @@ Colors<public> := module:
         Yellow<public>:color = external {}
 
         YellowGreen<public>:color = external {}
+
+    @available {MinUploadedAtFNVersion := 3800}
+    # Represents colors as RGB triples in the ACES 2065-1 color space with an additional alpha channel A.
+    # This reasons about the `Color` and alpha (`A`) as separate concepts instead of as a single concept.
+    # All values are stored strictly as unopinionated floats but, when interpreted as a color with alpha,
+    # ranges for `A` are `0.0` (transparent) to `1.0` (opaque). Color values are not premultiplied.
+    # Component values are linear (i.e. `*gamma* = 1.0`).
+    color_alpha<native><public> := struct<concrete><computes><persistable>:
+        @editable
+        # `Color` component of this `color_alpha`.
+        Color<native><public>:color = external {}
+
+        @editable
+        # Alpha component of this `color_alpha`.
+        A<native><public>:float = external {}
+
+    @available {MinUploadedAtFNVersion := 3800}
+    # Makes a new `color_alpha` from individual `R`, `G`, `B`, `A` component values.
+    MakeColorAlpha<public>(R:float, G:float, B:float, ?A:float = external {})<computes>:color_alpha = external {}
+
+    @available {MinUploadedAtFNVersion := 3800}
+    # Blend colors `CA1` and `CA2` with `CA1` over `CA2` using two non-premultiplied `color_alpha` values.
+    # Alpha components are clamped between `0.0` and `1.0`. Fails if the value of both clamped Alpha components are `0.0`.
+    Over<public>(CA1:color_alpha, CA2:color_alpha)<reads><decides>:color_alpha = external {}
+
+    @available {MinUploadedAtFNVersion := 3800}
+    # Makes a new `tuple(float, float, float, float)` from a `color_alpha`.
+    ToFloat4<epic_internal>(CA:color_alpha)<computes>:tuple(float, float, float, float) = external {}
+
+    @available {MinUploadedAtFNVersion := 3800}
+    # Makes a new `color_alpha` from a `tuple(float, float, float, float)`. Fails if passed array is not of length 4.
+    ToColorAlpha<epic_internal>(F:tuple(float, float, float, float))<computes>:color_alpha = external {}

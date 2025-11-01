@@ -27,6 +27,8 @@ Simulation<public> := module:
     @attribscope_data
     @customattribhandler
     editable_slider<public>(t:type) := class<final><computes>(editable):
+        (/Verse.org/Simulation/editable_slider:)Simulation_editable_slider_Variance<private>:?type {_():tuple(t)} = external {}
+
         # The minimum value of the editor slider.
         MinValue<public>:?t = external {}
 
@@ -49,6 +51,8 @@ Simulation<public> := module:
     @attribscope_data
     @customattribhandler
     editable_number<public>(t:type) := class<final><computes>(editable):
+        (/Verse.org/Simulation/editable_number:)Simulation_editable_number_Variance<private>:?type {_():tuple(t)} = external {}
+
         # The minimum value the editor allows.
         MinValue<public>:?t = external {}
 
@@ -63,6 +67,8 @@ Simulation<public> := module:
     @attribscope_data
     @customattribhandler
     editable_vector_slider<public>(t:type) := class<final><computes>(editable):
+        (/Verse.org/Simulation/editable_vector_slider:)Simulation_editable_vector_slider_Variance<private>:?type {_():tuple(t)} = external {}
+
         # Show the button that allows locking the vector aspect ratio.
         ShowPreserveRatio<public>:logic = external {}
 
@@ -91,6 +97,8 @@ Simulation<public> := module:
     @attribscope_data
     @customattribhandler
     editable_vector_number<public>(t:type) := class<final><computes>(editable):
+        (/Verse.org/Simulation/editable_vector_number:)Simulation_editable_vector_number_Variance<private>:?type {_():tuple(t)} = external {}
+
         # Show the button that allows locking the vector aspect ratio.
         ShowPreserveRatio<public>:logic = external {}
 

@@ -1,5 +1,4 @@
 using {/Verse.org/Colors}
-using {/Verse.org/Simulation/Tags}
 using {/Verse.org}
 using {/UnrealEngine.com/Abilities}
 using {/Verse.org/Simulation}
@@ -38,6 +37,18 @@ remove_items_result<native><public> := class<epic_internal>:
     Inventory<native><public>:inventory_component
 
     RemovedItems<native><public>:[]entity
+
+@experimental
+equip_item_result<native><public> := class<epic_internal>:
+    Inventory<native><public>:inventory_component
+
+    Item<native><public>:entity
+
+@experimental
+unequip_item_result<native><public> := class<epic_internal>:
+    Inventory<native><public>:inventory_component
+
+    Item<native><public>:entity
 
 @experimental
 change_items_slot_result<native><epic_internal> := struct<epic_internal>:
@@ -82,12 +93,20 @@ inventory_component<native><public> := class<final_super>(component):
     # Removes items from the inventory. Fails if no items could be removed.
     RemoveItem<native><final><public>(Item:entity)<transacts><decides>:void
 
-    # Returns a list of items currently within this inventory only.
+    # Returns a list of items within this inventory only.
     GetItems<native><final><public>()<reads>:[]entity
+
+    @available {MinUploadedAtFNVersion := 3200}
+    # Returns a list of items (of a specific type) within this inventory only.
+    GetItems<native><final><public>(Type:castable_subtype(item_component))<reads>:[]entity
 
     @available {MinUploadedAtFNVersion := 2930}
     # Returns a list of all items within this inventory and its descendant inventories.
     FindItems<native><final><public>()<reads>:generator(entity)
+
+    @available {MinUploadedAtFNVersion := 3200}
+    # Returns a list of all items (of a specific type) within this inventory and its descendant inventories.
+    FindItems<native><final><public>(Type:castable_subtype(item_component))<reads>:[]entity
 
     GetItemSlot<native><epic_internal>(Item:entity)<reads>:int
 
@@ -130,7 +149,7 @@ inventory_component<native><public> := class<final_super>(component):
     var<private> InventoryDescription<native><epic_internal>:message = external {}
 
     @replicated("RepNotify")
-    var<private> TotalSlots<native><protected>:int = external {}
+    var<private> TotalSlots<native><epic_internal>:int = external {}
 
     @replicated("")
     var<private> PickupPriority<native><epic_internal>:int = external {}
@@ -140,12 +159,6 @@ inventory_component<native><public> := class<final_super>(component):
 
     @replicated("RepNotify")
     var<private> InventoryMaxStackSizeOverride<native><epic_internal>:int = external {}
-
-    CanEquipItem<native><epic_internal>(Item:entity)<transacts><decides>:void
-
-    EquipItem<native><epic_internal>(Item:entity)<transacts><decides>:void
-
-    UnequipItem<native><epic_internal>(Item:entity)<transacts><decides>:void
 
     GetInputAction<epic_internal>(ItemSlot:int):?input_action(type) = external {}
 
@@ -159,13 +172,15 @@ inventory_component<native><public> := class<final_super>(component):
 
     ShowSlotBindings<native><epic_internal>:logic = external {}
 
-    GetEquippedItems<final><native><epic_internal>():[]entity
+    GetEquippedItems<final><native><public>():[]entity
 
-@experimental
-(InAgent:agent).GetInventory<native><public>()<reads><decides>:inventory_component
+    EquipItemEvent<native><final><public>:listenable(equip_item_result) = external {}
+
+    UnequipItemEvent<native><final><public>:listenable(unequip_item_result) = external {}
 
 @experimental
 # Interface for inventory rules. Used for composable rules for inventories.
+# NOTE: this part of the API is likely to change during Experimental.
 inventory_rule_interface<native><public> := interface<unique><castable>:
     # Called after an inventory_rule_interface instance is added to an inventory.
     OnRuleAdded<native_callable><public>(InventoryComponent:inventory_component):void = external {}
@@ -369,6 +384,34 @@ item_max_stack_size_change<native><public> := class<epic_internal>:
     CurrentMaxStackSize<native><public>:?int
 
 @experimental
+equip_item_error<native><public> := class:
+
+
+@experimental
+equip_item_query_event<native><public> := class(scene_event):
+    Item<native><public>:item_component
+
+    Inventory<native><public>:inventory_component
+
+    var<private> Errors<native><public>:[]equip_item_error = external {}
+
+    Reject<public>(Error:equip_item_error):void = external {}
+
+@experimental
+unequip_item_error<native><public> := class:
+
+
+@experimental
+unequip_item_query_event<native><public> := class(scene_event):
+    Item<native><public>:item_component
+
+    Inventory<native><public>:inventory_component
+
+    var<private> Errors<native><public>:[]unequip_item_error = external {}
+
+    Reject<public>(Error:unequip_item_error):void = external {}
+
+@experimental
 # Anything using this component should be considered an item. Required to interact with inventories.
 item_component<native><public> := class<final_super>(component):
     OnInitializedInternal<native><override>():void
@@ -377,11 +420,23 @@ item_component<native><public> := class<final_super>(component):
     GetParentInventory<native><final><public>()<reads><decides>:inventory_component
 
     # Succeeds if this item is considered currently within an inventory and equipped.
-    IsItemEquipped<native><final><public>()<reads><decides>:void
+    IsEquipped<native><final><public>()<reads><decides>:void
 
-    InventoryChangeEvent<native><final><public>:listenable(item_inventory_change) = external {}
+    # Broadcast when this item changes inventory.
+    ChangeInventoryEvent<native><final><public>:listenable(item_inventory_change) = external {}
 
-    EquippedChangedEvent<native><final><public>:listenable(item_equipped_change) = external {}
+    # Broadcast when this item is equipped or unequipped.
+    ChangeEquippedEvent<native><final><public>:listenable(item_equipped_change) = external {}
+
+    @available {MinUploadedAtFNVersion := 3800}
+    # Attempts to equip this item within the inventory it is currently in.
+    # Fails if not in an inventory or if equip_item_query_event contains any errors after querying.
+    Equip<final><native><public>()<transacts>:result(void, []equip_item_error)
+
+    @available {MinUploadedAtFNVersion := 3800}
+    # Attempts to unequip this item.
+    # Fails if not in an inventory, not currently equipped or if unequip_item_query_event contains any errors after querying.
+    Unequip<final><native><public>()<transacts>:result(void, []unequip_item_error)
 
     CloneItem<final><native><epic_internal>()<transacts>:entity
 
@@ -408,6 +463,12 @@ item_component<native><public> := class<final_super>(component):
     MergeInto<final><native_callable><public>(TargetItem:entity, ?TargetAmount:?int = external {})<transacts><decides>:void = external {}
 
     MergeIntoInternal<final><native><epic_internal>(TargetItem:entity, TargetAmount:int)<transacts><decides>:int
+
+    @available {MinUploadedAtFNVersion := 3800}
+    MakeEquipResultInternal<final><native_callable><epic_internal>(IsSuccess:logic):result(any, []equip_item_error) = external {}
+
+    @available {MinUploadedAtFNVersion := 3800}
+    MakeUnequipResultInternal<final><native_callable><epic_internal>(IsSuccess:logic):result(any, []unequip_item_error) = external {}
 
     # Current stack size of this item.
     var<protected> StackSize<native><public>:int = external {}
@@ -489,40 +550,11 @@ item_owner_pose_modifier_component<native><final><epic_internal> := class<final_
     @editable
     NotEquippedPose<native><public>:?pose_modifier = external {}
 
-DefaultText<localizes><epic_internal>:message = external {}
-
 @experimental
-item_type<native><epic_internal> := class<concrete><unique>:
-    @editable
-    ItemTypeName<native><public>:message = external {}
-
-    @editable
-    ItemTypeDescription<native><public>:message = external {}
-
-    @editable
-    ParentType<native><public>:?item_type = external {}
-
-@experimental
-item_type_source<native><epic_internal> := class<abstract>:
-    GetItemType<native><native_callable><epic_internal>(Default:item_type):item_type
-
-@experimental
-item_type_component<native><final><epic_internal> := class<final_super>(component):
-    GetItemTypeTags<native><epic_internal>():tag_container
-
-    @editable
-    var<private> ItemType<native><public>:item_type
-
-    @editable
-    ItemTypeSource<native><epic_internal>:?item_type_source = external {}
-
-@experimental
-item_rarity<native><epic_internal> := class<unique><concrete>:
+# item_rarity is used to classify and rank items.
+item_rarity<native><epic_internal> := class<castable><concrete><unique><final>:
     @editable
     RarityName<native><public>:string = external {}
-
-    @editable
-    RarityDescription<native><public>:string = external {}
 
     @editable
     RarityColor<native><public>:color = external {}
@@ -531,9 +563,35 @@ item_rarity<native><epic_internal> := class<unique><concrete>:
     RarityTier<native><public>:float = external {}
 
 @experimental
+# Component that contains the rarity of an item.
 item_rarity_component<native><final><epic_internal> := class<final_super>(component):
     @editable
     var<private> Rarity<native><public>:?item_rarity
+
+@experimental
+# Component that allows setting the number of slots used by this item in an inventory.
+item_slot_size_component<native><epic_internal> := class<final_super>(component):
+    @editable
+    SlotSize<native><public>:int = external {}
+
+DefaultText<localizes><epic_internal>:message = external {}
+
+@experimental
+item_type<native><epic_internal> := class<concrete><unique>:
+    @editable
+    ItemTypeName<native><public>:message = external {}
+
+@experimental
+item_type_source<native><epic_internal> := class<abstract>:
+
+
+@experimental
+item_type_component<native><final><epic_internal> := class<final_super>(component):
+    @editable
+    var<private> ItemType<native><public>:item_type
+
+    @editable
+    ItemTypeSource<native><epic_internal>:?item_type_source = external {}
 
 @experimental
 # Spawns loot to the world or award it to an agent inventory.

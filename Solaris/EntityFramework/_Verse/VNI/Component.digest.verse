@@ -1,8 +1,8 @@
 using {/Verse.org/Simulation/Tags}
-using {/Verse.org/Native}
-using {/Verse.org/Colors}
-using {/Verse.org/Simulation}
 using {/Verse.org/SpatialMath}
+using {/Verse.org/Native}
+using {/Verse.org/Simulation}
+using {/Verse.org/Colors}
 # A `capsule_light_component` emits light in all directions into the scene from a capsule shaped source with a specified radius and length. A radius and length of 0 makes it a point light. You can use these
 # to simulate any kind of light sources that emit in all directions and need an elongated source shape, such as a long light bulb.
 capsule_light_component<native><public> := class<final>(light_component):
@@ -32,6 +32,8 @@ directional_light_component<native><public> := class<final>(light_component):
 # Module import path: /Verse.org/SceneGraph/KeyframedMovement
 # Animate Scene Graph entities with keyframes.
 KeyframedMovement<public> := module:
+    using {/Verse.org/Simulation}
+    using {/Verse.org/SpatialMath}
     # Base class for an animation easing function.
     easing_function<native><public> := class<abstract><computes><epic_internal>:
         Evaluate<native><public>(Input:float):float
@@ -286,6 +288,14 @@ particle_system_component<native><public> := class<final_super><epic_internal>(c
 @available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would intersect Volume if they were swept from GlobalTransform along the Displacement vector Hits are sorted by hit distance. NOTE: This entity defines the context(scene) for the query but does not otherwise take part in the sweep.
 (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3, StartGlobalTransform:(/Verse.org/SpatialMath:)transform, Volume:collision_volume)<transacts>:generator(sweep_hit) = external {}
+
+@available {MinUploadedAtFNVersion := 3800}
+# Assign the players that this entity will be presented to. False = presentable to everyone, array = presentable to no one.
+(Entity:entity).SetPresentableToPlayers<native><public>(Players:?[]player):void
+
+@available {MinUploadedAtFNVersion := 3800}
+# Get the players that this entity is currently be presented to. False = presentable to everyone, array = presentable to no one.
+(Entity:entity).GetPresentableToPlayers<native><public>()<transacts>:?[]player
 
 # A `rect_light_component` emits light into the scene from a rectangular plane with a specified width and height. You can use these
 # to simulate any kind of light sources that have rectangular areas, such as televisions or monitor screens, overhead lighting

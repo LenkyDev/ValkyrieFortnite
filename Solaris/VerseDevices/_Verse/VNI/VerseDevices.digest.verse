@@ -1,20 +1,21 @@
-using {/Verse.org/Simulation}
-using {/Verse.org/Assets}
-using {/Fortnite.com/Playspaces}
-using {/Fortnite.com/AI}
-using {/Verse.org/Native}
-using {/Verse.org/Simulation/Tags}
-using {/Fortnite.com/Game}
-using {/Verse.org/SceneGraph}
-using {/UnrealEngine.com/Temporary/SpatialMath}
 # Module import path: /Fortnite.com/Devices
 Devices<public> := module:
+    using {/Verse.org/Simulation}
+    using {/Verse.org/Assets}
+    using {/Fortnite.com/Playspaces}
+    using {/Fortnite.com/AI}
+    using {/Verse.org/Native}
+    using {/Verse.org/Simulation/Tags}
+    using {/Fortnite.com/Game}
+    using {/Verse.org/SceneGraph}
+    using {/UnrealEngine.com/Temporary/SpatialMath}
     # Module import path: /Fortnite.com/Devices/Animation
     (/Fortnite.com/Devices:)Animation<public> := module:
 
 
     # Module import path: /Fortnite.com/Devices/CreativeAnimation
     CreativeAnimation<public> := module:
+        using {/UnrealEngine.com/Temporary/SpatialMath}
         # A structure for defining Bezier interpolation parameters.
         # See https://en.wikipedia.org/wiki/B%C3%A9zier_curve for more info on Bezier curves.
         cubic_bezier_parameters<native><public> := struct<computes>:

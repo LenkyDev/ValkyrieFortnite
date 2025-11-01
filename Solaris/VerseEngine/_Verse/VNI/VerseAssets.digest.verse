@@ -1,6 +1,6 @@
-using {/Verse.org/Simulation}
 # Module import path: /Verse.org/Assets
 Assets<public> := module:
+    using {/Verse.org/Simulation}
     animation_sequence<native><public> := class<computes><final><epic_internal>:
 
 
@@ -20,7 +20,7 @@ Assets<public> := module:
 
 
     input_action<native><public>(t:type) := class<computes><epic_internal>:
-
+        (/Verse.org/Assets/input_action:)Assets_input_action_Variance<private>:?type {_():tuple(t)} = external {}
 
     input_mapping<native><public> := class<computes><epic_internal>:
 
