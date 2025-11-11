@@ -269,7 +269,7 @@ AI<public> := module:
     sidekick_component<native><public> := class<abstract><final_super><epic_internal>(component):
         # By default, Sidekicks will change their mood depending on actions in the game.
         # This value will lock the Sidekick into the mood passed in, overriding the automatic mood system.
-        var MoodOverride<public>:?sidekick_mood
+        var MoodOverride<public>:?sidekick_mood = external {}
 
         # Get the Sidekick's current mood.
         GetMood<public>()<reads>:sidekick_mood

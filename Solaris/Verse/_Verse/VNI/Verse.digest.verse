@@ -67,18 +67,18 @@ Verse<public> := module:
     # Constructs a `classifiable_subset` containing the `InElements`.
     MakeClassifiableSubset<native><public>(InElements:[]t where t:type)<reads><converges>:classifiable_subset(t)
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3800}
+    @experimental
     # Succeeds if `element_type` is present in `InSet`.
     (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).Contains<public>(element_type:castable_subtype(k))<reads><decides>:void = external {}
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3800}
+    @experimental
     # Succeeds if all the `element_types` are present in `InSet`.
     (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).ContainsAll<public>(element_types:[]castable_subtype(k))<reads><decides>:void = external {}
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3800}
+    @experimental
     # Succeeds if any of the `element_types` are present in `InSet`.
     (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).ContainsAny<public>(element_types:[]castable_subtype(k))<reads><decides>:void = external {}
 
@@ -86,8 +86,8 @@ Verse<public> := module:
     # Returns a new set that is the union of all elements in `InSetL` set and `InSetR`.
     operator'+'<native><public>((InSetL:classifiable_subset(t), InSetR:classifiable_subset(t)) where t:type)<transacts>:classifiable_subset(t)
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3800}
+    @experimental
     # Returns a new set that contains all the elements in `InSet` that are of type `element_type`.
     (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).FilterByType<native><public>(element_type:castable_subtype(k))<transacts>:classifiable_subset(t)
 

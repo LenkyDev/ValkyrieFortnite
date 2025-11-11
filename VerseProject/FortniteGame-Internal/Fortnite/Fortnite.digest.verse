@@ -2,7 +2,7 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-37.51-CL-46968237
+# Generated from build: ++Fortnite+Release-38.10-CL-47888945
 #################################################
 
 Devices<public> := module:
@@ -51,180 +51,6 @@ Devices<public> := module:
 
         # Restarts the VFX. Triggers the VFX if it's Burst VFX.
         Restart<native><public>():void
-
-    @experimental
-    # NPC Persona component
-    persona_component<native><epic_internal> := class<final_super><epic_internal>(component):
-        var<epic_internal> Name<native><public>:string
-
-        var<epic_internal> Voice<native><public>:string
-
-        var<epic_internal> Personality<native><public>:[]string = external {}
-
-        var<epic_internal> Description<native><public>:[]string = external {}
-
-    non_parametric_agent_subscribable_persona_event<epic_internal> := class(subscribable_event_intrnl(agent)):
-
-    @experimental
-    error_message<native><public> := class:
-        Message<native><public>:message
-
-    @experimental
-    persona_prompt_error<native><public> := class(error_message):
-
-    @experimental
-    persona_prompt_timeout_error<native><public> := class(persona_prompt_error):
-
-    @experimental
-    persona_prompt_throttled_error<native><public> := class(persona_prompt_error):
-
-    @experimental
-    persona_prompt_moderated_error<native><public> := class(persona_prompt_error):
-
-    @experimental
-    conversation_target<native><public> := interface<unique><epic_internal>:
-        # Get all the agents currently targeting Self for conversation.
-        GetConversationTargeters<native_callable><public>():[]agent = external {}
-
-        # Succeeds if the agent can target Self for conversation.
-        CanConversationTargeterBeAdded<native_callable><epic_internal>(ConversationTargeter:agent)<reads><decides>:void = external {}
-
-        # When agent targets Self for conversation.
-        AddConversationTargeterEvent<final><public>:listenable(agent) = external {}
-
-        # When agent untargets Self for conversation.
-        RemoveConversationTargeterEvent<final><public>:listenable(agent) = external {}
-
-        # Listenable which is signaled when the player starts prompting the persona.
-        StartHearEvent<public>:listenable(agent)
-
-        # Listenable which is signaled when the player finishes prompting the persona.
-        StopHearEvent<public>:listenable(agent)
-
-        # Listenable which is signaled when the persona starts talking.
-        #  1/ The agent (if involved) which prompted the response.
-        #  2/ Cancelable to stop the target from talking.
-        StartSayEvent<public>:listenable(tuple(?agent, cancelable))
-
-        # Listenable which is signaled when the target stops talking.
-        StopSayEvent<public>:listenable(tuple())
-
-        # All the agents currently targeting Self for conversation.
-        var ConversationTargeters<epic_internal>:[]agent
-
-        # Allow player to to talk to this persona.
-        AddPlayer<native_callable><epic_internal>(Player:agent)<transacts><decides>:void = external {}
-
-        # Stop player from being able to talk to this persona.
-        RemovePlayer<native_callable><epic_internal>(Player:agent)<transacts><decides>:void = external {}
-
-        # Signals the AddConversationTargeterEvent.
-        SignalAddConversationTargeterEvent<native_callable><epic_internal>(Agent:agent):void = external {}
-
-        # Signals the RemoveConversationTargeterEvent.
-        SignalRemoveConversationTargeterEvent<native_callable><epic_internal>(Agent:agent):void = external {}
-
-    @experimental
-    # A participant can only speak to one conversation target at a time.
-    #  A conversation target can be spoken to by many participants at a time.
-    #  Fails if the conversation target refuses the addition, or if the participant is assigned to a different conversation target.
-    (Participant:agent).SetConversationTarget<native><public>(ConversationTarget:conversation_target)<transacts><decides>:void
-
-    @experimental
-    # Removes any persona assignment for a participant.
-    (Participant:agent).ClearConversationTarget<native><public>()<transacts>:void
-
-    @experimental
-    # Returns the persona a participant is assigned to, fails if unassigned.
-    (Participant:agent).GetConversationTarget<native><public>()<reads><decides>:conversation_target
-
-    @experimental
-    persona_conversation_target<native><public> := class(conversation_target):
-        # Get all the agents currently targeting Self for conversation.
-        GetConversationTargeters<native><override>():[]agent
-
-        # Fails if the participant is not in the list of participants
-        CanConversationTargeterBeAdded<override><native>(ConversationTargeter:agent)<reads><decides>:void
-
-        # Listenable which is signaled when the player starts prompting the persona.
-        StartHearEvent<native><override>:listenable(agent) = external {}
-
-        # Listenable which is signaled when the player finishes prompting the persona.
-        StopHearEvent<native><override>:listenable(agent) = external {}
-
-        # Listenable which is signaled when the persona starts talking.
-        #  1/ The agent (if involved) which prompted the response.
-        #  2/ Cancelable to stop the target from talking.
-        StartSayEvent<native><override>:listenable(tuple(?agent, cancelable)) = external {}
-
-        # Listenable which is signaled when the target stops talking.
-        StopSayEvent<native><override>:listenable(tuple()) = external {}
-
-        # Allow player to to talk to this persona.
-        AddPlayer<native><override>(Player:agent)<transacts><decides>:void
-
-        # Stop player from being able to talk to this persona.
-        RemovePlayer<native><override>(Player:agent)<transacts><decides>:void
-
-        # Add information about, or known by, the persona. Cancelable is used to remove the fact.
-        # # The persona knows these facts, and device facts.
-        AddFact<native><public>(Fact:string)<transacts>:cancelable
-
-        # Adds a fact which is assessed at when a persona is prompted. The fact is generated by calling the FactFunc.
-        AddDynamicFact<native><public>(FactFunc:type {_()<reads>:string})<transacts>:cancelable
-
-        # Requests the Persona to talk on the topic provided.
-        PromptToTalk<native><public>(Topic:string):void
-
-        # Listenable which is signaled when the persona was requested to talk, either by a player or prompt and failed.
-        PromptFailureEvent<native><public>:listenable(persona_prompt_error) = external {}
-
-        # Link this device to a agent.
-        LinkToAgent<native><epic_internal>(Agent:agent)<transacts><decides>:void
-
-    persona_utterance<native><epic_internal> := class(cancelable):
-        Cancel<native><override>()<transacts>:void
-
-    @experimental
-    # A persona device manages conversations involving one or multiple persona objects
-    # that are either standalone (announcer) or in the future attachable to NPCs,
-    # behind the scenes using a single LLM session.
-    # The persona device sees all conversations by all personas and participants.
-    # The persona device only sees facts added to the device.
-    # A persona also sees all conversations among all of its device's personas and participants.
-    # A persona sees all facts added to its device and itself.
-    persona_device<native><public> := class<concrete><final>(creative_device_base):
-        # Add general information to the device. Cancelable is used to remove the fact.
-        # The persona knows these facts, and their persona facts.
-        AddFact<native><epic_internal>(Fact:string)<transacts>:cancelable
-
-        # Adds a fact which is assessed at when the device, or a persona is prompted. The fact is generated by calling the FactFunc.
-        AddDynamicFact<native><epic_internal>(FactFunc:type {_()<reads>:string})<transacts>:cancelable
-
-        # Prompt the device without addressing any particular persona. Only the device facts are known to the prompt.
-        Prompt<native><epic_internal>(UserPrompt:string)<suspends>:result([]char, persona_prompt_error)
-
-        # Removes all conversation history from the device.
-        ClearHistory<native><public>()<transacts>:void
-
-        # Attempts to add a player to the list of participants on this device.
-        # Does nothing if the agent does not meet the criteria of participation configured on the device.
-        AddParticipant<public>(Agent:agent):void = external {}
-
-        # Removes an agent from the participants.
-        RemoveParticipant<public>(Agent:agent):void = external {}
-
-        # Attempts to add a persona on this device.
-        AddPersona<native><epic_internal>(Persona:entity)<transacts><decides>:persona_conversation_target
-
-        # Attempts to remove a persona on this device.
-        RemovePersona<native><epic_internal>(Persona:entity)<transacts>:void
-
-        # All the players in the channel with the personas managed by this device.
-        var<private> Participants<public>:[]agent = external {}
-
-        # Direct access to all personas configured on this device.
-        var<private> Personas<public>:[]persona_conversation_target = external {}
 
     # The state of a progress_based_mesh_device.
     progress_device_state<public> := enum<open>:
@@ -805,6 +631,334 @@ Devices<public> := module:
         # Submits an event for `Agent`.
         Submit<public>(Agent:agent):void = external {}
 
+    # Used to place a campfire in the world that an `agent` can use to heal themselves.
+    campfire_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when an `agent` enters the area of effect for this device.
+        # Sends the entering `agent`.
+        AgentEntersEffectAreaEvent<public>:listenable(agent) = external {}
+
+        # Signaled when an `agent` exits the area of effect for this device.
+        # Sends the exiting `agent`.
+        AgentExitsEffectAreaEvent<public>:listenable(agent) = external {}
+
+        # Signaled when this device generates a pulse.
+        CampfirePulseEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when an `agent` is affected by a pulse generated by this device.
+        # Sends the affected `agent`.
+        AgentPulsedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when this device is lit by an `agent`.
+        # Sends the lighting `agent`.
+        LitEvent<public>:listenable(agent) = external {}
+
+        # Signaled when this device is extinguished by an `agent`.
+        # Sends the extinguishing `agent`.
+        ExtinguishedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when this device is enabled.
+        EnabledEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when this device is disabled.
+        DisabledEvent<public>:listenable(tuple()) = external {}
+
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Adds wood to this device.
+        AddWood<public>():void = external {}
+
+        # Lights this device.
+        Light<public>(Agent:agent):void = external {}
+
+        # Extinguishes this device.
+        Extinguish<public>(Agent:agent):void = external {}
+
+    # Used to focus the camera on specific `agent`s.
+    camera_focus_device<epic_internal> := class<concrete><final>(creative_device_base):
+        # Signaled when the camera focuses on an `agent`.
+        # Sends the `agent` being focused on.
+        FocusOnEvent<public>:listenable(agent) = external {}
+
+        # Signaled when the camera stops focusing on an `agent`.
+        # Sends the `agent` that stopped being focused on.
+        FocusIsDroppedEvent<public>:listenable(agent) = external {}
+
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Focuses the camera on `Agent`.
+        Focus<public>(Agent:agent):void = external {}
+
+        # Focuses the camera on all `agent`s.
+        FocusAll<public>():void = external {}
+
+        # Drops focus from `Agent`.
+        DropFocus<public>(Agent:agent):void = external {}
+
+        # Drops focus from all `agent`s.
+        DropFocusForAll<public>():void = external {}
+
+    # Used to cause `agent`s to drop or lose items from their inventory. For example, if an `agent` is *Down But Not Out*, they could drop items from their inventory, and other `agent`s could then pick up those items.
+    item_remover_device<public> := class<concrete><final>(creative_device_base):
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Remove items from `Agent`s inventory. The items that are removed can be configured using *Affected Items*.
+        Remove<public>(Agent:agent):void = external {}
+
+    # Used to mark an `agent`'s position on the minimap and configure the information shown for marked `agent`s.
+    # 
+    # Example configuration options:
+    #  * Health and shield bars for marked players.
+    #  * Distance to a marked player.
+    # 
+    # Example marker appearance options:
+    #  * Customized text label displayed on marked players.
+    #  * Alternative minimap icon and icon color.
+    player_marker_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when the first item type monitored on marked agents has changed.
+        # Sends the marked `agent`.
+        FirstItemValueChangedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when the second item type monitored on marked agents has changed.
+        # Sends the marked `agent`.
+        SecondItemValueChangedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when a marked `agent` meets the quantity condition for the first monitored item type (e.g. Fewer Than, Equal To, More Than X).
+        # Sends the marked `agent`.
+        FirstItemValueReachedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when a marked `agent` meets the quantity condition for the second monitored item type (e.g. Fewer Than, Equal To, More Than X).
+        # Sends the marked `agent`.
+        SecondItemValueReachedEvent<public>:listenable(agent) = external {}
+
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Attaches a marker to `Agent`.
+        Attach<public>(Agent:agent):void = external {}
+
+        # Detaches a marker from `Agent`.
+        Detach<public>(Agent:agent):void = external {}
+
+        # Detaches markers from all marked `agent`s.
+        DetachFromAll<public>():void = external {}
+
+    # Used to move around a building or prop, and customize responses to various collision event types.
+    prop_mover_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when this device is enabled.
+        EnabledEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when this device is disabled.
+        DisabledEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when the prop movement begins.
+        BeganEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when the prop movement ends.
+        EndedEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when the prop reaches its destination.
+        FinishedEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when the prop changes its direction.
+        MovementModeChangedEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when the prop hits an `agent`.
+        # Sends the `agent` hit by the prop.
+        AgentHitEvent<public>:listenable(agent) = external {}
+
+        # Signaled when the prop hits a creature, animal, or NPC.
+        AIHitEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when the prop hits another prop.
+        PropHitEvent<public>:listenable(tuple()) = external {}
+
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Moves the prop to its original position.
+        Reset<public>():void = external {}
+
+        # Begins the prop moving.
+        Begin<public>():void = external {}
+
+        # Ends the prop moving.
+        End<public>():void = external {}
+
+        # Moves the prop forward based on this device's default configuration, ignoring the prop's previous movement.
+        Advance<public>():void = external {}
+
+        # Reverses the prop's moving direction.
+        Reverse<public>():void = external {}
+
+        # Sets the total distance (in meters) that the prop will move.
+        SetTargetDistance<public>(InDistance:float):void = external {}
+
+        # Returns the total distance (in meters) that the prop will move.
+        GetTargetDistance<public>()<transacts>:float = external {}
+
+        # Sets the speed (in meters per second) at which the prop will move to its destination.
+        SetTargetSpeed<public>(Speed:float):void = external {}
+
+        # Returns the speed (in meters per second) at which the prop mover will move the prop to its destination.
+        GetTargetSpeed<public>()<transacts>:float = external {}
+
+    # Used to allow agents to turn other linked devices on/off or other custom state changes.
+    switch_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when the switch is turned on by the specified `agent`.
+        # Sends the `agent` that turned on the device.
+        TurnedOnEvent<public>:listenable(agent) = external {}
+
+        # Signaled when the switch is turned off by the specified `agent`.
+        # Sends the `agent` that turned off the device.
+        TurnedOffEvent<public>:listenable(agent) = external {}
+
+        # Signaled if the switch is on when the state is checked.
+        IfOnWhenCheckedEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled if the switch is off when the state is checked.
+        IfOffWhenCheckedEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when the switch state is saved.
+        StateSaveEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when the switch state changes.
+        StateChangesEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when the switch state is loaded by the specified `agent`.
+        # Sends the `agent` that loaded the state on the device.
+        StateLoadEvent<public>:listenable(agent) = external {}
+
+        # Signaled when the persistent data is cleared by the specified `agent`.
+        # Sends the `agent` that cleared persistent data on the device.
+        ClearEvent<public>:listenable(agent) = external {}
+
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Turns on this device with `Agent` acting as the instigator of the action.
+        TurnOn<public>(Agent:agent):void = external {}
+
+        # Turns off the device with `Agent` acting as the instigator of the action.
+        TurnOff<public>(Agent:agent):void = external {}
+
+        # Toggles between `TurnOn` and `TurnOff` with `Agent` acting as the instigator of the action.
+        ToggleState<public>(Agent:agent):void = external {}
+
+        # Loads the device state with `Agent` acting as the instigator of the action.
+        LoadState<public>(Agent:agent):void = external {}
+
+        # Saves the device state with `Agent` acting as the instigator of the action.
+        SaveState<public>(Agent:agent):void = external {}
+
+        # Loads the device state for all players.
+        LoadStateForAll<public>():void = external {}
+
+        # Saves the device state for all players
+        SaveStateForAll<public>():void = external {}
+
+        # Checks the device state with `Agent` acting as the instigator of the action.
+        CheckState<public>(Agent:agent):void = external {}
+
+        # Clears persistence data for `Agent`.
+        ClearPersistenceData<public>(Agent:agent):void = external {}
+
+        # Clears persistence data for all `agent`s.
+        ClearAllPersistenceData<public>():void = external {}
+
+        # Succeeds if the current state of this switch is on, fails otherwise. Use this overload  of `GetCurrentState` when this device has *Store State Per Player* set to *Yes*.
+        GetCurrentState<public>(Agent:agent)<transacts><decides>:void = external {}
+
+        # Succeeds if the current state of this switch is on, fails otherwise. Use this overload  of `GetCurrentState` when this device has *Store State Per Player* set to *No*.
+        GetCurrentState<public>()<transacts><decides>:void = external {}
+
+        # Query whether this device has a single global on/off state, or has a personalized on/off state for each individual agent.
+        IsStatePerAgent<public>()<transacts><decides>:void = external {}
+
+        # Sets the *Interaction Time* required to activate this device (in seconds).
+        SetInteractionTime<public>(Time:float):void = external {}
+
+        # Returns the *Interaction Time* required to activate this device (in seconds).
+        GetInteractionTime<public>()<transacts>:float = external {}
+
+        # Sets the *Turn On Text* to be displayed to a user when the switch is currently off, and offers an interaction to switch it on. Clamped to 150 characters.
+        SetTurnOnInteractionText<public>(Text:message):void = external {}
+
+        # Sets the *Turn Off Text* to be displayed to a user when the switch is currently on, and offers an interaction to switch it off. Clamped to 150 characters.
+        SetTurnOffInteractionText<public>(Text:message):void = external {}
+
+        # Sets the state of the switch to a specific value for a specific `Agent`.
+        #  Use when the device has *Store State Per Player* set to *Yes*.
+        SetState<public>(Agent:agent, State:logic):void = external {}
+
+        # Sets the state of the switch to a specific value.
+        #  Use when the device has *Store State Per Player* set to *No*.
+        SetState<public>(State:logic):void = external {}
+
+        # Updates the *State Reset Time* for the device, in seconds, clamped to the Min and Max defined in the device.
+        #  This will not apply to any state reset timers currently in effect.
+        #  Set to 0.0 to disable the State Reset Time. Set to less than 0.0 to reset to default.
+        SetStateResetTime<public>(Time:float):void = external {}
+
+        # Updates the *State Reset Time* for the device, in seconds,for a specific player (if *Store State Per Player* is *Yes*), clamped to the Min and Max defined in the device.
+        #  This will not apply to any state reset timers currently in effect.
+        #  Set to 0.0 to disable the State Reset Time. Set to less than 0.0 to reset to default.
+        SetStateResetTime<public>(Agent:agent, Time:float):void = external {}
+
+        # Returns the value of *State Reset Time*, in seconds, for the device. Returns -1.0 if *State Reset Time* is not used.
+        GetStateResetTime<public>()<transacts>:float = external {}
+
+        # Returns the value of *State Reset Time*, in seconds, for the device, for a specific player. Returns -1.0 if *State Reset Time* is not used.
+        GetStateResetTime<public>(Agent:agent)<transacts>:float = external {}
+
+        # Returns the time, in seconds, before the switch will reset itself to default.
+        #  Returns -1.0 if *Store State Per Player* is *Yes* or if  there is no active reset timer.
+        GetCurrentResetTime<public>():float = external {}
+
+        # Returns the time, in seconds, before the switch will reset itself to default for *Agent*.
+        #  Returns -1.0 if there is no active reset timer.
+        GetCurrentResetTime<public>(Agent:agent):float = external {}
+
+    # Used to trigger in game events based on real world time.
+    real_time_clock_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when the optional second *Duration* time has been reached.
+        DurationElapsedEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when the target time is reached.
+        TimeReachedEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when this device is enabled after the target time has been reached.
+        EnablingAfterTimeReachedEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when this device is enabled before the target time has been reached.
+        EnablingBeforeTimeReachedEvent<public>:listenable(tuple()) = external {}
+
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
     # Used to manage sound buses via control bus mixes set on the Audio Mixer Device.
     audio_mixer_device<public> := class<concrete><final>(creative_device_base):
         # Activates the mix set on the audio mixer.
@@ -856,52 +1010,6 @@ Devices<public> := module:
 
         # Hides this device from the world.
         Hide<public>()<transacts>:void = external {}
-
-    # Used to place a campfire in the world that an `agent` can use to heal themselves.
-    campfire_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when an `agent` enters the area of effect for this device.
-        # Sends the entering `agent`.
-        AgentEntersEffectAreaEvent<public>:listenable(agent) = external {}
-
-        # Signaled when an `agent` exits the area of effect for this device.
-        # Sends the exiting `agent`.
-        AgentExitsEffectAreaEvent<public>:listenable(agent) = external {}
-
-        # Signaled when this device generates a pulse.
-        CampfirePulseEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when an `agent` is affected by a pulse generated by this device.
-        # Sends the affected `agent`.
-        AgentPulsedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when this device is lit by an `agent`.
-        # Sends the lighting `agent`.
-        LitEvent<public>:listenable(agent) = external {}
-
-        # Signaled when this device is extinguished by an `agent`.
-        # Sends the extinguishing `agent`.
-        ExtinguishedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when this device is enabled.
-        EnabledEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when this device is disabled.
-        DisabledEvent<public>:listenable(tuple()) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Adds wood to this device.
-        AddWood<public>():void = external {}
-
-        # Lights this device.
-        Light<public>(Agent:agent):void = external {}
-
-        # Extinguishes this device.
-        Extinguish<public>(Agent:agent):void = external {}
 
     # Used to customize (or prevent) the 'down but not out' player state between 'healthy' and 'removed from game'.
     down_but_not_out_device<public> := class<concrete><final>(creative_device_base):
@@ -1033,34 +1141,6 @@ Devices<public> := module:
         # Checks the device state with `Agent` acting as the instigator of the action.
         CheckState<public>(Agent:agent):void = external {}
 
-    # Used to focus the camera on specific `agent`s.
-    camera_focus_device<epic_internal> := class<concrete><final>(creative_device_base):
-        # Signaled when the camera focuses on an `agent`.
-        # Sends the `agent` being focused on.
-        FocusOnEvent<public>:listenable(agent) = external {}
-
-        # Signaled when the camera stops focusing on an `agent`.
-        # Sends the `agent` that stopped being focused on.
-        FocusIsDroppedEvent<public>:listenable(agent) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Focuses the camera on `Agent`.
-        Focus<public>(Agent:agent):void = external {}
-
-        # Focuses the camera on all `agent`s.
-        FocusAll<public>():void = external {}
-
-        # Drops focus from `Agent`.
-        DropFocus<public>(Agent:agent):void = external {}
-
-        # Drops focus from all `agent`s.
-        DropFocusForAll<public>():void = external {}
-
     # Used to listen for the player activating or releasing certain inputs.
     # The input is defined by the *Input* option.
     # Players can configure the key for the input in the Creative Input Actions section of the Keyboard Settings.
@@ -1106,45 +1186,13 @@ Devices<public> := module:
         # Disables this device.
         Disable<public>():void = external {}
 
-    # Used to cause `agent`s to drop or lose items from their inventory. For example, if an `agent` is *Down But Not Out*, they could drop items from their inventory, and other `agent`s could then pick up those items.
-    item_remover_device<public> := class<concrete><final>(creative_device_base):
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Remove items from `Agent`s inventory. The items that are removed can be configured using *Affected Items*.
-        Remove<public>(Agent:agent):void = external {}
-
     # Allows players to change their outfit in game!
     changing_booth_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when a `player` enters the changing booth device.
+        PlayerEnterEvent<public>:listenable(player) = external {}
 
-    # Used to create a light which can have its color and brightness manipulated in response to in-game events.
-    customizable_light_device<public> := class<concrete><final>(creative_device_base):
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Resets the light to its initial state.
-        Reset<public>():void = external {}
-
-        # Turns on the light.
-        TurnOn<public>():void = external {}
-
-        # Turns off the light.
-        TurnOff<public>():void = external {}
-
-        # Toggles between `TurnOn` and `TurnOff`.
-        Toggle<public>():void = external {}
-
-        # Dims the light by *Dimming Amount*.
-        DimLight<public>():void = external {}
-
-        # Brightens the light by *Dimming Amount*.
-        UndimLight<public>():void = external {}
+        # Signaled when a `player` exits the changing booth device.
+        PlayerExitEvent<public>:listenable(player) = external {}
 
     # Used to track and react to how many players are in a particular area, and optionally display that information in game.
     player_counter_device<public> := class<concrete><final>(creative_device_base):
@@ -1222,6 +1270,32 @@ Devices<public> := module:
         # Returns an array of agents that are currently counted by the device.
         GetCountedAgents<public>()<reads>:[]agent = external {}
 
+    # Used to create a light which can have its color and brightness manipulated in response to in-game events.
+    customizable_light_device<public> := class<concrete><final>(creative_device_base):
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Resets the light to its initial state.
+        Reset<public>():void = external {}
+
+        # Turns on the light.
+        TurnOn<public>():void = external {}
+
+        # Turns off the light.
+        TurnOff<public>():void = external {}
+
+        # Toggles between `TurnOn` and `TurnOff`.
+        Toggle<public>():void = external {}
+
+        # Dims the light by *Dimming Amount*.
+        DimLight<public>():void = external {}
+
+        # Brightens the light by *Dimming Amount*.
+        UndimLight<public>():void = external {}
+
     # Used to manipulate the properties of one or more props in a specified area (e.g. Visibility/Destructibility).
     prop_manipulator_device<public> := class<concrete><final>(creative_device_base):
         # Signaled when props affected by this device are damaged.
@@ -1266,6 +1340,47 @@ Devices<public> := module:
 
         # Sets the *Override Resource* option to *No*.
         DisableResourceNodeOverrides<public>():void = external {}
+
+    # Gives the ability to save player progress, location, resources and stats persistently across games.
+    save_point_device<epic_internal> := class<concrete><final>(creative_device_base):
+        # Signaled when data is saved for an `agent`.
+        ActivationEvent<public>:listenable(agent) = external {}
+
+        # Signaled when data is loaded for an `agent`.
+        LoadedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when data is cleared for an `agent`.
+        ClearedEvent<public>:listenable(agent) = external {}
+
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Save data for `Agent`. This function does nothing if `Agent` is already eliminated.
+        Save<public>(Agent:agent):void = external {}
+
+        # Load data for `Agent`.
+        Load<public>(Agent:agent):void = external {}
+
+        # Clears all saved data for `Agent`.
+        ClearData<public>(Agent:agent):void = external {}
+
+        # Clears all saved data for all `agent`s in the current session.
+        ClearDataForAll<public>():void = external {}
+
+        # Saves Data for all players in the current session.
+        SaveDataForAll<public>():void = external {}
+
+        # Loads Data for all players in the current session.
+        LoadDataForAll<public>():void = external {}
+
+        # Sets whether the `agent`'s data is automatically saved while they play.
+        SetAutoSaveEnabled<public>(Enabled:logic):void = external {}
+
+        # Returns whether the `agent`'s data is automatically saved while they play.
+        GetAutoSaveEnabled<public>()<transacts>:logic = external {}
 
     # Used in tandem with `race_manager_device` to define the route players must traverse.
     race_checkpoint_device<public> := class<concrete><final>(creative_device_base):
@@ -1319,171 +1434,6 @@ Devices<public> := module:
 
         # Ends the race.
         End<public>():void = external {}
-
-    # Used to mark an `agent`'s position on the minimap and configure the information shown for marked `agent`s.
-    # 
-    # Example configuration options:
-    #  * Health and shield bars for marked players.
-    #  * Distance to a marked player.
-    # 
-    # Example marker appearance options:
-    #  * Customized text label displayed on marked players.
-    #  * Alternative minimap icon and icon color.
-    player_marker_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when the first item type monitored on marked agents has changed.
-        # Sends the marked `agent`.
-        FirstItemValueChangedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when the second item type monitored on marked agents has changed.
-        # Sends the marked `agent`.
-        SecondItemValueChangedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when a marked `agent` meets the quantity condition for the first monitored item type (e.g. Fewer Than, Equal To, More Than X).
-        # Sends the marked `agent`.
-        FirstItemValueReachedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when a marked `agent` meets the quantity condition for the second monitored item type (e.g. Fewer Than, Equal To, More Than X).
-        # Sends the marked `agent`.
-        SecondItemValueReachedEvent<public>:listenable(agent) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Attaches a marker to `Agent`.
-        Attach<public>(Agent:agent):void = external {}
-
-        # Detaches a marker from `Agent`.
-        Detach<public>(Agent:agent):void = external {}
-
-        # Detaches markers from all marked `agent`s.
-        DetachFromAll<public>():void = external {}
-
-    # Used to move around a building or prop, and customize responses to various collision event types.
-    prop_mover_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when this device is enabled.
-        EnabledEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when this device is disabled.
-        DisabledEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when the prop movement begins.
-        BeganEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when the prop movement ends.
-        EndedEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when the prop reaches its destination.
-        FinishedEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when the prop changes its direction.
-        MovementModeChangedEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when the prop hits an `agent`.
-        # Sends the `agent` hit by the prop.
-        AgentHitEvent<public>:listenable(agent) = external {}
-
-        # Signaled when the prop hits a creature, animal, or NPC.
-        AIHitEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when the prop hits another prop.
-        PropHitEvent<public>:listenable(tuple()) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Moves the prop to its original position.
-        Reset<public>():void = external {}
-
-        # Begins the prop moving.
-        Begin<public>():void = external {}
-
-        # Ends the prop moving.
-        End<public>():void = external {}
-
-        # Moves the prop forward based on this device's default configuration, ignoring the prop's previous movement.
-        Advance<public>():void = external {}
-
-        # Reverses the prop's moving direction.
-        Reverse<public>():void = external {}
-
-        # Sets the total distance (in meters) that the prop will move.
-        SetTargetDistance<public>(InDistance:float):void = external {}
-
-        # Returns the total distance (in meters) that the prop will move.
-        GetTargetDistance<public>()<transacts>:float = external {}
-
-        # Sets the speed (in meters per second) at which the prop will move to its destination.
-        SetTargetSpeed<public>(Speed:float):void = external {}
-
-        # Returns the speed (in meters per second) at which the prop mover will move the prop to its destination.
-        GetTargetSpeed<public>()<transacts>:float = external {}
-
-    # Used to trigger in game events based on real world time.
-    real_time_clock_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when the optional second *Duration* time has been reached.
-        DurationElapsedEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when the target time is reached.
-        TimeReachedEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when this device is enabled after the target time has been reached.
-        EnablingAfterTimeReachedEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when this device is enabled before the target time has been reached.
-        EnablingBeforeTimeReachedEvent<public>:listenable(tuple()) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-    # Gives the ability to save player progress, location, resources and stats persistently across games.
-    save_point_device<epic_internal> := class<concrete><final>(creative_device_base):
-        # Signaled when data is saved for an `agent`.
-        ActivationEvent<public>:listenable(agent) = external {}
-
-        # Signaled when data is loaded for an `agent`.
-        LoadedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when data is cleared for an `agent`.
-        ClearedEvent<public>:listenable(agent) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Save data for `Agent`. This function does nothing if `Agent` is already eliminated.
-        Save<public>(Agent:agent):void = external {}
-
-        # Load data for `Agent`.
-        Load<public>(Agent:agent):void = external {}
-
-        # Clears all saved data for `Agent`.
-        ClearData<public>(Agent:agent):void = external {}
-
-        # Clears all saved data for all `agent`s in the current session.
-        ClearDataForAll<public>():void = external {}
-
-        # Saves Data for all players in the current session.
-        SaveDataForAll<public>():void = external {}
-
-        # Loads Data for all players in the current session.
-        LoadDataForAll<public>():void = external {}
-
-        # Sets whether the `agent`'s data is automatically saved while they play.
-        SetAutoSaveEnabled<public>(Enabled:logic):void = external {}
-
-        # Returns whether the `agent`'s data is automatically saved while they play.
-        GetAutoSaveEnabled<public>()<transacts>:logic = external {}
 
     # Generates an AI bot that spawns in a location and usually attacks players when they come in range.
     sentry_device<public> := class<concrete><final>(creative_device_base):
@@ -1568,125 +1518,6 @@ Devices<public> := module:
         # Changes audio channel for `Agent`.
         ChangeChannel<public>(Agent:agent):void = external {}
 
-    # Used to allow agents to turn other linked devices on/off or other custom state changes.
-    switch_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when the switch is turned on by the specified `agent`.
-        # Sends the `agent` that turned on the device.
-        TurnedOnEvent<public>:listenable(agent) = external {}
-
-        # Signaled when the switch is turned off by the specified `agent`.
-        # Sends the `agent` that turned off the device.
-        TurnedOffEvent<public>:listenable(agent) = external {}
-
-        # Signaled if the switch is on when the state is checked.
-        IfOnWhenCheckedEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled if the switch is off when the state is checked.
-        IfOffWhenCheckedEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when the switch state is saved.
-        StateSaveEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when the switch state changes.
-        StateChangesEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when the switch state is loaded by the specified `agent`.
-        # Sends the `agent` that loaded the state on the device.
-        StateLoadEvent<public>:listenable(agent) = external {}
-
-        # Signaled when the persistent data is cleared by the specified `agent`.
-        # Sends the `agent` that cleared persistent data on the device.
-        ClearEvent<public>:listenable(agent) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Turns on this device with `Agent` acting as the instigator of the action.
-        TurnOn<public>(Agent:agent):void = external {}
-
-        # Turns off the device with `Agent` acting as the instigator of the action.
-        TurnOff<public>(Agent:agent):void = external {}
-
-        # Toggles between `TurnOn` and `TurnOff` with `Agent` acting as the instigator of the action.
-        ToggleState<public>(Agent:agent):void = external {}
-
-        # Loads the device state with `Agent` acting as the instigator of the action.
-        LoadState<public>(Agent:agent):void = external {}
-
-        # Saves the device state with `Agent` acting as the instigator of the action.
-        SaveState<public>(Agent:agent):void = external {}
-
-        # Loads the device state for all players.
-        LoadStateForAll<public>():void = external {}
-
-        # Saves the device state for all players
-        SaveStateForAll<public>():void = external {}
-
-        # Checks the device state with `Agent` acting as the instigator of the action.
-        CheckState<public>(Agent:agent):void = external {}
-
-        # Clears persistence data for `Agent`.
-        ClearPersistenceData<public>(Agent:agent):void = external {}
-
-        # Clears persistence data for all `agent`s.
-        ClearAllPersistenceData<public>():void = external {}
-
-        # Succeeds if the current state of this switch is on, fails otherwise. Use this overload  of `GetCurrentState` when this device has *Store State Per Player* set to *Yes*.
-        GetCurrentState<public>(Agent:agent)<transacts><decides>:void = external {}
-
-        # Succeeds if the current state of this switch is on, fails otherwise. Use this overload  of `GetCurrentState` when this device has *Store State Per Player* set to *No*.
-        GetCurrentState<public>()<transacts><decides>:void = external {}
-
-        # Query whether this device has a single global on/off state, or has a personalized on/off state for each individual agent.
-        IsStatePerAgent<public>()<transacts><decides>:void = external {}
-
-        # Sets the *Interaction Time* required to activate this device (in seconds).
-        SetInteractionTime<public>(Time:float):void = external {}
-
-        # Returns the *Interaction Time* required to activate this device (in seconds).
-        GetInteractionTime<public>()<transacts>:float = external {}
-
-        # Sets the *Turn On Text* to be displayed to a user when the switch is currently off, and offers an interaction to switch it on. Clamped to 150 characters.
-        SetTurnOnInteractionText<public>(Text:message):void = external {}
-
-        # Sets the *Turn Off Text* to be displayed to a user when the switch is currently on, and offers an interaction to switch it off. Clamped to 150 characters.
-        SetTurnOffInteractionText<public>(Text:message):void = external {}
-
-        # Sets the state of the switch to a specific value for a specific `Agent`.
-        #  Use when the device has *Store State Per Player* set to *Yes*.
-        SetState<public>(Agent:agent, State:logic):void = external {}
-
-        # Sets the state of the switch to a specific value.
-        #  Use when the device has *Store State Per Player* set to *No*.
-        SetState<public>(State:logic):void = external {}
-
-        # Updates the *State Reset Time* for the device, in seconds, clamped to the Min and Max defined in the device.
-        #  This will not apply to any state reset timers currently in effect.
-        #  Set to 0.0 to disable the State Reset Time. Set to less than 0.0 to reset to default.
-        SetStateResetTime<public>(Time:float):void = external {}
-
-        # Updates the *State Reset Time* for the device, in seconds,for a specific player (if *Store State Per Player* is *Yes*), clamped to the Min and Max defined in the device.
-        #  This will not apply to any state reset timers currently in effect.
-        #  Set to 0.0 to disable the State Reset Time. Set to less than 0.0 to reset to default.
-        SetStateResetTime<public>(Agent:agent, Time:float):void = external {}
-
-        # Returns the value of *State Reset Time*, in seconds, for the device. Returns -1.0 if *State Reset Time* is not used.
-        GetStateResetTime<public>()<transacts>:float = external {}
-
-        # Returns the value of *State Reset Time*, in seconds, for the device, for a specific player. Returns -1.0 if *State Reset Time* is not used.
-        GetStateResetTime<public>(Agent:agent)<transacts>:float = external {}
-
-        # Returns the time, in seconds, before the switch will reset itself to default.
-        #  Returns -1.0 if *Store State Per Player* is *Yes* or if  there is no active reset timer.
-        GetCurrentResetTime<public>():float = external {}
-
-        # Returns the time, in seconds, before the switch will reset itself to default for *Agent*.
-        #  Returns -1.0 if there is no active reset timer.
-        GetCurrentResetTime<public>(Agent:agent):float = external {}
-
     # Used to create and customize your own visual effects. This is more flexible than the `vfx_spawner_device`, which gives you a selection of pre-made visual effects to choose from but limits how much you can customize or change those effects.
     vfx_creator_device<public> := class<concrete><final>(creative_device_base):
         # Enables this device.
@@ -1745,43 +1576,6 @@ Devices<public> := module:
         # Spawns the effect at `Agent`'s location. This option is only valid if *Stick to Player* is enabled.
         SpawnAt<public>(Agent:agent):void = external {}
 
-    # Used to create and manipulate volumes of water where players can swim, fish, or drive boats.
-    water_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when an `agent` enters the water.
-        # Sends `agent` that entered the water.
-        AgentEntersWaterEvent<public>:listenable(agent) = external {}
-
-        # Signaled when an `agent` exits the water.
-        # Sends `agent` that exited the water.
-        AgentExitsWaterEvent<public>:listenable(agent) = external {}
-
-        # Signals when the volume is filled to the water level set in the *Default Vertical Water Percentage* option.
-        VerticalFillingCompletedEvent<public>:listenable(tuple()) = external {}
-
-        # Signals when the water volume is completely empty.
-        VerticalEmptyingCompletedEvent<public>:listenable(tuple()) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Resets the water level in the volume to the value set in the *Default Vertical Water Percentage* option.
-        Reset<public>():void = external {}
-
-        # Starts vertically emptying the water in the volume.
-        BeginVerticalEmptying<public>():void = external {}
-
-        # Starts vertically filling the water in the volume.
-        BeginVerticalFilling<public>():void = external {}
-
-        # Stops filling or emptying the volume.
-        StopVerticalMovement<public>():void = external {}
-
-        # Resumes either filling or emptying the volume.
-        ResumeVerticalMovement<public>():void = external {}
-
     # Creates a zipline that moves players from point to point.
     zipline_device<epic_internal> := class<concrete><final>(creative_device_base):
         # Signaled when an `agent` attaches to the zipline.
@@ -1794,242 +1588,6 @@ Devices<public> := module:
 
         # Returns true if `Agent`is currently attached to this zipline.
         IsAttached<public>(Agent:agent)<transacts><decides>:void = external {}
-
-    # Used to control the behavior of the map & minimap.
-    # Activation for a given `agent` can occur automatically via the device's *Activate Automatically* user option, by the `agent` entering and exiting the device's volume if using the *Activate on Trigger* user option, or via events from other devices or verse.
-    # When more than one map controller is activated for a given `agent`, the one with the highest *Map Priority* user option applies.
-    map_controller_device<public> := class<concrete><final>(creative_device_base):
-        # Adds the map controller to the provided `Agent`'s map controller stack.
-        # If multiple map controllers are active for an `agent`, the one with the highest *Map Priority* is used.
-        Activate<public>(Agent:agent):void = external {}
-
-        # Adds the map controller to all `agent`s in the experience.
-        # If multiple map controllers are active for an `agent`, the one with the highest *Map Priority* is used.
-        Activate<public>():void = external {}
-
-        # Removes the map controller from the provided `Agent`'s map controller stack.
-        # The next highest priority active map controller will be used, or if none exists, the default behavior will be restored.
-        Deactivate<public>(Agent:agent):void = external {}
-
-        # Removes the map controller from all `agent`s in the experience.
-        # The next highest priority active map controller will be used, or if none exists, the default behavior will be restored.
-        Deactivate<public>():void = external {}
-
-        # Enables the device.
-        # Enabling the device will allow it to be activated, both by incoming events, and by trigger if using *Activate on Trigger*.
-        Enable<public>():void = external {}
-
-        # Disables the device.
-        # Disabling the device will deactivate it for all `agents` in the experience, turn off the trigger functionality, and prevent it from responding to events.
-        Disable<public>():void = external {}
-
-        # Sets the *Capture Box Size* (in meters).
-        # *Capture Box Size* refers to the length and width of the area used for both the map capture image as well as the activation trigger.
-        # Value is clamped between `25.0` and `2500.0` meters. 
-        SetCaptureBoxSize<public>(Size:float):void = external {}
-
-        # Returns the *Capture Box Size* (in meters).
-        GetCaptureBoxSize<public>()<transacts>:float = external {}
-
-    # Used to create a minigame which expects specific input timing from the player.
-    # Visuals may vary, but always feature a scrubber that moves from 0.0 to 1.0.
-    # Good and perfect zones are defined on the device, describing at what point the player must provide input to succeed.
-    skilled_interaction_device<public> := class<concrete><final>(creative_device_base, enableable):
-        # Begins the interaction for the provided `agent`.
-        # Will cancel any other interactions already in progress for the `agent` if a queue is not being utilized.
-        # If a queue is being utilized and duplicate player entries are not allowed then any duplicate player entries in the queue will not be added.
-        # If the number of agents requesting interact fits into the current interaction configuration, then those agents will begin
-        # interact immediately and skip the queue entirely.
-        BeginInteraction<public>(Agent:agent)<transacts><decides>:void = external {}
-
-        # Begins the interaction for the provided `agent`(s).
-        # Will cancel any other interactions already in progress for the `agent` if a queue is not being utilized.
-        # If a queue is being utilized and duplicate player entries are not allowed then any duplicate player entries in the queue will not be added.
-        # If the number of agents requesting interact fits into the current interaction configuration, then those agents will begin
-        # interact immediately and skip the queue entirely.
-        BeginInteraction<public>(Agents:[]agent)<transacts><decides>:void = external {}
-
-        # Cancels the interaction, if in progress, for the provided `agent`.
-        # Does not clear the queue of any agent awaiting interaction
-        EndInteraction<public>(Agent:agent)<transacts><decides>:void = external {}
-
-        # Cancels the interaction, if in progress, for the provided `agent`(s).
-        # Does not clear the queue of any agent awaiting interaction
-        EndInteraction<public>(Agents:[]agent)<transacts><decides>:void = external {}
-
-        # Remove `agent`(s) from the queue, has the option to remove all entries that exist for that agent or not
-        #  This does not end the interaction for any agents.
-        #  Returns the number of agents that were removed.
-        RemoveFromQueue<public>(Agents:[]agent, AllEntries:logic):int = external {}
-
-        # Clears the queue of all `agent`(s). 
-        #  Returns an array of all the players that were still in the queue.
-        ClearQueue<public>():[]agent = external {}
-
-        # Gets the queue of `agent`(s) who are awaiting interaction.
-        GetQueue<public>():[]agent = external {}
-
-        # Gets the `agent`(s) who are currently interacting
-        GetInteractingAgents<public>():[]agent = external {}
-
-        # Signaled when the `agent` provides a perfect input.
-        # Perfect input occurs when input is provided while the scrubber is within the device's *Perfect Zone*.
-        # Sends the `agent` that provided the input.
-        # Sends the `float` position of the meter scrubber from `0.0` to `1.0`.
-        PerfectInputTriggeredEvent<public>:listenable(tuple(agent, float)) = external {}
-
-        # Signaled when the `agent` provides a good input.
-        # Good input occurs when input is provided while the scrubber is within the *Good Zone* (excluding the *Perfect Zone*).
-        # Sends the `agent` that provided the input.
-        # Sends the `float` position of the meter scrubber from `0.0` to `1.0`.
-        GoodInputTriggeredEvent<public>:listenable(tuple(agent, float)) = external {}
-
-        # Signaled when the `agent` provides a bad input.
-        # Bad input occurs when input is provided while the scrubber is outside the *Good Zone*.
-        # Sends the `agent` that provided the input.
-        # Sends the `float` position of the meter scrubber from `0.0` to `1.0`.
-        BadInputTriggeredEvent<public>:listenable(tuple(agent, float)) = external {}
-
-        # Signaled when the `agent` starts an interaction.
-        # Input is the `agent` which started interacting with the device.
-        InteractionStartedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when the `agent` succeeds at the interaction.
-        # The interaction is completed depending on the device's configuration.
-        # * Once the device's *Success Target* is reached.
-        # * Upon a perfect input if using *Instant Success Perfect Behavior*.
-        InteractionSucceededEvent<public>:listenable(agent) = external {}
-
-        # Signaled when the `agent` fails the interaction.
-        # The interaction can be failed in several ways
-        # * If the number of bad inputs reaches the *Failure Limit*.
-        # * If the interaction has an *Interaction Time Limit* that expires.
-        InteractionFailedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when the interaction is interrupted.
-        # The interaction can be interrupted in several ways.
-        # * If the participating `agent` is eliminated or enters a downed state.
-        # * If *Deactivate* is called while the interaction is in progress.* If *Disable* is called while the interaction is in progress.
-        InteractionCanceledEvent<public>:listenable(agent) = external {}
-
-        # Signaled when the `agent` is put into the queue but has not started an interaction.
-        # If an agent skips the queue and is put directly into interacting, this event is skipped.
-        QueueAgentEvent<public>:listenable(agent) = external {}
-
-        # Signaled when the `agent` has been removed from the queue. 
-        # This can happen in a few ways
-        # * An agent is removed without advancing into an interaction.
-        # * If `Disable` is called while an agent is in the queue.
-        # * The queue size is shrunk, causing agents to be removed.
-        RemoveAgentFromQueueEvent<public>:listenable(agent) = external {}
-
-        # Signaled when the `agent` moves from the queue into interacting.
-        #  An agent enters the queue if BeginInteract is called for them but there is no room for them to begin an interaction given the current configuration.
-        #  This event will fire when an agent who is waiting in that queue advances from it and begins an interaction, removing it from the queue
-        AdvanceAgentFromQueueEvent<public>:listenable(agent) = external {}
-
-        # Fired when the queue empties of all queued agents.
-        #  The queue has to have at least one agent in it for this to fire.
-        #  If BeginInteraction is called and a queue is not created, then this event will not be triggered.
-        EmptyQueueEvent<public>:listenable(tuple()) = external {}
-
-        # Enable this device.
-        Enable<override>():void = external {}
-
-        # Disable this device.
-        Disable<override>():void = external {}
-
-        # Succeeds if the object is enabled, fails if it's disabled.
-        IsEnabled<override>()<transacts><decides>:void = external {}
-
-        # Maps to the user option 'Allow duplicate Player Entries'
-        # If this is toggled while a queue exists then the queue will not be affected, 
-        # but any new additions to the queue will use the new behavior. 
-        # ie; if duplicate entries exist and this is set to true, the duplicate entries will not be removed 
-        # but any new duplicates will be rejected.
-        var AllowDuplicatePlayerEntries<public>:logic = external {}
-
-        # Maps to the 'Movement Speed' user option.
-        # Determines how fast the meter moves across the interaction in percent per second.
-        # Value is clamped between 1 and 400.
-        # Any modifications to this event will take effect the next time an interaction is started.
-        var MeterSpeed<public>:float = external {}
-
-        # Maps to the 'Good Zone Size' user option.
-        # Sets the good zone's size as a ratio of the total meter.
-        # Value is clamped between 0 and 1.
-        # Any modifications to this event will take effect the next time an interaction is started.
-        var GoodZoneSize<public>:float = external {}
-
-        # Maps to the 'Perfect Zone Size' user option.
-        # Determines the perfect zone's size as a ratio of the good zone.
-        # Value is clamped between 0 and 1.
-        # Any modifications to this event will take effect the next time an interaction is started.
-        var PerfectZoneSize<public>:float = external {}
-
-        # Maps to the 'Success Target' user option.
-        # Sets how many successful inputs are required for the minigame to complete.
-        # Value is clamped between 0 and 5.
-        # Any modifications to this event will take effect the next time an interaction is started.
-        var SuccessTarget<public>:int = external {}
-
-        # Maps to the 'Failure Limit' user option.
-        # Determines how many times a bad input can be provided before failing the minigame.
-        # Value is clamped between 0 and 5.
-        # Any modifications to this event will take effect the next time an interaction is started.
-        var FailureLimit<public>:int = external {}
-
-        # Maps to the 'Interact Time Limit' user option.
-        # Sets how long the player has to complete the interaction. Taking too long will result in failure.
-        # Value is clamped between 0 and 120 seconds.
-        # Any modifications to this event will take effect the next time an interaction is started.
-        var InteractTimeLimit<public>:float = external {}
-
-        # Maps to the 'Lock Out on Fail Time' user option.
-        # If a bad input is provided, the interact will lock for the amount of time set. Set to 0 to disable this function.
-        # Value must be greater than or equal to 0
-        # Any modifications to this event will take effect the next time an interaction is started.
-        var LockOutOnFailTime<public>:float = external {}
-
-        # Maps to the user option 'Maximum Queued players'.
-        # If queue size is changed while players are already queued, then entries will be removed from the list.
-        # ie; if you have a queue of 10 agents and then adjust the size to 6, then 4 agents will be removed from the queue.
-        # each of those agents will receive a AgentRemoveFromQueueEvent
-        # Can only be set to values greater than or equal to 0
-        var MaximumQueuedPlayers<public>:int = external {}
-
-        # Maps to the user option for 'Synchronous Player Limit'.
-        # If the queue is configured to be synchronous, this is the number of players that will interact at the same time
-        # before moving onto the next batch of agents in the queue.
-        # When modified, it will take effect on the next Interaction, and does not affect any active interaction.
-        # Can only be set to values greater than or equal to 0
-        var SynchronousPlayerLimit<public>:int = external {}
-
-        # Maps to the user option for 'Next In Queue execution Delay'
-        # Determines how much time to wait (0 being instant), before triggering the next interaction in the queue.
-        # When modified will take effect after the current interaction is completed.
-        # Can only be set to values greater than or equal to 0
-        var NextInQueueExecutionDelay<public>:float = external {}
-
-    # Used to show or hide parts of the HUD for players or teams. Use this with other devices such as the `hud_message_device`, `map_indicator_device`, and `billboard_device` to control exactly how much information players can see during a game, as well as how and when they see that information.
-    hud_controller_device<public> := class<concrete><final>(creative_device_base):
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Sets the *Affected Class* option to `Agent`'s class.
-        UpdateAffectedClass<public>(Agent:agent):void = external {}
-
-        # Sets the *Affected Team* option to `Agent`'s team.
-        UpdateAffectedTeam<public>(Agent:agent):void = external {}
-
-        # Resets the *Affected Class* option to its starting value.
-        ResetAffectedClass<public>():void = external {}
-
-        # Resets the *Affected Team* option to its starting value.
-        ResetAffectedTeam<public>():void = external {}
 
     # Used to spawn an `agent` on an island. Use multiple `player_spawner_device`s to spawn multiple `agent`s.
     player_spawner_device<public> := class<concrete><final>(creative_device_base):
@@ -2067,6 +1625,62 @@ Devices<public> := module:
 
         # Succeeds when `Agent` is registered to this checkpoint.
         IsRegistered<public>(Agent:agent)<transacts><decides>:void = external {}
+
+    # Used to control the behavior of the map & minimap.
+    # Activation for a given `agent` can occur automatically via the device's *Activate Automatically* user option, by the `agent` entering and exiting the device's volume if using the *Activate on Trigger* user option, or via events from other devices or verse.
+    # When more than one map controller is activated for a given `agent`, the one with the highest *Map Priority* user option applies.
+    map_controller_device<public> := class<concrete><final>(creative_device_base):
+        # Adds the map controller to the provided `Agent`'s map controller stack.
+        # If multiple map controllers are active for an `agent`, the one with the highest *Map Priority* is used.
+        Activate<public>(Agent:agent):void = external {}
+
+        # Adds the map controller to all `agent`s in the experience.
+        # If multiple map controllers are active for an `agent`, the one with the highest *Map Priority* is used.
+        Activate<public>():void = external {}
+
+        # Removes the map controller from the provided `Agent`'s map controller stack.
+        # The next highest priority active map controller will be used, or if none exists, the default behavior will be restored.
+        Deactivate<public>(Agent:agent):void = external {}
+
+        # Removes the map controller from all `agent`s in the experience.
+        # The next highest priority active map controller will be used, or if none exists, the default behavior will be restored.
+        Deactivate<public>():void = external {}
+
+        # Enables the device.
+        # Enabling the device will allow it to be activated, both by incoming events, and by trigger if using *Activate on Trigger*.
+        Enable<public>():void = external {}
+
+        # Disables the device.
+        # Disabling the device will deactivate it for all `agents` in the experience, turn off the trigger functionality, and prevent it from responding to events.
+        Disable<public>():void = external {}
+
+        # Sets the *Capture Box Size* (in meters).
+        # *Capture Box Size* refers to the length and width of the area used for both the map capture image as well as the activation trigger.
+        # Value is clamped between `25.0` and `2500.0` meters. 
+        SetCaptureBoxSize<public>(Size:float):void = external {}
+
+        # Returns the *Capture Box Size* (in meters).
+        GetCaptureBoxSize<public>()<transacts>:float = external {}
+
+    # Used to show or hide parts of the HUD for players or teams. Use this with other devices such as the `hud_message_device`, `map_indicator_device`, and `billboard_device` to control exactly how much information players can see during a game, as well as how and when they see that information.
+    hud_controller_device<public> := class<concrete><final>(creative_device_base):
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Sets the *Affected Class* option to `Agent`'s class.
+        UpdateAffectedClass<public>(Agent:agent):void = external {}
+
+        # Sets the *Affected Team* option to `Agent`'s team.
+        UpdateAffectedTeam<public>(Agent:agent):void = external {}
+
+        # Resets the *Affected Class* option to its starting value.
+        ResetAffectedClass<public>():void = external {}
+
+        # Resets the *Affected Team* option to its starting value.
+        ResetAffectedTeam<public>():void = external {}
 
     # Used to update the gameplay controls scheme based on current control mode.
     gameplay_controls_device<public> := class<abstract><epic_internal>(creative_device_base):
@@ -2159,34 +1773,6 @@ Devices<public> := module:
         # Disables bouncing on this device, as well as any visual and audio effects.
         Disable<public>():void = external {}
 
-    # Used to trigger a custom response to a *Primary* or *Secondary* signal, sent by a *Signal Remote* item.
-    signal_remote_manager_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when a player has triggered the *Primary* signal using a *Signal Remote* item.
-        # Sends the `agent` that triggered the signal.
-        PrimarySignalEvent<public>:listenable(agent) = external {}
-
-        # Signaled when a player has triggered the *Secondary* signal using a *Signal Remote* item.
-        # Sends the `agent` that triggered the signal.
-        SecondarySignalEvent<public>:listenable(agent) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-    # Used to place a crash pad that can bounce players and protect them from fall damage.
-    crash_pad_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when an `agent` is launched by this device.
-        # Sends the launched `agent`.
-        LaunchedEvent<public>:listenable(agent) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
     # Used to apply a cosmetic disguise to the player.
     # The disguise to apply is defined on the device, as are the conditions for when the disguise breaks.
     disguise_device<public> := class<concrete><final>(creative_device_base, enableable):
@@ -2258,50 +1844,6 @@ Devices<public> := module:
 
         # Disables this device.
         Disable<public>():void = external {}
-
-    emote_controller_device<epic_internal> := class<concrete><final>(creative_device_base):
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Enables `agent` emote effects.
-        EnableAgentEffects<public>():void = external {}
-
-        # Disables `agent` emote effects.
-        DisableAgentEffects<public>():void = external {}
-
-        # Grants emote item to `Agent`.
-        GrantEmoteItem<public>(Agent:agent):void = external {}
-
-        # Grants emote item all `agent`s.
-        GrantEmoteItemAll<public>():void = external {}
-
-    # Used to add fishing mechanics to experiences, such as:
-    #  * Fishing competitions between players.
-    #  * Collecting fish as a resource.
-    #  * Fishing minigames with their own rewards.
-    fishing_zone_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when an `agent` catches a fish.
-        # Sends the `agent` that caught the fish.
-        CaughtEvent<public>:listenable(agent) = external {}
-
-        # Signaled when all items have been caught and removed.
-        # Sends the `agent` that caught the last fish.
-        EmptyEvent<public>:listenable(agent) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Resets the number of available uses for this device back to *Uses Allowed*.
-        Reset<public>():void = external {}
-
-        # Returns all caught and removed items to the inventory. This only works when *Pool Type* is set to *Device Inventory*.
-        Restock<public>():void = external {}
 
     # The hiding prop device can be used to give players a place to hide, or to allow players a special way to commence a Hidden Travel to another Hiding prop.
     hiding_prop_device<public> := class<concrete><final>(creative_device_base, enableable):
@@ -2380,6 +1922,80 @@ Devices<public> := module:
         # This value controls whether or not Hidden Travel is enabled or disabled
         #  Modifying this value will take effect the next time a player attempts a hidden travel.
         var EnableHiddenTravel<public>:logic = external {}
+
+    melee_designer_device<epic_internal> := class<final>(creative_device_base):
+
+    # Used to trigger a custom response to a *Primary* or *Secondary* signal, sent by a *Signal Remote* item.
+    signal_remote_manager_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when a player has triggered the *Primary* signal using a *Signal Remote* item.
+        # Sends the `agent` that triggered the signal.
+        PrimarySignalEvent<public>:listenable(agent) = external {}
+
+        # Signaled when a player has triggered the *Secondary* signal using a *Signal Remote* item.
+        # Sends the `agent` that triggered the signal.
+        SecondarySignalEvent<public>:listenable(agent) = external {}
+
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+    # Used to place a crash pad that can bounce players and protect them from fall damage.
+    crash_pad_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when an `agent` is launched by this device.
+        # Sends the launched `agent`.
+        LaunchedEvent<public>:listenable(agent) = external {}
+
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+    # Used to add fishing mechanics to experiences, such as:
+    #  * Fishing competitions between players.
+    #  * Collecting fish as a resource.
+    #  * Fishing minigames with their own rewards.
+    fishing_zone_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when an `agent` catches a fish.
+        # Sends the `agent` that caught the fish.
+        CaughtEvent<public>:listenable(agent) = external {}
+
+        # Signaled when all items have been caught and removed.
+        # Sends the `agent` that caught the last fish.
+        EmptyEvent<public>:listenable(agent) = external {}
+
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Resets the number of available uses for this device back to *Uses Allowed*.
+        Reset<public>():void = external {}
+
+        # Returns all caught and removed items to the inventory. This only works when *Pool Type* is set to *Device Inventory*.
+        Restock<public>():void = external {}
+
+    emote_controller_device<epic_internal> := class<concrete><final>(creative_device_base):
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Enables `agent` emote effects.
+        EnableAgentEffects<public>():void = external {}
+
+        # Disables `agent` emote effects.
+        DisableAgentEffects<public>():void = external {}
+
+        # Grants emote item to `Agent`.
+        GrantEmoteItem<public>(Agent:agent):void = external {}
+
+        # Grants emote item all `agent`s.
+        GrantEmoteItemAll<public>():void = external {}
 
     # Used to display curated videos onto in-game screens or player HUDs.
     video_player_device<public> := class<concrete><final>(creative_device_base):
@@ -2556,7 +2172,39 @@ Devices<public> := module:
         GoToNextPatrolPath<epic_internal>(Patroller:agent):void = external {}
 
     # Used to customize one creature type at a time. Place multiple `creature_manager_device`s for each type of creature on your island.
+    # Changing properties will respect the `Affected Creatures` property of the
+    # device. If `Affected Creatures` is set to `New Pawns Only`, only new spawns will
+    # get the changed property values. If set to `New and Existing Pawns`, all creatures
+    # spawned from this device and new ones will have the new properties.
     creature_manager_device<public> := class<concrete><final>(creative_device_base):
+        # If set, the health value of the creature is overridden.
+        # If an override is not specified, the default Health of the creature is used.
+        # This value is clamped between 1 and 10000.
+        var MaxHealth<public>:?int = external {}
+
+        # If a value is given, the `Score` value of the creature is overridden.
+        # If an override is not specified, the default `Score` of the creature is used.
+        # This value is clamped between 0 and 100.
+        var Score<public>:?int = external {}
+
+        # If a value is given, the `DamageToPlayer` value of the creature is overridden.
+        # If an override is not specified, the default `DamageToPlayer` of the creature is used.
+        # This value is clamped between 0 and 500.
+        var DamageToPlayer<public>:?float = external {}
+
+        # If a value is given, the `DamageToEnvironment` value of the creature is overridden.
+        # If an override is not specified, the default `DamageToEnvironment` of the creature is used.
+        # This value is clamped between 0 and 500.
+        var DamageToEnvironment<public>:?float = external {}
+
+        # If a value is given, the `SpeedMultiplier` value is applied to the default speed of the creature.
+        # If an override is not specified, the creature moves at its default speed.
+        # This value is clamped between 0.0 and 2.0.
+        var MovementSpeed<public>:?float = external {}
+
+        # Determines if the selected Creature type can be knocked back by weapon impacts.
+        var AllowWeaponKnockback<public>:logic = external {}
+
         # Signaled when a creature of the selected *Creature Type* is eliminated.
         # Sends the `agent` that eliminated the creature.
         MatchingCreatureTypeEliminatedEvent<public>:listenable(agent) = external {}
@@ -2816,103 +2464,217 @@ Devices<public> := module:
         # Force begins the knockback charge timer. Will restart the charge timer if already active.
         ChargeKnockback<public>():void = external {}
 
-    melee_designer_device<epic_internal> := class<final>(creative_device_base):
+    # Used to create a minigame which expects specific input timing from the player.
+    # Visuals may vary, but always feature a scrubber that moves from 0.0 to 1.0.
+    # Good and perfect zones are defined on the device, describing at what point the player must provide input to succeed.
+    skilled_interaction_device<public> := class<concrete><final>(creative_device_base, enableable):
+        # Begins the interaction for the provided `agent`.
+        # Will cancel any other interactions already in progress for the `agent` if a queue is not being utilized.
+        # If a queue is being utilized and duplicate player entries are not allowed then any duplicate player entries in the queue will not be added.
+        # If the number of agents requesting interact fits into the current interaction configuration, then those agents will begin
+        # interact immediately and skip the queue entirely.
+        BeginInteraction<public>(Agent:agent)<transacts><decides>:void = external {}
 
-    # Used to spawn guards that can patrol and attack other `agent`s.
-    guard_spawner_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when a guard is spawned.
-        # Sends the `agent` guard who was spawned.
-        SpawnedEvent<public>:listenable(agent) = external {}
+        # Begins the interaction for the provided `agent`(s).
+        # Will cancel any other interactions already in progress for the `agent` if a queue is not being utilized.
+        # If a queue is being utilized and duplicate player entries are not allowed then any duplicate player entries in the queue will not be added.
+        # If the number of agents requesting interact fits into the current interaction configuration, then those agents will begin
+        # interact immediately and skip the queue entirely.
+        BeginInteraction<public>(Agents:[]agent)<transacts><decides>:void = external {}
 
-        # Signaled when a guard has identified an opponent.
-        # `Source` is the guard who is aware.
-        # `Target` is the agent who alerted the guard.
-        AlertedEvent<public>:listenable(device_ai_interaction_result) = external {}
+        # Cancels the interaction, if in progress, for the provided `agent`.
+        # Does not clear the queue of any agent awaiting interaction
+        EndInteraction<public>(Agent:agent)<transacts><decides>:void = external {}
 
-        # Signaled when a guard has lost track of a target.
-        # `Source` is the guard that lost track of a target.
-        # `Target` is the `agent` no longer targeted by the guard.
-        TargetLostEvent<public>:listenable(device_ai_interaction_result) = external {}
+        # Cancels the interaction, if in progress, for the provided `agent`(s).
+        # Does not clear the queue of any agent awaiting interaction
+        EndInteraction<public>(Agents:[]agent)<transacts><decides>:void = external {}
 
-        # Signaled when a guard becomes suspicious.
-        # Sends the `agent` guard who is suspicious.
-        SuspiciousEvent<public>:listenable(agent) = external {}
+        # Remove `agent`(s) from the queue, has the option to remove all entries that exist for that agent or not
+        #  This does not end the interaction for any agents.
+        #  Returns the number of agents that were removed.
+        RemoveFromQueue<public>(Agents:[]agent, AllEntries:logic):int = external {}
 
-        # Signaled when a guard becomes unaware.
-        # Sends the `agent` guard who is unaware.
-        UnawareEvent<public>:listenable(agent) = external {}
+        # Clears the queue of all `agent`(s). 
+        #  Returns an array of all the players that were still in the queue.
+        ClearQueue<public>():[]agent = external {}
 
-        # Signaled when guard is damaged.
-        # `Source` is the `agent` that damaged the guard. If the guard was damaged by a non-agent then `false` is returned.
-        # `Target` is the guard that was damaged.
-        DamagedEvent<public>:listenable(device_ai_interaction_result) = external {}
+        # Gets the queue of `agent`(s) who are awaiting interaction.
+        GetQueue<public>():[]agent = external {}
 
-        # Signaled when a guard is eliminated.
-        # `Source` is the `agent` that eliminated the guard. If the guard was eliminated by a non-agent then `Source` is 'false'.
-        # `Target` is the guard that was eliminated.
-        EliminatedEvent<public>:listenable(device_ai_interaction_result) = external {}
+        # Gets the `agent`(s) who are currently interacting
+        GetInteractingAgents<public>():[]agent = external {}
 
-        # Signaled when a guard eliminates an agent.
-        # `Source` is the guard that eliminated the agent.
-        # `Target` is the agent that was eliminated.
-        EliminatingEvent<public>:listenable(device_ai_interaction_result) = external {}
+        # Signaled when the `agent` provides a perfect input.
+        # Perfect input occurs when input is provided while the scrubber is within the device's *Perfect Zone*.
+        # Sends the `agent` that provided the input.
+        # Sends the `float` position of the meter scrubber from `0.0` to `1.0`.
+        PerfectInputTriggeredEvent<public>:listenable(tuple(agent, float)) = external {}
 
-        # Signaled when a guard is hired by a player.
-        # `Source` is the `agent` who hired the guard.
-        # `Target` is the guard that was hired.
-        HiredEvent<public>:listenable(device_ai_interaction_result) = external {}
+        # Signaled when the `agent` provides a good input.
+        # Good input occurs when input is provided while the scrubber is within the *Good Zone* (excluding the *Perfect Zone*).
+        # Sends the `agent` that provided the input.
+        # Sends the `float` position of the meter scrubber from `0.0` to `1.0`.
+        GoodInputTriggeredEvent<public>:listenable(tuple(agent, float)) = external {}
 
-        # Signaled when a guard is dismissed by a player.
-        # `Source` is the `agent` who dismissed the guard.
-        # `Target` is the guard that was dismissed.
-        DismissedEvent<public>:listenable(device_ai_interaction_result) = external {}
+        # Signaled when the `agent` provides a bad input.
+        # Bad input occurs when input is provided while the scrubber is outside the *Good Zone*.
+        # Sends the `agent` that provided the input.
+        # Sends the `float` position of the meter scrubber from `0.0` to `1.0`.
+        BadInputTriggeredEvent<public>:listenable(tuple(agent, float)) = external {}
 
-        # Enables this device. Guards will start to spawn.
+        # Signaled when the `agent` starts an interaction.
+        # Input is the `agent` which started interacting with the device.
+        InteractionStartedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when the `agent` succeeds at the interaction.
+        # The interaction is completed depending on the device's configuration.
+        # * Once the device's *Success Target* is reached.
+        # * Upon a perfect input if using *Instant Success Perfect Behavior*.
+        InteractionSucceededEvent<public>:listenable(agent) = external {}
+
+        # Signaled when the `agent` fails the interaction.
+        # The interaction can be failed in several ways
+        # * If the number of bad inputs reaches the *Failure Limit*.
+        # * If the interaction has an *Interaction Time Limit* that expires.
+        InteractionFailedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when the interaction is interrupted.
+        # The interaction can be interrupted in several ways.
+        # * If the participating `agent` is eliminated or enters a downed state.
+        # * If *Deactivate* is called while the interaction is in progress.* If *Disable* is called while the interaction is in progress.
+        InteractionCanceledEvent<public>:listenable(agent) = external {}
+
+        # Signaled when the `agent` is put into the queue but has not started an interaction.
+        # If an agent skips the queue and is put directly into interacting, this event is skipped.
+        QueueAgentEvent<public>:listenable(agent) = external {}
+
+        # Signaled when the `agent` has been removed from the queue. 
+        # This can happen in a few ways
+        # * An agent is removed without advancing into an interaction.
+        # * If `Disable` is called while an agent is in the queue.
+        # * The queue size is shrunk, causing agents to be removed.
+        RemoveAgentFromQueueEvent<public>:listenable(agent) = external {}
+
+        # Signaled when the `agent` moves from the queue into interacting.
+        #  An agent enters the queue if BeginInteract is called for them but there is no room for them to begin an interaction given the current configuration.
+        #  This event will fire when an agent who is waiting in that queue advances from it and begins an interaction, removing it from the queue
+        AdvanceAgentFromQueueEvent<public>:listenable(agent) = external {}
+
+        # Fired when the queue empties of all queued agents.
+        #  The queue has to have at least one agent in it for this to fire.
+        #  If BeginInteraction is called and a queue is not created, then this event will not be triggered.
+        EmptyQueueEvent<public>:listenable(tuple()) = external {}
+
+        # Enable this device.
+        Enable<override>():void = external {}
+
+        # Disable this device.
+        Disable<override>():void = external {}
+
+        # Succeeds if the object is enabled, fails if it's disabled.
+        IsEnabled<override>()<transacts><decides>:void = external {}
+
+        # Maps to the user option 'Allow duplicate Player Entries'
+        # If this is toggled while a queue exists then the queue will not be affected, 
+        # but any new additions to the queue will use the new behavior. 
+        # ie; if duplicate entries exist and this is set to true, the duplicate entries will not be removed 
+        # but any new duplicates will be rejected.
+        var AllowDuplicatePlayerEntries<public>:logic = external {}
+
+        # Maps to the 'Movement Speed' user option.
+        # Determines how fast the meter moves across the interaction in percent per second.
+        # Value is clamped between 1 and 400.
+        # Any modifications to this event will take effect the next time an interaction is started.
+        var MeterSpeed<public>:float = external {}
+
+        # Maps to the 'Good Zone Size' user option.
+        # Sets the good zone's size as a ratio of the total meter.
+        # Value is clamped between 0 and 1.
+        # Any modifications to this event will take effect the next time an interaction is started.
+        var GoodZoneSize<public>:float = external {}
+
+        # Maps to the 'Perfect Zone Size' user option.
+        # Determines the perfect zone's size as a ratio of the good zone.
+        # Value is clamped between 0 and 1.
+        # Any modifications to this event will take effect the next time an interaction is started.
+        var PerfectZoneSize<public>:float = external {}
+
+        # Maps to the 'Success Target' user option.
+        # Sets how many successful inputs are required for the minigame to complete.
+        # Value is clamped between 0 and 5.
+        # Any modifications to this event will take effect the next time an interaction is started.
+        var SuccessTarget<public>:int = external {}
+
+        # Maps to the 'Failure Limit' user option.
+        # Determines how many times a bad input can be provided before failing the minigame.
+        # Value is clamped between 0 and 5.
+        # Any modifications to this event will take effect the next time an interaction is started.
+        var FailureLimit<public>:int = external {}
+
+        # Maps to the 'Interact Time Limit' user option.
+        # Sets how long the player has to complete the interaction. Taking too long will result in failure.
+        # Value is clamped between 0 and 120 seconds.
+        # Any modifications to this event will take effect the next time an interaction is started.
+        var InteractTimeLimit<public>:float = external {}
+
+        # Maps to the 'Lock Out on Fail Time' user option.
+        # If a bad input is provided, the interact will lock for the amount of time set. Set to 0 to disable this function.
+        # Value must be greater than or equal to 0
+        # Any modifications to this event will take effect the next time an interaction is started.
+        var LockOutOnFailTime<public>:float = external {}
+
+        # Maps to the user option 'Maximum Queued players'.
+        # If queue size is changed while players are already queued, then entries will be removed from the list.
+        # ie; if you have a queue of 10 agents and then adjust the size to 6, then 4 agents will be removed from the queue.
+        # each of those agents will receive a AgentRemoveFromQueueEvent
+        # Can only be set to values greater than or equal to 0
+        var MaximumQueuedPlayers<public>:int = external {}
+
+        # Maps to the user option for 'Synchronous Player Limit'.
+        # If the queue is configured to be synchronous, this is the number of players that will interact at the same time
+        # before moving onto the next batch of agents in the queue.
+        # When modified, it will take effect on the next Interaction, and does not affect any active interaction.
+        # Can only be set to values greater than or equal to 0
+        var SynchronousPlayerLimit<public>:int = external {}
+
+        # Maps to the user option for 'Next In Queue execution Delay'
+        # Determines how much time to wait (0 being instant), before triggering the next interaction in the queue.
+        # When modified will take effect after the current interaction is completed.
+        # Can only be set to values greater than or equal to 0
+        var NextInQueueExecutionDelay<public>:float = external {}
+
+    # Used to update the camera’s current viewpoint and rotation based on current camera mode.
+    gameplay_camera_device<public> := class<abstract><epic_internal>(creative_device_base):
+        # Enables this device.
         Enable<public>():void = external {}
 
-        # Disables this device. Guards will despawn if *Despawn Guards When Disabled* is set.
+        # Disables this device.
         Disable<public>():void = external {}
 
-        # Resets the spawn count allowing spawning of a new batch of guards.
-        Reset<public>():void = external {}
+        # Adds the camera to the `Agent`’s camera stack and pushes it to be the active camera.
+        AddTo<public>(Agent:agent):void = external {}
 
-        # Tries to spawn a guard.
-        Spawn<public>():void = external {}
+        # Adds the camera to all `Agent`s camera stacks and pushes it to be the active camera.
+        AddToAll<public>():void = external {}
 
-        # Tries to spawn a guard. If *Auto Hire When Spawned* is set to *Triggering Player* the guard will be hired by `Instigator`.
-        Spawn<public>(Instigator:agent):void = external {}
+        # Removes the camera from the `Agent`’s camera stack and pops from being the active camera replacing it with the next one in the stack.
+        RemoveFrom<public>(Agent:agent):void = external {}
 
-        # Despawns guards.
-        Despawn<public>():void = external {}
+        # Removes the camera from all `Agent`s camera stacks and pops from being the active camera replacing it with the next one in the stack.
+        RemoveFromAll<public>():void = external {}
 
-        # Despawns guards. `Instigator` will be considered as the eliminator of those guards.
-        Despawn<public>(Instigator:agent):void = external {}
+    # Used to update the camera’s current viewpoint and rotation based on a fixed point.
+    gameplay_camera_fixed_point_device<public> := class<concrete><final>(gameplay_camera_device):
 
-        # Hires guards to `Instigator`'s team.
-        Hire<public>(Instigator:agent):void = external {}
+    # Used to update the camera's viewpoint from the perspective of the player character.
+    gameplay_camera_first_person_device<public> := class<concrete><final>(gameplay_camera_device):
 
-        # Dismisses all hired guards.
-        DismissAllHiredGuards<public>():void = external {}
+    # Used to update the camera’s current viewpoint and rotation based on a fixed angle.
+    gameplay_camera_fixed_angle_device<public> := class<concrete><final>(gameplay_camera_device):
 
-        # Dismisses all hired guards that were recruited by `Instigator`.
-        DismissAgentHiredGuards<public>(Instigator:agent):void = external {}
-
-        # Forces guards to attack `Target`, bypassing perception checks.
-        # 'ForgetTime' ranges from 0.0 to 600.0 (in seconds, default is 600.0), it is the time after which the target will be ignored if not found.
-        # 'ForgetDistance' ranges from 0.0 to 100000.0 (in centimeters, default is 100000.0), it is the distance at which the target will be ignored if not found.
-        ForceAttackTarget<public>(Target:agent, ?ForgetTime:float = external {}, ?ForgetDistance:float = external {}):void = external {}
-
-        # Allows guards to be hired.
-        SetGuardsHireable<public>():void = external {}
-
-        # Prevents guards from being hired.
-        SetGuardsNotHireable<public>():void = external {}
-
-        # Returns the spawn limit of the device.
-        GetSpawnLimit<public>()<transacts>:int = external {}
-
-        # Get all agents created by this device.
-        GetAgents<epic_internal>()<transacts>:[]agent = external {}
+    # Used to update the camera's viewpoint to follow the target and be rotated manually.
+    gameplay_camera_orbit_device<public> := class<concrete><final>(gameplay_camera_device):
     Patchwork<public> := module:
         note_on_message<epic_internal> := class:
             NoteNumber<public>:int = external {}
@@ -2929,11 +2691,6 @@ Devices<public> := module:
 
             # Disables this device.
             Disable<public>():void = external {}
-
-        # Adjust Gain of a Patchwork audio signal.
-        gain_device<epic_internal> := class<concrete><final>(patchwork_device):
-            var Gain<epic_internal>:float = external {}
-
 
         # Modify a setting on another Patchwork device in a regularly repeating pattern.
         lfo_modulator_device<public> := class<concrete><final>(patchwork_device):
@@ -2953,23 +2710,14 @@ Devices<public> := module:
 
             var FreeSpeedHz<epic_internal>:float = external {}
 
-        # Apply a filter effect to Patchwork audio inputs.
-        filter_effect_device<epic_internal> := class<concrete><final>(patchwork_device):
-            var Cutoff<public>:float = external {}
-
-            var Resonance<public>:float = external {}
-
-            var Mix<public>:float = external {}
-
-            var FilterType<public>:int = external {}
-
         # Create drum note patterns for Patchwork devices.
         drum_sequencer_device<public> := class<concrete><final>(patchwork_device):
             var Page<epic_internal>:int = external {}
 
             var IsTriplet<epic_internal>:logic = external {}
 
-        cable_splitter_device<public> := class<concrete><final>(patchwork_device):
+        # Output Patchwork audio for players to hear.
+        speaker_device<public> := class<concrete><final>(patchwork_device):
 
         # Apply a distortion effect to Patchwork audio inputs.
         distortion_effect_device<public> := class<concrete><final>(patchwork_device):
@@ -2983,6 +2731,23 @@ Devices<public> := module:
 
             var Style<epic_internal>:int = external {}
 
+        cable_splitter_device<public> := class<concrete><final>(patchwork_device):
+
+        # Provides a shared tempo, key, and timeline for Patchwork devices to follow.
+        music_manager_device<public> := class<concrete><final>(patchwork_device):
+            var TempoBPM<epic_internal>:float = external {}
+
+            var TimeSignatureTop<epic_internal>:int = external {}
+
+            var TimeSignatureBottom<epic_internal>:int = external {}
+
+            var Key<epic_internal>:int = external {}
+
+            var Mode<epic_internal>:int = external {}
+
+            # Returns the number of elapsed beats since the Patchwork timeline has started, for tracking current musical time.
+            GetElapsedBeats<epic_internal>()<reads>:float = external {}
+
         # Turn Patchwork note inputs into audio using instrument samples.
         instrument_player_device<public> := class<concrete><final>(patchwork_device):
             var Volume<epic_internal>:float = external {}
@@ -2995,7 +2760,25 @@ Devices<public> := module:
 
             var Instrument<epic_internal>:int = external {}
 
+        # Adjust Gain of a Patchwork audio signal.
+        gain_device<epic_internal> := class<concrete><final>(patchwork_device):
+            var Gain<epic_internal>:float = external {}
+
+
+        # Apply a filter effect to Patchwork audio inputs.
+        filter_effect_device<epic_internal> := class<concrete><final>(patchwork_device):
+            var Cutoff<public>:float = external {}
+
+            var Resonance<public>:float = external {}
+
+            var Mix<public>:float = external {}
+
+            var FilterType<public>:int = external {}
+
         song_sync_device<public> := class<concrete><final>(patchwork_device):
+
+        # Modify a setting on another Patchwork device in steps over time.
+        step_modulator_device<public> := class<concrete><final>(patchwork_device):
 
         device_event_noteon<epic_internal> := class(listenable(any)):
             BPEvent<epic_internal>:listenable(tuple(int, float))
@@ -3025,23 +2808,8 @@ Devices<public> := module:
             # Signaled when the device receives a note-off that matches one of the enabled pitches.
             NoteOffReceivedEvent<epic_internal>:listenable(note_off_message) = external {}
 
-        # Modify a setting on another Patchwork device in steps over time.
-        step_modulator_device<public> := class<concrete><final>(patchwork_device):
-
         # Modify a setting on another Patchwork device when triggered.
         value_setter_device<public> := class<concrete><final>(patchwork_device):
-
-        # Apply an echo effect to Patchwork audio inputs.
-        echo_effect_device<public> := class<concrete><final>(patchwork_device):
-            var TimingStyle<epic_internal>:int = external {}
-
-            var Mix<epic_internal>:float = external {}
-
-            var Filter<epic_internal>:float = external {}
-
-            var Feedback<epic_internal>:float = external {}
-
-            var BeatDelay<epic_internal>:float = external {}
 
         # Turn Patchwork note inputs into audio using customizable sound synthesis.
         omega_synthesizer_device<public> := class<concrete><final>(patchwork_device):
@@ -3062,6 +2830,21 @@ Devices<public> := module:
         # Turn Patchwork note inputs into audio using drum samples.
         drum_player_device<public> := class<concrete><final>(patchwork_device):
 
+        # Apply an echo effect to Patchwork audio inputs.
+        echo_effect_device<public> := class<concrete><final>(patchwork_device):
+            var TimingStyle<epic_internal>:int = external {}
+
+            var Mix<epic_internal>:float = external {}
+
+            var Filter<epic_internal>:float = external {}
+
+            var Feedback<epic_internal>:float = external {}
+
+            var BeatDelay<epic_internal>:float = external {}
+
+        # Transpose Patchwork note inputs to follow a chord progression.
+        note_progressor_device<public> := class<concrete><final>(patchwork_device):
+
         # Create melodic note patterns for Patchwork devices.
         note_sequencer_device<public> := class<concrete><final>(patchwork_device):
             var Page<epic_internal>:int = external {}
@@ -3079,27 +2862,6 @@ Devices<public> := module:
             var StepRate<epic_internal>:float = external {}
 
             var TimingStyle<epic_internal>:int = external {}
-
-        # Output Patchwork audio for players to hear.
-        speaker_device<public> := class<concrete><final>(patchwork_device):
-
-        # Provides a shared tempo, key, and timeline for Patchwork devices to follow.
-        music_manager_device<public> := class<concrete><final>(patchwork_device):
-            var TempoBPM<epic_internal>:float = external {}
-
-            var TimeSignatureTop<epic_internal>:int = external {}
-
-            var TimeSignatureBottom<epic_internal>:int = external {}
-
-            var Key<epic_internal>:int = external {}
-
-            var Mode<epic_internal>:int = external {}
-
-            # Returns the number of elapsed beats since the Patchwork timeline has started, for tracking current musical time.
-            GetElapsedBeats<epic_internal>()<reads>:float = external {}
-
-        # Transpose Patchwork note inputs to follow a chord progression.
-        note_progressor_device<public> := class<concrete><final>(patchwork_device):
 
     # Used in conjunction with `advanced_storm_controller_device` to customize individual storm phases.
     advanced_storm_beacon_device<public> := class<concrete><final>(creative_device_base):
@@ -3654,6 +3416,18 @@ Devices<public> := module:
 
         # Returns the *Message* to be displayed when the HUD message is activated.
         GetText<epic_internal>()<transacts>:string = external {}
+
+        # Clears all queued *Messages* from all players that are affected by this HUD Message Device.
+        ClearAllMessages<public>():void = external {}
+
+        # Called when a *Message* has been Shown on-screen. Returns an `Agent` if it was Shown on a specified `Agent`'s screen.
+        ShowMessageEvent<public>:listenable(agent) = external {}
+
+        # Called when a *Message* has been Hidden on-screen. Returns an `Agent` if it was Hidden from a specified `Agent`'s screen.
+        HideMessageEvent<public>:listenable(agent) = external {}
+
+        # Called when all queued *Messages* from all players that are affected by this HUD Message Device have been cleared.
+        ClearAllMessagesEvent<public>:listenable(agent) = external {}
 
     # Used to grant items to `agent`s. Items can either be dropped at the `agent`'s location or added directly to their inventory.
     item_granter_device<public> := class<concrete><final>(creative_device_base):
@@ -4883,6 +4657,102 @@ Devices<public> := module:
     # Used to trigger a visual effect (a glow or an outline) when `agent`s pick it up.
     visual_effect_powerup_device<public> := class<concrete><final>(powerup_device):
 
+    # Used to spawn guards that can patrol and attack other `agent`s.
+    guard_spawner_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when a guard is spawned.
+        # Sends the `agent` guard who was spawned.
+        SpawnedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when a guard has identified an opponent.
+        # `Source` is the guard who is aware.
+        # `Target` is the agent who alerted the guard.
+        AlertedEvent<public>:listenable(device_ai_interaction_result) = external {}
+
+        # Signaled when a guard has lost track of a target.
+        # `Source` is the guard that lost track of a target.
+        # `Target` is the `agent` no longer targeted by the guard.
+        TargetLostEvent<public>:listenable(device_ai_interaction_result) = external {}
+
+        # Signaled when a guard becomes suspicious.
+        # Sends the `agent` guard who is suspicious.
+        SuspiciousEvent<public>:listenable(agent) = external {}
+
+        # Signaled when a guard becomes unaware.
+        # Sends the `agent` guard who is unaware.
+        UnawareEvent<public>:listenable(agent) = external {}
+
+        # Signaled when guard is damaged.
+        # `Source` is the `agent` that damaged the guard. If the guard was damaged by a non-agent then `false` is returned.
+        # `Target` is the guard that was damaged.
+        DamagedEvent<public>:listenable(device_ai_interaction_result) = external {}
+
+        # Signaled when a guard is eliminated.
+        # `Source` is the `agent` that eliminated the guard. If the guard was eliminated by a non-agent then `Source` is 'false'.
+        # `Target` is the guard that was eliminated.
+        EliminatedEvent<public>:listenable(device_ai_interaction_result) = external {}
+
+        # Signaled when a guard eliminates an agent.
+        # `Source` is the guard that eliminated the agent.
+        # `Target` is the agent that was eliminated.
+        EliminatingEvent<public>:listenable(device_ai_interaction_result) = external {}
+
+        # Signaled when a guard is hired by a player.
+        # `Source` is the `agent` who hired the guard.
+        # `Target` is the guard that was hired.
+        HiredEvent<public>:listenable(device_ai_interaction_result) = external {}
+
+        # Signaled when a guard is dismissed by a player.
+        # `Source` is the `agent` who dismissed the guard.
+        # `Target` is the guard that was dismissed.
+        DismissedEvent<public>:listenable(device_ai_interaction_result) = external {}
+
+        # Enables this device. Guards will start to spawn.
+        Enable<public>():void = external {}
+
+        # Disables this device. Guards will despawn if *Despawn Guards When Disabled* is set.
+        Disable<public>():void = external {}
+
+        # Resets the spawn count allowing spawning of a new batch of guards.
+        Reset<public>():void = external {}
+
+        # Tries to spawn a guard.
+        Spawn<public>():void = external {}
+
+        # Tries to spawn a guard. If *Auto Hire When Spawned* is set to *Triggering Player* the guard will be hired by `Instigator`.
+        Spawn<public>(Instigator:agent):void = external {}
+
+        # Despawns guards.
+        Despawn<public>():void = external {}
+
+        # Despawns guards. `Instigator` will be considered as the eliminator of those guards.
+        Despawn<public>(Instigator:agent):void = external {}
+
+        # Hires guards to `Instigator`'s team.
+        Hire<public>(Instigator:agent):void = external {}
+
+        # Dismisses all hired guards.
+        DismissAllHiredGuards<public>():void = external {}
+
+        # Dismisses all hired guards that were recruited by `Instigator`.
+        DismissAgentHiredGuards<public>(Instigator:agent):void = external {}
+
+        # Forces guards to attack `Target`, bypassing perception checks.
+        # 'ForgetTime' ranges from 0.0 to 600.0 (in seconds, default is 600.0), it is the time after which the target will be ignored if not found.
+        # 'ForgetDistance' ranges from 0.0 to 100000.0 (in centimeters, default is 100000.0), it is the distance at which the target will be ignored if not found.
+        ForceAttackTarget<public>(Target:agent, ?ForgetTime:float = external {}, ?ForgetDistance:float = external {}):void = external {}
+
+        # Allows guards to be hired.
+        SetGuardsHireable<public>():void = external {}
+
+        # Prevents guards from being hired.
+        SetGuardsNotHireable<public>():void = external {}
+
+        # Returns the spawn limit of the device.
+        GetSpawnLimit<public>()<transacts>:int = external {}
+
+        # Get all agents created by this device.
+        GetAgents<epic_internal>()<transacts>:[]agent = external {}
+
     # Used to configure a single interactive mannequin, that can visualize characters, clothing, and perform emotes.
     character_device<public> := class<concrete>(creative_device_base):
         # Signaled when an `agent` interacts with this device.
@@ -4993,17 +4863,6 @@ Devices<public> := module:
 
         # Show the *Class Selector UI* to `Agent`.
         Show<public>(Agent:agent):void = external {}
-
-    # Used to regenerate an `agent`'s health and/or shields.
-    health_powerup_device<public> := class<concrete><final>(powerup_device):
-        # Sets the *Magnitude* for this powerup, clamped to the Min and Max defined in the device.
-        # Will not apply to any currently applied effects.
-        # For the Health Powerup, this is the amount of health or shield that the powerup will add or remove,
-        SetMagnitude<public>(Magnitude:float):void = external {}
-
-        # Returns the current *Magnitude* for the powerup.
-        # For the Health Powerup, this is the amount of health or shield that the powerup will add or remove,
-        GetMagnitude<public>()<transacts>:float = external {}
 
     # Used to create HUD text boxes that give players information, and allows responses to be customized to player choices.
     popup_dialog_device<public> := class<concrete><final>(creative_device_base):
@@ -5228,178 +5087,53 @@ Devices<public> := module:
         # For the Stat Powerup, this is the value of the stat that the powerup will add or remove to a player that picks up the powerup.
         GetMagnitude<public>()<transacts>:float = external {}
 
-    # Use to create a sprite that players can trade in a weapon for a random legendary weapon or a custom item list.
-    earth_sprite_device<public> := class<concrete><final>(creative_device_base, enableable):
-        # Enable the device, and resets all trade counts the Sprite is tracking.
-        Enable<override>():void = external {}
+    # Used to regenerate an `agent`'s health and/or shields.
+    health_powerup_device<public> := class<concrete><final>(powerup_device):
+        # Sets the *Magnitude* for this powerup, clamped to the Min and Max defined in the device.
+        # Will not apply to any currently applied effects.
+        # For the Health Powerup, this is the amount of health or shield that the powerup will add or remove,
+        SetMagnitude<public>(Magnitude:float):void = external {}
 
-        # Disable the device.
-        Disable<override>():void = external {}
+        # Returns the current *Magnitude* for the powerup.
+        # For the Health Powerup, this is the amount of health or shield that the powerup will add or remove,
+        GetMagnitude<public>()<transacts>:float = external {}
 
-        # Succeeds if the device is enabled, fails if it's disabled.
-        IsEnabled<override>()<transacts><decides>:void = external {}
+    # Used to create and manipulate volumes of water where players can swim, fish, or drive boats.
+    water_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when an `agent` enters the water.
+        # Sends `agent` that entered the water.
+        AgentEntersWaterEvent<public>:listenable(agent) = external {}
 
-        # Triggers when a player gives the Earth Sprite a weapon.
-        # Sends the triggering `agent`.
-        WeaponConsumedEvent<public>:listenable(agent) = external {}
+        # Signaled when an `agent` exits the water.
+        # Sends `agent` that exited the water.
+        AgentExitsWaterEvent<public>:listenable(agent) = external {}
 
-        # Triggers when the grant timer has completed.
-        # Sends the triggering `agent`.
-        GrantTimerCompletedEvent<public>:listenable(?agent) = external {}
+        # Signals when the volume is filled to the water level set in the *Default Vertical Water Percentage* option.
+        VerticalFillingCompletedEvent<public>:listenable(tuple()) = external {}
 
-        # Enable the device’s ability to grant items.
-        EnableItemGranting<public>():void = external {}
+        # Signals when the water volume is completely empty.
+        VerticalEmptyingCompletedEvent<public>:listenable(tuple()) = external {}
 
-        # Disable the device’s ability to grant items. Can still interact and consume weapons.
-        DisableItemGranting<public>():void = external {}
-
-        # Makes the Earth Sprite invisible.
-        Hide<public>():void = external {}
-
-        # Makes the Earth Sprite visible.
-        Show<public>():void = external {}
-
-        # Allows a `agent` to trade, and will reset the `agent`'s trade count for this Sprite.
-        EnableTradingForPlayer<public>(Agent:agent):void = external {}
-
-        # Prevents the `agent` from trading.
-        DisableTradingForPlayer<public>(Agent:agent):void = external {}
-
-    # Used to spawn NPCs made with Character Definition asset.
-    npc_spawner_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when a character is spawned.
-        # Sends the `agent` character who was spawned.
-        SpawnedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when a character is eliminated.
-        # `Source` is the `agent` that eliminated the character. If the character was eliminated by a non-agent then `Source` is 'false'.
-        # `Target` is the character that was eliminated.
-        EliminatedEvent<public>:listenable(device_ai_interaction_result) = external {}
-
-        # Enables this device. Characters will start to spawn.
+        # Enables this device.
         Enable<public>():void = external {}
 
-        # Disables this device. Characters will despawn if *Despawn AIs When Disabled* is set.
+        # Disables this device.
         Disable<public>():void = external {}
 
-        # Resets the spawn count allowing spawning of a new batch of characters.
+        # Resets the water level in the volume to the value set in the *Default Vertical Water Percentage* option.
         Reset<public>():void = external {}
 
-        # Tries to spawn a character.
-        Spawn<public>():void = external {}
+        # Starts vertically emptying the water in the volume.
+        BeginVerticalEmptying<public>():void = external {}
 
-        # Despawns all characters. If set, `Instigator` will be considered as the eliminator of those characters.
-        DespawnAll<public>(Instigator:?agent):void = external {}
+        # Starts vertically filling the water in the volume.
+        BeginVerticalFilling<public>():void = external {}
 
-        # Get all agents created by this device.
-        GetAgents<epic_internal>()<transacts>:[]agent = external {}
+        # Stops filling or emptying the volume.
+        StopVerticalMovement<public>():void = external {}
 
-    # Used to set and trigger conversations made via the Conversation Graph. The conversation triggered is assigned to the device.
-    conversation_device<public> := class<concrete><final>(creative_device_base, enableable):
-        # Enables this device.
-        # An enabled conversation device will listen for inputs and trigger conversations.
-        Enable<override>():void = external {}
-
-        # Disables this device.
-        # A disabled conversation device will not listen for inputs and trigger conversations.
-        Disable<override>():void = external {}
-
-        # Check if the device is enabled.
-        IsEnabled<override>()<transacts><decides>:void = external {}
-
-        # Begins the assigned conversation with the `agent`.
-        # The conversation will not start if the device or the `agent` are otherwise incapable of having a conversation.
-        InitiateConversation<public>(Agent:agent):void = external {}
-
-        # Check if an `agent` is in an active conversation.
-        IsAgentInConversation<public>(Agent:agent)<transacts><decides>:void = external {}
-
-        # Check if an `agent` can initiate a conversation.
-        CanInitiateConversation<public>(Agent:agent)<transacts><decides>:void = external {}
-
-        # Ends the assigned conversation with the `agent`.
-        EndConversation<public>(Agent:agent):void = external {}
-
-        # Ends all active conversations with this device.
-        EndConversationForAll<public>():void = external {}
-
-        # Show the conversation UI for an 'agent'. This will work with Box and Custom UI.
-        ShowConversation<public>(Agent:agent):void = external {}
-
-        # Hide the conversation UI for an 'agent'. Responses cannot be selected while the UI is hidden. This will work with Box and Custom UI.
-        HideConversation<public>(Agent:agent):void = external {}
-
-        # Signaled when a choice node tied to this event is selected by an `agent`.
-        # Sends the `agent` that triggered the event, and `EventNumber` is the number specified in the Conversation Event node.
-        OnConversationEvent<public>:listenable(tuple(agent, int)) = external {}
-
-        # Signalled when a conversation has ended.
-        EndEvent<public>:listenable(agent) = external {}
-
-        # Signalled when a conversation has ended early by EndConversation or EndConversationForAll.
-        CancelEvent<public>:listenable(agent) = external {}
-
-        # Returns the count of currently-active conversations with this device.
-        GetActiveConversationsCount<public>()<transacts>:int = external {}
-
-        # The Speaker Name of the device. When the value is changed, active conversations are not updated.
-        # The value of SpeakerName is the default value used when initiating a conversation.
-        var SpeakerName<public>:message = external {}
-
-        # Whether the device will show the Speaker when nearby.
-        var ShowNameWhenNearby<public>:logic = external {}
-
-        # whether the device will show the Indicator Bubble when nearby.
-        var ShowIndicatorBubble<public>:logic = external {}
-
-        # The range that the Indicator Bubble will be seen at. Clamps to range[0, 25].
-        var IndicatorBubbleRange<public>:float = external {}
-
-        # Whether the device will show conversation text in worldspace when using the Radial UI type.
-        var ShowConversationTextInWorldSpace<public>:logic = external {}
-
-        # Sets the number of conversations allowed at once with the device.
-        # This will not make any conversations exit if there are more current conversations than allowed after this call.
-        var AllowedConversationCount<public>:int = external {}
-
-        # The constant rate that characters are revealed over the course of a second when a Speech node activates.
-        # The exact characters in the respective speech node are revealed and do not combine into glyphs.
-        # When the value is changed, active conversations are not updated. Works with the Box and Custom UI.
-        # The value of CharactersPerSecond is the default value used when initiating a conversation.
-        # CharactersPerSecond will be clamped between 0.25 and 100.0. If set to false all the characters will reveal instantly.
-        var CharactersPerSecond<public>:?float = external {}
-
-    # Used to update the camera’s current viewpoint and rotation based on current camera mode.
-    gameplay_camera_device<public> := class<abstract><epic_internal>(creative_device_base):
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Adds the camera to the `Agent`’s camera stack and pushes it to be the active camera.
-        AddTo<public>(Agent:agent):void = external {}
-
-        # Adds the camera to all `Agent`s camera stacks and pushes it to be the active camera.
-        AddToAll<public>():void = external {}
-
-        # Removes the camera from the `Agent`’s camera stack and pops from being the active camera replacing it with the next one in the stack.
-        RemoveFrom<public>(Agent:agent):void = external {}
-
-        # Removes the camera from all `Agent`s camera stacks and pops from being the active camera replacing it with the next one in the stack.
-        RemoveFromAll<public>():void = external {}
-
-    # Used to update the camera’s current viewpoint and rotation based on a fixed point.
-    gameplay_camera_fixed_point_device<public> := class<concrete><final>(gameplay_camera_device):
-
-    # Used to update the camera's viewpoint from the perspective of the player character.
-    gameplay_camera_first_person_device<public> := class<concrete><final>(gameplay_camera_device):
-
-    # Used to update the camera’s current viewpoint and rotation based on a fixed angle.
-    gameplay_camera_fixed_angle_device<public> := class<concrete><final>(gameplay_camera_device):
-
-    # Used to update the camera's viewpoint to follow the target and be rotated manually.
-    gameplay_camera_orbit_device<public> := class<concrete><final>(gameplay_camera_device):
+        # Resumes either filling or emptying the volume.
+        ResumeVerticalMovement<public>():void = external {}
 
     using {/Verse.org/Colors}
     # Used to spawn customizable boxes containing vehicle mods. Hit a box with a vehicle to apply the mod.
@@ -5772,6 +5506,81 @@ Devices<public> := module:
     # Specialized `vehicle_spawner_device` that allows a Whiplash sports car to be configured and spawned.
     vehicle_spawner_sports_car_device<public> := class<concrete><final>(vehicle_spawner_device):
 
+    # Used to set and trigger conversations made via the Conversation Graph. The conversation triggered is assigned to the device.
+    conversation_device<public> := class<concrete><final>(creative_device_base, enableable):
+        # Enables this device.
+        # An enabled conversation device will listen for inputs and trigger conversations.
+        Enable<override>():void = external {}
+
+        # Disables this device.
+        # A disabled conversation device will not listen for inputs and trigger conversations.
+        Disable<override>():void = external {}
+
+        # Check if the device is enabled.
+        IsEnabled<override>()<transacts><decides>:void = external {}
+
+        # Begins the assigned conversation with the `agent`.
+        # The conversation will not start if the device or the `agent` are otherwise incapable of having a conversation.
+        InitiateConversation<public>(Agent:agent):void = external {}
+
+        # Check if an `agent` is in an active conversation.
+        IsAgentInConversation<public>(Agent:agent)<transacts><decides>:void = external {}
+
+        # Check if an `agent` can initiate a conversation.
+        CanInitiateConversation<public>(Agent:agent)<transacts><decides>:void = external {}
+
+        # Ends the assigned conversation with the `agent`.
+        EndConversation<public>(Agent:agent):void = external {}
+
+        # Ends all active conversations with this device.
+        EndConversationForAll<public>():void = external {}
+
+        # Show the conversation UI for an 'agent'. This will work with Box and Custom UI.
+        ShowConversation<public>(Agent:agent):void = external {}
+
+        # Hide the conversation UI for an 'agent'. Responses cannot be selected while the UI is hidden. This will work with Box and Custom UI.
+        HideConversation<public>(Agent:agent):void = external {}
+
+        # Signaled when a choice node tied to this event is selected by an `agent`.
+        # Sends the `agent` that triggered the event, and `EventNumber` is the number specified in the Conversation Event node.
+        OnConversationEvent<public>:listenable(tuple(agent, int)) = external {}
+
+        # Signalled when a conversation has ended.
+        EndEvent<public>:listenable(agent) = external {}
+
+        # Signalled when a conversation has ended early by EndConversation or EndConversationForAll.
+        CancelEvent<public>:listenable(agent) = external {}
+
+        # Returns the count of currently-active conversations with this device.
+        GetActiveConversationsCount<public>()<transacts>:int = external {}
+
+        # The Speaker Name of the device. When the value is changed, active conversations are not updated.
+        # The value of SpeakerName is the default value used when initiating a conversation.
+        var SpeakerName<public>:message = external {}
+
+        # Whether the device will show the Speaker when nearby.
+        var ShowNameWhenNearby<public>:logic = external {}
+
+        # whether the device will show the Indicator Bubble when nearby.
+        var ShowIndicatorBubble<public>:logic = external {}
+
+        # The range that the Indicator Bubble will be seen at. Clamps to range[0, 25].
+        var IndicatorBubbleRange<public>:float = external {}
+
+        # Whether the device will show conversation text in worldspace when using the Radial UI type.
+        var ShowConversationTextInWorldSpace<public>:logic = external {}
+
+        # Sets the number of conversations allowed at once with the device.
+        # This will not make any conversations exit if there are more current conversations than allowed after this call.
+        var AllowedConversationCount<public>:int = external {}
+
+        # The constant rate that characters are revealed over the course of a second when a Speech node activates.
+        # The exact characters in the respective speech node are revealed and do not combine into glyphs.
+        # When the value is changed, active conversations are not updated. Works with the Box and Custom UI.
+        # The value of CharactersPerSecond is the default value used when initiating a conversation.
+        # CharactersPerSecond will be clamped between 0.25 and 100.0. If set to false all the characters will reveal instantly.
+        var CharactersPerSecond<public>:?float = external {}
+
     # Enum for determining if a spawner should spawn when it becomes enabled
     spawn_on_enable_behavior<public> := enum<open>:
         Always
@@ -5978,12 +5787,6 @@ Devices<public> := module:
     # Specialized `vehicle_spawner_device` that allows a Hammerhead Choppa to be configured and spawned.
     vehicle_spawner_hammerhead_choppa_device<public> := class<concrete><final>(vehicle_spawner_device):
 
-    # Specialized `vehicle_spawner_device` that allows an armored battle bus to be configured and spawned.
-    vehicle_spawner_armored_battle_bus_device<public> := class<concrete><final>(vehicle_spawner_device):
-
-    # Specialized `vehicle_spawner_device` that allows a dirtbike to be configured and spawned.
-    vehicle_spawner_dirtbike_device<public> := class<concrete><final>(vehicle_spawner_device):
-
     # Specialized `vehicle_spawner_device` that allows a helicopter to be configured and spawned.
     vehicle_spawner_helicopter_device<public> := class<concrete><final>(vehicle_spawner_device):
 
@@ -5996,76 +5799,149 @@ Devices<public> := module:
     # Specialized `vehicle_spawner_device` that allows a UFO to be configured and spawned.
     vehicle_spawner_ufo_device<public> := class<concrete><final>(vehicle_spawner_device):
 
+    # Specialized `vehicle_spawner_device` that allows a tank to be configured and spawned.
+    vehicle_spawner_tank_device<public> := class<concrete><final>(vehicle_spawner_device):
+
+    # Specialized `vehicle_spawner_device` that allows an armored battle bus to be configured and spawned.
+    vehicle_spawner_armored_battle_bus_device<public> := class<concrete><final>(vehicle_spawner_device):
+
+    # Specialized `vehicle_spawner_device` that allows a dirtbike to be configured and spawned.
+    vehicle_spawner_dirtbike_device<public> := class<concrete><final>(vehicle_spawner_device):
+
     # Specialized `vehicle_spawner_device` that allows a Nitro Drifter sedan to be configured and spawned.
     vehicle_spawner_nitro_drifter_sedan_device<public> := class<concrete><final>(vehicle_spawner_device):
 
     # Specialized `vehicle_spawner_device` that allows a sportbike to be configured and spawned.
     vehicle_spawner_sportbike_device<public> := class<concrete><final>(vehicle_spawner_device):
 
-    # Specialized `vehicle_spawner_device` that allows a tank to be configured and spawned.
-    vehicle_spawner_tank_device<public> := class<concrete><final>(vehicle_spawner_device):
-
     # Specialized `vehicle_spawner_device` that allows a valet SUV to be configured and spawned.
     vehicle_spawner_valet_suv_device<public> := class<concrete><final>(vehicle_spawner_device):
 
-    # Used to trigger level sequences that allow coordination of cinematic animation, transformation, and audio tracks.
-    cinematic_sequence_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when the sequence is stopped.
-        StoppedEvent<public>:listenable(tuple()) = external {}
+    # Used to create an environmental prop that applies Nitro to those around it when it is destroyed.
+    nitro_barrel_spawner_device<public> := class<concrete><final>(creative_device_base):
+        # Triggers when an `agent` launches the barrel. Sends the launching `agent`.If the launcher is a non-agent, sends `false`.
+        LaunchedEvent<public>:listenable(?agent) = external {}
 
-        # Plays the sequence. This will only work when the device is set to *Everyone*
-        Play<public>():void = external {}
+        # Triggers when the barrel explodes after being launched. Sends the launching `agent`.If the launcher is a non-agent, sends `false`.
+        ExplodedEvent<public>:listenable(?agent) = external {}
 
-        # Plays the sequence. An instigating 'Agent' is required when the device is set to anything except *Everyone*.
-        Play<public>(Agent:agent):void = external {}
+        # Enables and shows the barrel.Enabling the device when it's disabled will spawn a new barrel.
+        Enable<public>():void = external {}
 
-        # Plays the sequence in reverse. This will only work when the device is set to *Everyone*
-        PlayReverse<public>():void = external {}
+        # Disables and hides the barrel.Disabling the device will remove an existing barrel and reset the respawn delay.
+        Disable<public>():void = external {}
 
-        # Plays the sequence in reverse. An instigating 'Agent' is required when the device is set to anything except *Everyone*.
-        PlayReverse<public>(Agent:agent):void = external {}
+        # Succeeds if the barrel is enabled and visible.
+        IsEnabled<public>()<transacts><decides>:void = external {}
 
-        # Stops the sequence.
-        Stop<public>():void = external {}
+        # Sets the multiplier applied to the force used when launching.This is clamped between `0.25` and `2.0`.
+        SetLaunchForceMultiplier<public>(LaunchForceMultiplier:float):void = external {}
 
-        # Stops the sequence. An instigating 'Agent' is required when the device is set to anything except *Everyone*.
-        Stop<public>(Agent:agent):void = external {}
+        # Returns the force multiplier to launch the barrel.
+        GetLaunchForceMultiplier<public>():float = external {}
 
-        # Go to the end and stop the sequence.
-        GoToEndAndStop<public>():void = external {}
+        # Allows the barrel to respawn after it explodes, waiting *RespawnDelay* seconds.
+        AllowRespawn<public>():void = external {}
 
-        # Go to the end and stop the sequence. An instigating 'Agent' is required when the device is set to anything except *Everyone*.
-        GoToEndAndStop<public>(Agent:agent):void = external {}
+        # Prevents the barrel from respawning.The *RespawnDelay* countdown will not start. If the countdown has already started, the barrel will not respawn when it ends.
+        DisallowRespawn<public>():void = external {}
 
-        # Pauses the sequence.
-        Pause<public>():void = external {}
+        # Succeeds if the barrel has respawn allowed.
+        IsRespawnAllowed<public>()<transacts><decides>:void = external {}
 
-        # Pauses the sequence. An instigating 'Agent' is required when the device is set to anything except *Everyone*.
-        Pause<public>(Agent:agent):void = external {}
+        # Sets the delay time to respawn the barrel, clamped between `0.0` and `1000.0` seconds.This will override the delay timer if set during the delay countdown.
+        SetRespawnDelay<public>(RespawnDelay:float):void = external {}
 
-        # Toggles between `Play` and `Stop`.
-        TogglePause<public>():void = external {}
+        # Returns the delay between exploding and respawning (if allowed), in seconds.
+        GetRespawnDelay<public>():float = external {}
 
-        # Toggles between `Play` and `Stop`. An instigating 'Agent' is required when the device is set to anything except *Everyone*.
-        TogglePause<public>(Agent:agent):void = external {}
+    # Specialized `vehicle_spawner_device` that allows a GetAway Car to be configured and spawned.
+    vehicle_spawner_getaway_device<public> := class<concrete><final>(vehicle_spawner_device):
 
-        # Set the playback position (in frames) of the sequence.
-        SetPlaybackFrame<public>(PlaybackFrame:int):void = external {}
+    # Use to create a sprite that players can trade in a weapon for a random legendary weapon or a custom item list.
+    earth_sprite_device<public> := class<concrete><final>(creative_device_base, enableable):
+        # Enable the device, and resets all trade counts the Sprite is tracking.
+        Enable<override>():void = external {}
 
-        # Returns the playback position (in frames) of the sequence.
-        GetPlaybackFrame<public>()<transacts>:int = external {}
+        # Disable the device.
+        Disable<override>():void = external {}
 
-        # Set the playback position (in time/seconds) of the sequence.
-        SetPlaybackTime<public>(PlaybackTime:float):void = external {}
+        # Succeeds if the device is enabled, fails if it's disabled.
+        IsEnabled<override>()<transacts><decides>:void = external {}
 
-        # Returns the playback position (in time/seconds) of the sequence.
-        GetPlaybackTime<public>()<transacts>:float = external {}
+        # Triggers when a player gives the Earth Sprite a weapon.
+        # Sends the triggering `agent`.
+        WeaponConsumedEvent<public>:listenable(agent) = external {}
 
-        # Set the playback rate of the sequence.
-        SetPlayRate<public>(PlayRate:float):void = external {}
+        # Triggers when the grant timer has completed.
+        # Sends the triggering `agent`.
+        GrantTimerCompletedEvent<public>:listenable(?agent) = external {}
 
-        # Returns the playback rate of the sequence.
-        GetPlayRate<public>()<transacts>:float = external {}
+        # Enable the device’s ability to grant items.
+        EnableItemGranting<public>():void = external {}
+
+        # Disable the device’s ability to grant items. Can still interact and consume weapons.
+        DisableItemGranting<public>():void = external {}
+
+        # Makes the Earth Sprite invisible.
+        Hide<public>():void = external {}
+
+        # Makes the Earth Sprite visible.
+        Show<public>():void = external {}
+
+        # Allows a `agent` to trade, and will reset the `agent`'s trade count for this Sprite.
+        EnableTradingForPlayer<public>(Agent:agent):void = external {}
+
+        # Prevents the `agent` from trading.
+        DisableTradingForPlayer<public>(Agent:agent):void = external {}
+
+    # The Rift Point volume is used to interface with and manage the Rift Point item,
+    # and provides an area that enables players to plant the item to create search and destroy style gameplay.
+    rift_point_volume_device<public> := class<concrete><final>(creative_device_base, enableable):
+        # Sends an event when planting the Rift Point is started, passing in the planting `agent`.
+        PlantStartEvent<public>:listenable(agent) = external {}
+
+        # Sends an event when planting the Rift Point is canceled, passing in the planting `agent`.
+        PlantCancelEvent<public>:listenable(agent) = external {}
+
+        # Sends an event when the Rift Point is planted, passing in the planting `agent`.
+        PlantEvent<public>:listenable(agent) = external {}
+
+        # Sends an event when defusing the Rift Point is started, passing in the defusing `agent`.
+        DefuseStartEvent<public>:listenable(agent) = external {}
+
+        # Sends an event when defusing the Rift Point is canceled, passing in the defusing `agent`.
+        DefuseCancelEvent<public>:listenable(agent) = external {}
+
+        # Sends an event when the Rift Point is defused, passing in the defusing `agent`.
+        DefuseEvent<public>:listenable(agent) = external {}
+
+        # Sends an event when the Rift Point detonates, passing in the planting `agent`.
+        DetonateEvent<public>:listenable(agent) = external {}
+
+        # Sends an event when an `agent` enters the volume.
+        OnAgentEntered<public>:listenable(agent) = external {}
+
+        # Sends an event when an `agent` exits the volume.
+        OnAgentExited<public>:listenable(agent) = external {}
+
+        # Is true when `Agent` is in the volume.
+        IsInVolume<public>(Agent:agent)<transacts><decides>:void = external {}
+
+        # Returns an array of agents that are currently occupying the volume.
+        GetAgentsInVolume<public>()<reads>:[]agent = external {}
+
+        # Enables the device, allowing the Rift Point to be planted.
+        Enable<override>():void = external {}
+
+        # Disables the device, preventing the Rift Point from being planted.
+        Disable<override>():void = external {}
+
+        # Succeeds if the component is enabled, fails if it’s disabled.
+        IsEnabled<override>()<transacts><decides>:void = external {}
+
+    # Specialized `vehicle_spawner_device` that allows a war bus to be configured and spawned.
+    vehicle_spawner_war_bus_device<public> := class<concrete><final>(vehicle_spawner_device):
 
     # Used to create plants with explosive pods that players can detonate and launch.
     wilds_plant_device<public> := class<concrete><final>(creative_device_base):
@@ -6145,46 +6021,40 @@ Devices<public> := module:
         # Signaled when an `agent` starts grinding on this `vine_rail_device`.
         EndedGrindingEvent<public>:listenable(agent) = external {}
 
-    # Used to create an environmental prop that applies Nitro to those around it when it is destroyed.
-    nitro_barrel_spawner_device<public> := class<concrete><final>(creative_device_base):
-        # Triggers when an `agent` launches the barrel. Sends the launching `agent`.If the launcher is a non-agent, sends `false`.
-        LaunchedEvent<public>:listenable(?agent) = external {}
+    using {/Verse.org/SpatialMath}
+    # Used to spawn NPCs made with Character Definition asset.
+    npc_spawner_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when a character is spawned.
+        # Sends the `agent` character who was spawned.
+        SpawnedEvent<public>:listenable(agent) = external {}
 
-        # Triggers when the barrel explodes after being launched. Sends the launching `agent`.If the launcher is a non-agent, sends `false`.
-        ExplodedEvent<public>:listenable(?agent) = external {}
+        # Signaled when a character is eliminated.
+        # `Source` is the `agent` that eliminated the character. If the character was eliminated by a non-agent then `Source` is 'false'.
+        # `Target` is the character that was eliminated.
+        EliminatedEvent<public>:listenable(device_ai_interaction_result) = external {}
 
-        # Enables and shows the barrel.Enabling the device when it's disabled will spawn a new barrel.
+        # Enables this device. Characters will start to spawn.
         Enable<public>():void = external {}
 
-        # Disables and hides the barrel.Disabling the device will remove an existing barrel and reset the respawn delay.
+        # Disables this device. Characters will despawn if *Despawn AIs When Disabled* is set.
         Disable<public>():void = external {}
 
-        # Succeeds if the barrel is enabled and visible.
-        IsEnabled<public>()<transacts><decides>:void = external {}
+        # Resets the spawn count allowing spawning of a new batch of characters.
+        Reset<public>():void = external {}
 
-        # Sets the multiplier applied to the force used when launching.This is clamped between `0.25` and `2.0`.
-        SetLaunchForceMultiplier<public>(LaunchForceMultiplier:float):void = external {}
+        # Tries to spawn a character.
+        Spawn<public>():void = external {}
 
-        # Returns the force multiplier to launch the barrel.
-        GetLaunchForceMultiplier<public>():float = external {}
+        # Despawns all characters. If set, `Instigator` will be considered as the eliminator of those characters.
+        DespawnAll<public>(Instigator:?agent):void = external {}
 
-        # Allows the barrel to respawn after it explodes, waiting *RespawnDelay* seconds.
-        AllowRespawn<public>():void = external {}
+        # Spawn a NPC at the given position. When Rotation is not provided, it will default to the Device`s rotation.
+        # Returns the agent spawned or false if the device has reached its maximum spawn count.
+        # This function is `<suspends>` because it takes time to load the NPC before it can be returned.
+        SpawnAt<epic_internal>(Position:(/Verse.org/SpatialMath:)vector3, ?Rotation:(/Verse.org/SpatialMath:)rotation = external {})<suspends>:?agent = external {}
 
-        # Prevents the barrel from respawning.The *RespawnDelay* countdown will not start. If the countdown has already started, the barrel will not respawn when it ends.
-        DisallowRespawn<public>():void = external {}
-
-        # Succeeds if the barrel has respawn allowed.
-        IsRespawnAllowed<public>()<transacts><decides>:void = external {}
-
-        # Sets the delay time to respawn the barrel, clamped between `0.0` and `1000.0` seconds.This will override the delay timer if set during the delay countdown.
-        SetRespawnDelay<public>(RespawnDelay:float):void = external {}
-
-        # Returns the delay between exploding and respawning (if allowed), in seconds.
-        GetRespawnDelay<public>():float = external {}
-
-    # Specialized `vehicle_spawner_device` that allows a GetAway Car to be configured and spawned.
-    vehicle_spawner_getaway_device<public> := class<concrete><final>(vehicle_spawner_device):
+        # Get all agents created by this device.
+        GetAgents<public>()<transacts>:[]agent = external {}
 
     # Use to create a cactus with healing fruits that can be burst to heal nearby players.
     healing_cactus_device<public> := class<concrete><final>(creative_device_base):
@@ -6211,523 +6081,6 @@ Devices<public> := module:
         # Burst the plant if the device is enabled, passing in the triggering `agent`.
         # If there is no triggering `agent`, players will only be healed if `Heal Targets` is set to `Everyone`.
         Burst<public>():void = external {}
-
-    # The Rift Point volume is used to interface with and manage the Rift Point item,
-    # and provides an area that enables players to plant the item to create search and destroy style gameplay.
-    rift_point_volume_device<public> := class<concrete><final>(creative_device_base, enableable):
-        # Sends an event when planting the Rift Point is started, passing in the planting `agent`.
-        PlantStartEvent<public>:listenable(agent) = external {}
-
-        # Sends an event when planting the Rift Point is canceled, passing in the planting `agent`.
-        PlantCancelEvent<public>:listenable(agent) = external {}
-
-        # Sends an event when the Rift Point is planted, passing in the planting `agent`.
-        PlantEvent<public>:listenable(agent) = external {}
-
-        # Sends an event when defusing the Rift Point is started, passing in the defusing `agent`.
-        DefuseStartEvent<public>:listenable(agent) = external {}
-
-        # Sends an event when defusing the Rift Point is canceled, passing in the defusing `agent`.
-        DefuseCancelEvent<public>:listenable(agent) = external {}
-
-        # Sends an event when the Rift Point is defused, passing in the defusing `agent`.
-        DefuseEvent<public>:listenable(agent) = external {}
-
-        # Sends an event when the Rift Point detonates, passing in the planting `agent`.
-        DetonateEvent<public>:listenable(agent) = external {}
-
-        # Sends an event when an `agent` enters the volume.
-        OnAgentEntered<public>:listenable(agent) = external {}
-
-        # Sends an event when an `agent` exits the volume.
-        OnAgentExited<public>:listenable(agent) = external {}
-
-        # Is true when `Agent` is in the volume.
-        IsInVolume<public>(Agent:agent)<transacts><decides>:void = external {}
-
-        # Returns an array of agents that are currently occupying the volume.
-        GetAgentsInVolume<public>()<reads>:[]agent = external {}
-
-        # Enables the device, allowing the Rift Point to be planted.
-        Enable<override>():void = external {}
-
-        # Disables the device, preventing the Rift Point from being planted.
-        Disable<override>():void = external {}
-
-        # Succeeds if the component is enabled, fails if it’s disabled.
-        IsEnabled<override>()<transacts><decides>:void = external {}
-
-    # Specialized `vehicle_spawner_device` that allows a war bus to be configured and spawned.
-    vehicle_spawner_war_bus_device<public> := class<concrete><final>(vehicle_spawner_device):
-
-    ai_prompt_device<epic_internal> := class:
-
-    # Used to spawn and configure an aerial supply drop that can provide players with customized weapons/supplies.
-    supply_drop_spawner_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when the balloon on the supply crate is popped.
-        # Sends the `?agent` that popped the balloon. If no `agent` popped the balloon returns `false`.
-        BalloonPoppedEvent<public>:listenable(?agent) = external {}
-
-        # Signaled when the supply crate is opened.
-        # Sends the `agent` that opened the crate.
-        OpenedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when the supply crate lands for the first time.
-        LandingEvent<public>:listenable(tuple()) = external {}
-
-        # Signaled when the supply crate is destroyed.
-        # Sends the destroying `agent`. If no `agent` destroyed the crate then `false` is returned.
-        DestroyCrateEvent<public>:listenable(?agent) = external {}
-
-        # Spawns a supply drop provided one hasn't already spawned. *Owning Team* is set to `Agent`'s team.
-        Spawn<public>(Agent:agent):void = external {}
-
-        # Spawns a supply drop provided one hasn't already spawned.
-        Spawn<public>():void = external {}
-
-        # Destroys the balloon and causes the supply crate to freefall.
-        DestroyBalloon<public>():void = external {}
-
-        # Opens the supply crate, ignoring the locked or unlocked state. `Agent` acts as the instigator of the open action.
-        Open<public>(Agent:agent):void = external {}
-
-        # Locks the supply crate so `agent`s cannot open it.
-        Lock<public>():void = external {}
-
-        # Unlocks the supply crate so `agent`s can open it.
-        Unlock<public>():void = external {}
-
-        # Destroys supply drops spawned by this device.
-        DestroySpawnedDrops<public>():void = external {}
-
-    # A vault door that requires a start of a sequence to damage a number of weakpoints to open.
-    bank_vault_device<public> := class<concrete><final>(creative_device_base, bank_vault_interface):
-        # Enable the device.
-        Enable<override>():void = external {}
-
-        # Disable the device. Pauses vault sequence.
-        Disable<override>():void = external {}
-
-        # Succeeds if the device is enabled, fails if it's disabled.
-        IsEnabled<override>()<transacts><decides>:void = external {}
-
-        # Triggers when the vault sequence is started by a player or event.
-        #  * Sends the `agent` that triggered this event, if applicable.
-        StartSequenceEvent<override>:listenable(?agent) = external {}
-
-        # Triggers when the vault is opened either by the destruction of its weakpoints or by an event.
-        #  * Sends the last `agent` that damaged a weakpoint or the `agent` that started the sequence if no external damage was done or none if the sequence was triggered by a function.
-        OpenEvent<override>:listenable(?agent) = external {}
-
-        # Triggers when a weakpoint is activated. The weakpoint will begin to glow, but does not become vulnerable until a subsequent `WeakpointVulnerableEvent`.
-        #  * Sends the `agent` that activated the vault or none if the sequence was triggered by a function, and the `int` index of the weakpoint from 0-4, in order of activation.
-        ActivateWeakpointEvent<override>:listenable(tuple(?agent, int)) = external {}
-
-        # Triggers when a weakpoint becomes vulnerable.
-        #  * Sends the `agent` that activated the vault or none if the sequence was triggered by a function, and the `int` index of the weakpoint from 0-4, in order of activation.
-        WeakpointVulnerableEvent<override>:listenable(tuple(?agent, int)) = external {}
-
-        # Triggers when a weakpoint is destroyed.
-        #  * Sends the last `agent` that damaged the weakpoint or the `agent` that started the sequence if no external damage was done or none if the sequence was triggered by a function, and the `int` index of the weakpoint from 0-4, in order of activation.
-        DestroyWeakpointEvent<override>:listenable(tuple(?agent, int)) = external {}
-
-        # Destroys the remaining weakpoints and opens the vault door. Requires the device to be enabled.
-        ForceOpen<override>():void = external {}
-
-        # Begin the sequence of events to open the vault door without thermite, or unpauses the sequence if it was paused. Requires the device to be enabled. Weakpoints can only be damaged while the vault sequence is active.
-        StartSequence<override>():void = external {}
-
-        # Disable the weakpoint vulnerability and freeze the progress of each one. Weakpoints can only be damaged while the vault sequence is active.
-        PauseSequence<override>():void = external {}
-
-        # Restores vault to default state, deactivates the device, and heals all weakpoints to max health. Requires the device to be enabled.
-        Reset<override>():void = external {}
-
-        # Whether the vault sequence is currently active and not paused.
-        IsSequenceActive<override>()<transacts><decides>:void = external {}
-
-        # Whether the player needs thermite when interacting with the door to start the vault opening sequence.
-        var RequireThermite<override>:logic = external {}
-
-        # Damage dealt to the active weakpoint each second. Negative numbers heal the weakpoint. Weakpoints can only be damaged while the vault sequence is active.
-        var WeakpointDamagePerSecond<override>:float = external {}
-
-        # Whether the weakpoint takes damage from weapons and items while vault sequence is active.
-        var WeakpointTakesExternalDamage<override>:logic = external {}
-
-        # Destroy the active weakpoint. Requires the device to be enabled. Must have active weakpoint.
-        DestroyActiveWeakpoint<override>():void = external {}
-
-        # Restores the active weakpoint to full health. Requires the device to be enabled. Must have active weakpoint.
-        RestoreActiveWeakpoint<override>():void = external {}
-
-        # Gets the active weakpoint's index starting at `0`, regardless of device's enabled state. Returns false if there is no active weakpoint, such as when the sequence is not active or directly after a weakpoint is destroyed.
-        GetActiveWeakpointIndex<override>()<transacts><decides>:int = external {}
-
-        # Gets the total number of weakpoints.
-        GetWeakpointCount<override>():int = external {}
-
-        # Get active weakpoint's health. If there is no active weakpoint, returns false.
-        GetActiveWeakpointHealth<override>()<transacts><decides>:float = external {}
-
-        # Set active weakpoint's health. Setting it to `0.0` will destroy the weakpoint. Clamps to maximum of WeakpointMaxHealth.
-        SetActiveWeakpointHealth<override>(NewHealth:float):void = external {}
-
-        # The max health of this device's weakpoints.
-        var MaxWeakpointHealth<override>:float = external {}
-
-    # Specialized `vehicle_spawner_device` that allows an armored transport to be configured and spawned.
-    vehicle_spawner_armored_transport_device<public> := class<concrete><final>(vehicle_spawner_device):
-        var<private> Vault<public>:bank_vault_interface = external {}
-
-
-    # Used to spawn various wildlife that players can herd, hunt, or tame.
-    wildlife_spawner_device<public> := class<concrete><final>(creative_device_base):
-        # Signaled when this device spawns wildlife.
-        # Sends the `agent` wildlife that was spawned.
-        SpawnedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when wildlife is eliminated.
-        # `Source` is the `agent` that eliminated the wildlife. If the wildlife was eliminated by a non-agent, or because the oldest wildlife was eliminated as Spawn function was called after spawn count was exceeded, then `Source` is 'false'.
-        # `Target` is the wildlife that was eliminated.
-        EliminatedEvent<public>:listenable(device_ai_interaction_result) = external {}
-
-        # Signaled when a wildlife eliminates an agent.
-        # `Source` is the wildlife that eliminated the agent.
-        # `Target` is the agent that was eliminated.
-        EliminatingEvent<public>:listenable(device_ai_interaction_result) = external {}
-
-        # Signaled when wildlife is tamed.
-        # `Source` is the `agent` that tamed the wildlife.
-        # `Target` is the wildlife that was tamed.
-        TamedEvent<public>:listenable(device_ai_interaction_result) = external {}
-
-        # Signaled when wildlife is untamed.
-        # `Source` is the `agent` that tamed the wildlife.
-        # `Target` is the wildlife that was untamed.
-        UntamedEvent<public>:listenable(device_ai_interaction_result) = external {}
-
-        # Signaled when wildlife is force-spawned and causes the oldest wildlife to be eliminated.
-        # Sends the `agent` wildlife that was spawned.
-        ForceSpawnedEvent<public>:listenable(agent) = external {}
-
-        # Signaled when wildlife is damaged.
-        # `Source` is the `agent` that damaged the wildlife. If the wildlife was damaged by a non-agent then `false` is returned.
-        # `Target` is the wildlife that was damaged.
-        DamagedEvent<public>:listenable(device_ai_interaction_result) = external {}
-
-        # Signaled when wildlife eats a pickup such as a Shroom or Meat.
-        #  Sends the wildlife that ate something.
-        SomethingIsEatenEvent<public>:listenable(agent) = external {}
-
-        # Signaled when an `agent` rides wildlife.
-        # `Source` is the `agent` that started riding the wildlife.
-        # `Target` is the wildlife that was ridden.
-        RiddenEvent<public>:listenable(device_ai_interaction_result) = external {}
-
-        # Signaled when an `agent` dismounts wildlife.
-        # `Source` is the `agent` that dismounted the wildlife.
-        # `Target` is the wildlife that was dismounted.
-        DismountedEvent<public>:listenable(device_ai_interaction_result) = external {}
-
-        # Enables this device.
-        Enable<public>():void = external {}
-
-        # Disables this device.
-        Disable<public>():void = external {}
-
-        # Resets the count on the *Total Spawn Count* option.
-        Reset<public>():void = external {}
-
-        # Spawns wildlife from this device. If spawn count is exceeded the oldest wildlife will be eliminated.
-        Spawn<public>():void = external {}
-
-        # Despawns wildlife. `Agent` is marked as the one who eliminated the wildlife.
-        Despawn<public>(Agent:agent):void = external {}
-
-        # Destroys this device, marking `Agent` as the destroyer of the device.
-        DestroySpawner<public>(Agent:agent):void = external {}
-
-        # Eliminates wildlife tamed by `Agent`.
-        EliminateTamed<epic_internal>(Agent:agent):void = external {}
-
-        # Tames wildlife, making them AI partners of `Agent`.
-        Tame<public>(Agent:agent):void = external {}
-
-        # Untames any tamed wildlife that belong to `Agent`.
-        Untame<public>(Agent:agent):void = external {}
-
-        # Untames all wildlife.
-        UntameAll<public>():void = external {}
-
-        # Teleports `Agent` to the nearest wildlife, then `Agent` mounts that wildlife.
-        Ride<public>(Agent:agent):void = external {}
-
-        # Dismounts `Agent` from wildlife.
-        Dismount<public>(Agent:agent):void = external {}
-
-        # Dismounts all `agent`s from wildlife.
-        DismountAll<public>():void = external {}
-
-        # Restores energy to wildlife belonging to `Agent` by *Energy Restore Amount*.
-        RestoreEnergy<public>(Agent:agent):void = external {}
-
-        # Restores energy to wildlife by *Energy Restore Amount*.
-        RestoreEnergyForAll<public>():void = external {}
-
-        # Consumes energy from wildlife belonging to `Agent` by *Energy Consume Amount*.
-        ConsumeEnergy<public>(Agent:agent):void = external {}
-
-        # Consumes energy from wildlife by *Energy Consume Amount*.
-        ConsumeEnergyForAll<public>():void = external {}
-
-        # Returns the spawn limit of the device.
-        GetSpawnLimit<public>()<transacts>:int = external {}
-
-        # Get all agents created by this device.
-        GetAgents<epic_internal>()<transacts>:[]agent = external {}
-
-    # Specialized `vehicle_spawner_device` that allows a Rocket Racing Vehicle to be configured and spawned.
-    vehicle_spawner_rocketracing_device<public> := class<concrete><final>(vehicle_spawner_device):
-
-    hive_stash_style<public> := enum<open>:
-        Empty
-        Loot
-        Trapped
-
-    # A strange organic object that may have something or someone inside of it.
-    hive_stash_device<public> := class<concrete><final>(creative_device_base, enableable, healthful):
-        # Enable the device, allowing players to interact with it.
-        Enable<override>():void = external {}
-
-        # Disable the device, preventing players from interacting with it. Changes to health and state, such as those caused by damage, can still be applied.
-        Disable<override>():void = external {}
-
-        # Succeeds if the device is enabled, fails if it's disabled.
-        IsEnabled<override>()<transacts><decides>:void = external {}
-
-        # Get the device's current health.
-        GetHealth<override>()<transacts>:float = external {}
-
-        # Set the device's current health.
-        SetHealth<override>(Health:float)<transacts>:void = external {}
-
-        # Get the device's current maximum health.
-        GetMaxHealth<override>()<transacts>:float = external {}
-
-        # Set the device's current maximum health.
-        SetMaxHealth<override>(MaxHealth:float)<transacts>:void = external {}
-
-        # Triggers whenever the hive stash is opened, returning the instigating `agent` if applicable.
-        OpenEvent<public>:listenable(?agent) = external {}
-
-        # Triggers whenever an `agent` is rescued, either by the hive stash opening with a linked spawner, or by calling *RescueAgent* while the hive stash is closed.
-        #  * Returns the rescued `agent`.
-        RescueEvent<public>:listenable(agent) = external {}
-
-        # Triggers when the rescue animation ends.
-        #  * Returns the rescued `agent`.
-        RescueAnimationEndEvent<public>:listenable(agent) = external {}
-
-        # If `Agent` was spawned by a `guard_spawner_device` or `npc_spawner_device`, link the hive stash to that spawner. This overrides the hive stash's existing link if one exists.
-        #  * Fails if `Agent` is not from a `guard_spawner_device` or `npc_spawner_device`, or if `Agent` was already eliminated.
-        #  * If the hive stash opens with a linked spawner, trigger the spawner and rescue the resulting `agent` from the hive stash.
-        #  * The rescued `agent` respects its spawner's events, functions, spawn count, and spawn limits.
-        SetLinkedSpawnerFromAgent<public>(Agent:agent)<transacts><decides>:void = external {}
-
-        # Link the hive stash to `GuardSpawner`. This overrides the hive stash's existing link if one exists.
-        #  * If the hive stash opens with a linked spawner, trigger the spawner and rescue the resulting `agent` from the hive stash.
-        #  * The rescued `agent` respects its spawner's events, functions, spawn count, and spawn limits.
-        SetLinkedSpawner<public>(GuardSpawner:guard_spawner_device):void = external {}
-
-        # Link the hive stash to `NPCSpawner`. This overrides the hive stash's existing link if one exists.
-        #  * If the hive stash opens with a linked spawner, trigger the spawner and rescue the resulting `agent` from the hive stash.
-        #  * The rescued `agent` respects its spawner's events, functions, spawn count, and spawn limits.
-        SetLinkedSpawner<public>(NPCSpawner:npc_spawner_device):void = external {}
-
-        # Clear the link between the hive stash and a spawner device.
-        ClearSpawnerLink<public>():void = external {}
-
-        # Succeeds if the device currently has a linked spawner, fails otherwise.
-        HasLinkedSpawner<public>()<transacts><decides>:void = external {}
-
-        # Open the hive stash. If a spawner is linked, trigger it and rescue the resulting `agent` from the hive stash.
-        #  * When the `agent` is rescued, if *ShouldPlayRescuedAnimation* is `true`, they will play a short animation to get off the hive stash.
-        Open<public>():void = external {}
-
-        # Succeeds if the hive stash is currently open, fails otherwise.
-        IsOpen<public>()<transacts><decides>:void = external {}
-
-        # Teleport `Agent` to the hive stash. If *ShouldPlayRescuedAnimation* is `true`, they will play a short animation to get off the hive stash.
-        #  * If the hive stash is closed, it will burst open first, ignoring a linked spawner. This will not clear a linked spawner.
-        #  * Has no effect if `Agent` cannot be teleported for any reason, such as not being in the game anymore.
-        RescueAgent<public>(Agent:agent):void = external {}
-
-        # Reset the hive stash. This closes it, sets it to full health, and sets *ShouldPlayRescuedAnimation*, *CanBeDamaged*, *CanDropItems*, *InteractTextOverride*, and *HiveStashStyle* to their initial values.
-        #  * This can also clear the link to a spawner depending on *ShouldKeepLinkOnReset*. 
-        #  * The hive stash will not reset if the rescue animation is currently playing.
-        Reset<public>():void = external {}
-
-        # Whether to keep or clear a spawner link when *Reset* is called. Links can always be cleared with *ClearSpawnerLink*.
-        #  * `true` by default.
-        var ShouldKeepLinkOnReset<public>:logic = external {}
-
-        # Whether an `agent` spawned from registered data or teleported by *FreeAgent* plays a short animation to get them off the hive stash.
-        #  * The animation may not work properly on skeletons other than the average player skeleton.
-        #  * `true` by default.
-        var ShouldPlayRescuedAnimation<public>:logic = external {}
-
-        # Whether the hive stash can be damaged.
-        #  * `true` by default.
-        var CanBeDamaged<public>:logic = external {}
-
-        # Whether the hive stash drops items when opened. This can happen in addition to an `agent` being rescued.
-        #  * `true` by default.
-        var CanDropItems<public>:logic = external {}
-
-        # If set, this overrides the text shown when interacting while the hive stash is closed.
-        var InteractTextOverride<public>:message = external {}
-
-        # Determines what players can see inside the hive stash, as well as its interaction text. This does not affect what happens when it opens.
-        #  * `Empty` shows nothing and says `Break Open`.
-        #  * `Loot` shows a chest and says `Break Open`.
-        #  * `Trapped` shows a floating character and says `Rescue`.
-        var HiveStashStyle<public>:hive_stash_style = external {}
-
-        StringToMessage<localizes><epic_internal>(Value:string):message = external {}
-
-    # Used to dynamically assemble or disassemble one or more building actors. Only available in LEGO islands.
-    assembly_device<public> := class<concrete><final>(creative_device_base, enableable):
-        # Signaled when the device finishes assembling, at the same time as other 'finished' effects are started.
-        AssemblyFinishedEvent<public>:listenable(?agent) = external {}
-
-        # Signaled when the device finishes disassembling.
-        DisassemblyFinishedEvent<public>:listenable(?agent) = external {}
-
-        # Enable this object.
-        Enable<override>():void = external {}
-
-        # Disable this object.
-        Disable<override>():void = external {}
-
-        # Succeeds if the object is enabled, fails if it’s disabled.
-        IsEnabled<override>()<transacts><decides>:void = external {}
-
-        # Show the hologram used to preview the fully assembled device
-        ShowHologram<public>():void = external {}
-
-        # Hide the hologram used to preview the fully assembled device
-        HideHologram<public>():void = external {}
-
-        # Scans for newly created objects and adds them to the assembly where possible
-        UpdateAssembly<public>():void = external {}
-
-        # Initiates the assembly process.
-        Assemble<public>():void = external {}
-
-        # Initiates the assembly process.
-        Assemble<public>(Agent:agent):void = external {}
-
-        # Initiates the disassembly process.
-        Disassemble<public>():void = external {}
-
-        # Initiates the disassembly process.
-        Disassemble<public>(Agent:agent):void = external {}
-
-        # Pause the assembly or disassembly process.
-        Pause<public>():void = external {}
-
-        # Pause the assembly or disassembly process.
-        Pause<public>(Agent:agent):void = external {}
-
-        # Succeeds if the device is paused, fails if it is not.
-        IsPaused<public>()<transacts><decides>:void = external {}
-
-        # Resets affected building actors to the state they were in at the start of the round.
-        Reset<public>():void = external {}
-
-        # Resets affected building actors to the state they were in at the start of the round.
-        Reset<public>(Agent:agent):void = external {}
-
-        # The amount of progress the device has made towards fully assembling (1.0) or fully disassembling (0.0).
-        var<private> Progress<public>:float = external {}
-
-    hero_chest_rank<public> := enum<open>:
-        C
-        B
-        A
-        S
-
-    # An indestructible chest that can be locked and unlocked.
-    hero_chest_device<public> := class<concrete><final>(creative_device_base, enableable):
-        # Enable the device, allowing interaction.
-        Enable<override>():void = external {}
-
-        # Disable the device. While disabled, the chest can't be interacted with.
-        Disable<override>():void = external {}
-
-        # Succeeds if the device is enabled, fails if it's disabled.
-        IsEnabled<override>()<transacts><decides>:void = external {}
-
-        # Triggers whenever the chest is opened, returning the `agent` who opened it if applicable.
-        OpenEvent<public>:listenable(?agent) = external {}
-
-        # Open the chest.
-        Open<public>():void = external {}
-
-        # Succeeds if the chest is currently open, fails if it's closed.
-        IsOpen<public>()<transacts><decides>:void = external {}
-
-        # Lock the chest for everyone, and set this chest's default state to Locked.
-        LockForAll<public>():void = external {}
-
-        # Unlock the chest for everyone, and set this chest's default state to Unlocked.
-        UnlockForAll<public>():void = external {}
-
-        # Succeeds if the chest's default locked state is Locked.
-        #  * The default locked state is initialized by the *Start Locked* user option and is overridden by *LockForAll* and *UnlockForAll*.
-        IsLockedForAll<public>()<transacts><decides>:void = external {}
-
-        # Lock the chest for `Agent`. Has no effect if the chest is open.
-        Lock<public>(Agent:agent):void = external {}
-
-        # Unlock the chest for `Agent`. Has no effect if the chest is open.
-        Unlock<public>(Agent:agent):void = external {}
-
-        # Succeeds if the chest is locked for `Agent`.
-        IsLocked<public>(Agent:agent)<transacts><decides>:void = external {}
-
-        # Close the chest, refresh its loot, and set the chest to its default locked state for everyone.
-        #  * The default locked state is initialized by the *Start Locked* user option and is overridden by *LockForAll* and *UnlockForAll*.
-        Reset<public>():void = external {}
-
-        # Determines the hologram that appears above the chest, as well as the loot the chest contains.
-        #  * From low to high, the ranks are C, B, A, and S.
-        var ChestRank<public>:hero_chest_rank = external {}
-
-        # Returns the chest rank as a `string`.
-        GetRankAsString<public>():string = external {}
-
-        # Whether to show the rank hologram while the chest is closed.
-        var ShowHologram<public>:logic = external {}
-
-        # Text shown when interacting while the chest is unlocked.
-        #  * By default, this says 'Loot Hero Chest'.
-        var InteractText<epic_internal>:message = external {}
-
-        # Main text shown when interacting while the chest is locked.
-        #  * The default is 'Rank X Chest' where X is the value of *Rank*.
-        var LockedLabel<public>:message = external {}
-
-        # Additional text shown when interacting while the chest is locked.
-        #  * By default, this says 'Unable to open'.
-        var LockedSublabel<public>:message = external {}
-
-        # Descriptive text shown when interacting while the chest is locked.
-        #  * By default, this says 'You cannot open this right now.'.
-        var LockedDescription<public>:message = external {}
-
-        StringToMessage<localizes><epic_internal>(Value:string):message = external {}
 
     # A boss-like environmental encounter that will attack players with different abilities
     scout_spire_device<public> := class<concrete><final>(creative_device_base, has_spire_functionality):
@@ -6856,17 +6209,155 @@ Devices<public> := module:
         # Triggers when the Spire shoots its laser attack. Triggers once, even if it shoots at multiple targets
         EndChargeAndFireLaserEvent<public>:listenable(tuple()) = external {}
 
+    # Used to trigger level sequences that allow coordination of cinematic animation, transformation, and audio tracks.
+    cinematic_sequence_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when the sequence is stopped.
+        StoppedEvent<public>:listenable(tuple()) = external {}
+
+        # Plays the sequence. This will only work when the device is set to *Everyone*
+        Play<public>():void = external {}
+
+        # Plays the sequence. An instigating 'Agent' is required when the device is set to anything except *Everyone*.
+        Play<public>(Agent:agent):void = external {}
+
+        # Plays the sequence in reverse. This will only work when the device is set to *Everyone*
+        PlayReverse<public>():void = external {}
+
+        # Plays the sequence in reverse. An instigating 'Agent' is required when the device is set to anything except *Everyone*.
+        PlayReverse<public>(Agent:agent):void = external {}
+
+        # Stops the sequence.
+        Stop<public>():void = external {}
+
+        # Stops the sequence. An instigating 'Agent' is required when the device is set to anything except *Everyone*.
+        Stop<public>(Agent:agent):void = external {}
+
+        # Go to the end and stop the sequence.
+        GoToEndAndStop<public>():void = external {}
+
+        # Go to the end and stop the sequence. An instigating 'Agent' is required when the device is set to anything except *Everyone*.
+        GoToEndAndStop<public>(Agent:agent):void = external {}
+
+        # Pauses the sequence.
+        Pause<public>():void = external {}
+
+        # Pauses the sequence. An instigating 'Agent' is required when the device is set to anything except *Everyone*.
+        Pause<public>(Agent:agent):void = external {}
+
+        # Toggles between `Play` and `Stop`.
+        TogglePause<public>():void = external {}
+
+        # Toggles between `Play` and `Stop`. An instigating 'Agent' is required when the device is set to anything except *Everyone*.
+        TogglePause<public>(Agent:agent):void = external {}
+
+        # Set the playback position (in frames) of the sequence.
+        SetPlaybackFrame<public>(PlaybackFrame:int):void = external {}
+
+        # Returns the playback position (in frames) of the sequence.
+        GetPlaybackFrame<public>()<transacts>:int = external {}
+
+        # Set the playback position (in time/seconds) of the sequence.
+        SetPlaybackTime<public>(PlaybackTime:float):void = external {}
+
+        # Returns the playback position (in time/seconds) of the sequence.
+        GetPlaybackTime<public>()<transacts>:float = external {}
+
+        # Set the playback rate of the sequence.
+        SetPlayRate<public>(PlayRate:float):void = external {}
+
+        # Returns the playback rate of the sequence.
+        GetPlayRate<public>()<transacts>:float = external {}
+
+    # Specialized `vehicle_spawner_device` that allows a Rocket Racing Vehicle to be configured and spawned.
+    vehicle_spawner_rocketracing_device<public> := class<concrete><final>(vehicle_spawner_device):
+
+    # A vault door that requires a start of a sequence to damage a number of weakpoints to open.
+    bank_vault_device<public> := class<concrete><final>(creative_device_base, bank_vault_interface):
+        # Enable the device.
+        Enable<override>():void = external {}
+
+        # Disable the device. Pauses vault sequence.
+        Disable<override>():void = external {}
+
+        # Succeeds if the device is enabled, fails if it's disabled.
+        IsEnabled<override>()<transacts><decides>:void = external {}
+
+        # Triggers when the vault sequence is started by a player or event.
+        #  * Sends the `agent` that triggered this event, if applicable.
+        StartSequenceEvent<override>:listenable(?agent) = external {}
+
+        # Triggers when the vault is opened either by the destruction of its weakpoints or by an event.
+        #  * Sends the last `agent` that damaged a weakpoint or the `agent` that started the sequence if no external damage was done or none if the sequence was triggered by a function.
+        OpenEvent<override>:listenable(?agent) = external {}
+
+        # Triggers when a weakpoint is activated. The weakpoint will begin to glow, but does not become vulnerable until a subsequent `WeakpointVulnerableEvent`.
+        #  * Sends the `agent` that activated the vault or none if the sequence was triggered by a function, and the `int` index of the weakpoint from 0-4, in order of activation.
+        ActivateWeakpointEvent<override>:listenable(tuple(?agent, int)) = external {}
+
+        # Triggers when a weakpoint becomes vulnerable.
+        #  * Sends the `agent` that activated the vault or none if the sequence was triggered by a function, and the `int` index of the weakpoint from 0-4, in order of activation.
+        WeakpointVulnerableEvent<override>:listenable(tuple(?agent, int)) = external {}
+
+        # Triggers when a weakpoint is destroyed.
+        #  * Sends the last `agent` that damaged the weakpoint or the `agent` that started the sequence if no external damage was done or none if the sequence was triggered by a function, and the `int` index of the weakpoint from 0-4, in order of activation.
+        DestroyWeakpointEvent<override>:listenable(tuple(?agent, int)) = external {}
+
+        # Destroys the remaining weakpoints and opens the vault door. Requires the device to be enabled.
+        ForceOpen<override>():void = external {}
+
+        # Begin the sequence of events to open the vault door without thermite, or unpauses the sequence if it was paused. Requires the device to be enabled. Weakpoints can only be damaged while the vault sequence is active.
+        StartSequence<override>():void = external {}
+
+        # Disable the weakpoint vulnerability and freeze the progress of each one. Weakpoints can only be damaged while the vault sequence is active.
+        PauseSequence<override>():void = external {}
+
+        # Restores vault to default state, deactivates the device, and heals all weakpoints to max health. Requires the device to be enabled.
+        Reset<override>():void = external {}
+
+        # Whether the vault sequence is currently active and not paused.
+        IsSequenceActive<override>()<transacts><decides>:void = external {}
+
+        # Whether the player needs thermite when interacting with the door to start the vault opening sequence.
+        var RequireThermite<override>:logic = external {}
+
+        # Damage dealt to the active weakpoint each second. Negative numbers heal the weakpoint. Weakpoints can only be damaged while the vault sequence is active.
+        var WeakpointDamagePerSecond<override>:float = external {}
+
+        # Whether the weakpoint takes damage from weapons and items while vault sequence is active.
+        var WeakpointTakesExternalDamage<override>:logic = external {}
+
+        # Destroy the active weakpoint. Requires the device to be enabled. Must have active weakpoint.
+        DestroyActiveWeakpoint<override>():void = external {}
+
+        # Restores the active weakpoint to full health. Requires the device to be enabled. Must have active weakpoint.
+        RestoreActiveWeakpoint<override>():void = external {}
+
+        # Gets the active weakpoint's index starting at `0`, regardless of device's enabled state. Returns false if there is no active weakpoint, such as when the sequence is not active or directly after a weakpoint is destroyed.
+        GetActiveWeakpointIndex<override>()<transacts><decides>:int = external {}
+
+        # Gets the total number of weakpoints.
+        GetWeakpointCount<override>():int = external {}
+
+        # Get active weakpoint's health. If there is no active weakpoint, returns false.
+        GetActiveWeakpointHealth<override>()<transacts><decides>:float = external {}
+
+        # Set active weakpoint's health. Setting it to `0.0` will destroy the weakpoint. Clamps to maximum of WeakpointMaxHealth.
+        SetActiveWeakpointHealth<override>(NewHealth:float):void = external {}
+
+        # The max health of this device's weakpoints.
+        var MaxWeakpointHealth<override>:float = external {}
+
     del_mar_player_start_device<epic_internal> := class<concrete><final>(creative_device_base):
 
     del_mar_checkpoint_device<epic_internal> := class<concrete><final>(creative_device_base):
-
-    del_mar_speed_pad_device<epic_internal> := class<concrete><final>(creative_device_base):
 
     # Used to created an EMP Hazard that slows vehicles.
     del_mar_emp_hazard_device<epic_internal> := class<concrete><final>(creative_device_base):
         # Signaled when a vehicle triggers the EMP Hazard.Sends the `agent` that controls the vehicle.
         EMPHazardTriggeredEvent<public>:listenable(agent) = external {}
 
+
+    del_mar_speed_pad_device<epic_internal> := class<concrete><final>(creative_device_base):
 
     # A boss-like environmental encounter that will attack players with different abilities
     overlord_spire_device<public> := class<concrete><final>(creative_device_base, has_spire_functionality):
@@ -7130,8 +6621,472 @@ Devices<public> := module:
         # Fades out the preview clouds above where the Spire spawns.
         HideClouds<public>():void = external {}
 
+    # Used to customize the properties of NPCs spawned by this device.
+    # Changing properties will only affect newly spawned wildlife creatures.
+    wildlife_spawner_device<public> := class<concrete><final>(creative_device_base):
+        # If a value is given, the `Damage` value of the wildlife creature is overridden.
+        # If an override is not specified, the default `Damage` of the wildlife creature is used.
+        # This value is clamped between 1.0 and 500.0.
+        var Damage<public>:?float = external {}
+
+        # If a value is given, the `Damage` value of the wildlife creature is overridden when damaging players.
+        # If an override is not specified, the default `Damage` of the wildlife creature is used.
+        # This value is clamped between 1.0 and 500.0.
+        var DamageToPlayer<public>:?float = external {}
+
+        # If a value is given, the `Damage` value of the wildlife creature is overridden when damaging the environment.
+        # If an override is not specified, the default `Damage` of the wildlife creature is used.
+        # This value is clamped between 1.0 and 500.0.
+        var DamageToEnvironment<public>:?float = external {}
+
+        # If a value is given, the `SpeedMultiplier` value is applied to the default speed of the wildlife creature.
+        # If an override is not specified, the wildlife creature moves at its default speed.
+        # This value is clamped between 0.1 and 2.0.
+        var SpeedMultiplier<public>:float = external {}
+
+        # Distance in meters from the player who tamed it that the wildlife creature will try to stay within.
+        # If a value is given, the `TamedFollowDistance` value of the wildlife creature is overridden.
+        # If an override is not specified, the default `TamedFollowDistance` of the wildlife creature is used.
+        # This value is clamped between 2.0 and 30.0.
+        var TamedFollowDistance<public>:?float = external {}
+
+        # Distance in meters from its spawn position from which the wildlife creature will peacefully roam.
+        # If a value is given, the `WanderRange` value of the wildlife creature is overridden.
+        # If an override is not specified, the default `WanderRange` of the wildlife creature is used.
+        # This value is clamped between 10.0 and 100.0.
+        var WanderRange<public>:?float = external {}
+
+        # Whether the NPC can receive damage.
+        var Invincible<public>:logic = external {}
+
+        # If a value is given, the `MaxHealth` value of the wildlife creature is overridden.
+        # If an override is not specified, the default Health of the wildlife creature is used.
+        # This value is clamped between 1.0 and 10000.0.
+        var MaxHealth<public>:?float = external {}
+
+        # The amount of riding energy the wildlife creature spawns with.
+        # This value is clamped between 0 and 100.
+        var InitialEnergy<public>:int = external {}
+
+        # The maximum riding energy the wildlife creature spawns with.
+        # This value is clamped between 0 and 100.
+        var MaxEnergy<public>:int = external {}
+
+        # The amount of riding energy that is restored when the `RestoreEnergy` function is called.
+        # This value is clamped between 0 and 100.
+        var EnergyRestorationAmount<public>:int = external {}
+
+        # The amount of riding energy that is consumed when the `ConsumeEnergy` function is called.
+        # This value is clamped between 0 and 100.
+        var EnergyConsumptionAmount<public>:int = external {}
+
+        # If true and the wildlife creature supports being tamed, agents can tame the NPC.
+        var CanTame<public>:logic = external {}
+
+        # If true, agents can ride the wildlife creature.
+        var CanRide<public>:logic = external {}
+
+        # If true, agents cannot manually use the interact action to dismount from the wildlife creature.
+        var PreventDismount<public>:logic = external {}
+
+        # Signaled when this device spawns wildlife.
+        # Sends the `agent` wildlife that was spawned.
+        SpawnedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when wildlife is eliminated.
+        # `Source` is the `agent` that eliminated the wildlife. If the wildlife was eliminated by a non-agent, or because the oldest wildlife was eliminated as Spawn function was called after spawn count was exceeded, then `Source` is 'false'.
+        # `Target` is the wildlife that was eliminated.
+        EliminatedEvent<public>:listenable(device_ai_interaction_result) = external {}
+
+        # Signaled when a wildlife eliminates an agent.
+        # `Source` is the wildlife that eliminated the agent.
+        # `Target` is the agent that was eliminated.
+        EliminatingEvent<public>:listenable(device_ai_interaction_result) = external {}
+
+        # Signaled when wildlife is tamed.
+        # `Source` is the `agent` that tamed the wildlife.
+        # `Target` is the wildlife that was tamed.
+        TamedEvent<public>:listenable(device_ai_interaction_result) = external {}
+
+        # Signaled when wildlife is untamed.
+        # `Source` is the `agent` that tamed the wildlife.
+        # `Target` is the wildlife that was untamed.
+        UntamedEvent<public>:listenable(device_ai_interaction_result) = external {}
+
+        # Signaled when wildlife is force-spawned and causes the oldest wildlife to be eliminated.
+        # Sends the `agent` wildlife that was spawned.
+        ForceSpawnedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when wildlife is damaged.
+        # `Source` is the `agent` that damaged the wildlife. If the wildlife was damaged by a non-agent then `false` is returned.
+        # `Target` is the wildlife that was damaged.
+        DamagedEvent<public>:listenable(device_ai_interaction_result) = external {}
+
+        # Signaled when wildlife eats a pickup such as a Shroom or Meat.
+        #  Sends the wildlife that ate something.
+        SomethingIsEatenEvent<public>:listenable(agent) = external {}
+
+        # Signaled when an `agent` rides wildlife.
+        # `Source` is the `agent` that started riding the wildlife.
+        # `Target` is the wildlife that was ridden.
+        RiddenEvent<public>:listenable(device_ai_interaction_result) = external {}
+
+        # Signaled when an `agent` dismounts wildlife.
+        # `Source` is the `agent` that dismounted the wildlife.
+        # `Target` is the wildlife that was dismounted.
+        DismountedEvent<public>:listenable(device_ai_interaction_result) = external {}
+
+        # Enables this device.
+        Enable<public>():void = external {}
+
+        # Disables this device.
+        Disable<public>():void = external {}
+
+        # Resets the count on the *Total Spawn Count* option.
+        Reset<public>():void = external {}
+
+        # Spawns wildlife from this device. If spawn count is exceeded the oldest wildlife will be eliminated.
+        Spawn<public>():void = external {}
+
+        # Despawns wildlife. `Agent` is marked as the one who eliminated the wildlife.
+        Despawn<public>(Agent:agent):void = external {}
+
+        # Destroys this device, marking `Agent` as the destroyer of the device.
+        DestroySpawner<public>(Agent:agent):void = external {}
+
+        # Eliminates wildlife tamed by `Agent`.
+        EliminateTamed<epic_internal>(Agent:agent):void = external {}
+
+        # Tames wildlife, making them AI partners of `Agent`.
+        Tame<public>(Agent:agent):void = external {}
+
+        # Untames any tamed wildlife that belong to `Agent`.
+        Untame<public>(Agent:agent):void = external {}
+
+        # Untames all wildlife.
+        UntameAll<public>():void = external {}
+
+        # Teleports `Agent` to the nearest wildlife, then `Agent` mounts that wildlife.
+        Ride<public>(Agent:agent):void = external {}
+
+        # Dismounts `Agent` from wildlife.
+        Dismount<public>(Agent:agent):void = external {}
+
+        # Dismounts all `agent`s from wildlife.
+        DismountAll<public>():void = external {}
+
+        # Restores energy to wildlife belonging to `Agent` by *Energy Restore Amount*.
+        RestoreEnergy<public>(Agent:agent):void = external {}
+
+        # Restores energy to wildlife by *Energy Restore Amount*.
+        RestoreEnergyForAll<public>():void = external {}
+
+        # Consumes energy from wildlife belonging to `Agent` by *Energy Consume Amount*.
+        ConsumeEnergy<public>(Agent:agent):void = external {}
+
+        # Consumes energy from wildlife by *Energy Consume Amount*.
+        ConsumeEnergyForAll<public>():void = external {}
+
+        # Returns the spawn limit of the device.
+        GetSpawnLimit<public>()<transacts>:int = external {}
+
+        # Get all agents created by this device.
+        GetAgents<public>()<transacts>:[]agent = external {}
+
+        # Spawn a creature at the given position. When Rotation is not provided, it will default to the Device`s rotation.
+        # Returns the agent spawned or false if the device has reached its maximum spawn count.
+        # This function is `<suspends>` because it takes time to load the NPC before it can be returned.
+        SpawnAt<epic_internal>(Position:(/Verse.org/SpatialMath:)vector3, ?Rotation:(/Verse.org/SpatialMath:)rotation = external {})<suspends>:?agent = external {}
+
+    # Specialized `vehicle_spawner_device` that allows an armored transport to be configured and spawned.
+    vehicle_spawner_armored_transport_device<public> := class<concrete><final>(vehicle_spawner_device):
+        var<private> Vault<public>:bank_vault_interface = external {}
+
+
+    hive_stash_style<public> := enum<open>:
+        Empty
+        Loot
+        Trapped
+
+    # A strange organic object that may have something or someone inside of it.
+    hive_stash_device<public> := class<concrete><final>(creative_device_base, enableable, healthful):
+        # Enable the device, allowing players to interact with it.
+        Enable<override>():void = external {}
+
+        # Disable the device, preventing players from interacting with it. Changes to health and state, such as those caused by damage, can still be applied.
+        Disable<override>():void = external {}
+
+        # Succeeds if the device is enabled, fails if it's disabled.
+        IsEnabled<override>()<transacts><decides>:void = external {}
+
+        # Get the device's current health.
+        GetHealth<override>()<transacts>:float = external {}
+
+        # Set the device's current health.
+        SetHealth<override>(Health:float)<transacts>:void = external {}
+
+        # Get the device's current maximum health.
+        GetMaxHealth<override>()<transacts>:float = external {}
+
+        # Set the device's current maximum health.
+        SetMaxHealth<override>(MaxHealth:float)<transacts>:void = external {}
+
+        # Triggers whenever the hive stash is opened, returning the instigating `agent` if applicable.
+        OpenEvent<public>:listenable(?agent) = external {}
+
+        # Triggers whenever an `agent` is rescued, either by the hive stash opening with a linked spawner, or by calling *RescueAgent* while the hive stash is closed.
+        #  * Returns the rescued `agent`.
+        RescueEvent<public>:listenable(agent) = external {}
+
+        # Triggers when the rescue animation ends.
+        #  * Returns the rescued `agent`.
+        RescueAnimationEndEvent<public>:listenable(agent) = external {}
+
+        # If `Agent` was spawned by a `guard_spawner_device` or `npc_spawner_device`, link the hive stash to that spawner. This overrides the hive stash's existing link if one exists.
+        #  * Fails if `Agent` is not from a `guard_spawner_device` or `npc_spawner_device`, or if `Agent` was already eliminated.
+        #  * If the hive stash opens with a linked spawner, trigger the spawner and rescue the resulting `agent` from the hive stash.
+        #  * The rescued `agent` respects its spawner's events, functions, spawn count, and spawn limits.
+        SetLinkedSpawnerFromAgent<public>(Agent:agent)<transacts><decides>:void = external {}
+
+        # Link the hive stash to `GuardSpawner`. This overrides the hive stash's existing link if one exists.
+        #  * If the hive stash opens with a linked spawner, trigger the spawner and rescue the resulting `agent` from the hive stash.
+        #  * The rescued `agent` respects its spawner's events, functions, spawn count, and spawn limits.
+        SetLinkedSpawner<public>(GuardSpawner:guard_spawner_device):void = external {}
+
+        # Link the hive stash to `NPCSpawner`. This overrides the hive stash's existing link if one exists.
+        #  * If the hive stash opens with a linked spawner, trigger the spawner and rescue the resulting `agent` from the hive stash.
+        #  * The rescued `agent` respects its spawner's events, functions, spawn count, and spawn limits.
+        SetLinkedSpawner<public>(NPCSpawner:npc_spawner_device):void = external {}
+
+        # Clear the link between the hive stash and a spawner device.
+        ClearSpawnerLink<public>():void = external {}
+
+        # Succeeds if the device currently has a linked spawner, fails otherwise.
+        HasLinkedSpawner<public>()<transacts><decides>:void = external {}
+
+        # Open the hive stash. If a spawner is linked, trigger it and rescue the resulting `agent` from the hive stash.
+        #  * When the `agent` is rescued, if *ShouldPlayRescuedAnimation* is `true`, they will play a short animation to get off the hive stash.
+        Open<public>():void = external {}
+
+        # Succeeds if the hive stash is currently open, fails otherwise.
+        IsOpen<public>()<transacts><decides>:void = external {}
+
+        # Teleport `Agent` to the hive stash. If *ShouldPlayRescuedAnimation* is `true`, they will play a short animation to get off the hive stash.
+        #  * If the hive stash is closed, it will burst open first, ignoring a linked spawner. This will not clear a linked spawner.
+        #  * Has no effect if `Agent` cannot be teleported for any reason, such as not being in the game anymore.
+        RescueAgent<public>(Agent:agent):void = external {}
+
+        # Reset the hive stash. This closes it, sets it to full health, and sets *ShouldPlayRescuedAnimation*, *CanBeDamaged*, *CanDropItems*, *InteractTextOverride*, and *HiveStashStyle* to their initial values.
+        #  * This can also clear the link to a spawner depending on *ShouldKeepLinkOnReset*. 
+        #  * The hive stash will not reset if the rescue animation is currently playing.
+        Reset<public>():void = external {}
+
+        # Whether to keep or clear a spawner link when *Reset* is called. Links can always be cleared with *ClearSpawnerLink*.
+        #  * `true` by default.
+        var ShouldKeepLinkOnReset<public>:logic = external {}
+
+        # Whether an `agent` spawned from registered data or teleported by *FreeAgent* plays a short animation to get them off the hive stash.
+        #  * The animation may not work properly on skeletons other than the average player skeleton.
+        #  * `true` by default.
+        var ShouldPlayRescuedAnimation<public>:logic = external {}
+
+        # Whether the hive stash can be damaged.
+        #  * `true` by default.
+        var CanBeDamaged<public>:logic = external {}
+
+        # Whether the hive stash drops items when opened. This can happen in addition to an `agent` being rescued.
+        #  * `true` by default.
+        var CanDropItems<public>:logic = external {}
+
+        # If set, this overrides the text shown when interacting while the hive stash is closed.
+        var InteractTextOverride<public>:message = external {}
+
+        # Determines what players can see inside the hive stash, as well as its interaction text. This does not affect what happens when it opens.
+        #  * `Empty` shows nothing and says `Break Open`.
+        #  * `Loot` shows a chest and says `Break Open`.
+        #  * `Trapped` shows a floating character and says `Rescue`.
+        var HiveStashStyle<public>:hive_stash_style = external {}
+
+        StringToMessage<localizes><epic_internal>(Value:string):message = external {}
+
+    # Used to spawn and configure an aerial supply drop that can provide players with customized weapons/supplies.
+    supply_drop_spawner_device<public> := class<concrete><final>(creative_device_base):
+        # Signaled when the balloon on the supply crate is popped.
+        # Sends the `?agent` that popped the balloon. If no `agent` popped the balloon returns `false`.
+        BalloonPoppedEvent<public>:listenable(?agent) = external {}
+
+        # Signaled when the supply crate is opened.
+        # Sends the `agent` that opened the crate.
+        OpenedEvent<public>:listenable(agent) = external {}
+
+        # Signaled when the supply crate lands for the first time.
+        LandingEvent<public>:listenable(tuple()) = external {}
+
+        # Signaled when the supply crate is destroyed.
+        # Sends the destroying `agent`. If no `agent` destroyed the crate then `false` is returned.
+        DestroyCrateEvent<public>:listenable(?agent) = external {}
+
+        # Spawns a supply drop provided one hasn't already spawned. *Owning Team* is set to `Agent`'s team.
+        Spawn<public>(Agent:agent):void = external {}
+
+        # Spawns a supply drop provided one hasn't already spawned.
+        Spawn<public>():void = external {}
+
+        # Destroys the balloon and causes the supply crate to freefall.
+        DestroyBalloon<public>():void = external {}
+
+        # Opens the supply crate, ignoring the locked or unlocked state. `Agent` acts as the instigator of the open action.
+        Open<public>(Agent:agent):void = external {}
+
+        # Locks the supply crate so `agent`s cannot open it.
+        Lock<public>():void = external {}
+
+        # Unlocks the supply crate so `agent`s can open it.
+        Unlock<public>():void = external {}
+
+        # Destroys supply drops spawned by this device.
+        DestroySpawnedDrops<public>():void = external {}
+
+    # Used to dynamically assemble or disassemble one or more building actors. Only available in LEGO islands.
+    assembly_device<public> := class<concrete><final>(creative_device_base, enableable):
+        # Signaled when the device finishes assembling, at the same time as other 'finished' effects are started.
+        AssemblyFinishedEvent<public>:listenable(?agent) = external {}
+
+        # Signaled when the device finishes disassembling.
+        DisassemblyFinishedEvent<public>:listenable(?agent) = external {}
+
+        # Enable this object.
+        Enable<override>():void = external {}
+
+        # Disable this object.
+        Disable<override>():void = external {}
+
+        # Succeeds if the object is enabled, fails if it’s disabled.
+        IsEnabled<override>()<transacts><decides>:void = external {}
+
+        # Show the hologram used to preview the fully assembled device
+        ShowHologram<public>():void = external {}
+
+        # Hide the hologram used to preview the fully assembled device
+        HideHologram<public>():void = external {}
+
+        # Scans for newly created objects and adds them to the assembly where possible
+        UpdateAssembly<public>():void = external {}
+
+        # Initiates the assembly process.
+        Assemble<public>():void = external {}
+
+        # Initiates the assembly process.
+        Assemble<public>(Agent:agent):void = external {}
+
+        # Initiates the disassembly process.
+        Disassemble<public>():void = external {}
+
+        # Initiates the disassembly process.
+        Disassemble<public>(Agent:agent):void = external {}
+
+        # Pause the assembly or disassembly process.
+        Pause<public>():void = external {}
+
+        # Pause the assembly or disassembly process.
+        Pause<public>(Agent:agent):void = external {}
+
+        # Succeeds if the device is paused, fails if it is not.
+        IsPaused<public>()<transacts><decides>:void = external {}
+
+        # Resets affected building actors to the state they were in at the start of the round.
+        Reset<public>():void = external {}
+
+        # Resets affected building actors to the state they were in at the start of the round.
+        Reset<public>(Agent:agent):void = external {}
+
+        # The amount of progress the device has made towards fully assembling (1.0) or fully disassembling (0.0).
+        var<private> Progress<public>:float = external {}
+
+    hero_chest_rank<public> := enum<open>:
+        C
+        B
+        A
+        S
+
+    # An indestructible chest that can be locked and unlocked.
+    hero_chest_device<public> := class<concrete><final>(creative_device_base, enableable):
+        # Enable the device, allowing interaction.
+        Enable<override>():void = external {}
+
+        # Disable the device. While disabled, the chest can't be interacted with.
+        Disable<override>():void = external {}
+
+        # Succeeds if the device is enabled, fails if it's disabled.
+        IsEnabled<override>()<transacts><decides>:void = external {}
+
+        # Triggers whenever the chest is opened, returning the `agent` who opened it if applicable.
+        OpenEvent<public>:listenable(?agent) = external {}
+
+        # Open the chest.
+        Open<public>():void = external {}
+
+        # Succeeds if the chest is currently open, fails if it's closed.
+        IsOpen<public>()<transacts><decides>:void = external {}
+
+        # Lock the chest for everyone, and set this chest's default state to Locked.
+        LockForAll<public>():void = external {}
+
+        # Unlock the chest for everyone, and set this chest's default state to Unlocked.
+        UnlockForAll<public>():void = external {}
+
+        # Succeeds if the chest's default locked state is Locked.
+        #  * The default locked state is initialized by the *Start Locked* user option and is overridden by *LockForAll* and *UnlockForAll*.
+        IsLockedForAll<public>()<transacts><decides>:void = external {}
+
+        # Lock the chest for `Agent`. Has no effect if the chest is open.
+        Lock<public>(Agent:agent):void = external {}
+
+        # Unlock the chest for `Agent`. Has no effect if the chest is open.
+        Unlock<public>(Agent:agent):void = external {}
+
+        # Succeeds if the chest is locked for `Agent`.
+        IsLocked<public>(Agent:agent)<transacts><decides>:void = external {}
+
+        # Close the chest, refresh its loot, and set the chest to its default locked state for everyone.
+        #  * The default locked state is initialized by the *Start Locked* user option and is overridden by *LockForAll* and *UnlockForAll*.
+        Reset<public>():void = external {}
+
+        # Determines the hologram that appears above the chest, as well as the loot the chest contains.
+        #  * From low to high, the ranks are C, B, A, and S.
+        var ChestRank<public>:hero_chest_rank = external {}
+
+        # Returns the chest rank as a `string`.
+        GetRankAsString<public>():string = external {}
+
+        # Whether to show the rank hologram while the chest is closed.
+        var ShowHologram<public>:logic = external {}
+
+        # Text shown when interacting while the chest is unlocked.
+        #  * By default, this says 'Loot Hero Chest'.
+        var InteractText<epic_internal>:message = external {}
+
+        # Main text shown when interacting while the chest is locked.
+        #  * The default is 'Rank X Chest' where X is the value of *Rank*.
+        var LockedLabel<public>:message = external {}
+
+        # Additional text shown when interacting while the chest is locked.
+        #  * By default, this says 'Unable to open'.
+        var LockedSublabel<public>:message = external {}
+
+        # Descriptive text shown when interacting while the chest is locked.
+        #  * By default, this says 'You cannot open this right now.'.
+        var LockedDescription<public>:message = external {}
+
+        StringToMessage<localizes><epic_internal>(Value:string):message = external {}
+
+    using {/UnrealEngine.com/Temporary/Diagnostics}
+    using {/Fortnite.com/AI}
+    using {/Verse.org/Simulation/Tags}
+    using {/Fortnite.com/Playspaces}
     # Module import path: /Fortnite.com/Devices/CreativeAnimation
     CreativeAnimation<public> := module:
+        using {/UnrealEngine.com/Temporary/SpatialMath}
         # A structure for defining Bezier interpolation parameters.
         # See https://en.wikipedia.org/wiki/B%C3%A9zier_curve for more info on Bezier curves.
         cubic_bezier_parameters<native><public> := struct<computes>:
@@ -7544,6 +7499,8 @@ Devices<public> := module:
 
     # Base implementation for events on `creative_device`s.
     device_event<native><epic_internal>(t:type) := class<abstract>(listenable(t)):
+        (/Fortnite.com/Devices/device_event:)Devices_device_event_Variance<private>:?type {_(:t):tuple(t)} = external {}
+
         EventName<native><public>:string
 
         # Subscribes Callback to this event. That same Callback will only be triggered once per event even if it is called with Subscribe more than once.
@@ -7846,6 +7803,16 @@ VerseInternalTesting<public> := module:
             HasServerCommandLineOption<native><epic_internal>(Option:string)<reads><decides>:void
 
 
+        using {/Fortnite.com/Characters}
+        using {/Verse.org/Colors}
+        using {/UnrealEngine.com/Temporary/SpatialMath}
+        using {/UnrealEngine.com/Temporary/Diagnostics}
+        using {/UnrealEngine.com/Temporary/Testing}
+        using {/Verse.org/SceneGraph}
+        using {/Fortnite.com/Vehicles}
+        using {/Verse.org/Simulation}
+        using {/Fortnite.com/Game}
+        using {/Fortnite.com/Devices}
         test_device<epic_internal> := class(creative_device):
             var TestRunner<public>:test_runner = external {}
 
@@ -7992,6 +7959,35 @@ VerseInternalTesting<public> := module:
 
             Subscribe<public>(Event:listenable(tuple(?agent, fort_vehicle, int))):void = external {}
 
+        node_status<epic_internal> := enum<open>:
+            Pending
+            Available
+            Passed
+            Failed
+            Skipped
+            Blocked
+
+        node<epic_internal> := class:
+
+        test_suite_node<epic_internal> := class(node):
+            TestSuite<epic_internal>:test_suite
+
+        test_case_node<epic_internal> := class(node):
+            TestCase<epic_internal>:test_case
+
+        dependency_tree<epic_internal> := class:
+            AddNode<public>(InNode:node):void = external {}
+
+            GetNode<public>(Name:string)<transacts><decides>:node = external {}
+
+            AddDependency<public>(NodeName:string, PreReqName:string):void = external {}
+
+            GetAvailableNodes<public>():[]node = external {}
+
+            SetNodeStatusByName<epic_internal>(Name:string, Status:node_status):void = external {}
+
+            SetNodeStatus<epic_internal>(Node:node, Status:node_status):void = external {}
+
         test_case<public> := struct:
             Name<public>:string
 
@@ -8000,6 +7996,8 @@ VerseInternalTesting<public> := module:
             Category<public>:[]string
 
             TimeoutOverride<public>:?float = external {}
+
+            Dependencies<public>:[]string = external {}
 
         test_suite<public> := struct:
             Name<public>:string
@@ -8014,12 +8012,32 @@ VerseInternalTesting<public> := module:
 
             AfterEachFunc<public>:type {_()<suspends>:void}
 
+            Dependencies<public>:[]string = external {}
+
+        test_case_plan<epic_internal> := class:
+            TestCase<epic_internal>:test_case
+
+            Dependencies<epic_internal>:[]string
+
+            var Status<epic_internal>:node_status = external {}
+
+        test_suite_plan<epic_internal> := class:
+            TestSuite<epic_internal>:test_suite
+
+            Dependencies<epic_internal>:[]string
+
+            TestCasePlan<epic_internal>:[]test_case_plan = external {}
+
+            var Status<epic_internal>:node_status = external {}
+
+        test_plan<epic_internal> := class:
+
         test_runner<epic_internal> := class:
             var TestReporter<public>:test_reporter = external {}
 
             var CurrentTestSuite<public>:string = external {}
 
-            var CurrentFunctionName<public>:string = external {}
+            var CurrentTestCasePlan<public>:?test_case_plan = external {}
 
             var TargetTestSuite<public>:string = external {}
 
@@ -8066,6 +8084,10 @@ VerseInternalTesting<public> := module:
             AddExcludeFilter<public>(Filter:string)<transacts>:void = external {}
 
             IsTestCaseIncluded<public>(TestCase:test_case)<transacts><decides>:void = external {}
+
+            BuildRunPlan<public>():void = external {}
+
+            BuildSuiteRunPlan<public>(TestSuite:test_suite):[]test_case_plan = external {}
 
             Run<public>()<suspends>:void = external {}
 
@@ -8131,6 +8153,8 @@ VerseInternalTesting<public> := module:
 
             RunTestSuites<public>()<suspends>:void = external {}
 
+            RaiseTestFailure<public>(Error:string)<transacts>:void = external {}
+
         test_runner_status<public> := enum:
             Pending
             Setup
@@ -8149,18 +8173,11 @@ VerseInternalTesting<public> := module:
 
             OnBegin<override>()<suspends>:void = external {}
 
-    using {/Fortnite.com/Characters}
-    using {/Verse.org/Colors}
-    using {/UnrealEngine.com/Temporary/SpatialMath}
-    using {/UnrealEngine.com/Temporary/Diagnostics}
-    using {/Verse.org/SceneGraph}
-    using {/Fortnite.com/Vehicles}
-    using {/Fortnite.com/Game}
-    using {/Verse.org/Simulation}
-    using {/Fortnite.com/Devices}
-    using {/UnrealEngine.com/Temporary/Testing}
     # Module import path: /Fortnite.com/VerseInternalTesting/NexusFramework
     NexusFramework<public> := module:
+        using {/Verse.org/Simulation}
+        using {/Fortnite.com/Devices}
+        using {/UnrealEngine.com/Temporary/Testing}
         nexus_test_reporter<epic_internal> := class:
             AddResult<epic_internal>(TestName:string, TestResult:test_result, ContextString:string, TestSuiteName:string):void = external {}
 
@@ -8329,6 +8346,10 @@ UI<public> := module:
 
         PostGame<native><public>:fn_ui_extension = external {}
 
+    using {/Fortnite.com/Devices}
+    using {/Verse.org/Native}
+    using {/Verse.org/Colors}
+    using {/Fortnite.com/Playspaces}
     # Button with text message common base class. Displays a button with a custom message string.
     text_button_base<native><public> := class<abstract><epic_internal>(widget):
         # The text to display to the user. Used only during initialization of the widget and not modified by SetText.
@@ -8342,6 +8363,9 @@ UI<public> := module:
 
         # Gets the text currently in the widget.
         GetText<native><public>():string
+
+        # The UI input action that will trigger the Click event of this button.
+        var TriggeringInputAction<epic_internal>:?input_action(logic) = external {}
 
     # Text button with big and loud styling applied.
     button_loud<native><public> := class<final>(text_button_base):
@@ -8666,13 +8690,15 @@ UI<public> := module:
 
 
 using {/Verse.org/Native}
-using {/Verse.org/Assets}
 @available {MinUploadedAtFNVersion := 3720}
 # Module import path: /Fortnite.com/Input
 Input<public> := module:
+    using {/Verse.org/Native}
     @available {MinUploadedAtFNVersion := 3720}
     # Module import path: /Fortnite.com/Input/Character
     Character<public> := module:
+        using {/Verse.org/Native}
+        using {/Verse.org/Assets}
         @available {MinUploadedAtFNVersion := 3720}
         @experimental
         RangedWeaponMapping<public>:input_mapping = external {}
@@ -8704,31 +8730,9 @@ Input<public> := module:
         @available {MinUploadedAtFNVersion := 3720}
         @experimental
         Jump<public>:input_action(logic) = external {}
-FriedRice<public> := module:
-    using {/Verse.org/Simulation}
-    using {/Verse.org/Colors}
-    using {/Verse.org/Assets}
-    # Module import path: /Fortnite.com/FriedRice/UI
-    UI<public> := module:
-        fr_player_ui_display_info<native><epic_internal> := struct:
-            AvatarLargeImage<native>:texture
-
-            AvatarSmallImage<native>:texture
-
-            AvatarBackgroundColor<native>:color
-
-            AvatarHighlightColor<native>:color
-
-            SquadColor<native>:color
-
-        fr_player_ui_display_info_manager<native><epic_internal> := class:
-            GetDisplayInfo<native><epic_internal>(InPlayer:player)<reads>:fr_player_ui_display_info
-
-
 FeralCorgi<public> := module:
     using {/Verse.org/Colors}
     using {/Verse.org/Assets}
-    using {/Fortnite.com/Playspaces}
     using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/Verse.org/Native}
     using {/Verse.org/Simulation}
@@ -8765,6 +8769,7 @@ FeralCorgi<public> := module:
 
     # Module import path: /Fortnite.com/FeralCorgi/AnalyticsBridge
     AnalyticsBridge<epic_internal> := module:
+        using {/Verse.org/Simulation}
         SendELOAnalyticForPlayer<native><epic_internal>(Player:player, MatchPoints:float, TeamPoints:float, IndividualPoints:float):void
 
     apparatus_bridge<native><epic_internal> := class:
@@ -8800,6 +8805,8 @@ FeralCorgi<public> := module:
 
     # Module import path: /Fortnite.com/FeralCorgi/CommonBridge
     CommonBridge<epic_internal> := module:
+        using {/UnrealEngine.com/Temporary/SpatialMath}
+        using {/Verse.org/Simulation}
         AgentRespawnCleanup<native><epic_internal>(Agent:agent, RespawnPosition:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):void
 
         GetVersePlayerId<native><epic_internal>(Player:player)<transacts>:int
@@ -8829,6 +8836,7 @@ FeralCorgi<public> := module:
 
     # Module import path: /Fortnite.com/FeralCorgi/FeralEliminationInfoBridge
     FeralEliminationInfoBridge<epic_internal> := module:
+        using {/Verse.org/Simulation}
         GetEliminationInfoForPlayer<native><epic_internal>(Agent:agent)<reads>:elimination_info
 
     # Module import path: /Fortnite.com/FeralCorgi/FeralLoggingBridge
@@ -8841,6 +8849,7 @@ FeralCorgi<public> := module:
 
     # Module import path: /Fortnite.com/FeralCorgi/FeralMatchmakingBridge
     FeralMatchmakingBridge<epic_internal> := module:
+        using {/Verse.org/Simulation}
         ReadyUpPlayer<native><epic_internal>(Player:player):void
 
         UnreadyPlayer<native><epic_internal>(Player:player):void
@@ -8849,6 +8858,8 @@ FeralCorgi<public> := module:
 
     # Module import path: /Fortnite.com/FeralCorgi/PlayerLoadingStatusBridge
     PlayerLoadingStatusBridge<epic_internal> := module:
+        using {/Verse.org/Simulation}
+        using {/Fortnite.com/Playspaces}
         AwaitPlayersLoading<native><epic_internal>(Playspace:fort_playspace)<suspends>:void
 
         IsPlayerLoading<native><epic_internal>(Playspace:fort_playspace, Player:player)<transacts><decides>:void
@@ -8861,6 +8872,8 @@ FeralCorgi<public> := module:
 
     # Module import path: /Fortnite.com/FeralCorgi/ReservationHoldingBridge
     ReservationHoldingBridge<epic_internal> := module:
+        using {/Verse.org/Simulation}
+        using {/Fortnite.com/Playspaces}
         EnableLeavingPlayerReservationHolding<native><epic_internal>(Playspace:fort_playspace, HoldingTime:float):void
 
         RestoreSessionReservationHoldingSettings<native><epic_internal>(Playspace:fort_playspace):void
@@ -8876,6 +8889,8 @@ FeralCorgi<public> := module:
 
     # Module import path: /Fortnite.com/FeralCorgi/FeralCorgiRespawnLogic
     FeralCorgiRespawnLogic<epic_internal> := module:
+        using {/UnrealEngine.com/Temporary/SpatialMath}
+        using {/Verse.org/Simulation}
         RunRespawnEQS<native><epic_internal>(InAgent:agent, RespawnQueryLocation:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:respawn_query_info
 
     ranked_track_progress<native><epic_internal> := struct<concrete>:
@@ -8905,6 +8920,8 @@ FeralCorgi<public> := module:
 
     # Module import path: /Fortnite.com/FeralCorgi/SessionAttributesBridge
     SessionAttributesBridge<epic_internal> := module:
+        using {/Verse.org/Simulation}
+        using {/Fortnite.com/Playspaces}
         IsRankedMatch<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
         IsVKEdit<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
@@ -8948,37 +8965,13 @@ FeralCorgi<public> := module:
         GetDisplayInfo<native><epic_internal>(InAgent:agent)<reads>:player_display_info
 
 
-Mimic<public> := module:
-    llm_response<native><epic_internal> := class:
-        ResponseMessage<native><public>:string
-
-        ResponseData<native><public>:string
-
-    @experimental
-    llm_session<native><epic_internal> := class<concrete><final>:
-        # Adds a fact to the llm, returns a cancelable which revokes the fact.
-        AddFact<native><public>(Fact:string):cancelable
-
-        # Adds a fact which is assessed at when the device, or a persona is prompted. The fact is generated by calling the FactFunc.
-        AddDynamicFact<native><public>(FactFunc:type {_()<reads>:string})<transacts>:cancelable
-
-    llm_fact<native><epic_internal> := class(cancelable):
-        Cancel<native><override>()<transacts>:void
-
-
-using {/Verse.org/Simulation/Tags}
-using {/Verse.org/Simulation}
 # Module import path: /Fortnite.com/QuestUtilities
 QuestUtilities<public> := module:
+    using {/Verse.org/Simulation/Tags}
+    using {/Verse.org/Simulation}
     BroadcastCustomVerb<native><epic_internal>(Author:agent, CustomVerbNameTag:tag, Amount:int):void
 
     BroadcastCustomVerb<native><epic_internal>(Author:agent, CustomVerbTagString:string, Amount:int):void
-
-using {/Fortnite.com/Devices}
-using {/Verse.org/Colors}
-using {/UnrealEngine.com/Temporary/SpatialMath}
-using {/Fortnite.com/Playspaces}
-using {/UnrealEngine.com/Temporary/UI}
 Itemization<public> := module:
     using {/Verse.org/Native}
     using {/UnrealEngine.com/Itemization}
@@ -9018,8 +9011,8 @@ Itemization<public> := module:
 
         ___PropertyInterface_On_RequestHover_Changed<epic_internal>():void = external {}
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3200}
+    @experimental
     inventory_item_view_model_component<native><epic_internal> := class<final><final_super>(component):
         InitializeViewModel<native_callable><public>(Item:entity):void = external {}
 
@@ -9027,9 +9020,11 @@ Itemization<public> := module:
 
         RefreshViewModel<public>(Item:entity):void = external {}
 
-        OnEquippedChanged<protected>(ItemEquippedChange:item_equipped_change):void = external {}
+        OnEquippedChanged<protected>(ItemEquippedChange:change_equipped_result):void = external {}
 
-        OnStackSizeChanged<protected>(ItemStackSizeChange:item_stack_size_change):void = external {}
+        OnStackSizeChanged<protected>(ItemStackSizeChange:change_stack_size_result):void = external {}
+
+        OnDetailsChanged<protected>():void = external {}
 
         OnReloadTimeChanged<protected>(NewTime:float):void = external {}
 
@@ -9041,8 +9036,8 @@ Itemization<public> := module:
 
         var StartingReloadTime<protected>:float = external {}
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3200}
+    @experimental
     inventory_ui_action_component<native><epic_internal> := class<final><final_super>(component):
         Initialize<native_callable><public>(InventoryComponent:inventory_component):void = external {}
 
@@ -9054,9 +9049,9 @@ Itemization<public> := module:
 
         HandleRequestUseSelectedItem<protected>():void = external {}
 
-        HandleItemsAdded<protected>(AddItemsResult:add_items_result):void = external {}
+        HandleItemsAdded<protected>(AddItemResult:add_item_result):void = external {}
 
-        HandleItemsRemoved<protected>(RemoveItemsResult:remove_items_result):void = external {}
+        HandleItemsRemoved<protected>(RemoveItemResult:remove_item_result):void = external {}
 
     InventoryActionPropertyInterface_asset<epic_internal>:property_interface_UE5_definition = external {}
 
@@ -9096,8 +9091,8 @@ Itemization<public> := module:
 
     InventoryActionPropertyInterface_subscribable_property_changed_event<epic_internal> := class(subscribable_event_intrnl(tuple())):
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3200}
+    @experimental
     inventory_view_model_component<native><epic_internal> := class<final><final_super>(component):
         InitializeViewModel<native_callable><public>(InventoryComponent:inventory_component):void = external {}
 
@@ -9109,19 +9104,19 @@ Itemization<public> := module:
 
         HandleInventoryPropertyChanged<public>(InventoryPropertyChangeResult:inventory_property_change_result):void = external {}
 
-        HandleItemsAdded<public>(AddItemsResult:add_items_result):void = external {}
+        HandleItemsAdded<public>(AddItemResult:add_item_result):void = external {}
 
-        HandleItemsRemoved<public>(RemoveItemsResult:remove_items_result):void = external {}
+        HandleItemsRemoved<public>(RemoveItemResult:remove_item_result):void = external {}
 
         HandleItemSlotsChanged<public>(ItemSlotsChangedResult:change_items_slot_result):void = external {}
 
         PropertyInterface<public>:InventoryPropertyInterface = external {}
 
     @experimental
-    (Inventory:inventory_component).RegisterPropertyInterface<native><epic_internal>(PropertyInterface:parameterized_property_interface, Identifier:string)<transacts><decides>:void
+    (Inventory:inventory_component).RegisterPropertyInterface<native><epic_internal>(PropertyInterface:parameterized_property_interface, Identifier:string)<transacts><decides>:cancelable
 
     @experimental
-    (Item:item_component).RegisterPropertyInterface<native><epic_internal>(PropertyInterface:parameterized_property_interface, Identifier:string)<transacts><decides>:void
+    (Item:item_component).RegisterPropertyInterface<native><epic_internal>(PropertyInterface:parameterized_property_interface, Identifier:string)<transacts><decides>:cancelable
 
     InventoryPropertyInterface_asset<epic_internal>:property_interface_UE5_definition = external {}
 
@@ -9202,6 +9197,9 @@ Itemization<public> := module:
         @replicated("RepNotify=___PropertyInterface_On_CycleNextInputAction_Changed")
         var CycleNextInputAction<public>:input_action(type) = external {}
 
+        @replicated("RepNotify=___PropertyInterface_On_SlotSize_Changed")
+        var SlotSize<public>:int = external {}
+
         ___PropertyInterface_On_IsValid_Changed<epic_internal>():void = external {}
 
         ___PropertyInterface_On_IsActive_Changed<epic_internal>():void = external {}
@@ -9240,9 +9238,10 @@ Itemization<public> := module:
 
         ___PropertyInterface_On_CycleNextInputAction_Changed<epic_internal>():void = external {}
 
-    using {/Verse.org/Simulation}
+        ___PropertyInterface_On_SlotSize_Changed<epic_internal>():void = external {}
+
     @experimental
-    # `fort_inventory_component` is a shared class for Fortnite inventories, with appropriate default UI and behavior.
+    # `fort_inventory_component` is a shared class for all Fortnite inventories, with appropriate default UI and behavior.
     fort_inventory_component<native><public> := class<epic_internal>(inventory_component):
         # Returns the item in the specified slot, if there is one.
         GetItemInSlot<native><public>(Slot:int)<reads><decides>:item_component
@@ -9251,12 +9250,12 @@ Itemization<public> := module:
         GetMaxSlots<native><public>()<reads>:int
 
     @experimental
-    # `fort_inventory_legacy_quickbar_component` is a shared class for Fortnite inventories that rely on coupling to the legacy AFortQuickBars class.
-    fort_inventory_legacy_quickbar_component<native><epic_internal> := class<epic_internal>(fort_inventory_component):
+    # `fort_br_inventory_legacy_quickbar_component` is a shared class for FNBR inventories that rely on coupling to the legacy AFortQuickBars class.
+    fort_br_inventory_legacy_quickbar_component<native><epic_internal> := class(fort_inventory_component):
 
     @experimental
-    # `fort_inventory_weapon_hotbar_component` is the inventory for Fortnite weapons and gadgets.
-    fort_inventory_weapon_hotbar_component<native><public> := class<final>(fort_inventory_legacy_quickbar_component):
+    # `fort_inventory_weapon_hotbar_component` is the UEFN inventory for Fortnite weapons and gadgets.
+    fort_inventory_weapon_hotbar_component<native><public> := class<final>(fort_inventory_component):
         # Returns the item currently selected, if there is one.
         GetEquippedItem<native><epic_internal>()<reads><decides>:item_component
 
@@ -9269,27 +9268,50 @@ Itemization<public> := module:
         var TotalSlots<override>:int = external {}
 
     @experimental
-    # `fort_inventory_build_hotbar_component` is the inventory for Fortnite build tools.
-    fort_inventory_build_hotbar_component<native><public> := class<final>(fort_inventory_legacy_quickbar_component):
+    # `fort_br_inventory_weapon_hotbar_component` is the FNBR inventory for Fortnite weapons and gadgets.
+    fort_br_inventory_weapon_hotbar_component<native><epic_internal> := class<final>(fort_br_inventory_legacy_quickbar_component):
+        # Sets the total number of slots.
+        SetMaxSlots<native><public>(InNumSlots:int):void
+
+        var TotalSlots<override>:int = external {}
+
+    @experimental
+    # `fort_inventory_build_hotbar_component` is the UEFN inventory for Fortnite build tools.
+    fort_inventory_build_hotbar_component<native><public> := class<final>(fort_inventory_component):
         # Returns the item currently selected, if there is one.
         GetEquippedItem<native><epic_internal>()<reads><decides>:item_component
 
         var TotalSlots<override>:int = external {}
 
     @experimental
-    # `fort_inventory_harvest_tool_component` is the Fortnite harvest tool inventory.
-    fort_inventory_harvest_tool_component<native><public> := class<final>(fort_inventory_legacy_quickbar_component):
+    # `fort_br_inventory_build_hotbar_component` is the FNBR inventory for Fortnite build tools.
+    fort_br_inventory_build_hotbar_component<native><epic_internal> := class<final>(fort_br_inventory_legacy_quickbar_component):
+        var TotalSlots<override>:int = external {}
+
+    @experimental
+    # `fort_inventory_harvest_tool_component` is the UEFN inventory for the Fortnite harvest tool.
+    fort_inventory_harvest_tool_component<native><public> := class<final>(fort_inventory_component):
         # Returns the item currently selected, if there is one.
         GetEquippedItem<native><epic_internal>()<reads><decides>:item_component
 
         var TotalSlots<override>:int = external {}
 
     @experimental
-    # `fort_inventory_trap_component` is the Fortnite trap slot inventory.
-    fort_inventory_trap_component<native><public> := class<final>(fort_inventory_legacy_quickbar_component):
+    # `fort_br_inventory_harvest_tool_component` is the FNBR inventory for the Fortnite harvest tool.
+    fort_br_inventory_harvest_tool_component<native><epic_internal> := class<final>(fort_br_inventory_legacy_quickbar_component):
+        var TotalSlots<override>:int = external {}
+
+    @experimental
+    # `fort_inventory_trap_component` is the UEFN inventory for the Fortnite trap slot.
+    fort_inventory_trap_component<native><public> := class<final>(fort_inventory_component):
         # Returns the item currently selected, if there is one.
         GetEquippedItem<native><epic_internal>()<reads><decides>:item_component
 
+        var TotalSlots<override>:int = external {}
+
+    @experimental
+    # `fort_br_inventory_trap_component` is the FNBR inventory for the Fortnite trap slot.
+    fort_br_inventory_trap_component<native><epic_internal> := class<final>(fort_br_inventory_legacy_quickbar_component):
         var TotalSlots<override>:int = external {}
 
     @experimental
@@ -9316,9 +9338,6 @@ Itemization<public> := module:
 
         CanRemoveItem<native><override>(InventoryComponent:inventory_component, Item:entity):?failure_reason
 
-        @editable
-        ItemTypeRequirement<native><public>:?item_type = external {}
-
     FortniteItemCategoryWorldItemName<localizes><epic_internal>:message = external {}
 
     FortniteItemCategoryCurrencyName<localizes><epic_internal>:message = external {}
@@ -9339,6 +9358,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/FortniteItemCategories
     FortniteItemCategories<public> := module:
+        using {/UnrealEngine.com/Itemization}
         @experimental
         WorldItem<public>:item_category = external {}
 
@@ -9367,7 +9387,8 @@ Itemization<public> := module:
         WeaponHarvest<epic_internal>:item_category = external {}
 
     # Module import path: /Fortnite.com/Itemization/FortniteItemDefinitionUtils
-    FortniteItemDefinitionUtils<public> := module:
+    FortniteItemDefinitionUtils<epic_internal> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         AddItemComponents<native><epic_internal>(InEntity:entity, InItemDefinitionID:string)<converges>:void
 
@@ -9394,37 +9415,67 @@ Itemization<public> := module:
 
         CopyFromItem<override><final><native>(SourceItem:entity)<transacts>:void
 
+    FortniteItemRarityCommonName<localizes><epic_internal>:message = external {}
+
+    FortniteItemRarityUncommonName<localizes><epic_internal>:message = external {}
+
+    FortniteItemRarityRareName<localizes><epic_internal>:message = external {}
+
+    FortniteItemRarityEpicName<localizes><epic_internal>:message = external {}
+
+    FortniteItemRarityLegendaryName<localizes><epic_internal>:message = external {}
+
+    FortniteItemRarityMythicName<localizes><epic_internal>:message = external {}
+
+    FortniteItemRarityExoticName<localizes><epic_internal>:message = external {}
+
+    # Module import path: /Fortnite.com/Itemization/FortniteItemRarities
+    FortniteItemRarities<epic_internal> := module:
+        using {/UnrealEngine.com/Itemization}
+        @experimental
+        Common<public>:item_rarity = external {}
+
+        @experimental
+        Uncommon<public>:item_rarity = external {}
+
+        @experimental
+        Rare<public>:item_rarity = external {}
+
+        @experimental
+        Epic<public>:item_rarity = external {}
+
+        @experimental
+        Legendary<public>:item_rarity = external {}
+
+        @experimental
+        Mythic<epic_internal>:item_rarity = external {}
+
+        @experimental
+        Exotic<epic_internal>:item_rarity = external {}
+
     @experimental
     fort_ammo_item_type_source<native><epic_internal> := class(item_type_source):
-        GetItemType<native><override>(Default:item_type):item_type
 
     @experimental
     fort_resource_item_type_source<native><epic_internal> := class(item_type_source):
-        GetItemType<native><override>(Default:item_type):item_type
 
     @experimental
     fort_currency_item_type_source<native><epic_internal> := class(item_type_source):
-        GetItemType<native><override>(Default:item_type):item_type
 
     @experimental
     fort_collection_item_type_source<native><epic_internal> := class(item_type_source):
-        GetItemType<native><override>(Default:item_type):item_type
 
     @experimental
     fort_build_tool_item_type_source<native><epic_internal> := class(item_type_source):
-        GetItemType<native><override>(Default:item_type):item_type
 
     @experimental
     fort_weapon_ranged_item_type_source<native><epic_internal> := class(item_type_source):
-        GetItemType<native><override>(Default:item_type):item_type
 
     @experimental
     fort_weapon_melee_item_type_source<native><epic_internal> := class(item_type_source):
-        GetItemType<native><override>(Default:item_type):item_type
 
     @experimental
     fort_gadget_item_type_source<native><epic_internal> := class(item_type_source):
-        GetItemType<native><override>(Default:item_type):item_type
 
     @experimental
     item_attributes_component<native><final><epic_internal> := class<final_super>(component):
@@ -9442,168 +9493,10 @@ Itemization<public> := module:
 
         GetCurrentAmmoValue<native><public>()<reads>:int
 
-    @experimental
-    smoke_test_debug_item_type<native><epic_internal> := class(item_type):
-
-    @experimental
-    item_rarity_converter<native><epic_internal> := class<concrete><final>:
-        FortniteRarityCommon<native><epic_internal>:item_rarity = external {}
-
-        FortniteRarityUncommon<native><epic_internal>:item_rarity = external {}
-
-        FortniteRarityRare<native><epic_internal>:item_rarity = external {}
-
-        FortniteRarityEpic<native><epic_internal>:item_rarity = external {}
-
-        FortniteRarityLegendary<native><epic_internal>:item_rarity = external {}
-
-        FortniteRarityMythic<native><epic_internal>:item_rarity = external {}
-
-        FortniteRarityTranscendent<native><epic_internal>:item_rarity = external {}
-
-        FortniteRarityUnattainable<native><epic_internal>:item_rarity = external {}
-
-    FortniteItemWorldItemName<localizes><epic_internal>:message = external {}
-
-    FortniteItemAmmoName<localizes><epic_internal>:message = external {}
-
-    FortniteItemBadgeName<localizes><epic_internal>:message = external {}
-
-    FortniteItemBackpackPickupName<localizes><epic_internal>:message = external {}
-
-    FortniteItemBuildingPieceName<localizes><epic_internal>:message = external {}
-
-    FortniteItemCharacterPartName<localizes><epic_internal>:message = external {}
-
-    FortniteItemConsumableName<localizes><epic_internal>:message = external {}
-
-    FortniteItemDecoName<localizes><epic_internal>:message = external {}
-
-    FortniteItemEditToolName<localizes><epic_internal>:message = external {}
-
-    FortniteItemIngredientName<localizes><epic_internal>:message = external {}
-
-    FortniteItemItemCacheName<localizes><epic_internal>:message = external {}
-
-    FortniteItemFoodName<localizes><epic_internal>:message = external {}
-
-    FortniteItemGadgetName<localizes><epic_internal>:message = external {}
-
-    FortniteItemAthenaGadgetName<localizes><epic_internal>:message = external {}
-
-    FortniteItemHomebaseGadgetName<localizes><epic_internal>:message = external {}
-
-    FortniteItemSpyTechPerkName<localizes><epic_internal>:message = external {}
-
-    FortniteItemHeroAbilityName<localizes><epic_internal>:message = external {}
-
-    FortniteItemMissionItemName<localizes><epic_internal>:message = external {}
-
-    FortniteItemTrapName<localizes><epic_internal>:message = external {}
-
-    FortniteItemMultiItemName<localizes><epic_internal>:message = external {}
-
-    FortniteItemWeaponName<localizes><epic_internal>:message = external {}
-
-    FortniteItemWeaponMeleeName<localizes><epic_internal>:message = external {}
-
-    FortniteItemWeaponRangedName<localizes><epic_internal>:message = external {}
-
-    FortniteItemWeaponHarvestName<localizes><epic_internal>:message = external {}
-
-    FortniteItemWeaponCreativePhoneName<localizes><epic_internal>:message = external {}
-
-    FortniteItemWeaponModName<localizes><epic_internal>:message = external {}
-
-    FortniteItemWorldResourceName<localizes><epic_internal>:message = external {}
-
-    FortniteItemCreativeUserPrefabName<localizes><epic_internal>:message = external {}
-
-    FortniteItemCreativePlaysetName<localizes><epic_internal>:message = external {}
-
-    FortniteItemVehicleName<localizes><epic_internal>:message = external {}
-
-    FortniteItemNpcName<localizes><epic_internal>:message = external {}
-
-    FortniteItemPlayerAugmentName<localizes><epic_internal>:message = external {}
-
-    FortniteItemCollectedResourceName<localizes><epic_internal>:message = external {}
-
-    FortniteItemCurrencyName<localizes><epic_internal>:message = external {}
-
-    @experimental
-    item_type_converter<native><epic_internal> := class<concrete><final>:
-        FortniteTypeWorldItem<native><epic_internal>:item_type = external {}
-
-        FortniteTypeAmmo<native><epic_internal>:item_type = external {}
-
-        FortniteTypeBadge<native><epic_internal>:item_type = external {}
-
-        FortniteTypeBackpackPickup<native><epic_internal>:item_type = external {}
-
-        FortniteTypeBuildingPiece<native><epic_internal>:item_type = external {}
-
-        FortniteTypeCharacterPart<native><epic_internal>:item_type = external {}
-
-        FortniteTypeConsumable<native><epic_internal>:item_type = external {}
-
-        FortniteTypeDeco<native><epic_internal>:item_type = external {}
-
-        FortniteTypeEditTool<native><epic_internal>:item_type = external {}
-
-        FortniteTypeIngredient<native><epic_internal>:item_type = external {}
-
-        FortniteTypeItemCache<native><epic_internal>:item_type = external {}
-
-        FortniteTypeFood<native><epic_internal>:item_type = external {}
-
-        FortniteTypeGadget<native><epic_internal>:item_type = external {}
-
-        FortniteTypeAthenaGadget<native><epic_internal>:item_type = external {}
-
-        FortniteTypeHomebaseGadget<native><epic_internal>:item_type = external {}
-
-        FortniteTypeSpyTechPerk<native><epic_internal>:item_type = external {}
-
-        FortniteTypeHeroAbility<native><epic_internal>:item_type = external {}
-
-        FortniteTypeMissionItem<native><epic_internal>:item_type = external {}
-
-        FortniteTypeTrap<native><epic_internal>:item_type = external {}
-
-        FortniteTypeMultiItem<native><epic_internal>:item_type = external {}
-
-        FortniteTypeWeapon<native><epic_internal>:item_type = external {}
-
-        FortniteTypeWeaponMelee<native><epic_internal>:item_type = external {}
-
-        FortniteTypeWeaponRanged<native><epic_internal>:item_type = external {}
-
-        FortniteTypeWeaponHarvest<native><epic_internal>:item_type = external {}
-
-        FortniteTypeWeaponCreativePhone<native><epic_internal>:item_type = external {}
-
-        FortniteTypeWeaponMod<native><epic_internal>:item_type = external {}
-
-        FortniteTypeWorldResource<native><epic_internal>:item_type = external {}
-
-        FortniteTypeCreativeUserPrefab<native><epic_internal>:item_type = external {}
-
-        FortniteTypeCreativePlayset<native><epic_internal>:item_type = external {}
-
-        FortniteTypeVehicle<native><epic_internal>:item_type = external {}
-
-        FortniteTypeNpc<native><epic_internal>:item_type = external {}
-
-        FortniteTypePlayerAugment<native><epic_internal>:item_type = external {}
-
-        FortniteTypeCollectedResource<native><epic_internal>:item_type = external {}
-
-        FortniteTypeCurrency<native><epic_internal>:item_type = external {}
-
     using {/UnrealEngine.com/Abilities}
     # Module import path: /Fortnite.com/Itemization/AbsoluteDoomItems
     AbsoluteDoomItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_chainsaw<public> := class<final>(entity):
 
@@ -9669,6 +9562,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/BallisticItems
     BallisticItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_bubble_shield<public> := class<final>(entity):
 
@@ -9746,6 +9640,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/CH4S1Items
     CH4S1Items<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_big_bush_bomb<public> := class<final>(entity):
 
@@ -9878,8 +9773,33 @@ Itemization<public> := module:
         @experimental
         fort_item_twin_mag_smg_uncommon<public> := class<final>(entity):
 
+    # Module import path: /Fortnite.com/Itemization/CH6MS2Items
+    CH6MS2Items<public> := module:
+        using {/Verse.org/SceneGraph}
+        @experimental
+        fort_item_compact_smg_rare<public> := class<final>(entity):
+
+        @experimental
+        fort_item_compact_smg_uncommon<public> := class<final>(entity):
+
+        @experimental
+        fort_item_enhanced_compact_smg_mythic<public> := class<final>(entity):
+
+        @experimental
+        fort_item_suppressed_assault_rifle_common<public> := class<final>(entity):
+
+        @experimental
+        fort_item_suppressed_assault_rifle_uncommon<public> := class<final>(entity):
+
+        @experimental
+        (/Fortnite.com/Itemization/CH6MS2Items:)fort_item_tactical_shotgun_epic<public> := class<final>(entity):
+
+        @experimental
+        (/Fortnite.com/Itemization/CH6MS2Items:)fort_item_tactical_shotgun_legendary<public> := class<final>(entity):
+
     # Module import path: /Fortnite.com/Itemization/CreativeItems
     CreativeItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_acorn<public> := class<final>(entity):
 
@@ -10170,6 +10090,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/CubedItems
     CubedItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_armored_wall<public> := class<final>(entity):
 
@@ -10292,6 +10213,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/FlippedItems
     FlippedItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_auto_shotgun_common<public> := class<final>(entity):
 
@@ -10477,6 +10399,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/FortniteItems
     FortniteItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_air_strike<public> := class<final>(entity):
 
@@ -10623,6 +10546,12 @@ Itemization<public> := module:
 
         @experimental
         fort_item_combat_shotgun_uncommon<public> := class<final>(entity):
+
+        @experimental
+        fort_item_compact_smg_epic<public> := class<final>(entity):
+
+        @experimental
+        fort_item_compact_smg_legendary<public> := class<final>(entity):
 
         @experimental
         fort_item_corn<public> := class<final>(entity):
@@ -11027,13 +10956,13 @@ Itemization<public> := module:
         (/Fortnite.com/Itemization/FortniteItems:)fort_item_pump_shotgun_uncommon<public> := class<final>(entity):
 
         @experimental
-        fort_item_pumpkin_launcher_epic<public> := class<final>(entity):
+        (/Fortnite.com/Itemization/FortniteItems:)fort_item_pumpkin_launcher_epic<public> := class<final>(entity):
 
         @experimental
-        fort_item_pumpkin_launcher_legendary<public> := class<final>(entity):
+        (/Fortnite.com/Itemization/FortniteItems:)fort_item_pumpkin_launcher_legendary<public> := class<final>(entity):
 
         @experimental
-        fort_item_pumpkin_launcher_rare<public> := class<final>(entity):
+        (/Fortnite.com/Itemization/FortniteItems:)fort_item_pumpkin_launcher_rare<public> := class<final>(entity):
 
         @experimental
         fort_item_pumpkin_launcher_uncommon<public> := class<final>(entity):
@@ -11277,6 +11206,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/FortniteOGItems
     FortniteOGItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_assault_rifle_common_1<public> := class<final>(entity):
 
@@ -11482,10 +11412,10 @@ Itemization<public> := module:
         fort_item_tactical_shotgun_common<public> := class<final>(entity):
 
         @experimental
-        fort_item_tactical_shotgun_epic<public> := class<final>(entity):
+        (/Fortnite.com/Itemization/FortniteOGItems:)fort_item_tactical_shotgun_epic<public> := class<final>(entity):
 
         @experimental
-        fort_item_tactical_shotgun_legendary<public> := class<final>(entity):
+        (/Fortnite.com/Itemization/FortniteOGItems:)fort_item_tactical_shotgun_legendary<public> := class<final>(entity):
 
         @experimental
         fort_item_tactical_shotgun_rare<public> := class<final>(entity):
@@ -11513,6 +11443,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/HuntersItems
     HuntersItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_blizzard_grenade<public> := class<final>(entity):
 
@@ -11671,6 +11602,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/InvasionItems
     InvasionItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_alien_nanites<public> := class<final>(entity):
 
@@ -11721,6 +11653,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/LastResortItems
     LastResortItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_business_turret<public> := class<final>(entity):
 
@@ -11849,6 +11782,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/LawlessItems
     LawlessItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_barons_double_down_pistol_mythic<public> := class<final>(entity):
 
@@ -11995,6 +11929,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/MEGAItems
     MEGAItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_enhanced_havoc_shotgun_mythic<public> := class<final>(entity):
 
@@ -12072,6 +12007,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/MythsAndMortalsItems
     MythsAndMortalsItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_ares_modular_warforged_assault_rifle_mythic<public> := class<final>(entity):
 
@@ -12194,6 +12130,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/ParadiseItems
     ParadiseItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_birthday_presents<public> := class<final>(entity):
 
@@ -12274,6 +12211,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/PrimalItems
     PrimalItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_ammo_arrows<public> := class<final>(entity):
 
@@ -12468,6 +12406,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/RebellionItems
     RebellionItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_anvil_rocket_launcher_epic<public> := class<final>(entity):
 
@@ -12542,6 +12481,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/ShockNAwesomeItems
     ShockNAwesomeItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_bug_blaster_epic<public> := class<final>(entity):
 
@@ -12612,6 +12552,15 @@ Itemization<public> := module:
         fort_item_precision_air_strike<public> := class<final>(entity):
 
         @experimental
+        (/Fortnite.com/Itemization/ShockNAwesomeItems:)fort_item_pumpkin_launcher_epic<public> := class<final>(entity):
+
+        @experimental
+        (/Fortnite.com/Itemization/ShockNAwesomeItems:)fort_item_pumpkin_launcher_legendary<public> := class<final>(entity):
+
+        @experimental
+        (/Fortnite.com/Itemization/ShockNAwesomeItems:)fort_item_pumpkin_launcher_rare<public> := class<final>(entity):
+
+        @experimental
         fort_item_shockwave_launcher_epic<public> := class<final>(entity):
 
         @experimental
@@ -12661,6 +12610,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/SuperItems
     SuperItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_ascended_myst_legendary<public> := class<final>(entity):
 
@@ -12771,6 +12721,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/UndergroundItems
     UndergroundItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_ballistic_shield_epic<public> := class<final>(entity):
 
@@ -12944,6 +12895,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/VibinItems
     VibinItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_charge_smg_common<public> := class<final>(entity):
 
@@ -13060,6 +13012,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/WildsItems
     WildsItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_cloak_gauntlets<public> := class<final>(entity):
 
@@ -13164,6 +13117,7 @@ Itemization<public> := module:
 
     # Module import path: /Fortnite.com/Itemization/WreckedItems
     WreckedItems<public> := module:
+        using {/Verse.org/SceneGraph}
         @experimental
         fort_item_heavy_impact_sniper_rifle_epic<public> := class<final>(entity):
 
@@ -13242,8 +13196,99 @@ Itemization<public> := module:
 
 # Module import path: /Fortnite.com/FN1Native
 FN1Native<public> := module:
+    using {/Verse.org/Simulation}
+    using {/Verse.org/Colors}
+    using {/Verse.org/Assets}
+    # Module import path: /Fortnite.com/FN1Native/FortAircraft
+    FortAircraft<public> := module:
+        using {/Verse.org/Native}
+        using {/Verse.org/Simulation}
+        using {/Verse.org/SpatialMath}
+        fort_aircraft_flight_info<native><epic_internal> := class:
+            @editable
+            StartLocation<public>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+            @editable
+            StartRotation<public>:(/Verse.org/SpatialMath:)rotation = external {}
+
+            @editable_number(float) {MinValue := option {0.000000}}
+            Speed<public>:float = external {}
+
+            @editable_number(float) {MinValue := option {0.000000}}
+            Duration<public>:float = external {}
+
+            @editable_number(float) {MinValue := option {0.000000}}
+            DropStartDelay<public>:float = external {}
+
+            @editable_number(float) {MinValue := option {0.000000}}
+            DropEndDelay<public>:float = external {}
+
+            GetStartTransform<native_callable><public>():(/Verse.org/SpatialMath:)transform = external {}
+
+            GetEndLocation<public>():(/Verse.org/SpatialMath:)vector3 = external {}
+
+            GetDropStartLocation<public>():(/Verse.org/SpatialMath:)vector3 = external {}
+
+            GetDropEndLocation<public>():(/Verse.org/SpatialMath:)vector3 = external {}
+
+        @import_as("/Script/VerseFortnite.UVerseFortniteActorWrapper")
+        fort_aircraft_base<native><epic_internal> := class<abstract>:
+
+        fort_aircraft<native><epic_internal> := class<concrete><unique><castable><epic_internal>(fort_aircraft_base):
+            Despawn<native><protected>():void
+
+            SetInitialFlightPath<native><protected>(StartLocation:(/Verse.org/SpatialMath:)vector3, StartRotation:(/Verse.org/SpatialMath:)rotation, Speed:float, Duration:float, DropStartDelay:float, DropEndDelay:float):void
+
+            StartFlightPath<native><protected>(FlightStartTime:float):void
+
+            SetFlightTimes<native><protected>(FlightElapsedTime:float, FlightTimestamp:float):void
+
+            SetLocation<native><protected>(Position:(/Verse.org/SpatialMath:)vector3):void
+
+            AddPassengerNative<native><protected>(Agent:agent)<transacts><decides>:void
+
+            RemovePassengerNative<native><protected>(Agent:agent)<transacts><decides>:void
+
+            var FlightInfo<public>:fort_aircraft_flight_info = external {}
+
+            var StartTime<public>:float = external {}
+
+            var EndTime<public>:float = external {}
+
+            var DropStartTime<public>:float = external {}
+
+            var DropEndTime<public>:float = external {}
+
+            var IsInDropZone<public>:logic = external {}
+
+            FlightStartedEvent<public>:subscribable_event_intrnl(fort_aircraft) = external {}
+
+            FlightEndedEvent<public>:subscribable_event_intrnl(fort_aircraft) = external {}
+
+            FlightEnteredDropZoneEvent<public>:subscribable_event_intrnl(fort_aircraft) = external {}
+
+            FlightExitedDropZoneEvent<public>:subscribable_event_intrnl(fort_aircraft) = external {}
+
+            Deinitialize<public>():void = external {}
+
+            GetFlightInfo<native_callable><public>():fort_aircraft_flight_info = external {}
+
+            IsFlying<public>()<decides>:void = external {}
+
+            StartFlight<public>()<suspends>:void = external {}
+
+            GetPassengers<public>()<reads>:[]agent = external {}
+
+            AddPassenger<public>(Passenger:agent)<transacts><decides>:void = external {}
+
+            RemovePassenger<public>(Passenger:agent)<transacts><decides>:void = external {}
+
     # Module import path: /Fortnite.com/FN1Native/FortBus
     FortBus<public> := module:
+        using {/Fortnite.com/Devices}
+        using {/Verse.org/Native}
+        using {/Verse.org/Simulation}
+        using {/UnrealEngine.com/Temporary/SpatialMath}
         fort_battlebus_zone<native><epic_internal> := struct<concrete>:
             @editable
             ZoneMin<native><public>:vector2 = external {}
@@ -13291,69 +13336,82 @@ FN1Native<public> := module:
 
     # Module import path: /Fortnite.com/FN1Native/GameMode
     GameMode<public> := module:
-        @import_as("/Script/FN1NativeRuntime.UVerseFortGameMode")
-        fort_gamemode_base<native><epic_internal> := class<abstract>:
+        using {/Verse.org/SpatialMath}
+        using {/Verse.org/SceneGraph}
+        using {/Verse.org/Assets}
+        environment_query<native><epic_internal> := class<computes><final><epic_internal>(asset):
+            AwaitEQSQuery<native><epic_internal>(Owner:entity, Params:[]tuple(string, float))<suspends>:[](/Verse.org/SpatialMath:)vector3
 
-        fort_br_gamemode<native><epic_internal> := class<epic_internal>(fort_gamemode_base):
-            Initialize<native><public>():logic
+    # Module import path: /Fortnite.com/FN1Native/Matchmaking
+    Matchmaking<public> := module:
+        # Module import path: /Fortnite.com/FN1Native/Matchmaking/FortSessionAttributesBridge
+        FortSessionAttributesBridge<epic_internal> := module:
+            using {/Fortnite.com/Playspaces}
+            IsRankedMatch<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
 
-            WaitingForPlayersCountdownStartedEvent<native><public>:listenable(float) = external {}
+            GetMaxSquadSize<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:int
 
-            WaitingForPlayersFinishedEvent<native><public>:listenable(tuple()) = external {}
+            GetMaxPlayerCount<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:int
 
-            PlayerPawnRespawnedEvent<native><public>:listenable(agent) = external {}
+    # Module import path: /Fortnite.com/FN1Native/FortSafeZone
+    (/Fortnite.com/FN1Native:)FortSafeZone<public> := module:
+        using {/Fortnite.com/Playspaces}
+        using {/UnrealEngine.com/Temporary/SpatialMath}
+        using {/Verse.org/Native}
+        using {/Verse.org/Simulation}
+        fort_safe_zone_damage_info<epic_internal> := class:
+            @editable_number(float) {MinValue := option {0.000000}}
+            DamagePerInterval<public>:float = external {}
 
-            PlayerPawnEliminatedEvent<native><public>:listenable(agent) = external {}
+            @editable
+            DamageIsPercentageBased<public>:logic = external {}
 
-            TeamWonEvent<native><public>:listenable(team) = external {}
+            @editable_number(float) {MinValue := option {0.000000}}
+            DamageInterval<public>:float = external {}
 
-            WarmupFinishedEvent<native><public>:listenable(tuple()) = external {}
+            @editable_number(float) {MinValue := option {0.000000}}
+            DamageIncrementInitialDelay<public>:float = external {}
 
-            AircraftFinishedEvent<native><public>:listenable(tuple()) = external {}
+            @editable_number(float) {MinValue := option {0.000000}}
+            DamageIncrementInterval<public>:float = external {}
 
-            StartMatch<native><public>():logic
+            @editable_number(float) {MinValue := option {0.000000}}
+            DamageIncrementAmount<public>:float = external {}
 
-            StartWarmupPhase<native><public>():logic
+        @import_as("/Script/VerseFortnite.UVerseFortniteActorWrapper")
+        fort_safe_zone_base<native><epic_internal> := class<abstract>:
 
-            StartAircraftPhase<native><public>():logic
+        fort_safe_zone<native><epic_internal> := class<epic_internal>(fort_safe_zone_base):
+            Despawn<native><protected>():void
 
-            StartSafeZonesPhase<native><public>():logic
+            SetCenterAndRadius<native><public>(InCenter:vector2, InRadius:float):void
 
-        fort_reload_gamemode<native><epic_internal> := class<epic_internal>(fort_br_gamemode):
-            TeamLivesChangedEvent<native><public>:listenable(tuple(agent, team, int, int)) = external {}
+            UpdateCenterAndRadius<native><public>(EndCenter:vector2, EndRadius:float, Duration:float)<suspends>:void
 
-            TimeUntilTeamLivesRechargeChangedEvent<native><public>:listenable(tuple(agent, team, float, float)) = external {}
+            GetCenter<native><public>():vector2
 
-            RespawnsEnabledEvent<native><public>:listenable(tuple()) = external {}
+            GetRadius<native><public>():float
 
-            RespawnsDisabledEvent<native><public>:listenable(tuple()) = external {}
+            var PlayspaceInstance<public>:?fort_playspace = external {}
 
-            RespawnsDisabledCoundownStartedEvent<native><public>:listenable(float) = external {}
+            Initialize<public>(Playspace:fort_playspace):void = external {}
 
-            ConsumedRemainingTeamLivesEvent<native><public>:listenable(tuple(agent, int)) = external {}
+            Deinitialize<public>()<suspends>:void = external {}
 
-            GetTeamLivesRemaining<native><public>(InTeam:team)<transacts><decides>:int
+            SetDamageInfo<public>(InDamageInfo:fort_safe_zone_damage_info):void = external {}
 
-            GetTimeUntilTeamLivesRecharge<native><public>(InTeam:team)<transacts><decides>:float
+            UpdateAgents<public>()<suspends>:void = external {}
 
-            GetGameModeTeamSize<native><public>()<transacts><decides>:int
+        (Agent:agent).MarkInSafeZone<native><epic_internal>(InSafeZone:logic):void
 
-            AreRespawnsActive<native><public>()<transacts>:logic
-
-            GetRespawnDelay<native><public>(InAgent:agent)<transacts><decides>:float
-
-            GetTimeUntilRespawnDisabled<native><public>()<transacts>:float
-
-            IsWaveRespawnEnabled<native><public>()<transacts>:logic
-
-            SpawnTestPlayers<native><public>(InSquadCount:int, InPlayersPerSquad:int):logic
-
-            AllowRespawns<native><public>(bInAllowRespawns:logic):void
-
-            SetAllowRespawnsOutsideStormPhase<native><public>(bInAllowRespawnsOutsideStormPhase:logic):void
+        (Agent:agent).SendOutsideSafeZoneCue<native><epic_internal>():void
 
     # Module import path: /Fortnite.com/FN1Native/FortStorm
     FortStorm<public> := module:
+        using {/Verse.org/Native}
+        using {/Fortnite.com/Devices}
+        using {/UnrealEngine.com/Temporary/SpatialMath}
+        using {/Verse.org/Simulation}
         fort_storm_phase<native><public> := struct<concrete><epic_internal>:
             @editable
             WaitTime<native><public>:float = external {}
@@ -13420,111 +13478,69 @@ FN1Native<public> := module:
         GetDisplayInfo<native><epic_internal>(InPlayer:player)<reads>:player_ui_display_info
 
 
-using {/Fortnite.com/Game}
-using {/Verse.org/SceneGraph}
-# Module import path: /Fortnite.com/VerseFortniteTestSuite
-VerseFortniteTestSuite<public> := module:
-    @hide_in_editor
-    @experimental
-    fort_game_events_testing_component<native><epic_internal> := class<final_super>(component):
-        var IsInGame<native><public>:logic = external {}
-
-        var IsInRoundWarmup<native><public>:logic = external {}
-
-        var IsInSimulation<native><public>:logic = external {}
-
-        var IsRegistered<native><public>:logic = external {}
-
-        var IsInRound<native><public>:logic = external {}
-
-        var IsInRound2<native><public>:logic = external {}
-
-        var GameEvents<native><public>:?fort_game_events_component = external {}
-
-        OnAddedToScene<override>():void = external {}
-
-        OnRemovingFromScene<override>():void = external {}
-
-        OnBeginSimulation<override>():void = external {}
-
-        OnEndSimulation<override>():void = external {}
-
-        UnbindEvents<native_callable><protected>():void = external {}
-
-    @hide_in_editor
-    @experimental
-    fort_round_manager_testing_component<native><epic_internal> := class<final_super>(component):
-        var IsInSimulation<native><public>:logic = external {}
-
-        var IsRegistered<native><public>:logic = external {}
-
-        var IsInRound<native><public>:logic = external {}
-
-        BeginRoundTaskEndTestEvent<native><public>:event(tuple()) = external {}
-
-        OnAddedToScene<override>():void = external {}
-
-        OnRemovingFromScene<override>():void = external {}
-
-        OnBeginSimulation<override>():void = external {}
-
-        OnEndSimulation<override>():void = external {}
-
-        UnbindEvents<native_callable><protected>():void = external {}
-
-using {/Fortnite.com/FortSafeZone}
-# Module import path: /Fortnite.com/Blastberry
-Blastberry<public> := module:
-    # Module import path: /Fortnite.com/Blastberry/Respawn
-    Respawn<public> := module:
-        team_translation_group<epic_internal> := class:
-            SafeZone<epic_internal>:fort_storm_safe_zone
-
-            var Agents<public>:[]agent = external {}
-
-            var CachedGroupWeight<public>:?int = external {}
-
-            InRangeOfGroup<public>(InAgent:agent, RangeSq:float)<transacts>:logic = external {}
-
-            GetAverageTranslation<public>()<transacts><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
-
-            InSafeZone<public>(SafeZoneCenter:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, SafeZoneRadius:float)<transacts>:logic = external {}
-
-            GetGroupWeight<public>()<transacts>:int = external {}
-
-            ResetCachedData<public>()<transacts>:void = external {}
-
-        respawn_information<native><public> := struct<epic_internal>:
-            SpawnLocation<public>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
-
-            DeathLocation<public>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
-
-        @import_as("/Script/BlastBerryRuntime.UBlastBerryVerseRespawnLogic")
-        blastberry_respawn_logic_base<native><epic_internal> := class<abstract>:
-
-        blastberry_respawn_logic<native><epic_internal> := class<concrete><epic_internal>(blastberry_respawn_logic_base):
-            Initialize<native_callable><epic_internal>(InPlayspace:fort_playspace):void = external {}
-
-            PlayerRespawned<native_callable><epic_internal>(RespawnedAgent:agent):void = external {}
-
-            EQSQueryCompleted<native_callable><epic_internal>(ResultAgent:agent, ResultLoc:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
-
-            RunSoloEQSQuery<native><epic_internal>(RespawningAgent:agent, SpawnLocation:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, SafeZoneRadius:float, SafeZoneCenter:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):void
-
-            CalculateRespawnLocation<native_callable><epic_internal>(RespawningAgent:agent, WholeTeamDead:logic, DebugRandRange:float, DebugRandAngle:float):(/UnrealEngine.com/Temporary/SpatialMath:)transform = external {}
-
-        (InAgent:agent).GetTimeRemainingForRespawn<native><epic_internal>()<transacts><decides>:float
-
-        (InAgent:agent).GetDeathLocation<native><epic_internal>()<transacts><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)transform
+# Module import path: /Fortnite.com/AI
 AI<public> := module:
-    using {/UnrealEngine.com/Temporary/SpatialMath}
-    using {/Fortnite.com/AI/HiredGuardCommands/PingCommand}
-    using {/Verse.org/Native}
-    using {/Fortnite.com/Characters}
     using {/Verse.org/SceneGraph}
+    using {/Verse.org/Native}
     using {/Verse.org/Simulation}
+    @available {MinUploadedAtFNVersion := 3800}
+    # Component to manage functionality specifically for an agent's equipped Sidekick.
+    equipped_sidekick_component<native><public> := class<final_super><epic_internal>(sidekick_component, showable):
+        # By default, Sidekicks will change their mood depending on actions in the game.
+        # This value will lock the Sidekick into the mood passed in, overriding the automatic mood system.
+        var MoodOverride<override>:?sidekick_mood = external {}
+
+        # Get the Sidekick's current mood.
+        GetMood<override><native>()<reads>:sidekick_mood
+
+        # Signaled whenever the Sidekick's mood changes, either via the underlying mood system, or an override is applied. Returns (Previous Mood, New Mood).
+        ChangeMoodEvent<override><native>:listenable(tuple(sidekick_mood, sidekick_mood)) = external {}
+
+        # Request to play a given reaction on the sidekick.
+        # This reaction is not guaranteed to play immediately; instead, the StartPlayReactionEvent should be used to monitor this.
+        # This will fail if the Sidekick cannot play the given reaction.
+        PlayReaction<override><native>(Reaction:sidekick_reaction)<transacts><decides>:void
+
+        # Signaled when the Sidekick starts to play a reaction, returns the reaction that started playing.
+        StartPlayReactionEvent<override><native>:listenable(sidekick_reaction) = external {}
+
+        # Signaled when the Sidekick ends playing a reaction, returns the reaction that played.
+        StopPlayReactionEvent<override><native>:listenable(sidekick_reaction) = external {}
+
+        # Get the agent that owns this Sidekick.
+        GetOwningAgent<native><public>()<transacts><decides>:agent
+
+        # Is the Sidekick visible?
+        var Show<override>:logic = external {}
+
+        # The Sidekick will run animations to react to the state of the player. Is this system enabled?
+        var AutomaticReactionsEnabled<public>:logic = external {}
+
+        # Sidekicks have a built-in player interaction; this can be disabled by setting this to false.
+        var DefaultInteractionEnabled<public>:logic = external {}
+
+    @available {MinUploadedAtFNVersion := 3800}
+    # component to manage an entity that supports a Spark mode.
+    # Spark mode will transform the entity into a floating spark.
+    # The entity will enter `spark mode` whenever it enters impassable terrain or to reduce visual clutter.
+    spark_mode_component<native><public> := class<final_super><epic_internal>(component):
+        # Automatic switching in and out of spark mode can be turned off, forcing spark mode always, by setting this value to true.
+        var SparkModeAlwaysActive<public>:logic = external {}
+
+        # Signaled when the Sidekick enters spark mode.
+        BeginSparkModeEvent<native><public>:listenable(tuple()) = external {}
+
+        # Signaled when the Sidekick exits spark mode
+        EndSparkModeEvent<native><public>:listenable(tuple()) = external {}
+
     # Module import path: /Fortnite.com/AI/HiredGuardCommands
     HiredGuardCommands<public> := module:
+        using {/UnrealEngine.com/Temporary/SpatialMath}
+        using {/Fortnite.com/AI/HiredGuardCommands/PingCommand}
+        using {/Verse.org/Native}
+        using {/Fortnite.com/Characters}
+        using {/Verse.org/SceneGraph}
+        using {/Verse.org/Simulation}
         @hide_in_editor
         @experimental
         default_npc_behavior<epic_internal> := class(npc_behavior):
@@ -13551,9 +13567,9 @@ AI<public> := module:
         @experimental
         (Character:fort_character).GetNPCLeashRadius<native><epic_internal>()<transacts>:tuple(float, float)
 
+        @available {MinUploadedAtFNVersion := 3200}
         @hide_in_editor
         @experimental
-        @available {MinUploadedAtFNVersion := 3200}
         hired_guard_commands<epic_internal> := class<concrete>(npc_behavior):
             OnBegin<override>()<suspends>:void = external {}
 
@@ -13640,6 +13656,12 @@ AI<public> := module:
             @experimental
             Emitter<native><public>:?agent
 
+    using {/Fortnite.com/Teams}
+    using {/Fortnite.com/Playspaces}
+    using {/Fortnite.com/Assets}
+    using {/Fortnite.com/Characters}
+    using {/Verse.org/SpatialMath}
+    using {/UnrealEngine.com/Temporary/SpatialMath}
     @experimental
     # Result of an AI action
     ai_action_result<native><public> := enum<open>:
@@ -14099,7 +14121,7 @@ AI<public> := module:
 
     @experimental
     # Generate a navigation_target from an entity
-    MakeNavigationTarget<native><public>(Entity:entity):navigation_target
+    MakeNavigationTargetEntity<native><public>(Entity:entity):navigation_target
 
     # Result of a navigation request
     navigation_result<native><public> := enum:
@@ -14350,18 +14372,311 @@ AI<public> := module:
         # Specifies if damage perception is enabled.
         SenseEnabled<native><public>:logic = external {}
 
+    @available {MinUploadedAtFNVersion := 3800}
+    # Sidekicks have a mood that modifies their animations to suit that mood.
+    # This is the list of currently supported moods.
+    sidekick_mood<native><public> := enum<open>:
+        Neutral
+        Combat
+        Worried
+        Bored
 
-using {/Fortnite.com/Vehicles}
-using {/UnrealEngine.com/Temporary/Diagnostics}
-using {/Fortnite.com/AI}
-using {/Fortnite.com/Teams}
-using {/Fortnite.com/Assets}
-using {/Fortnite.com/Characters}
-using {/Verse.org/SpatialMath}
+    @available {MinUploadedAtFNVersion := 3800}
+    # The set of available reactions that can be played on the Sidekick
+    sidekick_reaction<native><public> := enum<open>:
+        Happy
+        Dance
+        Emote
+        Angry
+        Worried
+
+    @available {MinUploadedAtFNVersion := 3800}
+    # Component to manage functionality shared by all Sidekick types.
+    sidekick_component<native><public> := class<abstract><final_super><epic_internal>(component):
+        # By default, Sidekicks will change their mood depending on actions in the game.
+        # This value will lock the Sidekick into the mood passed in, overriding the automatic mood system.
+        var MoodOverride<public>:?sidekick_mood = external {}
+
+        # Get the Sidekick's current mood.
+        GetMood<public>()<reads>:sidekick_mood
+
+        # Signaled whenever the Sidekick's mood changes, either via the underlying mood system, or an override is applied. Returns the previous and new mood.
+        ChangeMoodEvent<public>:listenable(tuple(sidekick_mood, sidekick_mood))
+
+        # Request to play a given reaction on the Sidekick.
+        # This reaction is not guaranteed to play immediately; instead, the StartPlayReactionEvent should be used to monitor this.
+        # This will fail if the Sidekick cannot play the given reaction.
+        PlayReaction<public>(Reaction:sidekick_reaction)<transacts><decides>:void
+
+        # Signaled when the Sidekick starts to play a reaction, returns the reaction that started playing.
+        StartPlayReactionEvent<public>:listenable(sidekick_reaction)
+
+        # Signaled when the Sidekick ends playing a reaction, returns the reaction that played.
+        StopPlayReactionEvent<public>:listenable(sidekick_reaction)
+
+    @available {MinUploadedAtFNVersion := 3800}
+    # Component to manage functionality specifically for an NPC Sidekick.
+    npc_sidekick_component<native><public> := class<final_super><epic_internal>(sidekick_component):
+        # By default, Sidekicks will change their mood depending on actions in the game.
+        # This value will lock the Sidekick into the mood passed in, overriding the automatic mood system.
+        var MoodOverride<override>:?sidekick_mood = external {}
+
+        # Get the Sidekick's current mood.
+        GetMood<override><native>()<reads>:sidekick_mood
+
+        # Signaled whenever the Sidekick's mood changes, either via the underlying mood system, or an override is applied. Returns the previous and new mood.
+        ChangeMoodEvent<override><native>:listenable(tuple(sidekick_mood, sidekick_mood)) = external {}
+
+        # Request to play a given reaction on the Sidekick.
+        # This reaction is not guaranteed to play immediately; instead, the StartPlayReactionEvent should be used to monitor this.
+        # This will fail if the Sidekick cannot play the given reaction.
+        PlayReaction<override><native>(Reaction:sidekick_reaction)<transacts><decides>:void
+
+        # Signaled when the Sidekick starts to play a reaction, returns the reaction that started playing.
+        StartPlayReactionEvent<override><native>:listenable(sidekick_reaction) = external {}
+
+        # Signaled when the Sidekick ends playing a reaction, returns the reaction that played.
+        StopPlayReactionEvent<override><native>:listenable(sidekick_reaction) = external {}
+
+        # Apply the look and customizations of agent's currently equipped Sidekick to this Sidekick NPC.
+        # This will fail if the NPC does not use the FortniteSidekick cosmetic look or if the given agent does not have a Sidekick equipped in their locker.
+        ApplyEquippedSidekickCosmetic<native><epic_internal>(Agent:agent)<transacts><decides>:void
+
+
+# Module import path: /Fortnite.com/VerseFortniteTestSuite
+VerseFortniteTestSuite<public> := module:
+    using {/Verse.org/Simulation}
+    using {/Fortnite.com/Game}
+    using {/Verse.org/SceneGraph}
+    @hide_in_editor
+    @experimental
+    fort_game_events_testing_component<native><epic_internal> := class<final_super>(component):
+        var IsInGame<native><public>:logic = external {}
+
+        var IsInRoundWarmup<native><public>:logic = external {}
+
+        var IsInSimulation<native><public>:logic = external {}
+
+        var IsRegistered<native><public>:logic = external {}
+
+        var IsInRound<native><public>:logic = external {}
+
+        var IsInRound2<native><public>:logic = external {}
+
+        var GameEvents<native><public>:?fort_game_events_component = external {}
+
+        OnAddedToScene<override>():void = external {}
+
+        OnRemovingFromScene<override>():void = external {}
+
+        OnBeginSimulation<override>():void = external {}
+
+        OnEndSimulation<override>():void = external {}
+
+        UnbindEvents<native_callable><protected>():void = external {}
+
+    @hide_in_editor
+    @experimental
+    fort_round_manager_testing_component<native><epic_internal> := class<final_super>(component):
+        var IsInSimulation<native><public>:logic = external {}
+
+        var IsRegistered<native><public>:logic = external {}
+
+        var IsInRound<native><public>:logic = external {}
+
+        BeginRoundTaskEndTestEvent<native><public>:event(tuple()) = external {}
+
+        OnAddedToScene<override>():void = external {}
+
+        OnRemovingFromScene<override>():void = external {}
+
+        OnBeginSimulation<override>():void = external {}
+
+        OnEndSimulation<override>():void = external {}
+
+        UnbindEvents<native_callable><protected>():void = external {}
+
+# Module import path: /Fortnite.com/Blastberry
+Blastberry<public> := module:
+    # Module import path: /Fortnite.com/Blastberry/Respawn
+    Respawn<public> := module:
+        using {/Fortnite.com/Playspaces}
+        using {/Verse.org/Native}
+        using {/UnrealEngine.com/Temporary/SpatialMath}
+        using {/Verse.org/Simulation}
+        using {/Fortnite.com/FortSafeZone}
+        team_translation_group<epic_internal> := class:
+            SafeZone<epic_internal>:fort_storm_safe_zone
+
+            var Agents<public>:[]agent = external {}
+
+            var CachedGroupWeight<public>:?int = external {}
+
+            InRangeOfGroup<public>(InAgent:agent, RangeSq:float)<transacts>:logic = external {}
+
+            GetAverageTranslation<public>()<transacts><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+
+            InSafeZone<public>(SafeZoneCenter:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, SafeZoneRadius:float)<transacts>:logic = external {}
+
+            GetGroupWeight<public>()<transacts>:int = external {}
+
+            ResetCachedData<public>()<transacts>:void = external {}
+
+        respawn_information<native><public> := struct<epic_internal>:
+            SpawnLocation<public>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+
+            DeathLocation<public>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+
+        @import_as("/Script/BlastBerryRuntime.UBlastBerryVerseRespawnLogic")
+        blastberry_respawn_logic_base<native><epic_internal> := class<abstract>:
+
+        blastberry_respawn_logic<native><epic_internal> := class<concrete><epic_internal>(blastberry_respawn_logic_base):
+            Initialize<native_callable><epic_internal>(InPlayspace:fort_playspace):void = external {}
+
+            PlayerRespawned<native_callable><epic_internal>(RespawnedAgent:agent):void = external {}
+
+            EQSQueryCompleted<native_callable><epic_internal>(ResultAgent:agent, ResultLoc:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+
+            RunSoloEQSQuery<native><epic_internal>(RespawningAgent:agent, SpawnLocation:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, SafeZoneRadius:float, SafeZoneCenter:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):void
+
+            CalculateRespawnLocation<native_callable><epic_internal>(RespawningAgent:agent, WholeTeamDead:logic, DebugRandRange:float, DebugRandAngle:float):(/UnrealEngine.com/Temporary/SpatialMath:)transform = external {}
+
+        (InAgent:agent).GetTimeRemainingForRespawn<native><epic_internal>()<transacts><decides>:float
+
+        (InAgent:agent).GetDeathLocation<native><epic_internal>()<transacts><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)transform
+Marketplace<public> := module:
+    @experimental
+    price_vbucks<native><public> := class<final><computes><internal>(price_dimension):
+
+    @experimental
+    MakePriceVBucks<native><public>(Amount:float)<converges>:price_vbucks
+
+    @experimental
+    GetPriceVBucks<native><public>(P:price_vbucks):float
+    using {/Verse.org/Native}
+    using {/Verse.org/Simulation}
+    using {/Verse.org/Presentation}
+    using {/Verse.org/Assets}
+    @experimental
+    price_dimension<native><public> := class<computes><abstract><epic_internal>:
+
+    @experimental
+    # A product that is tracked by the commerce system.
+    # 
+    #  * A player may only have one `product` if the product is not consumable.
+    #  * A player may have `MaxCount` of a consumable product.
+    #  * Your derived type must be <concrete> to be used by the purchase system.
+    product<native><public> := class<castable>(has_icon, has_description):
+        MaxCount<native><public>:int = external {}
+
+        Consumable<native><public>:logic = external {}
+
+        PaidRandomItem<native><public>:logic = external {}
+
+        PaidArea<native><public>:logic = external {}
+
+    @experimental
+    # Offers are used to sell products to players. See `product_offer` and `bundle_offer` classes for more information.
+    offer<native><public> := class<abstract><castable><internal>(has_icon, has_description):
+        @editable
+        Price<native><public>:price_dimension
+
+        # Override this method to restrict availability of an offer in certain regions and minimum ages.
+        # 
+        # Parameters:
+        #     CountryCode: ISO-3166-1 A-2 code for the country, dependent territories, or special
+        #                  area of geographical interest
+        #     SubdivisionCode: ISO-3166-2 code (excluding Country Code portion) for the subdivision
+        #                  within a country, dependent territory, or special area of geographical interest.
+        #                  If subdivision information is unavailable for players in a region SubdivisionCode
+        #                  will be an empty string.
+        #     PlatformFamily: Android, iOS, macOS, Nintendo, PlayStation, Windows, Xbox, Luna, GeForceNow
+        # 
+        # Returns:
+        #     Fails if sale of this offer should not be allowed in this (CountryCode, SubdivisionCode)
+        #     Minimum age of purchase in this (CountryCode, SubdivisionCode).
+        #     If minimum age is higher than the highest available age by region the offer will not be made
+        GetMinPurchaseAge<native_callable><public>(CountryCode:string, SubdivisionCode:string, PlatformFamily:string)<computes><decides>:int = external {}
+
+    @experimental
+    # A `product_offer` allows an individual product to be purchased.
+    product_offer<native><public> := class<castable>(offer):
+        @available {MinUploadedAtFNVersion := 3800}
+        @editable
+        ProductType<native><public>:concrete_subtype(product)
+
+    @experimental
+    # A `bundle_offer` allows you to bundle multiple other `offer`s into a single purchasable `offer`.
+    bundle_offer<native><public> := class<castable>(offer):
+        Offers<native><public>:[]tuple(offer, int) = external {}
+
+    @experimental
+    # Informs if the player allows use of paid random items.
+    AllowPaidRandomItems<native><public>(Player:player)<reads><decides>:void
+
+    @experimental
+    # Epic provides a function telling developers whether their platform, territory & age allows purchase exhortations.
+    AllowDirectPromptsToPurchase<native><public>(Player:player)<reads><decides>:void
+
+    @experimental
+    # Displays the Epic purchase UI to the player to purchase the `Offer`.
+    # Returns true if an offer was purchased.
+    BuyOffer<native><public>(Player:player, Offer:offer)<suspends>:logic
+
+    @available {MinUploadedAtFNVersion := 3800}
+    @experimental
+    # Grant an item directly to `Player`.
+    # This function does not gate granting items based on ProductDisclosures.
+    # Items are always granted assuming they match the MaxCount requirement.
+    GrantProduct<native><public>(Player:player, product_type:concrete_subtype(product), ?Count:int = external {})<suspends>:logic
+
+    @experimental
+    # Get all available `product`s for `Player`, along with the number of those `product`s.
+    # This includes finding `product`s of derived types.
+    # Calling GetPurchasedProducts(Player:player, product) will suspend forever.
+    GetPurchasedProducts<native><public>(Player:player, product_type:subtype(product))<suspends>:[]tuple(product_type, int)
+
+    @experimental
+    # Products that have changed in quantity.
+    # This will also include product changes triggered by moderation, refunds and other commerce operations.
+    product_change<native><public>(t:subtype(product)) := class<internal>:
+        (/Fortnite.com/Marketplace/product_change:)Marketplace_product_change_Variance<private>:?type {_():tuple(t)} = external {}
+
+        # Product that has changed in quantity.
+        Product<native><public>:t
+
+        # Total quantity of the product now owned.
+        Quantity<native><public>:int
+
+        # Change to the original quantity of product.
+        Change<native><public>:int
+
+    @experimental
+    # Used to listen for purchase change events during a game session.
+    # Runtime error if `product` is used directly.
+    GetProductsChangedEvent<native><public>(Player:player, product_type:subtype(product)):listenable(tuple(player, []product_change(product_type)))
+
+    @available {MinUploadedAtFNVersion := 3800}
+    @experimental
+    # Consumes a consumable `product`.
+    # Fails if:
+    #  * The `product` is not consumable.
+    #  * The `Player` does not own requested `Count` of `product`.
+    ConsumeProduct<native><public>(Player:player, product_type:concrete_subtype(product), ?Count:int = external {})<suspends>:logic
+
+    @experimental
+    # Shows the Epic provided store front contain the specified `Offers`.
+    ShowOffersDialog<native><public>(Player:player, Offers:[]offer, ?Title:message = external {})<suspends>:void
+
 # Module import path: /Fortnite.com/Animation
 Animation<public> := module:
     # Module import path: /Fortnite.com/Animation/PlayAnimation
     PlayAnimation<public> := module:
+        using {/Verse.org/Simulation}
+        using {/Verse.org/SceneGraph}
+        using {/Fortnite.com/Characters}
+        using {/Verse.org/Native}
+        using {/Verse.org/Assets}
         # Result of a PlayAndAwait request.
         play_animation_result<native><public> := enum:
             # The animation completed successfully.
@@ -14443,6 +14758,10 @@ Animation<public> := module:
 
 # Module import path: /Fortnite.com/Assets
 (/Fortnite.com:)Assets<public> := module:
+    using {/Verse.org/Simulation}
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Fortnite.com/Playspaces}
+    using {/Verse.org/Assets}
     emote<native><epic_internal> := class<computes><final><epic_internal>(asset):
 
     character_cosmetic_definition<native><epic_internal> := class<computes><final><epic_internal>(asset):
@@ -14453,10 +14772,9 @@ Animation<public> := module:
 
     (InPlayspace:fort_playspace).DespawnCharacter<native><epic_internal>(Agent:agent):void
 
-using {/Verse.org/SceneGraph/VerseCamera}
-using {/UnrealEngine.com/Abilities}
 # Module import path: /Fortnite.com/Building
 Building<public> := module:
+    using {/Verse.org/SceneGraph}
     @experimental
     building_component<native><epic_internal> := class<final><final_super>(component):
         @experimental
@@ -14473,6 +14791,10 @@ Building<public> := module:
 
 # Module import path: /Fortnite.com/Characters
 Characters<public> := module:
+    using {/Verse.org/SceneGraph}
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Verse.org/Simulation}
+    using {/Fortnite.com/Game}
     # Main API implemented by Fortnite characters.
     fort_character<native><public> := interface<unique><epic_internal>(positional, healable, healthful, damageable, shieldable, game_action_instigator, game_action_causer):
         # Returns the agent associated with this `fort_character`. Use this when interacting with APIs that require an `agent` reference.
@@ -14566,8 +14888,8 @@ Characters<public> := module:
         # Teleports this `fort_character` to the provided `Position` and applies the yaw and pitch of `Rotation`. Will fail if the `Position` specified is e.g. outside of the playspace or specifies a place where the character cannot fit.
         TeleportTo<public>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts><decides>:void
 
-        @experimental
-        GetEntity<epic_internal>()<transacts><decides>:entity
+        # Returns the entity associated with this `fort_character`. Use this when interacting with APIs that require an `entity` reference.
+        GetEntity<public>()<transacts><decides>:entity
 
         # Epic internal - Signaled when this `fort_character` possesses a pawn.
         PossessedEvent<epic_internal>():listenable(fort_character)
@@ -14702,6 +15024,8 @@ Characters<public> := module:
 
 # Module import path: /Fortnite.com/FortPlayerUtilities
 FortPlayerUtilities<public> := module:
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Verse.org/Simulation}
     # The possible dynamic resolution rendering modes
     preferred_rendering_mode<native><epic_internal> := enum:
         # Maximize the framerate
@@ -14747,6 +15071,13 @@ FortPlayerUtilities<public> := module:
 
 # Module import path: /Fortnite.com/Game
 Game<public> := module:
+    using {/UnrealEngine.com/Temporary/Diagnostics}
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Verse.org/SceneGraph/VerseCamera}
+    using {/Verse.org/Simulation}
+    using {/Verse.org/SceneGraph}
+    using {/UnrealEngine.com/Abilities}
+    using {/Fortnite.com/Characters}
     # Result data for `fort_character` elimination events.
     elimination_result<native><public> := struct<epic_internal>:
         # The `fort_character` eliminated from the match by `EliminatingCharacter`.
@@ -14824,14 +15155,6 @@ Game<public> := module:
 
     @experimental
     GetPlayerCameraView<native><epic_internal>(Player:player)<transacts><decides>:fort_player_camera_view
-
-    @experimental
-    # Activate a camera component for a player, setting it as the active view target
-    (InCameraBehavior:camera_component).ActivateForPlayer<native><epic_internal>(InPlayer:player)<transacts><decides>:void
-
-    @experimental
-    # Deactivate a camera component for a player, restoring the player's view target to the default
-    (InCameraBehavior:camera_component).DeactivateForPlayer<native><epic_internal>(InPlayer:player)<transacts><decides>:void
 
     @experimental
     fort_player_camera_activation<native><epic_internal> := class(cancelable):
@@ -15019,6 +15342,9 @@ Game<public> := module:
 
 # Module import path: /Fortnite.com/Playspaces
 Playspaces<public> := module:
+    using {/Verse.org/SceneGraph}
+    using {/Fortnite.com/Teams}
+    using {/Verse.org/Simulation}
     # A nested container that scopes objects, style, gameplay rules, visuals, etc. All objects and players in an experience will belong to a fort_playspace. There is typically one `fort_playspace` for an entire experience, though this may change in the future as the platform evolves.
     # 
     # To access the `fort_playspace` for a `creative_device` use `creative_device.GetPlayspace`.
@@ -15052,6 +15378,8 @@ Playspaces<public> := module:
 
 # Module import path: /Fortnite.com/FortSafeZone
 FortSafeZone<public> := module:
+    using {/Verse.org/Native}
+    using {/UnrealEngine.com/Temporary/SpatialMath}
     fort_storm_safe_zone<native><epic_internal> := struct<epic_internal>:
         Center<native><public>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
@@ -15062,10 +15390,10 @@ FortSafeZone<public> := module:
 
         ShrinkTime<native><public>:float
 
-    @import_as("/Script/VerseFortnite.UVerseFortniteSafeZone")
-    fort_safe_zone_base<native><epic_internal> := class<abstract>:
+    @import_as("/Script/VerseFortnite.UVerseFortniteSafeZoneWrapper")
+    fort_safe_zone_wrapper_base<native><epic_internal> := class<abstract>:
 
-    fort_safe_zone<native><epic_internal> := class<epic_internal>(fort_safe_zone_base):
+    fort_safe_zone_wrapper<native><epic_internal> := class<epic_internal>(fort_safe_zone_wrapper_base):
         IsInSafeZone<native><epic_internal>(TestLocation:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<transacts><decides>:void
 
         GetSafeZone<native><epic_internal>()<transacts><decides>:fort_storm_safe_zone
@@ -15086,6 +15414,9 @@ FortSafeZone<public> := module:
 
 # Module import path: /Fortnite.com/Teams
 Teams<public> := module:
+    using {/Verse.org/SceneGraph}
+    using {/Verse.org/Simulation/Tags}
+    using {/Verse.org/Simulation}
     # A generic set of team attitudes. Use this enum to model relationship behavior between your experience's agents/teams.
     team_attitude<native><public> := enum:
         # Agents/teams are friends. In Fortnite games two `agent`s on the same `team` are `friendly`.
@@ -15131,7 +15462,7 @@ Teams<public> := module:
         @experimental
         # Adds `InEntity` to the team that matches `InTeamTag`.
         # Fails if `InTeamTag` is not a registered team in the `fort_team_collection`.
-        AddToTeam<native_callable><epic_internal>(InEntity:entity, InTeamTag:team_tag)<transacts><decides>:void
+        AddToTeamEntity<native_callable><epic_internal>(InEntity:entity, InTeamTag:team_tag)<transacts><decides>:void
 
         # Succeeds if `InAgent` is on `InTeam`.
         # Fails if:
@@ -15144,7 +15475,7 @@ Teams<public> := module:
         # Fails if:
         #  * `InEntity` is not on `InTeam`.
         #  * `InTeam` is not part of the `fort_team_collection`.
-        IsOnTeam<epic_internal>(InEntity:entity, InTeam:team)<transacts><decides>:void
+        IsOnTeamEntity<epic_internal>(InEntity:entity, InTeam:team)<transacts><decides>:void
 
         # Returns an array of all `agent`s on `InTeam`.
         # Fails if `InTeam` is not part of the `fort_team_collection`.
@@ -15162,7 +15493,7 @@ Teams<public> := module:
         @experimental
         # Get the `team` that `InEntity` is on.
         # Fails if `InEntity` is not on a team in this `fort_team_collection`.
-        GetTeam<epic_internal>(InEntity:entity)<transacts><decides>:team
+        GetTeamEntity<epic_internal>(InEntity:entity)<transacts><decides>:team
 
         # Returns the `team_attitude` between `Team1` and `Team2`.
         # Fails if:
@@ -15181,14 +15512,14 @@ Teams<public> := module:
         # Fails if:
         #  * `Entity1` is not on a team in this `fort_team_collection`.
         #  * `Entity2` is not on a team in this `fort_team_collection`.
-        GetTeamAttitude<epic_internal>(Entity1:entity, Entity2:entity)<transacts><decides>:team_attitude
+        GetTeamAttitudeEntity<epic_internal>(Entity1:entity, Entity2:entity)<transacts><decides>:team_attitude
 
         @experimental
         # Returns the `team_attitude` between `Agent` and `Entity`.
         # Fails if:
         #  * `Agent` is not on a team in this `fort_team_collection`.
         #  * `Entity` is not on a team in this `fort_team_collection`.
-        GetTeamAttitude<epic_internal>(Agent:agent, Entity:entity)<transacts><decides>:team_attitude
+        GetTeamAttitudeAgentEntity<epic_internal>(Agent:agent, Entity:entity)<transacts><decides>:team_attitude
 
     @experimental
     team_tag<native><epic_internal> := class<concrete>(tag):
@@ -15227,6 +15558,11 @@ Teams<public> := module:
 
 # Module import path: /Fortnite.com/Vehicles
 Vehicles<public> := module:
+    using {/Verse.org/Simulation}
+    using {/Verse.org/SceneGraph}
+    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Fortnite.com/Game}
+    using {/Fortnite.com/Characters}
     # Returns the `fort_vehicle` for `InCharacter`.
     # Fails if `InCharacter` is not associated with a `fort_vehicle`.
     (InCharacter:fort_character).GetVehicle<native><public>()<transacts><decides>:fort_vehicle

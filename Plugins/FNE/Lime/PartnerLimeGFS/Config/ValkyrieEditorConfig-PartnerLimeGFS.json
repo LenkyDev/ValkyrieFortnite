@@ -354,7 +354,7 @@
 			},
 			{
 				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardBehavior.CharacterModifier_LimeGuardBehavior_C",
-				"DenyList": [ "bKeepDefaultBehavior", "bCanUseDiving", "bCanUseGliding", "bCanUseZiplines", "bCanReviveTeammates", "bEnableLeash", "LeashDistance" ],
+				"DenyList": [ "bKeepDefaultBehavior", "bCanUseDiving", "bCanUseGliding", "bCanUseZiplines", "bCanReviveTeammates" ],
 				"bAllowListAllProperties": true
 			},
 			{

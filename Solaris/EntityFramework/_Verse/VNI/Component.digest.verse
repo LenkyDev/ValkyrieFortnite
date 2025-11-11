@@ -401,15 +401,15 @@ tag_component<native><public> := class<final><final_super>(component, tag_view):
     # Removes a tag from this component. Returns `true` if the tag was present before being removed.
     RemoveTag<native><public>(TagToRemove:tag)<transacts>:logic
 
-@experimental
 @available {MinUploadedAtFNVersion := 2930}
+@experimental
 # Finds all descendant entities including `InEntity` with `Tag` present in their `tag_component`.
 # When querying from the simulation entity, the simulation entity itself is not included in the results.
 # The order of the returned entities is unspecified and subject to change.
 (InEntity:entity).FindDescendantEntitiesWithTag<native><public>(Tag:tag)<transacts>:generator(entity)
 
-@experimental
 @available {MinUploadedAtFNVersion := 2930}
+@experimental
 # Finds all ancestor entities to `InEntity` with `Tag` present in their `tag_component`.
 # The order of the returned entities is unspecified and subject to change.
 (InEntity:entity).FindAncestorEntitiesWithTag<native><public>(Tag:tag)<transacts>:generator(entity)

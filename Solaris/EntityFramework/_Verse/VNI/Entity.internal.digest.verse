@@ -269,8 +269,16 @@ origin<native><public> := interface<epic_internal>:
 # class to provide alternative origin to the 'transform_component' as an entity
 entity_origin<native><public> := class<final>(origin):
     @editable
-    @replicated("")
+    @replicated("RepNotify")
     Entity<native><public>:entity
+
+    OnRep_Entity<native><epic_internal>():void
+
+    @replicated("RepNotify")
+    @transient
+    var EntityOriginTransform<native><epic_internal>:(/Verse.org/SpatialMath:)transform = external {}
+
+    OnRep_EntityOriginTransform<native><epic_internal>():void
 
     GetTransform<override>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
 

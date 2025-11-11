@@ -33,9 +33,9 @@ HiredGuardCommands<public> := module:
     @experimental
     (Character:fort_character).GetNPCLeashRadius<native><epic_internal>()<transacts>:tuple(float, float)
 
+    @available {MinUploadedAtFNVersion := 3200}
     @hide_in_editor
     @experimental
-    @available {MinUploadedAtFNVersion := 3200}
     hired_guard_commands<epic_internal> := class<concrete>(npc_behavior):
         OnBegin<override>()<suspends>:void = external {}
 

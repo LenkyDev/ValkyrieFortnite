@@ -1,0 +1,12 @@
+{
+	"Title": "In-Island Transactions Device",
+	"Description": "Create a new device setup for using the Marketplace API for In-Island Transactions, with all API usages demonstrated and basic products and offers defined",
+	"IsComponent": false,
+	"SortPriority": 25,
+	"Replacements": [
+		{
+			"Title": "In-Island Transactions Device",
+			"Token": "marketplace_setup_device"
+		}
+	]
+}

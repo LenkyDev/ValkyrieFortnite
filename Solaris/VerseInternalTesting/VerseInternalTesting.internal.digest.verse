@@ -270,7 +270,7 @@ VerseFramework<public> := module:
 
         var CurrentTestSuite<public>:string = external {}
 
-        var CurrentFunctionName<public>:string = external {}
+        var CurrentTestCasePlan<public>:?test_case_plan = external {}
 
         var TargetTestSuite<public>:string = external {}
 

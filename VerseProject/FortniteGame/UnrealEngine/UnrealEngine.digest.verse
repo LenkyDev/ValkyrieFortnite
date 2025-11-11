@@ -2,12 +2,12 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-38.00-CL-47291259
+# Generated from build: ++Fortnite+Release-38.10-CL-47888945
 #################################################
 
 Itemization<public> := module:
     using {/Verse.org/Assets}
-    using {/Verse.org}
+    using {/Verse.org/Presentation}
     using {/Verse.org/Simulation}
     using {/Verse.org/Native}
     using {/Verse.org/SceneGraph}
@@ -15,16 +15,23 @@ Itemization<public> := module:
     failure_reason<native><public> := class<castable><concrete><reads>:
 
     @experimental
-    add_items_result<native><public> := class<epic_internal>:
-        Inventory<native><public>:inventory_component
-
+    add_item_result<native><public> := class<epic_internal>:
+        # Items that were newly added to this inventory as a result of the transaction.
         AddedItems<native><public>:[]entity
 
-    @experimental
-    remove_items_result<native><public> := class<epic_internal>:
-        Inventory<native><public>:inventory_component
+        # Items whose stack size changed as a result of the transaction.
+        ModifiedItems<native><public>:[]tuple(entity, int)
 
+    @experimental
+    remove_item_result<native><public> := class<epic_internal>:
+        # Total stack count of items removed as a result of this transaction.
+        RemovedAmount<native><public>:int
+
+        # Items that were removed from this inventory as a result of the transaction.
         RemovedItems<native><public>:[]entity
+
+        # Item whose stack size changed as a result of the transaction.
+        ModifiedItem<native><public>:?entity
 
     @experimental
     equip_item_result<native><public> := class<epic_internal>:
@@ -45,10 +52,36 @@ Itemization<public> := module:
         Priority<native><public>:float
 
     @experimental
-    add_item_event<native><public> := class<epic_internal>(scene_event):
+    # When adding an item, 'find_inventory_event' is used as a first pass to find the best inventory for an item. It is sent downwards.
+    # 'add_item_query_event' can be used to veto inventory choices. It is sent upwards.
+    find_inventory_event<native><public> := class<epic_internal>(scene_event):
         ItemComponent<native><public>:item_component
 
         var EligibleInventories<native><public>:[]inventory_with_priority
+
+    @experimental
+    add_item_error<native><public> := class<computes>:
+
+    @experimental
+    # When adding an item, 'find_inventory_event' is used as a first pass to find the best inventory for an item. It is sent downwards.
+    # 'add_item_query_event' can be used to veto inventory choices. It is sent upwards.
+    add_item_query_event<native><public> := class<epic_internal>(scene_event):
+        Item<native><public>:item_component
+
+        Inventory<native><public>:inventory_component
+
+        var Errors<native><public>:[]add_item_error = external {}
+
+    @experimental
+    remove_item_error<native><public> := class<computes>:
+
+    @experimental
+    remove_item_query_event<native><public> := class<epic_internal>(scene_event):
+        Item<native><public>:item_component
+
+        Inventory<native><public>:inventory_component
+
+        var Errors<native><public>:[]remove_item_error = external {}
 
     @experimental
     # Inventory components hold items. An entity with an inventory component can be considered to have an inventory.
@@ -89,9 +122,9 @@ Itemization<public> := module:
         # Returns a list of all sub-inventories within this inventory and its descendant inventories.
         FindInventories<native><final><public>()<reads>:generator(inventory_component)
 
-        AddItemsEvent<native><final><public>:listenable(add_items_result) = external {}
+        AddItemEvent<native><final><public>:listenable(add_item_result) = external {}
 
-        RemoveItemsEvent<native><final><public>:listenable(remove_items_result) = external {}
+        RemoveItemEvent<native><final><public>:listenable(remove_item_result) = external {}
 
         # Adds the provided inventory_rule_interface instance to this inventory's rule list if not already present.
         # NOTE: this part of the API is likely to change during Experimental.
@@ -126,13 +159,13 @@ Itemization<public> := module:
     item_category<native><public> := class<castable><concrete><unique><final>:
 
     @experimental
-    item_equipped_change<native><public> := class<epic_internal>:
+    change_equipped_result<native><public> := class<epic_internal>:
         ItemComponent<native><public>:item_component
 
         IsItemEquipped<native><public>:logic
 
     @experimental
-    item_inventory_change<native><public> := class<epic_internal>:
+    change_inventory_result<native><public> := class<epic_internal>:
         ItemComponent<native><public>:item_component
 
         PreviousInventory<native><public>:?inventory_component
@@ -140,7 +173,7 @@ Itemization<public> := module:
         CurrentInventory<native><public>:?inventory_component
 
     @experimental
-    item_stack_size_change<native><public> := class<epic_internal>:
+    change_stack_size_result<native><public> := class<epic_internal>:
         ItemComponent<native><public>:item_component
 
         PreviousStackSize<native><public>:int
@@ -148,7 +181,7 @@ Itemization<public> := module:
         CurrentStackSize<native><public>:int
 
     @experimental
-    item_max_stack_size_change<native><public> := class<epic_internal>:
+    change_max_stack_size_result<native><public> := class<epic_internal>:
         ItemComponent<native><public>:item_component
 
         PreviousMaxStackSize<native><public>:?int
@@ -156,7 +189,7 @@ Itemization<public> := module:
         CurrentMaxStackSize<native><public>:?int
 
     @experimental
-    equip_item_error<native><public> := class:
+    equip_item_error<native><public> := class<computes>:
 
     @experimental
     equip_item_query_event<native><public> := class(scene_event):
@@ -169,7 +202,7 @@ Itemization<public> := module:
         Reject<public>(Error:equip_item_error):void = external {}
 
     @experimental
-    unequip_item_error<native><public> := class:
+    unequip_item_error<native><public> := class<computes>:
 
     @experimental
     unequip_item_query_event<native><public> := class(scene_event):
@@ -191,10 +224,10 @@ Itemization<public> := module:
         IsEquipped<native><final><public>()<reads><decides>:void
 
         # Broadcast when this item changes inventory.
-        ChangeInventoryEvent<native><final><public>:listenable(item_inventory_change) = external {}
+        ChangeInventoryEvent<native><final><public>:listenable(change_inventory_result) = external {}
 
         # Broadcast when this item is equipped or unequipped.
-        ChangeEquippedEvent<native><final><public>:listenable(item_equipped_change) = external {}
+        ChangeEquippedEvent<native><final><public>:listenable(change_equipped_result) = external {}
 
         @available {MinUploadedAtFNVersion := 3800}
         # Attempts to equip this item within the inventory it is currently in.
@@ -238,9 +271,9 @@ Itemization<public> := module:
         # Sets the maximum stack size for this item. If ClampStackSize is true, StackSize will be clamped to NewMaxStackSize.
         SetMaxStackSize<final><native><public>(NewMaxStackSize:int, ?ClampStackSize:logic = external {})<transacts>:void
 
-        StackSizeChangedEvent<native><final><public>:listenable(item_stack_size_change) = external {}
+        ChangeStackSizeEvent<native><final><public>:listenable(change_stack_size_result) = external {}
 
-        MaxStackSizeChangedEvent<native><final><public>:listenable(item_max_stack_size_change) = external {}
+        ChangeMaxStackSizeEvent<native><final><public>:listenable(change_max_stack_size_result) = external {}
 
         # Removes the item from its inventory and places it in the simulation world. Works on orphaned items i.e. outside the world or any inventory. Fails if the item is already a pickup.
         Drop<native><public>()<transacts><decides>:void
@@ -258,6 +291,11 @@ Itemization<public> := module:
     @experimental
     # Component that holds the details of an item.
     item_details_component<native><public> := class<final_super>(component, has_description):
+        var Name<override>:message = external {}
+
+        var Description<override>:message = external {}
+
+        var ShortDescription<override>:message = external {}
 
     @experimental
     # Component that holds the icon for an item.

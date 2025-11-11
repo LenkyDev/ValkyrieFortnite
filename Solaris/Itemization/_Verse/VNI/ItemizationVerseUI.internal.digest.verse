@@ -36,8 +36,8 @@ inventory_item_action_property_interface<epic_internal> := class<public>(paramet
 
     ___PropertyInterface_On_RequestHover_Changed<epic_internal>():void = external {}
 
-@experimental
 @available {MinUploadedAtFNVersion := 3200}
+@experimental
 inventory_item_view_model_component<native><epic_internal> := class<final><final_super>(component):
     InitializeViewModel<native_callable><public>(Item:entity):void = external {}
 
@@ -45,9 +45,11 @@ inventory_item_view_model_component<native><epic_internal> := class<final><final
 
     RefreshViewModel<public>(Item:entity):void = external {}
 
-    OnEquippedChanged<protected>(ItemEquippedChange:item_equipped_change):void = external {}
+    OnEquippedChanged<protected>(ItemEquippedChange:change_equipped_result):void = external {}
 
-    OnStackSizeChanged<protected>(ItemStackSizeChange:item_stack_size_change):void = external {}
+    OnStackSizeChanged<protected>(ItemStackSizeChange:change_stack_size_result):void = external {}
+
+    OnDetailsChanged<protected>():void = external {}
 
     OnReloadTimeChanged<protected>(NewTime:float):void = external {}
 
@@ -59,8 +61,8 @@ inventory_item_view_model_component<native><epic_internal> := class<final><final
 
     var StartingReloadTime<protected>:float = external {}
 
-@experimental
 @available {MinUploadedAtFNVersion := 3200}
+@experimental
 inventory_ui_action_component<native><epic_internal> := class<final><final_super>(component):
     Initialize<native_callable><public>(InventoryComponent:inventory_component):void = external {}
 
@@ -72,9 +74,9 @@ inventory_ui_action_component<native><epic_internal> := class<final><final_super
 
     HandleRequestUseSelectedItem<protected>():void = external {}
 
-    HandleItemsAdded<protected>(AddItemsResult:add_items_result):void = external {}
+    HandleItemsAdded<protected>(AddItemResult:add_item_result):void = external {}
 
-    HandleItemsRemoved<protected>(RemoveItemsResult:remove_items_result):void = external {}
+    HandleItemsRemoved<protected>(RemoveItemResult:remove_item_result):void = external {}
 
 InventoryActionPropertyInterface_asset<epic_internal>:property_interface_UE5_definition = external {}
 
@@ -115,8 +117,8 @@ InventoryActionPropertyInterface<epic_internal> := class<public>(parameterized_p
 InventoryActionPropertyInterface_subscribable_property_changed_event<epic_internal> := class(subscribable_event_intrnl(tuple())):
 
 
-@experimental
 @available {MinUploadedAtFNVersion := 3200}
+@experimental
 inventory_view_model_component<native><epic_internal> := class<final><final_super>(component):
     InitializeViewModel<native_callable><public>(InventoryComponent:inventory_component):void = external {}
 
@@ -128,9 +130,9 @@ inventory_view_model_component<native><epic_internal> := class<final><final_supe
 
     HandleInventoryPropertyChanged<public>(InventoryPropertyChangeResult:inventory_property_change_result):void = external {}
 
-    HandleItemsAdded<public>(AddItemsResult:add_items_result):void = external {}
+    HandleItemsAdded<public>(AddItemResult:add_item_result):void = external {}
 
-    HandleItemsRemoved<public>(RemoveItemsResult:remove_items_result):void = external {}
+    HandleItemsRemoved<public>(RemoveItemResult:remove_item_result):void = external {}
 
     HandleItemSlotsChanged<public>(ItemSlotsChangedResult:change_items_slot_result):void = external {}
 

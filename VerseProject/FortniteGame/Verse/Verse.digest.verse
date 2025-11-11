@@ -2,7 +2,7 @@
 #################################################
 # Generated Digest of Verse API
 # DO NOT modify this manually!
-# Generated from build: ++Fortnite+Release-38.00-CL-47291259
+# Generated from build: ++Fortnite+Release-38.10-CL-47888945
 #################################################
 
 SceneGraph<public> := module:
@@ -572,15 +572,15 @@ SceneGraph<public> := module:
         # Removes a tag from this component. Returns `true` if the tag was present before being removed.
         RemoveTag<native><public>(TagToRemove:tag)<transacts>:logic
 
-    @experimental
     @available {MinUploadedAtFNVersion := 2930}
+    @experimental
     # Finds all descendant entities including `InEntity` with `Tag` present in their `tag_component`.
     # When querying from the simulation entity, the simulation entity itself is not included in the results.
     # The order of the returned entities is unspecified and subject to change.
     (InEntity:entity).FindDescendantEntitiesWithTag<native><public>(Tag:tag)<transacts>:generator(entity)
 
-    @experimental
     @available {MinUploadedAtFNVersion := 2930}
+    @experimental
     # Finds all ancestor entities to `InEntity` with `Tag` present in their `tag_component`.
     # The order of the returned entities is unspecified and subject to change.
     (InEntity:entity).FindAncestorEntitiesWithTag<native><public>(Tag:tag)<transacts>:generator(entity)
@@ -1001,6 +1001,23 @@ SceneGraph<public> := module:
         # Subscribe a callback function to this TickEvent phase. The input parameter to your function (DeltaTime) is the time that has passed between the last update and the current update.
         Subscribe<native><override>(Callback:type {_(:float):void})<transacts>:cancelable
 
+Presentation<public> := module:
+    using {/Verse.org/Simulation}
+    @experimental
+    # Interface that provides descriptive names or text.
+    has_description<public> := interface:
+        @editable
+        # Name.
+        var<protected> Name<public>:message
+
+        @editable
+        # Full description.
+        var<protected> Description<public>:message
+
+        @editable
+        # Short description with only the essential information.
+        var<protected> ShortDescription<public>:message
+
 Simulation<public> := module:
     # Module import path: /Verse.org/Simulation/Tags
     Tags<public> := module:
@@ -1228,22 +1245,6 @@ Assets<public> := module:
         @editable
         var<protected> Icon<public>:texture
 
-
-using {/Verse.org/Simulation}
-@experimental
-# Interface that provides descriptive names or text.
-has_description<public> := interface:
-    @editable
-    # Name.
-    var<protected> Name<public>:message = external {}
-
-    @editable
-    # Full description.
-    var<protected> Description<public>:message = external {}
-
-    @editable
-    # Short description with only the essential information.
-    var<protected> ShortDescription<public>:message = external {}
 Verse<public> := module:
     using {/Verse.org/Colors}
     # Writes `Message` to a dedicated `Print` log while displaying it in `Color` on the client screen for `Duration` seconds. By default, `Color` is `NamedColors.White` and `Duration` is `2.0` seconds.
@@ -1321,18 +1322,18 @@ Verse<public> := module:
     # Constructs a `classifiable_subset` containing the `InElements`.
     MakeClassifiableSubset<native><public>(InElements:[]t where t:type)<reads><converges>:classifiable_subset(t)
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3800}
+    @experimental
     # Succeeds if `element_type` is present in `InSet`.
     (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).Contains<public>(element_type:castable_subtype(k))<reads><decides>:void = external {}
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3800}
+    @experimental
     # Succeeds if all the `element_types` are present in `InSet`.
     (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).ContainsAll<public>(element_types:[]castable_subtype(k))<reads><decides>:void = external {}
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3800}
+    @experimental
     # Succeeds if any of the `element_types` are present in `InSet`.
     (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).ContainsAny<public>(element_types:[]castable_subtype(k))<reads><decides>:void = external {}
 
@@ -1340,8 +1341,8 @@ Verse<public> := module:
     # Returns a new set that is the union of all elements in `InSetL` set and `InSetR`.
     operator'+'<native><public>((InSetL:classifiable_subset(t), InSetR:classifiable_subset(t)) where t:type)<transacts>:classifiable_subset(t)
 
-    @experimental
     @available {MinUploadedAtFNVersion := 3800}
+    @experimental
     # Returns a new set that contains all the elements in `InSet` that are of type `element_type`.
     (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).FilterByType<native><public>(element_type:castable_subtype(k))<transacts>:classifiable_subset(t)
 

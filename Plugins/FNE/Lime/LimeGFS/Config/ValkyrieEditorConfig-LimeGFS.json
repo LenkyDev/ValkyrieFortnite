@@ -1615,9 +1615,7 @@
 					"bCanUseDiving",
 					"bCanUseGliding",
 					"bCanUseZiplines",
-					"bCanReviveTeammates",
-					"bEnableLeash",
-					"LeashDistance"
+					"bCanReviveTeammates"
 				],
 				"bAllowListAllProperties": true
 			},

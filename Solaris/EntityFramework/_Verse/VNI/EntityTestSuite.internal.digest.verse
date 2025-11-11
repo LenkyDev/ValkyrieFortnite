@@ -33,6 +33,10 @@ EntityTestSuite<public> := module:
 
 
     @hide_in_editor
+    test_component_replication_settings<native><epic_internal> := class<final_super>(component):
+
+
+    @hide_in_editor
     test_stable_entity<native><epic_internal> := class<concrete><unique><transacts>(entity):
 
 
