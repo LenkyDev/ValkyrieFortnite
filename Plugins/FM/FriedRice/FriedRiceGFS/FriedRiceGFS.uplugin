@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FM/FriedRice",
-	"FortReleaseVersion": "38.10",
+	"FortReleaseVersion": "38.11",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"Version": 0,
@@ -27,11 +27,12 @@
 	"IsExperimentalVersion": false,
 	"Installed": false,
 	"CookAsDLC": "Creative",
-	"RequiredEntitlements": {
-		"Create": {
+	"RequiredEntitlements":
+	{
+		"Create":
+		{
 			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
 			"VKCreateUGCFriedRice": "3315dc189efb4a4a95ffaccda3a4e400"
 		}
-	},
-	"Plugins": []
+	}
 }

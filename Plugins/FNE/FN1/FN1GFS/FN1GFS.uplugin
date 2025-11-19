@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/FN1",
-	"FortReleaseVersion": "38.10",
+	"FortReleaseVersion": "38.11",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"Version": 0,
@@ -104,6 +104,12 @@
 		{
 			"Name": "PlaytimeRewards",
 			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "PlunderFlop",
+			"Enabled": true,
+			"Activate": true,
 			"Optional": true
 		},
 		{

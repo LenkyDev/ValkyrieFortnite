@@ -57,12 +57,13 @@ bundle_offer<native><public> := class<castable>(offer):
     Offers<native><public>:[]tuple(offer, int) = external {}
 
 @experimental
-# Informs if the player allows use of paid random items.
-AllowPaidRandomItems<native><public>(Player:player)<reads><decides>:void
+# Informs if usage of paid random items is restricted for `Player`
+# due to platform, territory, age, or user configuration restrictions.
+RestrictPaidRandomItems<native><public>(Player:player)<reads><decides>:void
 
 @experimental
-# Epic provides a function telling developers whether their platform, territory & age allows purchase exhortations.
-AllowDirectPromptsToPurchase<native><public>(Player:player)<reads><decides>:void
+# Informs if usage of direct prompts to purchase is restricted for `Player`.
+RestrictDirectPromptsToPurchase<native><public>(Player:player)<reads><decides>:void
 
 @experimental
 # Displays the Epic purchase UI to the player to purchase the `Offer`.
