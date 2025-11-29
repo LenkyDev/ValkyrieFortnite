@@ -1,7 +1,14 @@
-using {/Verse.org/SceneGraph}
 using {/Verse.org/Native}
-using {/Verse.org/Simulation}
 using {/UnrealEngine.com/Temporary/SpatialMath}
+using {/Verse.org/Simulation}
+using {/Verse.org/SceneGraph}
+@experimental
+@hide_in_editor
+# This class adds the navigation system to the world simulation entity.
+# This class adds the navigation system to the world simulation entity.
+navigation_system_component<native><epic_internal> := class<final_super>(component):
+
+
 # Navigation layers are various representations of the world that can be used by agents of different shapes and abilities
 navigation_layer<native><epic_internal> := class<abstract>:
 

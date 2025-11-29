@@ -166,6 +166,14 @@
 		{
 			"Name": "EditorDataStorageFeatures",
 			"Enabled": true
+		},
+		{
+			"Name": "PCG",
+			"Enabled": true
+		},
+		{
+			"Name": "AuroraCore",
+			"Enabled": true
 		}
 	]
 }

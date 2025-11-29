@@ -2409,7 +2409,6 @@
 /NPCLibrary/Abilities/BigBall/FX_Rock/Mesh/SM_Sphere_HightPoly.SM_Sphere_HightPoly
 /SpecialSupplyDrop/Gameplay/B_SpecialSupplyDrop_Manager.B_SpecialSupplyDrop_Manager
 /TacOvershield/UI/Materials/T_UI_TacOvershield_64x.T_UI_TacOvershield_64x
-/ToadJam/UI/Textures/T_ToadJam_IconStrikethroughDF.T_ToadJam_IconStrikethroughDF
 /Train/Environments/Ch6/Props/WetCement/Materials/MI_WetCement_Car_Cargo_A.MI_WetCement_Car_Cargo_A
 /Train/Environments/Ch6/Props/WetCement/Materials/MI_WetCement_Car_Decal_A.MI_WetCement_Car_Decal_A
 /Train/Environments/Ch6/Props/WetCement/Materials/MI_WetCement_Car_Front_A.MI_WetCement_Car_Front_A

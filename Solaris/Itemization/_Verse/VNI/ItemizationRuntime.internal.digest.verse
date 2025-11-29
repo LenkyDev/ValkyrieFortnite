@@ -1,3 +1,4 @@
+using {/Verse.org/Assets}
 using {/Verse.org/SceneGraph}
 using {/UnrealEngine.com/Itemization}
 @experimental
@@ -7,7 +8,7 @@ fort_inventory_component<native><public> := class<epic_internal>(inventory_compo
     GetItemInSlot<native><public>(Slot:int)<reads><decides>:item_component
 
     # Returns the total number of slots in this inventory
-    GetMaxSlots<native><public>()<reads>:int
+    GetMaxSlots<native><public>()<reads><decides>:int
 
 @experimental
 # `fort_br_inventory_legacy_quickbar_component` is a shared class for FNBR inventories that rely on coupling to the legacy AFortQuickBars class.
@@ -68,12 +69,10 @@ fort_inventory_trap_component<native><public> := class<final>(fort_inventory_com
     # Returns the item currently selected, if there is one.
     GetEquippedItem<native><epic_internal>()<reads><decides>:item_component
 
-    var TotalSlots<override>:int = external {}
-
 @experimental
 # `fort_br_inventory_trap_component` is the FNBR inventory for the Fortnite trap slot.
 fort_br_inventory_trap_component<native><epic_internal> := class<final>(fort_br_inventory_legacy_quickbar_component):
-    var TotalSlots<override>:int = external {}
+
 
 @experimental
 # `fort_inventory_collectible_component` is the inventory for Fortnite collectibles.
@@ -97,7 +96,7 @@ fort_inventory_currencies_component<native><public> := class<final>(fort_invento
 
 @experimental
 fort_inventory_rule<native><epic_internal> := class(inventory_rule_interface):
-    CanAddItem<native><override>(InventoryComponent:inventory_component, Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {}):?failure_reason
+    CanAddItem<native><override>(InventoryComponent:inventory_component, Item:entity, ?AllowMergeItems:logic = external {}):?failure_reason
 
     CanMergeItem<native><override>(InventoryComponent:inventory_component, Item:entity):?failure_reason
 
@@ -262,6 +261,16 @@ item_attributes_component<native><final><epic_internal> := class<final_super>(co
 
     GetDurabilityPercent<native><public>()<reads>:float
 
-    GetCurrentChargeValue<native><public>()<reads>:float
+    GetReserveEnergyPercent<native><public>()<reads>:float
+
+    GetCurrentChargesValue<native><public>()<reads>:int
 
     GetCurrentAmmoValue<native><public>()<reads>:int
+
+    GetCurrentMagazineValue<native><public>()<reads>:int
+
+    ShowMagazineAsPercentage<native><public>()<reads>:logic
+
+    GetAmmoIcon<native><public>()<reads><decides>:texture
+
+    GetCurrentReserveAmmoValue<native><public>()<reads>:int

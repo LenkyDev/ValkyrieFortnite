@@ -4,10 +4,6 @@ using {/Verse.org/Simulation}
 using {/Verse.org/Native}
 using {/Verse.org/SceneGraph}
 @experimental
-failure_reason<native><public> := class<castable><concrete><reads>:
-
-
-@experimental
 add_item_result<native><public> := class<epic_internal>:
     # Items that were newly added to this inventory as a result of the transaction.
     AddedItems<native><public>:[]entity
@@ -24,7 +20,7 @@ remove_item_result<native><public> := class<epic_internal>:
     RemovedItems<native><public>:[]entity
 
     # Item whose stack size changed as a result of the transaction.
-    ModifiedItem<native><public>:?entity
+    ModifiedItem<native><public>:?tuple(entity, int)
 
 @experimental
 equip_item_result<native><public> := class<epic_internal>:
@@ -39,18 +35,14 @@ unequip_item_result<native><public> := class<epic_internal>:
     Item<native><public>:entity
 
 @experimental
-inventory_with_priority<native><public> := class:
-    Inventory<native><public>:inventory_component
-
-    Priority<native><public>:float
-
-@experimental
 # When adding an item, 'find_inventory_event' is used as a first pass to find the best inventory for an item. It is sent downwards.
 # 'add_item_query_event' can be used to veto inventory choices. It is sent upwards.
 find_inventory_event<native><public> := class<epic_internal>(scene_event):
     ItemComponent<native><public>:item_component
 
-    var EligibleInventories<native><public>:[]inventory_with_priority
+    var ChosenInventory<native><public>:?inventory_component = external {}
+
+    var ChosenInventoryPriority<native><public>:float = external {}
 
 @experimental
 add_item_error<native><public> := class<computes>:
@@ -83,17 +75,21 @@ remove_item_query_event<native><public> := class<epic_internal>(scene_event):
 # The inventory component controls which items can enter or exit.
 # They also determine whether an item can be equipped.
 inventory_component<native><public> := class<final_super>(component):
+    @available {MinUploadedAtFNVersion := 3800}
     # Returns a failure reason (such as being full) if the provided item entity cannot be added.
-    CanAddItem<final><native><public>(Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {})<transacts>:?failure_reason
+    CanAddItem<final><native><public>(Item:entity, ?AllowMergeItems:logic = external {})<transacts>:result(false, []add_item_error)
 
+    @available {MinUploadedAtFNVersion := 3800}
     # Adds items to the inventory. Fails if no items could be added.
-    AddItem<native><final><public>(Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {})<transacts><decides>:void
+    AddItem<native><final><public>(Item:entity, ?AllowMergeItems:logic = external {})<transacts>:result(add_item_result, []add_item_error)
 
+    @available {MinUploadedAtFNVersion := 3800}
     # Returns a failure reason if the provided item is not present or cannot be removed.
-    CanRemoveItem<final><native><public>(Item:entity)<transacts>:?failure_reason
+    CanRemoveItem<final><native><public>(Item:entity)<transacts>:result(false, []remove_item_error)
 
+    @available {MinUploadedAtFNVersion := 3800}
     # Removes items from the inventory. Fails if no items could be removed.
-    RemoveItem<native><final><public>(Item:entity)<transacts><decides>:void
+    RemoveItem<native><final><public>(Item:entity)<transacts>:result(remove_item_result, []remove_item_error)
 
     # Returns a list of items within this inventory only.
     GetItems<native><final><public>()<reads>:[]entity
@@ -121,12 +117,6 @@ inventory_component<native><public> := class<final_super>(component):
 
     RemoveItemEvent<native><final><public>:listenable(remove_item_result) = external {}
 
-    # Adds the provided inventory_rule_interface instance to this inventory's rule list if not already present.
-    # NOTE: this part of the API is likely to change during Experimental.
-    AddRule<native><final><public>(Rule:inventory_rule_interface)<transacts><decides>:cancelable
-
-    var<private> InventoryRuleList<native><public>:[]inventory_rule_interface = external {}
-
     GetEquippedItems<final><native><public>():[]entity
 
     EquipItemEvent<native><final><public>:listenable(equip_item_result) = external {}
@@ -134,20 +124,7 @@ inventory_component<native><public> := class<final_super>(component):
     UnequipItemEvent<native><final><public>:listenable(unequip_item_result) = external {}
 
 @experimental
-# Interface for inventory rules. Used for composable rules for inventories.
-# NOTE: this part of the API is likely to change during Experimental.
-inventory_rule_interface<native><public> := interface<unique><castable>:
-    # Called after an inventory_rule_interface instance is added to an inventory.
-    OnRuleAdded<native_callable><public>(InventoryComponent:inventory_component):void = external {}
-
-    CanAddItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {}):?failure_reason = external {}
-
-    CanMergeItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity):?failure_reason = external {}
-
-    CanRemoveItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity):?failure_reason = external {}
-
-@experimental
-invalid_item_failure_reason<native><public> := class<final><reads>(failure_reason):
+invalid_item_failure_reason<native><public> := class<final><reads>:
 
 
 @experimental
@@ -239,9 +216,11 @@ item_component<native><public> := class<final_super>(component):
     Unequip<final><native><public>()<transacts>:result(void, []unequip_item_error)
 
     # Takes the specified amount of this item's stack, reducing this item's stack size in the process.
-    #  If amount is greater than the amount in the stack, the stack amount will be used instead.
-    #  Returns a clone of the item with a stack size equial to the amount it was able to take from the item.
-    Take<final><native><public>(Amount:int)<transacts><decides>:entity
+    #  If taking the exact (full) amount, the item itself should be returned instead.
+    #  There is no default implementation of Take i.e. by default, it will fail.
+    #  If you want to allow this, you must override Take and return an entity containing
+    #  a new item_component. See the online documentation for more details.
+    Take<native><public>(Amount:int)<transacts><decides>:entity
 
     @available {MinUploadedAtFNVersion := 3200}
     # List of item_component classes we can be merged with.

@@ -41,5 +41,5 @@ rift_point_volume_device<public> := class<concrete><final>(creative_device_base,
     # Disables the device, preventing the Rift Point from being planted.
     Disable<override>():void = external {}
 
-    # Succeeds if the component is enabled, fails if itâs disabled.
+    # Succeeds if the component is enabled, fails if it’s disabled.
     IsEnabled<override>()<transacts><decides>:void = external {}

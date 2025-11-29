@@ -79,7 +79,7 @@ bounded<native><epic_internal> := interface:
 #        OnEndSimulation
 #      OnRemovingFromScene
 # ==============================================================================
-component<native><public> := class<abstract><unique><castable><final_super_base>(diagnosable):
+component<native><public> := class<abstract><unique><castable><final_super_base>(diagnosable, scene_event_participant):
     @allow_self_reference
     @experimental_always_overridden
     # The parent entity of this component.
@@ -146,9 +146,8 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
     # Set callbacks to `TickEvents.PrePhysics` and `TickEvents.PostPhysics` to receive per-frame updates before and after physics is updated on your object.
     var<private> TickEvents<protected>:tick_events = external {}
 
-    @experimental
-    # Respond to an event being propagated through the scene graph. Returns if the event is consumed, in which case the event will not be passed to the next entity, depending on how the event is being sent through the hierarchy.
-    OnReceive<native><native_callable><public>(SceneEvent:scene_event):logic
+    # Send a scene event to this component.  Return true to consume the event and halt propogation.
+    SendDown<override><native><native_callable>(SceneEvent:scene_event):logic
 
     OnInitializedInternal<native><native_callable><epic_internal>():void
 
@@ -164,10 +163,14 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
 
     GetDiagnostic<override><native>()<reads>:diagnostic
 
-@experimental
 # An event which can be sent through the scene graph.
 scene_event<native><public> := interface:
 
+
+# Capable of handling scene events.
+scene_event_participant<public> := interface<epic_internal>:
+    # Handle a scene event. Return true if the scene event is consumed by any participant and that propogation should halt.
+    SendDown<native_callable><public>(SceneEvent:scene_event):logic
 
 @import_as("/Script/Entity.UBaseEntity")
 base_entity<native><epic_internal> := class<abstract>:
@@ -191,7 +194,7 @@ base_entity<native><epic_internal> := class<abstract>:
 #   that you do not add code directly to the entity class, and instead keep logic in components. Keeping logic and data in
 #   components allows you to restructure your prefabs throughout production of your experience, without needing to massively
 #   refactor your class structure.
-entity<native><public> := class<concrete><unique><transacts><castable>(base_entity, diagnosable):
+entity<native><public> := class<concrete><unique><transacts><castable>(base_entity, diagnosable, scene_event_participant):
     # Returns the parent entity of this entity.
     #   * The parent entity controls the lifetime of its child entities and components. When an entity
     #     is removed from the scene, all its child entities and components will be removed as well.
@@ -233,17 +236,11 @@ entity<native><public> := class<concrete><unique><transacts><castable>(base_enti
 
     GetDiagnostic<override><native>()<reads>:diagnostic
 
-    @experimental
-    # Send a scene event to only this entity. Returns true if the event was consumed.
-    SendDirect<final><native><public>(SceneEvent:scene_event):logic
+    # Send a scene event to this entity and then up the hierarchy. First, SendDown will be invoked on each component on this entity. Next, SendUp will be invoked on this entity's parent. Consuming the event at any point will halt propogation. Returns true if any participant consumed the event.
+    SendUp<native><native_callable><public>(SceneEvent:scene_event):logic
 
-    @experimental
-    # Send a scene event to this entity and its ancestors. Events do not propagate beyond the Simulation Entity. OnReceive will be invoked for each entity. Consuming the event will halt propagation to the next ancestor. Returns true if the event was consumed.
-    SendUp<final><native><public>(SceneEvent:scene_event):logic
-
-    @experimental
-    # Send a scene event to this entity and all of its descendants. OnReceive will be invoked for each entity. Consuming the event at any entity will halt propagation down that subtree. Entities are traversed in breadth-first order, i.e. each layer is evaluated before moving deeper. Returns true if the event was consumed.
-    SendDown<final><native><public>(SceneEvent:scene_event):logic
+    # Send a scene event to this entity and then down the hierarchy. First, SendDown will be invoked on each component on this entity. Next, SendDown will be invoked on each child entity.  Consuming the event at any point will halt propogation. Returns true if any participant consumed the event.
+    SendDown<override><native><native_callable>(SceneEvent:scene_event):logic
 
 @hide_in_editor
 root_entity<native><epic_internal> := class<concrete><unique><transacts>(entity):

@@ -30,6 +30,6 @@ wilds_plant_device<public> := class<concrete><final>(creative_device_base):
     SetInfiniteRegrowths<public>(InfiniteRegrowths:logic):void = external {}
 
     # Sets how many times the plant can regrow after launching a projectile or being destroyed.
-    #  * This applies across the deviceâs entire lifetime and is unaffected by *Enable* and *Disable*.
+    #  * This applies across the device’s entire lifetime and is unaffected by *Enable* and *Disable*.
     #  * This value is clamped.
     SetMaximumRegrowths<public>(MaximumRegrowths:int):void = external {}

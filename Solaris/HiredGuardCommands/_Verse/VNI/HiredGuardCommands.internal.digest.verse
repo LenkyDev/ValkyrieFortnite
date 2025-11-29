@@ -1,22 +1,23 @@
 # Module import path: /Fortnite.com/AI/HiredGuardCommands
 HiredGuardCommands<public> := module:
-    using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Verse.org/SpatialMath}
     using {/Fortnite.com/AI/HiredGuardCommands/PingCommand}
-    using {/Verse.org/Native}
     using {/Fortnite.com/Characters}
     using {/Verse.org/SceneGraph}
+    using {/Verse.org/Native}
     using {/Verse.org/Simulation}
     @hide_in_editor
     @experimental
     default_npc_behavior<epic_internal> := class(npc_behavior):
 
 
+    @available {MinUploadedAtFNVersion := 3900}
     @experimental
     # Fortnite NPC AI Management
-    follower_actions_component<native><epic_internal> := class(fort_guard_actions_component):
+    follower_actions_component<native><epic_internal> := class(guard_actions_component):
         @experimental
         # Run the NPC default behavior
-        RunDefaultBehavior<native><epic_internal>()<suspends>:ai_action_result
+        RunDefaultBehavior<native><epic_internal>()<suspends>:result(void, ai_action_error_type)
 
         @experimental
         IsFollowingBehaviorEnabled<native><epic_internal>()<transacts>:logic
@@ -31,7 +32,7 @@ HiredGuardCommands<public> := module:
     (Character:fort_character).IsBeingDBNOCarried<native><epic_internal>()<transacts><decides>:void
 
     @experimental
-    (Character:fort_character).GetNPCLeashRadius<native><epic_internal>()<transacts>:tuple(float, float)
+    (Character:fort_character).GetNPCTetherRadius<native><epic_internal>()<transacts>:float
 
     @available {MinUploadedAtFNVersion := 3200}
     @hide_in_editor
@@ -111,7 +112,7 @@ HiredGuardCommands<public> := module:
         EntityType<native><public>:entity_type
 
         @experimental
-        Location<native><public>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+        Location<native><public>:(/Verse.org/SpatialMath:)vector3
 
         @experimental
         LocationOnHorizontalSurface<native><public>:logic

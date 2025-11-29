@@ -100,8 +100,13 @@
 			"Enabled": true
 		},
 		{
-			"Name":"InventoryRequestInterface",
+			"Name": "InventoryRequestInterface",
 			"Enabled": true
+		},
+		{
+			"Name": "AssetManagement",
+			"Enabled": true,
+			"TargetAllowList": [ "Editor" ]
 		}
 	]
 }

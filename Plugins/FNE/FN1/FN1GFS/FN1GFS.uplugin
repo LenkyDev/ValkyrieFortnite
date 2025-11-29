@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/FN1",
-	"FortReleaseVersion": "38.11",
+	"FortReleaseVersion": "39.00",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"Version": 0,
@@ -45,20 +45,8 @@
 			"Optional": true
 		},
 		{
-			"Name": "BarnTowelArmoryGameplay",
+			"Name": "CalmSambucusMapContent",
 			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "DarkVortexMeadowCassia",
-			"Enabled": true,
-			"Activate": true,
-			"Optional": true
-		},
-		{
-			"Name": "DarkVortexMeadowHeliconia",
-			"Enabled": true,
-			"Activate": true,
 			"Optional": true
 		},
 		{
@@ -86,11 +74,6 @@
 			"Optional": true
 		},
 		{
-			"Name": "FlexLegendsENVGameplay",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
 			"Name": "FN1Native",
 			"Enabled": true,
 			"Activate": true,
@@ -98,6 +81,21 @@
 		},
 		{
 			"Name": "FNE_UI",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Hera",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "ImmunityCarriage",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "PiperBootMapContentV2",
 			"Enabled": true,
 			"Optional": true
 		},
@@ -151,6 +149,11 @@
 			"Name": "VendingMachine",
 			"Enabled": true,
 			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "POIBanner",
+			"Enabled": true,
 			"Optional": true
 		}
 	]

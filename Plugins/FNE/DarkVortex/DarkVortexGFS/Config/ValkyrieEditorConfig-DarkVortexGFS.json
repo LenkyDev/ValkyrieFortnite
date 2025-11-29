@@ -11,6 +11,7 @@
 			"/NPCDefault/Types/CharacterType_Custom.CharacterType_Custom_C":																				{ "Visible": true },
 			"/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C":																					{ "Visible": true },
 			"/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C":																			{ "Visible": true },
+			"/NPCDefault/Types/CharacterType_Participant.CharacterType_Participant_C":																		{ "Visible": true },
 			"/DarkVortexMeadowDrosera/CharacterType/BP_MeadowDrosera_CharacterType.BP_MeadowDrosera_CharacterType_C":										{ "Visible": false },
 			"/DarkVortexMeadowDrosera/CharacterType/BP_MeadowDrosera_CharacterType_Random_Default.BP_MeadowDrosera_CharacterType_Random_Default_C":			{ "Visible": true },
 			"/DarkVortexMeadowDrosera/CharacterType/BP_MeadowDrosera_CharacterType_Random_Prisoner.BP_MeadowDrosera_CharacterType_Random_Prisoner_C":		{ "Visible": true },
@@ -36,6 +37,11 @@
 			{
 				"Type": "/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C",
 				"AllowList": [ "DisplayName" ], 
+				"DenyList": [ "SelectedAI" ]
+			},
+			{
+				"Type": "/NPCDefault/Types/CharacterType_Participant.CharacterType_Participant_C",
+				"AllowList": [ "DisplayName" ],
 				"DenyList": [ "SelectedAI" ]
 			},
 			{

@@ -91,6 +91,10 @@
 		{
 			"Name": "EntityRegistryTestSuite",
 			"Type": "Runtime"
+		},
+		{
+			"Name": "EntitySkeletalAnimation",
+			"Type": "Runtime"
 		}
 	],
 	"Plugins": [

@@ -13,7 +13,7 @@ assembly_device<public> := class<concrete><final>(creative_device_base, enableab
     # Disable this object.
     Disable<override>():void = external {}
 
-    # Succeeds if the object is enabled, fails if itâs disabled.
+    # Succeeds if the object is enabled, fails if it’s disabled.
     IsEnabled<override>()<transacts><decides>:void = external {}
 
     # Show the hologram used to preview the fully assembled device

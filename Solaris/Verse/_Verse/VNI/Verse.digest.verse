@@ -120,7 +120,7 @@ Verse<public> := module:
         # Disable this object.
         Disable<public>():void
 
-        # Succeeds if the object is enabled, fails if itâs disabled.
+        # Succeeds if the object is enabled, fails if it’s disabled.
         IsEnabled<public>()<transacts><decides>:void
 
     # Halts the Verse runtime with error `Message`.

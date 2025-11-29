@@ -25,7 +25,7 @@ FNECon<public> := module:
         # Disables this component.
         Disable<native><override>():void
 
-        # Succeeds if the component is enabled. Fails if itâs disabled.
+        # Succeeds if the component is enabled. Fails if it’s disabled.
         IsEnabled<native><override>()<transacts><decides>:void
 
         # Sets the name of the speaker that is displayed during conversations.

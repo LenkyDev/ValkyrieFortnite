@@ -143,6 +143,12 @@ UI<public> := module:
         # Subscribable event that fires when the button is clicked.
         OnClick<public>():listenable(widget_message) = external {}
 
+        @experimental
+        HighlightEvent<public>():listenable(widget_message) = external {}
+
+        @experimental
+        UnhighlightEvent<public>():listenable(widget_message) = external {}
+
     # Slot for button widget.
     button_slot<native><public> := struct:
         # The widget assigned to this slot.

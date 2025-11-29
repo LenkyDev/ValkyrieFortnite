@@ -4,6 +4,7 @@ Building<public> := module:
 
 # Module import path: /Fortnite.com/Characters
 Characters<public> := module:
+    using {/Verse.org/SpatialMath}
     using {/Verse.org/SceneGraph}
     using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/Verse.org/Simulation}
@@ -87,6 +88,21 @@ Characters<public> := module:
 
         # Returns the entity associated with this `fort_character`. Use this when interacting with APIs that require an `entity` reference.
         GetEntity<public>()<transacts><decides>:entity
+
+        # Returns a ‘fort_character’s linear velocity in meters/second.
+        GetLinearVelocity<public>()<reads>:(/Verse.org/SpatialMath:)vector3
+
+        # Set a ‘fort_character’s linear velocity in meters/second. Will not do anything if physics is disabled.
+        SetLinearVelocity<public>(LinearVelocity:(/Verse.org/SpatialMath:)vector3):void
+
+        # Apply a linear impulse to a ‘fort_character’ with units in Newton*seconds. Will not do anything if physics is disabled.
+        ApplyLinearImpulse<public>(LinearImpulse:(/Verse.org/SpatialMath:)vector3):void
+
+        # Returns a ‘fort_character’s mass in kilograms.
+        GetMass<public>()<reads>:float
+
+        # Apply a force to a ‘fort_character’ with units in Newtons. Will not do anything if physics is disabled.
+        ApplyForce<public>(Force:(/Verse.org/SpatialMath:)vector3):void
 
     # Returns the `fort_character` for `InAgent`. Fails if `InAgent` is not a `fort_character`.
     (InAgent:agent).GetFortCharacter<native><public>()<transacts><decides>:fort_character

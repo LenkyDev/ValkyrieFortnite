@@ -39,6 +39,7 @@ VerseFramework<public> := module:
     using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/UnrealEngine.com/Temporary/Diagnostics}
     using {/UnrealEngine.com/Temporary/Testing}
+    using {/Fortnite.com/Marketplace}
     using {/Verse.org/SceneGraph}
     using {/Fortnite.com/Vehicles}
     using {/Verse.org/Simulation}
@@ -189,6 +190,13 @@ VerseFramework<public> := module:
         var ArgTuple<public>:?tuple(?agent, fort_vehicle, int) = external {}
 
         Subscribe<public>(Event:listenable(tuple(?agent, fort_vehicle, int))):void = external {}
+
+    test_event_tuple_player_product_change_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgTuple<public>:?tuple(player, []product_change(product)) = external {}
+
+        Subscribe<public>(Event:listenable(tuple(player, []product_change(product)))):void = external {}
+
+        HandleEvent<public>(InResult:tuple(player, []product_change(product))):void = external {}
 
     node_status<epic_internal> := enum<open>:
         Pending

@@ -191,13 +191,11 @@ UI<public> := module:
         # Subscribable event that fires when the button is clicked.
         OnClick<public>():listenable(widget_message) = external {}
 
-        OnFocusReceived<epic_internal>():listenable(widget_message) = external {}
+        @experimental
+        HighlightEvent<public>():listenable(widget_message) = external {}
 
-        OnFocusReceivedInternal<native><epic_internal>:subscribable_event_intrnl(widget_message) = external {}
-
-        OnFocusLost<epic_internal>():listenable(widget_message) = external {}
-
-        OnFocusLostInternal<native><epic_internal>:subscribable_event_intrnl(widget_message) = external {}
+        @experimental
+        UnhighlightEvent<public>():listenable(widget_message) = external {}
 
     # Slot for button widget.
     button_slot<native><public> := struct:

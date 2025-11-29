@@ -152,18 +152,21 @@ FN1Native<public> := module:
     Matchmaking<public> := module:
         # Module import path: /Fortnite.com/FN1Native/Matchmaking/FortSessionAttributesBridge
         FortSessionAttributesBridge<epic_internal> := module:
-            using {/Fortnite.com/Playspaces}
-            IsRankedMatch<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
+            using {/Verse.org/SceneGraph}
+            IsRankedMatch<native><epic_internal>(ContextEntity:entity)<transacts><decides>:void
 
-            GetMaxSquadSize<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:int
+            IsBuildMode<native><epic_internal>(ContextEntity:entity)<transacts><decides>:void
 
-            GetMaxPlayerCount<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:int
+            IsVKEdit<native><epic_internal>(ContextEntity:entity)<transacts><decides>:void
+
+            GetMaxSquadSize<native><epic_internal>(ContextEntity:entity)<transacts><decides>:int
+
+            GetMaxPlayerCount<native><epic_internal>(ContextEntity:entity)<transacts><decides>:int
 
     # Module import path: /Fortnite.com/FN1Native/FortSafeZone
     (/Fortnite.com/FN1Native:)FortSafeZone<public> := module:
-        using {/Fortnite.com/Playspaces}
-        using {/UnrealEngine.com/Temporary/SpatialMath}
-        using {/Verse.org/Native}
+        using {/Verse.org/SpatialMath}
+        using {/Verse.org/SceneGraph}
         using {/Verse.org/Simulation}
         fort_safe_zone_damage_info<epic_internal> := class:
             @editable_number(float) {MinValue := option {0.000000}}
@@ -184,30 +187,23 @@ FN1Native<public> := module:
             @editable_number(float) {MinValue := option {0.000000}}
             DamageIncrementAmount<public>:float = external {}
 
-        @import_as("/Script/VerseFortnite.UVerseFortniteActorWrapper")
-        fort_safe_zone_base<native><epic_internal> := class<abstract>:
+        fort_safe_zone_component<native><epic_internal> := class<final_super><epic_internal>(component):
+            OnBeginSimulation<override>():void = external {}
 
+            OnSimulate<override>()<suspends>:void = external {}
 
-        fort_safe_zone<native><epic_internal> := class<epic_internal>(fort_safe_zone_base):
-            Despawn<native><protected>():void
+            OnEndSimulation<override>():void = external {}
 
-            SetCenterAndRadius<native><public>(InCenter:vector2, InRadius:float):void
+            UpdateCenterAndRadius<native><public>(EndCenter:(/Verse.org/SpatialMath:)vector3, EndRadius:float, Duration:float)<suspends>:void
 
-            UpdateCenterAndRadius<native><public>(EndCenter:vector2, EndRadius:float, Duration:float)<suspends>:void
-
-            GetCenter<native><public>():vector2
+            SetRadius<native><public>(InRadius:float):void
 
             GetRadius<native><public>():float
 
-            var PlayspaceInstance<public>:?fort_playspace = external {}
-
-            Initialize<public>(Playspace:fort_playspace):void = external {}
-
-            Deinitialize<public>()<suspends>:void = external {}
-
             SetDamageInfo<public>(InDamageInfo:fort_safe_zone_damage_info):void = external {}
 
-            UpdateAgents<public>()<suspends>:void = external {}
+        fort_safe_zone<native><epic_internal> := class<epic_internal>(entity):
+
 
         (Agent:agent).MarkInSafeZone<native><epic_internal>(InSafeZone:logic):void
 
@@ -284,3 +280,9 @@ FN1Native<public> := module:
 
     player_ui_display_info_manager<native><epic_internal> := class:
         GetDisplayInfo<native><epic_internal>(InPlayer:player)<reads>:player_ui_display_info
+
+    # Module import path: /Fortnite.com/FN1Native/FortPhysicsUtils
+    FortPhysicsUtils<public> := module:
+        using {/Verse.org/SpatialMath}
+        using {/Verse.org/SceneGraph}
+        (RigidBody:rigid_body).FindLineTraceHit<native><epic_internal>(TraceStart:(/Verse.org/SpatialMath:)vector3, TraceEnd:(/Verse.org/SpatialMath:)vector3)<transacts><decides>:sweep_hit

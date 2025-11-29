@@ -1,3 +1,4 @@
+using {/Verse.org/SpatialMath}
 using {/Verse.org/Simulation}
 # Used to customize one creature type at a time. Place multiple `creature_manager_device`s for each type of creature on your island.
 # Changing properties will respect the `Affected Creatures` property of the
@@ -65,6 +66,11 @@ creature_spawner_device<public> := class<concrete><final>(creative_device_base):
     # Signaled when a creature is spawned.
     # Sends the `agent` creature who was spawned.
     SpawnedEvent<public>:listenable(agent) = external {}
+
+    # Spawn a creature at the given position. When Rotation is not provided, it will default to the Device’s rotation. 
+    # Returns the agent spawned or false if the device has reached its maximum spawn count. 
+    # This function is ‘<suspends>’ because it takes time to load the creature before it can be returned.
+    SpawnAt<public>(Position:(/Verse.org/SpatialMath:)vector3, ?Rotation:?(/Verse.org/SpatialMath:)rotation = external {})<suspends>:?agent = external {}
 
     # Signaled when a creature is eliminated.
     #  `Source` is the `agent` that has eliminated the creature. If the creature was eliminated by a non-agent then `Source` is 'false'.

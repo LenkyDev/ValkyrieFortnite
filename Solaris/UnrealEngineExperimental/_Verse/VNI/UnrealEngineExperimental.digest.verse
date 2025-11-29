@@ -84,6 +84,12 @@ Diagnostics<public> := module:
         # Draws an arrow pointing from Start to End locations, and using the provided draw parameters.
         DrawArrow<public>(Start:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, End:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, ?ArrowSize:float = external {}, ?Color:color = external {}, ?Thickness:float = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {})<transacts>:void = external {}
 
+        # Draws a 3D text using the provided draw parameters.
+        DrawText<native><public>(Text:string, Position:(/Verse.org/SpatialMath:)vector3, ?Color:color = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {}, ?FontScale:float = external {}, ?DrawDropShadow:logic = external {})<transacts>:void
+
+        # Draws a 3D text using the provided draw parameters.
+        DrawText<public>(Text:string, Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, ?Color:color = external {}, ?DrawDurationPolicy:debug_draw_duration_policy = external {}, ?Duration:float = external {}, ?FontScale:float = external {}, ?DrawDropShadow:logic = external {})<transacts>:void = external {}
+
     # log levels available for various log commands
     log_level<native><public> := enum:
         Debug

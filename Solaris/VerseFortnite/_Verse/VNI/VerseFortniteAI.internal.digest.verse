@@ -2,16 +2,15 @@
 AI<public> := module:
     using {/Fortnite.com/Teams}
     using {/Fortnite.com/Playspaces}
-    using {/Verse.org/Native}
     using {/Fortnite.com/Assets}
     using {/Fortnite.com/Characters}
     using {/Verse.org/SpatialMath}
     using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/Verse.org/Simulation}
     using {/Verse.org/SceneGraph}
-    @experimental
+    using {/Verse.org/Native}
     # Result of an AI action
-    ai_action_result<native><public> := enum<open>:
+    ai_action_result<native><epic_internal> := enum<open>:
         # The action has been successfully executed
         Success
         # The action has failed during its execution
@@ -20,6 +19,22 @@ AI<public> := module:
         Canceled
         # The action was not allowed to start
         Disallowed
+
+    @available {MinUploadedAtFNVersion := 3900}
+    # Result of a failed AI action
+    ai_action_error_type<native><public> := enum<open>:
+        # The action has failed during its execution.
+        Failure
+        # The action has been canceled before completion.
+        Canceled
+        # The action was not allowed to start.
+        Disallowed
+
+    @available {MinUploadedAtFNVersion := 3900}
+    MakeAIActionSuccessResult<native_callable><epic_internal>(SuccessType:success_type where success_type:type):result(success_type, false) = external {}
+
+    @available {MinUploadedAtFNVersion := 3900}
+    MakeAIActionErrorResult<native_callable><epic_internal>(ErrorType:error_type where error_type:type):result(false, error_type) = external {}
 
     @experimental
     ai_target_component<native><epic_internal> := class<final><final_super>(component):
@@ -64,7 +79,7 @@ AI<public> := module:
 
         SetDecisionSystem<native><public>(InDecisionSystem:decision_system)<transacts>:void
 
-    focus_interface<native><public> := interface<epic_internal>:
+    focus_interface<public> := interface<epic_internal>:
         # Look At specified location. Will never complete unless interrupted.
         MaintainFocus<public>(Location:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<suspends>:void
 
@@ -75,170 +90,100 @@ AI<public> := module:
         MaintainFocus<public>(Agent:agent)<suspends>:void
 
     # Get the focus_interface interface for the specified character.
-    (InCharacter:fort_character).GetFocusInterface<native><public>()<transacts><decides>:focus_interface
+    (InCharacter:fort_character).GetFocusInterface<public>()<transacts><decides>:focus_interface = external {}
 
+    @available {MinUploadedAtFNVersion := 3900}
     @experimental
     # Fortnite Bots AI actions management
-    fort_bot_actions_component<native><epic_internal> := class<epic_internal>(fort_guard_actions_component):
+    fort_bot_actions_component<native><epic_internal> := class<epic_internal>(guard_actions_component):
 
 
-    @experimental
+    @available {MinUploadedAtFNVersion := 3900}
     # Fortnite Guards AI actions management
-    fort_guard_actions<native><public> := interface<epic_internal>(fort_npc_actions, fort_leashable):
-        # Roam around the current position. Use the fort_leashable_component to specify the radius, else will roam anywhere.
-        RoamAround<public>(?MovementType:movement_type = external {})<suspends>:navigation_result
-
-        # Move in range to attack the current target
-        MoveInRangeToAttack<public>()<suspends>:ai_action_result
-
-        # Change stance to crouch
-        Crouch<epic_internal>()<suspends>:ai_action_result
-
-        # Go back to standing
-        StandUp<epic_internal>():ai_action_result
-
-        # Start jumping
-        Jump<epic_internal>():ai_action_result
-
-        # Change movement speed to sprint and switch to tactical sprint when energy is full.
-        TacticalSprint<epic_internal>()<suspends>:ai_action_result
-
-        # Play a random emote from the character emotes bank
-        PlayRandomEmote<public>()<suspends>:ai_action_result
-
-        # Play an emote
-        PlayEmote<epic_internal>(Emote:emote)<suspends>:ai_action_result
-
-        # Revive the specified target
-        Revive<public>(Target:agent)<suspends>:ai_action_result
-
-        # Attack the target
-        Attack<public>(Target:fort_target_info)<suspends>:ai_action_result
-
-        # Attack the navigation obstacle
-        Attack<epic_internal>(Target:fort_obstacle_info)<suspends>:ai_action_result
-
-    @experimental
-    # Get the current fort_guard_actions interface for the specified character.
-    (InCharacter:fort_character).GetFortGuardActions<native><public>()<transacts><decides>:fort_guard_actions
-
-    @experimental
-    # Fortnite Guards AI actions management
-    fort_guard_actions_component<native><epic_internal> := class<epic_internal>(fort_npc_actions_component, fort_guard_actions):
+    guard_actions_component<native><public> := class<epic_internal>(npc_actions_component):
         OnInitialized<native><override>():void
 
-        # Roam around the current position. Use the fort_leashable_component to specify the radius, else will roam anywhere.
-        RoamAround<native><override>(?MovementType:movement_type = external {})<suspends>:navigation_result
+        # Roam around the current position. Use 'Tether' to specify the radius; otherwise, the Fortnite guard will roam anywhere.
+        RoamAround<native><public>(?MovementType:movement_type = external {})<suspends>:result(void, ai_action_error_type)
 
-        # Move in range to attack the current target
-        MoveInRangeToAttack<native><override>()<suspends>:ai_action_result
+        # Move in range to attack the current target.
+        MoveInRangeToAttack<native><public>()<suspends>:result(void, ai_action_error_type)
 
-        # Change stance to crouch
-        Crouch<native><override>()<suspends>:ai_action_result
+        # Change stance to crouch. Will never complete unless interrupted.
+        Crouch<native><public>()<suspends>:result(void, ai_action_error_type)
 
-        # Go back to standing
-        StandUp<native><override>():ai_action_result
+        # Go back to standing.
+        StandUp<native><public>()<suspends>:result(void, ai_action_error_type)
 
-        # Start jumping
-        Jump<native><override>():ai_action_result
+        # Trigger a jump.
+        Jump<native><public>()<suspends>:result(void, ai_action_error_type)
 
         # Change movement speed to sprint and switch to tactical sprint when energy is full.
-        TacticalSprint<native><override>()<suspends>:ai_action_result
+        TacticalSprint<native><epic_internal>()<suspends>:result(void, ai_action_error_type)
 
-        # Play a random emote from the character emotes bank
-        PlayRandomEmote<native><override>()<suspends>:ai_action_result
+        # Play a random emote from the character emotes bank.
+        PlayRandomEmote<native><public>()<suspends>:result(void, ai_action_error_type)
 
-        # Play an emote
-        PlayEmote<native><override>(Emote:emote)<suspends>:ai_action_result
+        # Play an emote.
+        PlayEmote<native><epic_internal>(Emote:emote)<suspends>:result(void, ai_action_error_type)
 
-        # Revive the specified target
-        Revive<native><override>(Target:agent)<suspends>:ai_action_result
+        # Revive the specified target.
+        Revive<native><public>(Target:entity)<suspends>:result(void, ai_action_error_type)
 
-        # Attack the target
-        Attack<native><override>(Target:fort_target_info)<suspends>:ai_action_result
+        # Attack the target. The target must have been detected.
+        Attack<native><public>(Target:entity)<suspends>:result(void, ai_action_error_type)
 
-        # Attack the navigation obstacle
-        Attack<native><override>(Target:fort_obstacle_info)<suspends>:ai_action_result
+        # Tether the NPC to a position.
+        #  'Radius' is in centimeters.
+        Tether<native><public>(Location:(/Verse.org/SpatialMath:)vector3, Radius:float):void
 
-        # Set custom leash position.
-        #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
-        #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
-        SetLeashPosition<native><override>(Location:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, InnerRadius:float, OuterRadius:float):void
+        # Tether the NPC to an entity.
+        #  'Radius' is in centimeters.
+        Tether<native><public>(Target:entity, Radius:float):void
 
-        # Set custom leash position.
-        #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
-        #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
-        SetLeashPosition<native><override>(Location:(/Verse.org/SpatialMath:)vector3, InnerRadius:float, OuterRadius:float):void
+        # Untether the NPC.
+        Untether<native><public>():void
 
-        # Set the agent to be the new center of the leash.
-        #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
-        #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
-        SetLeashAgent<native><override>(Agent:agent, InnerRadius:float, OuterRadius:float):void
+    @available {MinUploadedAtFNVersion := 3900}
+    fort_guard_actions_component<epic_internal> := class(guard_actions_component):
 
-        # Removes the current leash.
-        ClearLeash<native><override>():void
 
-    @experimental
-    # Fortnite NPC perception management
-    fort_guard_perception<native><public> := interface<epic_internal>(fort_npc_perception):
-        @experimental
-        # Get information about the current target.
-        GetCurrentTargetInfo<public>()<reads><decides>:fort_target_info
-
-        @experimental
-        # Get the current alert level of the guard.
-        GetAlertLevel<public>()<reads>:fort_guard_alert_level
-
-        @experimental
-        # Get the current alert level of a target for the guard.
-        GetAlertLevel<public>(Target:entity)<reads><decides>:fort_guard_alert_level
-
-        @experimental
-        # Event when the alert level of the guard has changed.
-        AlertLevelChangedEvent<public>:listenable(fort_guard_alert_level)
-
-        @experimental
-        # Event when the current target has changed.
-        CurrentTargetChangedEvent<public>:listenable(fort_target_info)
-
-        @experimental
-        # Get information about the potential current obstacle
-        GetObstacleInfo<epic_internal>()<reads><decides>:fort_obstacle_info
-
-        @experimental
-        # Event when a new best obstacle is detected
-        ObstacleChangedEvent<epic_internal>:listenable(fort_obstacle_info)
-
-    @experimental
-    # Get the current fort_guard_perception interface for the specified character.
-    (InCharacter:fort_character).GetFortGuardPerception<native><public>()<transacts><decides>:fort_guard_perception
-
-    @experimental
-    # Fortnite guard perception management
-    fort_guard_perception_component<native><epic_internal> := class<epic_internal>(fort_npc_perception_component, fort_guard_perception):
+    @available {MinUploadedAtFNVersion := 3900}
+    # Fortnite Guard perception management
+    guard_awareness_component<native><public> := class<epic_internal>(npc_awareness_component):
         OnInitialized<native><override>():void
 
         OnUninitializing<native><override>():void
 
-        # Get information about the current target.
-        GetCurrentTargetInfo<native><override>()<reads><decides>:fort_target_info
+        # Potentially detected obstacle.
+        var<private> DetectedObstacle<native><public>:?entity = external {}
 
-        # Get the current alert level of the guard.
-        GetAlertLevel<native><override>()<reads>:fort_guard_alert_level
+        # Event when a new obstacle is detected.
+        DetectObstacleEvent<native><public>:listenable(entity) = external {}
 
-        # Get the current alert level of a target for the guard.
-        GetAlertLevel<native><override>(Target:entity)<reads><decides>:fort_guard_alert_level
+        # Event when the current obstacle was forgotten.
+        ForgetObstacleEvent<native><public>:listenable(entity) = external {}
 
-        # Get information about the potential current obstacle
-        GetObstacleInfo<native><override>()<reads><decides>:fort_obstacle_info
+        # Information about the primary threat.
+        var<private> PrimaryThreat<native><public>:?npc_target_info = external {}
 
-        AlertLevelChangedEvent<override><native>:subscribable_event_intrnl(fort_guard_alert_level) = external {}
+        # Event when the primary threat has changed.
+        PrimaryThreatChangeEvent<native><public>:listenable(npc_target_info) = external {}
 
-        CurrentTargetChangedEvent<override><native>:subscribable_event_intrnl(fort_target_info) = external {}
+        # Current alert level.
+        var<private> AlertLevel<native><public>:guard_alert_level = external {}
 
-        ObstacleChangedEvent<override><native>:subscribable_event_intrnl(fort_obstacle_info) = external {}
+        # Event when the alert level has changed.
+        AlertLevelChangeEvent<native><public>:listenable(guard_alert_level) = external {}
 
-    fort_leashable<native><public> := interface<epic_internal>:
+        # Get the current alert level for a specific target.
+        GetAlertLevel<native><public>(Target:entity)<reads>:guard_alert_level
+
+    @available {MinUploadedAtFNVersion := 3900}
+    fort_guard_perception_component<epic_internal> := class(guard_awareness_component):
+
+
+    fort_leashable<public> := interface<epic_internal>:
         # Set custom leash position.
         #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
         #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
@@ -258,76 +203,54 @@ AI<public> := module:
         ClearLeash<public>():void
 
     # Get the current fort_leashable interface for the specified character.
-    (InCharacter:fort_character).GetFortLeashable<native><public>()<transacts><decides>:fort_leashable
+    (InCharacter:fort_character).GetFortLeashable<public>()<transacts><decides>:fort_leashable = external {}
 
-    @experimental
+    @available {MinUploadedAtFNVersion := 3900}
     # Fortnite NPC AI actions management
-    fort_npc_actions<native><public> := interface<epic_internal>(navigatable, focus_interface):
-        @experimental
-        # Fires the currently equipped weapon.
-        FireCurrentWeapon<epic_internal>()<suspends>:void
-
-        @experimental
-        # Try to reload the currently equipped weapon.
-        ReloadCurrentWeapon<epic_internal>()<suspends>:logic
-
-        @experimental
-        # Add spare ammo for the currently equipped weapon.
-        GiveAmmoForCurrentWeapon<epic_internal>(AmmoQuantity:int)<suspends>:void
-
-        @experimental
-        # Equip the best weapon.
-        EquipBestWeapon<epic_internal>():void
-
-    @experimental
-    # Get the current fort_npc_actions interface for the specified character.
-    (InCharacter:fort_character).GetFortNPCActions<native><public>()<transacts><decides>:fort_npc_actions
-
-    @experimental
-    # Fortnite NPC AI actions management
-    fort_npc_actions_component<native><epic_internal> := class<final_super><epic_internal>(component, fort_npc_actions):
+    npc_actions_component<native><public> := class<final_super><epic_internal>(component):
         OnInitialized<native><override>():void
 
         OnUninitializing<native><override>():void
 
-        # Return the current destination of the character
-        GetCurrentDestination<native><override>()<transacts><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+        # Return the current destination of the character.
+        GetCurrentDestination<native><public>()<transacts><decides>:(/Verse.org/SpatialMath:)vector3
 
-        # Navigate toward the specified target
-        NavigateTo<native><override>(Target:navigation_target, ?MovementType:movement_type = external {}, ?ReachRadius:float = external {}, ?AllowPartialPath:logic = external {})<suspends>:navigation_result
+        # Navigate toward the specified navigation target.
+        NavigateTo<native><public>(Target:navigation_target, ?MovementType:movement_type = external {}, ?ReachRadius:float = external {}, ?AllowPartialPath:logic = external {})<suspends>:result(navigation_action_success_type, navigation_action_error_type)
 
-        # Apply a multiplier on the movement speed (Multiplier is clamped between 0.5 and 2)
-        SetMovementSpeedMultiplier<native><override>(Multiplier:float):void
+        # Multiplier on the movement speed (value is clamped between 0.5 and 2).
+        var MovementSpeedMultiplier<public>:float = external {}
 
-        # Stop navigation
-        StopNavigation<native><override>():void
+        # Stop navigation.
+        StopNavigation<native><public>():void
 
-        # Wait for a specific duration
-        Wait<native><override>(?Duration:float = external {})<suspends>:void
+        # Stay idle for a specific duration.
+        Idle<native><public>(?Duration:float = external {})<suspends>:void
 
-        # Look At specified location. Will never complete unless interrupted.
-        MaintainFocus<native><override>(Location:(/Verse.org/SpatialMath:)vector3)<suspends>:void
+        # Look at the specified location. If LockFocus is false, the action stops once the NPC is facing the position.
+        Focus<native><public>(Location:(/Verse.org/SpatialMath:)vector3, ?LockFocus:logic = external {})<suspends>:void
 
-        # Look At specified location. Will never complete unless interrupted.
-        MaintainFocus<native><override>(Location:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<suspends>:void
-
-        # Look At specified Agent. Will never complete unless interrupted.
-        MaintainFocus<native><override>(Agent:agent)<suspends>:void
+        # Look at the specified Entity. If LockFocus is false, the action stops once the NPC is facing the entity.
+        Focus<native><public>(Target:entity, ?LockFocus:logic = external {})<suspends>:void
 
         # Fires the currently equipped weapon.
-        FireCurrentWeapon<native><override>()<suspends>:void
+        FireCurrentWeapon<native><epic_internal>()<suspends>:void
 
         # Try to reload the currently equipped weapon.
-        ReloadCurrentWeapon<native><override>()<suspends>:logic
+        ReloadCurrentWeapon<native><epic_internal>()<suspends>:logic
 
         # Add spare ammo for the currently equipped weapon.
-        GiveAmmoForCurrentWeapon<native><override>(AmmoQuantity:int)<suspends>:void
+        GiveAmmoForCurrentWeapon<native><epic_internal>(AmmoQuantity:int)<suspends>:void
 
         # Equip the best weapon.
-        EquipBestWeapon<native><override>():void
+        EquipBestWeapon<native><epic_internal>():void
 
         # Simulate the Use button.
         Use<native><epic_internal>(Duration:float)<suspends>:void
+
+    @available {MinUploadedAtFNVersion := 3900}
+    fort_npc_actions_component<epic_internal> := class(npc_actions_component):
+
 
     @import_as("/Script/VerseFortniteAI.UNPCComponentSettings")
     fort_npc_component_settings<native><epic_internal> := class:
@@ -343,72 +266,39 @@ AI<public> := module:
 
         OnEndSimulation<override><final>():void = external {}
 
-    @experimental
+    @available {MinUploadedAtFNVersion := 3900}
     # Fortnite NPC perception management
-    fort_npc_perception<native><public> := interface<epic_internal>:
-        @experimental
-        # Get the last known position of a target.
-        GetLastKnownPosition<public>(Target:entity)<reads><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
-
-        @experimental
-        # Event when a target is added.
-        TargetAddedEvent<public>:listenable(fort_target_info)
-
-        @experimental
-        # Event when the info about a target has been updated.
-        TargetInfoUpdatedEvent<public>:listenable(fort_target_info)
-
-        @experimental
-        # Event when a target was removed.
-        TargetRemovedEvent<public>:listenable(entity)
-
-        @experimental
-        # Event when a target is seen. Sight sense must be active.
-        TargetSeenEvent<public>:listenable(fort_target_info)
-
-        @experimental
-        # Event when a target is heard. Hearing sense must be active.
-        TargetHeardEvent<public>:listenable(fort_target_info)
-
-        @experimental
-        # Event when a target is touched. Touch sense must be active.
-        TargetTouchedEvent<public>:listenable(fort_target_info)
-
-        @experimental
-        # Information about all detected targets.
-        var<epic_internal> DetectedTargets<public>:[]fort_target_info
-
-    @experimental
-    # Get the current fort_npc_perception interface for the specified character.
-    (InCharacter:fort_character).GetFortNPCPerception<native><public>()<transacts><decides>:fort_npc_perception
-
-    @experimental
-    # Fortnite NPC perception management
-    fort_npc_perception_component<native><epic_internal> := class<final_super><epic_internal>(component, fort_npc_perception):
+    npc_awareness_component<native><public> := class<final_super><epic_internal>(component):
         OnInitialized<native><override>():void
 
         OnUninitializing<native><override>():void
 
-        var DetectedTargets<override><native>:[]fort_target_info = external {}
+        # Information about all detected targets.
+        var<private> DetectedTargets<native><public>:[]npc_target_info = external {}
 
-        # Get the last known position of a target.
-        GetLastKnownPosition<native><override>(Target:entity)<reads><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+        # Event when a target was detected.
+        DetectTargetEvent<native><public>:listenable(npc_target_info) = external {}
 
-        TargetAddedEvent<override><native>:subscribable_event_intrnl(fort_target_info) = external {}
+        # Event when a target was forgotten.
+        ForgetTargetEvent<native><public>:listenable(entity) = external {}
 
-        TargetRemovedEvent<override><native>:subscribable_event_intrnl(entity) = external {}
+        # Event when a target is seen. Sight sense must be active.
+        SeeTargetEvent<native><public>:listenable(npc_target_info) = external {}
 
-        TargetInfoUpdatedEvent<override><native>:subscribable_event_intrnl(fort_target_info) = external {}
+        # Event when a target is heard. Hearing sense must be active.
+        HearTargetEvent<native><public>:listenable(npc_target_info) = external {}
 
-        TargetSeenEvent<override><native>:subscribable_event_intrnl(fort_target_info) = external {}
+        # Event when a target is touched. Touch sense must be active.
+        TouchTargetEvent<native><public>:listenable(npc_target_info) = external {}
 
-        TargetHeardEvent<override><native>:subscribable_event_intrnl(fort_target_info) = external {}
+    @available {MinUploadedAtFNVersion := 3900}
+    fort_npc_perception_component<epic_internal> := class(npc_awareness_component):
 
-        TargetTouchedEvent<override><native>:subscribable_event_intrnl(fort_target_info) = external {}
 
+    @available {MinUploadedAtFNVersion := 3900}
     @experimental
     # Fortnite Wildlife AI actions management
-    fort_wildlife_actions_component<native><epic_internal> := class<epic_internal>(fort_npc_actions_component):
+    fort_wildlife_actions_component<native><epic_internal> := class<epic_internal>(npc_actions_component):
         OnInitialized<native><override>():void
 
     @import_as("/Script/VerseFortniteAI.UInjectedActionScript")
@@ -462,18 +352,14 @@ AI<public> := module:
     navigation_target<native><public> := class<epic_internal>:
 
 
-    # Generate a navigation_target from any position
-    MakeNavigationTarget<native><epic_internal>(Position:(/Verse.org/SpatialMath:)vector3):navigation_target
+    # Generate a navigation_target from any position.
+    MakeNavigationTarget<native><public>(Position:(/Verse.org/SpatialMath:)vector3):navigation_target
 
-    # Generate a navigation_target from any position
+    # Generate a navigation_target from any position.
     MakeNavigationTarget<public>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):navigation_target = external {}
 
-    # Generate a navigation_target from an agent
-    MakeNavigationTarget<native><public>(Target:agent):navigation_target
-
-    @experimental
-    # Generate a navigation_target from an entity
-    MakeNavigationTargetEntity<native><public>(Entity:entity):navigation_target
+    # Generate a navigation_target from an agent.
+    MakeNavigationTarget<native><public>(Agent:agent):navigation_target
 
     # Result of a navigation request
     navigation_result<native><public> := enum:
@@ -488,12 +374,27 @@ AI<public> := module:
         # The destination cannot be reached
         Unreachable
 
-    movement_style<native><epic_internal> := enum:
-        (/Fortnite.com/AI/movement_style:)Walking
-        (/Fortnite.com/AI/movement_style:)Running
+    @available {MinUploadedAtFNVersion := 3900}
+    navigation_action_error_type<native><public> := enum<open>:
+        # The navigation request is invalid.
+        Invalid
+        # Navigation has been interrupted before completion.
+        Interrupted
+        # The navigating agent is blocked.
+        Blocked
+        # The destination cannot be reached.
+        Unreachable
 
-    movement_type<native><public> := class<concrete><final><computes><epic_internal>:
-        MovementStyle<native><epic_internal>:movement_style = external {}
+    @available {MinUploadedAtFNVersion := 3900}
+    navigation_action_success_type<native><public> := enum<open>:
+        # The destination has been reached.
+        Reached
+        # The destination was partially reached (the destination is currently not reachable).
+        PartiallyReached
+
+    movement_type<native><public> := enum<open>:
+        (/Fortnite.com/AI/movement_type:)Walking
+        (/Fortnite.com/AI/movement_type:)Running
 
     # Module import path: /Fortnite.com/AI/movement_types
     movement_types<public> := module:
@@ -501,7 +402,7 @@ AI<public> := module:
 
         Running<public>:movement_type = external {}
 
-    navigatable<native><public> := interface<epic_internal>:
+    navigatable<public> := interface<epic_internal>:
         # Return the current destination of the character
         GetCurrentDestination<public>()<transacts><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
@@ -518,7 +419,7 @@ AI<public> := module:
         SetMovementSpeedMultiplier<public>(Multiplier:float):void
 
     # Get the navigatable interface for the specified character
-    (InCharacter:fort_character).GetNavigatable<native><public>()<transacts><decides>:navigatable
+    (InCharacter:fort_character).GetNavigatable<public>()<transacts><decides>:navigatable = external {}
 
     # Inherit from this to create a custom NPC behavior.
     # The npc_behavior can be defined for a character in a CharacterDefinition asset, or in a npc_spawner_device.
@@ -532,13 +433,16 @@ AI<public> := module:
         # Returns the agent associated with this behavior.
         GetAgent<native><public>()<transacts><decides>:agent
 
+        # Returns the entity associated with this behavior.
+        GetEntity<native><public>()<transacts><decides>:entity
+
+        @deprecated
         # Returns the `fort_playspace` associated with this behavior.
-        GetPlayspace<native><epic_internal>()<transacts><decides>:fort_playspace
+        GetPlayspace<epic_internal>()<transacts><decides>:fort_playspace = external {}
 
     # Returns the `npc_behavior` for `InAgent`.
     (InAgent:agent).GetNPCBehavior<native><public>()<transacts><decides>:npc_behavior
 
-    @experimental
     npc_behavior_component<native><epic_internal> := class<final_super>(component):
         OnInitialized<native><override>():void
 
@@ -551,13 +455,9 @@ AI<public> := module:
 
         SetNPCBehavior<native><public>(NewNPCBehavior:npc_behavior)<transacts>:void
 
-    @experimental
-    # Returns the `entity` for `InNPCBehavior`.
-    (InNPCBehavior:npc_behavior).GetEntity<native><public>()<reads><decides>:entity
-
-    @experimental
-    # The different alert levels of a guard.
-    fort_guard_alert_level<native><public> := enum:
+    @available {MinUploadedAtFNVersion := 3900}
+    # The different alert levels of a Fortnite Guard.
+    guard_alert_level<native><public> := enum:
         # The guard has not detected any hostile target.
         Unaware
         # The guard has seen a hostile target but hasn't identified it yet.
@@ -567,162 +467,22 @@ AI<public> := module:
         # The guard has identified a hostile target.
         Alerted
 
-    @experimental
+    @available {MinUploadedAtFNVersion := 3900}
     # Information about a perceived target.
-    fort_target_info<native><public> := class<epic_internal>:
-        @experimental
-        # The source of the detection stimuli.
+    npc_target_info<native><public> := class<epic_internal>:
+        # The entity that was detected.
         Target<native><public>:entity
 
-        @experimental
         # True if the target can be seen.
-        HasLineOfSight<native><public>:logic
+        var<private> HasLineOfSight<native><public>:logic
 
-        @experimental
         # Attitude toward this target.
-        Attitude<native><public>:team_attitude
+        var<private> Attitude<native><public>:team_attitude
 
-    @experimental
-    fort_obstacle_status<native><epic_internal> := enum:
-        incoming_obstacle
-        blocked_by_obstacle
-        trap_obstacle
+        # Last known position of this target.
+        var<private> LastKnownPosition<public>:(/Verse.org/SpatialMath:)vector3 = external {}
 
-    @experimental
-    # Information about a perceived obstacle.
-    fort_obstacle_info<native><epic_internal> := class<epic_internal>:
-        @experimental
-        Location<native><public>:(/Verse.org/SpatialMath:)vector3
-
-        @experimental
-        Status<native><public>:fort_obstacle_status
-
-        @experimental
-        Obstacle<native><public>:entity
-
-    @experimental
-    # Create a `navigation_target` from a `fort_target_info`.
-    MakeNavigationTarget<native><public>(TargetInfo:fort_target_info):navigation_target
-
-    @experimental
-    # Perception settings for sight.
-    fort_sight_perception_settings<native><epic_internal> := class<final><concrete>:
-        @experimental
-        @editable
-        # Maximum sight distance in meters to notice a target.
-        # This value will be clamped between 0 and 300 meters.
-        SightRadius<native><public>:float = external {}
-
-        @experimental
-        @editable
-        # Maximum sight distance in meters to keep on seeing a target.
-        # This value will be clamped between 'SightRadius' and 300 meters.
-        LoseSightRadius<native><public>:float = external {}
-
-        @experimental
-        @editable
-        # How far to the side AI can see, in radians.
-        # The value represents the angle measured in relation to the forward vector, not the whole range.
-        PeripheralVisionAngle<native><public>:float = external {}
-
-        @experimental
-        @editable
-        # Specifies duration in seconds after sight stimuli generated by this sense become forgotten. 0 means never.
-        MaxStimulusDuration<native><public>:float = external {}
-
-        @experimental
-        @editable
-        # Specifies if sight is enabled.
-        SenseEnabled<native><public>:logic = external {}
-
-        @experimental
-        @editable
-        # Specifies if this sense is able to detect enemies.
-        EnemiesDetected<native><public>:logic = external {}
-
-        @experimental
-        @editable
-        # Specifies if this sense is able to detect friendlies.
-        FriendliesDetected<native><public>:logic = external {}
-
-        @experimental
-        @editable
-        # Specifies if this sense is able to detect neutral targets.
-        NeutralsDetected<native><public>:logic = external {}
-
-    @experimental
-    # Perception settings for hearing.
-    fort_hearing_perception_settings<native><epic_internal> := class<final><concrete>:
-        @experimental
-        @editable
-        # Maximum hearing distance in meters to notice a target.
-        HearingRange<native><public>:float = external {}
-
-        @experimental
-        @editable
-        # Specifies duration in seconds after audio stimuli generated by this sense become forgotten. 0 means never.
-        MaxStimulusDuration<native><public>:float = external {}
-
-        @experimental
-        @editable
-        # Specifies if hearing is enabled.
-        SenseEnabled<native><public>:logic = external {}
-
-        @experimental
-        @editable
-        # Specifies if this sense is able to detect enemies.
-        EnemiesDetected<native><public>:logic = external {}
-
-        @experimental
-        @editable
-        # Specifies if this sense is able to detect friendlies.
-        FriendliesDetected<native><public>:logic = external {}
-
-        @experimental
-        @editable
-        # Specifies if this sense is able to detect neutral targets.
-        NeutralsDetected<native><public>:logic = external {}
-
-    @experimental
-    # Perception settings for touch.
-    fort_touch_perception_settings<native><epic_internal> := class<final><concrete>:
-        @experimental
-        @editable
-        # Specifies duration in seconds after touch stimuli generated by this sense become forgotten. 0 means never.
-        MaxStimulusDuration<native><public>:float = external {}
-
-        @experimental
-        @editable
-        # Specifies if touch perception is enabled.
-        SenseEnabled<native><public>:logic = external {}
-
-        @experimental
-        @editable
-        # Specifies if this sense is able to detect enemies.
-        EnemiesDetected<native><public>:logic = external {}
-
-        @experimental
-        @editable
-        # Specifies if this sense is able to detect friendlies.
-        FriendliesDetected<native><public>:logic = external {}
-
-        @experimental
-        @editable
-        # Specifies if this sense is able to detect neutral targets.
-        NeutralsDetected<native><public>:logic = external {}
-
-    @experimental
-    # Perception settings for damage.
-    fort_damage_perception_settings<native><epic_internal> := class<final><concrete>:
-        @experimental
-        @editable
-        # Specifies duration in seconds after damage stimuli generated by this sense become forgotten. 0 means never.
-        MaxStimulusDuration<native><public>:float = external {}
-
-        @experimental
-        @editable
-        # Specifies if damage perception is enabled.
-        SenseEnabled<native><public>:logic = external {}
+        OnUpdateEvent<native><public>:listenable(tuple()) = external {}
 
     @available {MinUploadedAtFNVersion := 3800}
     # Sidekicks have a mood that modifies their animations to suit that mood.

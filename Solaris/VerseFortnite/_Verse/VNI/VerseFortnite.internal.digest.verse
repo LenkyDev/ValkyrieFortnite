@@ -17,6 +17,7 @@ Building<public> := module:
 
 # Module import path: /Fortnite.com/Characters
 Characters<public> := module:
+    using {/Verse.org/SpatialMath}
     using {/Verse.org/SceneGraph}
     using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/Verse.org/Simulation}
@@ -120,6 +121,21 @@ Characters<public> := module:
         # Epic internal - Signaled when this `fort_character` possesses a pawn.
         PossessedEvent<epic_internal>():listenable(fort_character)
 
+        # Returns a ‘fort_character’s linear velocity in meters/second.
+        GetLinearVelocity<public>()<reads>:(/Verse.org/SpatialMath:)vector3
+
+        # Set a ‘fort_character’s linear velocity in meters/second. Will not do anything if physics is disabled.
+        SetLinearVelocity<public>(LinearVelocity:(/Verse.org/SpatialMath:)vector3):void
+
+        # Apply a linear impulse to a ‘fort_character’ with units in Newton*seconds. Will not do anything if physics is disabled.
+        ApplyLinearImpulse<public>(LinearImpulse:(/Verse.org/SpatialMath:)vector3):void
+
+        # Returns a ‘fort_character’s mass in kilograms.
+        GetMass<public>()<reads>:float
+
+        # Apply a force to a ‘fort_character’ with units in Newtons. Will not do anything if physics is disabled.
+        ApplyForce<public>(Force:(/Verse.org/SpatialMath:)vector3):void
+
     # Returns the `fort_character` for `InAgent`. Fails if `InAgent` is not a `fort_character`.
     (InAgent:agent).GetFortCharacter<native><public>()<transacts><decides>:fort_character
 
@@ -140,8 +156,12 @@ Characters<public> := module:
         # Controls if `fort_character` can still perform emotes while in stasis.
         AllowEmotes<native><public>:logic = external {}
 
+    # Puts the player in the skydiving movement mode.
+    (Character:fort_character).BeginSkydiving<native><epic_internal>(FromBus:logic)<transacts>:void
+
     @hide_in_editor
     @experimental
+    @deprecated
     fort_character_component<native><epic_internal> := class<final><final_super>(component, fort_character):
         @experimental
         FortCharacter<native><public>:fort_character
@@ -221,6 +241,16 @@ Characters<public> := module:
         TeleportTo<override>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts><decides>:void = external {}
 
         GetEntity<override>()<transacts><decides>:entity = external {}
+
+        GetLinearVelocity<override>()<reads>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+        SetLinearVelocity<override>(LinearVelocity:(/Verse.org/SpatialMath:)vector3):void = external {}
+
+        ApplyLinearImpulse<override>(LinearImpulse:(/Verse.org/SpatialMath:)vector3):void = external {}
+
+        GetMass<override>()<reads>:float = external {}
+
+        ApplyForce<override>(Force:(/Verse.org/SpatialMath:)vector3):void = external {}
 
         DamagedEvent<override>():listenable(damage_result) = external {}
 
@@ -830,6 +860,7 @@ Vehicles<public> := module:
 
     @hide_in_editor
     @experimental
+    @deprecated
     fort_vehicle_component<native><epic_internal> := class<final_super>(component, fort_vehicle):
         @experimental
         FortVehicle<native><public>:fort_vehicle

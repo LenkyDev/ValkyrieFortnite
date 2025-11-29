@@ -2,16 +2,15 @@ using {/Verse.org/Native}
 using {/Verse.org/Simulation}
 using {/Verse.org/Presentation}
 using {/Verse.org/Assets}
-@experimental
 price_dimension<native><public> := class<computes><abstract><epic_internal>:
 
 
-@experimental
 # A product that is tracked by the commerce system.
 # 
 #  * A player may only have one `product` if the product is not consumable.
 #  * A player may have `MaxCount` of a consumable product.
 #  * Your derived type must be <concrete> to be used by the purchase system.
+#  * If the item you are selling gives players a meaningful advantage in your island, you must set ConsequentialToGameplay to true.
 product<native><public> := class<castable>(has_icon, has_description):
     MaxCount<native><public>:int = external {}
 
@@ -21,7 +20,8 @@ product<native><public> := class<castable>(has_icon, has_description):
 
     PaidArea<native><public>:logic = external {}
 
-@experimental
+    ConsequentialToGameplay<native><public>:logic = external {}
+
 # Offers are used to sell products to players. See `product_offer` and `bundle_offer` classes for more information.
 offer<native><public> := class<abstract><castable><internal>(has_icon, has_description):
     @editable
@@ -44,49 +44,41 @@ offer<native><public> := class<abstract><castable><internal>(has_icon, has_descr
     #     If minimum age is higher than the highest available age by region the offer will not be made
     GetMinPurchaseAge<native_callable><public>(CountryCode:string, SubdivisionCode:string, PlatformFamily:string)<computes><decides>:int = external {}
 
-@experimental
 # A `product_offer` allows an individual product to be purchased.
 product_offer<native><public> := class<castable>(offer):
     @available {MinUploadedAtFNVersion := 3800}
     @editable
     ProductType<native><public>:concrete_subtype(product)
 
-@experimental
 # A `bundle_offer` allows you to bundle multiple other `offer`s into a single purchasable `offer`.
 bundle_offer<native><public> := class<castable>(offer):
     Offers<native><public>:[]tuple(offer, int) = external {}
 
-@experimental
 # Informs if usage of paid random items is restricted for `Player`
 # due to platform, territory, age, or user configuration restrictions.
 RestrictPaidRandomItems<native><public>(Player:player)<reads><decides>:void
 
-@experimental
 # Informs if usage of direct prompts to purchase is restricted for `Player`.
 RestrictDirectPromptsToPurchase<native><public>(Player:player)<reads><decides>:void
 
-@experimental
 # Displays the Epic purchase UI to the player to purchase the `Offer`.
 # Returns true if an offer was purchased.
 BuyOffer<native><public>(Player:player, Offer:offer)<suspends>:logic
 
 @available {MinUploadedAtFNVersion := 3800}
-@experimental
 # Grant an item directly to `Player`.
 # This function does not gate granting items based on ProductDisclosures.
 # Items are always granted assuming they match the MaxCount requirement.
 GrantProduct<native><public>(Player:player, product_type:concrete_subtype(product), ?Count:int = external {})<suspends>:logic
 
-@experimental
 # Get all available `product`s for `Player`, along with the number of those `product`s.
 # This includes finding `product`s of derived types.
 # Calling GetPurchasedProducts(Player:player, product) will suspend forever.
 GetPurchasedProducts<native><public>(Player:player, product_type:subtype(product))<suspends>:[]tuple(product_type, int)
 
-@experimental
 # Products that have changed in quantity.
 # This will also include product changes triggered by moderation, refunds and other commerce operations.
-product_change<native><public>(t:subtype(product)) := class<internal>:
+product_change<native><public>(t:type) := class<internal>:
     (/Fortnite.com/Marketplace/product_change:)Marketplace_product_change_Variance<private>:?type {_():tuple(t)} = external {}
 
     # Product that has changed in quantity.
@@ -98,19 +90,16 @@ product_change<native><public>(t:subtype(product)) := class<internal>:
     # Change to the original quantity of product.
     Change<native><public>:int
 
-@experimental
 # Used to listen for purchase change events during a game session.
 # Runtime error if `product` is used directly.
 GetProductsChangedEvent<native><public>(Player:player, product_type:subtype(product)):listenable(tuple(player, []product_change(product_type)))
 
 @available {MinUploadedAtFNVersion := 3800}
-@experimental
 # Consumes a consumable `product`.
 # Fails if:
 #  * The `product` is not consumable.
 #  * The `Player` does not own requested `Count` of `product`.
 ConsumeProduct<native><public>(Player:player, product_type:concrete_subtype(product), ?Count:int = external {})<suspends>:logic
 
-@experimental
 # Shows the Epic provided store front contain the specified `Offers`.
 ShowOffersDialog<native><public>(Player:player, Offers:[]offer, ?Title:message = external {})<suspends>:void

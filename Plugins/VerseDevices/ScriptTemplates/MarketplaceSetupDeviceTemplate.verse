@@ -57,6 +57,8 @@ Products<public> := module:
         PaidRandomItem<override>:logic = false
         # This is a sword, not a product that controls if a player has access to
         PaidArea<override>:logic = false
+        # As a weapon, this is consequential to gameplay
+        ConsequentialToGameplay<override>:logic = true
 
     potion<public> := class<concrete>(feature_example_product):
         var Name<override>:message = Potion.Name
@@ -71,6 +73,8 @@ Products<public> := module:
         PaidRandomItem<override>:logic = false
         # This is a potion, not a product that controls if a player has access to
         PaidArea<override>:logic = false
+        # As a health potion, this is consequential to gameplay
+        ConsequentialToGameplay<override>:logic = true
 
     # Potion that references violent content not suitable for minors
     potion_gib<public> := class<concrete>(feature_example_product):
@@ -86,6 +90,8 @@ Products<public> := module:
         PaidRandomItem<override>:logic = false
         # This is a potion, not a product that controls if a player has access to
         PaidArea<override>:logic = false
+        # This potion only affects visuals for player, it has no gameplay consequences
+        ConsequentialToGameplay<override>:logic = false
 
     # Health potion for American & Canadian players, boosts health but slows you down
     potion_thanksgiving<public> := class<concrete>(feature_example_product):
@@ -101,6 +107,8 @@ Products<public> := module:
         PaidRandomItem<override>:logic = false
         # This is a potion, not a product that controls if a player has access to
         PaidArea<override>:logic = false
+        # As a rare and powerful health potion, this is consequential to gameplay
+        ConsequentialToGameplay<override>:logic = true
 
 ExampleOffers<public> := module:
     using {ProductInfo}
@@ -158,12 +166,10 @@ ExampleOffers<public> := module:
         ProductType<override>:concrete_subtype(product) = Products.potion
         Price<override>:price_dimension = MakePriceVBucks(200.0) # Prices should be between 50 and 5000 (inclusive) Vbucks and in increments of 50
 
-        # If the Player is from the USA or Canada, then the minimum age is 0, so everyone can buy. But if they're not, this function returns an impossible age
+        # If the Player is from the USA or Canada, then the minimum age is 0, so everyone can buy. But if they're not, this function will fail
         GetMinPurchaseAge<override>(CountryCode:string, SubdivisionCode:string, PlatformFamily:string)<decides><computes>:int =
-            if(CountryCode = CountryCodes.UnitedStatesOfAmerica or CountryCode = CountryCodes.Canada):
-                0
-            else:
-                1000
+           CountryCode = CountryCodes.UnitedStatesOfAmerica or CountryCode = CountryCodes.Canada  # If a player isn't in either of the countries this line will fail
+           return 0 # Any player in the USA or CA can purchase this potion
 
     potion_pack<public> := class(bundle_offer) :
         var Name<override>:message                = ProductInfo.PotionPack.Name
@@ -196,10 +202,10 @@ marketplace_setup_device := class(creative_device):
         set PlayerLeftSubscription = option{ SubLeft }
 
     OnEnd<override>() : void =
-        if(Subscription := PlayerJoinSubscription?):
+        if (Subscription := PlayerJoinSubscription?):
             Subscription.Cancel()
 
-        if(Subscription := PlayerLeftSubscription?):
+        if (Subscription := PlayerLeftSubscription?):
             Subscription.Cancel()
 
     # When a player joins you subscribe to listen to any changes in the products they own.

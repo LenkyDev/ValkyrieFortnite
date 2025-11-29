@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/PerfectKiwi",
-	"FortReleaseVersion": "38.11",
+	"FortReleaseVersion": "39.00",
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
@@ -31,6 +31,11 @@
 		},
 		{
 			"Name": "Akita_Env_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRD_CRD_HeroDevice",
 			"Enabled": true,
 			"Optional": true
 		},

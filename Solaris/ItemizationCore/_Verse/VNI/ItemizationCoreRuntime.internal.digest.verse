@@ -11,7 +11,7 @@ copy_from_item<native><epic_internal> := interface<epic_internal>:
     CopyFromItem<native_callable><epic_internal>(SourceItem:entity)<transacts>:void
 
 @experimental
-failure_reason<native><public> := class<castable><concrete><reads>:
+failure_reason<native><epic_internal> := class<castable><concrete><reads>:
 
 
 @experimental
@@ -43,7 +43,7 @@ remove_item_result<native><public> := class<epic_internal>:
     RemovedItems<native><public>:[]entity
 
     # Item whose stack size changed as a result of the transaction.
-    ModifiedItem<native><public>:?entity
+    ModifiedItem<native><public>:?tuple(entity, int)
 
 @experimental
 equip_item_result<native><public> := class<epic_internal>:
@@ -68,18 +68,14 @@ inventory_property_change_result<native><epic_internal> := struct<epic_internal>
     Inventory<native><public>:inventory_component
 
 @experimental
-inventory_with_priority<native><public> := class:
-    Inventory<native><public>:inventory_component
-
-    Priority<native><public>:float
-
-@experimental
 # When adding an item, 'find_inventory_event' is used as a first pass to find the best inventory for an item. It is sent downwards.
 # 'add_item_query_event' can be used to veto inventory choices. It is sent upwards.
 find_inventory_event<native><public> := class<epic_internal>(scene_event):
     ItemComponent<native><public>:item_component
 
-    var EligibleInventories<native><public>:[]inventory_with_priority
+    var ChosenInventory<native><public>:?inventory_component = external {}
+
+    var ChosenInventoryPriority<native><public>:float = external {}
 
 @experimental
 add_item_error<native><public> := class<computes>:
@@ -116,17 +112,21 @@ inventory_component<native><public> := class<final_super>(component):
 
     OnUninitializingInternal<native><override>():void
 
+    @available {MinUploadedAtFNVersion := 3800}
     # Returns a failure reason (such as being full) if the provided item entity cannot be added.
-    CanAddItem<final><native><public>(Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {})<transacts>:?failure_reason
+    CanAddItem<final><native><public>(Item:entity, ?AllowMergeItems:logic = external {})<transacts>:result(false, []add_item_error)
 
+    @available {MinUploadedAtFNVersion := 3800}
     # Adds items to the inventory. Fails if no items could be added.
-    AddItem<native><final><public>(Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {})<transacts><decides>:void
+    AddItem<native><final><public>(Item:entity, ?AllowMergeItems:logic = external {})<transacts>:result(add_item_result, []add_item_error)
 
+    @available {MinUploadedAtFNVersion := 3800}
     # Returns a failure reason if the provided item is not present or cannot be removed.
-    CanRemoveItem<final><native><public>(Item:entity)<transacts>:?failure_reason
+    CanRemoveItem<final><native><public>(Item:entity)<transacts>:result(false, []remove_item_error)
 
+    @available {MinUploadedAtFNVersion := 3800}
     # Removes items from the inventory. Fails if no items could be removed.
-    RemoveItem<native><final><public>(Item:entity)<transacts><decides>:void
+    RemoveItem<native><final><public>(Item:entity)<transacts>:result(remove_item_result, []remove_item_error)
 
     # Returns a list of items within this inventory only.
     GetItems<native><final><public>()<reads>:[]entity
@@ -170,9 +170,21 @@ inventory_component<native><public> := class<final_super>(component):
 
     # Adds the provided inventory_rule_interface instance to this inventory's rule list if not already present.
     # NOTE: this part of the API is likely to change during Experimental.
-    AddRule<native><final><public>(Rule:inventory_rule_interface)<transacts><decides>:cancelable
+    AddRule<native><final><epic_internal>(Rule:inventory_rule_interface)<transacts><decides>:cancelable
 
-    var<private> InventoryRuleList<native><public>:[]inventory_rule_interface = external {}
+    var<private> InventoryRuleList<native><epic_internal>:[]inventory_rule_interface = external {}
+
+    @available {MinUploadedAtFNVersion := 3800}
+    MakeCanAddItemResultInternal<final><native_callable><epic_internal>(IsSuccess:logic):result(comparable, []add_item_error) = external {}
+
+    @available {MinUploadedAtFNVersion := 3800}
+    MakeAddItemResultInternal<final><native_callable><epic_internal>(IsSuccess:logic, AddItemResult:add_item_result):result(add_item_result, []add_item_error) = external {}
+
+    @available {MinUploadedAtFNVersion := 3800}
+    MakeCanRemoveItemResultInternal<final><native_callable><epic_internal>(IsSuccess:logic):result(comparable, []remove_item_error) = external {}
+
+    @available {MinUploadedAtFNVersion := 3800}
+    MakeRemoveItemResultInternal<final><native_callable><epic_internal>(IsSuccess:logic, RemoveItemResult:remove_item_result):result(remove_item_result, []remove_item_error) = external {}
 
     @replicated("")
     var<private> InventoryName<native><epic_internal>:string = external {}
@@ -216,11 +228,11 @@ inventory_component<native><public> := class<final_super>(component):
 @experimental
 # Interface for inventory rules. Used for composable rules for inventories.
 # NOTE: this part of the API is likely to change during Experimental.
-inventory_rule_interface<native><public> := interface<unique><castable>:
+inventory_rule_interface<native><epic_internal> := interface<unique><castable>:
     # Called after an inventory_rule_interface instance is added to an inventory.
     OnRuleAdded<native_callable><public>(InventoryComponent:inventory_component):void = external {}
 
-    CanAddItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {}):?failure_reason = external {}
+    CanAddItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity, ?AllowMergeItems:logic = external {}):?failure_reason = external {}
 
     CanMergeItem<native_callable><public>(InventoryComponent:inventory_component, Item:entity):?failure_reason = external {}
 
@@ -239,7 +251,7 @@ item_limit_inventory_rule<native><epic_internal> := class(inventory_rule_interfa
     @editable
     ItemLimit<native><public>:int = external {}
 
-    CanAddItem<override>(InventoryComponent:inventory_component, Item:entity, ?AllowMergeItems:logic = external {}, ?AllowPartialItemMove:logic = external {}):?failure_reason = external {}
+    CanAddItem<override>(InventoryComponent:inventory_component, Item:entity, ?AllowMergeItems:logic = external {}):?failure_reason = external {}
 
 @experimental
 inventory_setup_data_result<native><epic_internal> := struct<epic_internal>:
@@ -473,12 +485,12 @@ item_component<native><public> := class<final_super>(component):
     # Fails if not in an inventory, not currently equipped or if unequip_item_query_event contains any errors after querying.
     Unequip<final><native><public>()<transacts>:result(void, []unequip_item_error)
 
-    CloneItem<final><native><epic_internal>()<transacts>:entity
-
     # Takes the specified amount of this item's stack, reducing this item's stack size in the process.
-    #  If amount is greater than the amount in the stack, the stack amount will be used instead.
-    #  Returns a clone of the item with a stack size equial to the amount it was able to take from the item.
-    Take<final><native><public>(Amount:int)<transacts><decides>:entity
+    #  If taking the exact (full) amount, the item itself should be returned instead.
+    #  There is no default implementation of Take i.e. by default, it will fail.
+    #  If you want to allow this, you must override Take and return an entity containing
+    #  a new item_component. See the online documentation for more details.
+    Take<native><public>(Amount:int)<transacts><decides>:entity
 
     @available {MinUploadedAtFNVersion := 3200}
     # List of item_component classes we can be merged with.
@@ -500,10 +512,10 @@ item_component<native><public> := class<final_super>(component):
     MergeIntoInternal<final><native><epic_internal>(TargetItem:entity, TargetAmount:int)<transacts><decides>:int
 
     @available {MinUploadedAtFNVersion := 3800}
-    MakeEquipResultInternal<final><native_callable><epic_internal>(IsSuccess:logic):result(any, []equip_item_error) = external {}
+    MakeEquipResultInternal<final><native_callable><epic_internal>(IsSuccess:logic):result(comparable, []equip_item_error) = external {}
 
     @available {MinUploadedAtFNVersion := 3800}
-    MakeUnequipResultInternal<final><native_callable><epic_internal>(IsSuccess:logic):result(any, []unequip_item_error) = external {}
+    MakeUnequipResultInternal<final><native_callable><epic_internal>(IsSuccess:logic):result(comparable, []unequip_item_error) = external {}
 
     # Current stack size of this item.
     var<protected> StackSize<native><public>:int = external {}

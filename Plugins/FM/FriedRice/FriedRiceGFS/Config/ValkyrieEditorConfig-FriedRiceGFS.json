@@ -169,7 +169,6 @@
 			"/Game/Building/ActorBlueprints/Wall/Fence_Picket01a.Fence_Picket01a_C": { "Visible": true },
 			"/Game/Building/ActorBlueprints/Wall/ShutterHouse_Solid.ShutterHouse_Solid_C": { "Visible": true },
 			"/BlastBerryMap/Game/TimeOfDay/TODM/DSA_UEFN_Sunflower.DSA_UEFN_Sunflower_C": { "Visible": true },
-			"/Clyde/TimeOfDay/TODM/TODS_Clyde/TODS_BPs/DSA_UEFN_DashBerry.DSA_UEFN_DashBerry_C": { "Visible": true },
 			"/Game/Environments/Helios/Props/LightSource/Lightsource_Blacklight_A/Blueprints/BP_Lightsource_Blacklight_A_Orange.BP_Lightsource_Blacklight_A_Orange_C": {},
 			"/Game/Environments/Helios/Props/LightSource/Lightsource_Blacklight_A/Blueprints/BP_Lightsource_Blacklight_C_WithLight.BP_Lightsource_Blacklight_C_WithLight_C": {},
 			"/Game/Environments/Helios/Props/LightSource/LightSource_UtilityCeilingLight_A/Blueprints/BP_LightSource_UtilityCeilingLight_A.BP_LightSource_UtilityCeilingLight_A_C": {},

@@ -7,7 +7,7 @@ fort_inventory_component<native><public> := class<epic_internal>(inventory_compo
     GetItemInSlot<native><public>(Slot:int)<reads><decides>:item_component
 
     # Returns the total number of slots in this inventory
-    GetMaxSlots<native><public>()<reads>:int
+    GetMaxSlots<native><public>()<reads><decides>:int
 
 @experimental
 # `fort_inventory_weapon_hotbar_component` is the UEFN inventory for Fortnite weapons and gadgets.

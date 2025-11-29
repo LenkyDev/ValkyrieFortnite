@@ -316,7 +316,7 @@ class_and_team_selector_device<public> := class<concrete><final>(creative_device
     # Changes the selecting team.
     ChangeSelectorTeam<public>(Agent:agent):void = external {}
 
-# Used together with `class_selector_device` to create class based gameplay. Defines custom class attributes and inventory loadouts.
+# Used together with `class_and_team_selector_device` to create class based gameplay. Defines custom class attributes and inventory loadouts.
 class_designer_device<public> := class<concrete><final>(creative_device_base):
     # Returns an array of agents that are currently of *Class* defined by this device.
     GetClassMembers<public>()<reads>:[]agent = external {}
@@ -909,6 +909,13 @@ prop_o_matic_manager_device<public> := class<concrete><final>(creative_device_ba
     # Sends the `agent` that exited the disguise.
     ExitingDisguiseEvent<public>:listenable(agent) = external {}
 
+    # Signaled when a player prop has been pinged.
+    # Sends the `agent` that was pinged.
+    PingPlayerPropEvent<public>:listenable(agent) = external {}
+
+    # Signaled when all player props have been pinged.
+    PingAllPlayerPropsEvent<public>:listenable(tuple()) = external {}
+
     # Toggle Pinging props on/off.
     SetPingProps<public>(On:logic):void = external {}
 
@@ -1314,9 +1321,14 @@ team_settings_and_inventory_device<public> := class<concrete><final>(creative_de
     # This will return them to the team they were on before they joined a Temporary Team
     RemoveTemporaryMemberFromTeam<public>(Agent:agent):void = external {}
 
-    # Returns all temporary team members for this Deviceâs Team Setting Value back to their original Teams.
+    # Returns all temporary team members for this Device’s Team Setting Value back to their original Teams.
     # If the device is configured to All, then this function will remove all Temporary Team members from any Temporary Team they are on, returning them to their original team.
     RemoveTemporaryMembersFromTeam<public>():void = external {}
+
+    # Spawn `Agent` from the most appropriate Player Spawner Device.
+    # Force respawns if the player is already spawned.
+    # If no valid spawner is found, no respawn will occur.
+    RespawnPlayerAtPlayerSpawner<epic_internal>(Agent:agent):void = external {}
 
     # This variable maps to the 'Dynamic Team Emotes' user option.
     # Modifying this value does not affect the state of any existing Temporary Team member.

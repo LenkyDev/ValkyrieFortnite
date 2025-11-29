@@ -150,6 +150,9 @@ VerseCamera<public> := module:
         @experimental
         UpdateCamera<native_callable><epic_internal>(UpdateParameters:camera_operator_update_parameters):void
 
+        @experimental
+        CameraRigAsset<native><epic_internal>:camera_rig_asset = external {}
+
     @experimental
     # Input parameters to a camera mode update
     camera_operator_update_parameters<native><epic_internal> := class<final>:
@@ -283,7 +286,7 @@ VerseCamera<public> := module:
         @editable
         @replicated("")
         @experimental
-        # Horizontal field of view in degrees, specified for an aspect ratio of 16:9 /nThis is then to calculate an effective horizontal field of view for the displayâs real aspect ratio /nIf for example the screen is an ultrawide (21:9, or 32:9 being common ultrawide aspect ratios) then in practice the actual field of view will be wider. This is known as the Hor+ view scaling method and is generally accepted to be the best solution for ultrawide displays.
+        # Horizontal field of view in degrees, specified for an aspect ratio of 16:9 /nThis is then to calculate an effective horizontal field of view for the display’s real aspect ratio /nIf for example the screen is an ultrawide (21:9, or 32:9 being common ultrawide aspect ratios) then in practice the actual field of view will be wider. This is known as the Hor+ view scaling method and is generally accepted to be the best solution for ultrawide displays.
         var FieldOfViewDegrees<native><public>:float = external {}
 
     @experimental
@@ -294,7 +297,7 @@ VerseCamera<public> := module:
         OnUninitializingInternal<native><override>():void
 
         @experimental
-        # Cameraâs body settings.
+        # Camera’s body settings.
         #  This contains sensor settings, e.g. film or digital camera sensor, shutter speed, etc
         var Body<public>:camera_body = external {}
 
@@ -348,6 +351,9 @@ VerseCamera<public> := module:
     simulation_camera_director_component<native><epic_internal> := class<final_super>(component):
         # Set the active camera for a player - Fails if the specified entity does not have a camera component
         SetActiveCamera<native><public>(Player:player, CameraEntity:entity)<transacts><decides>:cancelable
+
+    @experimental
+    (SimulationCameraDirector:simulation_camera_director_component).GetActiveCamera_AutomatedTestingOnly<native><epic_internal>(Player:player)<transacts><decides>:entity
 
     @experimental
     single_camera_director_cancelable<native><epic_internal> := class(cancelable):

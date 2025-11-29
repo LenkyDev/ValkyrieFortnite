@@ -1,5 +1,4 @@
 using {/Verse.org/Simulation}
-@experimental
 # Interface that provides descriptive names or text.
 has_description<public> := interface:
     @editable

@@ -4,6 +4,7 @@ Devices<public> := module:
     using {/Fortnite.com/Vehicles}
     using {/Verse.org/Simulation}
     using {/UnrealEngine.com/Temporary/Diagnostics}
+    using {/Verse.org/SpatialMath}
     using {/Fortnite.com/AI}
     using {/Verse.org/Simulation/Tags}
     using {/Fortnite.com/Game}
@@ -360,7 +361,7 @@ Devices<public> := module:
 
     @experimental
     # Returns the `entity` associated to that `CreativeObject.
-    (CreativeObject:creative_object_interface).(/Fortnite.com/Devices:)GetEntity<native><epic_internal>()<transacts><decides>:entity
+    (CreativeObject:creative_object_interface).GetEntity<native><epic_internal>()<transacts><decides>:entity
 
     # Returns the simulation entity at the root of the experience this `creative_object` is operating within.
     #   * The simulation entity is the rootmost entity in an experience.
@@ -396,6 +397,39 @@ Devices<public> := module:
         # Enable/disable whether this prop can be damaged. If disabled, the creative prop will not take damage from attacks.
         var CanBeDamaged<public>:logic = external {}
 
+        # Returns a ‘creative_prop’s linear velocity in meters/second.
+        GetLinearVelocity<native><public>()<reads>:(/Verse.org/SpatialMath:)vector3
+
+        # Set a ‘creative_prop’s linear velocity in meters/second. Will not do anything if physics is disabled.
+        SetLinearVelocity<native><public>(LinearVelocity:(/Verse.org/SpatialMath:)vector3):void
+
+        # Apply a linear impulse to a ‘creative_prop’ with units in Newton*seconds. Will not do anything if physics is disabled.
+        ApplyLinearImpulse<native><public>(LinearImpulse:(/Verse.org/SpatialMath:)vector3):void
+
+        # Returns a ‘creative_prop’s angular velocity in radians/second.
+        GetAngularVelocity<native><public>()<reads>:(/Verse.org/SpatialMath:)vector3
+
+        # Set a ‘creative_prop’s angular velocity in radians/seconds. Will not do anything if physics is disabled.
+        SetAngularVelocity<native><public>(AngularVelocity:(/Verse.org/SpatialMath:)vector3):void
+
+        # Apply an angular impulse to a ‘creative_prop’ with units in Newton*meter*seconds. Will not do anything if physics is disabled.
+        ApplyAngularImpulse<native><public>(AngularImpulse:(/Verse.org/SpatialMath:)vector3):void
+
+        # Returns a ‘creative_prop’s mass in kilograms.
+        GetMass<native><public>()<reads>:float
+
+        # Apply a force to a ‘creative_prop’ with units in Newtons. Will not do anything if physics is disabled.
+        ApplyForce<native><public>(Force:(/Verse.org/SpatialMath:)vector3):void
+
+        # Apply a torque to a ‘creative_prop’ with units in Newton*meters. Will not do anything if physics is disabled.
+        ApplyTorque<native><public>(Torque:(/Verse.org/SpatialMath:)vector3):void
+
+        # Get whether a ‘creative_prop’ is dynamic (affected by physics functions).
+        GetDynamic<native><public>()<reads>:logic
+
+        # Set whether a ‘creative_prop’ is dynamic (affected by physics functions). Will not do anything if physics is disabled OR the prop does not have a FortPhysicsComponent.
+        SetDynamic<native><public>(Dynamic:logic):void
+
     # Asset used to spawn `creative_prop` instances.
     creative_prop_asset<native><public> := class<computes><concrete><final><epic_internal>:
 
@@ -418,7 +452,7 @@ Devices<public> := module:
         # More props have been spawned than are permitted by the island's rules (currently 100 per script device and 200 total per island).
         TooManyProps
 
-    # Spawns a `creative_prop` at the specified `Position` and `Rotation`. `Position` and `Rotation` units are in cm.
+    # Spawns a `creative_prop` at the specified `Position` and `Rotation`. `Position` and `Rotation` units are in cm. The relative scale defined in the `creative_prop_asset` will be applied upon spawn.
     # Returns tuple:
     #  0: Instance of a `creative_prop`. False if no `creative_prop` could be created. See `spawn_prop_result` for failure cases.
     #  1: Success or failure results.

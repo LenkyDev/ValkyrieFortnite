@@ -1,6 +1,5 @@
-using {/Verse.org/SpatialMath}
 using {/Verse.org/Simulation}
-using {/UnrealEngine.com/Temporary/SpatialMath}
+using {/Verse.org/SpatialMath}
 using {/Verse.org/Native}
 # Enumerated presets for the types of control input variable; Equates to what enhanced input can provide
 module_input_value_type<native><public> := enum:
@@ -80,11 +79,8 @@ modular_vehicle_component<native><epic_internal> := class<final_super><epic_inte
     # Apply control input of type MAxis1D
     SetInput<native><public>(InputName:string, Value:float):void
 
-    # Apply control input of type MAxis2D
-    SetInput<native><public>(InputName:string, Value:vector2):void
-
     # Apply control input of type MAxis3D
-    SetInput<native><public>(InputName:string, Value:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):void
+    SetInput<native><public>(InputName:string, Value:(/Verse.org/SpatialMath:)vector3):void
 
     # Apply state input of type MBoolean
     SetState<native><public>(InputName:string, Value:logic):void
@@ -95,11 +91,8 @@ modular_vehicle_component<native><epic_internal> := class<final_super><epic_inte
     # Apply state input of type MAxis1D
     SetState<native><public>(InputName:string, Value:float):void
 
-    # Apply state input of type MAxis2D
-    SetState<native><public>(InputName:string, Value:vector2):void
-
     # Apply state input of type MAxis3D
-    SetState<native><public>(InputName:string, Value:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):void
+    SetState<native><public>(InputName:string, Value:(/Verse.org/SpatialMath:)vector3):void
 
 @experimental
 vehicle_aerofoil_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):

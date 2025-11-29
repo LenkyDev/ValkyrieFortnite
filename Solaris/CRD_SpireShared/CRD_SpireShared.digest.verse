@@ -23,10 +23,10 @@ has_spire_functionality<public> := interface<epic_internal>(enableable):
     # Succeeds if this Spire is in a spawned state. Fails if the Spire is destroyed or has not spawned.
     IsSpawned<public>()<transacts><decides>:void
 
-    # Sets the Spireâs health to zero, destroying it.
+    # Sets the Spire’s health to zero, destroying it.
     Destroy<public>():void
 
-    # Succeeds if this Spireâs health has reached 0. Fails otherwise
+    # Succeeds if this Spire’s health has reached 0. Fails otherwise
     IsDestroyed<public>()<transacts><decides>:void
 
     # Triggers when the Spire is destroyed from damage or events

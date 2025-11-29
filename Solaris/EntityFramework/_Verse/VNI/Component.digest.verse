@@ -250,7 +250,7 @@ particle_system_component<native><public> := class<final_super><epic_internal>(c
     # Disables the simulation and rendering of this `particle_system`.
     Disable<override><native>():void
 
-    # Succeeds if the component is enabled, fails if itâs disabled.
+    # Succeeds if the component is enabled, fails if it’s disabled.
     IsEnabled<override><native>()<transacts><decides>:void
 
     @editable

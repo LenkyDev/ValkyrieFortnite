@@ -310,6 +310,14 @@
 			"TargetAllowList": [
 				"Editor"
 			]
+		},
+		{
+			"Name": "AuroraCore",
+			"Enabled": true
+		},
+		{
+			"Name": "AuroraFortniteCore",
+			"Enabled": true
 		}
 	]
 }

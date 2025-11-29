@@ -29,7 +29,7 @@ npc_spawner_device<public> := class<concrete><final>(creative_device_base):
     # Spawn a NPC at the given position. When Rotation is not provided, it will default to the Device`s rotation.
     # Returns the agent spawned or false if the device has reached its maximum spawn count.
     # This function is `<suspends>` because it takes time to load the NPC before it can be returned.
-    SpawnAt<epic_internal>(Position:(/Verse.org/SpatialMath:)vector3, ?Rotation:(/Verse.org/SpatialMath:)rotation = external {})<suspends>:?agent = external {}
+    SpawnAt<public>(Position:(/Verse.org/SpatialMath:)vector3, ?Rotation:?(/Verse.org/SpatialMath:)rotation = external {})<suspends>:?agent = external {}
 
     # Get all agents created by this device.
     GetAgents<public>()<transacts>:[]agent = external {}

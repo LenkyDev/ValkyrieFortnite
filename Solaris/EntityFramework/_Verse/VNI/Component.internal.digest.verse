@@ -62,27 +62,27 @@ directional_light_component<native><public> := class<final>(light_component):
     # How far, in centimeters, cascaded shadow map dynamic shadows will cover, measured in units from the camera. A value of 0 disables the dynamic shadow
     DynamicShadowDistance<native><epic_internal>:float = external {}
 
-    @editable_slider(int) {EpicOnly := true, MinValue := option {0}, MaxValue := option {4}}
+    @editable_slider(int) {EpicOnly := true; MinValue := option {0}; MaxValue := option {4}}
     @category("Epic Internal")
     # Number of cascades to split the view frustum into for the whole scene dynamic shadow
     NumDynamicShadowCascades<native><epic_internal>:int = external {}
 
-    @editable_slider(float) {EpicOnly := true, MinValue := option {1.000000}, MaxValue := option {4.000000}}
+    @editable_slider(float) {EpicOnly := true; MinValue := option {1.000000}; MaxValue := option {4.000000}}
     @category("Epic Internal")
     # Controls whether the cascades are distributed closer to the camera (larger exponent) or further from the camera (smaller exponent)
     CascadeDistributionExponent<native><epic_internal>:float = external {}
 
-    @editable_slider(float) {EpicOnly := true, MinValue := option {0.000000}, MaxValue := option {0.300000}}
+    @editable_slider(float) {EpicOnly := true; MinValue := option {0.000000}; MaxValue := option {0.300000}}
     @category("Epic Internal")
     # Proportion of the fade region between cascades
     CascadeTransitionFraction<native><epic_internal>:float = external {}
 
-    @editable_slider(float) {EpicOnly := true, MinValue := option {0.000000}, MaxValue := option {1.000000}}
+    @editable_slider(float) {EpicOnly := true; MinValue := option {0.000000}; MaxValue := option {1.000000}}
     @category("Epic Internal")
     # Controls the size of the fade out region at the far extent of the dynamic shadow's influence
     CascadeDistanceFadeoutFraction<native><epic_internal>:float = external {}
 
-    @editable_slider(int) {EpicOnly := true, MinValue := option {0}, MaxValue := option {4}}
+    @editable_slider(int) {EpicOnly := true; MinValue := option {0}; MaxValue := option {4}}
     @category("Epic Internal")
     # The number of cascades between DynamicShadowDistance and FarShadowDistance that are covered by Far Shadow Cascades, or zero to disable far shadow cascades
     FarShadowCascadeCount<native><epic_internal>:int = external {}
@@ -370,12 +370,12 @@ light_component<native><public> := class<abstract><final_super><epic_internal>(c
     # Whether the light affects global illumination, when ray-traced global illumination is enabled
     AffectGlobalIllumination<native><epic_internal>:logic = external {}
 
-    @editable_slider(float) {EpicOnly := true, MinValue := option {0.000000}, MaxValue := option {6.000000}}
+    @editable_slider(float) {EpicOnly := true; MinValue := option {0.000000}; MaxValue := option {6.000000}}
     @category("Epic Internal")
     # Scales the indirect lighting contribution from this light
     IndirectLightingIntensity<native><epic_internal>:float = external {}
 
-    @editable_slider(float) {EpicOnly := true, MinValue := option {0.000000}, MaxValue := option {4.000000}}
+    @editable_slider(float) {EpicOnly := true; MinValue := option {0.000000}; MaxValue := option {4.000000}}
     @category("Epic Internal")
     # Intensity of the volumetric scattering from this light
     VolumetricScatteringIntensity<native><epic_internal>:float = external {}
@@ -420,7 +420,7 @@ light_component<native><public> := class<abstract><final_super><epic_internal>(c
     # Distance, in centimeters, at which the light function should be completely faded to the configured disabled brightness
     LightFunctionFadeDistance<native><epic_internal>:float = external {}
 
-    @editable_slider(float) {EpicOnly := true, MinValue := option {0.000000}, MaxValue := option {1.000000}}
+    @editable_slider(float) {EpicOnly := true; MinValue := option {0.000000}; MaxValue := option {1.000000}}
     @category("Epic Internal")
     # Brightness factor applied to the light when the light function is specified but disabled
     LightFunctionDisabledBrightness<native><epic_internal>:float = external {}
@@ -437,7 +437,7 @@ light_component<native><public> := class<abstract><final_super><epic_internal>(c
     # If true, take light brightness from IES profile texture. If false, use the light brightness. The maximum light in one direction is used to define no masking. Will be disabled if a valid IES profile texture is not supplied.
     UseIESIntensity<native><epic_internal>:logic = external {}
 
-    @editable_slider(float) {EpicOnly := true, MinValue := option {0.000000}, MaxValue := option {10.000000}}
+    @editable_slider(float) {EpicOnly := true; MinValue := option {0.000000}; MaxValue := option {10.000000}}
     @display_name("IES Intensity Scale")
     @category("Epic Internal")
     # Global scale for IES brightness contribution. Only available when "Use IES Intensity" is selected, and a valid IES profile texture is set.
@@ -597,7 +597,7 @@ particle_system_component<native><public> := class<final_super><epic_internal>(c
     # Disables the simulation and rendering of this `particle_system`.
     Disable<override><native>():void
 
-    # Succeeds if the component is enabled, fails if itâs disabled.
+    # Succeeds if the component is enabled, fails if it’s disabled.
     IsEnabled<override><native>()<transacts><decides>:void
 
     @editable
@@ -653,7 +653,7 @@ physics_component<native><epic_internal> := class<final><final_super>(component,
     # Disable this object.
     Disable<native><override>():void
 
-    # Succeeds if the component is enabled, fails if itâs disabled.
+    # Succeeds if the component is enabled, fails if it’s disabled.
     IsEnabled<native><override>()<transacts><decides>:void
 
     @experimental
@@ -876,7 +876,7 @@ sphere_light_component<native><public> := class<final>(light_component):
     # Whether to use physically based inverse squared distance falloff
     UseInverseSquaredFalloff<native><epic_internal>:logic = external {}
 
-    @editable_slider(float) {EpicOnly := true, MinValue := option {2.000000}, MaxValue := option {16.000000}}
+    @editable_slider(float) {EpicOnly := true; MinValue := option {2.000000}; MaxValue := option {16.000000}}
     @category("Epic Internal")
     # Controls the radial falloff of the light when UseInverseSquaredFalloff is disabled
     LightFalloffExponent<native><epic_internal>:float = external {}
@@ -911,7 +911,7 @@ spot_light_component<native><public> := class<final>(light_component):
     # Whether to use physically based inverse squared distance falloff
     UseInverseSquaredFalloff<native><epic_internal>:logic = external {}
 
-    @editable_slider(float) {EpicOnly := true, MinValue := option {2.000000}, MaxValue := option {16.000000}}
+    @editable_slider(float) {EpicOnly := true; MinValue := option {2.000000}; MaxValue := option {16.000000}}
     @category("Epic Internal")
     # Controls the radial falloff of the light when UseInverseSquaredFalloff is disabled
     LightFalloffExponent<native><epic_internal>:float = external {}

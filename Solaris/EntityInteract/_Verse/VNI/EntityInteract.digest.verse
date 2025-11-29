@@ -37,7 +37,7 @@ interactable_component<native><public> := class<final_super>(component, enableab
     # Disable interaction with the component. Disabled components do not provide interaction prompts.
     Disable<native><override>():void
 
-    # Succeeds if the component is enabled, fails if itâs disabled.
+    # Succeeds if the component is enabled, fails if it’s disabled.
     IsEnabled<native><override>()<transacts><decides>:void
 
     # Event fires when a successful interaction starts. Sends the interacting agent. InteractDuration at or below 0 makes this event identical to InteractSucceededEvent.
@@ -112,10 +112,10 @@ interactable_duration<native><public> := class<concrete>:
     # If this changes to a value less than the current number of active interactions, those interactions are not canceled but new interactions will not start.
     var MaxSimultaneousInteractors<public>:?int = external {}
 
-    # Returns an agentâs remaining duration, in seconds, for interaction. Fails if the agent is not interacting with this component.Returns the same value when called multiple times within a transaction.
+    # Returns an agent’s remaining duration, in seconds, for interaction. Fails if the agent is not interacting with this component.Returns the same value when called multiple times within a transaction.
     GetRemainingInteractDurationForAgent<final><native><public>(Agent:agent)<reads><decides>:float
 
-    # Sets an agentâs remaining duration, in seconds, for interaction. Fails if the agent is not interacting with this component.
+    # Sets an agent’s remaining duration, in seconds, for interaction. Fails if the agent is not interacting with this component.
     SetRemainingInteractDurationForAgent<final><native><public>(Agent:agent, RemainingDuration:float)<transacts>:void
 
 # Used to set a limit of times to interact.

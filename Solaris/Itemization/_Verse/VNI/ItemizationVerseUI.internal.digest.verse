@@ -149,6 +149,15 @@ InventoryPropertyInterface_asset<epic_internal>:property_interface_UE5_definitio
 InventoryPropertyInterface<epic_internal> := class<public>(parameterized_property_interface):
     UE5Class<override>:property_interface_UE5_definition = external {}
 
+    @replicated("RepNotify=___PropertyInterface_On_MagazineAmmo_Changed")
+    var MagazineAmmo<public>:int = external {}
+
+    @replicated("RepNotify=___PropertyInterface_On_ReserveAmmo_Changed")
+    var ReserveAmmo<public>:int = external {}
+
+    @replicated("RepNotify=___PropertyInterface_On_ShowMagazineAsPercentage_Changed")
+    var ShowMagazineAsPercentage<public>:logic = external {}
+
     ___PropertyInterface_On_InventoryName_Changed<epic_internal>():void = external {}
 
     ___PropertyInterface_On_InventoryDisplayName_Changed<epic_internal>():void = external {}
@@ -156,6 +165,12 @@ InventoryPropertyInterface<epic_internal> := class<public>(parameterized_propert
     ___PropertyInterface_On_InventoryDescription_Changed<epic_internal>():void = external {}
 
     ___PropertyInterface_On_TotalSlots_Changed<epic_internal>():void = external {}
+
+    ___PropertyInterface_On_MagazineAmmo_Changed<epic_internal>():void = external {}
+
+    ___PropertyInterface_On_ReserveAmmo_Changed<epic_internal>():void = external {}
+
+    ___PropertyInterface_On_ShowMagazineAsPercentage_Changed<epic_internal>():void = external {}
 
     ___PropertyInterface_On_InventoryPropertyInterfaces_Changed<epic_internal>():void = external {}
 
@@ -190,8 +205,11 @@ InventoryItemPropertyInterface<epic_internal> := class<public>(parameterized_pro
     @replicated("RepNotify=___PropertyInterface_On_Durability_Changed")
     var Durability<public>:float = external {}
 
-    @replicated("RepNotify=___PropertyInterface_On_Charge_Changed")
-    var Charge<public>:float = external {}
+    @replicated("RepNotify=___PropertyInterface_On_Energy_Changed")
+    var Energy<public>:float = external {}
+
+    @replicated("RepNotify=___PropertyInterface_On_Charges_Changed")
+    var Charges<public>:int = external {}
 
     @replicated("RepNotify=___PropertyInterface_On_Ammo_Changed")
     var (/Fortnite.com/Itemization/InventoryItemPropertyInterface:)Ammo<public>:int = external {}
@@ -242,7 +260,9 @@ InventoryItemPropertyInterface<epic_internal> := class<public>(parameterized_pro
 
     ___PropertyInterface_On_Durability_Changed<epic_internal>():void = external {}
 
-    ___PropertyInterface_On_Charge_Changed<epic_internal>():void = external {}
+    ___PropertyInterface_On_Energy_Changed<epic_internal>():void = external {}
+
+    ___PropertyInterface_On_Charges_Changed<epic_internal>():void = external {}
 
     ___PropertyInterface_On_Ammo_Changed<epic_internal>():void = external {}
 

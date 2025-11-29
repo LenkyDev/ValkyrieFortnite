@@ -31,6 +31,7 @@ Assets<public> := module:
 
 
     material<native><public> := class<epic_internal>(asset, property_changed_interface):
+        @transient
         MaterialPath<native><epic_internal>:string = external {}
 
         OnPropertyChangedFromVerse<native><override>(PropertyName:string)<transacts>:void

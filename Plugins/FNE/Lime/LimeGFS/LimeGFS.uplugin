@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Lime",
-	"FortReleaseVersion": "38.11",
+	"FortReleaseVersion": "39.00",
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
@@ -315,6 +315,11 @@
 			"Name": "LimeMedievalSword",
 			"Enabled": true,
 			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeMeleeCore",
+			"Enabled": true,
 			"Optional": true
 		},
 		{
