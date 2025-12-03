@@ -164,13 +164,13 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
     GetDiagnostic<override><native>()<reads>:diagnostic
 
 # An event which can be sent through the scene graph.
-scene_event<native><public> := interface:
+scene_event<native><epic_internal> := interface:
 
 
 # Capable of handling scene events.
-scene_event_participant<public> := interface<epic_internal>:
+scene_event_participant<epic_internal> := interface<epic_internal>:
     # Handle a scene event. Return true if the scene event is consumed by any participant and that propogation should halt.
-    SendDown<native_callable><public>(SceneEvent:scene_event):logic
+    SendDown<native_callable><epic_internal>(SceneEvent:scene_event):logic
 
 @import_as("/Script/Entity.UBaseEntity")
 base_entity<native><epic_internal> := class<abstract>:
@@ -237,7 +237,7 @@ entity<native><public> := class<concrete><unique><transacts><castable>(base_enti
     GetDiagnostic<override><native>()<reads>:diagnostic
 
     # Send a scene event to this entity and then up the hierarchy. First, SendDown will be invoked on each component on this entity. Next, SendUp will be invoked on this entity's parent. Consuming the event at any point will halt propogation. Returns true if any participant consumed the event.
-    SendUp<native><native_callable><public>(SceneEvent:scene_event):logic
+    SendUp<native><native_callable><epic_internal>(SceneEvent:scene_event):logic
 
     # Send a scene event to this entity and then down the hierarchy. First, SendDown will be invoked on each component on this entity. Next, SendDown will be invoked on each child entity.  Consuming the event at any point will halt propogation. Returns true if any participant consumed the event.
     SendDown<override><native><native_callable>(SceneEvent:scene_event):logic

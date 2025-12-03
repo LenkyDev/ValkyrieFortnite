@@ -37,7 +37,7 @@ unequip_item_result<native><public> := class<epic_internal>:
 @experimental
 # When adding an item, 'find_inventory_event' is used as a first pass to find the best inventory for an item. It is sent downwards.
 # 'add_item_query_event' can be used to veto inventory choices. It is sent upwards.
-find_inventory_event<native><public> := class<epic_internal>(scene_event):
+find_inventory_event<native><public> := class<epic_internal>:
     ItemComponent<native><public>:item_component
 
     var ChosenInventory<native><public>:?inventory_component = external {}
@@ -51,7 +51,7 @@ add_item_error<native><public> := class<computes>:
 @experimental
 # When adding an item, 'find_inventory_event' is used as a first pass to find the best inventory for an item. It is sent downwards.
 # 'add_item_query_event' can be used to veto inventory choices. It is sent upwards.
-add_item_query_event<native><public> := class<epic_internal>(scene_event):
+add_item_query_event<native><public> := class<epic_internal>:
     Item<native><public>:item_component
 
     Inventory<native><public>:inventory_component
@@ -63,7 +63,7 @@ remove_item_error<native><public> := class<computes>:
 
 
 @experimental
-remove_item_query_event<native><public> := class<epic_internal>(scene_event):
+remove_item_query_event<native><public> := class<epic_internal>:
     Item<native><public>:item_component
 
     Inventory<native><public>:inventory_component
@@ -167,7 +167,7 @@ equip_item_error<native><public> := class<computes>:
 
 
 @experimental
-equip_item_query_event<native><public> := class(scene_event):
+equip_item_query_event<native><public> := class:
     Item<native><public>:item_component
 
     Inventory<native><public>:inventory_component
@@ -181,7 +181,7 @@ unequip_item_error<native><public> := class<computes>:
 
 
 @experimental
-unequip_item_query_event<native><public> := class(scene_event):
+unequip_item_query_event<native><public> := class:
     Item<native><public>:item_component
 
     Inventory<native><public>:inventory_component

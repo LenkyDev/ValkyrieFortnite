@@ -48,7 +48,7 @@ using {/Verse.org/Native}
 #        OnEndSimulation
 #      OnRemovingFromScene
 # ==============================================================================
-component<native><public> := class<abstract><unique><castable><final_super_base>(scene_event_participant):
+component<native><public> := class<abstract><unique><castable><final_super_base>:
     # The parent entity of this component.
     #   * Components must have a parent entity pointer provided when being constructed.
     #   * Components cannot be moved between parents.
@@ -99,18 +99,6 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
     # Set callbacks to `TickEvents.PrePhysics` and `TickEvents.PostPhysics` to receive per-frame updates before and after physics is updated on your object.
     var<private> TickEvents<protected>:tick_events = external {}
 
-    # Send a scene event to this component.  Return true to consume the event and halt propogation.
-    SendDown<override><native><native_callable>(SceneEvent:scene_event):logic
-
-# An event which can be sent through the scene graph.
-scene_event<native><public> := interface:
-
-
-# Capable of handling scene events.
-scene_event_participant<public> := interface<epic_internal>:
-    # Handle a scene event. Return true if the scene event is consumed by any participant and that propogation should halt.
-    SendDown<native_callable><public>(SceneEvent:scene_event):logic
-
 # Entities are the base object in the SceneGraph.
 #   * Objects in experiences are constructed of one or more entities.
 #   * Entities are hierarchical. You can query your parent using `GetParent` and add child entities using `AddEntities`.
@@ -129,7 +117,7 @@ scene_event_participant<public> := interface<epic_internal>:
 #   that you do not add code directly to the entity class, and instead keep logic in components. Keeping logic and data in
 #   components allows you to restructure your prefabs throughout production of your experience, without needing to massively
 #   refactor your class structure.
-entity<native><public> := class<concrete><unique><transacts><castable>(scene_event_participant):
+entity<native><public> := class<concrete><unique><transacts><castable>:
     # Returns the parent entity of this entity.
     #   * The parent entity controls the lifetime of its child entities and components. When an entity
     #     is removed from the scene, all its child entities and components will be removed as well.
@@ -168,12 +156,6 @@ entity<native><public> := class<concrete><unique><transacts><castable>(scene_eve
     #       2. All components have `OnAddedToScene` called (if this entity is in the scene).
     #       3. All components have `OnBeginSimulation` called (if this entity is simulating).
     AddComponents<native><final><public>(Components:[]component):void
-
-    # Send a scene event to this entity and then up the hierarchy. First, SendDown will be invoked on each component on this entity. Next, SendUp will be invoked on this entity's parent. Consuming the event at any point will halt propogation. Returns true if any participant consumed the event.
-    SendUp<native><native_callable><public>(SceneEvent:scene_event):logic
-
-    # Send a scene event to this entity and then down the hierarchy. First, SendDown will be invoked on each component on this entity. Next, SendDown will be invoked on each child entity.  Consuming the event at any point will halt propogation. Returns true if any participant consumed the event.
-    SendDown<override><native><native_callable>(SceneEvent:scene_event):logic
 
 # Reference type to editor defined prefab. Only generated digest code should reference this type.
 entity_prefab<native><public> := class<computes><epic_internal>:
