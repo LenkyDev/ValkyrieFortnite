@@ -191,12 +191,12 @@ VerseFramework<public> := module:
 
         Subscribe<public>(Event:listenable(tuple(?agent, fort_vehicle, int))):void = external {}
 
-    test_event_tuple_player_product_change_handler_mock<public> := class(test_device_event_handler_mock):
-        var ArgTuple<public>:?tuple(player, []product_change(product)) = external {}
+    test_event_tuple_player_entitlement_change_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgTuple<public>:?tuple(player, []entitlement_change(entitlement)) = external {}
 
-        Subscribe<public>(Event:listenable(tuple(player, []product_change(product)))):void = external {}
+        Subscribe<public>(Event:listenable(tuple(player, []entitlement_change(entitlement)))):void = external {}
 
-        HandleEvent<public>(InResult:tuple(player, []product_change(product))):void = external {}
+        HandleEvent<public>(InResult:tuple(player, []entitlement_change(entitlement))):void = external {}
 
     node_status<epic_internal> := enum<open>:
         Pending
@@ -260,6 +260,10 @@ VerseFramework<public> := module:
         Dependencies<epic_internal>:[]string
 
         var Status<epic_internal>:node_status = external {}
+
+        var Duration<epic_internal>:float = external {}
+
+        var StartTime<epic_internal>:float = external {}
 
     test_suite_plan<epic_internal> := class:
         TestSuite<epic_internal>:test_suite
@@ -373,6 +377,10 @@ VerseFramework<public> := module:
         CheckNotEqual<public>(Expected:float, Actual:float, Message:string):void = external {}
 
         CheckNotEqual<public>(Expected:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Actual:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Message:string, ?Tolerance:float = external {}):void = external {}
+
+        CheckNotEqual<public>(Expected:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Actual:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Message:string, ?Tolerance:float = external {}):void = external {}
+
+        CheckNotEqual<public>(Expected:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Actual:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Message:string, ?Tolerance:float = external {}):void = external {}
 
         CheckNotEqual<public>(Expected:agent, Actual:agent, Message:string):void = external {}
 

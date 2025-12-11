@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/FN1",
-	"FortReleaseVersion": "39.00",
+	"FortReleaseVersion": "39.10",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"Version": 0,
@@ -153,6 +153,16 @@
 		},
 		{
 			"Name": "POIBanner",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LACity_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "OXR_Assets",
 			"Enabled": true,
 			"Optional": true
 		}

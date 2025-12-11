@@ -1,11 +1,11 @@
 using { /Fortnite.com/AI }
-using { /Fortnite.com/Characters }
 using { /Verse.org }
 using { /Verse.org/Colors }
 using { /Verse.org/Random }
+using { /Verse.org/SceneGraph }
 using { /Verse.org/Simulation }
+using { /Verse.org/SpatialMath }
 using { /UnrealEngine.com/Temporary/Diagnostics }
-using { /UnrealEngine.com/Temporary/SpatialMath }
 
 # Getting started: 
 # https://www.epicgames.com/fortnite/en-US/creative/docs/uefn/Verse/onboarding-guide-to-programming-with-verse-in-unreal-editor-for-fortnite
@@ -75,33 +75,30 @@ new_npc_behavior := class(npc_behavior):
             # Get the Agent (the NPC).
             Agent := GetAgent[]
 
-            # Gets the Fortnite Character interface, which gets you access to its gameplay data 
-            # including its AI module for navigation and focus.
-            Character := Agent.GetFortCharacter[]
+            # Gets the associated Entity
+            Entity := GetEntity[]
 
-            # Get the Navigatable Interface, this allows you to tell it to move.
-            Navigatable := Character.GetNavigatable[]
+            # Get the component to execute actions on the NPC.
+            NPCActionsComponent := Entity.GetComponent[npc_actions_component]
 
-            # Get the Focus Interface, this allows you to tell it to look at something or somewhere.
-            Focus := Character.GetFocusInterface[]
+            # Save the position of your character which we'll use to generate more points to move to from.
+            NPCSpawnPoint := Entity.GetComponent[transform_component].GlobalTransform.Translation
 
         then:
-            # TODO: Now that you have the Fortnite Character and the AI interfaces, replace this with your code 
+            # TODO: Now that you have the NPC actions component, replace this with your code 
             # for your desired movement, look at, and other behavior allowed by the AI module.
             if(ShowAIDebug?):
                 Print(new_npc_behavior_message_module.OnBeginMessage(Agent), ?Duration := AIDebugDrawTime)
 
-            # Save the position of your character which we'll use to generate more points to move to from.
-            NPCSpawnPoint := Character.GetTransform().Translation
 
             loop:
                 # Create a random offset from the spawn point to walk toward.
-                GoToPoint := NPCSpawnPoint + vector3{X := GetRandomFloat(-DistanceFromSpawnPtToMove,DistanceFromSpawnPtToMove),
-                                                     Y := GetRandomFloat(-DistanceFromSpawnPtToMove,DistanceFromSpawnPtToMove),
-                                                     Z := 0.0 }
+                GoToPoint := NPCSpawnPoint + vector3{Left := GetRandomFloat(-DistanceFromSpawnPtToMove,DistanceFromSpawnPtToMove),
+                                                     Forward := GetRandomFloat(-DistanceFromSpawnPtToMove,DistanceFromSpawnPtToMove),
+                                                     Up := 0.0 }
                 
                 if(ShowAIDebug?):
-                    Print(new_npc_behavior_message_module.OnNavigateBeginMessage(Agent,GoToPoint.X,GoToPoint.Y,GoToPoint.Z), ?Duration := AIDebugDrawTime)
+                    Print(new_npc_behavior_message_module.OnNavigateBeginMessage(Agent,GoToPoint.Left,GoToPoint.Forward,GoToPoint.Up), ?Duration := AIDebugDrawTime)
 
                 # Create a navigation target from these two positions that the navigation interface can use.
                 NavTargetStart := MakeNavigationTarget(GoToPoint)
@@ -113,16 +110,16 @@ new_npc_behavior := class(npc_behavior):
                     DrawDebugLocation(GoToPoint)
             
                 # Tell the navigation interface to walk to the location and store a navigation result for error checking.
-                NavResultGoTo := Navigatable.NavigateTo(NavTargetStart, ?MovementType:=movement_types.Walking)
+                NavResultGoTo := NPCActionsComponent.NavigateTo(NavTargetStart, ?MovementType:=movement_type.Walking)
                 
                 # Check to see if something has interfered with the NPC reaching the intended location and print a
                 # message to the output log.
-                if (NavResultGoTo <> navigation_result.Reached):
+                if (NavResultGoTo.GetError[]):
                     if(ShowAIDebug?):
-                        Print(new_npc_behavior_message_module.OnNavigateErrorMessage(Agent,GoToPoint.X,GoToPoint.Y,GoToPoint.Z), ?Duration := AIDebugDrawTime)
+                        Print(new_npc_behavior_message_module.OnNavigateErrorMessage(Agent,GoToPoint.Left,GoToPoint.Forward,GoToPoint.Up), ?Duration := AIDebugDrawTime)
                 else:
-                    # Once it arrives at its location, wait for this duration in seconds
-                    Navigatable.Wait(?Duration := MoveToWaitDuration)
+                    # Once it arrives at its location, idle for this duration in seconds
+                    NPCActionsComponent.Idle(?Duration := MoveToWaitDuration)
                  
                 # Draw more debug visuals to show the point the NPC will look at and move to.
                 if(ShowAIDebug?):
@@ -132,29 +129,29 @@ new_npc_behavior := class(npc_behavior):
                 # and drawing a debug arrow never completes, continuing, ensures only the NavigateTo can win the race.
                 NavResultGoToNext := race:
                     # Move back to its starting position.
-                    Navigatable.NavigateTo(NavTargetEnd)
+                    NPCActionsComponent.NavigateTo(NavTargetEnd)
 
                     # Sets NPC to look at its previous position which will make it walk backwards. 
                     # This is meant to show the utility of the focus interface.
                     block:
-                        Focus.MaintainFocus(GoToPoint)
-                        navigation_result.Interrupted
+                        NPCActionsComponent.Focus(GoToPoint)
+                        MakeError(navigation_action_error_type.Interrupted)
 
                     block:
                         if(ShowAIDebug?):
-                            DrawDebugLookAt(Character, GoToPoint) 
+                            DrawDebugLookAt(Entity, GoToPoint) 
                         else:
                             Sleep(Inf)
-                        navigation_result.Interrupted
+                        MakeError(navigation_action_error_type.Interrupted)
                 
                 # Check again to see if something has interfered with the NPC reaching the intended location and
                 # print a message to the output log.
-                if (NavResultGoToNext <> navigation_result.Reached):
+                if (NavResultGoToNext.GetError[]):
                     if(ShowAIDebug?):
-                        Print(new_npc_behavior_message_module.OnNavigateErrorMessage(Agent,GoToPoint.X,GoToPoint.Y,GoToPoint.Z), ?Duration := AIDebugDrawTime)
+                        Print(new_npc_behavior_message_module.OnNavigateErrorMessage(Agent,GoToPoint.Left,GoToPoint.Forward,GoToPoint.Up), ?Duration := AIDebugDrawTime)
                 else:
                     # This tells the NPC to wait for this amount of time in seconds.
-                    Navigatable.Wait(?Duration := MoveToWaitDuration)
+                    NPCActionsComponent.Idle(?Duration := MoveToWaitDuration)
 
                 # End of loop, continue the patrol back to the point.
         else:
@@ -175,18 +172,21 @@ new_npc_behavior := class(npc_behavior):
 
     # This function draws an arrow from the Agent's head to its look at point every half a second. 
     # NOTE: To see this in game, Verse Debug Draw must be enabled in Island Settings.
-    DrawDebugLookAt(Character:fort_character, LookAtPoint:vector3)<suspends>:void=
-        loop:
-            DebugDrawNPC.DrawArrow( Character.GetTransform().Translation + vector3{ Z := VerticalOffsetToNPCHead}, 
-                                    LookAtPoint, 
-                                    ?ArrowSize := 50.0, 
-                                    ?Color := NamedColors.Yellow, 
-                                    ?Thickness := 5.0, 
-                                    ?DrawDurationPolicy := debug_draw_duration_policy.FiniteDuration, 
-                                    ?Duration := LookAtDebugDrawDuration )
-                                    
-            #This sleep matches the length of time the arrow is drawn to avoid duplicate draws.
-            Sleep(LookAtDebugDrawDuration)
+    DrawDebugLookAt(Entity:entity, LookAtPoint:vector3)<suspends>:void=
+        if (TransformComponent:=Entity.GetComponent[transform_component]):
+            loop:
+                DebugDrawNPC.DrawArrow( TransformComponent.GlobalTransform.Translation + vector3{ Up := VerticalOffsetToNPCHead}, 
+                                        LookAtPoint, 
+                                        ?ArrowSize := 50.0, 
+                                        ?Color := NamedColors.Yellow, 
+                                        ?Thickness := 5.0, 
+                                        ?DrawDurationPolicy := debug_draw_duration_policy.FiniteDuration, 
+                                        ?Duration := LookAtDebugDrawDuration )
+                                        
+                #This sleep matches the length of time the arrow is drawn to avoid duplicate draws.
+                Sleep(LookAtDebugDrawDuration)
+        else:
+            Sleep(Inf)
 
     # Custom wrapper that provides a default duration and color.
     PrintNPCB(Msg:string,?Duration:float = AIDebugDrawTime, ?TextColor:color = NamedColors.Green):void =

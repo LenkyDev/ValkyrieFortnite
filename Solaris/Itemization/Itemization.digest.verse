@@ -569,11 +569,11 @@ CH1S8Items<public> := module:
 
 
     @experimental
-    item_infantry_rifle_epic<public> := class<final><concrete>(entity):
+    (/Fortnite.com/Itemization/CH1S8Items:)item_infantry_rifle_epic<public> := class<final><concrete>(entity):
 
 
     @experimental
-    item_infantry_rifle_legendary<public> := class<final><concrete>(entity):
+    (/Fortnite.com/Itemization/CH1S8Items:)item_infantry_rifle_legendary<public> := class<final><concrete>(entity):
 
 
     @experimental
@@ -1332,6 +1332,14 @@ CH6MS2Items<public> := module:
 
 
     @experimental
+    (/Fortnite.com/Itemization/CH6MS2Items:)item_infantry_rifle_epic<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    (/Fortnite.com/Itemization/CH6MS2Items:)item_infantry_rifle_legendary<public> := class<final><concrete>(entity):
+
+
+    @experimental
     item_suppressed_assault_rifle_common<public> := class<final><concrete>(entity):
 
 
@@ -1350,6 +1358,38 @@ CH6MS2Items<public> := module:
 # Module import path: /Fortnite.com/Itemization/CH7S1Items
 CH7S1Items<public> := module:
     using {/Verse.org/SceneGraph}
+    @experimental
+    item_arc_lightning_gun_epic<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_arc_lightning_gun_legendary<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_brutus_twin_hammer_shotguns_mythic<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_deadeye_assault_rifle_common<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_deadeye_assault_rifle_epic<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_deadeye_assault_rifle_legendary<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_deadeye_assault_rifle_rare<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_deadeye_assault_rifle_uncommon<public> := class<final><concrete>(entity):
+
+
     @experimental
     (/Fortnite.com/Itemization/CH7S1Items:)item_dual_micro_smgs_common<public> := class<final><concrete>(entity):
 
@@ -1391,6 +1431,70 @@ CH7S1Items<public> := module:
 
 
     @experimental
+    (/Fortnite.com/Itemization/CH7S1Items:)item_grenade<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_holo_rush_smg_common<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_holo_rush_smg_epic<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_holo_rush_smg_legendary<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_holo_rush_smg_rare<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_holo_rush_smg_uncommon<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_human_bills_arc_lightning_gun_mythic<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_hushs_deadeye_assault_rifle_mythic<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_iron_pump_shotgun_common<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_iron_pump_shotgun_epic<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_iron_pump_shotgun_legendary<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_iron_pump_shotgun_rare<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_iron_pump_shotgun_uncommon<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    (/Fortnite.com/Itemization/CH7S1Items:)item_tactical_pistol_mythic<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_pinpoint_iron_pump_shotgun_mythic<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_six_shooter_legendary<public> := class<final><concrete>(entity):
+
+
+    @experimental
     (/Fortnite.com/Itemization/CH7S1Items:)item_tactical_pistol_common<public> := class<final><concrete>(entity):
 
 
@@ -1403,15 +1507,55 @@ CH7S1Items<public> := module:
 
 
     @experimental
-    (/Fortnite.com/Itemization/CH7S1Items:)item_tactical_pistol_mythic<public> := class<final><concrete>(entity):
-
-
-    @experimental
     (/Fortnite.com/Itemization/CH7S1Items:)item_tactical_pistol_rare<public> := class<final><concrete>(entity):
 
 
     @experimental
     (/Fortnite.com/Itemization/CH7S1Items:)item_tactical_pistol_uncommon<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_twin_hammer_shotguns_common<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_twin_hammer_shotguns_epic<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_twin_hammer_shotguns_legendary<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_twin_hammer_shotguns_rare<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_twin_hammer_shotguns_uncommon<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_vengeful_sniper_rifle_epic<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_vengeful_sniper_rifle_legendary<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_vengeful_sniper_rifle_rare<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_vengeful_sniper_rifle_uncommon<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_wingsuit<public> := class<final><concrete>(entity):
+
+
+    @experimental
+    item_yule_troopers_holo_rush_smg_mythic<public> := class<final><concrete>(entity):
 
 
 # Module import path: /Fortnite.com/Itemization/CreativeItems

@@ -318,6 +318,11 @@
 		{
 			"Name": "AuroraFortniteCore",
 			"Enabled": true
+		},
+		{
+			"Name": "ExperiencePluginsEditor",
+			"Enabled": true,
+			"TargetAllowList": [ "Editor" ]
 		}
 	]
 }

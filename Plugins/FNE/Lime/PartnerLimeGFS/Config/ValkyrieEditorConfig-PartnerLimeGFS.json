@@ -1,14 +1,14 @@
 {
     "_comment_About_This_File": "",
     "_comment_About_This_File_2": "Overlay defaults",
-    "ValkyrieEditorSettings": {
+	"ValkyrieEditorSettings": {
 		"_comment_AllowedContentBrowserFolders": "Allowed content browser folders when exposing asset aliases",
 		"AllowedContentBrowserFolders": [
 			"/LEGO"
 		],
-        "_comment_AllowedGatherFolders": "Allowed folders to gather assets from when exposing assets",
+		"_comment_AllowedGatherFolders": "Allowed folders to gather assets from when exposing assets",
 
-        "bAllowGatherCreativePlots" : false,
+		"bAllowGatherCreativePlots": false,
 
 		"AllowedAssetTypes": {
 			"/Script/AtomRuntime.AtomModel": {
@@ -48,14 +48,16 @@
 					"Export"
 				],
 				"Subclasses": "All"
-			}
+			},
+			"/Script/ControlRig.ControlRigBlueprintGeneratedClass": { "Rules": [ "View" ] },
+			"/Script/AssembledMeshSystem.AssembledMeshSchema": { "Rules": [ "View" ] }
 		},
-        "AllowedImportExtensions": {
-            "+": [
-                "lxf",
-                "lxfml"
-            ]
-        },
+		"AllowedImportExtensions": {
+			"+": [
+				"lxf",
+				"lxfml"
+			]
+		},
 		"AllowedClasses": {
 			"/Script/AtomRuntime.AtomBoneReference": {},
 			"/Script/AtomRuntime.AtomColor": {},
@@ -269,6 +271,15 @@
 			},
 			"/Script/LimeNativeEditor.AtomActorValidator_Scale": {
 				"Visible": false
+			},
+			"/FigureCharacter/Figure_Core/Rig/CR_Minifig_v3.CR_Minifig_v3_C": {
+				"Visible": true
+			},
+			"/Script/AssembledMeshSystem.AssembledMeshSchema": {
+				"Visible": true
+			},
+			"/Script/AssembledMeshSystem.AssembledMeshUserComponent": {
+				"Visible": true
 			}
 		},
 		"AllowedEditorModes": {
@@ -276,42 +287,42 @@
 				"EM_AtomEditorMode"
 			]
 		},
-        "AllowedEditorPreferencesSections": {
-            "ContentPipelines": {
-                "Sections": [
-                    "AtomVK"
-                ]
-            }
-        },
-        "AllowedTabs": {
-            "Global": {
-                "AllowList": {
-                    "+": [
-                        "AtomDBManagement"
-                    ]
-                }
-            },
-            "LevelEditor": {
-                "AllowList": {
-                    "+": [
-                        "AtomDBManagement"
-                    ]
-                }
-            }
-        }
-    },
+		"AllowedEditorPreferencesSections": {
+			"ContentPipelines": {
+				"Sections": [
+					"AtomVK"
+				]
+			}
+		},
+		"AllowedTabs": {
+			"Global": {
+				"AllowList": {
+					"+": [
+						"AtomDBManagement"
+					]
+				}
+			},
+			"LevelEditor": {
+				"AllowList": {
+					"+": [
+						"AtomDBManagement"
+					]
+				}
+			}
+		}
+	},
     "PropertyEditorClassPermissionList": {
-        "+": [
-            {
-                "Type": "/Script/AtomVKEditor.AtomVKEditorSettings",
-                "AllowList": [
-                    "PrimitiveDatabaseDirectory",
-                    "AdditionalPrimitiveDirectories",
-                    "bUseLegacyImportDialog",
-                    "PivotGroupName",
-                    "SocketsGroupName"
-                ]
-            },
+		"+": [
+			{
+				"Type": "/Script/AtomVKEditor.AtomVKEditorSettings",
+				"AllowList": [
+					"PrimitiveDatabaseDirectory",
+					"AdditionalPrimitiveDirectories",
+					"bUseLegacyImportDialog",
+					"PivotGroupName",
+					"SocketsGroupName"
+				]
+			},
 			{
 				"Type": "/LimeAISpawnerGuard/SpawnDefinitions/Types/CharacterType_LimeGuard.CharacterType_LimeGuard_C",
 				"AllowList": [ "DisplayName", "SelectedAI" ]
@@ -373,7 +384,7 @@
 			},
 			{
 				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardPerception.CharacterModifier_LimeGuardPerception_C",
-				"AllowList": [ "bOverrideSightSettings", "SightPerceptionSettings", "bOverrideHearingSettings", "HearingPerceptionSettings" ]
+				"AllowList": [ "bOverrideSightSettings", "bEnableSight", "SightPerceptionSettings", "bOverrideHearingSettings", "bEnableHearing", "HearingPerceptionSettings", "bOverrideTouchSettings", "bEnableTouch", "TouchPerceptionSettings"   ]
 			},
 			{
 				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeTeam.CharacterModifier_LimeTeam_C",
@@ -408,9 +419,14 @@
 			},
 			{
 				"Type": "/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C",
-				"AllowList": [ "DisplayName" ], 
+				"AllowList": [ "DisplayName" ],
 				"DenyList": [ "SelectedAI" ]
+			},
+			{
+				"Type": "/Script/AssembledMeshSystem.AssembledMeshUserComponent",
+				"bAllowListAllProperties": true,
+				"bAllowListAllSubclassProperties": true
 			}
-        ]
+		]
     }
 }

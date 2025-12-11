@@ -43,13 +43,21 @@ inventory_item_view_model_component<native><epic_internal> := class<final><final
 
     UninitializeViewModel<native_callable><epic_internal>():void = external {}
 
+    SendDown<override>(SceneEvent:scene_event):logic = external {}
+
     RefreshViewModel<public>(Item:entity):void = external {}
 
     OnEquippedChanged<protected>(ItemEquippedChange:change_equipped_result):void = external {}
 
     OnStackSizeChanged<protected>(ItemStackSizeChange:change_stack_size_result):void = external {}
 
-    OnDetailsChanged<protected>():void = external {}
+    OnItemChanged<protected>(OptionalItemComponent:?item_component):void = external {}
+
+    OnIconChanged<protected>(OptionalIconComponent:?item_icon_component):void = external {}
+
+    OnDetailsChanged<protected>(OptionalDetailsComponent:?item_details_component):void = external {}
+
+    OnRarityChanged<protected>(OptionalRarityComponent:?item_rarity_component):void = external {}
 
     OnReloadTimeChanged<protected>(NewTime:float):void = external {}
 

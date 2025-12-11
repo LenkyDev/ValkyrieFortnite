@@ -27,6 +27,23 @@ AI<public> := module:
     # Get the focus_interface interface for the specified character.
     (InCharacter:fort_character).GetFocusInterface<public>()<transacts><decides>:focus_interface = external {}
 
+    fort_leashable<public> := interface<epic_internal>:
+        # Set custom leash position.
+        #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
+        #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
+        SetLeashPosition<public>(Location:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, InnerRadius:float, OuterRadius:float):void
+
+        # Set the agent to be the new center of the leash.
+        #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
+        #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
+        SetLeashAgent<public>(Agent:agent, InnerRadius:float, OuterRadius:float):void
+
+        # Removes the current leash.
+        ClearLeash<public>():void
+
+    # Get the current fort_leashable interface for the specified character.
+    (InCharacter:fort_character).GetFortLeashable<public>()<transacts><decides>:fort_leashable = external {}
+
     @available {MinUploadedAtFNVersion := 3900}
     # Fortnite Guards AI actions management
     guard_actions_component<native><public> := class<epic_internal>(npc_actions_component):
@@ -91,68 +108,6 @@ AI<public> := module:
 
         # Get the current alert level for a specific target.
         GetAlertLevel<native><public>(Target:entity)<reads>:guard_alert_level
-
-    fort_leashable<public> := interface<epic_internal>:
-        # Set custom leash position.
-        #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
-        #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
-        SetLeashPosition<public>(Location:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, InnerRadius:float, OuterRadius:float):void
-
-        # Set the agent to be the new center of the leash.
-        #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
-        #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
-        SetLeashAgent<public>(Agent:agent, InnerRadius:float, OuterRadius:float):void
-
-        # Removes the current leash.
-        ClearLeash<public>():void
-
-    # Get the current fort_leashable interface for the specified character.
-    (InCharacter:fort_character).GetFortLeashable<public>()<transacts><decides>:fort_leashable = external {}
-
-    @available {MinUploadedAtFNVersion := 3900}
-    # Fortnite NPC AI actions management
-    npc_actions_component<native><public> := class<final_super><epic_internal>(component):
-        # Return the current destination of the character.
-        GetCurrentDestination<native><public>()<transacts><decides>:(/Verse.org/SpatialMath:)vector3
-
-        # Navigate toward the specified navigation target.
-        NavigateTo<native><public>(Target:navigation_target, ?MovementType:movement_type = external {}, ?ReachRadius:float = external {}, ?AllowPartialPath:logic = external {})<suspends>:result(navigation_action_success_type, navigation_action_error_type)
-
-        # Multiplier on the movement speed (value is clamped between 0.5 and 2).
-        var MovementSpeedMultiplier<public>:float = external {}
-
-        # Stop navigation.
-        StopNavigation<native><public>():void
-
-        # Stay idle for a specific duration.
-        Idle<native><public>(?Duration:float = external {})<suspends>:void
-
-        # Look at the specified location. If LockFocus is false, the action stops once the NPC is facing the position.
-        Focus<native><public>(Location:(/Verse.org/SpatialMath:)vector3, ?LockFocus:logic = external {})<suspends>:void
-
-        # Look at the specified Entity. If LockFocus is false, the action stops once the NPC is facing the entity.
-        Focus<native><public>(Target:entity, ?LockFocus:logic = external {})<suspends>:void
-
-    @available {MinUploadedAtFNVersion := 3900}
-    # Fortnite NPC perception management
-    npc_awareness_component<native><public> := class<final_super><epic_internal>(component):
-        # Information about all detected targets.
-        var<private> DetectedTargets<native><public>:[]npc_target_info = external {}
-
-        # Event when a target was detected.
-        DetectTargetEvent<native><public>:listenable(npc_target_info) = external {}
-
-        # Event when a target was forgotten.
-        ForgetTargetEvent<native><public>:listenable(entity) = external {}
-
-        # Event when a target is seen. Sight sense must be active.
-        SeeTargetEvent<native><public>:listenable(npc_target_info) = external {}
-
-        # Event when a target is heard. Hearing sense must be active.
-        HearTargetEvent<native><public>:listenable(npc_target_info) = external {}
-
-        # Event when a target is touched. Touch sense must be active.
-        TouchTargetEvent<native><public>:listenable(npc_target_info) = external {}
 
     navigation_target<native><public> := class<epic_internal>:
 
@@ -225,6 +180,51 @@ AI<public> := module:
 
     # Get the navigatable interface for the specified character
     (InCharacter:fort_character).GetNavigatable<public>()<transacts><decides>:navigatable = external {}
+
+    @available {MinUploadedAtFNVersion := 3900}
+    # Fortnite NPC AI actions management
+    npc_actions_component<native><public> := class<final_super><epic_internal>(component):
+        # Return the current destination of the character.
+        GetCurrentDestination<native><public>()<transacts><decides>:(/Verse.org/SpatialMath:)vector3
+
+        # Navigate toward the specified navigation target.
+        NavigateTo<native><public>(Target:navigation_target, ?MovementType:movement_type = external {}, ?ReachRadius:float = external {}, ?AllowPartialPath:logic = external {})<suspends>:result(navigation_action_success_type, navigation_action_error_type)
+
+        # Multiplier on the movement speed (value is clamped between 0.5 and 2).
+        var MovementSpeedMultiplier<public>:float = external {}
+
+        # Stop navigation.
+        StopNavigation<native><public>():void
+
+        # Stay idle for a specific duration.
+        Idle<native><public>(?Duration:float = external {})<suspends>:void
+
+        # Look at the specified location. If LockFocus is false, the action stops once the NPC is facing the position.
+        Focus<native><public>(Location:(/Verse.org/SpatialMath:)vector3, ?LockFocus:logic = external {})<suspends>:void
+
+        # Look at the specified Entity. If LockFocus is false, the action stops once the NPC is facing the entity.
+        Focus<native><public>(Target:entity, ?LockFocus:logic = external {})<suspends>:void
+
+    @available {MinUploadedAtFNVersion := 3900}
+    # Fortnite NPC perception management
+    npc_awareness_component<native><public> := class<final_super><epic_internal>(component):
+        # Information about all detected targets.
+        var<private> DetectedTargets<native><public>:[]npc_target_info = external {}
+
+        # Event when a target was detected.
+        DetectTargetEvent<native><public>:listenable(npc_target_info) = external {}
+
+        # Event when a target was forgotten.
+        ForgetTargetEvent<native><public>:listenable(entity) = external {}
+
+        # Event when a target is seen. Sight sense must be active.
+        SeeTargetEvent<native><public>:listenable(npc_target_info) = external {}
+
+        # Event when a target is heard. Hearing sense must be active.
+        HearTargetEvent<native><public>:listenable(npc_target_info) = external {}
+
+        # Event when a target is touched. Touch sense must be active.
+        TouchTargetEvent<native><public>:listenable(npc_target_info) = external {}
 
     # Inherit from this to create a custom NPC behavior.
     # The npc_behavior can be defined for a character in a CharacterDefinition asset, or in a npc_spawner_device.

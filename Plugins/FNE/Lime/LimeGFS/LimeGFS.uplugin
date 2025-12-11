@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Lime",
-	"FortReleaseVersion": "39.00",
+	"FortReleaseVersion": "39.10",
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
@@ -273,6 +273,16 @@
 			"Optional": true
 		},
 		{
+			"Name": "LimeHandachi",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeHotSauce",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "LimeImpulseGrenade",
 			"Enabled": true,
 			"Optional": true
@@ -474,7 +484,32 @@
 			"Optional": true
 		},
 		{
+			"Name": "TabascoNunchucks",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "TabascoShuriken",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "TownScaper",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRP_GardenPartyHG",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Temples_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Temples_Comp",
 			"Enabled": true,
 			"Optional": true
 		}

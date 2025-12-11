@@ -4,7 +4,7 @@
 	"VersionName": "1.0",
 	"FriendlyName": "Verse Fortnite Input",
 	"Description": "Verse API and Content related to input",
-	"Category": "Other",
+	"Category": "Input",
 	"CreatedBy": "Epic Games, Inc.",
 	"CreatedByURL": "",
 	"DocsURL": "",
@@ -12,9 +12,10 @@
 	"SupportURL": "",
 	"CanContainContent": true,
 	"CanContainVerse": true,
-	"IsBetaVersion": true,
+	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false,
+	"VerseScope": "PublicAPI",
 	"Modules": [
 		{
 			"Name": "VerseFortniteInput",

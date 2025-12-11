@@ -55,6 +55,8 @@
 			"/LimeGooGun",
 			"/LimeGrappler",
 			"/LimeGridScaleOverride",
+			"/LimeHandachi",
+			"/LimeHotSauce",
 			"/LimeImpulseGrenade",
 			"/LimeIslandUIOverride",
 			"/LimeKatana",
@@ -70,6 +72,8 @@
 			"/LimeSnowballLauncher",
 			"/LimeStingBlaster",
 			"/LimeWeaponsCore",
+			"/TabascoNunchucks",
+			"/TabascoShuriken",
 			"/Containers_Assets",
 			"/Musical_Walk_Assets",
 			"/Musical_Walk_Composition",
@@ -88,7 +92,10 @@
 			"/TownScaper",
 			"/LimeEmptyPlot",
 			"/CRD_Fillable_Container",
-			"/CRD_Simple_Voting_Option"
+			"/CRD_Simple_Voting_Option",
+			"/CRP_GardenPartyHG",
+			"/Temples_Assets",
+			"/Temples_Comp"
 		],
 		"AllowedGatherAssets": [
 			"___Weapons_Begin___",
@@ -106,6 +113,9 @@
 			"/LimeCrossbow/Weapons/WoodenBow/Bow_T1/WID_Juno_AmmoData_Bow_T1.WID_Juno_AmmoData_Bow_T1",
 			"/LimeGooGun/WID_Lime_GooGun.WID_Lime_GooGun",
 			"/LimeGrappler/WID_Hook_Gun_Slide_Lime.WID_Hook_Gun_Slide_Lime",
+			"/LimeHandachi/Weapons/WID_Melee_Katana_Lime_R.WID_Melee_Katana_Lime_R",
+			"/LimeHandachi/Weapons/WID_Melee_Katana_Lime_SR.WID_Melee_Katana_Lime_SR",
+			"/LimeHandachi/Weapons/WID_Melee_Katana_Lime_VR.WID_Melee_Katana_Lime_VR",
 			"/LimeKatana/Weapons/Sword/WID_LimeKatana.WID_LimeKatana",
 			"/LimeKymera/WID_Lime_Kymera.WID_Lime_Kymera",
 			"/LimeKymera/WID_Lime_Kymera_R.WID_Lime_Kymera_R",
@@ -144,6 +154,16 @@
 			"/LimeStingBlaster/Weapons/WID_Lime_Sting_Blaster_VR_Ore_T03.WID_Lime_Sting_Blaster_VR_Ore_T03",
 			"/LimeWeaponsCore/Ammo/Lime_AmmoDataBulletsMedium.Lime_AmmoDataBulletsMedium",
 			"/LimeWeaponsCore/Ammo/Lime_AmmoDataRockets.Lime_AmmoDataRockets",
+			"/TabascoNunchucks/SetupAssets/WID_Lime_Tabasco_Nunchucks_T1.WID_Lime_Tabasco_Nunchucks_T1",
+			"/TabascoNunchucks/SetupAssets/WID_Lime_Tabasco_Nunchucks_T2.WID_Lime_Tabasco_Nunchucks_T2",
+			"/TabascoNunchucks/SetupAssets/WID_Lime_Tabasco_Nunchucks_T3.WID_Lime_Tabasco_Nunchucks_T3",
+			"/TabascoNunchucks/SetupAssets/WID_Lime_Tabasco_Nunchucks_T4.WID_Lime_Tabasco_Nunchucks_T4",
+			"/TabascoNunchucks/SetupAssets/WID_Lime_Tabasco_Nunchucks_T5.WID_Lime_Tabasco_Nunchucks_T5",
+			"/TabascoShuriken/SetupAssets/WID_Lime_Tabasco_Shuriken_T1.WID_Lime_Tabasco_Shuriken_T1",
+			"/TabascoShuriken/SetupAssets/WID_Lime_Tabasco_Shuriken_T2.WID_Lime_Tabasco_Shuriken_T2",
+			"/TabascoShuriken/SetupAssets/WID_Lime_Tabasco_Shuriken_T3.WID_Lime_Tabasco_Shuriken_T3",
+			"/TabascoShuriken/SetupAssets/WID_Lime_Tabasco_Shuriken_T4.WID_Lime_Tabasco_Shuriken_T4",
+			"/TabascoShuriken/SetupAssets/WID_Lime_Tabasco_Shuriken_T5.WID_Lime_Tabasco_Shuriken_T5",
 			"___Weapons_End___",
 
 			"___Consumables_Begin___",
@@ -1823,7 +1843,7 @@
 			},
 			{
 				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeGuardPerception.CharacterModifier_LimeGuardPerception_C",
-				"AllowList": [ "bOverrideSightSettings", "SightPerceptionSettings", "bOverrideHearingSettings", "HearingPerceptionSettings" ]
+				"AllowList": [ "bOverrideSightSettings", "bEnableSight", "SightPerceptionSettings", "bOverrideHearingSettings", "bEnableHearing", "HearingPerceptionSettings", "bOverrideTouchSettings", "bEnableTouch", "TouchPerceptionSettings" ]
 			},
 			{
 				"Type": "/LimeAISpawner/SpawnDefinitions/Modifiers/CharacterModifier_LimeTeam.CharacterModifier_LimeTeam_C",

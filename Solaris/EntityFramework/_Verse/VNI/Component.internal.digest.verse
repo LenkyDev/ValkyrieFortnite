@@ -610,6 +610,7 @@ particle_system_component<native><public> := class<final_super><epic_internal>(c
     Stop<native><public>():void
 
     @editable
+    @replicated("")
     # Controls if the `particle_system_component` should play the simulation automatically when added to the scene, or when enabled from a disabled state.
     var<private> AutoPlay<native><public>:logic = external {}
 
@@ -828,6 +829,7 @@ sound_component<native><public> := class<abstract><final_super><epic_internal>(c
     OnBeginSimulationInternal<native><override>():void
 
     @editable
+    @replicated("")
     var<private> AutoPlay<native><public>:logic = external {}
 
     # Play the sound asset

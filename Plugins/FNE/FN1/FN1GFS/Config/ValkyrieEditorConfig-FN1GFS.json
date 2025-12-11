@@ -20,16 +20,20 @@
                   ]
 			},
 		"AllowedEditorUtilityWidgets": {
-			"+": ["/Game/Environments/Blueprints/RunwayGenerator/EUW_Runway_Generator.EUW_Runway_Generator",
-                  "/Game/Environments/Blueprints/RunwayGenerator/EUW_Runway_Generator.EUW_Runway_Generator_C",
-				 "/Game/ArtTools/Environment/EnvironmentActorFinder/EUW_EnvActorFinder.EUW_EnvActorFinder",
-				 "/Game/ArtTools/Environment/EnvironmentActorFinder/EUW_EnvActorFinder.EUW_EnvActorFinder_C",
-				 "/Game/ArtTools/Environment/EnvImpQuickSettings/EUW_EnvImpQuckSettings.EUW_EnvImpQuckSettings",
-				 "/Game/ArtTools/Environment/EnvImpQuickSettings/EUW_EnvImpQuckSettings.EUW_EnvImpQuckSettings_C",
-				 "/Game/Blueprints/Blutilities/ForLDs/WorldPartitionTools/WP_OverlappingActors/WP_OverlappingActors_EUW.WP_OverlappingActors_EUW",
-				 "/Game/Blueprints/Blutilities/ForLDs/WorldPartitionTools/WP_OverlappingActors/WP_OverlappingActors_EUW.WP_OverlappingActors_EUW_C",
-				 "/FN1GFS/Blueprints/Blutilities/ToolsWrkshp/ScrTools/SelectionSizer/SupportFiles/BP_EUW_SelSizerActorTypes.BP_EUW_SelSizerActorTypes",
-				 "/FN1GFS/Blueprints/Blutilities/ToolsWrkshp/ScrTools/SelectionSizer/SupportFiles/BP_EUW_SelSizerActorTypes.BP_EUW_SelSizerActorTypes_C"]
+			"+": [
+				"/Game/Environments/Blueprints/RunwayGenerator/EUW_Runway_Generator.EUW_Runway_Generator",
+				"/Game/Environments/Blueprints/RunwayGenerator/EUW_Runway_Generator.EUW_Runway_Generator_C",
+				"/Game/ArtTools/Environment/EnvironmentActorFinder/EUW_EnvActorFinder.EUW_EnvActorFinder",
+				"/Game/ArtTools/Environment/EnvironmentActorFinder/EUW_EnvActorFinder.EUW_EnvActorFinder_C",
+				"/Game/ArtTools/Environment/EnvImpQuickSettings/EUW_EnvImpQuckSettings.EUW_EnvImpQuckSettings",
+				"/Game/ArtTools/Environment/EnvImpQuickSettings/EUW_EnvImpQuckSettings.EUW_EnvImpQuckSettings_C",
+				"/Game/Blueprints/Blutilities/ForLDs/WorldPartitionTools/WP_OverlappingActors/WP_OverlappingActors_EUW.WP_OverlappingActors_EUW",
+				"/Game/Blueprints/Blutilities/ForLDs/WorldPartitionTools/WP_OverlappingActors/WP_OverlappingActors_EUW.WP_OverlappingActors_EUW_C",
+				"/Game/TechArt/LightingTools/EUW_LightActorUtilities.EUW_LightActorUtilities",
+				"/Game/TechArt/LightingTools/EUW_LightActorUtilities.EUW_LightActorUtilities_C",
+				"/FN1GFS/Blueprints/Blutilities/ToolsWrkshp/ScrTools/SelectionSizer/SupportFiles/BP_EUW_SelSizerActorTypes.BP_EUW_SelSizerActorTypes",
+				"/FN1GFS/Blueprints/Blutilities/ToolsWrkshp/ScrTools/SelectionSizer/SupportFiles/BP_EUW_SelSizerActorTypes.BP_EUW_SelSizerActorTypes_C"
+			]
 			}
 	},
 	"ValkyrieEditorSettings": {
@@ -258,7 +262,9 @@
 			"/Script/ChaosSolverEngine.ChaosDebugDrawComponent": { "Visible": true },
 			"/Script/NavigationSystem.NavSystemConfigOverride": { "Visible": true },
 			"/Game/Athena/Aircraft/AthenaAircraft.AthenaAircraft_C": { "Visible": true },
-			"/Game/Athena/SafeZone/SafeZoneIndicator.SafeZoneIndicator_C": { "Visible": true }
+			"/Game/Athena/SafeZone/SafeZoneIndicator.SafeZoneIndicator_C": { "Visible": true },
+			"/Script/FortniteGame.FortInGameMapManagerAthena": { "Visible": true },
+			"/Script/Engine.DataLayerInstancePrivate": { "Visible": true }
 		},
 		"AllowedMenus": {
 			"LevelEditor.MainMenu": {

@@ -146,16 +146,16 @@ Testing<public> := module:
         (/UnrealEngine.com/Temporary/Testing/test_reporter:)Log<native><epic_internal>(Message:string, ?Level:log_level = external {}):void
 
         # Report a test result of `Passed`. `Category` and `SubCategory` are used to calculate test result stats as part of printing the summary.
-        ReportTestPassed<native><epic_internal>(Message:string, ?Category:string = external {}, ?SubCategory:string = external {}):void
+        ReportTestPassed<native><epic_internal>(Message:string, ?Category:string = external {}, ?SubCategory:string = external {}, ?StartTimeSec:float = external {}, ?DurationSec:float = external {}):void
 
         # Report a test result of `Failed`. `Category` and `SubCategory` are used to calculate test result stats as part of printing the summary.
-        ReportTestFailed<native><epic_internal>(Message:string, ?Category:string = external {}, ?SubCategory:string = external {}):void
+        ReportTestFailed<native><epic_internal>(Message:string, ?Category:string = external {}, ?SubCategory:string = external {}, ?StartTimeSec:float = external {}, ?DurationSec:float = external {}):void
 
         # Report a test result of `Skipped`. `Category` and `SubCategory` are used to calculate test result stats as part of printing the summary.
-        ReportTestSkipped<native><epic_internal>(Message:string, ?Category:string = external {}, ?SubCategory:string = external {}):void
+        ReportTestSkipped<native><epic_internal>(Message:string, ?Category:string = external {}, ?SubCategory:string = external {}, ?StartTimeSec:float = external {}, ?DurationSec:float = external {}):void
 
         # Report a test result of `Result`. `Category` and `SubCategory` are used to calculate test result stats as part of printing the summary.
-        ReportTestResult<native><epic_internal>(Message:string, Result:test_result, ?Category:string = external {}, ?SubCategory:string = external {}):void
+        ReportTestResult<native><epic_internal>(Message:string, Result:test_result, ?Category:string = external {}, ?SubCategory:string = external {}, ?StartTimeSec:float = external {}, ?DurationSec:float = external {}):void
 
         # Prints a summary of test results to the log stream.
         PrintSummary<native><epic_internal>(?Level:log_level = external {}):void

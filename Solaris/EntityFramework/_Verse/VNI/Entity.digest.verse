@@ -99,6 +99,15 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
     # Set callbacks to `TickEvents.PrePhysics` and `TickEvents.PostPhysics` to receive per-frame updates before and after physics is updated on your object.
     var<private> TickEvents<protected>:tick_events = external {}
 
+    @experimental
+    # Send a scene event to this component.  Return true to consume the event and halt propogation.
+    SendDown<native><native_callable><public>(SceneEvent:scene_event):logic
+
+@experimental
+# An event which can be sent through the scene graph.
+scene_event<native><public> := interface:
+
+
 # Entities are the base object in the SceneGraph.
 #   * Objects in experiences are constructed of one or more entities.
 #   * Entities are hierarchical. You can query your parent using `GetParent` and add child entities using `AddEntities`.
@@ -156,6 +165,14 @@ entity<native><public> := class<concrete><unique><transacts><castable>:
     #       2. All components have `OnAddedToScene` called (if this entity is in the scene).
     #       3. All components have `OnBeginSimulation` called (if this entity is simulating).
     AddComponents<native><final><public>(Components:[]component):void
+
+    @experimental
+    # Send a scene event to this entity and then up the hierarchy. First, SendDown will be invoked on each component on this entity. Next, SendUp will be invoked on this entity's parent. Consuming the event at any point will halt propogation. Returns true if any participant consumed the event.
+    SendUp<native><native_callable><public>(SceneEvent:scene_event):logic
+
+    @experimental
+    # Send a scene event to this entity and then down the hierarchy. First, SendDown will be invoked on each component on this entity. Next, SendDown will be invoked on each child entity.  Consuming the event at any point will halt propogation. Returns true if any participant consumed the event.
+    SendDown<native><native_callable><public>(SceneEvent:scene_event):logic
 
 # Reference type to editor defined prefab. Only generated digest code should reference this type.
 entity_prefab<native><public> := class<computes><epic_internal>:

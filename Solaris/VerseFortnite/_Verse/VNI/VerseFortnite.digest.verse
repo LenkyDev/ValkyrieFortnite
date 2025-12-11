@@ -422,3 +422,12 @@ Vehicles<public> := module:
 
         # Teleports the `fort_vehicle` to the specified `Position` and `Rotation`.
         TeleportTo<public>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts><decides>:void
+
+        # The current speed of the vehicle in km/hr.
+        var<private> Speed<public>:float
+
+        # The boost state of the vehicle. If the vehicle uses boost, this value will be between 0.0 and `BoostCapacity`. Otherwise, this value will be false.
+        var<private> BoostRemaining<public>:?float
+
+        # The maximum boost capacity of the vehicle. If the vehicle uses boost, this value will be between 1.0 and Inf. Otherwise, this value will be false.
+        var<private> BoostCapacity<public>:?float

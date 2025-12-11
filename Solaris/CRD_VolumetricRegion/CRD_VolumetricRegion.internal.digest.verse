@@ -26,6 +26,12 @@ damage_volume_device<public> := class<concrete><final>(effect_volume_device):
     # Sends the `agent` exiting the volume.
     AgentExitsEvent<public>:listenable(agent) = external {}
 
+    # Signaled when a `creative_prop` enters the device volume.
+    PropEnterEvent<public>:listenable(creative_prop) = external {}
+
+    # Signaled when a `creative_prop` exits the device volume.
+    PropExitEvent<public>:listenable(creative_prop) = external {}
+
     # Updates *Selected Class* to `Agent`'s class.
     UpdateSelectedClass<public>(Agent:agent):void = external {}
 

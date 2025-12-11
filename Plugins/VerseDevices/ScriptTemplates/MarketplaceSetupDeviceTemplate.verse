@@ -6,8 +6,8 @@ using { /Verse.org/Simulation }
 
 # Documentation for In-Island Transactions is found at https://fn.gg/z38
 
-# Setup your products and offers data, in this case that's your Names, Descriptions & Short Descriptions as well as any other data you want to be constant
-ProductInfo<public> := module:
+# Setup your entitlements and offers data, in this case that's your Names, Descriptions & Short Descriptions as well as any other data you want to be constant
+EntitlementInfo<public> := module:
     Potion<public> := module:
         Name<public><localizes>:message = "Potion"
         Description<public><localizes>:message = "Adds +10 health when used. Green so you know its healthy!"
@@ -41,86 +41,86 @@ ProductInfo<public> := module:
         Canada<public>:string = "CA"
         UnitedStatesOfAmerica<public>:string = "US"
 
-Products<public> := module:
-    using {ProductInfo}
+Entitlements<public> := module:
+    using {EntitlementInfo}
 
-    # The base product you should define for ALL your products in your experience
-    feature_example_product<public> := class<abstract><castable>(product){}
+    # The base entitlement you should define for ALL your entitlements in your experience
+    feature_example_entitlement<public> := class<abstract><castable>(entitlement){}
 
 
-    basic_sword<public> := class<concrete>(feature_example_product):
+    basic_sword<public> := class<concrete>(feature_example_entitlement):
         var Name<override>:message = Sword.Name
         var Description<override>:message = Sword.Description
         var ShortDescription<override>:message = Sword.ShortDescription
         var Icon<override>:texture = # This MUST have an Icon from your project defined here as the class is <concrete>
-        # This is a sword, not a product that gives a player a random item
+        # This is a sword, not a entitlement that gives a player a random item
         PaidRandomItem<override>:logic = false
-        # This is a sword, not a product that controls if a player has access to
+        # This is a sword, not a entitlement that controls if a player has access to
         PaidArea<override>:logic = false
         # As a weapon, this is consequential to gameplay
         ConsequentialToGameplay<override>:logic = true
 
-    potion<public> := class<concrete>(feature_example_product):
+    potion<public> := class<concrete>(feature_example_entitlement):
         var Name<override>:message = Potion.Name
         var Description<override>:message = Potion.Description
         var ShortDescription<override>:message = Potion.ShortDescription
         var Icon<override>:texture = # This MUST have an Icon from your project defined here as the class is <concrete>
-        MaxCount<override>:int = 5  # The Maximum number of this product that you want to let a player own at once, only necessary for Consumable products
-        # Consumable indicates that this item is something that the Player uses and when used, your code should call ConsumeProduct so the consumed item is removed
-        # from their products owned in Epic's Marketplace systems
+        MaxCount<override>:int = 5  # The Maximum number of this entitlement that you want to let a player own at once, only necessary for Consumable entitlements
+        # Consumable indicates that this item is something that the Player uses and when used, your code should call ConsumeEntitlement so the consumed item is removed
+        # from their entitlements owned in Epic's Marketplace systems
         Consumable<override>:logic = true
-        # This is a potion, not a product that gives a player a random item
+        # This is a potion, not a entitlement that gives a player a random item
         PaidRandomItem<override>:logic = false
-        # This is a potion, not a product that controls if a player has access to
+        # This is a potion, not a entitlement that controls if a player has access to
         PaidArea<override>:logic = false
         # As a health potion, this is consequential to gameplay
         ConsequentialToGameplay<override>:logic = true
 
     # Potion that references violent content not suitable for minors
-    potion_gib<public> := class<concrete>(feature_example_product):
+    potion_gib<public> := class<concrete>(feature_example_entitlement):
         var Name<override>:message = PotionGib.Name
         var Description<override>:message = PotionGib.Description
         var ShortDescription<override>:message = PotionGib.ShortDescription
         var Icon<override>:texture = # This MUST have an Icon from your project defined here as the class is <concrete>
-        MaxCount<override>:int = 5  # The Maximum number of this product that you want to let a player own at once, only necessary for Consumable products
-        # Consumable indicates that this item is something that the Player uses and when used, your code should call ConsumeProduct so the consumed item is removed
-        # from their products owned in Epic's Marketplace systems
+        MaxCount<override>:int = 5  # The Maximum number of this entitlement that you want to let a player own at once, only necessary for Consumable entitlements
+        # Consumable indicates that this item is something that the Player uses and when used, your code should call ConsumeEntitlement so the consumed item is removed
+        # from their entitlements owned in Epic's Marketplace systems
         Consumable<override>:logic = true
-        # This is a potion, not a product that gives a player a random item
+        # This is a potion, not a entitlement that gives a player a random item
         PaidRandomItem<override>:logic = false
-        # This is a potion, not a product that controls if a player has access to
+        # This is a potion, not a entitlement that controls if a player has access to
         PaidArea<override>:logic = false
         # This potion only affects visuals for player, it has no gameplay consequences
         ConsequentialToGameplay<override>:logic = false
 
     # Health potion for American & Canadian players, boosts health but slows you down
-    potion_thanksgiving<public> := class<concrete>(feature_example_product):
+    potion_thanksgiving<public> := class<concrete>(feature_example_entitlement):
         var Name<override>:message = PotionThanksgiving.Name
         var Description<override>:message = PotionThanksgiving.Description
         var ShortDescription<override>:message = PotionThanksgiving.ShortDescription
         var Icon<override>:texture = # This MUST have an Icon from your project defined here as the class is <concrete>
-        MaxCount<override>:int = 5   # The Maximum number of this product that you want to let a player own at once, only necessary for Consumable products
-        # Consumable indicates that this item is something that the Player uses and when used, your code should call ConsumeProduct so the consumed item is removed
-        # from their products owned in Epic's Marketplace systems
+        MaxCount<override>:int = 5   # The Maximum number of this entitlement that you want to let a player own at once, only necessary for Consumable entitlements
+        # Consumable indicates that this item is something that the Player uses and when used, your code should call ConsumeEntitlement so the consumed item is removed
+        # from their entitlements owned in Epic's Marketplace systems
         Consumable<override>:logic = true
-        # This is a potion, not a product that gives a player a random item
+        # This is a potion, not a entitlement that gives a player a random item
         PaidRandomItem<override>:logic = false
-        # This is a potion, not a product that controls if a player has access to
+        # This is a potion, not a entitlement that controls if a player has access to
         PaidArea<override>:logic = false
         # As a rare and powerful health potion, this is consequential to gameplay
         ConsequentialToGameplay<override>:logic = true
 
 ExampleOffers<public> := module:
-    using {ProductInfo}
+    using {EntitlementInfo}
 
-    basic_sword<public> := class(product_offer):
-        var Name<override>:message                = ProductInfo.Sword.Name
-        var Description<override>:message         = ProductInfo.Sword.Description
-        var ShortDescription<override>:message    = ProductInfo.Sword.ShortDescription
+    basic_sword<public> := class(entitlement_offer):
+        var Name<override>:message                = EntitlementInfo.Sword.Name
+        var Description<override>:message         = EntitlementInfo.Sword.Description
+        var ShortDescription<override>:message    = EntitlementInfo.Sword.ShortDescription
         var Icon<override>:texture                = # Include an Icon here
 
-        # Offers are linked to Products by product type, not an instantiated product object
-        ProductType<override>:concrete_subtype(product) = Products.basic_sword
+        # Offers are linked to entitlements by entitlement type, not an instantiated entitlement object
+        EntitlementType<override>:concrete_subtype(entitlement) = Entitlements.basic_sword
         Price<override>:price_dimension = MakePriceVBucks(500.0) # Prices should be between 50 and 5000 Vbucks and in increments of 50
 
         # Optional overrideable function you can use to inform Epic systems what the minimum age a player needs to be to purchase this offer
@@ -130,25 +130,25 @@ ExampleOffers<public> := module:
 
             return 0
 
-    potion<public> := class(product_offer):
-        var Name<override>:message                = ProductInfo.Potion.Name
-        var Description<override>:message         = ProductInfo.Potion.Description
-        var ShortDescription<override>:message    = ProductInfo.Potion.ShortDescription
+    potion<public> := class(entitlement_offer):
+        var Name<override>:message                = EntitlementInfo.Potion.Name
+        var Description<override>:message         = EntitlementInfo.Potion.Description
+        var ShortDescription<override>:message    = EntitlementInfo.Potion.ShortDescription
         var Icon<override>:texture                = # Include an Icon here
 
-        # Offers are linked to Products by product type, not an instantiated product object
-        ProductType<override>:concrete_subtype(product) = Products.potion
+        # Offers are linked to entitlements by entitlement type, not an instantiated entitlement object
+        EntitlementType<override>:concrete_subtype(entitlement) = Entitlements.potion
         Price<override>:price_dimension = MakePriceVBucks(100.0) # Prices should be between 50 and 5000 (inclusive) Vbucks and in increments of 50
 
     # Potion that references violent content not suitable for minors
-    potion_gib<public> := class(product_offer):
-        var Name<override>:message                = ProductInfo.PotionGib.Name
-        var Description<override>:message         = ProductInfo.PotionGib.Description
-        var ShortDescription<override>:message    = ProductInfo.PotionGib.ShortDescription
+    potion_gib<public> := class(entitlement_offer):
+        var Name<override>:message                = EntitlementInfo.PotionGib.Name
+        var Description<override>:message         = EntitlementInfo.PotionGib.Description
+        var ShortDescription<override>:message    = EntitlementInfo.PotionGib.ShortDescription
         var Icon<override>:texture                = # Include an Icon here
 
-        # Offers are linked to Products by product type, not an instantiated product object
-        ProductType<override>:concrete_subtype(product) = Products.potion
+        # Offers are linked to entitlements by entitlement type, not an instantiated entitlement object
+        EntitlementType<override>:concrete_subtype(entitlement) = Entitlements.potion
         Price<override>:price_dimension = MakePriceVBucks(1000.0) # Prices should be between 50 and 5000 (inclusive) Vbucks and in increments of 50
 
         # Optional overrideable function you can use to inform Epic systems what the minimum age a player needs to be to purchase this offer
@@ -156,14 +156,14 @@ ExampleOffers<public> := module:
             21 # A Player must be 21 or over to purchase this potion
 
     # Only players that live in Canada or the USA should be able to buy a thanksgiving potion
-    potion_thanksgiving<public> := class(product_offer):
-        var Name<override>:message                = ProductInfo.PotionThanksgiving.Name
-        var Description<override>:message         = ProductInfo.PotionThanksgiving.Description
-        var ShortDescription<override>:message    = ProductInfo.PotionThanksgiving.ShortDescription
+    potion_thanksgiving<public> := class(entitlement_offer):
+        var Name<override>:message                = EntitlementInfo.PotionThanksgiving.Name
+        var Description<override>:message         = EntitlementInfo.PotionThanksgiving.Description
+        var ShortDescription<override>:message    = EntitlementInfo.PotionThanksgiving.ShortDescription
         var Icon<override>:texture                = # Include an Icon here
 
-        # Offers are linked to Products by product type, not an instantiated product object
-        ProductType<override>:concrete_subtype(product) = Products.potion
+        # Offers are linked to entitlements by entitlement type, not an instantiated entitlement object
+        EntitlementType<override>:concrete_subtype(entitlement) = Entitlements.potion
         Price<override>:price_dimension = MakePriceVBucks(200.0) # Prices should be between 50 and 5000 (inclusive) Vbucks and in increments of 50
 
         # If the Player is from the USA or Canada, then the minimum age is 0, so everyone can buy. But if they're not, this function will fail
@@ -172,20 +172,20 @@ ExampleOffers<public> := module:
            return 0 # Any player in the USA or CA can purchase this potion
 
     potion_pack<public> := class(bundle_offer) :
-        var Name<override>:message                = ProductInfo.PotionPack.Name
-        var Description<override>:message         = ProductInfo.PotionPack.Description
-        var ShortDescription<override>:message    = ProductInfo.PotionPack.ShortDescription
+        var Name<override>:message                = EntitlementInfo.PotionPack.Name
+        var Description<override>:message         = EntitlementInfo.PotionPack.Description
+        var ShortDescription<override>:message    = EntitlementInfo.PotionPack.ShortDescription
         var Icon<override>:texture                = # Include an Icon here
 
-        # Offers inheriting from bundle_offer offer a mechanism to sell multiple products at once, that can be X products of one type as well as of multiple types
+        # Offers inheriting from bundle_offer offer a mechanism to sell multiple entitlements at once, that can be X entitlements of one type as well as of multiple types
         Offers<override>:[]tuple(offer, int) = array{(potion{}, PotionPack.PotionCount)}
         Price<override>:price_dimension = MakePriceVBucks(400.0) # Prices should be between 50 and 5000 (inclusive) Vbucks and in increments of 50
 
 # An example creative device that can be placed in a level to use as a base for your experience to use the Marketplace APIs
 marketplace_setup_device := class(creative_device):
 
-    # Track which players you're listening for product changes for
-    var ProductChangeSubscription:[player]?cancelable = map{}
+    # Track which players you're listening for entitlement changes for
+    var EntitlementChangeSubscription:[player]?cancelable = map{}
 
     # Track Player Join subscription
     var PlayerJoinSubscription:?cancelable = false
@@ -208,12 +208,12 @@ marketplace_setup_device := class(creative_device):
         if (Subscription := PlayerLeftSubscription?):
             Subscription.Cancel()
 
-    # When a player joins you subscribe to listen to any changes in the products they own.
+    # When a player joins you subscribe to listen to any changes in the entitlements they own.
     OnPlayerJoin(InPlayer:player):void =
-        Subscription := GetProductsChangedEvent(InPlayer, Products.feature_example_product).Subscribe(OnPurchasesChanged)
+        Subscription := GetEntitlementsChangedEvent(InPlayer, Entitlements.feature_example_entitlement).Subscribe(OnPurchasesChanged)
 
-        if (set ProductChangeSubscription[InPlayer] = option{Subscription}):
-            Print("Adding Product Change Subscription player subscription")
+        if (set EntitlementChangeSubscription[InPlayer] = option{Subscription}):
+            Print("Adding entitlement Change Subscription player subscription")
 
         # On players joining you are likely going to want to run some validation checks to make sure that any data you save
         # in your experience matches what the Marketplace API says they own.
@@ -221,30 +221,30 @@ marketplace_setup_device := class(creative_device):
 
     # clean up any Subscriptions made for that player when they leave, also you can do any other cleanup related to the player here if you choose
     OnPlayerLeft(Player:player):void =
-        if (Subscription := ProductChangeSubscription[Player]?):
+        if (Subscription := EntitlementChangeSubscription[Player]?):
             Subscription.Cancel()
 
         var TempMap:[player]?cancelable = map{}
 
-        for (Key -> Value : ProductChangeSubscription, Key <> Player):
+        for (Key -> Value : EntitlementChangeSubscription, Key <> Player):
             set TempMap = ConcatenateMaps(TempMap, map{Key => Value})
 
-        set ProductChangeSubscription = TempMap
+        set EntitlementChangeSubscription = TempMap
 
     # How to respond to the Player's purchases having changed for whatever reason, purchasing something
-    OnPurchasesChanged(Player:player, ProductChanges:[]product_change(product)):void=
+    OnPurchasesChanged(Player:player, EntitlementChanges:[]entitlement_change(entitlement)):void=
         # Adjust Game Values
         # Process refunds
         Print("On Purchases Changed callback called")
 
 
     ValidatePreviousPurchases(Player:player)<suspends>:void=
-        Purchases := GetPurchasedProducts(Player, Products.feature_example_product)
+        Purchases := GetPurchasedEntitlements(Player, Entitlements.feature_example_entitlement)
 
         # Do any checks you need to make sure your saved data matches what Marketplace says the player owns
 
     # Base Implementation of how to present players with an offer to purchase in your experience
-    TryBuyOffer(Player:player, Offer:product_offer)<suspends>:void =
+    TryBuyOffer(Player:player, Offer:entitlement_offer)<suspends>:void =
         Result := BuyOffer(Player, Offer)
 
         if (Result?):
@@ -253,24 +253,24 @@ marketplace_setup_device := class(creative_device):
             Print("Failed to buy the offer")
 
     # Base Implementation of how to flag a consumable in your experience as being consumed
-    TryConsumeProduct(Player:player, Product:concrete_subtype(product), NumberConsuming:int)<suspends>:void =
-        Result := ConsumeProduct(Player, Product, ?Count := NumberConsuming)
+    TryConsumeEntitlement(Player:player, Entitlement:concrete_subtype(entitlement), NumberConsuming:int)<suspends>:void =
+        Result := ConsumeEntitlement(Player, Entitlement, ?Count := NumberConsuming)
 
         if (Result?):
-            Print("Successfully consumed product!")
+            Print("Successfully consumed entitlement!")
             # give the player the effect of consuming the thing/react in your game, you can also respond in OnPurchasesChanged as with purchase if you choose
         else:
-            Print("Failed to consume the product")
+            Print("Failed to consume the entitlement")
 
-    # Base Implementation of how to give players a product in your experience without them purchasing it
-    TryGrantProduct(Player:player, Product:concrete_subtype(product), NumberToGrant:int)<suspends>:void =
-        Result := GrantProduct(Player, Product, ?Count := NumberToGrant)
+    # Base Implementation of how to give players a entitlement in your experience without them purchasing it
+    TryGrantEntitlement(Player:player, Entitlement:concrete_subtype(entitlement), NumberToGrant:int)<suspends>:void =
+        Result := GrantEntitlement(Player, Entitlement, ?Count := NumberToGrant)
 
         if (Result?):
-            Print("Successfully granted a player your product!")
+            Print("Successfully granted a player your entitlement!")
             # give the player the thing/react in your game, you can also respond in OnPurchasesChanged as with purchase if you choose
         else:
-            Print("Failed to grant the product")
+            Print("Failed to grant the entitlement")
 
     # Base Implementation of how to show an array of offers to the player that are available for purchase
     ShowArrayOfOffers(Player:player)<suspends>:void =

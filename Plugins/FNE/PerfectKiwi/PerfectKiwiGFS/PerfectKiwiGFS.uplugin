@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/PerfectKiwi",
-	"FortReleaseVersion": "39.00",
+	"FortReleaseVersion": "39.10",
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
@@ -31,11 +31,6 @@
 		},
 		{
 			"Name": "Akita_Env_Comp",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "CRD_CRD_HeroDevice",
 			"Enabled": true,
 			"Optional": true
 		},
@@ -76,6 +71,11 @@
 		},
 		{
 			"Name": "FNE_Jethro_Weapons",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_SWCosmetics",
 			"Enabled": true,
 			"Optional": true
 		},
@@ -199,16 +199,6 @@
 		},
 		{
 			"Name": "SW_B_Comp",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "SW_C_Assets",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "SW_C_Comp",
 			"Enabled": true,
 			"Optional": true
 		}

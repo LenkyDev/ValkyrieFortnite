@@ -79,7 +79,7 @@ bounded<native><epic_internal> := interface:
 #        OnEndSimulation
 #      OnRemovingFromScene
 # ==============================================================================
-component<native><public> := class<abstract><unique><castable><final_super_base>(diagnosable, scene_event_participant):
+component<native><public> := class<abstract><unique><castable><final_super_base>(diagnosable):
     @allow_self_reference
     @experimental_always_overridden
     # The parent entity of this component.
@@ -146,8 +146,9 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
     # Set callbacks to `TickEvents.PrePhysics` and `TickEvents.PostPhysics` to receive per-frame updates before and after physics is updated on your object.
     var<private> TickEvents<protected>:tick_events = external {}
 
+    @experimental
     # Send a scene event to this component.  Return true to consume the event and halt propogation.
-    SendDown<override><native><native_callable>(SceneEvent:scene_event):logic
+    SendDown<native><native_callable><public>(SceneEvent:scene_event):logic
 
     OnInitializedInternal<native><native_callable><epic_internal>():void
 
@@ -163,14 +164,10 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
 
     GetDiagnostic<override><native>()<reads>:diagnostic
 
+@experimental
 # An event which can be sent through the scene graph.
-scene_event<native><epic_internal> := interface:
+scene_event<native><public> := interface:
 
-
-# Capable of handling scene events.
-scene_event_participant<epic_internal> := interface<epic_internal>:
-    # Handle a scene event. Return true if the scene event is consumed by any participant and that propogation should halt.
-    SendDown<native_callable><epic_internal>(SceneEvent:scene_event):logic
 
 @import_as("/Script/Entity.UBaseEntity")
 base_entity<native><epic_internal> := class<abstract>:
@@ -194,7 +191,7 @@ base_entity<native><epic_internal> := class<abstract>:
 #   that you do not add code directly to the entity class, and instead keep logic in components. Keeping logic and data in
 #   components allows you to restructure your prefabs throughout production of your experience, without needing to massively
 #   refactor your class structure.
-entity<native><public> := class<concrete><unique><transacts><castable>(base_entity, diagnosable, scene_event_participant):
+entity<native><public> := class<concrete><unique><transacts><castable>(base_entity, diagnosable):
     # Returns the parent entity of this entity.
     #   * The parent entity controls the lifetime of its child entities and components. When an entity
     #     is removed from the scene, all its child entities and components will be removed as well.
@@ -236,11 +233,13 @@ entity<native><public> := class<concrete><unique><transacts><castable>(base_enti
 
     GetDiagnostic<override><native>()<reads>:diagnostic
 
+    @experimental
     # Send a scene event to this entity and then up the hierarchy. First, SendDown will be invoked on each component on this entity. Next, SendUp will be invoked on this entity's parent. Consuming the event at any point will halt propogation. Returns true if any participant consumed the event.
-    SendUp<native><native_callable><epic_internal>(SceneEvent:scene_event):logic
+    SendUp<native><native_callable><public>(SceneEvent:scene_event):logic
 
+    @experimental
     # Send a scene event to this entity and then down the hierarchy. First, SendDown will be invoked on each component on this entity. Next, SendDown will be invoked on each child entity.  Consuming the event at any point will halt propogation. Returns true if any participant consumed the event.
-    SendDown<override><native><native_callable>(SceneEvent:scene_event):logic
+    SendDown<native><native_callable><public>(SceneEvent:scene_event):logic
 
 @hide_in_editor
 root_entity<native><epic_internal> := class<concrete><unique><transacts>(entity):

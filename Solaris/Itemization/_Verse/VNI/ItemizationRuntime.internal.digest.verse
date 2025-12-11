@@ -95,6 +95,11 @@ fort_inventory_currencies_component<native><public> := class<final>(fort_invento
 
 
 @experimental
+# `fort_inventory_edit_modecomponent` is the inventory for Fortnite edit mode items.
+fort_inventory_edit_mode_component<native><epic_internal> := class<final>(fort_inventory_component):
+
+
+@experimental
 fort_inventory_rule<native><epic_internal> := class(inventory_rule_interface):
     CanAddItem<native><override>(InventoryComponent:inventory_component, Item:entity, ?AllowMergeItems:logic = external {}):?failure_reason
 
@@ -169,7 +174,7 @@ fort_item_pickup_component<native><final><public> := class<final_super>(componen
 
     var<private> DestroyOnDropFromInventory<native><epic_internal>:logic = external {}
 
-    var<private> DropOnOwnerDeath<native><epic_internal>:logic = external {}
+    var<private> DropOnOwnerElimination<native><epic_internal>:logic = external {}
 
     var<private> DropOnOwnerExit<native><epic_internal>:logic = external {}
 
@@ -191,31 +196,36 @@ FortniteItemRarityLegendaryName<localizes><epic_internal>:message = external {}
 
 FortniteItemRarityMythicName<localizes><epic_internal>:message = external {}
 
-FortniteItemRarityExoticName<localizes><epic_internal>:message = external {}
+FortniteItemRarityTranscendentName<localizes><epic_internal>:message = external {}
+
+FortniteItemRarityUnattainableName<localizes><epic_internal>:message = external {}
 
 # Module import path: /Fortnite.com/Itemization/FortniteItemRarities
 FortniteItemRarities<epic_internal> := module:
     using {/UnrealEngine.com/Itemization}
     @experimental
-    Common<public>:item_rarity = external {}
+    Common<public>:rarity = external {}
 
     @experimental
-    Uncommon<public>:item_rarity = external {}
+    Uncommon<public>:rarity = external {}
 
     @experimental
-    Rare<public>:item_rarity = external {}
+    Rare<public>:rarity = external {}
 
     @experimental
-    Epic<public>:item_rarity = external {}
+    Epic<public>:rarity = external {}
 
     @experimental
-    Legendary<public>:item_rarity = external {}
+    Legendary<public>:rarity = external {}
 
     @experimental
-    Mythic<epic_internal>:item_rarity = external {}
+    Mythic<epic_internal>:rarity = external {}
 
     @experimental
-    Exotic<epic_internal>:item_rarity = external {}
+    Transcendent<epic_internal>:rarity = external {}
+
+    @experimental
+    Unattainable<epic_internal>:rarity = external {}
 
 @experimental
 fort_ammo_item_type_source<native><epic_internal> := class(item_type_source):

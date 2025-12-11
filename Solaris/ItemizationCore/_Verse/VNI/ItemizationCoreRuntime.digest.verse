@@ -13,6 +13,9 @@ add_item_result<native><public> := class<epic_internal>:
 
 @experimental
 remove_item_result<native><public> := class<epic_internal>:
+    # The inventory which the item was removed from.
+    Inventory<native><public>:inventory_component
+
     # Total stack count of items removed as a result of this transaction.
     RemovedAmount<native><public>:int
 
@@ -24,20 +27,16 @@ remove_item_result<native><public> := class<epic_internal>:
 
 @experimental
 equip_item_result<native><public> := class<epic_internal>:
-    Inventory<native><public>:inventory_component
-
     Item<native><public>:entity
 
 @experimental
 unequip_item_result<native><public> := class<epic_internal>:
-    Inventory<native><public>:inventory_component
-
     Item<native><public>:entity
 
 @experimental
 # When adding an item, 'find_inventory_event' is used as a first pass to find the best inventory for an item. It is sent downwards.
 # 'add_item_query_event' can be used to veto inventory choices. It is sent upwards.
-find_inventory_event<native><public> := class<epic_internal>:
+find_inventory_event<native><public> := class<epic_internal>(scene_event):
     ItemComponent<native><public>:item_component
 
     var ChosenInventory<native><public>:?inventory_component = external {}
@@ -51,24 +50,28 @@ add_item_error<native><public> := class<computes>:
 @experimental
 # When adding an item, 'find_inventory_event' is used as a first pass to find the best inventory for an item. It is sent downwards.
 # 'add_item_query_event' can be used to veto inventory choices. It is sent upwards.
-add_item_query_event<native><public> := class<epic_internal>:
+add_item_query_event<native><public> := class<epic_internal>(scene_event):
     Item<native><public>:item_component
 
     Inventory<native><public>:inventory_component
 
-    var Errors<native><public>:[]add_item_error = external {}
+    var<private> Errors<native><public>:[]add_item_error = external {}
+
+    AddError<public>(Error:add_item_error):void = external {}
 
 @experimental
 remove_item_error<native><public> := class<computes>:
 
 
 @experimental
-remove_item_query_event<native><public> := class<epic_internal>:
+remove_item_query_event<native><public> := class<epic_internal>(scene_event):
     Item<native><public>:item_component
 
     Inventory<native><public>:inventory_component
 
-    var Errors<native><public>:[]remove_item_error = external {}
+    var<private> Errors<native><public>:[]remove_item_error = external {}
+
+    AddError<public>(Error:remove_item_error):void = external {}
 
 @experimental
 # Inventory components hold items. An entity with an inventory component can be considered to have an inventory.
@@ -76,19 +79,11 @@ remove_item_query_event<native><public> := class<epic_internal>:
 # They also determine whether an item can be equipped.
 inventory_component<native><public> := class<final_super>(component):
     @available {MinUploadedAtFNVersion := 3800}
-    # Returns a failure reason (such as being full) if the provided item entity cannot be added.
-    CanAddItem<final><native><public>(Item:entity, ?AllowMergeItems:logic = external {})<transacts>:result(false, []add_item_error)
-
-    @available {MinUploadedAtFNVersion := 3800}
     # Adds items to the inventory. Fails if no items could be added.
     AddItem<native><final><public>(Item:entity, ?AllowMergeItems:logic = external {})<transacts>:result(add_item_result, []add_item_error)
 
     @available {MinUploadedAtFNVersion := 3800}
-    # Returns a failure reason if the provided item is not present or cannot be removed.
-    CanRemoveItem<final><native><public>(Item:entity)<transacts>:result(false, []remove_item_error)
-
-    @available {MinUploadedAtFNVersion := 3800}
-    # Removes items from the inventory. Fails if no items could be removed.
+    # Removes an item from this inventory or its descendent inventories. Fails if the item could not be removed.
     RemoveItem<native><final><public>(Item:entity)<transacts>:result(remove_item_result, []remove_item_error)
 
     # Returns a list of items within this inventory only.
@@ -113,19 +108,25 @@ inventory_component<native><public> := class<final_super>(component):
     # Returns a list of all sub-inventories within this inventory and its descendant inventories.
     FindInventories<native><final><public>()<reads>:generator(inventory_component)
 
+    GetEquippedItems<final><native><public>():[]entity
+
     AddItemEvent<native><final><public>:listenable(add_item_result) = external {}
 
     RemoveItemEvent<native><final><public>:listenable(remove_item_result) = external {}
-
-    GetEquippedItems<final><native><public>():[]entity
 
     EquipItemEvent<native><final><public>:listenable(equip_item_result) = external {}
 
     UnequipItemEvent<native><final><public>:listenable(unequip_item_result) = external {}
 
+@available {MinUploadedAtFNVersion := 3800}
 @experimental
-invalid_item_failure_reason<native><public> := class<final><reads>:
+# Returns a failure reason (such as being full) if the provided item entity cannot be added.
+(Inventory:inventory_component).CanAddItem<native><public>(Item:entity, ?AllowMergeItems:logic = external {})<transacts>:result(false, []add_item_error)
 
+@available {MinUploadedAtFNVersion := 3800}
+@experimental
+# Returns a failure reason if the provided item is not present or cannot be removed.
+(Inventory:inventory_component).CanRemoveItem<native><public>(Item:entity)<transacts>:result(false, []remove_item_error)
 
 @experimental
 # item_category is used to classify items.
@@ -167,32 +168,32 @@ equip_item_error<native><public> := class<computes>:
 
 
 @experimental
-equip_item_query_event<native><public> := class:
+equip_item_query_event<native><public> := class(scene_event):
     Item<native><public>:item_component
-
-    Inventory<native><public>:inventory_component
 
     var<private> Errors<native><public>:[]equip_item_error = external {}
 
-    Reject<public>(Error:equip_item_error):void = external {}
+    AddError<public>(Error:equip_item_error):void = external {}
 
 @experimental
 unequip_item_error<native><public> := class<computes>:
 
 
 @experimental
-unequip_item_query_event<native><public> := class:
+unequip_item_query_event<native><public> := class(scene_event):
     Item<native><public>:item_component
-
-    Inventory<native><public>:inventory_component
 
     var<private> Errors<native><public>:[]unequip_item_error = external {}
 
-    Reject<public>(Error:unequip_item_error):void = external {}
+    AddError<public>(Error:unequip_item_error):void = external {}
 
 @experimental
 # Anything using this component should be considered an item. Required to interact with inventories.
 item_component<native><public> := class<final_super>(component):
+    OnBeginSimulation<override>():void = external {}
+
+    OnEndSimulation<override>():void = external {}
+
     # Returns the inventory_component this item currently resides in. Fails if it cannot find a valid parent inventory.
     GetParentInventory<native><final><public>()<reads><decides>:inventory_component
 
@@ -208,18 +209,20 @@ item_component<native><public> := class<final_super>(component):
     @available {MinUploadedAtFNVersion := 3800}
     # Attempts to equip this item within the inventory it is currently in.
     # Fails if not in an inventory or if equip_item_query_event contains any errors after querying.
-    Equip<final><native><public>()<transacts>:result(void, []equip_item_error)
+    Equip<final><native><public>()<transacts>:result(false, []equip_item_error)
 
     @available {MinUploadedAtFNVersion := 3800}
     # Attempts to unequip this item.
     # Fails if not in an inventory, not currently equipped or if unequip_item_query_event contains any errors after querying.
-    Unequip<final><native><public>()<transacts>:result(void, []unequip_item_error)
+    Unequip<final><native><public>()<transacts>:result(false, []unequip_item_error)
 
+    @experimental
     # Takes the specified amount of this item's stack, reducing this item's stack size in the process.
     #  If taking the exact (full) amount, the item itself should be returned instead.
     #  There is no default implementation of Take i.e. by default, it will fail.
     #  If you want to allow this, you must override Take and return an entity containing
-    #  a new item_component. See the online documentation for more details.
+    #  a new item_component. This new entity should not be in any inventory.
+    #  See the online documentation for more details.
     Take<native><public>(Amount:int)<transacts><decides>:entity
 
     @available {MinUploadedAtFNVersion := 3200}
@@ -238,13 +241,13 @@ item_component<native><public> := class<final_super>(component):
     MergeInto<final><native_callable><public>(TargetItem:entity, ?TargetAmount:?int = external {})<transacts><decides>:void = external {}
 
     # Current stack size of this item.
-    var<protected> StackSize<native><public>:int = external {}
+    var<private> StackSize<native><public>:int = external {}
 
     # Sets the stack size of this item.
     SetStackSize<final><native><public>(NewStackSize:int)<transacts>:void
 
     # Maximum stack size for this item.
-    var<protected> MaxStackSize<native><public>:?int = external {}
+    var<private> MaxStackSize<native><public>:?int = external {}
 
     # Sets the maximum stack size for this item. If ClampStackSize is true, StackSize will be clamped to NewMaxStackSize.
     SetMaxStackSize<final><native><public>(NewMaxStackSize:int, ?ClampStackSize:logic = external {})<transacts>:void
@@ -253,11 +256,20 @@ item_component<native><public> := class<final_super>(component):
 
     ChangeMaxStackSizeEvent<native><final><public>:listenable(change_max_stack_size_result) = external {}
 
-    # Removes the item from its inventory and places it in the simulation world. Works on orphaned items i.e. outside the world or any inventory. Fails if the item is already a pickup.
+    # Removes the item from its inventory and places it in the simulation world. Works on orphaned items i.e. outside the world or any inventory.
+    #  Fails if the item is already a pickup. The transform of the item will not be altered except to unparent it from any inventory.
     Drop<native><public>()<transacts><decides>:void
 
     # Fails if this item is already in an inventory, or the inventory cannot accept the item.
     PickUp<native><public>(Inventory:inventory_component)<transacts><decides>:void
+
+@available {MinUploadedAtFNVersion := 3800}
+@experimental
+(Item:item_component).CanEquip<native><public>()<transacts>:result(false, []equip_item_error)
+
+@available {MinUploadedAtFNVersion := 3800}
+@experimental
+(Item:item_component).CanUnequip<native><public>()<transacts>:result(false, []unequip_item_error)
 
 @experimental
 # Item Merge Rules Interface. Implemented by components that want to participate in item mergeability checks.
@@ -275,6 +287,13 @@ item_details_component<native><public> := class<final_super>(component, has_desc
 
     var ShortDescription<override>:message = external {}
 
+    OnBeginSimulation<override>():void = external {}
+
+    OnEndSimulation<override>():void = external {}
+
 @experimental
 # Component that holds the icon for an item.
 item_icon_component<native><public> := class<final_super>(component, has_icon):
+    OnBeginSimulation<override>():void = external {}
+
+    OnEndSimulation<override>():void = external {}
