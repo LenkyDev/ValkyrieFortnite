@@ -45,11 +45,6 @@
 			"Optional": true
 		},
 		{
-			"Name": "CalmSambucusMapContent",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
 			"Name": "DashberryMapContent",
 			"Enabled": true,
 			"Activate": true,
@@ -102,12 +97,6 @@
 		{
 			"Name": "PlaytimeRewards",
 			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "PlunderFlop",
-			"Enabled": true,
-			"Activate": true,
 			"Optional": true
 		},
 		{
