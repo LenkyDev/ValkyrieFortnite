@@ -7,7 +7,7 @@ fort_inventory_component<native><public> := class<epic_internal>(inventory_compo
     # Returns the item in the specified slot, if there is one.
     GetItemInSlot<native><public>(Slot:int)<reads><decides>:item_component
 
-    # Returns the total number of slots in this inventory
+    # Returns the total number of slots in this inventory.
     GetMaxSlots<native><public>()<reads><decides>:int
 
 @experimental
@@ -20,6 +20,9 @@ fort_br_inventory_legacy_quickbar_component<native><epic_internal> := class(fort
 fort_inventory_weapon_hotbar_component<native><public> := class<final>(fort_inventory_component):
     # Returns the item currently selected, if there is one.
     GetEquippedItem<native><epic_internal>()<reads><decides>:item_component
+
+    # Succeeds if the inventory has infinite consumables.
+    HasInfiniteConsumables<native><epic_internal>()<reads><decides>:void
 
     # Sets the total number of slots.
     SetMaxSlots<native><public>(InNumSlots:int):void
@@ -261,6 +264,9 @@ fort_gadget_item_type_source<native><epic_internal> := class(item_type_source):
 
 @experimental
 item_attributes_component<native><final><epic_internal> := class<final_super>(component):
+    # Succeeds if the item entity is a consumable.
+    IsItemConsumable<native><public>()<reads><decides>:void
+
     GetCurrentDurability<native><public>()<reads>:float
 
     SetCurrentDurability<native><public>(NewDurability:float):void

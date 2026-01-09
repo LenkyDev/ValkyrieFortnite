@@ -215,6 +215,8 @@ SessionAttributesBridge<epic_internal> := module:
 
     GetTotalMinigameRounds<native><epic_internal>(Playspace:fort_playspace)<transacts>:int
 
+    GetDesiredBotCount<native><epic_internal>(Playspace:fort_playspace)<transacts>:int
+
     ApplyMatchEarlyLeaveBanhammerToPlayer<native><epic_internal>(Player:player, Details:string):logic
 
     GetUpdatedRankForPlayers<native><epic_internal>(Playspace:fort_playspace, Players:[]player)<suspends>:[]ranked_track_progress

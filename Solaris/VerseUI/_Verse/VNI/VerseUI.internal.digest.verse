@@ -524,6 +524,8 @@ UI<public> := module:
 
         OnPropertyChanged<native><protected>(PropertyName:string)<transacts>:void
 
+        SignalEvent<native_callable><epic_internal>(EventToSignal:signalable(tuple())):void = external {}
+
         GetViewmodel_<native><epic_internal>(viewmodel_type:type, ViewmodelName:[]char)<transacts>:viewmodel_type
 
         SetViewmodel_<native><epic_internal>(viewmodel_type:type, ViewmodelName:[]char, ViewmodelInstance:viewmodel_type)<transacts>:void

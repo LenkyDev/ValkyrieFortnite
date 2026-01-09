@@ -47,6 +47,8 @@ inventory_item_view_model_component<native><epic_internal> := class<final><final
 
     RefreshViewModel<public>(Item:entity):void = external {}
 
+    OnItemCountChanged<protected>(ItemComponent:item_component):void = external {}
+
     OnEquippedChanged<protected>(ItemEquippedChange:change_equipped_result):void = external {}
 
     OnStackSizeChanged<protected>(ItemStackSizeChange:change_stack_size_result):void = external {}
@@ -240,9 +242,6 @@ InventoryItemPropertyInterface<epic_internal> := class<public>(parameterized_pro
     @replicated("RepNotify=___PropertyInterface_On_InputAction_Changed")
     var InputAction<public>:input_action(type) = external {}
 
-    @replicated("RepNotify=___PropertyInterface_On_ShowBoundKey_Changed")
-    var ShowBoundKey<public>:logic = external {}
-
     @replicated("RepNotify=___PropertyInterface_On_CyclePreviousInputAction_Changed")
     var CyclePreviousInputAction<public>:input_action(type) = external {}
 
@@ -285,8 +284,6 @@ InventoryItemPropertyInterface<epic_internal> := class<public>(parameterized_pro
     ___PropertyInterface_On_ItemTypeName_Changed<epic_internal>():void = external {}
 
     ___PropertyInterface_On_InputAction_Changed<epic_internal>():void = external {}
-
-    ___PropertyInterface_On_ShowBoundKey_Changed<epic_internal>():void = external {}
 
     ___PropertyInterface_On_CyclePreviousInputAction_Changed<epic_internal>():void = external {}
 

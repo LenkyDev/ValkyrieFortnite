@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/MeltedIron",
-	"FortReleaseVersion": "39.10",
+	"FortReleaseVersion": "39.20",
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {

@@ -31,7 +31,7 @@ add_item_result<native><public> := class<epic_internal>:
     # Items that were newly added to this inventory as a result of the transaction.
     AddedItems<native><public>:[]entity
 
-    # Items whose stack size changed as a result of the transaction.
+    # Items whose stack size changed as a result of the transaction, and the previous stack size value.
     ModifiedItems<native><public>:[]tuple(entity, int)
 
 @experimental
@@ -107,6 +107,10 @@ remove_item_query_event<native><public> := class<epic_internal>(scene_event):
     AddError<public>(Error:remove_item_error):void = external {}
 
 @experimental
+inventory_initialization_component<native><epic_internal> := class<final_super>(component):
+
+
+@experimental
 # Inventory components hold items. An entity with an inventory component can be considered to have an inventory.
 # The inventory component controls which items can enter or exit.
 # They also determine whether an item can be equipped.
@@ -116,8 +120,12 @@ inventory_component<native><public> := class<final_super>(component):
     OnUninitializingInternal<native><override>():void
 
     @available {MinUploadedAtFNVersion := 3800}
-    # Adds items to the inventory. Fails if no items could be added.
+    # Adds the item to this inventory only, ignoring sub-inventories. Fails if no items could be added.
     AddItem<native><final><public>(Item:entity, ?AllowMergeItems:logic = external {})<transacts>:result(add_item_result, []add_item_error)
+
+    @available {MinUploadedAtFNVersion := 3800}
+    # Adds the item to this inventory, including sub-inventories. Fails if no items could be added.
+    AddItemDistribute<native><final><public>(Item:entity, ?AllowMergeItems:logic = external {})<transacts>:result(add_item_result, []add_item_error)
 
     @available {MinUploadedAtFNVersion := 3800}
     # Removes an item from this inventory or its descendent inventories. Fails if the item could not be removed.
@@ -208,16 +216,19 @@ inventory_component<native><public> := class<final_super>(component):
 
     SlotBindingList<native><epic_internal>:[]tuple(input_action(type), int) = external {}
 
-    ShowSlotBindings<native><epic_internal>:logic = external {}
-
     EquipItemEvent<native><final><public>:listenable(equip_item_result) = external {}
 
     UnequipItemEvent<native><final><public>:listenable(unequip_item_result) = external {}
 
 @available {MinUploadedAtFNVersion := 3800}
 @experimental
-# Returns a failure reason (such as being full) if the provided item entity cannot be added.
+# Returns a failure reason (such as being full) if the provided item entity cannot be added. Does not consider sub-inventories.
 (Inventory:inventory_component).CanAddItem<native><public>(Item:entity, ?AllowMergeItems:logic = external {})<transacts>:result(false, []add_item_error)
+
+@available {MinUploadedAtFNVersion := 3800}
+@experimental
+# Returns a failure reason (such as being full) if the provided item entity cannot be added. AddItemDistribute allows the item to enter sub-inventories.
+(Inventory:inventory_component).CanAddItemDistribute<native><public>(Item:entity, ?AllowMergeItems:logic = external {})<transacts>:result(false, []add_item_error)
 
 @available {MinUploadedAtFNVersion := 3800}
 @experimental
@@ -524,12 +535,14 @@ item_component<native><public> := class<final_super>(component):
     @available {MinUploadedAtFNVersion := 3800}
     MakeUnequipResultInternal<final><native_callable><epic_internal>(IsSuccess:logic):result(comparable, []unequip_item_error) = external {}
 
+    @editable_number(int) {MinValue := option {1}}
     # Current stack size of this item.
     var<private> StackSize<native><public>:int = external {}
 
     # Sets the stack size of this item.
     SetStackSize<final><native><public>(NewStackSize:int)<transacts>:void
 
+    @editable
     # Maximum stack size for this item.
     var<private> MaxStackSize<native><public>:?int = external {}
 

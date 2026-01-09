@@ -518,6 +518,10 @@ Devices<public> := module:
     device_event_agent_float<native><epic_internal> := class(device_event(tuple(agent, float))):
 
 
+    # Implementation of `device_event(:type)` with a `tuple(agent, string)` payload.
+    device_event_agent_string<native><epic_internal> := class(device_event(tuple(agent, string))):
+
+
     # Implementation of `device_event(:type)` with a `tuple(?agent, int)` payload.
     device_event_optional_agent_int<native><epic_internal> := class(device_event(tuple(?agent, int))):
 

@@ -94,6 +94,7 @@
 			"/Script/Engine.VirtualTextureBuilder": {},
 			"/Script/Engine.VirtualTexture2D": {},
 			"/Script/AudioGameplayVolume.ReverbVolumeComponent": { "Visible": true },
+			"/Script/AmbientAudio.AmbientAudioParameterActor": { "Visible": true },
 			"/Script/Engine.ModelComponent": { "Visible": true },
 			"/Script/Foliage.ProceduralFoliageBlockingVolume": { "Visible": true },
 			"/Script/Engine.ForceFeedbackComponent": { "Visible": true },
@@ -264,7 +265,11 @@
 			"/Game/Athena/Aircraft/AthenaAircraft.AthenaAircraft_C": { "Visible": true },
 			"/Game/Athena/SafeZone/SafeZoneIndicator.SafeZoneIndicator_C": { "Visible": true },
 			"/Script/FortniteGame.FortInGameMapManagerAthena": { "Visible": true },
-			"/Script/Engine.DataLayerInstancePrivate": { "Visible": true }
+			"/Script/Engine.DataLayerInstancePrivate": { "Visible": true },
+			"/Script/LevelSequence.LevelSequenceBurnInOptions": { "Visible": true },
+			"/Script/LevelSequence.LevelSequenceActor": { "Visible": true }, 
+			"/Script/LevelSequence.DefaultLevelSequenceInstanceData": { "Visible": true },
+			"/Script/StateDrivenActorRuntime.WorldInstancedStateTreeComponent": { "Visible": true }
 		},
 		"AllowedMenus": {
 			"LevelEditor.MainMenu": {
@@ -493,6 +498,10 @@
 			{
 				"Type": "/Script/Engine.BrushComponent",
 				"AllowList": [ "bAlwaysCreatePhysicsState" ]
+			},
+			{
+				"Type": "/Script/Engine.PrimitiveComponent",
+				"AllowList": [ "bTreatAsBackgroundForOcclusion"]
 			}
 		],
 		"-": [
@@ -507,6 +516,14 @@
 			{
 				"Type": "/Script/ValkyrieEditor.ValkyrieAutoLocalizationSettings",
 				"DenyList": [ "bAutoBuildLocalization" ]
+			}
+		]
+	},
+	"PropertyEditorEnumPermissionList": {
+		"+": [
+			{
+				"Type": "/Script/CreativeCompanionRuntime.ESidekickVisibilityUserOptionValues",
+				"AllowList": ["Owner", "Everyone", "Squad"]
 			}
 		]
 	}

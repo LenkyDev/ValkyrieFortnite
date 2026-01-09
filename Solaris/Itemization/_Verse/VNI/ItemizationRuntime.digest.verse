@@ -6,7 +6,7 @@ fort_inventory_component<native><public> := class<epic_internal>(inventory_compo
     # Returns the item in the specified slot, if there is one.
     GetItemInSlot<native><public>(Slot:int)<reads><decides>:item_component
 
-    # Returns the total number of slots in this inventory
+    # Returns the total number of slots in this inventory.
     GetMaxSlots<native><public>()<reads><decides>:int
 
 @experimental
