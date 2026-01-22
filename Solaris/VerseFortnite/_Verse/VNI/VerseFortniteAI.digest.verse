@@ -155,6 +155,7 @@ AI<public> := module:
     movement_type<native><public> := enum<open>:
         (/Fortnite.com/AI/movement_type:)Walking
         (/Fortnite.com/AI/movement_type:)Running
+        Sprinting
 
     # Module import path: /Fortnite.com/AI/movement_types
     movement_types<public> := module:

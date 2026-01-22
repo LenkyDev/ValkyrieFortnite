@@ -1,9 +1,9 @@
 using {/Verse.org/Colors}
 using {/Verse.org/Presentation}
+using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 using {/UnrealEngine.com/Abilities}
 using {/Verse.org/Simulation}
 using {/Verse.org/Assets}
-using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 using {/Verse.org/Native}
 using {/Verse.org/SceneGraph}
 @experimental
@@ -191,19 +191,12 @@ inventory_component<native><public> := class<final_super>(component):
     @available {MinUploadedAtFNVersion := 3800}
     MakeRemoveItemResultInternal<final><native_callable><epic_internal>(IsSuccess:logic, RemoveItemResult:remove_item_result):result(remove_item_result, []remove_item_error) = external {}
 
-    @replicated("")
     var<private> InventoryName<native><epic_internal>:string = external {}
 
-    @replicated("")
     var<private> InventoryDisplayName<native><epic_internal>:message = external {}
 
-    @replicated("")
     var<private> InventoryDescription<native><epic_internal>:message = external {}
 
-    @replicated("RepNotify")
-    var<private> TotalSlots<native><epic_internal>:int = external {}
-
-    @replicated("")
     var<private> PickupPriority<native><epic_internal>:int = external {}
 
     GetInputAction<epic_internal>(ItemSlot:int):?input_action(type) = external {}

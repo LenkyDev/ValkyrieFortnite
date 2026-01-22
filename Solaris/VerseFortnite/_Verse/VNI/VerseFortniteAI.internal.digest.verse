@@ -157,6 +157,9 @@ AI<public> := module:
         # Trigger a jump.
         Jump<native><public>()<suspends>:result(void, ai_action_error_type)
 
+        # Trigger a slide.
+        Slide<native><epic_internal>()<suspends>:result(void, ai_action_error_type)
+
         # Change movement speed to sprint and switch to tactical sprint when energy is full.
         TacticalSprint<native><epic_internal>()<suspends>:result(void, ai_action_error_type)
 
@@ -308,6 +311,7 @@ AI<public> := module:
     movement_type<native><public> := enum<open>:
         (/Fortnite.com/AI/movement_type:)Walking
         (/Fortnite.com/AI/movement_type:)Running
+        Sprinting
 
     # Module import path: /Fortnite.com/AI/movement_types
     movement_types<public> := module:

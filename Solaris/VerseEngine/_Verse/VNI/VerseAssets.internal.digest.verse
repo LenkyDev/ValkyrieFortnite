@@ -3,6 +3,12 @@ Assets<public> := module:
     using {/Verse.org/Simulation}
     using {/Verse.org/Native}
     using {/Verse.org/Restricted}
+    @attribscope_class
+    @attribscope_struct
+    @attribscope_data
+    asset_locus<epic_internal> := class<computes>(attribute):
+        Whence<epic_internal>:string
+
     # Create an asset reference to the given internal asset path
     MakeAsset<native><epic_internal>(asset_type:subtype(asset), AssetPath:string)<converges>:asset_type
 

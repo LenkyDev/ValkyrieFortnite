@@ -17,3 +17,7 @@ ItemizationTests<epic_internal> := module:
     @experimental
     closed_inventory_component<native><epic_internal> := class(inventory_component):
         SendDown<override>(SceneEvent:scene_event):logic = external {}
+
+    @experimental
+    one_way_inventory_component<native><epic_internal> := class(inventory_component):
+        SendDown<override>(Event:scene_event):logic = external {}

@@ -1,0 +1,114 @@
+{
+	"FileVersion": 3,
+	"CanContainContent": true,
+	"ExplicitlyLoaded": true,
+	"EnabledByDefault": false,
+	"BuiltInInitialFeatureState": "Installed",
+	"BuiltInAutoRegister": true,
+	"BuiltInAutoLoad": false,
+	"BuiltInAutoActivate": false,
+	"FortReleaseVersion": "39.30",
+	"EditorCustomVirtualPath": "FNE/Pimlico",
+	"IsGameFeatureSet": true,
+	"Version": 0,
+	"VersionName": "",
+	"FriendlyName": "Pimlico GFS",
+	"Description": "",
+	"Category": "",
+	"CreatedBy": "",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"NoCode": true,
+	"NoGameFeatureContent": true,
+	"RequiredEntitlements": {
+		"Edit": {
+			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad"
+		}
+	},
+	"Plugins": [
+		{
+			"Name": "FortniteCore",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "PimlicoAbilities",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "PimlicoAccolades",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "PimlicoAI",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "PimlicoAudioBase",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "PimlicoFrontend",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "PimlicoGameplayAssets",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "PimlicoCharacter",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "PimlicoCosmetics",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "PimlicoEnvironment",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "PimlicoManagers",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "PimlicoQuests",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "PimlicoUEFNTools",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "PimlicoVerse",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		}
+	]
+}

@@ -810,13 +810,6 @@ rigid_body_component<native><epic_internal> := class<final><final_super><epic_in
     # The max angular velocity to use for component.
     var MaxAngularVelocityInRadians<public>:float = external {}
 
-metasound_trigger<native><epic_internal> := class<epic_internal>:
-    Trigger<native><epic_internal>():void
-
-    TriggerIdentifier<native><epic_internal>:string = external {}
-
-    SoundComponentTarget<native><epic_internal>:?sound_component = external {}
-
 sound_component<native><public> := class<abstract><final_super><epic_internal>(component, property_changed_interface, enableable):
     OnInitializedInternal<native><override>():void
 

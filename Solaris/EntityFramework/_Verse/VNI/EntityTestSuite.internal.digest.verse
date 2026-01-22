@@ -49,6 +49,10 @@ EntityTestSuite<public> := module:
         OnSimulate<override>()<suspends>:void = external {}
 
     @hide_in_editor
+    test_component_never_replicate_condition<native><epic_internal> := class<final_super>(component):
+
+
+    @hide_in_editor
     test_component<native><epic_internal> := class<final_super>(component):
 
 

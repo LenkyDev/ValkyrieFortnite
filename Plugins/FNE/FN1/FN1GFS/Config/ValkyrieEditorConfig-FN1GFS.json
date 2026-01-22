@@ -352,8 +352,9 @@
 						"/Game/ArtTools/Environment/EnvImpQuickSettings/EUW_EnvImpQuckSettings.EUW_EnvImpQuckSettings_C_ActiveTab",
 						"/Game/Environments/Blueprints/OS_Review/EUW_OSReview_Setup.EUW_OSReview_Setup_C_ActiveTab",
 						"/Game/Blueprints/Blutilities/ForLDs/WorldPartitionTools/WP_OverlappingActors/WP_OverlappingActors_EUW.WP_OverlappingActors_EUW_C_ActiveTab",
-						"/FN1GFS/Blueprints/Blutilities/ToolsWrkshp/ScrTools/SelectionSizer/SupportFiles/BP_EUW_SelSizerActorTypes.BP_EUW_SelSizerActorTypes_C_ActiveTab"
-						]
+						"/FN1GFS/Blueprints/Blutilities/ToolsWrkshp/ScrTools/SelectionSizer/SupportFiles/BP_EUW_SelSizerActorTypes.BP_EUW_SelSizerActorTypes_C_ActiveTab",
+						"/Game/TechArt/LightingTools/EUW_LightActorUtilities.EUW_LightActorUtilities_C_ActiveTab"
+					]
 				}
 			}
 		},

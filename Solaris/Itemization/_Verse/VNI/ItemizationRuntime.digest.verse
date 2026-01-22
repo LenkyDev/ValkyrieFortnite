@@ -1,4 +1,3 @@
-using {/Verse.org/SceneGraph}
 using {/UnrealEngine.com/Itemization}
 @experimental
 # `fort_inventory_component` is a shared class for all Fortnite inventories, with appropriate default UI and behavior.
@@ -67,11 +66,3 @@ FortniteItemCategories<public> := module:
 
     @experimental
     Ammo<public>:item_category = external {}
-
-@experimental
-fort_item_pickup_component<native><final><public> := class<final_super>(component):
-    var<private> PickupLifetime<native><public>:float = external {}
-
-    OnBeginSimulation<override>():void = external {}
-
-    OnEndSimulation<override>():void = external {}

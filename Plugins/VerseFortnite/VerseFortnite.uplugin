@@ -79,6 +79,10 @@
 			"Enabled": true
 		},
 		{
+			"Name": "OnlineFrameworkMatchmaking",
+			"Enabled": true
+		},
+		{
 			"Name": "OnlineSubsystem",
 			"Enabled": true
 		},

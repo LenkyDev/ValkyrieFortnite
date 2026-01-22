@@ -39,6 +39,7 @@ VerseFramework<public> := module:
     using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/UnrealEngine.com/Temporary/Diagnostics}
     using {/UnrealEngine.com/Temporary/Testing}
+    using {/UnrealEngine.com/Itemization}
     using {/Fortnite.com/Marketplace}
     using {/Verse.org/SceneGraph}
     using {/Fortnite.com/Vehicles}
@@ -197,6 +198,92 @@ VerseFramework<public> := module:
         Subscribe<public>(Event:listenable(tuple(player, []entitlement_change(entitlement)))):void = external {}
 
         HandleEvent<public>(InResult:tuple(player, []entitlement_change(entitlement))):void = external {}
+
+    @experimental
+    test_event_add_item_result_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgAddResult<public>:?add_item_result = external {}
+
+        var ArgAddedItems<public>:?[]entity = external {}
+
+        var ArgModifiedItems<public>:?[]tuple(entity, int) = external {}
+
+        Subscribe<public>(Event:listenable(add_item_result)):void = external {}
+
+    @experimental
+    test_event_remove_item_result_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgRemoveResult<public>:?remove_item_result = external {}
+
+        var ArgInventory<public>:?inventory_component = external {}
+
+        var ArgRemovedAmount<public>:int = external {}
+
+        var ArgRemovedItems<public>:?[]entity = external {}
+
+        var ArgModifiedItem<public>:?tuple(entity, int) = external {}
+
+        Subscribe<public>(Event:listenable(remove_item_result)):void = external {}
+
+    @experimental
+    test_event_equip_item_result_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgEquipResult<public>:?equip_item_result = external {}
+
+        var ArgItem<public>:?entity = external {}
+
+        Subscribe<public>(Event:listenable(equip_item_result)):void = external {}
+
+    @experimental
+    test_event_unequip_item_result_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgUnEquipResult<public>:?unequip_item_result = external {}
+
+        var ArgItem<public>:?entity = external {}
+
+        Subscribe<public>(Event:listenable(unequip_item_result)):void = external {}
+
+    @experimental
+    test_event_change_inventory_result_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgChangeInvResult<public>:?change_inventory_result = external {}
+
+        var ArgItemComponent<public>:?item_component = external {}
+
+        var ArgPreviousInventory<public>:?inventory_component = external {}
+
+        var ArgCurrentInventory<public>:?inventory_component = external {}
+
+        Subscribe<public>(Event:listenable(change_inventory_result)):void = external {}
+
+    @experimental
+    test_event_change_equipped_result_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgChangeEquipResult<public>:?change_equipped_result = external {}
+
+        var ArgItemComponent<public>:?item_component = external {}
+
+        var ArgIsItemEquipped<public>:logic = external {}
+
+        Subscribe<public>(Event:listenable(change_equipped_result)):void = external {}
+
+    @experimental
+    test_event_change_stack_size_result_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgChangeStackResult<public>:?change_stack_size_result = external {}
+
+        var ArgItemComponent<public>:?item_component = external {}
+
+        var ArgPreviousStackSize<public>:int = external {}
+
+        var ArgCurrentStackSize<public>:int = external {}
+
+        Subscribe<public>(Event:listenable(change_stack_size_result)):void = external {}
+
+    @experimental
+    test_event_change_max_stack_size_result_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgChangeMaxStackResult<public>:?change_max_stack_size_result = external {}
+
+        var ArgItemComponent<public>:?item_component = external {}
+
+        var ArgPreviousStackSize<public>:?int = external {}
+
+        var ArgCurrentStackSize<public>:?int = external {}
+
+        Subscribe<public>(Event:listenable(change_max_stack_size_result)):void = external {}
 
     node_status<epic_internal> := enum<open>:
         Pending

@@ -188,12 +188,6 @@
 			"/LimeAtomAssets/Processors/LimeMaterialFactory.LimeMaterialFactory_C": {
 				"Visible": true
 			},
-			"/AtomFN/Editor/Processors/BuildingStaticMeshActorProcessor.BuildingStaticMeshActorProcessor_C": {
-				"Visible": true
-			},
-			"/AtomFN/Editor/Processors/BuildingPropActorProcessor.BuildingPropActorProcessor_C": {
-				"Visible": true
-			},
 			"/AtomFN/Editor/Processors/BuildingPropNonDestructibleProcessor.BuildingPropNonDestructibleProcessor_C": {
 				"Visible": true
 			},

@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/FN1",
-	"FortReleaseVersion": "39.20",
+	"FortReleaseVersion": "39.30",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"Version": 0,
@@ -85,12 +85,27 @@
 			"Optional": true
 		},
 		{
+			"Name": "ForbiddenFruit",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "Hera",
 			"Enabled": true,
 			"Optional": true
 		},
 		{
 			"Name": "ImmunityCarriage",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "LACity_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "OXR_Assets",
 			"Enabled": true,
 			"Optional": true
 		},
@@ -111,7 +126,17 @@
 			"Optional": true
 		},
 		{
+			"Name": "POIBanner",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "PulseLancer_SmashMap",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "ReloadLandscapeShared",
 			"Enabled": true,
 			"Optional": true
 		},
@@ -146,29 +171,14 @@
 			"Optional": true
 		},
 		{
+			"Name": "TimberStakeMapContent",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "VendingMachine",
 			"Enabled": true,
 			"Activate": true,
-			"Optional": true
-		},
-		{
-			"Name": "POIBanner",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "LACity_Assets",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "OXR_Assets",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "TimberStakeMapContent",
-			"Enabled": true,
 			"Optional": true
 		}
 	]
