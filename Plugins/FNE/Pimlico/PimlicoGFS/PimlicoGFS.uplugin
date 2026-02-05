@@ -7,7 +7,7 @@
 	"BuiltInAutoRegister": true,
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
-	"FortReleaseVersion": "39.30",
+	"FortReleaseVersion": "39.40",
 	"EditorCustomVirtualPath": "FNE/Pimlico",
 	"IsGameFeatureSet": true,
 	"Version": 0,
@@ -106,6 +106,12 @@
 		},
 		{
 			"Name": "PimlicoVerse",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "PimlicoPawnOverride",
 			"Enabled": true,
 			"Activate": true,
 			"Optional": true

@@ -221,6 +221,12 @@ capture_area_device<public> := class<concrete><final>(creative_device_base):
     # Clears control of this device for all teams.
     Neutralize<public>():void = external {}
 
+    # The current capture progress of the capture area.
+    # As a team captures the area, the value will increase from 0.0 to 1.0, with 1.0 representing a fully captured area.
+    # If the device supports neutralization or decay, the value will drop back towards 0.0 as it returns to neutral.
+    # If the device is disabled, the capture progress is set to 0.0.
+    var<private> CaptureProgress<public>:float = external {}
+
     # Activates the objective pulse for this device.
     ActivateObjectivePulse<public>():void = external {}
 

@@ -174,7 +174,7 @@
 		"40D2FBA74B484CE5B0385A75884E499E":
 		{
 			"FriendlyName": "Water",
-			"Version": 8
+			"Version": 9
 		},
 		"4288211B454816C61A7667B2507A2A00":
 		{
@@ -26062,11 +26062,11 @@
 			"/Game/Environments/Asteria/Sets/Quarry/Quarry_Scaffolding_A/Blueprints/Asteria_Quarry_ScaffoldingStairBalcony_A.Asteria_Quarry_ScaffoldingStairBalcony_A_C",
 			"/Game/Environments/Asteria/Sets/Quarry/Quarry_Scaffolding_A/Blueprints/Asteria_Quarry_ScaffoldingStairF_A.Asteria_Quarry_ScaffoldingStairF_A_C",
 			"/Game/Environments/Asteria/Sets/Quarry/Quarry_Scaffolding_A/Blueprints/Asteria_Quarry_ScaffoldingWall_B.Asteria_Quarry_ScaffoldingWall_B_C",
-			"/Game/Environments/Asteria/Sets/SlurpRoom/Blueprints/Asteria_SlurpRoom_Doorway_A.Asteria_SlurpRoom_Doorway_A_C",
+			"/Game/Environments/Asteria/Sets/SlurpRoom/BluePrints/Asteria_SlurpRoom_Doorway_A.Asteria_SlurpRoom_Doorway_A_C",
 			"/Game/Environments/Asteria/Sets/SlurpRoom/BluePrints/Asteria_SlurpRoom_StringLights_A.Asteria_SlurpRoom_StringLights_A_C",
 			"/Game/Environments/Asteria/Sets/SlurpRoom/BluePrints/Asteria_SlurpRoom_StringLights_B.Asteria_SlurpRoom_StringLights_B_C",
 			"/Game/Environments/Asteria/Sets/SlurpRoom/BluePrints/Asteria_SlurpRoom_Wall_A.Asteria_SlurpRoom_Wall_A_C",
-			"/Game/Environments/Asteria/Sets/SlurpRoom/Blueprints/Asteria_SlurpRoom_Window_A.Asteria_SlurpRoom_Window_A_C",
+			"/Game/Environments/Asteria/Sets/SlurpRoom/BluePrints/Asteria_SlurpRoom_Window_A.Asteria_SlurpRoom_Window_A_C",
 			"/Game/Environments/Asteria/Sets/SlurpRoom/Blueprints/Asteria_SlurpRoom_Window_B.Asteria_SlurpRoom_Window_B_C",
 			"/Game/Environments/Asteria/Sets/SlurpRoom/BluePrints/Asteria_StringLights_02.Asteria_StringLights_02_C",
 			"/Game/Environments/Asteria/Sets/TattooShop/BluePrints/Asteria_TattooShop_Wall_A.Asteria_TattooShop_Wall_A_C",

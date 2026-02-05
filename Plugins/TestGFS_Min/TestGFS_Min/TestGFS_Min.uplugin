@@ -9,7 +9,7 @@
 	"BuiltInAutoRegister": true,
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
-	"FortReleaseVersion": "39.30",
+	"FortReleaseVersion": "39.40",
 	"IsGameFeatureSet": true,
 	"Version": 0,
 	"VersionName": "",

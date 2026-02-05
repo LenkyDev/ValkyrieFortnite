@@ -50,9 +50,49 @@ AnalyticsHelper<epic_internal> := module:
 
 # Module import path: /Fortnite.com/Framework/Matchmaking
 Matchmaking<epic_internal> := module:
+    using {/Fortnite.com/Playspaces}
+    using {/Verse.org/SceneGraph}
     using {/Verse.org/Simulation}
     # A player agent method to play again.
     (InAgent:agent).PlayAgain<native><epic_internal>():void
 
     # A player agent method indicating ready for matchmaking (used w/ PlayAgain).
     (InAgent:agent).SetReadyForMatchmaking<native><epic_internal>(IsReady:logic):void
+
+    # Get the desired number of bots to spawn.
+    (InSimulationEntity:simulation_entity).GetMatchmakingDesiredBotCount<native><epic_internal>():int
+
+    # The struct of rank progress data for a player.
+    ranked_progress<native><epic_internal> := struct<concrete>:
+        GameId<native><public>:string = external {}
+
+        TrackGUID<native><public>:string = external {}
+
+        AccountId<native><public>:string = external {}
+
+        HabaneroType<native><public>:string = external {}
+
+        HabaneroLastUpdatedTime<native><public>:int = external {}
+
+        LastQueriedTime<native><public>:float = external {}
+
+        CurrentHabanero<native><public>:int = external {}
+
+        HighestHabanero<native><public>:int = external {}
+
+        CurrentPlayerPosition<native><public>:int = external {}
+
+        ProgressTowardsNextHabanero<native><public>:float = external {}
+
+        bProgressIsStale<native><public>:logic = external {}
+
+        bSkippedRequestDueToTTL<native><public>:logic = external {}
+
+    # Method to check if the match being played is ranked or not.
+    IsMatchRanked<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void
+
+    # Method to return a players rank progress.
+    GetRankProgressForPlayers<native><epic_internal>(Playspace:fort_playspace, Players:[]player)<suspends>:[]ranked_progress
+
+    # Method to call to apply an early match ban penalty to a player.
+    ApplyLeaveEarlyBanhammerPenaltyToPlayer<native><epic_internal>(Player:player, Details:string):logic

@@ -38,8 +38,11 @@
 	},
 	"ValkyrieEditorSettings": {
 		"AllowedAssetTypes": {
+			"/Script/AudioGameplayVolume.AGVConditionProxy": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
+			"/Script/AudioGameplayVolume.AttenuationVolumeComponent": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/AudioModulation.SoundControlBus": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/AudioModulation.SoundControlBusMix": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
+			"/Script/AudioShapes.AudioShapeBoxComponent": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/Blutility.EditorUtilityWidget": { "Rules": [ "View" ] },
 			"/Script/Blutility.EditorUtilityWidgetBlueprint": { "Rules": [ "View" ] },
 			"/Script/Engine.RuntimeVirtualTexture": { "Rules": [ "View", "Create", "ModuleAPI" ] },
@@ -59,8 +62,10 @@
 			"/Script/Engine.CurveLinearColor": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/Engine.DataTable": { "Rules": [ "View", "Create" ] },
 			"/Script/Engine.Font": { "Rules": [ "View" ] },
+			"/Script/Engine.MaterialExpressionConvert": { "Rules": [ "View", "Create" ] },
 			"/Script/Engine.MaterialFunction": { "Rules": [ "View", "Create" ] },
 			"/Script/Engine.SoundConcurrency": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
+			"/Script/Engine.SoundSubmix": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/Engine.World": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/Engine.Texture2DArray": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/CoreUObject.ObjectRedirector": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
@@ -68,7 +73,8 @@
 			"/Script/LevelSequence.LevelSequence": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/Landscape.LandscapeLayerInfoObject": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/Landscape.LandscapeGrassType": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
-			"/Script/Engine.DataLayerAsset": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] }
+			"/Script/Engine.DataLayerAsset": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
+			"/Script/Synthesis.SubmixEffectStereoToQuadPreset": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] }
 		},
 		"AllowedClasses": {
 			"/Script/AmbientAudio.AmbientAudioComponent": { "Visible": true },
@@ -267,7 +273,7 @@
 			"/Script/FortniteGame.FortInGameMapManagerAthena": { "Visible": true },
 			"/Script/Engine.DataLayerInstancePrivate": { "Visible": true },
 			"/Script/LevelSequence.LevelSequenceBurnInOptions": { "Visible": true },
-			"/Script/LevelSequence.LevelSequenceActor": { "Visible": true }, 
+			"/Script/LevelSequence.LevelSequenceActor": { "Visible": true },
 			"/Script/LevelSequence.DefaultLevelSequenceInstanceData": { "Visible": true },
 			"/Script/StateDrivenActorRuntime.WorldInstancedStateTreeComponent": { "Visible": true }
 		},
@@ -307,7 +313,7 @@
 				"AllowList": {
 					"+": [ "Bounds", "InstancedFoliage", "InstancedGrass", "LightRadius" , "TextRender", "Selection", "Splines", "Volumes"]
 				}
-			}, 
+			},
 			"LevelEditor.LevelEditorToolBar.AddQuickMenu.Volumes": {
 				"AllowList": {
 					"+": [ "RuntimeVirtualTextureVolume" ]
@@ -432,7 +438,7 @@
 			},
 			{
 				"Type": "/Script/Engine.PrimitiveComponent",
-				"AllowList": [ "VirtualTextureRenderPassType", "RuntimeVirtualTextures", "ExcludeFromHLODLevels" ]
+				"AllowList": [ "VirtualTextureRenderPassType", "RuntimeVirtualTextures", "ExcludeFromHLODLevels", "TranslucencySortDistanceOffset" ]
 			},
 			{
 				"Type": "/Script/Landscape.Landscape",

@@ -48,3 +48,12 @@ vehicle_spawner_drivable_reboot_van_device<public> := class<concrete><final>(veh
     # Triggers when Reboot Van has finished reviving a player from DBNO.
     #  * `agent` is the player that was just revived.
     ReviveCompleteEvent<public>:listenable(agent) = external {}
+
+    # Enable the revival seat.
+    EnableRevive<public>():void = external {}
+
+    # Disable the revival seat.
+    DisableRevive<public>():void = external {}
+
+    # Succeeds if the revival seat is enabled, fails if it's disabled.
+    IsEnabledRevive<public>()<transacts><decides>:void = external {}

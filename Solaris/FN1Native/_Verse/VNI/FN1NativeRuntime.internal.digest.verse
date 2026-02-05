@@ -142,11 +142,18 @@ FN1Native<public> := module:
 
     # Module import path: /Fortnite.com/FN1Native/GameMode
     GameMode<public> := module:
+        using {/Verse.org/Simulation}
         using {/Verse.org/SpatialMath}
         using {/Verse.org/SceneGraph}
         using {/Verse.org/Assets}
         environment_query<native><epic_internal> := class<computes><final><epic_internal>(asset):
             AwaitEQSQuery<native><epic_internal>(Owner:entity, Params:[]tuple(string, float))<suspends>:[](/Verse.org/SpatialMath:)vector3
+
+        (Agent:agent).TriggerAbilityByPath<native><epic_internal>(AbilityPath:string):void
+
+        (Agent:agent).TriggerAbilityByPathWithTargets<native><epic_internal>(AbilityPath:string, Target:[]agent):void
+
+        LoadAbilityByPath<native><epic_internal>(AbilityPath:string):void
 
     # Module import path: /Fortnite.com/FN1Native/Matchmaking
     Matchmaking<public> := module:
@@ -280,6 +287,15 @@ FN1Native<public> := module:
 
     player_ui_display_info_manager<native><epic_internal> := class:
         GetDisplayInfo<native><epic_internal>(InPlayer:player)<reads>:player_ui_display_info
+
+    # Module import path: /Fortnite.com/FN1Native/FortPawnUtils
+    FortPawnUtils<public> := module:
+        using {/Verse.org/Simulation}
+        (Agent:agent).SetAgentInvincible<native><epic_internal>(IsInvincible:logic):void
+
+        (Agent:agent).SetAgentCanBuild<native><epic_internal>(CanBuild:logic):void
+
+        (Agent:agent).StopCarryingPlayer<native><epic_internal>():void
 
     # Module import path: /Fortnite.com/FN1Native/FortPhysicsUtils
     FortPhysicsUtils<public> := module:

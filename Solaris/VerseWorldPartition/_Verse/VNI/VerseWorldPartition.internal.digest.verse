@@ -1,5 +1,6 @@
 # Module import path: /UnrealEngine.com/Temporary/WorldPartition/VerseWorldPartition
 VerseWorldPartition<public> := module:
+    using {/Verse.org/SceneGraph}
     using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/Verse.org/Assets}
     data_layer_asset<native><epic_internal> := class<concrete><computes><final><epic_internal>(asset):
@@ -115,4 +116,8 @@ VerseWorldPartition<public> := module:
         # Returns whether an array of streaming query sources satisfies the passed state.
         IsStreamingCompleted<native><public>(Sources:[]world_partition_streaming_query_source, QueryState:world_partition_streaming_runtime_state)<transacts>:logic
 
+    @deprecated
+    # Deprecated, use GetWorldPartitionHelperForEntity instead which is a less ambiguous/future proof way to obtaining the helper
     GetWorldPartitionHelper<native><epic_internal>()<transacts>:?world_partition_helper
+
+    GetWorldPartitionHelperForEntity<native><epic_internal>(Entity:entity)<transacts>:?world_partition_helper
