@@ -54,6 +54,7 @@
 			"/Script/CommonUI.CommonHardwareVisibilityBorder": { "Rules": [ "View", "Create" ] },
 			"/Script/FortniteGame.FortPoiVolume": { "Rules": [ "View", "Create" ] },
 			"/Script/FortniteGame.FortPoi_DiscoverableComponent": { "Rules": [ "View", "Create" ] },
+			"/Script/FortniteGame.SpatialGameplayOverlapComponent": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/Engine.Blueprint": { "Rules": [ "View", "Create", "ModuleAPI" ] },
 			"/Script/Engine.BlueprintGeneratedClass": { "Rules": [ "View", "Create", "ModuleAPI" ] },
 			"/Script/Engine.CompositeDataTable": { "Rules": [ "View", "Create" ] },
@@ -125,6 +126,7 @@
 			"/Script/FortniteGame.FortTreesHLOD": { "Visible": true },
 			"/Script/FortniteGame.FortVehicleItemDefinition": { "Visible": true },
 			"/Script/FortniteGame.WorldTileManager": { "Visible": true },
+			"/Script/FortniteGame.SpatialGameplayOverlapComponent": {"Visible": true},
 			"/Script/FortniteUI.FortVisualAttachment": { "Visible": true },
 			"/Script/MovieScene.MovieSceneBindingOverrides": {},
 			"/Script/PCG.PCGComponent": {},
@@ -457,6 +459,10 @@
 				"AllowList": [ "PlayerFacingName", "QuestPartOf", "DiscoveredSoundCue", "DiscoverMinimapBitId", "EventDrivenBitIds", "bIsPlayerFacingNameLocalizable", "MapLocationTextLocationOffset" ]
 			},
 			{
+				"Type": "/Script/FortniteGame.SpatialGameplayOverlapComponent",
+				"bAllowListAllProperties": true
+			},
+			{
 				"Type": "/Script/DaySequence.DaySequenceModifierComponent",
 				"AllowList": [ "bUseCollection", "DaySequenceCollections", "Mode", "BlendPolicy", "BlendAmount", "BlendTime", "Bias", "VolumeShapeComponents", "DayNightCycle", "DayNightCycleTime", "UserBlendWeight" ]
 			},
@@ -509,6 +515,10 @@
 			{
 				"Type": "/Script/Engine.PrimitiveComponent",
 				"AllowList": [ "bTreatAsBackgroundForOcclusion"]
+			},
+			{
+				"Type": "/Script/FortniteGame.BuildingActor",
+				"AllowList": [ "bAllowHighlight" ]
 			}
 		],
 		"-": [

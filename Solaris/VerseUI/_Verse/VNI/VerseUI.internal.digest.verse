@@ -1,7 +1,7 @@
 # Module import path: /UnrealEngine.com/Temporary/UI
-UI<public> := module:
-    using {/Verse.org/Assets}
+(/UnrealEngine.com/Temporary:)UI<public> := module:
     using {/Verse.org/Colors}
+    using {/Verse.org/Assets}
     using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/Verse.org/Simulation}
     using {/Verse.org/SceneGraph}
@@ -102,6 +102,8 @@ UI<public> := module:
     # Module import path: /UnrealEngine.com/Temporary/UI/UIInput
     UIInput<epic_internal> := module:
         using {/Verse.org/Assets}
+        UINavigationMapping<epic_internal>:input_mapping = external {}
+
         Primary_1<epic_internal>:input_action(logic) = external {}
 
         Primary_2<epic_internal>:input_action(logic) = external {}
@@ -194,6 +196,10 @@ UI<public> := module:
         HighlightEvent<public>():listenable(widget_message) = external {}
 
         UnhighlightEvent<public>():listenable(widget_message) = external {}
+
+        @experimental
+        # The UI input action that will trigger the Click event of this button.
+        var TriggeringInputAction<public>:?input_action(logic) = external {}
 
     # Slot for button widget.
     button_slot<native><public> := struct:
@@ -470,6 +476,9 @@ UI<public> := module:
         # The policy that determine what happens when the text is longer than its allowed length.
         # Used only during initialization of the widget and not modified by SetOverflowPolicy.
         DefaultOverflowPolicy<native><public>:text_overflow_policy = external {}
+
+        # Whether the text should be automatically wrapped.
+        var Wrapping<epic_internal>:logic = external {}
 
         # Sets the text displayed in the widget.
         SetText<native><public>(InText:message):void

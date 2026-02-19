@@ -40,7 +40,7 @@ bank_vault_device<public> := class<concrete><final>(creative_device_base, bank_v
     PauseSequence<override>():void = external {}
 
     # Restores vault to default state, deactivates the device, and heals all weakpoints to max health. Requires the device to be enabled.
-    Reset<override>():void = external {}
+    (/Fortnite.com/Devices/bank_vault_interface:)Reset<override>():void = external {}
 
     # Whether the vault sequence is currently active and not paused.
     IsSequenceActive<override>()<transacts><decides>:void = external {}

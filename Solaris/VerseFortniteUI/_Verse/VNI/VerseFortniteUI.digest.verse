@@ -4,6 +4,7 @@
     using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/Fortnite.com/Playspaces}
     using {/Verse.org/Simulation}
+    using {/Verse.org/Assets}
     using {/UnrealEngine.com/Temporary/UI}
     # Button with text message common base class. Displays a button with a custom message string.
     text_button_base<native><public> := class<abstract><epic_internal>(widget):
@@ -18,6 +19,10 @@
 
         # Gets the text currently in the widget.
         GetText<native><public>():string
+
+        @experimental
+        # The UI input action that will trigger the Click event of this button.
+        var TriggeringInputAction<public>:?input_action(logic) = external {}
 
     # Text button with big and loud styling applied.
     button_loud<native><public> := class<final>(text_button_base):

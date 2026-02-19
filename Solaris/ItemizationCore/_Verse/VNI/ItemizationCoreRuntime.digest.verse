@@ -269,7 +269,7 @@ item_component<native><public> := class<final_super>(component):
 
     # Removes the item from its inventory and places it in the simulation world. Works on orphaned items i.e. outside the world or any inventory.
     #  Fails if the item is already a pickup. The transform of the item will not be altered except to unparent it from any inventory.
-    Drop<native><public>()<transacts><decides>:void
+    (/UnrealEngine.com/Itemization/item_component:)Drop<native><public>()<transacts><decides>:void
 
     # Fails if this item is already in an inventory, or the inventory cannot accept the item.
     PickUp<native><public>(Inventory:inventory_component)<transacts><decides>:void

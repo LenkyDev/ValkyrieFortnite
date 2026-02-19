@@ -76,7 +76,7 @@ hive_stash_device<public> := class<concrete><final>(creative_device_base, enable
     # Reset the hive stash. This closes it, sets it to full health, and sets *ShouldPlayRescuedAnimation*, *CanBeDamaged*, *CanDropItems*, *InteractTextOverride*, and *HiveStashStyle* to their initial values.
     #  * This can also clear the link to a spawner depending on *ShouldKeepLinkOnReset*. 
     #  * The hive stash will not reset if the rescue animation is currently playing.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/hive_stash_device:)Reset<public>():void = external {}
 
     # Whether to keep or clear a spawner link when *Reset* is called. Links can always be cleared with *ClearSpawnerLink*.
     #  * `true` by default.

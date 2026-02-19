@@ -122,7 +122,7 @@ wildlife_spawner_device<public> := class<concrete><final>(creative_device_base):
     Disable<public>():void = external {}
 
     # Resets the count on the *Total Spawn Count* option.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/wildlife_spawner_device:)Reset<public>():void = external {}
 
     # Spawns wildlife from this device. If spawn count is exceeded the oldest wildlife will be eliminated.
     Spawn<public>():void = external {}

@@ -22,7 +22,7 @@ water_device<public> := class<concrete><final>(creative_device_base):
     Disable<public>():void = external {}
 
     # Resets the water level in the volume to the value set in the *Default Vertical Water Percentage* option.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/water_device:)Reset<public>():void = external {}
 
     # Starts vertically emptying the water in the volume.
     BeginVerticalEmptying<public>():void = external {}

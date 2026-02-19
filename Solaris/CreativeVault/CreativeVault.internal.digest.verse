@@ -30,7 +30,7 @@ bank_vault_interface<public> := interface<epic_internal>(enableable):
     PauseSequence<public>():void
 
     # Restores vault to default state, deactivates the device, and heals all weakpoints to max health. Requires the device to be enabled.
-    Reset<public>():void
+    (/Fortnite.com/Devices/bank_vault_interface:)Reset<public>():void
 
     # Whether the vault sequence is currently active and not paused.
     IsSequenceActive<public>()<transacts><decides>:void

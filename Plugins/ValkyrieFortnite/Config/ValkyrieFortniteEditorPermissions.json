@@ -4269,7 +4269,7 @@
 			},
 			{
 				"Type": "/FortUILibrary/UGC/Widgets/Buttons/CTA/WBP_UEFN_ButtonCTA_Base.WBP_UEFN_ButtonCTA_Base_C",
-				"AllowList": [ "MinWidth", "MinHeight", "bSelectable", "bShouldSelectUponReceivingFocus", "bInteractableWhenSelected", "ClickMethod", "TouchMethod", "PressMethod", "InputPriority", "Text", "TextSecondary", "BackgroundMaterial", "BorderMaterial", "IsBorderAdditive", "ClickEvent", "OnButtonBaseClicked", "OnButtonBaseHovered", "OnButtonBaseUnhovered", "OnButtonBaseSelected", "OnButtonBaseUnselected", "OnButtonCTAHighlight", "OnButtonCTAUnhighlight", "HoveredSound", "PressedSound" ]
+				"AllowList": [ "MinWidth", "MinHeight", "bSelectable", "bShouldSelectUponReceivingFocus", "bInteractableWhenSelected", "ClickMethod", "TouchMethod", "PressMethod", "InputPriority", "Text", "TextSecondary", "BackgroundMaterial", "BorderMaterial", "IsBorderAdditive", "ClickEvent", "OnButtonBaseClicked", "OnButtonBaseHovered", "OnButtonBaseUnhovered", "OnButtonBaseSelected", "OnButtonBaseUnselected", "OnButtonCTAHighlight", "OnButtonCTAUnhighlight", "HoveredSound", "PressedSound", "TriggeringEnhancedInputAction" ]
 			},
 			{
 				"Type": "/Script/UMG.GridPanel",

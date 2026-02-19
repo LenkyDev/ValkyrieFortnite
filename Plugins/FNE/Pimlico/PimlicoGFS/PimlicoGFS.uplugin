@@ -7,7 +7,7 @@
 	"BuiltInAutoRegister": true,
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
-	"FortReleaseVersion": "39.40",
+	"FortReleaseVersion": "39.50",
 	"EditorCustomVirtualPath": "FNE/Pimlico",
 	"IsGameFeatureSet": true,
 	"Version": 0,

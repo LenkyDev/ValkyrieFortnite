@@ -18,7 +18,7 @@ npc_spawner_device<public> := class<concrete><final>(creative_device_base):
     Disable<public>():void = external {}
 
     # Resets the spawn count allowing spawning of a new batch of characters.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/npc_spawner_device:)Reset<public>():void = external {}
 
     # Tries to spawn a character.
     Spawn<public>():void = external {}

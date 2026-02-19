@@ -46,7 +46,7 @@ hero_chest_device<public> := class<concrete><final>(creative_device_base, enable
 
     # Close the chest, refresh its loot, and set the chest to its default locked state for everyone.
     #  * The default locked state is initialized by the *Start Locked* user option and is overridden by *LockForAll* and *UnlockForAll*.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/hero_chest_device:)Reset<public>():void = external {}
 
     # Determines the hologram that appears above the chest, as well as the loot the chest contains.
     #  * From low to high, the ranks are C, B, A, and S.

@@ -1,7 +1,7 @@
 # Module import path: /UnrealEngine.com/Temporary/UI
-UI<public> := module:
-    using {/Verse.org/Assets}
+(/UnrealEngine.com/Temporary:)UI<public> := module:
     using {/Verse.org/Colors}
+    using {/Verse.org/Assets}
     using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/Verse.org/Simulation}
     # Returns the `player_ui` associated with `Player`.
@@ -146,6 +146,10 @@ UI<public> := module:
         HighlightEvent<public>():listenable(widget_message) = external {}
 
         UnhighlightEvent<public>():listenable(widget_message) = external {}
+
+        @experimental
+        # The UI input action that will trigger the Click event of this button.
+        var TriggeringInputAction<public>:?input_action(logic) = external {}
 
     # Slot for button widget.
     button_slot<native><public> := struct:

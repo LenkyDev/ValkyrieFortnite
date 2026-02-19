@@ -126,7 +126,7 @@ guard_spawner_device<public> := class<concrete><final>(creative_device_base):
     Disable<public>():void = external {}
 
     # Resets the spawn count allowing spawning of a new batch of guards.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/guard_spawner_device:)Reset<public>():void = external {}
 
     # Tries to spawn a guard.
     Spawn<public>():void = external {}

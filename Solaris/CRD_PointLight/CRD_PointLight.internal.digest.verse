@@ -7,7 +7,7 @@ customizable_light_device<public> := class<concrete><final>(creative_device_base
     Disable<public>():void = external {}
 
     # Resets the light to its initial state.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/customizable_light_device:)Reset<public>():void = external {}
 
     # Turns on the light.
     TurnOn<public>():void = external {}

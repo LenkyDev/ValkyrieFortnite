@@ -36,7 +36,7 @@ prop_mover_device<public> := class<concrete><final>(creative_device_base):
     Disable<public>():void = external {}
 
     # Moves the prop to its original position.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/prop_mover_device:)Reset<public>():void = external {}
 
     # Begins the prop moving.
     Begin<public>():void = external {}

@@ -213,7 +213,7 @@ capture_area_device<public> := class<concrete><final>(creative_device_base):
     ToggleCaptureAllowed<public>():void = external {}
 
     # Resets control of this device for all teams.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/capture_area_device:)Reset<public>():void = external {}
 
     # Gives control of this device to the capturing `agent`'s team.
     GiveControl<public>(Agent:agent):void = external {}
@@ -359,7 +359,7 @@ color_changing_tiles_device<public> := class<concrete><final>(creative_device_ba
     Hide<public>():void = external {}
 
     # Resets this device to its initial settings.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/color_changing_tiles_device:)Reset<public>():void = external {}
 
     # Sets the color of the tile to `Agent`'s team color.
     (/Fortnite.com/Devices/color_changing_tiles_device:)SetTeam<public>(Agent:agent):void = external {}
@@ -381,7 +381,7 @@ conditional_button_device<public> := class<concrete><final>(creative_device_base
     Disable<public>():void = external {}
 
     # Resets this device to its original settings.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/conditional_button_device:)Reset<public>():void = external {}
 
     # Activates this device. `Agent` is used as the instigator of the action.
     Activate<public>(Agent:agent):void = external {}
@@ -464,7 +464,7 @@ explosive_device<public> := class<concrete><final>(creative_device_base):
     Hide<public>():void = external {}
 
     # Resets this device.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/explosive_device:)Reset<public>():void = external {}
 
     # Triggers this device to explode. Passes `Agent` as the instigator of the resulting `ExplodedEvent`.
     Explode<public>(Agent:agent):void = external {}
@@ -482,7 +482,7 @@ fuel_pump_device<public> := class<concrete><final>(creative_device_base):
     Disable<public>():void = external {}
 
     # Resets fuel stock to *Fuel Capacity* value.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/fuel_pump_device:)Reset<public>():void = external {}
 
     # Grants fuel to `Agent`.
     Empty<public>(Agent:agent):void = external {}
@@ -1042,10 +1042,10 @@ score_manager_device<public> := class<concrete><final>(creative_device_base):
     Disable<public>():void = external {}
 
     # Resets this device to its original state.
-    Reset<public>(Agent:agent):void = external {}
+    (/Fortnite.com/Devices/score_manager_device:)Reset<public>(Agent:agent):void = external {}
 
     # Resets this device to its original state.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/score_manager_device:)Reset<public>():void = external {}
 
     # Grant points to `Agent`.
     Activate<public>(Agent:agent):void = external {}
@@ -1107,7 +1107,7 @@ shooting_range_target_device<public> := class<concrete><final>(creative_device_b
     Disable<public>():void = external {}
 
     # Resets the target to its initial settings.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/shooting_range_target_device:)Reset<public>():void = external {}
 
     # Moves an active (standing upright) target up slightly, in an effort to make it harder to hit.
     HopUp<public>():void = external {}
@@ -1151,7 +1151,7 @@ shooting_range_target_track_device<public> := class<concrete><final>(creative_de
     Disable<public>():void = external {}
 
     # Resets the target to its initial settings.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/shooting_range_target_track_device:)Reset<public>():void = external {}
 
     # Moves an active (standing upright) target attached to the track up slightly, in an effort to make it harder to hit
     HopUp<public>():void = external {}
@@ -1376,10 +1376,10 @@ timer_device<public> := class<concrete><final>(creative_device_base):
     Disable<public>():void = external {}
 
     # Resets the timer back to its base time and stops it for `Agent`.
-    Reset<public>(Agent:agent):void = external {}
+    (/Fortnite.com/Devices/timer_device:)Reset<public>(Agent:agent):void = external {}
 
     # Resets the timer back to its base time and stops it.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/timer_device:)Reset<public>():void = external {}
 
     # Resets the timer back to its base time and stops it for all `agent`s.
     ResetForAll<public>(Agent:agent):void = external {}
@@ -1483,7 +1483,7 @@ timer_device<public> := class<concrete><final>(creative_device_base):
 # Allows creation and HUD tracking of custom objectives for `agent`s to complete.
 tracker_device<public> := class<concrete><final>(creative_device_base):
     # Resets the progress for `Agent` (and any `agent`s sharing progress).
-    Reset<public>(Agent:agent):void = external {}
+    (/Fortnite.com/Devices/tracker_device:)Reset<public>(Agent:agent):void = external {}
 
     # Signaled when the tracked value reaches `GetTarget` for an `agent`.
     # Sends the `agent` that reached `GetTarget` for their tracked value.
@@ -1595,7 +1595,7 @@ trick_tile_device<public> := class<concrete><final>(creative_device_base):
     ToggleEnabled<public>():void = external {}
 
     # Restores the tile removed when this device was triggered.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/trick_tile_device:)Reset<public>():void = external {}
 
     # Enables this device to trigger when an `agent` makes contact with the device.
     EnableAgentContactTrigger<public>():void = external {}
@@ -1634,7 +1634,7 @@ trigger_base_device<public> := class<abstract><epic_internal>(creative_device_ba
     Disable<public>():void = external {}
 
     # Resets the number of times this device has been activated. This will set `GetTriggerCountRemaining` back to `0`
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/trigger_base_device:)Reset<public>():void = external {}
 
     # Sets the maximum amount of times this device can trigger.
     #  * `0` can be used to indicate no limit on trigger count.

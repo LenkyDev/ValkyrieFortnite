@@ -46,7 +46,7 @@ overlord_spire_device<public> := class<concrete><final>(creative_device_base, ha
     DestroyEvent<override>:listenable(?agent) = external {}
 
     # Resets the Spire to its initial state.
-    Reset<override>():void = external {}
+    (/Fortnite.com/Devices/has_spire_functionality:)Reset<override>():void = external {}
 
     # The maximum health of this Spire.
     var MaxHealth<override>:float = external {}

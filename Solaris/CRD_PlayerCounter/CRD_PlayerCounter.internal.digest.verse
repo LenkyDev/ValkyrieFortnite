@@ -22,7 +22,7 @@ player_counter_device<public> := class<concrete><final>(creative_device_base):
     Disable<public>():void = external {}
 
     # Resets *Target Player Count* to the default value defined in the device settings. If *Target Player Count* was previously incremented or decremented, this reset immediately triggers a new comparison.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/player_counter_device:)Reset<public>():void = external {}
 
     # Increments *Target Player Count* by `1`. Immediately triggers a new comparison.
     IncrementTargetCount<public>():void = external {}

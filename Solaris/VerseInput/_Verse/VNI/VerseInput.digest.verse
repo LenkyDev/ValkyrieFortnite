@@ -57,3 +57,92 @@ ControlInput<public> := module:
         RemoveInputMapping<native><public>(InputMapping:input_mapping):void
 
         GetInputEvents<native><public>(ActionToBind:input_action(t) where t:type):input_events(t)
+
+    @available {MinUploadedAtFNVersion := 3950}
+    # Module import path: /UnrealEngine.com/ControlInput/UI
+    UI<public> := module:
+        using {/Verse.org/Native}
+        using {/Verse.org/Assets}
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        MenuNavigationMapping<public>:input_mapping = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        NextTab<public>:input_action(logic) = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        PreviousTab<public>:input_action(logic) = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        NextPage<public>:input_action(logic) = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        PreviousPage<public>:input_action(logic) = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        InventoryMenuMapping<public>:input_mapping = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        Use<public>:input_action(logic) = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        Inspect<public>:input_action(logic) = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        Sort<public>:input_action(logic) = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        Drop<public>:input_action(logic) = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        CraftingMenuMapping<public>:input_mapping = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        Craft<public>:input_action(logic) = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        Favorite<public>:input_action(logic) = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        Scrap<public>:input_action(logic) = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        MapMenuMapping<public>:input_mapping = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        Track<public>:input_action(logic) = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        Reset<public>:input_action(logic) = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        PlaceMarker<public>:input_action(logic) = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        ToggleView<public>:input_action(logic) = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        ZoomIn<public>:input_action(logic) = external {}
+
+        @available {MinUploadedAtFNVersion := 3950}
+        @experimental
+        ZoomOut<public>:input_action(logic) = external {}

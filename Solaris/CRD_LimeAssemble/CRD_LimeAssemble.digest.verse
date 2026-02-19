@@ -47,10 +47,10 @@ assembly_device<public> := class<concrete><final>(creative_device_base, enableab
     IsPaused<public>()<transacts><decides>:void = external {}
 
     # Resets affected building actors to the state they were in at the start of the round.
-    Reset<public>():void = external {}
+    (/Fortnite.com/Devices/assembly_device:)Reset<public>():void = external {}
 
     # Resets affected building actors to the state they were in at the start of the round.
-    Reset<public>(Agent:agent):void = external {}
+    (/Fortnite.com/Devices/assembly_device:)Reset<public>(Agent:agent):void = external {}
 
     # The amount of progress the device has made towards fully assembling (1.0) or fully disassembling (0.0).
     var<private> Progress<public>:float = external {}

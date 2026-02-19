@@ -32,7 +32,7 @@ post_process_device<public> := class<concrete><final>(creative_device_base):
     BlendOutForAll<public>():void = external {}
 
     # Resets to the starting strength, ending any ongoing blending only for the instigating `Agent`.
-    Reset<public>(Agent:agent):void = external {}
+    (/Fortnite.com/Devices/post_process_device:)Reset<public>(Agent:agent):void = external {}
 
     # Resets to the starting strength, ending any ongoing blending for all players.
     ResetForAll<public>():void = external {}

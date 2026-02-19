@@ -33,7 +33,7 @@ has_spire_functionality<public> := interface<epic_internal>(enableable):
     DestroyEvent<public>:listenable(?agent)
 
     # Resets the Spire to its initial state.
-    Reset<public>():void
+    (/Fortnite.com/Devices/has_spire_functionality:)Reset<public>():void
 
     # The maximum health of this Spire.
     var<private> MaxHealth<public>:float

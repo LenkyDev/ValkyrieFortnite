@@ -22,8 +22,9 @@
         # Gets the text currently in the widget.
         GetText<native><public>():string
 
+        @experimental
         # The UI input action that will trigger the Click event of this button.
-        var TriggeringInputAction<epic_internal>:?input_action(logic) = external {}
+        var TriggeringInputAction<public>:?input_action(logic) = external {}
 
     # Text button with big and loud styling applied.
     button_loud<native><public> := class<final>(text_button_base):
