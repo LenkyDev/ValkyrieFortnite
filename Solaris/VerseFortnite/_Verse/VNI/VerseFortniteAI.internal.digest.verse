@@ -33,8 +33,14 @@ AI<public> := module:
     @available {MinUploadedAtFNVersion := 3900}
     MakeAIActionSuccessResult<native_callable><epic_internal>(SuccessType:success_type where success_type:type):result(success_type, false) = external {}
 
+    @available {MinUploadedAtFNVersion := 3950}
+    MakeAIActionSuccessEmptyResult<native_callable><epic_internal>():result(comparable, false) = external {}
+
     @available {MinUploadedAtFNVersion := 3900}
     MakeAIActionErrorResult<native_callable><epic_internal>(ErrorType:error_type where error_type:type):result(false, error_type) = external {}
+
+    @available {MinUploadedAtFNVersion := 3950}
+    MakeAIActionErrorEmptyResult<native_callable><epic_internal>():result(false, comparable) = external {}
 
     @experimental
     ai_target_component<native><epic_internal> := class<final><final_super>(component):
