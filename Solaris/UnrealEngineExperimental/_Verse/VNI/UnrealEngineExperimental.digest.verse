@@ -110,13 +110,13 @@ Diagnostics<public> := module:
         # Sets the default log level of the displayed message. See log_level enum for more info on log levels. Defaults to log_level.Normal.
         DefaultLevel<native><public>:log_level = external {}
 
-        # Print message using the given log level
+        # Print `Message` using the given log level.
         (/UnrealEngine.com/Temporary/Diagnostics/log:)Print<public>(Message:string, ?Level:log_level = external {})<computes>:void = external {}
 
-        # Print diagnostic using the given log level
+        # Print `Message` diagnostic using the given log level.
         (/UnrealEngine.com/Temporary/Diagnostics/log:)Print<public>(Message:diagnostic, ?Level:log_level = external {})<computes>:void = external {}
 
-        # Prints the current script call stack using the given log level
+        # Prints the current script call stack using the given log level.
         PrintCallStack<native><public>(?Level:log_level = external {})<computes>:void
 
 # Module import path: /UnrealEngine.com/Temporary/Testing

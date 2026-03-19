@@ -11,11 +11,7 @@ player_spawner_device<public> := class<concrete><final>(creative_device_base):
     # Disables this device.
     Disable<public>():void = external {}
 
-    # Spawn `Agent` from this device.
-    # Force respawns if the agent is already spawned.
-    SpawnPlayer<epic_internal>(Agent:agent):void = external {}
-
-    # Respawn `Agent` from the best available Player Spawner Device in `Group`.
-    # Best available spawner is determined by the settings on each spawner device, such as *Priority Group* and *Enemy Range Check*.
-    # Force respawns if the player is already spawned.
-    RespawnPlayerFromPlayerSpawnerGroup<epic_internal>(Agent:agent, Group:[]creative_device_base):void = external {}
+    # Spawn `Player` from this device.
+    # Uses the device's `ShouldRespawnAlivePlayers` setting to control behavior when called on an alive player.
+    # If the device is not a valid spawn for that player, they will respawn from a valid spawn device, or from skydive if none are found.
+    SpawnPlayer<public>(Player:player):void = external {}

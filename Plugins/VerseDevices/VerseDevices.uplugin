@@ -80,7 +80,7 @@
 			"Enabled": false
 		},
 		{
-			"Name": "VerseGameplayTags",
+			"Name": "VerseTags",
 			"Optional": true,
 			"Enabled": false
 		},

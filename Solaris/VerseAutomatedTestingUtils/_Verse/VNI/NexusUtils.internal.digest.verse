@@ -10,6 +10,12 @@ NexusUtils<public> := module:
         ReadFile<native><epic_internal>(FilePath:[]string)<transacts><decides>:[]string
 
         # Writes a string array of lines to a file at a given path. Optionally prepends path to executables 'Saved' directory
-        WriteFile<native><epic_internal>(FilePath:[]string, Lines:[]string)<transacts><decides>:void
+        WriteFile<native><epic_internal>(FilePath:[]string, Lines:[]string)<transacts>:void
 
         GetSavedDir<native><epic_internal>():string
+
+        # Force a client garbage collection for all connected clients
+        ForceGarbageCollectionOnAllClients<native><epic_internal>():void
+
+        # Call a console command on all clients
+        ExecuteConsoleCommandOnAllClients<native><epic_internal>(ConsoleCommand:string):void

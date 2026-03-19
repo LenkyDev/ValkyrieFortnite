@@ -1,5 +1,6 @@
 using {/Verse.org/Native}
 using {/UnrealEngine.com/Temporary/SpatialMath}
+using {/Verse.org/Assets}
 using {/Verse.org/Simulation}
 using {/Verse.org/SceneGraph}
 @experimental
@@ -10,7 +11,7 @@ navigation_system_component<native><epic_internal> := class<final_super>(compone
 
 
 # Navigation layers are various representations of the world that can be used by agents of different shapes and abilities
-navigation_layer<native><epic_internal> := class<abstract>:
+navigation_layer<native><epic_internal> := class<abstract>(asset):
 
 
 # Auto select a ground layer based on the user's collision component

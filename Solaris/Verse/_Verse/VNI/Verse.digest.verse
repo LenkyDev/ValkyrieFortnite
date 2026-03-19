@@ -57,15 +57,15 @@ Verse<public> := module:
 
     @experimental
     # A `classifiable_subset` is a container that holds a set of elements. A classifiable_subset can hold multiple elements of the same type.
-    classifiable_subset<native><public>(element_type:type) := class<final><reads><internal>:
-        (/Verse.org/Verse/classifiable_subset:)Verse_classifiable_subset_Variance<private>:?type {_():tuple(element_type)} = external {}
+    classifiable_subset<native><public>(element_type:type) := class<final><computes><internal>:
+        (/Verse.org/Verse/classifiable_subset:)Verse_classifiable_subset_Variance<private>():tuple(element_type) = external {}
 
         # Temporary function for constraining variance correctly.
         CovarianceConstraint<protected>():?element_type = external {}
 
     @experimental
     # Constructs a `classifiable_subset` containing the `InElements`.
-    MakeClassifiableSubset<native><public>(InElements:[]t where t:type)<reads><converges>:classifiable_subset(t)
+    MakeClassifiableSubset<native><public>(InElements:[]t where t:type)<converges>:classifiable_subset(t)
 
     @available {MinUploadedAtFNVersion := 3800}
     @experimental
@@ -128,7 +128,10 @@ Verse<public> := module:
 
     # A *recurring*, successively signaled parametric `event` with a `payload` allowing a simple mechanism to coordinate between concurrent tasks.
     event<native><public>(t:type) := class(signalable(t), awaitable(t)):
-        (/Verse.org/Verse/event:)Verse_event_Variance<private>:?type {_(:t):tuple(t)} = external {}
+        @available {MinUploadedAtFNVersion := 4294967041}
+        (/Verse.org/Verse/event:)Verse_event_Variance_Inherited<private>(:t):tuple(t) = external {}
+
+        (/Verse.org/Verse/event:)Verse_event_Variance<private>(:t):tuple(t) = external {}
 
         # Suspends the current task until another task calls `Signal`.
         # If called during another invocation of `Signal`, the the task will still suspend and resume during the next call to `Signal`.
@@ -174,7 +177,8 @@ Verse<public> := module:
 
     # A parametric interface combining `awaitable` and `subscribable`.
     listenable<public>(payload:type) := interface(awaitable(payload), subscribable(payload)):
-        (/Verse.org/Verse/listenable:)Verse_listenable_Variance<private>:?type {_():tuple()} = external {}
+        @available {MinUploadedAtFNVersion := 4294967041}
+        (/Verse.org/Verse/listenable:)Verse_listenable_Variance_Inherited<private>():tuple(payload) = external {}
 
     # A parameterless interface combining `awaitable` and `subscribable`.
     listenable<public>() := listenable(tuple())
@@ -249,41 +253,41 @@ Verse<public> := module:
 
     @vm_no_effect_token
     @rtfm_always_open
-    # Returns the sine of `X` if `IsFinite(X)`.
-    # Returns `NaN` if `not IsFinite(X)
+    # Returns the sine of `X`, where `X` is interpreted as a value in radians, if `IsFinite[X]`.
+    # Returns `NaN` if `not IsFinite[X]`.
     Sin<native><public>(X:float)<reads>:float
 
     @vm_no_effect_token
     @rtfm_always_open
-    # Returns the cosine of `X` if `IsFinite(X)`.
-    # Returns `NaN` if `not IsFinite(X)
+    # Returns the cosine of `X`, where `X` is interpreted as a value in radians, if `IsFinite[X]`.
+    # Returns `NaN` if `not IsFinite[X]`.
     Cos<native><public>(X:float)<reads>:float
 
     @vm_no_effect_token
     @rtfm_always_open
-    # Returns the tangent of `X` if `IsFinite(X)`.
-    # Returns `NaN` if `not IsFinite(X).
+    # Returns the tangent of `X`, where `X` is interpreted as a value in radians, if `IsFinite[X]`.
+    # Returns `NaN` if `not IsFinite[X]`.
     Tan<native><public>(X:float)<reads>:float
 
     @vm_no_effect_token
     @rtfm_always_open
-    # Returns the inverse sine (arcsine) of `X` if `-1.0 <= X <= 1.0`.
+    # Returns the inverse sine (arcsine) of `X` as a value in radians if `-1.0 <= X <= 1.0`.
     ArcSin<native><public>(X:float)<reads>:float
 
     @vm_no_effect_token
     @rtfm_always_open
-    # Returns the inverse cosine (arccosine) of `X` if `-1.0 <= X <= 1.0`.
+    # Returns the inverse cosine (arccosine) of `X` as a value in radians if `-1.0 <= X <= 1.0`.
     ArcCos<native><public>(X:float)<reads>:float
 
     @vm_no_effect_token
     @rtfm_always_open
-    # Returns the inverse tangent (arctangent) of `X` such that:`-PiFloat/2.0 <= ArcTan(x) <= PiFloat/2.0`.
+    # Returns the inverse tangent (arctangent) of `X` as a value in radians such that:`-PiFloat/2.0 <= ArcTan(x) <= PiFloat/2.0`.
     ArcTan<native><public>(X:float)<reads>:float
 
     @vm_no_effect_token
     @rtfm_always_open
     # Returns the angle in radians at the origin between a ray pointing to `(X, Y)` and the positive `X` axis such that `-PiFloat < ArcTan(Y, X) <= PiFloat`.
-    # Returns 0.0 if `X=0.0 and Y=0.0`.
+    # Returns `0.0` if `X=0.0 and Y=0.0`.
     ArcTan<native><public>(Y:float, X:float)<reads>:float
 
     @vm_no_effect_token
@@ -383,8 +387,8 @@ Verse<public> := module:
 
     @available {MinUploadedAtFNVersion := 3800}
     # Implemented by classes that provide a result for an operation, which can fail or be successful
-    result<public>(success_type:type, error_type:type) := interface<internal>:
-        (/Verse.org/Verse/result:)Verse_result_Variance<private>:?type {_():tuple(success_type, error_type)} = external {}
+    result<public>(success_type:type, error_type:type) := interface<computes><internal>:
+        (/Verse.org/Verse/result:)Verse_result_Variance<private>():tuple(success_type, error_type) = external {}
 
         # Returns the success data of the specified type.
         GetSuccess<native_callable><public>()<computes><decides>:success_type
@@ -393,10 +397,10 @@ Verse<public> := module:
         GetError<native_callable><public>()<computes><decides>:error_type
 
     @available {MinUploadedAtFNVersion := 3800}
-    MakeSuccess<public>(Result:success_type where success_type:type):result(success_type, false) = external {}
+    MakeSuccess<public>(Result:success_type where success_type:type)<computes>:result(success_type, false) = external {}
 
     @available {MinUploadedAtFNVersion := 3800}
-    MakeError<public>(Result:error_type where error_type:type):result(false, error_type) = external {}
+    MakeError<public>(Result:error_type where error_type:type)<computes>:result(false, error_type) = external {}
 
     @available {MinUploadedAtFNVersion := 3800}
     # Implemented by classes whose instances can change visibility to be shown or hidden.
@@ -407,7 +411,7 @@ Verse<public> := module:
     # A parametric interface implemented by events with a `payload` that can be signaled.
     # Can be used with `awaitable`, `subscribable`, or both (see: `listenable`).
     signalable<public>(payload:type) := interface:
-        (/Verse.org/Verse/signalable:)Verse_signalable_Variance<private>:?type {_(:payload):tuple()} = external {}
+        (/Verse.org/Verse/signalable:)Verse_signalable_Variance<private>(:payload):tuple() = external {}
 
         # Concurrently resumes the tasks waiting for this event in `awaitable.Await` and synchronously invokes any callbacks added to this event by `subscribable.Subscribe`.
         Signal<native_callable><public>(Val:payload):void
@@ -424,7 +428,7 @@ Verse<public> := module:
     # A parametric interface implemented by events with a `payload` that can be subscribed to.
     # Matched with `signalable.`
     subscribable<public>(t:type) := interface:
-        (/Verse.org/Verse/subscribable:)Verse_subscribable_Variance<private>:?type {_():tuple(t)} = external {}
+        (/Verse.org/Verse/subscribable:)Verse_subscribable_Variance<private>():tuple(t) = external {}
 
         # Registers `Callback` to be invoked on matching calls to `signable.Signal`.
         # Returns an unsubscriber object. Call `cancelable.Cancel` on the unsubscriber to unregister `Callback`.

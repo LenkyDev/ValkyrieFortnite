@@ -22,6 +22,10 @@
 			"Type": "Runtime"
 		},
 		{
+			"Name": "AgentGroup",
+			"Type": "Runtime"
+		},
+		{
 			"Name": "Entity",
 			"Type": "Runtime"
 		},
@@ -95,6 +99,10 @@
 		{
 			"Name": "EntitySkeletalAnimation",
 			"Type": "Runtime"
+		},
+		{
+			"Name": "EntitySkeletalAnimationEditor",
+			"Type": "Editor"
 		}
 	],
 	"Plugins": [
@@ -115,7 +123,7 @@
 			"Enabled": true
 		},
 		{
-			"Name": "VerseGameplayTags",
+			"Name": "VerseTags",
 			"Enabled": true
 		},
 		{
@@ -172,6 +180,22 @@
 		},
 		{
 			"Name": "VerseSpatialMath",
+			"Enabled": true
+		},
+		{
+			"Name": "VerseModifier",
+			"Enabled": true
+		},
+		{
+			"Name": "UAF",
+			"Enabled": true
+		},
+		{
+			"Name": "UAFAnimGraph",
+			"Enabled": true
+		},
+		{
+			"Name": "RigVM",
 			"Enabled": true
 		}
 	],

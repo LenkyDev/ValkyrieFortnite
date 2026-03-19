@@ -51,6 +51,12 @@ Characters<public> := module:
         #  - 1: `true` if the character is sprinting. `false` if the character stopped sprinting.
         SprintedEvent<public>():listenable(tuple(fort_character, logic))
 
+        # Signaled when this `fort_character` changes slide state.
+        # Sends `tuple` payload:
+        #  - 0: the `fort_character` that changed slide state.
+        #  - 1: `true` if the character is sliding. `false` if the character stopped sliding.
+        SlidEvent<epic_internal>():listenable(tuple(fort_character, logic))
+
         # Succeeds if this `fort_character` is in the world and has not been eliminated. Most fort_character actions will silently fail if this fails. Please test IsActive if you want to handle these failure cases rather than allow them to silently fail.
         IsActive<public>()<transacts><decides>:void
 
@@ -90,6 +96,9 @@ Characters<public> := module:
 
         # Succeeds if this `fort_character` is in flying locomotion state.
         IsFlying<public>()<transacts><decides>:void
+
+        # Succeeds if this `fort_character` is in sliding locomotion state.
+        IsSliding<epic_internal>()<transacts><decides>:void
 
         # Succeeds if this `fort_character` is marked by the enemy team due to a recon grenade or other surveillance device.
         IsMarked<epic_internal>()<transacts><decides>:void
@@ -192,6 +201,8 @@ Characters<public> := module:
 
         IsFlying<override>()<transacts><decides>:void = external {}
 
+        IsSliding<override>()<transacts><decides>:void = external {}
+
         IsMarked<override>()<transacts><decides>:void = external {}
 
         GetHealth<override>()<transacts>:float = external {}
@@ -269,6 +280,8 @@ Characters<public> := module:
         JumpedEvent<override>():listenable(fort_character) = external {}
 
         SprintedEvent<override>():listenable(tuple(fort_character, logic)) = external {}
+
+        SlidEvent<override>():listenable(tuple(fort_character, logic)) = external {}
 
         EliminatedEvent<override>():listenable(elimination_result) = external {}
 
@@ -678,6 +691,32 @@ Teams<public> := module:
     using {/Verse.org/SceneGraph}
     using {/Verse.org/Simulation/Tags}
     using {/Verse.org/Simulation}
+    using {/Verse.org/Native}
+    using {/Verse.org/Chat}
+    using {/Verse.org/AgentGroup}
+    @available {MinUploadedAtFNVersion := 4000}
+    @experimental
+    fort_team_member_info<native><epic_internal> := class(member_info_interface, has_voice_member_info):
+
+
+    @available {MinUploadedAtFNVersion := 4000}
+    @experimental
+    # A fortnite instance of a team that is able to reference the current simulations member map.Contains a voice_channel for managing team communications
+    fort_team<native><epic_internal> := class<unique>(team, agent_group_interface(fort_team_member_info)):
+        GetTeamVoiceChannel<native_callable><public>()<transacts>:?voice_channel(fort_team_member_info) = external {}
+
+        # Get the underlying member map for this team
+        GetMemberMap<override>()<reads>:[agent]fort_team_member_info = external {}
+
+        # Signalled whenever an agent successfully joins this agent group.Passes in the agent that joined along with their member_info.
+        AddMemberEvent<override><final><native>:listenable(tuple(agent, fort_team_member_info)) = external {}
+
+        # Signalled whenever an agent successfully leaves this agent group.Passes in the agent that left along with their member_info.
+        RemoveMemberEvent<override><final><native>:listenable(tuple(agent, fort_team_member_info)) = external {}
+
+        # Signalled whenever the MemberInfo class is re-instantiated for a given agent.Passes in the agent that was updated along with their new member_info.
+        MemberInfoChangeEvent<override><final><native>:listenable(tuple(agent, fort_team_member_info)) = external {}
+
     # A generic set of team attitudes. Use this enum to model relationship behavior between your experience's agents/teams.
     team_attitude<native><public> := enum:
         # Agents/teams are friends. In Fortnite games two `agent`s on the same `team` are `friendly`.
@@ -858,7 +897,7 @@ Vehicles<public> := module:
         @experimental
         GetEntity<epic_internal>()<transacts><decides>:entity
 
-        # The current speed of the vehicle in km/hr.
+        # The current speed of the vehicle in m/s.
         var<private> Speed<public>:float
 
         # The boost state of the vehicle. If the vehicle uses boost, this value will be between 0.0 and `BoostCapacity`. Otherwise, this value will be false.

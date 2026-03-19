@@ -15,7 +15,7 @@ collision_channel<native><public> := class<concrete><epic_internal>:
 # An alias for the function type used to map a collision_channel to a collision_interaction used by  collision_profile.
 collision_channel_to_interaction<public> := type {_(:collision_channel)<computes>:collision_interaction}
 
-DefaultChannelToInteraction<epic_internal>(__dupe___unnamed_parameter_70:collision_channel)<computes>:collision_interaction = external {}
+DefaultChannelToInteraction<epic_internal>(__dupe___unnamed_parameter_96:collision_channel)<computes>:collision_interaction = external {}
 
 # A collision profile determines how a volume interacts with other volumes for Overlap queries, Sweep queries, and physics simulation. When two volumes are being tested to see how they interact, the algorithm looks like this:
 #    GetInteraction(A:collision_profile, B:collision_profile):collision_interaction = 
@@ -91,6 +91,18 @@ CollisionProfiles<public> := module:
 # Module import path: /Verse.org/SceneGraph/collision_profiles
 (/Verse.org/SceneGraph:)collision_profiles<public> := module:
 
+
+MakeCollisionMaterial<native><epic_internal>(StaticFriction:float, DynamicFriction:float, Restitution:float)<converges>:collision_material
+
+collision_material<native><epic_internal> := struct<epic_internal>:
+    # Friction coefficient for stationary contacts
+    StaticFriction<native>:float = external {}
+
+    # Friction coefficient for sliding contacts
+    DynamicFriction<native>:float = external {}
+
+    # Bounciness of the object
+    Restitution<native>:float = external {}
 
 # The results of an overlap query. See entity.FindOverlapHits(). We will get one overlap_hit for each intersection of any volume in SourceVolumes with any other volume.
 overlap_hit<native><public> := struct<epic_internal>:

@@ -115,6 +115,14 @@
 			"Enabled": true
 		},
 		{
+			"Name": "VersePresentation",
+			"Enabled": true
+		},
+		{
+			"Name": "VerseVoiceTextChat",
+			"Enabled": true
+		},
+		{
 			"Name": "VerseRestricted",
 			"Enabled": true
 		},
@@ -123,7 +131,7 @@
 			"Enabled": true
 		},
 		{
-			"Name": "VerseGameplayTags",
+			"Name": "VerseTags",
 			"Enabled": true
 		},
 		{
@@ -137,6 +145,10 @@
 		{
 			"Name": "EditorScriptingUtilities",
 			"TargetAllowList": [ "Editor" ],
+			"Enabled": true
+		},
+		{
+			"Name": "VerseGameplayTags",
 			"Enabled": true
 		}
 	]

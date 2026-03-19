@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Akita",
-	"FortReleaseVersion": "35.00",
+	"FortReleaseVersion": "40.00",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"RequiredEntitlements": {
@@ -37,12 +37,6 @@
 			"Optional": true
 		},
 		{
-			"Name": "AkitaImportedBRAssets",
-			"Enabled": true,
-			"Activate": true,
-			"Optional": true
-		},
-		{
 			"Name": "AkitaIslandUIOverride",
 			"Enabled": true,
 			"Activate": true,
@@ -51,6 +45,331 @@
 		{
 			"Name": "CR_Legacy",
 			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRD_HeroDevice",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRD_SW_AudioPlayerDevice",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "DeepFox",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_BadgerLantern",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_Comsos_Jelly",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_Cosmos_Sniper",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_DeepFox",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_DustyAnvil",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_ForwardLake_Dire",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_Galileo_Lobster",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_Galileo_Ranged",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_Jethro_Weapons",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "FNE_SW_Audio",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_SW_UI_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_SW_UI_Renders",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_SWCosmetics",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_SWLoneMamba",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_SWNiceCrown",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_SWVehicleSpawners",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEBoldTiger",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "FNEBraveCrown",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "FNEBrightJuice",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "FNEBrinePot",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "FNECalmRock",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "FNEChillyHammer",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "FNEClearShell",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "FNECleverShrimp",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "FNECloverDog",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNECrustyChain",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "FNEDodgyBean",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEGalileoBun",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "FNEGalileoContainers",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEGothicFonts",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "FNEGuineaPig",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "FNEIronPuck",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEJethroTV",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEJethroXV",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEMintGrove",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEShockGrenade",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "JethroTV",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "JethroV",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "JethroXV",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "Lab_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "PartnerQuestTrigger",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_A_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_A_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_B_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_B_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_C_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_C_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_C_Public_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_D_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_D_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_D_Public_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_E_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_E_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_E_Public_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_EntityItems",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_HeroTransformations",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_NPCDialog",
+			"Enabled": true,
+			"Activate": true,
 			"Optional": true
 		}
 	],

@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/DarkVortex",
-	"FortReleaseVersion": "39.50",
+	"FortReleaseVersion": "40.00",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
@@ -73,6 +73,11 @@
 		},
 		{
 			"Name": "DarkVortexSharedVFX",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Lab_Assets",
 			"Enabled": true,
 			"Optional": true
 		}

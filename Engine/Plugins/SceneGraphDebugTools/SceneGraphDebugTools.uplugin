@@ -19,8 +19,9 @@
 	"Modules": [
 		{
 			"Name": "SceneGraphDebugToolsRuntime",
-			"Type": "DeveloperTool",
-			"LoadingPhase": "Default"
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"TargetConfigurationDenyList": [ "Shipping" ]
 		}
 	],
 	"Plugins": [
@@ -49,7 +50,7 @@
 			"Enabled": true
 		},
 		{
-			"Name": "VerseGameplayTags",
+			"Name": "VerseTags",
 			"Enabled": true
 		},
 		{

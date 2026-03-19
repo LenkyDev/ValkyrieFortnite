@@ -1,4 +1,3 @@
-using {/Verse.org/Simulation/Tags}
 using {/Verse.org/SpatialMath}
 using {/Verse.org/Native}
 using {/Verse.org/Simulation}
@@ -381,38 +380,6 @@ spot_light_component<native><public> := class<final>(light_component):
 
     # The light's outer cone shaped angle in degrees. Clamped between 1.0 and 80.0.
     var OuterConeAngleDegrees<public>:float = external {}
-
-@experimental
-# Used to add tags to an entity. Tagged entities can then be queried using `entity.FindDescendantEntitiesWithTag` and `entity.FindAncestorEntitiesWithTag`.
-#   * Finding entities from the simulation entity for tagged entities only considers any `tag_component` that has run `OnAddedToScene`.
-tag_component<native><public> := class<final><final_super>(component, tag_view):
-    # Determine if TagToCheck is present in this container, also checking against parent tags {"A.1"}.Has("A") will return True, {"A"}.Has("A.1") will return False If TagToCheck is not Valid it will always return False.
-    Has<native><override>(TagToCheck:tag)<reads><decides>:void
-
-    # Checks if this container contains ANY of the tags in the specified container, also checks against parent tags {"A.1"}.HasAny({"A","B"}) will return True, {"A"}.HasAny({"A.1","B"}) will return False If InTags is empty/invalid it will always return False.
-    HasAny<native><override>(InTags:[]tag)<reads><decides>:void
-
-    # Checks if this container contains ALL of the tags in the specified container, also checks against parent tags {"A.1","B.1"}.HasAll({"A","B"}) will return True, {"A","B"}.HasAll({"A.1","B.1"}) will return False If InTags is empty/invalid it will always return True, because there were no failed checks.
-    HasAll<native><override>(InTags:[]tag)<reads><decides>:void
-
-    # Adds a tag to this component. Returns `true` if the tag was not present before being added.
-    AddTag<native><public>(TagToAdd:tag)<transacts>:logic
-
-    # Removes a tag from this component. Returns `true` if the tag was present before being removed.
-    RemoveTag<native><public>(TagToRemove:tag)<transacts>:logic
-
-@available {MinUploadedAtFNVersion := 2930}
-@experimental
-# Finds all descendant entities including `InEntity` with `Tag` present in their `tag_component`.
-# When querying from the simulation entity, the simulation entity itself is not included in the results.
-# The order of the returned entities is unspecified and subject to change.
-(InEntity:entity).FindDescendantEntitiesWithTag<native><public>(Tag:tag)<transacts>:generator(entity)
-
-@available {MinUploadedAtFNVersion := 2930}
-@experimental
-# Finds all ancestor entities to `InEntity` with `Tag` present in their `tag_component`.
-# The order of the returned entities is unspecified and subject to change.
-(InEntity:entity).FindAncestorEntitiesWithTag<native><public>(Tag:tag)<transacts>:generator(entity)
 
 @experimental
 # A range with a minimum and maximum value. For a value to fall inside of this range, the min value must be less than or equal to the max value.

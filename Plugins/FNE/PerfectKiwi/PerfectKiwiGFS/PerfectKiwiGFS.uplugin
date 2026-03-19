@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/PerfectKiwi",
-	"FortReleaseVersion": "39.50",
+	"FortReleaseVersion": "40.00",
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
@@ -35,8 +35,19 @@
 			"Optional": true
 		},
 		{
+			"Name": "CRD_SW_AudioPlayerDevice",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "DeepFox",
 			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_BadgerLantern",
+			"Enabled": true,
+			"Activate": true,
 			"Optional": true
 		},
 		{
@@ -51,6 +62,11 @@
 		},
 		{
 			"Name": "FNE_DeepFox",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_DustyAnvil",
 			"Enabled": true,
 			"Optional": true
 		},
@@ -72,6 +88,17 @@
 		{
 			"Name": "FNE_Jethro_Weapons",
 			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "FNE_SW_UI_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_SW_UI_Renders",
+			"Enabled": true,
 			"Optional": true
 		},
 		{
@@ -80,49 +107,84 @@
 			"Optional": true
 		},
 		{
-			"Name": "FNEBoldTiger",
+			"Name": "FNE_SWLoneMamba",
 			"Enabled": true,
 			"Optional": true
+		},
+		{
+			"Name": "FNE_SWNiceCrown",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNE_SWVehicleSpawners",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEBoldTiger",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
 		},
 		{
 			"Name": "FNEBraveCrown",
 			"Enabled": true,
-			"Optional": true
+			"Optional": true,
+			"Activate": true
 		},
 		{
 			"Name": "FNEBrightJuice",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "FNEBrinePot",
 			"Enabled": true,
 			"Optional": true
 		},
 		{
 			"Name": "FNECalmRock",
 			"Enabled": true,
-			"Optional": true
+			"Optional": true,
+			"Activate": true
 		},
 		{
 			"Name": "FNEChillyHammer",
 			"Enabled": true,
-			"Optional": true
+			"Optional": true,
+			"Activate": true
 		},
 		{
 			"Name": "FNEClearShell",
 			"Enabled": true,
-			"Optional": true
+			"Optional": true,
+			"Activate": true
 		},
 		{
 			"Name": "FNECleverShrimp",
 			"Enabled": true,
-			"Optional": true
+			"Optional": true,
+			"Activate": true
 		},
 		{
 			"Name": "FNECrustyChain",
 			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "FNEDodgyBean",
+			"Enabled": true,
+			"Activate": true,
 			"Optional": true
 		},
 		{
 			"Name": "FNEGalileoBun",
 			"Enabled": true,
-			"Optional": true
+			"Optional": true,
+			"Activate": true
 		},
 		{
 			"Name": "FNEGalileoContainers",
@@ -171,6 +233,11 @@
 			"Optional": true
 		},
 		{
+			"Name": "Lab_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "PerfectKiwiCosmetics",
 			"Enabled": true,
 			"Optional": true,
@@ -199,6 +266,46 @@
 		},
 		{
 			"Name": "SW_B_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_C_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_C_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_D_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_D_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_E_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_E_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_EntityItems",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SW_HeroTransformations",
 			"Enabled": true,
 			"Optional": true
 		}

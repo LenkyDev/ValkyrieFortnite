@@ -1,6 +1,5 @@
 using {/Verse.org/Simulation}
 using {/Verse.org/SceneGraph}
-@experimental
 offer_interactable_component<native><public> := class(interactable_component):
     @editable
     var Offer<public>:offer

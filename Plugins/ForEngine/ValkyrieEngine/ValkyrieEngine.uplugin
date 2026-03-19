@@ -48,7 +48,7 @@
 		},
 		{
 			"Name": "VkPersistence",
-			"Type": "ServerOnly",
+			"Type": "Runtime",
 			"LoadingPhase": "Default"
 		},
 		{
@@ -104,7 +104,7 @@
 			"Enabled": true
 		},
 		{
-			"Name": "AssetManagement",
+			"Name": "FileSandbox",
 			"Enabled": true,
 			"TargetAllowList": [ "Editor" ]
 		}

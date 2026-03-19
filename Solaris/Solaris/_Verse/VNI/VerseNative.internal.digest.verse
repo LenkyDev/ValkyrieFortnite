@@ -7,6 +7,15 @@ Native<public> := module:
 
     validate_asset_path<constructor><epic_internal>(Modifiers:string)<computes>:validate_asset_path_attribute = external {}
 
+    @attribscope_class
+    @attribscope_struct
+    @attribscope_enum
+    @attribscope_interface
+    cpp_name_attribute<epic_internal> := class<computes><internal>(attribute):
+
+
+    cpp_name<constructor><epic_internal>(CPPName:string)<computes>:cpp_name_attribute = external {}
+
     @attribscope_module
     @attribscope_class
     @attribscope_struct
@@ -36,9 +45,10 @@ Native<public> := module:
 
 # Module import path: /Verse.org/Concurrency
 Concurrency<public> := module:
+    using {/Verse.org/Native}
     # A parametric interface implemented by events with a `payload` that can be waited on. Matched with `signalable.`
     awaitable<public>(payload:type) := interface:
-        (/Verse.org/Concurrency/awaitable:)Concurrency_awaitable_Variance<private>:?type {_():tuple(payload)} = external {}
+        (/Verse.org/Concurrency/awaitable:)Concurrency_awaitable_Variance<private>():tuple(payload) = external {}
 
         # Suspends the current task until resumed by a matching call to `signalable.Signal`. Returns the event `payload`.
         Await<public>()<suspends>:payload
@@ -46,7 +56,10 @@ Concurrency<public> := module:
     awaitable<public>() := awaitable(void)
 
     task<native><public>(t:type) := class<abstract><final>(awaitable(t)):
-        (/Verse.org/Concurrency/task:)Concurrency_task_Variance<private>:?type {_():tuple(t)} = external {}
+        @available {MinUploadedAtFNVersion := 4294967041}
+        (/Verse.org/Concurrency/task:)Concurrency_task_Variance_Inherited<private>():tuple(t) = external {}
+
+        (/Verse.org/Concurrency/task:)Concurrency_task_Variance<private>():tuple(t) = external {}
 
         Active<native><epic_internal>()<transacts><decides>:void
 

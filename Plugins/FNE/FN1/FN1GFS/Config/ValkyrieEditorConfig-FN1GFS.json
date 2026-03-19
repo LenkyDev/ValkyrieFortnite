@@ -45,6 +45,7 @@
 			"/Script/AudioShapes.AudioShapeBoxComponent": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/Blutility.EditorUtilityWidget": { "Rules": [ "View" ] },
 			"/Script/Blutility.EditorUtilityWidgetBlueprint": { "Rules": [ "View" ] },
+			"/Script/CoreUObject.Color": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/Engine.RuntimeVirtualTexture": { "Rules": [ "View", "Create", "ModuleAPI" ] },
 			"/Script/Engine.VirtualTextureBuilder": { "Rules": [ "View" ] },
 			"/Script/PCGEditor.PCGBuilderSettings": { "Rules": [ "View", "Create" ] },
@@ -60,6 +61,7 @@
 			"/Script/Engine.CompositeDataTable": { "Rules": [ "View", "Create" ] },
 			"/Script/Engine.CurveTable": { "Rules": [ "View", "Create" ] },
 			"/Script/Engine.CompositeCurveTable": { "Rules": [ "View", "Create" ] },
+			"/Script/Engine.CurveFloat": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/Engine.CurveLinearColor": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/Engine.DataTable": { "Rules": [ "View", "Create" ] },
 			"/Script/Engine.Font": { "Rules": [ "View" ] },
@@ -152,12 +154,14 @@
 			"/Script/Engine.RuntimeVirtualTextureComponent": { "Visible": true },
 			"/Script/Engine.RuntimeVirtualTextureVolume": { "Visible": true },
 			"/Script/Engine.NavigationSystemConfig": { "Visible": true },
+			"/Script/Engine.CurveFloat": { "Visible": true },
 			"/Script/Engine.DataTable": { "Visible": true },
 			"/Script/Engine.CompositeDataTable": { "Visible": true },
 			"/Script/Engine.CurveTable": { "Visible": true },
 			"/Script/Engine.CompositeCurveTable": { "Visible": true },
 			"/Script/Engine.InheritableComponentHandler": { "Visible": true },
 			"/Script/Engine.WorldPartitionMiniMapVolume": { "Visible": true },
+			"/Script/StaticMeshDescription.StaticMeshDescription": { "Visible": true },
 			"/Script/StyleSheetsBlueprint.StyleClassBlueprintData": { "Visible": true },
 			"/Script/StyleSheetsBlueprint.WidgetBlueprintExtension_StyleClass": { "Visible": true },
 			"/Script/StyleSheets.WidgetBlueprintGeneratedClassExtension_StyleClass": { "Visible": true },
@@ -246,6 +250,11 @@
 			"/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C": { "Visible": true },
 			"/NPCDefault/Types/CharacterType_Participant.CharacterType_Participant_C": { "Visible": true },
 			"/NPCDefault/Types/Modifiers/CharacterModifier_Bots.CharacterModifier_Bots_C": { "Visible": true },
+			"/BlastBerryAI/Bots/CharacterType/CharacterType_Bot.CharacterType_Bot_C": { "Visible": true },
+			"/BlastBerryAI/Bots/CharacterType/Modifiers/CharacterModifier_Bots.CharacterModifier_Bots_C": { "Visible": true },
+			"/BlastBerryAI/Bots/CharacterType/Modifiers/CharacterModifier_BotBehavior.CharacterModifier_BotBehavior_C": { "Visible": true },
+			"/BlastBerryAI/Bots/CharacterType/Modifiers/CharacterModifier_BotCosmetic.CharacterModifier_BotCosmetic_C": { "Visible": true },
+			"/BlastBerryAI/Bots/CharacterType/Modifiers/CharacterModifier_BotVerseBehavior.CharacterModifier_BotVerseBehavior_C": { "Visible": true },
 			"/Script/ValetRuntime.DagwoodNetworkPhysicsComponent": { "Visible": true },
 			"/Script/FortniteGame.FortSkyTubePhysicsComponent": { "Visible": true },
 			"/Script/FortniteGame.FortSoundLibraryComponent": { "Visible": true },
@@ -274,6 +283,7 @@
 			"/Game/Athena/SafeZone/SafeZoneIndicator.SafeZoneIndicator_C": { "Visible": true },
 			"/Script/FortniteGame.FortInGameMapManagerAthena": { "Visible": true },
 			"/Script/Engine.DataLayerInstancePrivate": { "Visible": true },
+			"/Script/ReloadNativeRuntime.ReloadControllerComponent_RespawnFromDBNO": { "Visible": true },
 			"/Script/LevelSequence.LevelSequenceBurnInOptions": { "Visible": true },
 			"/Script/LevelSequence.LevelSequenceActor": { "Visible": true },
 			"/Script/LevelSequence.DefaultLevelSequenceInstanceData": { "Visible": true },
@@ -440,7 +450,7 @@
 			},
 			{
 				"Type": "/Script/Engine.PrimitiveComponent",
-				"AllowList": [ "VirtualTextureRenderPassType", "RuntimeVirtualTextures", "ExcludeFromHLODLevels", "TranslucencySortDistanceOffset" ]
+				"AllowList": [ "VirtualTextureRenderPassType", "RuntimeVirtualTextures", "ExcludeFromHLODLevels", "bReceiveMobileCSMShadows", "bTreatAsBackgroundForOcclusion", "TranslucencySortDistanceOffset" ]
 			},
 			{
 				"Type": "/Script/Landscape.Landscape",
@@ -480,7 +490,7 @@
 			},
 			{
 				"Type": "/Script/FortniteGame.FortGameFeatureData",
-				"AllowList": [ "DefaultLootTableData", "DefaultGameData", "PlaylistBaseCurveTableOverrides", "PlaylistBaseDataTableOverrides", "Actions" ]
+				"AllowList": [ "DefaultLootTableData", "DefaultGameData", "PlaylistBaseCurveTableOverrides", "PlaylistBaseDataTableOverrides", "Actions", "AssetBundleData" ]
 			},
 			{
 				"Type": "/Script/FN1NativeRuntime.VerseFortniteStormVolumeComponent",
@@ -509,6 +519,31 @@
 				"bAllowListAllSubclassProperties": true
 			},
 			{
+				"Type": "/BlastBerryAI/Bots/CharacterType/CharacterType_Bot.CharacterType_Bot_C",
+				"bAllowListAllProperties": true,
+				"bAllowListAllSubclassProperties": true
+			},
+			{
+				"Type": "/BlastBerryAI/Bots/CharacterType/Modifiers/CharacterModifier_Bots.CharacterModifier_Bots_C",
+				"bAllowListAllProperties": true,
+				"bAllowListAllSubclassProperties": true
+			},
+			{
+				"Type": "/BlastBerryAI/Bots/CharacterType/Modifiers/CharacterModifier_BotBehavior.CharacterModifier_BotBehavior_C",
+				"bAllowListAllProperties": true,
+				"bAllowListAllSubclassProperties": true
+			},
+			{
+				"Type": "/BlastBerryAI/Bots/CharacterType/Modifiers/CharacterModifier_BotCosmetic.CharacterModifier_BotCosmetic_C",
+				"bAllowListAllProperties": true,
+				"bAllowListAllSubclassProperties": true
+			},
+			{
+				"Type": "/BlastBerryAI/Bots/CharacterType/Modifiers/CharacterModifier_BotVerseBehavior.CharacterModifier_BotVerseBehavior_C",
+				"bAllowListAllProperties": true,
+				"bAllowListAllSubclassProperties": true
+			},
+			{
 				"Type": "/Script/Engine.BrushComponent",
 				"AllowList": [ "bAlwaysCreatePhysicsState" ]
 			},
@@ -517,8 +552,16 @@
 				"AllowList": [ "bTreatAsBackgroundForOcclusion"]
 			},
 			{
+				"Type": "/Script/Engine.LightComponent",
+				"AllowList": [ "CastTranslucentShadows" ]
+			},
+			{
 				"Type": "/Script/FortniteGame.BuildingActor",
-				"AllowList": [ "bAllowHighlight" ]
+				"AllowList": [ "StWMaxDrawDistance", "bAllowHighlight" ]
+			},
+			{
+				"Type": "/Script/FortniteGame.BuildingSMActor",
+				"AllowList": [ "bConsiderOverrideMaterialsOnAnimationCleanup" ]
 			}
 		],
 		"-": [

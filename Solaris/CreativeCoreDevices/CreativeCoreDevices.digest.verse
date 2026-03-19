@@ -186,6 +186,10 @@ capture_area_device<public> := class<concrete><final>(creative_device_base):
     # Sends the `agent` that triggered this device control change.
     ControlChangeEvent<public>:listenable(agent) = external {}
 
+    # Signaled when this device enters the neutralized state.
+    # Sends the `agent` that was responsible for neutralizing the area (the player in the area at the time of neutralization, prioritized by the one who has been in the area the longest), if one exists.
+    NeutralizeEvent<public>:listenable(?agent) = external {}
+
     # Signaled when an item is consumed by this device.
     # Sends the `agent` that provided the item to this device.
     ItemIsConsumedEvent<public>:listenable(agent) = external {}
@@ -1252,6 +1256,16 @@ team_settings_and_inventory_device<public> := class<concrete><final>(creative_de
     # Returns all temporary team members for this Device’s Team Setting Value back to their original Teams.
     # If the device is configured to All, then this function will remove all Temporary Team members from any Temporary Team they are on, returning them to their original team.
     RemoveTemporaryMembersFromTeam<public>():void = external {}
+
+    # Spawn `Player` from the most appropriate `player_spawner_device` available (team match, highest priority, enemy proximity, etc).
+    # Uses the device's `Should Respawn Alive Players` setting to control behavior when called on an alive player.
+    # If no valid spawner is found, the player will respawn from skydive.
+    RespawnAtPlayerSpawner<public>(Player:player):void = external {}
+
+    # Spawn `Player` from the most appropriate `player_spawner_device`, selected from the provided `SpawnerGroup` array.
+    # Uses the device's `Should Respawn Alive Players` setting to control behavior when called on an alive player.
+    # If no valid spawner is found, the player will respawn from skydive.
+    RespawnAtPlayerSpawner<public>(Player:player, SpawnerGroup:[]player_spawner_device):void = external {}
 
     # This variable maps to the 'Dynamic Team Emotes' user option.
     # Modifying this value does not affect the state of any existing Temporary Team member.

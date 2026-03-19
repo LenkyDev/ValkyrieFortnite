@@ -197,7 +197,6 @@
 
         UnhighlightEvent<public>():listenable(widget_message) = external {}
 
-        @experimental
         # The UI input action that will trigger the Click event of this button.
         var TriggeringInputAction<public>:?input_action(logic) = external {}
 
@@ -456,6 +455,13 @@
         Clip
         Ellipsis
 
+    # Text wrapping policy values:
+    #   LineBreak: Allows breaking a line only at line-break iterator for wrapping.
+    #   PerCharacter: Allows breaking a line after any character for wrapping.
+    text_wrapping_policy<native><public> := enum:
+        LineBreak
+        PerCharacter
+
     # Base widget for text widget.
     text_base<native><public> := class<abstract>(widget):
         # The text to display to the user. Used only during initialization of the widget and not modified by SetText.
@@ -478,7 +484,13 @@
         DefaultOverflowPolicy<native><public>:text_overflow_policy = external {}
 
         # Whether the text should be automatically wrapped.
-        var Wrapping<epic_internal>:logic = external {}
+        var AutoWrap<public>:logic = external {}
+
+        # Whether text wraps onto a new line when it's length exceeds this width; if this value is zero or negative, no wrapping occurs.
+        var WrapWidth<public>:float = external {}
+
+        # The wrapping policy to determine where the line can be broken.
+        var WrappingPolicy<public>:text_wrapping_policy = external {}
 
         # Sets the text displayed in the widget.
         SetText<native><public>(InText:message):void

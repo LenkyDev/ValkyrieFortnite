@@ -1,12 +1,13 @@
+using {/Verse.org/Native}
 using {/UnrealEngine.com/Itemization}
 @experimental
 # `fort_inventory_component` is a shared class for all Fortnite inventories, with appropriate default UI and behavior.
 fort_inventory_component<native><public> := class<epic_internal>(inventory_component):
-    # Returns the item in the specified slot, if there is one.
-    GetItemInSlot<native><public>(Slot:int)<reads><decides>:item_component
-
     # Returns the total number of slots in this inventory.
     GetMaxSlots<native><public>()<reads><decides>:int
+
+    # Returns the item in the specified slot, if there is one.
+    GetItemInSlot<native><public>(Slot:int)<reads><decides>:item_component
 
 @experimental
 # `fort_inventory_weapon_hotbar_component` is the UEFN inventory for Fortnite weapons and gadgets.
@@ -66,3 +67,25 @@ FortniteItemCategories<public> := module:
 
     @experimental
     Ammo<public>:item_category = external {}
+
+    @experimental
+    Resource<public>:item_category = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+# Module import path: /Fortnite.com/Itemization/FortniteRarities
+FortniteRarities<public> := module:
+    using {/Verse.org/SceneGraph}
+    @experimental
+    Common<public>:rarity = external {}
+
+    @experimental
+    Uncommon<public>:rarity = external {}
+
+    @experimental
+    Rare<public>:rarity = external {}
+
+    @experimental
+    Epic<public>:rarity = external {}
+
+    @experimental
+    Legendary<public>:rarity = external {}

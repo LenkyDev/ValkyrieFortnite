@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/SolidWave",
-	"FortReleaseVersion": "39.50",
+	"FortReleaseVersion": "40.00",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
@@ -30,6 +30,11 @@
 			"Name": "CRD_HidingProp_SwashTide",
 			"Enabled": true,
 			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "Lab_Assets",
+			"Enabled": true,
 			"Optional": true
 		},
 		{

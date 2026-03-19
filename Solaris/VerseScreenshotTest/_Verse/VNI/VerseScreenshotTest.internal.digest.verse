@@ -19,6 +19,14 @@ screenshot_test_component<native><epic_internal> := class(mesh_component):
     @editable
     ScreenshotTestFileName<native><epic_internal>:string = external {}
 
+    # Listenable which is signaled when a screenshot has been taken.
+    #  Tuple payload: 0: whether the screenshot was taken successfully or not
+    #                 1: the average exposure value
+    #                 2: the average luminance value
+    #                 3: the name of the screenshot
+    #                 4: any error messages if the screenshot failed to be captured
+    ScreenshotTakenEvent<native><epic_internal>:listenable(tuple(logic, float, float, string, string)) = external {}
+
     # Requests a screenshot test to be performed for the specified agent
     RequestClientScreenshotTest<native><final><epic_internal>(Agent:agent)<transacts><decides>:void
 

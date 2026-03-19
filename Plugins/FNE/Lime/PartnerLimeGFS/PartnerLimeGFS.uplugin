@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Lime",
-	"FortReleaseVersion": "39.50",
+	"FortReleaseVersion": "40.00",
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
@@ -94,6 +94,12 @@
 		{
 			"Name": "FNSpaceIngestion",
 			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Locker",
+			"Enabled": true,
+			"Activate": true,
 			"Optional": true
 		},
 		{

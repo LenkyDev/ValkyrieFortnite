@@ -139,7 +139,7 @@ inventory_component<native><public> := class<final_super>(component):
 
 @experimental
 # item_category is used to classify items.
-item_category<native><public> := class<castable><concrete><unique><final>:
+item_category<native><public> := class<castable><concrete><unique><allocates>:
 
 
 @experimental
@@ -155,22 +155,6 @@ change_inventory_result<native><public> := class<epic_internal>:
     PreviousInventory<native><public>:?inventory_component
 
     CurrentInventory<native><public>:?inventory_component
-
-@experimental
-change_stack_size_result<native><public> := class<epic_internal>:
-    ItemComponent<native><public>:item_component
-
-    PreviousStackSize<native><public>:int
-
-    CurrentStackSize<native><public>:int
-
-@experimental
-change_max_stack_size_result<native><public> := class<epic_internal>:
-    ItemComponent<native><public>:item_component
-
-    PreviousMaxStackSize<native><public>:?int
-
-    CurrentMaxStackSize<native><public>:?int
 
 @experimental
 equip_item_error<native><public> := class<computes>:
@@ -225,47 +209,9 @@ item_component<native><public> := class<final_super>(component):
     # Fails if not in an inventory, not currently equipped or if unequip_item_query_event contains any errors after querying.
     Unequip<final><native><public>()<transacts>:result(false, []unequip_item_error)
 
-    @experimental
-    # Takes the specified amount of this item's stack, reducing this item's stack size in the process.
-    #  If taking the exact (full) amount, the item itself should be returned instead.
-    #  There is no default implementation of Take i.e. by default, it will fail.
-    #  If you want to allow this, you must override Take and return an entity containing
-    #  a new item_component. This new entity should not be in any inventory.
-    #  See the online documentation for more details.
-    Take<native><public>(Amount:int)<transacts><decides>:entity
-
-    @available {MinUploadedAtFNVersion := 3200}
-    # List of item_component classes we can be merged with.
-    MergeableItemComponentClasses<native><public>:[]castable_subtype(item_component) = external {}
-
     @editable
     # Categories which this item can belong to. Note that some projects may only use the first entry.
     Categories<native><public>:[]item_category = external {}
-
-    # Succeeds if this item can be merged into the target item. Merging an entity with itself will always fail.
-    CanMergeInto<final><native_callable><public>(TargetItem:entity)<reads><decides>:void = external {}
-
-    # Attempts to merge this item into the specified item. Fails if items cannot be merged or no items are moved.
-    #  If TargetAmount is specified, only that amount will try to be merged into this item.
-    MergeInto<final><native_callable><public>(TargetItem:entity, ?TargetAmount:?int = external {})<transacts><decides>:void = external {}
-
-    @editable_number(int) {MinValue := option {1}}
-    # Current stack size of this item.
-    var<private> StackSize<native><public>:int = external {}
-
-    # Sets the stack size of this item.
-    SetStackSize<final><native><public>(NewStackSize:int)<transacts>:void
-
-    @editable
-    # Maximum stack size for this item.
-    var<private> MaxStackSize<native><public>:?int = external {}
-
-    # Sets the maximum stack size for this item. If ClampStackSize is true, StackSize will be clamped to NewMaxStackSize.
-    SetMaxStackSize<final><native><public>(NewMaxStackSize:int, ?ClampStackSize:logic = external {})<transacts>:void
-
-    ChangeStackSizeEvent<native><final><public>:listenable(change_stack_size_result) = external {}
-
-    ChangeMaxStackSizeEvent<native><final><public>:listenable(change_max_stack_size_result) = external {}
 
     # Removes the item from its inventory and places it in the simulation world. Works on orphaned items i.e. outside the world or any inventory.
     #  Fails if the item is already a pickup. The transform of the item will not be altered except to unparent it from any inventory.
@@ -282,15 +228,9 @@ item_component<native><public> := class<final_super>(component):
 @experimental
 (Item:item_component).CanUnequip<native><public>()<transacts>:result(false, []unequip_item_error)
 
+@deprecated
 @experimental
-# Item Merge Rules Interface. Implemented by components that want to participate in item mergeability checks.
-has_item_merge_rules<public> := interface<unique>:
-    CanMergeInto<public>(TargetItem:entity)<reads><decides>:void = external {}
-
-    OnMergeInto<public>(TargetItem:entity, MergeAmount:int)<transacts>:void = external {}
-
-@experimental
-# Component that holds the details of an item.
+# Deprecated. Please use description_component instead.
 item_details_component<native><public> := class<final_super>(component, has_description):
     var Name<override>:message = external {}
 
@@ -302,9 +242,13 @@ item_details_component<native><public> := class<final_super>(component, has_desc
 
     OnEndSimulation<override>():void = external {}
 
+@deprecated
 @experimental
-# Component that holds the icon for an item.
+# Deprecated. Please use icon_component instead.
 item_icon_component<native><public> := class<final_super>(component, has_icon):
     OnBeginSimulation<override>():void = external {}
 
     OnEndSimulation<override>():void = external {}
+
+    @editable
+    var Icon<native><override>:texture

@@ -18,10 +18,10 @@
 
             SetViewmodelOptional_<native><epic_internal>(viewmodel_type:type, ViewmodelName:[]char, ViewmodelInstance:viewmodel_type)<transacts>:void
 
-            GetNamedSlot_<native><epic_internal>(NamedSlotName:[]char)<transacts>:widget
+            GetNamedSlot_<native><epic_internal>(NamedSlotName:[]char)<transacts>:(/UnrealEngine.com/Temporary/UI:)widget
 
-            SetNamedSlot_<native><epic_internal>(NamedSlotName:[]char, NamedSlotInstance:widget)<transacts>:void
+            SetNamedSlot_<native><epic_internal>(NamedSlotName:[]char, NamedSlotInstance:(/UnrealEngine.com/Temporary/UI:)widget)<transacts>:void
 
-            GetNamedSlotOptional_<native><epic_internal>(NamedSlotName:[]char)<transacts>:?widget
+            GetNamedSlotOptional_<native><epic_internal>(NamedSlotName:[]char)<transacts>:?(/UnrealEngine.com/Temporary/UI:)widget
 
-            SetNamedSlotOptional_<native><epic_internal>(NamedSlotName:[]char, NamedSlotInstance:?widget)<transacts>:void
+            SetNamedSlotOptional_<native><epic_internal>(NamedSlotName:[]char, NamedSlotInstance:?(/UnrealEngine.com/Temporary/UI:)widget)<transacts>:void

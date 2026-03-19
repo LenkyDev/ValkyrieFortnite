@@ -33,6 +33,15 @@ Simulation<public> := module:
     @attribscope_data
     @attribscope_function
     @customattribhandler
+    class_and_subclass_group_names_attribute<epic_internal> := class<computes><internal>(attribute):
+
+
+    class_and_subclass_group_names<constructor><epic_internal>(ClassGroupNames:string)<computes>:class_and_subclass_group_names_attribute = external {}
+
+    @attribscope_class
+    @attribscope_data
+    @attribscope_function
+    @customattribhandler
     display_name_attribute<epic_internal> := class<computes><internal>(attribute):
 
 
@@ -94,7 +103,7 @@ Simulation<public> := module:
     @attribscope_data
     @customattribhandler
     editable_slider<public>(t:type) := class<final><computes>(editable):
-        (/Verse.org/Simulation/editable_slider:)Simulation_editable_slider_Variance<private>:?type {_():tuple(t)} = external {}
+        (/Verse.org/Simulation/editable_slider:)Simulation_editable_slider_Variance<private>():tuple(t) = external {}
 
         # The minimum value of the editor slider.
         MinValue<public>:?t = external {}
@@ -118,7 +127,7 @@ Simulation<public> := module:
     @attribscope_data
     @customattribhandler
     editable_number<public>(t:type) := class<final><computes>(editable):
-        (/Verse.org/Simulation/editable_number:)Simulation_editable_number_Variance<private>:?type {_():tuple(t)} = external {}
+        (/Verse.org/Simulation/editable_number:)Simulation_editable_number_Variance<private>():tuple(t) = external {}
 
         # The minimum value the editor allows.
         MinValue<public>:?t = external {}
@@ -134,7 +143,7 @@ Simulation<public> := module:
     @attribscope_data
     @customattribhandler
     editable_vector_slider<public>(t:type) := class<final><computes>(editable):
-        (/Verse.org/Simulation/editable_vector_slider:)Simulation_editable_vector_slider_Variance<private>:?type {_():tuple(t)} = external {}
+        (/Verse.org/Simulation/editable_vector_slider:)Simulation_editable_vector_slider_Variance<private>():tuple(t) = external {}
 
         # Show the button that allows locking the vector aspect ratio.
         ShowPreserveRatio<public>:logic = external {}
@@ -164,7 +173,7 @@ Simulation<public> := module:
     @attribscope_data
     @customattribhandler
     editable_vector_number<public>(t:type) := class<final><computes>(editable):
-        (/Verse.org/Simulation/editable_vector_number:)Simulation_editable_vector_number_Variance<private>:?type {_():tuple(t)} = external {}
+        (/Verse.org/Simulation/editable_vector_number:)Simulation_editable_vector_number_Variance<private>():tuple(t) = external {}
 
         # Show the button that allows locking the vector aspect ratio.
         ShowPreserveRatio<public>:logic = external {}
@@ -199,6 +208,14 @@ Simulation<public> := module:
     @customattribhandler
     experimental_always_overridden<epic_internal> := class<computes>(attribute):
 
+
+    @attribscope_class
+    @attribscope_data
+    @customattribhandler
+    field_attribute<epic_internal> := class<computes><internal>(attribute):
+
+
+    field<constructor><epic_internal>(FieldName:string)<computes>:field_attribute = external {}
 
     @attribscope_class
     @customattribhandler

@@ -1,11 +1,12 @@
 # Module import path: /Fortnite.com/FN1Native
 FN1Native<public> := module:
+    using {/Verse.org/SceneGraph}
     using {/Verse.org/Simulation}
     using {/Verse.org/Colors}
     using {/Verse.org/Assets}
     # Module import path: /Fortnite.com/FN1Native/FortAircraft
     FortAircraft<public> := module:
-        using {/Verse.org/Native}
+        using {/Verse.org/SceneGraph}
         using {/Verse.org/Simulation}
         using {/Verse.org/SpatialMath}
         fort_aircraft_flight_info<native><epic_internal> := class:
@@ -27,33 +28,13 @@ FN1Native<public> := module:
             @editable_number(float) {MinValue := option {0.000000}}
             DropEndDelay<public>:float = external {}
 
-            GetStartTransform<native_callable><public>():(/Verse.org/SpatialMath:)transform = external {}
-
             GetEndLocation<public>():(/Verse.org/SpatialMath:)vector3 = external {}
 
             GetDropStartLocation<public>():(/Verse.org/SpatialMath:)vector3 = external {}
 
             GetDropEndLocation<public>():(/Verse.org/SpatialMath:)vector3 = external {}
 
-        @import_as("/Script/VerseFortnite.UVerseFortniteActorWrapper")
-        fort_aircraft_base<native><epic_internal> := class<abstract>:
-
-
-        fort_aircraft<native><epic_internal> := class<concrete><unique><castable><epic_internal>(fort_aircraft_base):
-            Despawn<native><protected>():void
-
-            SetInitialFlightPath<native><protected>(StartLocation:(/Verse.org/SpatialMath:)vector3, StartRotation:(/Verse.org/SpatialMath:)rotation, Speed:float, Duration:float, DropStartDelay:float, DropEndDelay:float):void
-
-            StartFlightPath<native><protected>(FlightStartTime:float):void
-
-            SetFlightTimes<native><protected>(FlightElapsedTime:float, FlightTimestamp:float):void
-
-            SetLocation<native><protected>(Position:(/Verse.org/SpatialMath:)vector3):void
-
-            AddPassengerNative<native><protected>(Agent:agent)<transacts><decides>:void
-
-            RemovePassengerNative<native><protected>(Agent:agent)<transacts><decides>:void
-
+        fort_aircraft_component<native><epic_internal> := class<final_super><epic_internal>(component):
             var FlightInfo<public>:fort_aircraft_flight_info = external {}
 
             var StartTime<public>:float = external {}
@@ -66,27 +47,34 @@ FN1Native<public> := module:
 
             var IsInDropZone<public>:logic = external {}
 
-            FlightStartedEvent<public>:subscribable_event_intrnl(fort_aircraft) = external {}
+            FlightStartedEvent<public>:subscribable_event_intrnl(fort_aircraft_component) = external {}
 
-            FlightEndedEvent<public>:subscribable_event_intrnl(fort_aircraft) = external {}
+            FlightEndedEvent<public>:subscribable_event_intrnl(fort_aircraft_component) = external {}
 
-            FlightEnteredDropZoneEvent<public>:subscribable_event_intrnl(fort_aircraft) = external {}
+            FlightEnteredDropZoneEvent<public>:subscribable_event_intrnl(fort_aircraft_component) = external {}
 
-            FlightExitedDropZoneEvent<public>:subscribable_event_intrnl(fort_aircraft) = external {}
+            FlightExitedDropZoneEvent<public>:subscribable_event_intrnl(fort_aircraft_component) = external {}
 
-            Deinitialize<public>():void = external {}
+            OnEndSimulation<override>():void = external {}
 
-            GetFlightInfo<native_callable><public>():fort_aircraft_flight_info = external {}
+            IsFlying<public>()<transacts><decides>:void = external {}
 
-            IsFlying<public>()<decides>:void = external {}
-
-            StartFlight<public>()<suspends>:void = external {}
+            StartFlight<public>(InFlightInfo:fort_aircraft_flight_info)<suspends>:void = external {}
 
             GetPassengers<public>()<reads>:[]agent = external {}
 
             AddPassenger<public>(Passenger:agent)<transacts><decides>:void = external {}
 
             RemovePassenger<public>(Passenger:agent)<transacts><decides>:void = external {}
+
+        fort_aircraft<native><epic_internal> := class<epic_internal>(entity):
+
+
+    # Module import path: /Fortnite.com/FN1Native/FortBuildMode
+    FortBuildMode<public> := module:
+        using {/Verse.org/SceneGraph}
+        fort_build_mode_blocker_component<native><epic_internal> := class<final><final_super>(component):
+
 
     # Module import path: /Fortnite.com/FN1Native/FortBus
     FortBus<public> := module:
@@ -288,6 +276,44 @@ FN1Native<public> := module:
     player_ui_display_info_manager<native><epic_internal> := class:
         GetDisplayInfo<native><epic_internal>(InPlayer:player)<reads>:player_ui_display_info
 
+    reload_ui_bridge_component<native><epic_internal> := class<final><final_super>(component):
+
+
+    # Module import path: /Fortnite.com/FN1Native/BattleRoyaleUtils
+    BattleRoyaleUtils<public> := module:
+        using {/Verse.org/SceneGraph}
+        StoreGamePhaseSetup<native><epic_internal>(WorldContext:entity):void
+
+        StoreGamePhaseWarmup<native><epic_internal>(WorldContext:entity):void
+
+        StoreGamePhaseAircraft<native><epic_internal>(WorldContext:entity):void
+
+        StoreGamePhaseSafeZones<native><epic_internal>(WorldContext:entity):void
+
+        StoreGamePhaseEndGame<native><epic_internal>(WorldContext:entity):void
+
+        ClearGamePhase<native><epic_internal>(WorldContext:entity):void
+
+        StoreWarmupSubState<native><epic_internal>(WorldContext:entity, IsGettingReady:logic):void
+
+        ClearWarmupSubState<native><epic_internal>(WorldContext:entity):void
+
+        StoreAircraftSubState<native><epic_internal>(WorldContext:entity, IsLocked:logic):void
+
+        ClearAircraftSubState<native><epic_internal>(WorldContext:entity):void
+
+        StoreSafeZonesSubStateForming<native><epic_internal>(WorldContext:entity):void
+
+        StoreSafeZonesSubStateHolding<native><epic_internal>(WorldContext:entity):void
+
+        StoreSafeZonesSubStateShrinking<native><epic_internal>(WorldContext:entity):void
+
+        ClearSafeZonesSubState<native><epic_internal>(WorldContext:entity):void
+
+        StoreSafeZonePhaseIndex<native><epic_internal>(WorldContext:entity, SafeZonePhaseIndex:int):void
+
+        ClearSafeZonePhaseIndex<native><epic_internal>(WorldContext:entity):void
+
     # Module import path: /Fortnite.com/FN1Native/FortPawnUtils
     FortPawnUtils<public> := module:
         using {/Verse.org/Simulation}
@@ -302,3 +328,43 @@ FN1Native<public> := module:
         using {/Verse.org/SpatialMath}
         using {/Verse.org/SceneGraph}
         (RigidBody:rigid_body).FindLineTraceHit<native><epic_internal>(TraceStart:(/Verse.org/SpatialMath:)vector3, TraceEnd:(/Verse.org/SpatialMath:)vector3)<transacts><decides>:sweep_hit
+
+        (RigidBody:rigid_body).GetSquaredDistance<native><epic_internal>(Point:(/Verse.org/SpatialMath:)vector3)<transacts><decides>:float
+
+    # Module import path: /Fortnite.com/FN1Native/ReloadUtils
+    ReloadUtils<public> := module:
+        using {/Verse.org/SceneGraph}
+        using {/Verse.org/Simulation}
+        NotifyTeamRespawnReward<native><epic_internal>(TeamContext:agent, RewardType:string, RewardTime:float):void
+
+        NotifyEnemyTeamEliminated<native><epic_internal>(InstigatorTeamContext:agent):void
+
+        StoreRespawnsEnabled<native><epic_internal>(WorldContextEntity:entity, EnableRespawns:logic)<transacts><decides>:void
+
+        ClearRespawnsEnabled<native><epic_internal>(WorldContextEntity:entity)<transacts><decides>:void
+
+        StoreRespawnsDisabledAtTime<native><epic_internal>(WorldContextEntity:entity, RespawnsDisabledAtTime:float)<transacts><decides>:void
+
+        ClearRespawnsDisabledAtTime<native><epic_internal>(WorldContextEntity:entity)<transacts><decides>:void
+
+        StoreRespawnDelay<native><epic_internal>(WorldContextEntity:entity, RespawnDelay:float)<transacts><decides>:void
+
+        ClearRespawnDelay<native><epic_internal>(WorldContextEntity:entity)<transacts><decides>:void
+
+        StoreTeamLives<native><epic_internal>(TeamContext:agent, TeamLives:int):void
+
+        ClearAllTeamLives<native><epic_internal>(WorldContextEntity:entity):void
+
+    # Module import path: /Fortnite.com/FN1Native/FortVolume
+    FortVolume<public> := module:
+        using {/Verse.org/SpatialMath}
+        using {/Verse.org/Native}
+        @import_as("/Script/FN1NativeRuntime.FVerseFortVolumeActorWrapper")
+        fort_volume_actor_wrapper<native><epic_internal> := struct<concrete>:
+
+
+        (Volume:fort_volume_actor_wrapper).InitializePhysics<native><epic_internal>():void
+
+        (Volume:fort_volume_actor_wrapper).EncompassesPoint<native><epic_internal>(Point:(/Verse.org/SpatialMath:)vector3)<reads><decides>:void
+
+        (Volume:fort_volume_actor_wrapper).GetLineTraceHit<native><epic_internal>(TraceStart:(/Verse.org/SpatialMath:)vector3, TraceEnd:(/Verse.org/SpatialMath:)vector3)<transacts><decides>:(/Verse.org/SpatialMath:)vector3

@@ -7,14 +7,37 @@
 			"/Akita",
 			"/Star Wars"
 		],
-		"AllowedClasses":
-		{
-			"/NPCDefault/Types/CharacterType_Custom.CharacterType_Custom_C":						{ "Visible": true },
-			"/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C":							{ "Visible": true },
-			"/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C":					{ "Visible": true }
+		"AllowedAssetTypes": {
+			"/Script/ControlRig.ControlRigBlueprintGeneratedClass": { "Rules": [ "View" ] }
+		},
+		"AllowedClasses": {
+			"/NPCDefault/Types/CharacterType_Custom.CharacterType_Custom_C": { "Visible": true },
+			"/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C": { "Visible": true },
+			"/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C": { "Visible": true },
+			"/NPCDefault/Types/CharacterType_Participant.CharacterType_Participant_C": { "Visible": true },
+			"/FNEDodgyBean/CreatureType/BP_DodgyBean_CharacterType.BP_DodgyBean_CharacterType_C": { "Visible": true },
+			"/SW_C_Assets/SetupAssets/DSA/Blueprints/DSA_BinarySuns.DSA_BinarySuns_C": { "Visible": true },
+			"/SW_D_Assets/SetupAssets/DSA/Blueprints/DSA_Space.DSA_Space_C": { "Visible": true },
+			"/FNE_SW_UI_Assets/CharacterHUDs/UW_HUD_Chewbacca_Info.UW_HUD_Chewbacca_Info_C": { "Visible": true },
+			"/FNE_SW_UI_Assets/CharacterHUDs/UW_HUD_Chewbacca_Quickbar.UW_HUD_Chewbacca_Quickbar_C": { "Visible": true },
+			"/FNE_SW_UI_Assets/CharacterHUDs/UW_HUD_DarthVader_Info.UW_HUD_DarthVader_Info_C": { "Visible": true },
+			"/FNE_SW_UI_Assets/CharacterHUDs/UW_HUD_DarthVader_Quickbar.UW_HUD_DarthVader_Quickbar_C": { "Visible": true },
+			"/FNE_SW_UI_Assets/CharacterHUDs/UW_HUD_EmperorPalpatine_Info.UW_HUD_EmperorPalpatine_Info_C": { "Visible": true },
+			"/FNE_SW_UI_Assets/CharacterHUDs/UW_HUD_EmperorPalpatine_Quickbar.UW_HUD_EmperorPalpatine_Quickbar_C": { "Visible": true },
+			"/FNE_SW_UI_Assets/CharacterHUDs/UW_HUD_Mandalorian_Info.UW_HUD_Mandalorian_Info_C": { "Visible": true },
+			"/FNE_SW_UI_Assets/CharacterHUDs/UW_HUD_Mandalorian_Quickbar.UW_HUD_Mandalorian_Quickbar_C": { "Visible": true },
+			"/FNE_SW_UI_Assets/CharacterHUDs/UW_HUD_LeiaOrgana_Info.UW_HUD_LeiaOrgana_Info_C": { "Visible": true },
+			"/FNE_SW_UI_Assets/CharacterHUDs/UW_HUD_LeiaOrgana_Quickbar.UW_HUD_LeiaOrgana_Quickbar_C": { "Visible": true },
+			"/FNE_SW_UI_Assets/CharacterHUDs/UW_HUD_ReySkywalker_Info.UW_HUD_ReySkywalker_Info_C": { "Visible": true },
+			"/FNE_SW_UI_Assets/CharacterHUDs/UW_HUD_ReySkywalker_Quickbar.UW_HUD_ReySkywalker_Quickbar_C": { "Visible": true },
+			"/FNE_SW_UI_Assets/PlayerHUD/UW_HUD_Equipped.UW_HUD_Equipped_C": { "Visible": true },
+			"/FNE_SW_UI_Assets/PlayerHUD/UW_HUD_PlayerInfo.UW_HUD_PlayerInfo_C": { "Visible": true },
+			"/FNE_SW_UI_Assets/PlayerHUD/UW_HUD_Quickbar.UW_HUD_Quickbar_C": { "Visible": true },
+			"/FNE_SWLoneMamba/Characters/Jawa/Jawa.Jawa_C": { "Visible": true },
+			"/FNE_SWNiceCrown/Vehicles/AT_AT/AT_AT.AT_AT_C": { "Visible": true }
 		},
 		"_comment_AllowedGatherFolders": "Allowed folders to gather assets from when exposing assets"
-		
+
 	},
 	"PropertyEditorClassPermissionList":
 	{
@@ -27,10 +50,20 @@
 			},
 			{
 				"Type": "/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C",
-				"AllowList": [ "SelectedAI", "DisplayName" ]
+				"AllowList": [ "SelectedAI", "DisplayName", "SelectedPreset" ]
 			},
 			{
 				"Type": "/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C",
+				"AllowList": [ "DisplayName" ], 
+				"DenyList": [ "SelectedAI" ]
+			},
+			{
+				"Type": "/NPCDefault/Types/CharacterType_Participant.CharacterType_Participant_C",
+				"AllowList": [ "DisplayName" ],
+				"DenyList": [ "SelectedAI" ]
+			},
+			{
+				"Type": "/FNEDodgyBean/CreatureType/BP_DodgyBean_CharacterType.BP_DodgyBean_CharacterType_C",
 				"AllowList": [ "DisplayName" ], 
 				"DenyList": [ "SelectedAI" ]
 			}

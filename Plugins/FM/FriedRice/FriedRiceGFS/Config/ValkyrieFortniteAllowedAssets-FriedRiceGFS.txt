@@ -1340,7 +1340,7 @@
 /Game/Environments/Sets/DigSite/Materials/MF_Sneezy_DanceClub.MF_Sneezy_DanceClub
 /Game/Environments/Sets/Factory/Meshes/Factory_Door_1.Factory_Door_1
 /Game/Environments/Sets/Fences/Picket/Materials/M_PicketFence_White.M_PicketFence_White
-/Game/Environments/Sets/Lab/DataAssets/Rufus_BridgeGirder_Grey.Rufus_BridgeGirder_Grey
+/Lab_Assets/Environments/Sets/Lab/DataAssets/Rufus_BridgeGirder_Grey.Rufus_BridgeGirder_Grey
 /Game/Environments/Sets/MilitaryBase/Textures/T_Military_Base_Mtl_Walls_04_S.T_Military_Base_Mtl_Walls_04_S
 /Game/Environments/Sets/Neo/Architecture/Textures/T_Neo_StationFloor1C_D.T_Neo_StationFloor1C_D
 /Game/Environments/Sets/Neo/Architecture/Textures/T_Neo_StationFloor1C_N.T_Neo_StationFloor1C_N

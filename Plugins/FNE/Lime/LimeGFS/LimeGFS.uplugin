@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Lime",
-	"FortReleaseVersion": "39.50",
+	"FortReleaseVersion": "40.00",
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
@@ -63,6 +63,11 @@
 		},
 		{
 			"Name": "CRD_LimeItemSpawner",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRP_GardenPartyHG",
 			"Enabled": true,
 			"Optional": true
 		},
@@ -444,6 +449,12 @@
 			"Optional": true
 		},
 		{
+			"Name": "Locker",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
 			"Name": "Musical_Walk_Assets",
 			"Enabled": true,
 			"Optional": true
@@ -474,6 +485,11 @@
 			"Optional": true
 		},
 		{
+			"Name": "StandaloneLocker",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "Suburban_Assets",
 			"Enabled": true,
 			"Optional": true
@@ -494,22 +510,17 @@
 			"Optional": true
 		},
 		{
-			"Name": "TownScaper",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "CRP_GardenPartyHG",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
 			"Name": "Temples_Assets",
 			"Enabled": true,
 			"Optional": true
 		},
 		{
 			"Name": "Temples_Comp",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "TownScaper",
 			"Enabled": true,
 			"Optional": true
 		}

@@ -106,7 +106,7 @@
 			"/Script/AtomRuntime.AtomPrimitiveCollisionGeometryConvex": {},
 			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeBox": {},
 			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeCapsule": {},
-			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeTube": {},
+			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeHollowCylinder": {},
 			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeSphere": {},
 			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeContainer": {},
 			"/Script/AtomRuntime.AtomPrimitiveConnection": {},
@@ -299,7 +299,8 @@
 			"LevelEditor": {
 				"AllowList": {
 					"+": [
-						"AtomDBManagement"
+						"AtomDBManagement",
+						"AtomPaletteTab_v2"
 					]
 				}
 			}
@@ -319,7 +320,7 @@
 			},
 			{
 				"Type": "/LimeAISpawnerGuard/SpawnDefinitions/Types/CharacterType_LimeGuard.CharacterType_LimeGuard_C",
-				"AllowList": [ "DisplayName", "SelectedAI" ]
+				"AllowList": [ "DisplayName", "SelectedAI", "SelectedPreset" ]
 			},
 			{
 				"Type": "/LimeExtraAssets/AI/TestPlayers/CharacterType/CharacterType_LimeParticipant.CharacterType_LimeParticipant_C",
@@ -398,6 +399,7 @@
 			},
 			{
 				"Type": "/Script/AtomRuntime.AtomPrimitiveStaticMeshComponent",
+				"DenyList": [ "Color", "StaticMesh", "OverrideMaterials", "CustomPrimitiveData", "AssetUserData", "AssetUserDataEditorOnly" ],
 				"bAllowListAllProperties": true,
 				"bAllowListAllSubclassProperties": true
 			},
@@ -409,12 +411,12 @@
 			},
 			{
 				"Type": "/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C",
-				"AllowList": [ "SelectedAI", "DisplayName" ]
+				"AllowList": [ "SelectedAI", "DisplayName", "SelectedPreset" ]
 			},
 			{
 				"Type": "/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C",
 				"AllowList": [ "DisplayName" ],
-				"DenyList": [ "SelectedAI" ]
+				"DenyList": [ "SelectedAI", "SelectedPreset" ]
 			},
 			{
 				"Type": "/Script/AssembledMeshSystem.AssembledMeshUserComponent",

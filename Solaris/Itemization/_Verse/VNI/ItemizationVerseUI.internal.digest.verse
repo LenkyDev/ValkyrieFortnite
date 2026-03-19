@@ -1,4 +1,7 @@
+using {/Verse.org/Colors}
+using {/Verse.org/Simulation}
 using {/Verse.org/Native}
+using {/Verse.org/Presentation}
 using {/UnrealEngine.com/Itemization}
 using {/Verse.org/SceneGraph}
 using {/Verse.org/Temporary/EpicGamesRestricted/Network}
@@ -20,6 +23,9 @@ inventory_item_action_property_interface<epic_internal> := class<public>(paramet
     @replicated("RepNotify=___PropertyInterface_On_RequestHover_Changed")
     var<private> RequestHover<public>:logic = external {}
 
+    @replicated("RepNotify=___PropertyInterface_On_IsSwapping_Changed")
+    var IsSwapping<public>:logic = external {}
+
     RequestSelectChangedEvent<public>:subscribable_event_intrnl(inventory_item_action_property_interface) = external {}
 
     SetRequestSelect<public>(NewRequestSelect:logic):void = external {}
@@ -36,16 +42,22 @@ inventory_item_action_property_interface<epic_internal> := class<public>(paramet
 
     ___PropertyInterface_On_RequestHover_Changed<epic_internal>():void = external {}
 
-@available {MinUploadedAtFNVersion := 3200}
+    ___PropertyInterface_On_IsSwapping_Changed<epic_internal>():void = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+@class_and_subclass_group_names("inventory")
 @experimental
+@hide_in_editor
 inventory_item_view_model_component<native><epic_internal> := class<final><final_super>(component):
     InitializeViewModel<native_callable><public>(Item:entity):void = external {}
 
     UninitializeViewModel<native_callable><epic_internal>():void = external {}
 
-    SendDown<override>(SceneEvent:scene_event):logic = external {}
+    OnReceive<override>(SceneEvent:scene_event):logic = external {}
 
     RefreshViewModel<public>(Item:entity):void = external {}
+
+    OnTeamOrClassChanged<protected>():void = external {}
 
     OnItemCountChanged<protected>(ItemComponent:item_component):void = external {}
 
@@ -55,13 +67,17 @@ inventory_item_view_model_component<native><epic_internal> := class<final><final
 
     OnItemChanged<protected>(OptionalItemComponent:?item_component):void = external {}
 
-    OnIconChanged<protected>(OptionalIconComponent:?item_icon_component):void = external {}
+    OnStackableChanged<protected>(OptionalStackableComponent:?stackable_component):void = external {}
 
-    OnDetailsChanged<protected>(OptionalDetailsComponent:?item_details_component):void = external {}
+    OnIconChanged<protected>(OptionalIconComponent:?icon_component):void = external {}
 
-    OnRarityChanged<protected>(OptionalRarityComponent:?item_rarity_component):void = external {}
+    OnDetailsChanged<protected>(OptionalDetailsComponent:?description_component):void = external {}
+
+    OnRarityChanged<protected>(OptionalRarityComponent:?rarity_component):void = external {}
 
     OnReloadTimeChanged<protected>(NewTime:float):void = external {}
+
+    OnTrapInventoryVisibiltyRefresh<protected>(TrapEntity:entity):void = external {}
 
     OnSimulate<override>()<suspends>:void = external {}
 
@@ -71,8 +87,10 @@ inventory_item_view_model_component<native><epic_internal> := class<final><final
 
     var StartingReloadTime<protected>:float = external {}
 
-@available {MinUploadedAtFNVersion := 3200}
+@available {MinUploadedAtFNVersion := 4000}
+@class_and_subclass_group_names("inventory")
 @experimental
+@hide_in_editor
 inventory_ui_action_component<native><epic_internal> := class<final><final_super>(component):
     Initialize<native_callable><public>(InventoryComponent:inventory_component):void = external {}
 
@@ -84,14 +102,33 @@ inventory_ui_action_component<native><epic_internal> := class<final><final_super
 
     HandleRequestUseSelectedItem<protected>():void = external {}
 
+    HandleRequestSwapSelectedItem<protected>():void = external {}
+
+    HandleRequestInventoryClosedEvent<protected>():void = external {}
+
+    HandleRequestInventoryOpenedEvent<protected>():void = external {}
+
+    SwapItem<protected>(Item:entity):void = external {}
+
+    ResetSwap<protected>()<transacts>:void = external {}
+
     HandleItemsAdded<protected>(AddItemResult:add_item_result):void = external {}
 
     HandleItemsRemoved<protected>(RemoveItemResult:remove_item_result):void = external {}
+
+    HandleEquipItem<protected>(EquipItemResult:equip_item_result):void = external {}
+
+    HandleUnequipItem<protected>(UnequipItemResult:unequip_item_result):void = external {}
+
+    UpdateIsInventoryAllowedToSwap<protected>():void = external {}
 
 InventoryActionPropertyInterface_asset<epic_internal>:property_interface_UE5_definition = external {}
 
 InventoryActionPropertyInterface<epic_internal> := class<public>(parameterized_property_interface):
     UE5Class<override>:property_interface_UE5_definition = external {}
+
+    @replicated("RepNotify=___PropertyInterface_On_IsSwapping_Changed")
+    var IsSwapping<public>:logic = external {}
 
     @replicated("RepNotify=___PropertyInterface_On_RequestDropSelectedItem_Changed")
     var<private> RequestDropSelectedItem<public>:logic = external {}
@@ -114,9 +151,31 @@ InventoryActionPropertyInterface<epic_internal> := class<public>(parameterized_p
 
     SetRequestUseSelectedItem<public>(NewRequestUseSelectedItem:logic):void = external {}
 
+    @replicated("RepNotify=___PropertyInterface_On_RequestSwapSelectedItem_Changed")
+    var<private> RequestSwapSelectedItem<public>:logic = external {}
+
+    RequestSwapSelectedItemChangedEvent<public>:listenable(tuple()) = external {}
+
+    SetRequestSwapSelectedItem<public>(NewRequestSwapSelectedItem:logic):void = external {}
+
+    @replicated("RepNotify=___PropertyInterface_On_IsInventoryActive_Changed")
+    var<private> IsInventoryActive<public>:logic = external {}
+
+    RequestInventoryClosedEvent<public>:listenable(tuple()) = external {}
+
+    RequestInventoryOpenedEvent<public>:listenable(tuple()) = external {}
+
+    SetIsInventoryActive<public>(NewIsInventoryActive:logic):void = external {}
+
     ___PropertyInterface_On_SelectedItem_Changed<epic_internal>():void = external {}
 
     ___PropertyInterface_On_HoveredItem_Changed<epic_internal>():void = external {}
+
+    ___PropertyInterface_On_EquippedItem_Changed<epic_internal>():void = external {}
+
+    ___PropertyInterface_On_IsInventoryAllowedToSwap_Changed<epic_internal>():void = external {}
+
+    ___PropertyInterface_On_IsSwapping_Changed<epic_internal>():void = external {}
 
     ___PropertyInterface_On_RequestDropSelectedItem_Changed<epic_internal>():void = external {}
 
@@ -124,11 +183,17 @@ InventoryActionPropertyInterface<epic_internal> := class<public>(parameterized_p
 
     ___PropertyInterface_On_RequestUseSelectedItem_Changed<epic_internal>():void = external {}
 
+    ___PropertyInterface_On_RequestSwapSelectedItem_Changed<epic_internal>():void = external {}
+
+    ___PropertyInterface_On_IsInventoryActive_Changed<epic_internal>():void = external {}
+
 InventoryActionPropertyInterface_subscribable_property_changed_event<epic_internal> := class(subscribable_event_intrnl(tuple())):
 
 
-@available {MinUploadedAtFNVersion := 3200}
+@available {MinUploadedAtFNVersion := 4000}
+@class_and_subclass_group_names("inventory")
 @experimental
+@hide_in_editor
 inventory_view_model_component<native><epic_internal> := class<final><final_super>(component):
     InitializeViewModel<native_callable><public>(InventoryComponent:inventory_component):void = external {}
 
@@ -236,6 +301,9 @@ InventoryItemPropertyInterface<epic_internal> := class<public>(parameterized_pro
     @replicated("RepNotify=___PropertyInterface_On_RarityTier_Changed")
     var RarityTier<public>:int = external {}
 
+    @replicated("RepNotify=___PropertyInterface_On_RarityColor_Changed")
+    var RarityColor<public>:color = external {}
+
     @replicated("RepNotify=___PropertyInterface_On_ItemTypeName_Changed")
     var ItemTypeName<public>:message = external {}
 
@@ -250,6 +318,9 @@ InventoryItemPropertyInterface<epic_internal> := class<public>(parameterized_pro
 
     @replicated("RepNotify=___PropertyInterface_On_SlotSize_Changed")
     var SlotSize<public>:int = external {}
+
+    @replicated("RepNotify=___PropertyInterface_On_FirstToUse_Changed")
+    var FirstToUse<public>:logic = external {}
 
     ___PropertyInterface_On_IsValid_Changed<epic_internal>():void = external {}
 
@@ -281,6 +352,8 @@ InventoryItemPropertyInterface<epic_internal> := class<public>(parameterized_pro
 
     ___PropertyInterface_On_RarityTier_Changed<epic_internal>():void = external {}
 
+    ___PropertyInterface_On_RarityColor_Changed<epic_internal>():void = external {}
+
     ___PropertyInterface_On_ItemTypeName_Changed<epic_internal>():void = external {}
 
     ___PropertyInterface_On_InputAction_Changed<epic_internal>():void = external {}
@@ -290,3 +363,5 @@ InventoryItemPropertyInterface<epic_internal> := class<public>(parameterized_pro
     ___PropertyInterface_On_CycleNextInputAction_Changed<epic_internal>():void = external {}
 
     ___PropertyInterface_On_SlotSize_Changed<epic_internal>():void = external {}
+
+    ___PropertyInterface_On_FirstToUse_Changed<epic_internal>():void = external {}

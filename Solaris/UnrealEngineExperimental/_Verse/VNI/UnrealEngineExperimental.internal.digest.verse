@@ -6,6 +6,7 @@ Curves<public> := module:
 
 # Module import path: /UnrealEngine.com/Temporary/Diagnostics
 Diagnostics<public> := module:
+    using {/Verse.org/Native}
     using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/Verse.org/Colors}
     using {/Verse.org/SpatialMath}
@@ -110,16 +111,24 @@ Diagnostics<public> := module:
         # Sets the default log level of the displayed message. See log_level enum for more info on log levels. Defaults to log_level.Normal.
         DefaultLevel<native><public>:log_level = external {}
 
-        # Print message using the given log level
+        @available {MinUploadedAtFNVersion := 4000}
+        # Sets the current debug diagnostic display `Color` that will be applied to all future Print calls. By default, `Color` is `NamedColors.White`, Only used if Duration is greater than `0.0`.
+        Color<native><epic_internal>:color = external {}
+
+        @available {MinUploadedAtFNVersion := 4000}
+        # If set to greater than 0.0, displays the log on the screen in debug environments.
+        Duration<native><epic_internal>:float = external {}
+
+        # Print `Message` using the given log level.
         (/UnrealEngine.com/Temporary/Diagnostics/log:)Print<public>(Message:string, ?Level:log_level = external {})<computes>:void = external {}
 
-        # Print message using the given log level
+        # Print `Message` using the given log level.
         (/UnrealEngine.com/Temporary/Diagnostics/log:)Print<epic_internal>(Message:message, ?Level:log_level = external {})<reads>:void = external {}
 
-        # Print diagnostic using the given log level
+        # Print `Message` diagnostic using the given log level.
         (/UnrealEngine.com/Temporary/Diagnostics/log:)Print<public>(Message:diagnostic, ?Level:log_level = external {})<computes>:void = external {}
 
-        # Prints the current script call stack using the given log level
+        # Prints the current script call stack using the given log level.
         PrintCallStack<native><public>(?Level:log_level = external {})<computes>:void
 
 # Module import path: /UnrealEngine.com/Temporary/Testing

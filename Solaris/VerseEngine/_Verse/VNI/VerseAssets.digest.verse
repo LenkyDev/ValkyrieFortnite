@@ -20,12 +20,12 @@ Assets<public> := module:
 
 
     input_action<native><public>(t:type) := class<computes><epic_internal>:
-        (/Verse.org/Assets/input_action:)Assets_input_action_Variance<private>:?type {_():tuple(t)} = external {}
+        (/Verse.org/Assets/input_action:)Assets_input_action_Variance<private>():tuple(t) = external {}
 
     input_mapping<native><public> := class<computes><epic_internal>:
 
 
     # Interface that provides an icon.
-    has_icon<public> := interface:
+    has_icon<native><public> := interface:
         @editable
-        var<protected> Icon<public>:texture
+        var Icon<public>:texture

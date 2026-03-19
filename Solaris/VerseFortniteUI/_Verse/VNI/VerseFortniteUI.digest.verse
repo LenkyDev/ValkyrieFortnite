@@ -7,9 +7,9 @@
     using {/Verse.org/Assets}
     using {/UnrealEngine.com/Temporary/UI}
     # Button with text message common base class. Displays a button with a custom message string.
-    text_button_base<native><public> := class<abstract><epic_internal>(widget):
+    text_button_base<native><public> := class<abstract><epic_internal>((/UnrealEngine.com/Temporary/UI:)widget):
         # The text to display to the user. Used only during initialization of the widget and not modified by SetText.
-        (/Fortnite.com/UI/text_button_base:)DefaultText<localizes><native><public>:message = external {}
+        DefaultText<localizes><native><public>:message = external {}
 
         # Subscribable event that fires when the button is clicked.
         OnClick<public>():listenable(widget_message) = external {}
@@ -20,7 +20,6 @@
         # Gets the text currently in the widget.
         GetText<native><public>():string
 
-        @experimental
         # The UI input action that will trigger the Click event of this button.
         var TriggeringInputAction<public>:?input_action(logic) = external {}
 
@@ -196,7 +195,7 @@
 
 
     # Slider with a text value. Displays a slider, its progress bar and value.
-    slider_regular<native><public> := class<final>(widget):
+    slider_regular<native><public> := class<final>((/UnrealEngine.com/Temporary/UI:)widget):
         # The value to display to the user. Used only during initialization of the widget and not modified by SetValue.
         DefaultValue<native><public>:float = external {}
 

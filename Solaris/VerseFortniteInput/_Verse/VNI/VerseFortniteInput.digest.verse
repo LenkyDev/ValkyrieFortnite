@@ -1,7 +1,7 @@
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 3720}
 # Module import path: /Fortnite.com/Input
-Input<public> := module:
+(/Fortnite.com:)Input<public> := module:
     using {/Verse.org/Native}
     @available {MinUploadedAtFNVersion := 3720}
     # Module import path: /Fortnite.com/Input/Character

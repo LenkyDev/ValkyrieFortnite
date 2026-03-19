@@ -28,12 +28,20 @@ Predicts<public> := module:
 
     PredictsDebugReplicateToClient<native><epic_internal>()<transacts>:void
 
+    PredictsDebugUseReachabilityBasedReplication<native><epic_internal>()<transacts>:void
+
     PredictsDebugRegisterFunc<native><epic_internal>(__dupe___unnamed_parameter_18:string, __dupe___unnamed_parameter_19:type {_()<predicts>:void})<transacts>:void
 
-    PredictsDebugCallFunc<native><epic_internal>(__dupe___unnamed_parameter_20:string)<transacts>:void
+    PredictsDebugUnregisterFunc<native><epic_internal>(__dupe___unnamed_parameter_20:string)<transacts>:void
+
+    PredictsDebugCallFunc<native><epic_internal>(__dupe___unnamed_parameter_21:string)<transacts>:void
+
+    PredictsDebugTryCallFunc<native><epic_internal>(__dupe___unnamed_parameter_22:string)<transacts>:logic
 
     PredictsDebugResetAllDataAndCallbacks<native><epic_internal>()<transacts>:void
 
-    PredictsDebugGCPinObject<native><epic_internal>(__dupe___unnamed_parameter_21:any)<transacts>:void
+    PredictsDebugGCPinObject<native><epic_internal>(__dupe___unnamed_parameter_23:any)<transacts>:void
 
-    PredictsDebugGCUnpinObject<native><epic_internal>(__dupe___unnamed_parameter_22:any)<transacts>:void
+    PredictsDebugGCUnpinObject<native><epic_internal>(__dupe___unnamed_parameter_24:any)<transacts>:void
+
+    PredictsDebugCheckClientAbortedContentScopeAndReset<native><epic_internal>()<transacts><decides>:void

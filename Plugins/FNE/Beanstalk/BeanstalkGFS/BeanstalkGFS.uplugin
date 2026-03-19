@@ -9,7 +9,7 @@
 	"BuiltInAutoRegister": true,
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
-	"FortReleaseVersion": "39.50",
+	"FortReleaseVersion": "40.00",
 	"IsGameFeatureSet": true,
 	"Version": 0,
 	"VersionName": "",
@@ -55,6 +55,7 @@
 		{
 			"Name": "Beanstalk",
 			"Enabled": true,
+			"Activate": true,
 			"Optional": true
 		},
 		{
@@ -114,6 +115,12 @@
 		{
 			"Name": "BeanStarter",
 			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "Locker",
+			"Enabled": true,
+			"Activate": true,
 			"Optional": true
 		}
 	],

@@ -29,22 +29,22 @@
 			},
 			{
 				"Type": "/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C",
-				"AllowList": [ "SelectedAI", "DisplayName" ]
+				"AllowList": [ "SelectedAI", "DisplayName", "SelectedPreset" ]
 			},
 			{
 				"Type": "/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C",
 				"AllowList": [ "DisplayName" ], 
-				"DenyList": [ "SelectedAI" ]
+				"DenyList": [ "SelectedAI", "SelectedPreset" ]
 			},
 			{
 				"Type": "/NPCDefault/Types/CharacterType_Participant.CharacterType_Participant_C",
 				"AllowList": [ "DisplayName" ],
-				"DenyList": [ "SelectedAI" ]
+				"DenyList": [ "SelectedAI", "SelectedPreset" ]
 			},
 			{
 				"Type": "/ChompyPlugin/CharacterType/BP_Chompy_CharacterType.BP_Chompy_CharacterType_C",
 				"AllowList": [ "DisplayName" ], 
-				"DenyList": [ "SelectedAI" ]
+				"DenyList": [ "SelectedAI", "SelectedPreset" ]
 			}
 		]
 	}

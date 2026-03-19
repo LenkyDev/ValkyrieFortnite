@@ -3,6 +3,7 @@ AI<public> := module:
     using {/Fortnite.com/Teams}
     using {/Fortnite.com/Playspaces}
     using {/Fortnite.com/Assets}
+    using {/Verse.org/Assets}
     using {/Fortnite.com/Characters}
     using {/Verse.org/SpatialMath}
     using {/UnrealEngine.com/Temporary/SpatialMath}
@@ -98,6 +99,13 @@ AI<public> := module:
     # Get the focus_interface interface for the specified character.
     (InCharacter:fort_character).GetFocusInterface<public>()<transacts><decides>:focus_interface = external {}
 
+    fort_aisettings<native><epic_internal> := class<computes><final><epic_internal>(asset):
+
+
+    # Fortnite AI Settings Component to replace AI Settings from the playlist
+    fort_aisettings_component<native><epic_internal> := class<final_super>(component):
+        OnAddedToSceneInternal<override><native>():void
+
     @available {MinUploadedAtFNVersion := 3900}
     # Fortnite Bots AI actions management
     fort_bot_actions_component<native><epic_internal> := class<epic_internal>(guard_actions_component):
@@ -145,7 +153,7 @@ AI<public> := module:
 
     @available {MinUploadedAtFNVersion := 3900}
     # Fortnite Guards AI actions management
-    guard_actions_component<native><public> := class<epic_internal>(npc_actions_component):
+    guard_actions_component<native><public> := class<final_super><epic_internal>(npc_actions_component):
         OnInitialized<native><override>():void
 
         # Roam around the current position. Use 'Tether' to specify the radius; otherwise, the Fortnite guard will roam anywhere.
@@ -164,7 +172,7 @@ AI<public> := module:
         Jump<native><public>()<suspends>:result(void, ai_action_error_type)
 
         # Trigger a slide.
-        Slide<native><epic_internal>()<suspends>:result(void, ai_action_error_type)
+        Slide<native><public>()<suspends>:result(void, ai_action_error_type)
 
         # Change movement speed to sprint and switch to tactical sprint when energy is full.
         TacticalSprint<native><epic_internal>()<suspends>:result(void, ai_action_error_type)
@@ -194,7 +202,7 @@ AI<public> := module:
 
     @available {MinUploadedAtFNVersion := 3900}
     # Fortnite Guard perception management
-    guard_awareness_component<native><public> := class<epic_internal>(npc_awareness_component):
+    guard_awareness_component<native><public> := class<final_super><epic_internal>(npc_awareness_component):
         OnInitialized<native><override>():void
 
         OnUninitializing<native><override>():void

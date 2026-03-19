@@ -46,7 +46,7 @@ AI<public> := module:
 
     @available {MinUploadedAtFNVersion := 3900}
     # Fortnite Guards AI actions management
-    guard_actions_component<native><public> := class<epic_internal>(npc_actions_component):
+    guard_actions_component<native><public> := class<final_super><epic_internal>(npc_actions_component):
         # Roam around the current position. Use 'Tether' to specify the radius; otherwise, the Fortnite guard will roam anywhere.
         RoamAround<native><public>(?MovementType:movement_type = external {})<suspends>:result(void, ai_action_error_type)
 
@@ -61,6 +61,9 @@ AI<public> := module:
 
         # Trigger a jump.
         Jump<native><public>()<suspends>:result(void, ai_action_error_type)
+
+        # Trigger a slide.
+        Slide<native><public>()<suspends>:result(void, ai_action_error_type)
 
         # Play a random emote from the character emotes bank.
         PlayRandomEmote<native><public>()<suspends>:result(void, ai_action_error_type)
@@ -84,7 +87,7 @@ AI<public> := module:
 
     @available {MinUploadedAtFNVersion := 3900}
     # Fortnite Guard perception management
-    guard_awareness_component<native><public> := class<epic_internal>(npc_awareness_component):
+    guard_awareness_component<native><public> := class<final_super><epic_internal>(npc_awareness_component):
         # Potentially detected obstacle.
         var<private> DetectedObstacle<native><public>:?entity = external {}
 

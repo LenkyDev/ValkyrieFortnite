@@ -1,16 +1,26 @@
 using {/Verse.org/Assets}
-using {/Verse.org/Native}
+using {/Verse.org/Simulation}
+using {/Verse.org/Containers}
 @experimental
-# Internal common implementation for skeletal_animation
-generic_skeletal_animation<native><epic_internal> := class<abstract>(skeletal_animation, property_changed_interface):
-    Asset<native><epic_internal>:asset = external {}
+# A owner of a modifier of skeletons, used to animate meshes using skeletal animation
+has_skeletal_animation<native><epic_internal> := interface:
+    @editable
+    @category("Animation")
+    SkeletalAnimation<epic_internal>:modifier_stack(skeleton)
 
-    OnPropertyChangedFromVerse<native><override>(PropertyName:string)<transacts>:void
+    GetSkeletalAnimation<native_callable><epic_internal>():modifier_stack(skeleton) = external {}
 
 @experimental
-# All things that produce a skeleton implement the skeletal_animation interface
-skeletal_animation<native><epic_internal> := interface:
+# A modifier of skeletons, used to animate meshes using skeletal animation
+skeletal_animation<native><epic_internal> := class<epic_internal>(modifier(skeleton)):
+    InternalAsset<native><epic_internal>:animation_asset = external {}
 
+@experimental
+MakeSkeletonModifierStack<native><epic_internal>()<converges>:modifier_stack(skeleton)
+
+@experimental
+# Plays back a modifier(skeleton) on a modifier_stack(skeleton)
+(Stack:modifier_stack(skeleton)).Play<epic_internal>(Modifier:modifier(skeleton))<transacts>:cancelable = external {}
 
 @experimental
 # Skeletons are collections of bones & sets/chains

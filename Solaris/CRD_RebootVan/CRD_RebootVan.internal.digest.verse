@@ -44,15 +44,13 @@ reboot_van_device<public> := class<concrete><final>(creative_device_base, reboot
     #  * Only used if `CanPurchaseRebootCard` is `true`.
     var PurchaseRebootCardOptions<override>:?reboot_card_purchase_options = external {}
 
-    var InternalPurchaseRebootCardOptions<override>:reboot_card_purchase_options = external {}
-
 reboot_progress_decay_behavior<public> := enum<open>:
     # Set a custom multiplier on the decay rate.
     CustomDecay
     # Instantly reset progress to zero.
     InstantReset
     # Use Battle Royale's decay rate.
-    BattleRoyale
+    (/Fortnite.com/Devices/reboot_progress_decay_behavior:)BattleRoyale
 
 reboot_card_purchase_options<public> := class<concrete><final>:
     # Determines how much of the set currency it costs to purchase an eliminated player's reboot card. Clamped between `0` and `99999`.
@@ -107,5 +105,3 @@ reboot_van_interface<public> := interface<epic_internal>:
     # Purchase reboot card options.
     #  * Only used if `CanPurchaseRebootCard` is `true`.
     var PurchaseRebootCardOptions<public>:?reboot_card_purchase_options
-
-    var InternalPurchaseRebootCardOptions<protected>:reboot_card_purchase_options

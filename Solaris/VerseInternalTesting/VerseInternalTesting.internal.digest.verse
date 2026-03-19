@@ -35,20 +35,24 @@ NexusFramework<public> := module:
 # Module import path: /Fortnite.com/VerseInternalTesting/VerseFramework
 VerseFramework<public> := module:
     using {/Fortnite.com/Characters}
+    using {/Verse.org/SpatialMath}
     using {/Verse.org/Colors}
     using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/UnrealEngine.com/Temporary/Diagnostics}
     using {/UnrealEngine.com/Temporary/Testing}
     using {/UnrealEngine.com/Itemization}
+    using {/Verse.org/Native}
+    using {/Fortnite.com/AI}
     using {/Fortnite.com/Marketplace}
     using {/Verse.org/SceneGraph}
     using {/Fortnite.com/Vehicles}
-    using {/Verse.org/Simulation}
     using {/Fortnite.com/Game}
+    using {/Verse.org/Simulation}
     using {/Fortnite.com/Devices}
     test_device<epic_internal> := class(creative_device):
         var TestRunner<public>:test_runner = external {}
 
+        @editable
         SuiteName<public>:string = external {}
 
         TestCases<public>():[]test_case = external {}
@@ -66,9 +70,13 @@ VerseFramework<public> := module:
         RegisterTests<public>():void = external {}
 
     test_device_event_handler_mock<public> := class<concrete>:
+        var ControlChangeSubscription<protected>:?cancelable = external {}
+
         ResetCallCount<public>():void = external {}
 
         GetCallCount<public>():int = external {}
+
+        ReportCall<protected>()<transacts>:void = external {}
 
         Cancel<public>()<transacts>:void = external {}
 
@@ -199,6 +207,26 @@ VerseFramework<public> := module:
 
         HandleEvent<public>(InResult:tuple(player, []entitlement_change(entitlement))):void = external {}
 
+    @available {MinUploadedAtFNVersion := 3900}
+    test_event_npc_target_info_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgNPCTarget<public>:?npc_target_info = external {}
+
+        Subscribe<public>(Event:listenable(npc_target_info)):void = external {}
+
+        Cancel<override>()<transacts>:void = external {}
+
+        AwaitEvent<public>()<suspends>:npc_target_info = external {}
+
+    @available {MinUploadedAtFNVersion := 3900}
+    test_event_guard_alert_level_handler_mock<public> := class(test_device_event_handler_mock):
+        var ArgGuardAlert<public>:?guard_alert_level = external {}
+
+        Subscribe<public>(Event:listenable(guard_alert_level)):void = external {}
+
+        Cancel<override>()<transacts>:void = external {}
+
+        (/Fortnite.com/VerseInternalTesting/VerseFramework/test_event_guard_alert_level_handler_mock:)Await<public>(GuardAlertLevel:guard_alert_level)<suspends>:void = external {}
+
     @experimental
     test_event_add_item_result_handler_mock<public> := class(test_device_event_handler_mock):
         var ArgAddResult<public>:?add_item_result = external {}
@@ -261,11 +289,12 @@ VerseFramework<public> := module:
 
         Subscribe<public>(Event:listenable(change_equipped_result)):void = external {}
 
+    @available {MinUploadedAtFNVersion := 4000}
     @experimental
     test_event_change_stack_size_result_handler_mock<public> := class(test_device_event_handler_mock):
         var ArgChangeStackResult<public>:?change_stack_size_result = external {}
 
-        var ArgItemComponent<public>:?item_component = external {}
+        var ArgStackableComponent<public>:?stackable_component = external {}
 
         var ArgPreviousStackSize<public>:int = external {}
 
@@ -273,11 +302,12 @@ VerseFramework<public> := module:
 
         Subscribe<public>(Event:listenable(change_stack_size_result)):void = external {}
 
+    @available {MinUploadedAtFNVersion := 4000}
     @experimental
     test_event_change_max_stack_size_result_handler_mock<public> := class(test_device_event_handler_mock):
         var ArgChangeMaxStackResult<public>:?change_max_stack_size_result = external {}
 
-        var ArgItemComponent<public>:?item_component = external {}
+        var ArgStackableComponent<public>:?stackable_component = external {}
 
         var ArgPreviousStackSize<public>:?int = external {}
 
@@ -385,6 +415,10 @@ VerseFramework<public> := module:
 
         var EnableTimeTracking<public>:logic = external {}
 
+        var ShouldBuildRunPlanFromFile<public>:logic = external {}
+
+        var RandomizeTestCaseOrder<public>:logic = external {}
+
         DefaultSetupFunctionTimeoutInSeconds<public>:float = external {}
 
         var SetupFunctionTimeoutInSeconds<public>:float = external {}
@@ -425,61 +459,77 @@ VerseFramework<public> := module:
 
         RaiseFunctionFailure<public>(FuncName:string)<transacts>:void = external {}
 
-        CheckEqual<public>(Expected:string, Actual:string, Message:string):void = external {}
+        CheckEqual<public>(Expected:string, Actual:string, Message:any):void = external {}
 
-        CheckEqual<public>(Expected:int, Actual:int, Message:string):void = external {}
+        CheckEqual<public>(Expected:int, Actual:int, Message:any):void = external {}
 
-        CheckEqual<public>(Expected:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Actual:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Message:string, ?Tolerance:float = external {}):void = external {}
+        CheckEqual<public>(Expected:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Actual:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Message:any, ?Tolerance:float = external {}):void = external {}
 
-        CheckEqual<public>(Expected:vector2, Actual:vector2, Message:string, ?Tolerance:float = external {}):void = external {}
+        CheckEqual<public>(Expected:vector2, Actual:vector2, Message:any, ?Tolerance:float = external {}):void = external {}
 
-        CheckEqual<public>(Expected:vector2i, Actual:vector2i, Message:string):void = external {}
+        CheckEqual<public>(Expected:vector2i, Actual:vector2i, Message:any):void = external {}
 
-        CheckEqual<public>(Expected:color, Actual:color, Message:string, ?Tolerance:float = external {}):void = external {}
+        CheckEqual<public>(Expected:color, Actual:color, Message:any, ?Tolerance:float = external {}):void = external {}
 
-        CheckEqual<public>(Expected:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Actual:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Message:string, ?Tolerance:float = external {}):void = external {}
+        CheckEqual<public>(Expected:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Actual:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Message:any, ?Tolerance:float = external {}):void = external {}
 
-        CheckEqualIntArray<public>(Expected:[]int, Actual:[]int, Message:string):void = external {}
+        CheckEqualIntArray<public>(Expected:[]int, Actual:[]int, Message:any):void = external {}
 
-        CheckEqualFloatArray<public>(Expected:[]float, Actual:[]float, Message:string):void = external {}
+        CheckEqualFloatArray<public>(Expected:[]float, Actual:[]float, Message:any):void = external {}
 
-        CheckEqual<public>(Expected:float, Actual:float, Message:string, ?Tolerance:float = external {}):void = external {}
+        CheckEqual<public>(Expected:float, Actual:float, Message:any, ?Tolerance:float = external {}):void = external {}
 
-        CheckEqual<public>(Expected:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Actual:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Message:string, ?Tolerance:float = external {}):void = external {}
+        CheckEqual<public>(Expected:(/Verse.org/SpatialMath:)transform, Actual:(/Verse.org/SpatialMath:)transform, Message:any, ?Tolerance:float = external {}):void = external {}
 
-        CheckEqual<public>(Actual:creative_object, Expected:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Message:string, ?Tolerance:float = external {}, ?Timeout:float = external {})<suspends>:void = external {}
+        CheckEqual<public>(Expected:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Actual:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Message:any, ?Tolerance:float = external {}):void = external {}
 
-        CheckEqual<public>(ActualFortCharacter:fort_character, ExpectedTranslation:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Message:string, ?Tolerance:float = external {}, ?Timeout:float = external {}, ?CompareX:logic = external {}, ?CompareY:logic = external {}, ?CompareZ:logic = external {})<suspends>:void = external {}
+        CheckEqual<public>(Actual:creative_object, Expected:(/Verse.org/SpatialMath:)transform, Message:any, ?Tolerance:float = external {}, ?Timeout:float = external {})<suspends>:void = external {}
 
-        CheckEqual<public>(Expected:agent, Actual:agent, Message:string):void = external {}
+        CheckEqual<public>(Actual:creative_object, Expected:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Message:any, ?Tolerance:float = external {}, ?Timeout:float = external {})<suspends>:void = external {}
 
-        CheckTrue<public>(Actual:logic, Message:string):void = external {}
+        CheckEqual<public>(ActualFortCharacter:fort_character, ExpectedTranslation:(/Verse.org/SpatialMath:)vector3, Message:any, ?Tolerance:float = external {}, ?Timeout:float = external {}, ?CompareX:logic = external {}, ?CompareY:logic = external {}, ?CompareZ:logic = external {})<suspends>:void = external {}
 
-        CheckNotEqual<public>(Actual:creative_object, Expected:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Message:string, ?Tolerance:float = external {}, ?Timeout:float = external {})<suspends>:void = external {}
+        CheckEqual<public>(ActualFortCharacter:fort_character, ExpectedTranslation:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Message:any, ?Tolerance:float = external {}, ?Timeout:float = external {}, ?CompareX:logic = external {}, ?CompareY:logic = external {}, ?CompareZ:logic = external {})<suspends>:void = external {}
 
-        CheckNotEqual<public>(Expected:string, Actual:string, Message:string):void = external {}
+        CheckEqual<public>(Expected:diagnostic, Actual:diagnostic, Message:any):void = external {}
 
-        CheckNotEqual<public>(Expected:int, Actual:int, Message:string):void = external {}
+        CheckEqual<public>(Expected:agent, Actual:agent, Message:any):void = external {}
 
-        CheckNotEqual<public>(Expected:float, Actual:float, Message:string):void = external {}
+        CheckTrue<public>(Actual:logic, Message:any):void = external {}
 
-        CheckNotEqual<public>(Expected:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Actual:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Message:string, ?Tolerance:float = external {}):void = external {}
+        CheckNotEqual<public>(Actual:creative_object, Expected:(/Verse.org/SpatialMath:)transform, Message:any, ?Tolerance:float = external {}, ?Timeout:float = external {})<suspends>:void = external {}
 
-        CheckNotEqual<public>(Expected:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Actual:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Message:string, ?Tolerance:float = external {}):void = external {}
+        CheckNotEqual<public>(Actual:creative_object, Expected:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Message:any, ?Tolerance:float = external {}, ?Timeout:float = external {})<suspends>:void = external {}
 
-        CheckNotEqual<public>(Expected:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Actual:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Message:string, ?Tolerance:float = external {}):void = external {}
+        CheckNotEqual<public>(Expected:string, Actual:string, Message:any):void = external {}
 
-        CheckNotEqual<public>(Expected:agent, Actual:agent, Message:string):void = external {}
+        CheckNotEqual<public>(Expected:int, Actual:int, Message:any):void = external {}
 
-        CheckNotTrue<public>(Actual:logic, Message:string):void = external {}
+        CheckNotEqual<public>(Expected:float, Actual:float, Message:any):void = external {}
 
-        CheckArrayContains<public>(ActualArray:[]string, Expected:string, Message:string):void = external {}
+        CheckNotEqual<public>(Expected:(/Verse.org/SpatialMath:)transform, Actual:(/Verse.org/SpatialMath:)transform, Message:any, ?Tolerance:float = external {}):void = external {}
 
-        CheckArrayDoesNotContain<public>(ActualArray:[]string, Expected:string, Message:string):void = external {}
+        CheckNotEqual<public>(Expected:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Actual:(/UnrealEngine.com/Temporary/SpatialMath:)transform, Message:any, ?Tolerance:float = external {}):void = external {}
+
+        CheckNotEqual<public>(Expected:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Actual:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Message:any, ?Tolerance:float = external {}):void = external {}
+
+        CheckNotEqual<public>(Expected:(/Verse.org/SpatialMath:)vector3, Actual:(/Verse.org/SpatialMath:)vector3, Message:any, ?Tolerance:float = external {}):void = external {}
+
+        CheckNotEqual<public>(Expected:(/Verse.org/SpatialMath:)rotation, Actual:(/Verse.org/SpatialMath:)rotation, Message:any, ?Tolerance:float = external {}):void = external {}
+
+        CheckNotEqual<public>(Expected:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Actual:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, Message:any, ?Tolerance:float = external {}):void = external {}
+
+        CheckNotEqual<public>(Expected:agent, Actual:agent, Message:any):void = external {}
+
+        CheckNotTrue<public>(Actual:logic, Message:any):void = external {}
+
+        CheckArrayContains<public>(ActualArray:[]string, Expected:string, Message:any):void = external {}
+
+        CheckArrayDoesNotContain<public>(ActualArray:[]string, Expected:string, Message:any):void = external {}
 
         CheckFailure<public>(TestFuncEval:?any, FuncName:string)<decides>:void = external {}
 
-        Require<public>(OptionalAgent:?agent, Message:string)<transacts><decides>:agent = external {}
+        Require<public>(OptionalAgent:?agent, Message:any)<transacts><decides>:agent = external {}
 
         var LastTestErrors<public>:[]string = external {}
 
@@ -501,6 +551,7 @@ VerseFramework<public> := module:
         @editable
         TestReportName<public>:string = external {}
 
+        @editable
         TestReportVerbosity<public>:log_level = external {}
 
         TestRunner<public>:test_runner = external {}

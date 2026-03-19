@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/MeltedIron",
-	"FortReleaseVersion": "39.50",
+	"FortReleaseVersion": "40.00",
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
@@ -49,10 +49,20 @@
 			"Optional": true
 		},
 		{
+			"Name": "CR_Legacy",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "CRD_LinedNotebook",
 			"Enabled": true,
 			"Optional": true,
 			"Activate": true
+		},
+		{
+			"Name": "Lab_Assets",
+			"Enabled": true,
+			"Optional": true
 		},
 		{
 			"Name": "LinedNotebookConsumables",
@@ -115,11 +125,6 @@
 			"Name": "Sewer_Comp",
 			"Enabled": true,
 			"Activate": true,
-			"Optional": true
-		},
-		{
-			"Name": "CR_Legacy",
-			"Enabled": true,
 			"Optional": true
 		}
 	],

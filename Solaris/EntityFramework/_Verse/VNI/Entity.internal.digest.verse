@@ -1,5 +1,7 @@
+using {/Verse.org/Colors}
 using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 using {/Verse.org/Assets}
+using {/Verse.org/Simulation/Tags}
 using {/Verse.org/Simulation}
 using {/Verse.org/Native}
 using {/Verse.org/SpatialMath}
@@ -147,8 +149,13 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
     var<private> TickEvents<protected>:tick_events = external {}
 
     @experimental
-    # Send a scene event to this component.  Return true to consume the event and halt propogation.
-    SendDown<native><native_callable><public>(SceneEvent:scene_event):logic
+    # Send a scene event to this component, invoking OnReceive.  Return true to consume the event and halt propagation to the next entity.
+    SendDown<native><native_callable><final><public>(SceneEvent:scene_event):logic
+
+    @available {MinUploadedAtFNVersion := 4000}
+    @experimental
+    # Respond to a scene event. Return true to consume the event and halt propagation to the next entity.
+    OnReceive<native><native_callable><protected>(SceneEvent:scene_event):logic
 
     OnInitializedInternal<native><native_callable><epic_internal>():void
 
@@ -163,6 +170,11 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
     OnUninitializingInternal<native><native_callable><epic_internal>():void
 
     GetDiagnostic<override><native>()<reads>:diagnostic
+
+@available {MinUploadedAtFNVersion := 4000}
+# Use this method to create a component without the need of providing an entity.
+# This is an internal method and should only be used to intialize a component field inside a verse class
+InitializeComponentField<native><epic_internal>(component_type:castable_subtype(component))<converges>:component_type
 
 @experimental
 # An event which can be sent through the scene graph.
@@ -191,7 +203,7 @@ base_entity<native><epic_internal> := class<abstract>:
 #   that you do not add code directly to the entity class, and instead keep logic in components. Keeping logic and data in
 #   components allows you to restructure your prefabs throughout production of your experience, without needing to massively
 #   refactor your class structure.
-entity<native><public> := class<concrete><unique><transacts><castable>(base_entity, diagnosable):
+entity<native><public> := class<concrete><unique><transacts><castable>(base_entity, diagnosable, has_tags):
     # Returns the parent entity of this entity.
     #   * The parent entity controls the lifetime of its child entities and components. When an entity
     #     is removed from the scene, all its child entities and components will be removed as well.
@@ -234,12 +246,42 @@ entity<native><public> := class<concrete><unique><transacts><castable>(base_enti
     GetDiagnostic<override><native>()<reads>:diagnostic
 
     @experimental
-    # Send a scene event to this entity and then up the hierarchy. First, SendDown will be invoked on each component on this entity. Next, SendUp will be invoked on this entity's parent. Consuming the event at any point will halt propogation. Returns true if any participant consumed the event.
-    SendUp<native><native_callable><public>(SceneEvent:scene_event):logic
+    # Send a scene event to this entity and then up the hierarchy. First, SendDown/OnReceive will be invoked on each component on this entity. Next, SendUp will be invoked on this entity's parent. Consuming the event at any point will halt propagation. Returns true if any participant consumed the event.
+    SendUp<native><native_callable><final><public>(SceneEvent:scene_event):logic
 
     @experimental
-    # Send a scene event to this entity and then down the hierarchy. First, SendDown will be invoked on each component on this entity. Next, SendDown will be invoked on each child entity.  Consuming the event at any point will halt propogation. Returns true if any participant consumed the event.
-    SendDown<native><native_callable><public>(SceneEvent:scene_event):logic
+    # Send a scene event to this entity and then down the hierarchy. First, SendDown/OnReceive will be invoked on each component on this entity. Next, SendDown will be invoked on each child entity.  Consuming the event at any point will halt propagation. Returns true if any participant consumed the event.
+    SendDown<native><native_callable><final><public>(SceneEvent:scene_event):logic
+
+    # Adds a `tag` instance to this entity. Returns a `tag_key` that is uniquely associated with the added instance.
+    AddTag<override><native><final>(Tag:tag)<transacts>:tag_key
+
+    # Removes the tag instance associated with the `tag_key`, succeeds if an instance was removed, fails otherwise.
+    RemoveTag<override><native><final>(Key:tag_key)<transacts><decides>:void
+
+    @available {MinUploadedAtFNVersion := 3200}
+    # Removes all tag instances of type `tag_type`, succeeds if at least one instance was removed, fails otherwise.
+    RemoveAllTags<override><native><final>(tag_type:castable_subtype(tag))<transacts><decides>:void
+
+    @available {MinUploadedAtFNVersion := 3200}
+    # Removes all tag instances that are not of type `tag_type`, succeeds if at least one instance was removed, fails otherwise.
+    RemoveAllTagsExcept<override><native><final>(tag_type:castable_subtype(tag))<transacts><decides>:void
+
+    @available {MinUploadedAtFNVersion := 3200}
+    # Removes all tag instances that are not of any of the types in `tag_types`, succeeds if at least one instance was removed, fails otherwise.
+    RemoveAllTagsExcept<override><native><final>(tag_types:[]castable_subtype(tag))<transacts><decides>:void
+
+    @available {MinUploadedAtFNVersion := 3200}
+    # Succeeds if at least one tag of type `tag_type` is found in this container, fails otherwise.
+    ContainsTag<override><native><final>(tag_type:castable_subtype(tag))<reads><decides>:void
+
+    @available {MinUploadedAtFNVersion := 3200}
+    # Fails if at least one type in `tag_types` cannot be found in this container, succeeds otherwise. Note that this means that if `tag_types` is empty this call succeeds.
+    ContainsAllTags<override><native><final>(tag_types:[]castable_subtype(tag))<reads><decides>:void
+
+    @available {MinUploadedAtFNVersion := 3200}
+    # Succeeds if at least of the types in `tag_types` is found in this container, fails otherwise. Note that this means that if `tag_types` is empty this call fails.
+    ContainsAnyTag<override><native><final>(tag_types:[]castable_subtype(tag))<reads><decides>:void
 
 @hide_in_editor
 root_entity<native><epic_internal> := class<concrete><unique><transacts>(entity):
@@ -248,6 +290,34 @@ root_entity<native><epic_internal> := class<concrete><unique><transacts>(entity)
 # Reference type to editor defined prefab. Only generated digest code should reference this type.
 entity_prefab<native><public> := class<computes><epic_internal>(asset):
 
+
+@available {MinUploadedAtFNVersion := 3200}
+# Finds all descendant entities including `InEntity` that has any tags of type `tag_type`.
+# When querying from the simulation entity, the simulation entity itself is not included in the results.
+# The order of the returned entities is unspecified and subject to change.
+(InEntity:entity).FindDescendantEntitiesWithTag<native><public>(tag_type:castable_subtype(tag))<transacts>:generator(entity)
+
+@available {MinUploadedAtFNVersion := 3200}
+# Finds all ancestor entities to `InEntity` that has any tags of type `tag_type`.
+# The order of the returned entities is unspecified and subject to change.
+(InEntity:entity).FindAncestorEntitiesWithTag<native><public>(tag_type:castable_subtype(tag))<transacts>:generator(entity)
+
+@experimental
+change_icon_component_event<epic_internal> := class(scene_event):
+    Entity<public>:entity
+
+    IconComponent<public>:?icon_component = external {}
+
+@experimental
+# Component that holds an icon for an entity.
+icon_component<native><public> := class<final_super>(component, has_icon):
+    var Icon<override>:texture = external {}
+
+    OnIconChanged<native><epic_internal>()<transacts>:void
+
+    OnBeginSimulation<override>():void = external {}
+
+    OnEndSimulation<override>():void = external {}
 
 @hide_in_editor
 mass_component<native><epic_internal> := class<final_super><epic_internal>(component):
@@ -297,6 +367,74 @@ socket_origin<native><epic_internal> := class(actor_origin):
     @replicated("")
     var SocketName<native><public>:string
 
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+# Rarity may be used by gameplay and presentation systems to classify and rank things.
+rarity<native><public> := class<castable><concrete><unique><allocates>:
+    @editable
+    Color<native><public>:color = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+common_rarity<public> := class<allocates>(rarity):
+
+
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+uncommon_rarity<public> := class<allocates>(common_rarity):
+    Color<override>:color = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+rare_rarity<public> := class<allocates>(uncommon_rarity):
+    Color<override>:color = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+epic_rarity<public> := class<allocates>(rare_rarity):
+    Color<override>:color = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+legendary_rarity<public> := class<allocates>(epic_rarity):
+    Color<override>:color = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+mythic_rarity<epic_internal> := class<allocates>(legendary_rarity):
+    Color<override>:color = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+exotic_rarity<epic_internal> := class<allocates>(mythic_rarity):
+    Color<override>:color = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+impossible_rarity<epic_internal> := class<allocates>(exotic_rarity):
+    Color<override>:color = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+change_rarity_component_event<epic_internal> := class(scene_event):
+    Entity<public>:entity
+
+    RarityComponent<public>:?rarity_component = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+# Component that denotes the rarity of an entity.
+rarity_component<native><public> := class<final_super>(component):
+    var Rarity<public>:rarity = external {}
+
+    GetRarity<native><epic_internal>(__dupe___unnamed_parameter_100:accessor)<transacts>:rarity
+
+    SetRarity<native><epic_internal>(__dupe___unnamed_parameter_101:accessor, InRarity:rarity)<transacts>:void
+
+    OnBeginSimulation<override>():void = external {}
+
+    OnEndSimulation<override>():void = external {}
+
 replication_component<native><epic_internal> := class<final_super>(component):
     OnAddedToSceneInternal<native><override>():void
 
@@ -330,6 +468,90 @@ simulation_entity<native><epic_internal> := class<concrete><unique><transacts>(r
 #   * The simulation entity is the rootmost entity in an experience.
 #   * Fails if this entity is not currently in the scene.
 (InEntity:entity).GetSimulationEntity<native><public>()<transacts><decides>:entity
+
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+# A component that when attached to an entity allows for it to merge or 'stack' with other entities with compatible components.
+stackable_component<native><public> := class<abstract><final_super>(component):
+    @editable_number(int) {MinValue := option {1}}
+    # Current stack size of this component.
+    var<private> StackSize<native><public>:int = external {}
+
+    @editable
+    # Maximum stack size for this component. If false, unlimited stack size.
+    var<private> MaxStackSize<native><public>:?int = external {}
+
+    # Sets the stack size of this component. If the provided stack size is invalid, e.g. negative or exceeding MaxStackSize, stack size will not change.
+    SetStackSize<final><native><public>(NewStackSize:int)<transacts>:void
+
+    # Sets the maximum stack size for this component. If NewMaxStackSize is false, stack size is unlimited. If ClampStackSize is true, StackSize will be clamped to NewMaxStackSize.
+    SetMaxStackSize<final><native><public>(NewMaxStackSize:?int, ?ClampStackSize:logic = external {})<transacts>:void
+
+    Split<native_callable><public>(Amount:int)<transacts><decides>:entity
+
+    # Succeeds if this entity can be merged into the target entity. Merging an entity with itself will always fail. Note that merging should be checked in both directions!
+    CanMergeInto<native_callable><public>(TargetEntity:entity)<reads><decides>:void = external {}
+
+    CanMergeIntoInternal<final><native><epic_internal>(TargetEntity:entity)<reads>:?logic
+
+    # Attempts to merge this entity into the specified entity. Fails if entities cannot be merged.
+    #  If TargetAmount is specified, only that amount will try to be merged into this entity. By default, the entire stack will try to merge.
+    #  If the specified amount is invalid, the merge will fail.
+    MergeInto<native_callable><public>(TargetEntity:entity, ?TargetAmount:?int = external {})<transacts><decides>:void = external {}
+
+    MergeIntoInternal<final><native><epic_internal>(TargetEntity:entity, TargetAmount:int)<transacts><decides>:int
+
+    ChangeStackSizeEvent<native><final><public>:listenable(change_stack_size_result) = external {}
+
+    ChangeMaxStackSizeEvent<native><final><public>:listenable(change_max_stack_size_result) = external {}
+
+    OnBeginSimulation<override>():void = external {}
+
+    OnEndSimulation<override>():void = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+change_stack_size_result<native><public> := class<epic_internal>:
+    StackableComponent<native><public>:stackable_component
+
+    PreviousStackSize<native><public>:int
+
+    CurrentStackSize<native><public>:int
+
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+change_max_stack_size_result<native><public> := class<epic_internal>:
+    StackableComponent<native><public>:stackable_component
+
+    PreviousMaxStackSize<native><public>:?int
+
+    CurrentMaxStackSize<native><public>:?int
+
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+change_stackable_component_event<epic_internal> := class(scene_event):
+    Entity<public>:entity
+
+    StackableComponent<public>:?stackable_component = external {}
+
+@experimental
+# Merge Rules Interface. Implemented by components that want to participate in entity mergeability checks.
+has_merge_rules<public> := interface<unique>:
+    AllowMergeInto<public>(TargetEntity:entity)<reads><decides>:void = external {}
+
+    OnMergeInto<public>(TargetEntity:entity, MergeAmount:int)<transacts>:void = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+basic_stackable_component<native><public> := class(stackable_component):
+    @editable
+    # The prefab which will be returned when Split is called. Entities can only merge with others of the same prefab.
+    split_prefab_type<native><public>:castable_concrete_subtype(entity) = external {}
+
+    Split<override>(Amount:int)<transacts><decides>:entity = external {}
+
+    # Succeeds if this entity can be merged into the target entity. Merging an entity with itself will always fail.
+    CanMergeInto<override>(TargetEntity:entity)<reads><decides>:void = external {}
 
 # Describes discrete phases of a frame update. Subscribe to members of the tick_events object to run code before or after the physics system has updated your object, allowing you to affect or react to these updates.
 tick_events<native><public> := class<epic_internal>:

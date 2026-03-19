@@ -285,7 +285,6 @@
 			"/CreativeCoreDevices/SetupAssets/PID_Device_MovementModulator.PID_Device_MovementModulator",
 			"/CreativeCoreDevices/SetupAssets/PID_Device_PinballBumper.PID_Device_PinballBumper",
 			"/CreativeCoreDevices/SetupAssets/PID_Device_PinballFlipper.PID_Device_PinballFlipper",
-			"/CreativeCoreDevices/SetupAssets/PID_Device_PowerUp_Damage.PID_Device_PowerUp_Damage",
 			"/CreativeCoreDevices/SetupAssets/PID_Device_PropOMaticManager.PID_Device_PropOMaticManager",
 			"/CreativeCoreDevices/SetupAssets/PID_Device_PulseTrigger.PID_Device_PulseTrigger",
 			"/CreativeCoreDevices/SetupAssets/PID_Device_RNG.PID_Device_RNG",
@@ -1563,9 +1562,9 @@
 			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeCapsule":
 			{
 			},
-			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeTube":
+			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeHollowCylinder":
 			{
-			},
+			},			
 			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeSphere":
 			{
 			},
@@ -1762,6 +1761,7 @@
 			{
 			},
 			"/CreativeCoreDevices/ExperienceSettings/BP_UserOptionComponent_Cosmetic.BP_UserOptionComponent_Cosmetic_C": { },
+			"/CreativeCoreDevices/ExperienceSettings/BP_UserOptionComponent_VoiceChat.BP_UserOptionComponent_VoiceChat_C": { },
 			"/Script/Creative_TemporaryTeamsRuntime.FortUserOptionComponent_TemporaryTeams": { },
 			"/Script/Creative_TemporaryTeamsRuntime.FortUserOptionComponent_TemporaryTeams_TeamSettingsAndInventory": { },
 			"/Creative_TemporaryTeams/Components/BP_UserOptionComponent_TemporaryTeams.BP_UserOptionComponent_TemporaryTeams_C": { },
@@ -1776,13 +1776,22 @@
 			"+": [
 				"EM_AtomEditorMode"
 			]
-		}     
+		},
+		"AllowedTabs": {
+			"LevelEditor": {
+				"AllowList": {
+					"+": [
+						"AtomPaletteTab_v2"
+					]
+				}
+			}
+		}
 	},
 	"PropertyEditorClassPermissionList": {
 		"+": [
 			{
 				"Type": "/LimeAISpawnerGuard/SpawnDefinitions/Types/CharacterType_LimeGuard.CharacterType_LimeGuard_C",
-				"AllowList": [ "DisplayName", "SelectedAI" ]
+				"AllowList": [ "DisplayName", "SelectedAI", "SelectedPreset" ]
 			},
 			{
 				"Type": "/LimeExtraAssets/AI/TestPlayers/CharacterType/CharacterType_LimeParticipant.CharacterType_LimeParticipant_C",

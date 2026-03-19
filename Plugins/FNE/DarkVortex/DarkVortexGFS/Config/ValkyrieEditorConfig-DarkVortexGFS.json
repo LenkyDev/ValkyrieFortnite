@@ -32,7 +32,7 @@
 			},
 			{
 				"Type": "/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C",
-				"AllowList": [ "SelectedAI", "DisplayName" ]
+				"AllowList": [ "SelectedAI", "DisplayName", "SelectedPreset" ]
 			},
 			{
 				"Type": "/NPCDefault/Types/CharacterType_Guard.CharacterType_Guard_C",

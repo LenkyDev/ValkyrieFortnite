@@ -43,8 +43,6 @@ vehicle_spawner_drivable_reboot_van_device<public> := class<concrete><final>(veh
     #  * Only used if `CanPurchaseRebootCard` is `true`.
     var PurchaseRebootCardOptions<override>:?reboot_card_purchase_options = external {}
 
-    var InternalPurchaseRebootCardOptions<override>:reboot_card_purchase_options = external {}
-
     # Triggers when Reboot Van has finished reviving a player from DBNO.
     #  * `agent` is the player that was just revived.
     ReviveCompleteEvent<public>:listenable(agent) = external {}

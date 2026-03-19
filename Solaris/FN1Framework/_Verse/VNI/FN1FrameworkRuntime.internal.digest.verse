@@ -96,3 +96,24 @@ Matchmaking<epic_internal> := module:
 
     # Method to call to apply an early match ban penalty to a player.
     ApplyLeaveEarlyBanhammerPenaltyToPlayer<native><epic_internal>(Player:player, Details:string):logic
+
+# Module import path: /Fortnite.com/Framework/Persistence
+Persistence<public> := module:
+    using {/Verse.org/Simulation}
+    persistence_interface<native><epic_internal> := interface<epic_internal>:
+        GetVictoryCrownData<native_callable><epic_internal>(Player:player):victory_crown_data
+
+        SetVictoryCrownData<native_callable><epic_internal>(Player:player, InData:victory_crown_data):void
+
+    victory_crown_data<native><epic_internal> := struct<epic_internal>:
+        HasVictoryCrown<native>:logic = external {}
+
+        GrantedVictoryCrownCount<native>:int = external {}
+
+        WonWithVictoryCrownCount<native>:int = external {}
+
+        VictoryCrownLevel<native>:int = external {}
+
+    BindInterface<native><epic_internal>(Interface:persistence_interface):void
+
+    UnbindInterface<native><epic_internal>(Interface:persistence_interface):void

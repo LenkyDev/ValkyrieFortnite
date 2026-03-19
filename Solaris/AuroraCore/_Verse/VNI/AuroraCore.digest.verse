@@ -79,7 +79,7 @@ GetPurchasedEntitlements<native><public>(Player:player, entitlement_type:subtype
 # Entitlements that have changed in quantity.
 # This will also include entitlement changes triggered by moderation, refunds and other commerce operations.
 entitlement_change<native><public>(t:type) := class<internal>:
-    (/Fortnite.com/Marketplace/entitlement_change:)Marketplace_entitlement_change_Variance<private>:?type {_():tuple(t)} = external {}
+    (/Fortnite.com/Marketplace/entitlement_change:)Marketplace_entitlement_change_Variance<private>():tuple(t) = external {}
 
     # Entitlement that has changed in quantity.
     Entitlement<native><public>:t

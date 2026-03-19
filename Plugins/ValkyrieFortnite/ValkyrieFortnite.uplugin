@@ -82,6 +82,22 @@
 			]
 		},
 		{
+			"Name": "ValkyrieVerseRpc",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"TargetConfigurationDenyList": [
+				"Shipping"
+			],
+			"TargetConfigurationAllowList": [
+				"Development",
+				"Test"
+			],
+			"TargetAllowList": [
+				"Server",
+				"Editor"
+			]
+		},
+		{
 			"Name": "ValkyrieInterchangeEditor",
 			"Type": "Editor",
 			"LoadingPhase": "Default",
@@ -312,12 +328,21 @@
 			]
 		},
 		{
+			"Name": "AINavigation",
+			"Enabled": true
+		},
+		{
 			"Name": "AuroraCore",
 			"Enabled": true
 		},
 		{
 			"Name": "AuroraFortniteCore",
 			"Enabled": true
+		},
+		{
+			"Name": "DependentPluginsEditor",
+			"Enabled": true,
+			"TargetAllowList": [ "Editor" ]
 		}
 	]
 }

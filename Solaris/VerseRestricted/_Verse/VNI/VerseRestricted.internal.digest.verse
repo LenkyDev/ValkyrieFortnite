@@ -1,11 +1,15 @@
 # Module import path: /Verse.org/Restricted
 Restricted<public> := module:
+    using {/Verse.org/Native}
     sticky_event<native><public>(t:type) := class(event(t)):
-        (/Verse.org/Restricted/sticky_event:)Restricted_sticky_event_Variance<private>:?type {_(:t):tuple(t)} = external {}
+        @available {MinUploadedAtFNVersion := 4294967041}
+        (/Verse.org/Restricted/sticky_event:)Restricted_sticky_event_Variance_Inherited<private>(:t):tuple(t) = external {}
 
-        IsSignaled<native><public>()<decides>:void
+        (/Verse.org/Restricted/sticky_event:)Restricted_sticky_event_Variance<private>(:t):tuple(t) = external {}
 
-        ClearSignal<native><public>():void
+        IsSignaled<native><public>()<reads><decides>:void
+
+        ClearSignal<native><public>()<writes>:void
 
         Await<native><override>()<suspends>:t
 

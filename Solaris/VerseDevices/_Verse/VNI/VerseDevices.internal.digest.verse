@@ -1,16 +1,16 @@
 # Module import path: /Fortnite.com/Devices
 Devices<public> := module:
+    using {/Fortnite.com/AI}
     using {/Verse.org/Colors}
     using {/Fortnite.com/Vehicles}
     using {/Verse.org/Simulation}
     using {/UnrealEngine.com/Temporary/Diagnostics}
-    using {/Verse.org/SpatialMath}
-    using {/Fortnite.com/AI}
     using {/Verse.org/Simulation/Tags}
     using {/Fortnite.com/Game}
-    using {/Verse.org/Native}
     using {/Verse.org/SceneGraph}
     using {/Verse.org/Assets}
+    using {/Verse.org/Native}
+    using {/Verse.org/SpatialMath}
     using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/Fortnite.com/Playspaces}
     # Module import path: /Fortnite.com/Devices/Animation
@@ -246,6 +246,20 @@ Devices<public> := module:
         # Moves the `creative_device` to the specified `Transform` over the specified time, in seconds. If an animation is currently playing on the `creative_device` it will be stopped and put into the `AnimationNotSet` state.
         MoveTo<public>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, OverTime:float)<suspends>:move_to_result = external {}
 
+        # Gets the global transform of this device.
+        GetGlobalTransform<public>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
+
+        # Sets the global transform of this device.
+        SetGlobalTransform<public>(NewGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void = external {}
+
+        @available {MinUploadedAtFNVersion := 4000}
+        # Teleports the `creative_device` to the specified location defined by `Transform`, also applies rotation and scale accordingly.
+        TeleportTo<public>(Transform:(/Verse.org/SpatialMath:)transform)<transacts><decides>:void = external {}
+
+        @available {MinUploadedAtFNVersion := 4000}
+        # Moves the `creative_device` to the specified `Transform` over the specified time, in seconds. If an animation is currently playing on the `creative_device` it will be stopped and put into the `AnimationNotSet` state.
+        MoveTo<public>(Transform:(/Verse.org/SpatialMath:)transform, OverTime:float)<suspends>:move_to_result = external {}
+
         # Shows this device in the world.
         Show<native><public>()<transacts>:void
 
@@ -275,7 +289,7 @@ Devices<public> := module:
 
     (MovableObject:creative_movable_object_base).GetTransformInternalImpl<native><epic_internal>()<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)transform
 
-    (MovableObject:creative_movable_object_base).TeleportToInternalImpl<native><epic_internal>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform)<transacts>:teleport_to_result
+    (MovableObject:creative_movable_object_base).TeleportToInternalImpl<native><epic_internal>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, SkipTransformCheck:logic)<transacts>:teleport_to_result
 
     (MovableObject:creative_movable_object_base).TeleportToInternal<epic_internal>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts><decides>:void = external {}
 
@@ -288,10 +302,6 @@ Devices<public> := module:
 
     # Moves the `creative_movable_object_base` to the specified `Transform` over the specified time. If an animation is currently playing on the `creative_movable_object_base` it will be stopped and put into the `AnimationNotSet` state.
     (MovableObject:creative_movable_object_base).MoveToInternal<epic_internal>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, OverTime:float)<suspends>:move_to_result = external {}
-
-    creative_object_interface<native><public> := interface<epic_internal>(positional):
-        # Returns the `fort_playspace` that `CreativeObject` belongs to.
-        GetPlayspaceEpicInternal<native_callable><epic_internal>()<transacts>:fort_playspace
 
     # Base class for creative devices and props.
     creative_object<native><public> := class<epic_internal>(creative_movable_object_base, creative_object_interface):
@@ -314,6 +324,20 @@ Devices<public> := module:
         # Moves the `creative_object` to the specified `Transform` over the specified time, in seconds. If an animation is currently playing on the `creative_object` it will be stopped and put into the `AnimationNotSet` state.
         MoveTo<public>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, OverTime:float)<suspends>:move_to_result = external {}
 
+        # Gets the global transform of this object.
+        GetGlobalTransform<public>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
+
+        # Sets the global transform of this object.
+        SetGlobalTransform<public>(NewGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void = external {}
+
+        @available {MinUploadedAtFNVersion := 4000}
+        # Teleports the `creative_device` to the specified location defined by `Transform`, also applies rotation and scale accordingly.
+        TeleportTo<public>(Transform:(/Verse.org/SpatialMath:)transform)<transacts><decides>:void = external {}
+
+        @available {MinUploadedAtFNVersion := 4000}
+        # Moves the `creative_device` to the specified `Transform` over the specified time, in seconds. If an animation is currently playing on the `creative_device` it will be stopped and put into the `AnimationNotSet` state.
+        MoveTo<public>(Transform:(/Verse.org/SpatialMath:)transform, OverTime:float)<suspends>:move_to_result = external {}
+
         # Sets the team to a specific user. 0 is no team.
         SetTeam<native><epic_internal>(TeamIndex:type{_X:int where 0 <= _X, _X <= 255}):void
 
@@ -322,36 +346,6 @@ Devices<public> := module:
 
     # Succeeds if Left and Right are equal.
     (/Fortnite.com/Devices:)Equals<native><epic_internal>(Left:creative_object, Right:creative_object)<transacts><decides>:void
-
-    @available {MinUploadedAtFNVersion := 2930}
-    # Generates a `creative_object_interface` for every creative object that has been marked with the specified `Tag`. Will not find anything if called on a default constructed object.
-    (InMovableObject:creative_movable_object_base).FindCreativeObjectsWithTagInternal<native><epic_internal>(Tag:tag)<transacts>:generator(creative_object_interface)
-
-    @available {MinUploadedAtFNVersion := 2930}
-    # Generates a `creative_object_interface` for every creative object that has been marked with the specified `Tag`. Will not find anything if called on a default constructed object.
-    (InCreativeDevice:creative_device).FindCreativeObjectsWithTag<public>(Tag:tag)<transacts>:generator(creative_object_interface) = external {}
-
-    @available {MinUploadedAtFNVersion := 2930}
-    # Generates a `creative_object_interface` for every creative object that has been marked with the specified `Tag`. Will not find anything if called on a default constructed object.
-    (InCreativeDevice:creative_device_base).FindCreativeObjectsWithTag<public>(Tag:tag)<transacts>:generator(creative_object_interface) = external {}
-
-    @available {MinUploadedAtFNVersion := 3300}
-    # Generates a `creative_object_interface` for every creative object that has been marked with the specified `Tag`. Will not find anything if called on an `npc_behavior` that is not simulating.
-    (InNPCBehavior:npc_behavior).FindCreativeObjectsWithTag<native><public>(Tag:tag)<transacts>:generator(creative_object_interface)
-
-    @available {MinUploadedAtFNVersion := 2930}
-    # Generates a `creative_object_interface` for every creative object that has been marked with the specified `Tag`. Will not find anything if called on an `entity` that is not in the scene.
-    (InEntity:entity).FindCreativeObjectsWithTag<native><public>(Tag:tag)<transacts>:generator(creative_object_interface)
-
-    @deprecated
-    # Deprecated, use `FindCreativeObjectsWithTag` instead.
-    # Returns an array containing all creative objects which have been marked with the specified `Tag`.
-    GetCreativeObjectsWithTag<native><public>(Tag:tag)<transacts>:[]creative_object_interface
-
-    @deprecated
-    # Deprecated, use `FindCreativeObjectsWithTag` instead.
-    # Returns an array containing creative objects which have tag(s) matching the specified `SearchCriteria`.
-    GetCreativeObjectsWithTags<native><public>(SearchCriteria:tag_search_criteria)<transacts>:[]creative_object_interface
 
     # Returns a queryable `tag_view` which can be used to query the tags on `CreativeObject`.
     (CreativeObject:creative_object_interface).GetTags<native><public>()<transacts>:tag_view
@@ -367,6 +361,10 @@ Devices<public> := module:
     #   * The simulation entity is the rootmost entity in an experience.
     #   * Fails if this `creative_object` is not operating in a context with a valid SimulationEntity.
     (CreativeObject:creative_object).(/Fortnite.com/Devices:)GetSimulationEntity<native><public>()<transacts><decides>:entity
+
+    creative_object_interface<native><public> := interface<epic_internal>(positional):
+        # Returns the `fort_playspace` that `CreativeObject` belongs to.
+        GetPlayspaceEpicInternal<native_callable><epic_internal>()<transacts>:fort_playspace
 
     # A Fortnite prop that has been placed or spawned in the island.
     creative_prop<native><public> := class<concrete><final>(creative_object, invalidatable):
@@ -469,7 +467,10 @@ Devices<public> := module:
 
     # Base implementation for events on `creative_device`s.
     device_event<native><epic_internal>(t:type) := class<abstract>(listenable(t)):
-        (/Fortnite.com/Devices/device_event:)Devices_device_event_Variance<private>:?type {_(:t):tuple(t)} = external {}
+        @available {MinUploadedAtFNVersion := 4294967041}
+        (/Fortnite.com/Devices/device_event:)Devices_device_event_Variance_Inherited<private>():tuple(t) = external {}
+
+        (/Fortnite.com/Devices/device_event:)Devices_device_event_Variance<private>(:t):tuple(t) = external {}
 
         EventName<native><public>:string
 
@@ -484,6 +485,10 @@ Devices<public> := module:
 
     # Implementation of `device_event(:type)` with required `agent` payload.
     device_event_agent<native><epic_internal> := class(device_event(agent)):
+
+
+    # Implementation of `device_event(:type)` with required `player` payload.
+    device_event_player<native><epic_internal> := class(device_event(player)):
 
 
     # Implementation of `device_event(:type)` with required `creative_prop` payload.
@@ -751,6 +756,56 @@ Devices<public> := module:
         Heal<override><native>(Args:healing_args):void
 
         HealedEvent<override>():listenable(healing_result) = external {}
+
+    @available {MinUploadedAtFNVersion := 3200}
+    # Generates a `creative_object_interface` for every creative object that has any tag of type `tag_type`. Will not find anything if called on a default constructed object.
+    (InCreativeDevice:creative_device).FindCreativeObjectsWithTag<public>(tag_type:castable_subtype(tag))<transacts>:generator(creative_object_interface) = external {}
+
+    @available {MinUploadedAtFNVersion := 3200}
+    # Generates a `creative_object_interface` for every creative object that has any tag of type `tag_type`. Will not find anything if called on a default constructed object.
+    (InCreativeDevice:creative_device_base).FindCreativeObjectsWithTag<public>(tag_type:castable_subtype(tag))<transacts>:generator(creative_object_interface) = external {}
+
+    @available {MinUploadedAtFNVersion := 3200}
+    # Generates a `creative_object_interface` for every creative object that has any tag of type `tag_type`. Will not find anything if called on an `npc_behavior` that is not simulating.
+    (InNPCBehavior:npc_behavior).FindCreativeObjectsWithTag<native><public>(tag_type:castable_subtype(tag))<transacts>:generator(creative_object_interface)
+
+    @available {MinUploadedAtFNVersion := 3200}
+    # Generates a `creative_object_interface` for every creative object that has any tag of type `tag_type`. Will not find anything if called on an `entity` that is not in the scene.
+    (InEntity:entity).FindCreativeObjectsWithTag<native><public>(tag_type:castable_subtype(tag))<transacts>:generator(creative_object_interface)
+
+    @available {MinUploadedAtFNVersion := 2930}
+    @deprecated
+    # DEPRECATED - use corresponding extension methods that takes a tag type instead of a tag instance.
+    # Generates a `creative_object_interface` for every creative object that has been marked with the specified `Tag`. Will not find anything if called on a default constructed object.
+    (InCreativeDevice:creative_device).FindCreativeObjectsWithTag<public>(Tag:tag)<transacts>:generator(creative_object_interface) = external {}
+
+    @available {MinUploadedAtFNVersion := 2930}
+    @deprecated
+    # DEPRECATED - use corresponding extension methods that takes a tag type instead of a tag instance.
+    # Generates a `creative_object_interface` for every creative object that has been marked with the specified `Tag`. Will not find anything if called on a default constructed object.
+    (InCreativeDevice:creative_device_base).FindCreativeObjectsWithTag<public>(Tag:tag)<transacts>:generator(creative_object_interface) = external {}
+
+    @available {MinUploadedAtFNVersion := 3300}
+    @deprecated
+    # DEPRECATED - use corresponding extension methods that takes a tag type instead of a tag instance.
+    # Generates a `creative_object_interface` for every creative object that has been marked with the specified `Tag`. Will not find anything if called on an `npc_behavior` that is not simulating.
+    (InNPCBehavior:npc_behavior).FindCreativeObjectsWithTag<native><public>(Tag:tag)<transacts>:generator(creative_object_interface)
+
+    @available {MinUploadedAtFNVersion := 2930}
+    @deprecated
+    # DEPRECATED - use corresponding extension methods that takes a tag type instead of a tag instance.
+    # Generates a `creative_object_interface` for every creative object that has been marked with the specified `Tag`. Will not find anything if called on an `entity` that is not in the scene.
+    (InEntity:entity).FindCreativeObjectsWithTag<native><public>(Tag:tag)<transacts>:generator(creative_object_interface)
+
+    @deprecated
+    # DEPRECATED - use `FindCreativeObjectsWithTag` instead.
+    # Returns an array containing all creative objects which have been marked with the specified `Tag`.
+    GetCreativeObjectsWithTag<native><public>(Tag:tag)<transacts>:[]creative_object_interface
+
+    @deprecated
+    # DEPRECATED - use `FindCreativeObjectsWithTag` instead.
+    # Returns an array containing creative objects which have tag(s) matching the specified `SearchCriteria`.
+    GetCreativeObjectsWithTags<native><public>(SearchCriteria:tag_search_criteria)<transacts>:[]creative_object_interface
 
     move_to_debug_log<epic_internal> := class(log_channel):
 

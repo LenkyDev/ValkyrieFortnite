@@ -1,7 +1,6 @@
-using {/Verse.org/Simulation/Tags}
 using {/Verse.org/Temporary/EpicGamesRestricted/Network}
-using {/Verse.org/SpatialMath}
 using {/Verse.org/Colors}
+using {/Verse.org/SpatialMath}
 using {/Verse.org/Simulation}
 using {/Verse.org/Assets}
 using {/Verse.org/Native}
@@ -106,6 +105,188 @@ directional_light_component<native><public> := class<final>(light_component):
     @category("Epic Internal")
     # Everything closer to the camera than this distance, measured in centimeters, will occlude light shafts
     OcclusionDepthRange<native><epic_internal>:float = external {}
+
+# Module import path: /Verse.org/SceneGraph/HasCollisionInvalids
+HasCollisionInvalids<epic_internal> := module:
+    InvalidCollisionMaterial<epic_internal>:collision_material = external {}
+
+has_collision<native><epic_internal> := interface<epic_internal>:
+    # True if any associated physics objects are physically collidable
+    GetCollidable<native_callable><epic_internal>()<reads>:logic = external {}
+
+    # Set the physics collidability for all associated physics objects
+    SetCollidable<native_callable><epic_internal>(In:logic):void = external {}
+
+    GetCollisionMaterial<native_callable><epic_internal>()<reads>:collision_material = external {}
+
+    SetCollisionMaterial<native_callable><epic_internal>(In:collision_material):void = external {}
+
+    @available {MinUploadedAtFNVersion := 2930}
+    @experimental
+    GetCollisionEnteredEvent<final><native_callable><epic_internal>():listenable(generator(collision_hit)) = external {}
+
+    @available {MinUploadedAtFNVersion := 2930}
+    @experimental
+    GetCollisionEvent<final><native_callable><epic_internal>():listenable(generator(collision_hit)) = external {}
+
+    @available {MinUploadedAtFNVersion := 2930}
+    @experimental
+    GetCollisionExitedEvent<final><native_callable><epic_internal>():listenable(generator(collision_hit)) = external {}
+
+has_collision_impl<native><final><epic_internal> := class:
+    GetCollidableImpl<native><epic_internal>()<reads>:logic
+
+    SetCollidableImpl<native><epic_internal>(In:logic):void
+
+    GetCollisionMaterialImpl<native><epic_internal>()<reads>:collision_material
+
+    SetCollisionMaterialImpl<native><epic_internal>(In:collision_material):void
+
+    @experimental
+    @available {MinUploadedAtFNVersion := 2930}
+    CollisionEnteredEventImpl<native><epic_internal>:listenable(generator(collision_hit)) = external {}
+
+    @experimental
+    @available {MinUploadedAtFNVersion := 2930}
+    CollisionEventImpl<native><epic_internal>:listenable(generator(collision_hit)) = external {}
+
+    @experimental
+    @available {MinUploadedAtFNVersion := 2930}
+    CollisionExitedEventImpl<native><epic_internal>:listenable(generator(collision_hit)) = external {}
+
+has_dynamics<native><epic_internal> := interface<epic_internal>:
+    # By default, true if any associated physics objects are physically simulated
+    GetDynamic<native_callable><epic_internal>()<reads>:logic = external {}
+
+    # By default, set the dynamic state for all associated physics objects
+    SetDynamic<native_callable><epic_internal>(In:logic):void = external {}
+
+    ApplyLinearImpulse<native_callable><epic_internal>(LinearImpulse:(/Verse.org/SpatialMath:)vector3):void = external {}
+
+    ApplyAngularImpulse<native_callable><epic_internal>(AngularImpulse:(/Verse.org/SpatialMath:)vector3):void = external {}
+
+    GetLinearVelocity<native_callable><epic_internal>():(/Verse.org/SpatialMath:)vector3 = external {}
+
+    SetLinearVelocity<native_callable><epic_internal>(LinearVelocity:(/Verse.org/SpatialMath:)vector3):void = external {}
+
+    GetAngularVelocity<native_callable><epic_internal>():(/Verse.org/SpatialMath:)vector3 = external {}
+
+    SetAngularVelocity<native_callable><epic_internal>(AngularVelocity:(/Verse.org/SpatialMath:)vector3):void = external {}
+
+    ApplyForce<native_callable><epic_internal>(Force:(/Verse.org/SpatialMath:)vector3):void = external {}
+
+    ApplyTorque<native_callable><epic_internal>(Torque:(/Verse.org/SpatialMath:)vector3):void = external {}
+
+    GetMass<native_callable><epic_internal>():float = external {}
+
+has_dynamics_impl<native><final><epic_internal> := class:
+    GetDynamicImpl<native><epic_internal>()<reads>:logic
+
+    SetDynamicImpl<native><epic_internal>(In:logic):void
+
+    ApplyLinearImpulseImpl<native><epic_internal>(LinearImpulse:(/Verse.org/SpatialMath:)vector3):void
+
+    ApplyAngularImpulseImpl<native><epic_internal>(AngularImpulse:(/Verse.org/SpatialMath:)vector3):void
+
+    GetLinearVelocityImpl<native><epic_internal>():(/Verse.org/SpatialMath:)vector3
+
+    SetLinearVelocityImpl<native><epic_internal>(LinearVelocity:(/Verse.org/SpatialMath:)vector3):void
+
+    GetAngularVelocityImpl<native><epic_internal>():(/Verse.org/SpatialMath:)vector3
+
+    SetAngularVelocityImpl<native><epic_internal>(AngularVelocity:(/Verse.org/SpatialMath:)vector3):void
+
+    ApplyForceImpl<native><epic_internal>(Force:(/Verse.org/SpatialMath:)vector3):void
+
+    ApplyTorqueImpl<native><epic_internal>(Torque:(/Verse.org/SpatialMath:)vector3):void
+
+    GetMassImpl<native><epic_internal>():float
+
+ue_phys_sleep_type<native><epic_internal> := enum<open>:
+    MaterialSleep
+    NeverSleep
+
+has_ue_physics_properties<native><epic_internal> := interface<epic_internal>:
+    GetGravityEnabled<native_callable><epic_internal>()<reads>:logic = external {}
+
+    SetGravityEnabled<native_callable><epic_internal>(In:logic):void = external {}
+
+    GetGravityGroupIndex<native_callable><epic_internal>()<reads>:int = external {}
+
+    SetGravityGroupIndex<native_callable><epic_internal>(In:int):void = external {}
+
+    GetCollisionProfileName<native_callable><epic_internal>()<reads>:string = external {}
+
+    SetCollisionProfileName<native_callable><epic_internal>(In:string):void = external {}
+
+    GetSleepType<native_callable><epic_internal>()<reads>:ue_phys_sleep_type = external {}
+
+    SetSleepType<native_callable><epic_internal>(In:ue_phys_sleep_type):void = external {}
+
+    GetLinearEtherDrag<native_callable><epic_internal>()<reads>:float = external {}
+
+    SetLinearEtherDrag<native_callable><epic_internal>(In:float):void = external {}
+
+    GetStartAwake<native_callable><epic_internal>()<reads>:logic = external {}
+
+    SetStartAwake<native_callable><epic_internal>(In:logic):void = external {}
+
+    GetMassOverride<native_callable><epic_internal>()<reads>:float = external {}
+
+    SetMassOverride<native_callable><epic_internal>(In:float):void = external {}
+
+    GetMaxAngularVelocityDegs<native_callable><epic_internal>()<reads>:float = external {}
+
+    SetMaxAngularVelocityDegs<native_callable><epic_internal>(In:float):void = external {}
+
+    GetOverridesMaxAngularVelocity<native_callable><epic_internal>()<reads>:logic = external {}
+
+    SetOverridesMaxAngularVelocity<native_callable><epic_internal>(In:logic):void = external {}
+
+    GetUseCCD<native_callable><epic_internal>()<reads>:logic = external {}
+
+    SetUseCCD<native_callable><epic_internal>(In:logic):void = external {}
+
+has_ue_physics_properties_impl<native><final><epic_internal> := class:
+    GetGravityEnabledImpl<native><epic_internal>()<reads>:logic
+
+    SetGravityEnabledImpl<native><epic_internal>(In:logic):void
+
+    GetGravityGroupIndexImpl<native><epic_internal>()<reads>:int
+
+    SetGravityGroupIndexImpl<native><epic_internal>(In:int):void
+
+    GetCollisionProfileNameImpl<native><epic_internal>()<reads>:string
+
+    SetCollisionProfileNameImpl<native><epic_internal>(In:string):void
+
+    GetSleepTypeImpl<native><epic_internal>()<reads>:ue_phys_sleep_type
+
+    SetSleepTypeImpl<native><epic_internal>(In:ue_phys_sleep_type):void
+
+    GetLinearEtherDragImpl<native><epic_internal>()<reads>:float
+
+    SetLinearEtherDragImpl<native><epic_internal>(In:float):void
+
+    GetStartAwakeImpl<native><epic_internal>()<reads>:logic
+
+    SetStartAwakeImpl<native><epic_internal>(In:logic):void
+
+    GetMassOverrideImpl<native><epic_internal>()<reads>:float
+
+    SetMassOverrideImpl<native><epic_internal>(In:float):void
+
+    GetMaxAngularVelocityDegsImpl<native><epic_internal>()<reads>:float
+
+    SetMaxAngularVelocityDegsImpl<native><epic_internal>(In:float):void
+
+    GetOverridesMaxAngularVelocityImpl<native><epic_internal>()<reads>:logic
+
+    SetOverridesMaxAngularVelocityImpl<native><epic_internal>(In:logic):void
+
+    GetUseCCDImpl<native><epic_internal>()<reads>:logic
+
+    SetUseCCDImpl<native><epic_internal>(In:logic):void
 
 # Module import path: /Verse.org/SceneGraph/KeyframedMovement
 # Animate Scene Graph entities with keyframes.
@@ -466,10 +647,6 @@ mesh_component<native><public> := class<final_super><epic_internal>(component, e
     # The `mesh` to be rendered by this `mesh_component`.
     Mesh<native><epic_internal>:mesh = external {}
 
-    @experimental
-    # Sets the `material` to be applied to the `mesh`.
-    SetMaterial<native><epic_internal>(InMaterial:?material):void
-
     # Enables rendering of this mesh.
     Enable<native><override>():void
 
@@ -559,6 +736,21 @@ mesh_component<native><public> := class<final_super><epic_internal>(component, e
     # When enabled this mesh will never be culled by distance.
     var NeverDistanceCull<native><epic_internal>:logic = external {}
 
+    @editable {EpicOnly := true}
+    @category("Epic Internal")
+    # When enabled, the component will be rendering into the far shadow cascades (only for directional lights).
+    var CastFarShadow<native><epic_internal>:logic = external {}
+
+    @editable {EpicOnly := true}
+    @category("Epic Internal")
+    # Whether this component should create a per-object shadow that gives higher effective shadow resolution.
+    var CastInsetShadow<native><epic_internal>:logic = external {}
+
+    @editable {EpicOnly := true}
+    @category("Epic Internal")
+    # Whether this component should cast contact shadows.
+    var CastContactShadow<native><epic_internal>:logic = external {}
+
     # Returns the bounded box of this components, in world space.
     GetBoundedGlobalBox<override><native>()<reads>:bounded_box
 
@@ -575,6 +767,13 @@ mesh_component<native><public> := class<final_super><epic_internal>(component, e
     ___PropertyInterface_On_Queryable_Changed<epic_internal>():void = external {}
 
     ___PropertyInterface_On_Visible_Changed<epic_internal>():void = external {}
+
+mesh_part<native><epic_internal> := class<abstract><epic_internal>:
+    HasCollisionImpl<native><epic_internal>:has_collision_impl = external {}
+
+    HasDynamicsImpl<native><epic_internal>:has_dynamics_impl = external {}
+
+    HasUEPhysicsPropertiesImpl<native><epic_internal>:has_ue_physics_properties_impl = external {}
 
 # Used to spawn a `particle_system` at the location of this entity. The `particle_system` will simulate while the `particle_system_component` is in the scene.
 # 
@@ -910,47 +1109,6 @@ spot_light_component<native><public> := class<final>(light_component):
     @category("Epic Internal")
     # Controls the radial falloff of the light when UseInverseSquaredFalloff is disabled
     LightFalloffExponent<native><epic_internal>:float = external {}
-
-@experimental
-# Used to add tags to an entity. Tagged entities can then be queried using `entity.FindDescendantEntitiesWithTag` and `entity.FindAncestorEntitiesWithTag`.
-#   * Finding entities from the simulation entity for tagged entities only considers any `tag_component` that has run `OnAddedToScene`.
-tag_component<native><public> := class<final><final_super>(component, tag_view):
-    # Determine if TagToCheck is present in this container, also checking against parent tags {"A.1"}.Has("A") will return True, {"A"}.Has("A.1") will return False If TagToCheck is not Valid it will always return False.
-    Has<native><override>(TagToCheck:tag)<reads><decides>:void
-
-    # Checks if this container contains ANY of the tags in the specified container, also checks against parent tags {"A.1"}.HasAny({"A","B"}) will return True, {"A"}.HasAny({"A.1","B"}) will return False If InTags is empty/invalid it will always return False.
-    HasAny<native><override>(InTags:[]tag)<reads><decides>:void
-
-    # Checks if this container contains ALL of the tags in the specified container, also checks against parent tags {"A.1","B.1"}.HasAll({"A","B"}) will return True, {"A","B"}.HasAll({"A.1","B.1"}) will return False If InTags is empty/invalid it will always return True, because there were no failed checks.
-    HasAll<native><override>(InTags:[]tag)<reads><decides>:void
-
-    # Adds a tag to this component. Returns `true` if the tag was not present before being added.
-    AddTag<native><public>(TagToAdd:tag)<transacts>:logic
-
-    # Removes a tag from this component. Returns `true` if the tag was present before being removed.
-    RemoveTag<native><public>(TagToRemove:tag)<transacts>:logic
-
-    OnAddedToSceneInternal<native><override>():void
-
-    OnRemovingFromSceneInternal<native><override>():void
-
-@hide_in_editor
-@experimental
-tag_query_manager_component<native><epic_internal> := class<final_super><epic_internal>(component):
-    OnUninitializingInternal<native><override>():void
-
-@available {MinUploadedAtFNVersion := 2930}
-@experimental
-# Finds all descendant entities including `InEntity` with `Tag` present in their `tag_component`.
-# When querying from the simulation entity, the simulation entity itself is not included in the results.
-# The order of the returned entities is unspecified and subject to change.
-(InEntity:entity).FindDescendantEntitiesWithTag<native><public>(Tag:tag)<transacts>:generator(entity)
-
-@available {MinUploadedAtFNVersion := 2930}
-@experimental
-# Finds all ancestor entities to `InEntity` with `Tag` present in their `tag_component`.
-# The order of the returned entities is unspecified and subject to change.
-(InEntity:entity).FindAncestorEntitiesWithTag<native><public>(Tag:tag)<transacts>:generator(entity)
 
 @experimental
 # A range with a minimum and maximum value. For a value to fall inside of this range, the min value must be less than or equal to the max value.
