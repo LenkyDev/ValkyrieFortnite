@@ -30,13 +30,11 @@
 	"Plugins": [
 		{
 			"Name": "UAF",
-			"Enabled": false,
-			"Optional": true
+			"Enabled": true
 		},
 		{
 			"Name": "UAFAnimGraph",
-			"Enabled": false,
-			"Optional": true
+			"Enabled": true
 		},
 		{
 			"Name": "AnimPresetsCore",

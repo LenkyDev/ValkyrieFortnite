@@ -178,6 +178,10 @@
 		{
 			"Name": "UAF",
 			"Enabled": true
+		},
+		{
+			"Name": "UAFAnimGraph",
+			"Enabled": true
 		}
 	]
 }
