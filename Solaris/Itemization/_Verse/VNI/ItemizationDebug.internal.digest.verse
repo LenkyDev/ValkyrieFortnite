@@ -56,3 +56,14 @@ ItemizationTests<epic_internal> := module:
 
         @available {MinUploadedAtFNVersion := 4000}
         OnReceive<override>(Event:scene_event):logic = external {}
+
+    @experimental
+    @hide_in_editor
+    event_tester_inventory_component<native><epic_internal> := class(inventory_component):
+        var AddedItemCount<native><public>:int = external {}
+
+        var ModifiedItemCount<native><public>:int = external {}
+
+        OnInitialized<override>():void = external {}
+
+        OnUninitializing<override>():void = external {}

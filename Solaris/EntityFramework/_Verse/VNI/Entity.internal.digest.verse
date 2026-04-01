@@ -8,11 +8,11 @@ using {/Verse.org/SpatialMath}
 @import_as("/*.FBoundedBox")
 # 3-dimensional box.
 bounded_box<native><epic_internal> := struct<concrete>:
-    BoxMin:(/Verse.org/SpatialMath:)vector3 = external {}
+    BoxMin<native>:(/Verse.org/SpatialMath:)vector3 = external {}
 
-    BoxMax:(/Verse.org/SpatialMath:)vector3 = external {}
+    BoxMax<native>:(/Verse.org/SpatialMath:)vector3 = external {}
 
-    Valid:logic = external {}
+    Valid<native>:logic = external {}
 
 # Implemented by classes whose instances can provide a bounds.
 bounded<native><epic_internal> := interface:
@@ -148,14 +148,12 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
     # Set callbacks to `TickEvents.PrePhysics` and `TickEvents.PostPhysics` to receive per-frame updates before and after physics is updated on your object.
     var<private> TickEvents<protected>:tick_events = external {}
 
-    @experimental
     # Send a scene event to this component, invoking OnReceive.  Return true to consume the event and halt propagation to the next entity.
     SendDown<native><native_callable><final><public>(SceneEvent:scene_event):logic
 
     @available {MinUploadedAtFNVersion := 4000}
-    @experimental
     # Respond to a scene event. Return true to consume the event and halt propagation to the next entity.
-    OnReceive<native><native_callable><protected>(SceneEvent:scene_event):logic
+    OnReceive<native_callable><protected>(SceneEvent:scene_event):logic = external {}
 
     OnInitializedInternal<native><native_callable><epic_internal>():void
 
@@ -176,7 +174,6 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
 # This is an internal method and should only be used to intialize a component field inside a verse class
 InitializeComponentField<native><epic_internal>(component_type:castable_subtype(component))<converges>:component_type
 
-@experimental
 # An event which can be sent through the scene graph.
 scene_event<native><public> := interface:
 
@@ -245,11 +242,9 @@ entity<native><public> := class<concrete><unique><transacts><castable>(base_enti
 
     GetDiagnostic<override><native>()<reads>:diagnostic
 
-    @experimental
     # Send a scene event to this entity and then up the hierarchy. First, SendDown/OnReceive will be invoked on each component on this entity. Next, SendUp will be invoked on this entity's parent. Consuming the event at any point will halt propagation. Returns true if any participant consumed the event.
     SendUp<native><native_callable><final><public>(SceneEvent:scene_event):logic
 
-    @experimental
     # Send a scene event to this entity and then down the hierarchy. First, SendDown/OnReceive will be invoked on each component on this entity. Next, SendDown will be invoked on each child entity.  Consuming the event at any point will halt propagation. Returns true if any participant consumed the event.
     SendDown<native><native_callable><final><public>(SceneEvent:scene_event):logic
 
@@ -302,16 +297,16 @@ entity_prefab<native><public> := class<computes><epic_internal>(asset):
 # The order of the returned entities is unspecified and subject to change.
 (InEntity:entity).FindAncestorEntitiesWithTag<native><public>(tag_type:castable_subtype(tag))<transacts>:generator(entity)
 
-@experimental
 change_icon_component_event<epic_internal> := class(scene_event):
     Entity<public>:entity
 
     IconComponent<public>:?icon_component = external {}
 
-@experimental
 # Component that holds an icon for an entity.
 icon_component<native><public> := class<final_super>(component, has_icon):
     var Icon<override>:texture = external {}
+
+    var<private> HasChangedFields<native><epic_internal>:logic = external {}
 
     OnIconChanged<native><epic_internal>()<transacts>:void
 
@@ -368,34 +363,28 @@ socket_origin<native><epic_internal> := class(actor_origin):
     var SocketName<native><public>:string
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Rarity may be used by gameplay and presentation systems to classify and rank things.
 rarity<native><public> := class<castable><concrete><unique><allocates>:
     @editable
     Color<native><public>:color = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 common_rarity<public> := class<allocates>(rarity):
 
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 uncommon_rarity<public> := class<allocates>(common_rarity):
     Color<override>:color = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 rare_rarity<public> := class<allocates>(uncommon_rarity):
     Color<override>:color = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 epic_rarity<public> := class<allocates>(rare_rarity):
     Color<override>:color = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 legendary_rarity<public> := class<allocates>(epic_rarity):
     Color<override>:color = external {}
 
@@ -415,17 +404,18 @@ impossible_rarity<epic_internal> := class<allocates>(exotic_rarity):
     Color<override>:color = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 change_rarity_component_event<epic_internal> := class(scene_event):
     Entity<public>:entity
 
     RarityComponent<public>:?rarity_component = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Component that denotes the rarity of an entity.
 rarity_component<native><public> := class<final_super>(component):
+    # The rarity of this entity. An entity can have only one rarity.
     var Rarity<public>:rarity = external {}
+
+    var<private> HasChangedFields<native><epic_internal>:logic = external {}
 
     GetRarity<native><epic_internal>(__dupe___unnamed_parameter_100:accessor)<transacts>:rarity
 
@@ -474,12 +464,14 @@ simulation_entity<native><epic_internal> := class<concrete><unique><transacts>(r
 # A component that when attached to an entity allows for it to merge or 'stack' with other entities with compatible components.
 stackable_component<native><public> := class<abstract><final_super>(component):
     @editable_number(int) {MinValue := option {1}}
-    # Current stack size of this component.
+    # The current amount of this entity held in the stack.
     var<private> StackSize<native><public>:int = external {}
 
     @editable
-    # Maximum stack size for this component. If false, unlimited stack size.
+    # The maximum amount this component can hold. If unset, it holds an unlimited amount.
     var<private> MaxStackSize<native><public>:?int = external {}
+
+    var<private> HasChangedFields<native><epic_internal>:logic = external {}
 
     # Sets the stack size of this component. If the provided stack size is invalid, e.g. negative or exceeding MaxStackSize, stack size will not change.
     SetStackSize<final><native><public>(NewStackSize:int)<transacts>:void
@@ -545,7 +537,7 @@ has_merge_rules<public> := interface<unique>:
 @experimental
 basic_stackable_component<native><public> := class(stackable_component):
     @editable
-    # The prefab which will be returned when Split is called. Entities can only merge with others of the same prefab.
+    # The prefab used when this entity merges with another or when it is split into a new instance.
     split_prefab_type<native><public>:castable_concrete_subtype(entity) = external {}
 
     Split<override>(Amount:int)<transacts><decides>:entity = external {}

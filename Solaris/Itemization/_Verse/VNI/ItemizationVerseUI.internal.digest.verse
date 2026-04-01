@@ -292,6 +292,9 @@ InventoryItemPropertyInterface<epic_internal> := class<public>(parameterized_pro
     @replicated("RepNotify=___PropertyInterface_On_AmmoIcon_Changed")
     var AmmoIcon<public>:texture = external {}
 
+    @replicated("RepNotify=___PropertyInterface_On_ShowAmmoIcon_Changed")
+    var ShowAmmoIcon<public>:logic = external {}
+
     @replicated("RepNotify=___PropertyInterface_On_ReloadPercent_Changed")
     var ReloadPercent<public>:float = external {}
 
@@ -345,6 +348,8 @@ InventoryItemPropertyInterface<epic_internal> := class<public>(parameterized_pro
     ___PropertyInterface_On_Ammo_Changed<epic_internal>():void = external {}
 
     ___PropertyInterface_On_AmmoIcon_Changed<epic_internal>():void = external {}
+
+    ___PropertyInterface_On_ShowAmmoIcon_Changed<epic_internal>():void = external {}
 
     ___PropertyInterface_On_ReloadPercent_Changed<epic_internal>():void = external {}
 

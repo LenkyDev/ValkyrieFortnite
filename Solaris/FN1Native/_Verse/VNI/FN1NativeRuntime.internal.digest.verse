@@ -130,18 +130,11 @@ FN1Native<public> := module:
 
     # Module import path: /Fortnite.com/FN1Native/GameMode
     GameMode<public> := module:
-        using {/Verse.org/Simulation}
         using {/Verse.org/SpatialMath}
         using {/Verse.org/SceneGraph}
         using {/Verse.org/Assets}
         environment_query<native><epic_internal> := class<computes><final><epic_internal>(asset):
             AwaitEQSQuery<native><epic_internal>(Owner:entity, Params:[]tuple(string, float))<suspends>:[](/Verse.org/SpatialMath:)vector3
-
-        (Agent:agent).TriggerAbilityByPath<native><epic_internal>(AbilityPath:string):void
-
-        (Agent:agent).TriggerAbilityByPathWithTargets<native><epic_internal>(AbilityPath:string, Target:[]agent):void
-
-        LoadAbilityByPath<native><epic_internal>(AbilityPath:string):void
 
     # Module import path: /Fortnite.com/FN1Native/Matchmaking
     Matchmaking<public> := module:

@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/FN1",
-	"FortReleaseVersion": "40.00",
+	"FortReleaseVersion": "40.10",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"Version": 0,
@@ -167,6 +167,21 @@
 		},
 		{
 			"Name": "SourSpawnMapContent",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SquareClub_Accolades",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SquareClub_Quests",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SquareClubMapContent",
 			"Enabled": true,
 			"Optional": true
 		},

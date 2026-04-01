@@ -78,6 +78,9 @@ remove_item_query_event<native><public> := class<epic_internal>(scene_event):
 # The inventory component controls which items can enter or exit.
 # They also determine whether an item can be equipped.
 inventory_component<native><public> := class<final_super>(component):
+    @available {MinUploadedAtFNVersion := 4000}
+    OnReceive<override><native>(SceneEvent:scene_event):logic
+
     @available {MinUploadedAtFNVersion := 3800}
     # Adds the item to this inventory only, ignoring sub-inventories. Fails if no items could be added.
     AddItem<native><final><public>(Item:entity, ?AllowMergeItems:logic = external {})<transacts>:result(add_item_result, []add_item_error)
@@ -210,7 +213,7 @@ item_component<native><public> := class<final_super>(component):
     Unequip<final><native><public>()<transacts>:result(false, []unequip_item_error)
 
     @editable
-    # Categories which this item can belong to. Note that some projects may only use the first entry.
+    # Add one or more category instances to help define and organize this item.
     Categories<native><public>:[]item_category = external {}
 
     # Removes the item from its inventory and places it in the simulation world. Works on orphaned items i.e. outside the world or any inventory.

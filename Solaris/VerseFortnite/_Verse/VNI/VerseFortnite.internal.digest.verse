@@ -688,8 +688,8 @@ FortSafeZone<public> := module:
 
 # Module import path: /Fortnite.com/Teams
 Teams<public> := module:
-    using {/Verse.org/SceneGraph}
     using {/Verse.org/Simulation/Tags}
+    using {/Verse.org/SceneGraph}
     using {/Verse.org/Simulation}
     using {/Verse.org/Native}
     using {/Verse.org/Chat}
@@ -705,8 +705,10 @@ Teams<public> := module:
     fort_team<native><epic_internal> := class<unique>(team, agent_group_interface(fort_team_member_info)):
         GetTeamVoiceChannel<native_callable><public>()<transacts>:?voice_channel(fort_team_member_info) = external {}
 
+        RemoveTeamVoiceChannel<native_callable><public>(SimulationEntity:simulation_entity)<transacts>:void = external {}
+
         # Get the underlying member map for this team
-        GetMemberMap<override>()<reads>:[agent]fort_team_member_info = external {}
+        GetMemberMap<override><native_callable>()<reads>:[agent]fort_team_member_info = external {}
 
         # Signalled whenever an agent successfully joins this agent group.Passes in the agent that joined along with their member_info.
         AddMemberEvent<override><final><native>:listenable(tuple(agent, fort_team_member_info)) = external {}

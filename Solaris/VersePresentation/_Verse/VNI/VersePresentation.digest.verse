@@ -1,6 +1,5 @@
 using {/Verse.org/Simulation}
 using {/Verse.org/SceneGraph}
-@experimental
 # Component that holds the details for an entity, such as name and description.
 description_component<native><public> := class<final_super>(component, has_description):
     var Name<override>:message = external {}
@@ -16,13 +15,13 @@ description_component<native><public> := class<final_super>(component, has_descr
 # Interface that provides descriptive names or text.
 has_description<native><public> := interface:
     @editable
-    # Name.
+    # The display name of this entity.
     var Name<public>:message
 
     @editable
-    # Full description.
+    # The full description of this entity.
     var Description<public>:message
 
     @editable
-    # Short description with only the essential information.
+    # A shortened description of this entity.
     var ShortDescription<public>:message

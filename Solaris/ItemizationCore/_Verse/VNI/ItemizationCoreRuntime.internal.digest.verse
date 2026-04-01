@@ -107,8 +107,8 @@ remove_item_query_event<native><public> := class<epic_internal>(scene_event):
 inventory_initialization_component<native><epic_internal> := class<final_super>(component):
 
 
-@experimental
 @class_and_subclass_group_names("inventory")
+@experimental
 # Inventory components hold items. An entity with an inventory component can be considered to have an inventory.
 # The inventory component controls which items can enter or exit.
 # They also determine whether an item can be equipped.
@@ -116,6 +116,9 @@ inventory_component<native><public> := class<final_super>(component):
     OnInitializedInternal<native><override>():void
 
     OnUninitializingInternal<native><override>():void
+
+    @available {MinUploadedAtFNVersion := 4000}
+    OnReceive<override><native>(SceneEvent:scene_event):logic
 
     @available {MinUploadedAtFNVersion := 3800}
     # Adds the item to this inventory only, ignoring sub-inventories. Fails if no items could be added.
@@ -444,7 +447,7 @@ item_component<native><public> := class<final_super>(component):
     Unequip<final><native><public>()<transacts>:result(false, []unequip_item_error)
 
     @editable
-    # Categories which this item can belong to. Note that some projects may only use the first entry.
+    # Add one or more category instances to help define and organize this item.
     Categories<native><public>:[]item_category = external {}
 
     @available {MinUploadedAtFNVersion := 3800}
@@ -520,8 +523,8 @@ item_icon_component<native><public> := class<final_super>(component, has_icon):
     @editable
     var Icon<native><override>:texture
 
-@experimental
 @import_as("/Script/ItemizationCoreRuntime.UItemDefinitionBase")
+@experimental
 item_definition_base<native><epic_internal> := class<epic_internal>:
 
 

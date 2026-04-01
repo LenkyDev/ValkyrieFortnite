@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Akita",
-	"FortReleaseVersion": "40.00",
+	"FortReleaseVersion": "40.10",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"RequiredEntitlements": {
@@ -259,6 +259,11 @@
 		},
 		{
 			"Name": "FNEShockGrenade",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "HulkShip",
 			"Enabled": true,
 			"Optional": true
 		},

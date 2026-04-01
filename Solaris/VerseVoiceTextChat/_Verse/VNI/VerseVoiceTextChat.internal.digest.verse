@@ -27,7 +27,7 @@ has_voice_member_info<native><epic_internal> := interface(member_info_interface)
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # A `voice_channel` defines a group of agents who can communicate via voice chat.
-# An agent can be a member of more than one `voice_channel`.Voice channels can accommodate 80 members of the channel’s `Group`. Agents beyond this limit are not included in the chat.A chat participant in a `voice_channel` may be restricted from voice chat based on parental controls and/or user settings.
+# An agent can be a member of more than one `voice_channel`.Voice channels can accommodate 80 members of the channel's `Group`. Agents beyond this limit are not included in the chat.A chat participant in a `voice_channel` may be restricted from voice chat based on parental controls and/or user settings.
 voice_channel<native><epic_internal>(member_info:subtype(has_voice_member_info)) := class<final>(chat_channel(member_info)):
     @available {MinUploadedAtFNVersion := 4294967041}
     (/Verse.org/Chat/voice_channel:)Chat_voice_channel_Variance_Inherited<private>():tuple(member_info) = external {}
@@ -52,6 +52,10 @@ voice_channel<native><epic_internal>(member_info:subtype(has_voice_member_info))
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 AddVoiceChannel<native_callable><epic_internal>(Channel:voice_channel(has_voice_member_info), Entity:simulation_entity):void = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+RemoveVoiceChannel<native_callable><epic_internal>(Channel:voice_channel(has_voice_member_info), Entity:simulation_entity)<transacts>:void = external {}
 
 @experimental
 # Error returned when a channel cannot be added via the `AddChatChannel` function.

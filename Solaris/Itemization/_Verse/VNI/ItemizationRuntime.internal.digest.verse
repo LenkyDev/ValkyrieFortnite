@@ -15,6 +15,9 @@ fort_inventory_component<native><public> := class<epic_internal>(inventory_compo
     # Moves the item to a particular slot. If the item is not already in the inventory, AddItem is called on it. Swaps places with any item already in that slot.
     SetItemInSlot<native><epic_internal>(Item:entity, Slot:int)<reads><decides>:void
 
+    # Takes either a Melee or Ranged weapon item and reloads its initial ammount of ammo. Does not grant extra ammo
+    ResetWeaponState<native><epic_internal>(Weapon:item_component)<transacts><decides>:void
+
 @experimental
 # `fort_inventory_legacy_quickbar_component` is a shared class for all Fortnite inventories that rely on coupling to the legacy AFortQuickBars class.
 fort_inventory_legacy_quickbar_component<native><epic_internal> := class(fort_inventory_component):
@@ -155,6 +158,12 @@ FortniteItemCategories<public> := module:
 
     @experimental
     WeaponHarvest<epic_internal>:item_category = external {}
+
+    @experimental
+    WeaponMelee<epic_internal>:item_category = external {}
+
+    @experimental
+    WeaponRanged<epic_internal>:item_category = external {}
 
 @experimental
 fort_item_definition_entity_base<native><epic_internal> := class<concrete>(entity):

@@ -82,6 +82,7 @@
 		"AllowedClasses": {
 			"/Script/AmbientAudio.AmbientAudioComponent": { "Visible": true },
 			"/Script/AudioGameplay.AudioComponentGroup": { "Visible": true },
+			"/Script/AudioShapes.AudioShapeSphereComponent": { "Visible": true },
 			"/Script/CommonUI.CommonTextBlock": { "Visible": true },
 			"/Script/CommonUI.CommonUserWidget": { "Visible": true },
 			"/Script/DaySequence.DaySequenceConditionTag": {},
@@ -114,6 +115,7 @@
 			"/Script/FortniteAI.AthenaNavMesh_Medium": { "Visible": true },
 			"/Script/FortniteAI.FortNavModifierVolume": { "Visible": true },
 			"/Script/FortniteGame.BuildingLevelInstance": { "Visible": true },
+			"/Script/FortniteGame.FortActorComponent_KillfeedKillerExtension": { "Visible": true },
 			"/Script/FortniteGame.FortAmbientAudioVolume": { "Visible": true },
 			"/Script/FortniteGame.FortGameFeatureAction_AlwaysGenerateExternallyReferencablePackages": { "Visible": true },
 			"/Script/FortniteGame.GameFeatureAction_SetPerPlatformCVar": { "Visible": true },
@@ -562,6 +564,18 @@
 			{
 				"Type": "/Script/FortniteGame.BuildingSMActor",
 				"AllowList": [ "bConsiderOverrideMaterialsOnAnimationCleanup" ]
+			},
+			{
+				"Type": "/Script/Engine.HLODLayer",
+				"AllowList": [ "CellSize", "LoadingRange", "HLODActorClass", "ParentLayer" ]
+			},
+			{
+				"Type": "/Script/Engine.MaterialProxySettings",
+				"AllowList": [ "bAllowTwoSidedMaterial" ]
+			},
+			{
+				"Type": "/Script/Engine.SoundAttenuationSettings",
+				"AllowList": [ "bEnableOcclusion", "OcclusionTraceChannel", "OcclusionLowPassFilterFrequency", "OcclusionVolumeAttenuation", "OcclusionInterpolationTime" ]
 			}
 		],
 		"-": [

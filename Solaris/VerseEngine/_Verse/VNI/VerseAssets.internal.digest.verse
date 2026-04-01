@@ -95,6 +95,7 @@ Assets<public> := module:
     # Interface that provides an icon.
     has_icon<native><public> := interface:
         @editable
+        # A texture used as the 2D visual representation of this entity (e.g. an icon or portrait).
         var Icon<public>:texture
 
     WriteToDataChannelFromVerseInternal<native><epic_internal>((Asset:particle_data_channel, Payload:t) where t:type)<transacts>:void

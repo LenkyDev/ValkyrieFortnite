@@ -33,6 +33,8 @@ llm_prompt_character_limit_error<native><epic_internal> := class(llm_prompt_erro
 @experimental
 # An abstraction around a recorded history of events and sending prompts with that history context included.
 llm_session<native><epic_internal> := class<unique>:
+    var VoiceChannelSubscriptions<epic_internal>:[]cancelable = external {}
+
     # Removes all the history events from the session. Including conversation history.
     ClearHistory<native><public>()<transacts>:void
 
@@ -46,6 +48,8 @@ llm_session<native><epic_internal> := class<unique>:
     SubscribeToVoiceChannelMemberAdded<native_callable><epic_internal>(VoiceChannel:voice_channel(member_info) where member_info:subtype(has_voice_member_info))<transacts>:cancelable = external {}
 
     SubscribeToVoiceChannelMemberRemoved<native_callable><epic_internal>(VoiceChannel:voice_channel(member_info) where member_info:subtype(has_voice_member_info))<transacts>:cancelable = external {}
+
+    CancelAllVoiceChannelSubscriptions<native_callable><epic_internal>()<transacts>:void = external {}
 
     OnAddMemberEvent<native><epic_internal>((Agent:agent, MemberInfo:member_info) where member_info:subtype(has_voice_member_info))<transacts>:void
 
@@ -72,10 +76,14 @@ persona_interruption_rule<native><epic_internal> := enum<open>:
 # Defines the persona and what it knows.
 persona_definition<native><epic_internal> := class<final>:
     # Defines the personality
-    var PersonalitySlot<native><public>:prompt_slot_provider
+    var PersonalitySlot<public>:prompt_slot_provider = external {}
+
+    var PersonalitySlotInternal<native><public>:prompt_slot_provider = external {}
 
     # What the persona currently knows
-    var KnowledgeSlot<native><public>:prompt_slot_provider
+    var KnowledgeSlot<public>:prompt_slot_provider = external {}
+
+    var KnowledgeSlotInternal<native><public>:prompt_slot_provider = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
@@ -90,7 +98,7 @@ persona_component<native><epic_internal> := class<final_super>(component):
     var<epic_internal> Color<native><epic_internal>:color = external {}
 
     # Defines the persona and what it knows
-    PersonaDefinition<native><public>:persona_definition
+    PersonaDefinition<native><public>:persona_definition = external {}
 
     # The session which will process all this persona's prompts
     # When the persona is in a voice channel, every session in that channel will automatically
@@ -125,7 +133,10 @@ persona_component<native><epic_internal> := class<final_super>(component):
 
     # Registers a callback for when the persona receives structured data in the format of response_type.
     #  Required forces this be filled out every time the persona is prompted.
-    #  the returned cancelable unregisters this callback and stops the llm from attempting to send this kind of structured data
+    #  The returned cancelable unregisters this callback and stops the llm from attempting to send this kind of structured data.
+    #  The result type must be a struct which can contain.
+    #  - numeric types, message, bools and enums, as well as structs or arrays which only contain those types, anything else results in an error.
+    #  Use the names of the fields and name of the type of the struct to direct the prompt or facts on how to fill out the data structure.
     SubscribeToResponseType<native><public>(response_type:type, Required:logic, Callback:type {_(:?agent, :response_type):void})<transacts>:cancelable
 
     @available {MinUploadedAtFNVersion := 4000}
@@ -140,6 +151,8 @@ persona_component<native><epic_internal> := class<final_super>(component):
     #    1) The persona which had the failure
     #    2) The error
     PromptFailureEvent<native><public>:listenable(llm_prompt_error) = external {}
+
+    OnPersonaComponentConstructed<native><epic_internal>()<transacts>:void
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental

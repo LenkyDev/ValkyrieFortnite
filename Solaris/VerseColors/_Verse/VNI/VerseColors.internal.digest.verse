@@ -2,9 +2,10 @@
 Colors<public> := module:
     using {/Verse.org/Native}
     using {/Verse.org/Simulation}
+    @import_as("/*.FVColor")
     # Represents colors as RGB triples in the ACES 2065-1 color space.
     # Component values are linear (i.e. `*gamma* = 1.0`).
-    color<native><public> := struct<concrete><computes><persistable>:
+    color<native><public> := struct<concrete><computes><persistable><uht_comparable>:
         @editable
         # Red component of this `color`.
         R<native><public>:float = external {}
@@ -378,12 +379,13 @@ Colors<public> := module:
         YellowGreen<public>:color = external {}
 
     @available {MinUploadedAtFNVersion := 3800}
+    @import_as("/*.FVColorAlpha")
     # Represents colors as RGB triples in the ACES 2065-1 color space with an additional alpha channel A.
     # This reasons about the `Color` and alpha (`A`) as separate concepts instead of as a single concept.
     # All values are stored strictly as unopinionated floats but, when interpreted as a color with alpha,
     # ranges for `A` are `0.0` (transparent) to `1.0` (opaque). Color values are not premultiplied.
     # Component values are linear (i.e. `*gamma* = 1.0`).
-    color_alpha<native><public> := struct<concrete><computes><persistable>:
+    color_alpha<native><public> := struct<concrete><computes><persistable><uht_comparable>:
         @editable
         # `Color` component of this `color_alpha`.
         Color<native><public>:color = external {}

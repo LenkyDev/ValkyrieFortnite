@@ -146,16 +146,16 @@ SpatialMath<public> := module:
     transform<native><public> := struct<concrete><computes>:
         @editable
         # The location of this `transform`.
-        Translation<public>:vector3 = external {}
+        Translation<native><public>:vector3 = external {}
 
         @editable
         # The rotation of this `transform`.
-        Rotation<public>:rotation = external {}
+        Rotation<native><public>:rotation = external {}
 
         @editable
         @units("x")
         # The scale of this `transform`.
-        Scale<public>:vector3 = external {}
+        Scale<native><public>:vector3 = external {}
 
     # Makes a `vector3` by applying `InTransform` to `InVector`.
     (/Verse.org/SpatialMath:)operator'*'<public>(InVector:vector3, InTransform:transform)<reads>:vector3 = external {}
@@ -166,18 +166,18 @@ SpatialMath<public> := module:
 
     @import_as("/*.FVVector3")
     # 3-dimensional vector with `float` components.
-    vector3<native><public> := struct<concrete><computes><persistable>:
+    vector3<native><public> := struct<concrete><computes><persistable><uht_comparable>:
         @editable
         # The Left (was -Y) component of this vector.
-        Left<public>:float = external {}
+        Left<native><public>:float = external {}
 
         @editable
         # The Up (was Z) component of this vector.
-        Up<public>:float = external {}
+        Up<native><public>:float = external {}
 
         @editable
         # The Forward (was X) component of this vector.
-        Forward<public>:float = external {}
+        Forward<native><public>:float = external {}
 
     # Makes a unit `vector3` pointing in the positive Forward axis
     ForwardAxis<epic_internal>()<computes>:vector3 = external {}
