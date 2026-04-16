@@ -40,6 +40,10 @@ Native<public> := module:
 
     import_as<constructor><epic_internal>(ImportName:string)<computes>:import_as_attribute = external {}
 
+    @attribscope_class
+    preload<epic_internal> := class<computes>(attribute):
+
+
     property_changed_interface<native><epic_internal> := interface:
         OnPropertyChangedFromVerse<epic_internal>(PropertyName:string)<transacts>:void
 

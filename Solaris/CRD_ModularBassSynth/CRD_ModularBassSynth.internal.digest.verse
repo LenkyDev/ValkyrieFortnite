@@ -8,7 +8,7 @@ omega_synthesizer_device<public> := class<concrete><final>(patchwork_device):
 
     var Glide<epic_internal>:float = external {}
 
-    var (/Fortnite.com/Devices/Patchwork/omega_synthesizer_device:)Overdrive<epic_internal>:float = external {}
+    var Overdrive<epic_internal>:float = external {}
 
     var Resonance<epic_internal>:float = external {}
 

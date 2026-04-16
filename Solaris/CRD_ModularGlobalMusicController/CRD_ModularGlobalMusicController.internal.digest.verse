@@ -6,7 +6,7 @@ music_manager_device<public> := class<concrete><final>(patchwork_device):
 
     var TimeSignatureBottom<epic_internal>:int = external {}
 
-    var (/Fortnite.com/Devices/Patchwork/music_manager_device:)Key<epic_internal>:int = external {}
+    var Key<epic_internal>:int = external {}
 
     var Mode<epic_internal>:int = external {}
 

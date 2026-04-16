@@ -1,154 +1,656 @@
-# Module import path: /Fortnite.com/Items/ForcePower
-ForcePower<public> := module:
-    # Module import path: /Fortnite.com/Items/ForcePower/StarWars
-    (/Fortnite.com/Items/ForcePower:)StarWars<public> := module:
+# Module import path: /Fortnite.com/Items
+Items<public> := module:
+    # Module import path: /Fortnite.com/Items/StarWars
+    (/Fortnite.com/Items:)StarWars<public> := module:
+        using {/Verse.org/Native}
         using {/Fortnite.com/Itemization}
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
-        # Force Lightning as a weapon item. Must be equipped to use.
-        ForcePowerLightning_Weapon<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        Jetpack_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
         # Force Lightning as an augment item. Only usable with a lightsaber equipped.
-        ForcePowerLightning_LightsaberAugment<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        ForcePowerLightning_LightsaberAugment_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
             ItemDefinitionID<override>:string = external {}
 
-        @experimental
-        # Force Push as a weapon item. Must be equipped to use.
-        ForcePowerPush_Weapon<native><public> := class<concrete><final>(fort_item_definition_entity_base):
-            ItemDefinitionID<override>:string = external {}
-
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
         # Force Push as an augment item. Only usable with a lightsaber equipped.
-        ForcePowerPush_LightsaberAugment<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        ForcePowerPush_LightsaberAugment_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
             ItemDefinitionID<override>:string = external {}
 
-        @experimental
-        # Force Pull as a weapon item. Must be equipped to use.
-        ForcePowerPull_Weapon<native><public> := class<concrete><final>(fort_item_definition_entity_base):
-            ItemDefinitionID<override>:string = external {}
-
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
         # Force Pull as an augment item. Only usable with a lightsaber equipped.
-        ForcePowerPull_LightsaberAugment<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        ForcePowerPull_LightsaberAugment_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
             ItemDefinitionID<override>:string = external {}
 
-        @experimental
-        # Force Throw as a weapon item. Must be equipped to use.
-        ForcePowerThrow_Weapon<native><public> := class<concrete><final>(fort_item_definition_entity_base):
-            ItemDefinitionID<override>:string = external {}
-
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
         # Force Throw as an augment item. Only usable with a lightsaber equipped.
-        ForcePowerThrow_LightsaberAugment<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        ForcePowerThrow_LightsaberAugment_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
             ItemDefinitionID<override>:string = external {}
 
-        @experimental
-        # Force Shield as a weapon item. Must be equipped to use.
-        ForcePowerShield_Weapon<native><public> := class<concrete><final>(fort_item_definition_entity_base):
-            ItemDefinitionID<override>:string = external {}
-
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
         # Force Shield as an augment item. Only usable with a lightsaber equipped.
-        ForcePowerShield_LightsaberAugment<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        ForcePowerShield_LightsaberAugment_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
             ItemDefinitionID<override>:string = external {}
 
-        @experimental
-        # Force Heal as a weapon item. Must be equipped to use.
-        ForcePowerHeal_Weapon<native><public> := class<concrete><final>(fort_item_definition_entity_base):
-            ItemDefinitionID<override>:string = external {}
-
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
         # Force Heal as an augment item. Only usable with a lightsaber equipped.
-        ForcePowerHeal_LightsaberAugment<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        ForcePowerHeal_LightsaberAugment_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
             ItemDefinitionID<override>:string = external {}
 
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
         # Force Training (Jump & Sprint) as an augment item.
-        ForcePowerTraining_Augment<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        ForcePowerTraining_Augment_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
             ItemDefinitionID<override>:string = external {}
 
-        @experimental
-        # Force Awareness as a weapon item. Must be equipped to use.
-        ForcePowerAwareness_Weapon<native><public> := class<concrete><final>(fort_item_definition_entity_base):
-            ItemDefinitionID<override>:string = external {}
-
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
         # Force Awareness as an augment item. Only usable with a lightsaber equipped.
-        ForcePowerAwareness_LightsaberAugment<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        ForcePowerAwareness_LightsaberAugment_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
             ItemDefinitionID<override>:string = external {}
 
-        @experimental
-        # Force Mind Trick as a weapon item. Must be equipped to use.
-        ForcePowerTrick_Weapon<native><public> := class<concrete><final>(fort_item_definition_entity_base):
-            ItemDefinitionID<override>:string = external {}
-
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
         # Force Mind Trick as an augment item. Only usable with a lightsaber equipped.
-        ForcePowerTrick_LightsaberAugment<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        ForcePowerTrick_LightsaberAugment_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
             ItemDefinitionID<override>:string = external {}
 
-        @experimental
-        # Force Distraction as a weapon item. Must be equipped to use.
-        ForcePowerDistraction_Weapon<native><public> := class<concrete><final>(fort_item_definition_entity_base):
-            ItemDefinitionID<override>:string = external {}
-
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
         # Force Distraction as an augment item. Only usable with a lightsaber equipped.
-        ForcePowerDistraction_LightsaberAugment<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        ForcePowerDistraction_LightsaberAugment_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
             ItemDefinitionID<override>:string = external {}
 
-        @experimental
-        # Force Saber Throw as a weapon item. Must be equipped to use.
-        ForcePowerSaberThrow_Weapon<native><public> := class<concrete><final>(fort_item_definition_entity_base):
-            ItemDefinitionID<override>:string = external {}
-
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
         # Force Saber Throw as an augment item. Only usable with a lightsaber equipped.
-        ForcePowerSaberThrow_LightsaberAugment<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        ForcePowerSaberThrow_LightsaberAugment_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
             ItemDefinitionID<override>:string = external {}
 
-# Module import path: /Fortnite.com/Items/Lightsaber
-Lightsaber<public> := module:
-    # Module import path: /Fortnite.com/Items/Lightsaber/StarWars
-    (/Fortnite.com/Items/Lightsaber:)StarWars<public> := module:
+# Module import path: /Fortnite.com/Weapons
+Weapons<public> := module:
+    # Module import path: /Fortnite.com/Weapons/StarWars
+    (/Fortnite.com/Weapons:)StarWars<public> := module:
+        using {/Verse.org/Native}
         using {/Fortnite.com/Itemization}
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
-        LightsaberKenobi<native><public> := class<final><concrete>(fort_item_definition_entity_base):
+        AmbanSniperRifle_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
-        LightsaberRen<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        AmbanSniperRifle_InfiniteAmmo_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
-        LightsaberRey<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        E11BlasterRifle_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
-        LightsaberSkywalker<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        DC15BlasterRifle_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
-        LightsaberVader<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        BARMST12ScatterBlaster_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
-        LightsaberWindu<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        BARMST12ScatterBlaster_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
-        LightsaberJediPadawanA<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        BARMST12ScatterBlaster_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
-        LightsaberJediPadawanB<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        BARMST12ScatterBlaster_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
-        LightsaberJediTraining<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        BARMST12ScatterBlaster_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
         @experimental
-        LightsaberSithApprentice<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+        BARMST12ScatterBlaster_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        CR2Blaster_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        CR2Blaster_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        CR2Blaster_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        CR2Blaster_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        CR2Blaster_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        CR2Blaster_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        DLT19BlasterRifle_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        DLT19BlasterRifle_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        DLT19BlasterRifle_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        DLT19BlasterRifle_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        DLT19BlasterRifle_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        DLT19BlasterRifle_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        ACPScatterBlaster_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        ACPScatterBlaster_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        ACPScatterBlaster_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        ACPScatterBlaster_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        ACPScatterBlaster_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        ACPScatterBlaster_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        A280CFEBlasterRifle_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        A280CFEBlasterRifle_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        A280CFEBlasterRifle_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        A280CFEBlasterRifle_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        A280CFEBlasterRifle_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        A280CFEBlasterRifle_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        CA87JawaScatterBlaster_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        CA87JawaScatterBlaster_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        CA87JawaScatterBlaster_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        CA87JawaScatterBlaster_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        CA87JawaScatterBlaster_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        CA87JawaScatterBlaster_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        WESTAR34BlasterPistols_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        WESTAR34BlasterPistols_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        WESTAR34BlasterPistols_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        WESTAR34BlasterPistols_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        WESTAR34BlasterPistols_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        WESTAR34BlasterPistols_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        IQA11MarksmanBlasterRifle_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        IQA11MarksmanBlasterRifle_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        IQA11MarksmanBlasterRifle_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        IQA11MarksmanBlasterRifle_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        IQA11MarksmanBlasterRifle_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        IQA11MarksmanBlasterRifle_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        DL44BlasterPistol_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        DL44BlasterPistol_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        DL44BlasterPistol_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        DL44BlasterPistol_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        DL44BlasterPistol_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        DL44BlasterPistol_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        F11DBlaster_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        F11DBlaster_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        F11DBlaster_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        F11DBlaster_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        F11DBlaster_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        F11DBlaster_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        WookieeBowcaster_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        WookieeBowcaster_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        WookieeBowcaster_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        WookieeBowcaster_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        WookieeBowcaster_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        WookieeBowcaster_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        ThermalImploder_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        ThermalImploder_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        # Force Lightning as a weapon item. Must be equipped to use.
+        ForcePowerLightning_Weapon_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        # Force Push as a weapon item. Must be equipped to use.
+        ForcePowerPush_Weapon_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        # Force Pull as a weapon item. Must be equipped to use.
+        ForcePowerPull_Weapon_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        # Force Throw as a weapon item. Must be equipped to use.
+        ForcePowerThrow_Weapon_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        # Force Shield as a weapon item. Must be equipped to use.
+        ForcePowerShield_Weapon_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        # Force Heal as a weapon item. Must be equipped to use.
+        ForcePowerHeal_Weapon_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        # Force Awareness as a weapon item. Must be equipped to use.
+        ForcePowerAwareness_Weapon_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        # Force Mind Trick as a weapon item. Must be equipped to use.
+        ForcePowerTrick_Weapon_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        # Force Distraction as a weapon item. Must be equipped to use.
+        ForcePowerDistraction_Weapon_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        # Force Saber Throw as a weapon item. Must be equipped to use.
+        ForcePowerSaberThrow_Weapon_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        LightsaberKenobi_V1<native><public> := class<final><concrete>(fort_item_definition_entity_base):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        LightsaberRen_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        LightsaberRey_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        LightsaberSkywalker_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        LightsaberVader_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        LightsaberWindu_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        LightsaberJediPadawanA_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        LightsaberJediPadawanB_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        LightsaberJediTraining_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
+            ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        @preload
+        @experimental
+        LightsaberSithApprentice_V1<native><public> := class<concrete><final>(fort_item_definition_entity_base):
             ItemDefinitionID<override>:string = external {}

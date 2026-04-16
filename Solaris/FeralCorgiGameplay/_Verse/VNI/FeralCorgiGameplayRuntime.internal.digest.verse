@@ -133,8 +133,6 @@ PlayerLoadingStatusBridge<epic_internal> := module:
 
     IsPlayerLoading<native><epic_internal>(Playspace:fort_playspace, Player:player)<transacts><decides>:void
 
-    GetPlayersLoading<native><epic_internal>(Playspace:fort_playspace)<reads>:[]player
-
     GetNumPlayersLoading<native><epic_internal>(Playspace:fort_playspace)<reads>:int
 
     AwaitPlayerReadyForGameplay<native><epic_internal>(Player:player)<suspends>:void

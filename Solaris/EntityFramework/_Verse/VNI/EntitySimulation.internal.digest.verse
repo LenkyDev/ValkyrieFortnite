@@ -50,6 +50,8 @@ Simulation<public> := module:
         # Which agent is this entity currently possessed by.
         var<private> Agent<native><final><epic_internal>:?agent = external {}
 
+        OnEndSimulation<override>():void = external {}
+
         # Notify when the possessing agent changes.
         AgentChangeEvent<native><final><epic_internal>:listenable(agent_changed_result) = external {}
 

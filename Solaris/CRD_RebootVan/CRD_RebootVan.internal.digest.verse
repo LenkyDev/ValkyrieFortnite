@@ -50,7 +50,7 @@ reboot_progress_decay_behavior<public> := enum<open>:
     # Instantly reset progress to zero.
     InstantReset
     # Use Battle Royale's decay rate.
-    (/Fortnite.com/Devices/reboot_progress_decay_behavior:)BattleRoyale
+    BattleRoyale
 
 reboot_card_purchase_options<public> := class<concrete><final>:
     # Determines how much of the set currency it costs to purchase an eliminated player's reboot card. Clamped between `0` and `99999`.

@@ -176,6 +176,10 @@
 			"Enabled": true
 		},
 		{
+			"Name": "LoreCore",
+			"Enabled": true
+		},
+		{
 			"Name": "UAF",
 			"Enabled": true
 		},

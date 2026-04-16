@@ -289,7 +289,8 @@
 			"/Script/LevelSequence.LevelSequenceBurnInOptions": { "Visible": true },
 			"/Script/LevelSequence.LevelSequenceActor": { "Visible": true },
 			"/Script/LevelSequence.DefaultLevelSequenceInstanceData": { "Visible": true },
-			"/Script/StateDrivenActorRuntime.WorldInstancedStateTreeComponent": { "Visible": true }
+			"/Script/StateDrivenActorRuntime.WorldInstancedStateTreeComponent": { "Visible": true },
+			"/Script/Engine.WorldPartitionRuntimeCellTransformer":									{ "Visible": true, "Subclasses": "All" }
 		},
 		"AllowedMenus": {
 			"LevelEditor.MainMenu": {
@@ -452,7 +453,7 @@
 			},
 			{
 				"Type": "/Script/Engine.PrimitiveComponent",
-				"AllowList": [ "VirtualTextureRenderPassType", "RuntimeVirtualTextures", "ExcludeFromHLODLevels", "bReceiveMobileCSMShadows", "bTreatAsBackgroundForOcclusion", "TranslucencySortDistanceOffset" ]
+				"AllowList": [ "VirtualTextureRenderPassType", "RuntimeVirtualTextures", "ExcludeFromHLODLevels", "bReceiveMobileCSMShadows", "bTreatAsBackgroundForOcclusion", "TranslucencySortDistanceOffset", "bRasterizeAsFilledConvexVolume" ]
 			},
 			{
 				"Type": "/Script/Landscape.Landscape",
@@ -576,6 +577,10 @@
 			{
 				"Type": "/Script/Engine.SoundAttenuationSettings",
 				"AllowList": [ "bEnableOcclusion", "OcclusionTraceChannel", "OcclusionLowPassFilterFrequency", "OcclusionVolumeAttenuation", "OcclusionInterpolationTime" ]
+			},
+			{
+				"Type": "/Script/Engine.WorldPartition",
+				"AllowList": ["RuntimeCellsTransformerStack"]
 			}
 		],
 		"-": [

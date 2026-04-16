@@ -6,33 +6,33 @@ using {/Verse.org/Chat}
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
-llm_prompt_error<native><epic_internal> := class:
+llm_prompt_error<native><public> := class:
     Message<native><public>:message
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
-llm_prompt_timeout_error<native><epic_internal> := class(llm_prompt_error):
+llm_prompt_timeout_error<native><public> := class(llm_prompt_error):
 
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
-llm_prompt_throttled_error<native><epic_internal> := class(llm_prompt_error):
+llm_prompt_throttled_error<native><public> := class(llm_prompt_error):
 
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
-llm_prompt_moderated_error<native><epic_internal> := class(llm_prompt_error):
+llm_prompt_moderated_error<native><public> := class(llm_prompt_error):
 
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
-llm_prompt_character_limit_error<native><epic_internal> := class(llm_prompt_error):
+llm_prompt_character_limit_error<native><public> := class(llm_prompt_error):
 
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # An abstraction around a recorded history of events and sending prompts with that history context included.
-llm_session<native><epic_internal> := class<unique>:
+llm_session<native><public> := class<unique>:
     var VoiceChannelSubscriptions<epic_internal>:[]cancelable = external {}
 
     # Removes all the history events from the session. Including conversation history.
@@ -62,8 +62,9 @@ persona_prompt<native><epic_internal> := class<concrete><final><epic_internal>:
 
 
 @available {MinUploadedAtFNVersion := 4000}
+@experimental
 # Defines the way the persona will handle attempts to prompt it while it is processing.
-persona_interruption_rule<native><epic_internal> := enum<open>:
+persona_interruption_rule<native><public> := enum<open>:
     # Cannot be interrupted, will ignore any input until the finished.
     IgnoreUntilFinished
     # Will be interrupted immediately when spoken to.
@@ -74,7 +75,7 @@ persona_interruption_rule<native><epic_internal> := enum<open>:
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Defines the persona and what it knows.
-persona_definition<native><epic_internal> := class<final>:
+persona_definition<native><public> := class<final>:
     # Defines the personality
     var PersonalitySlot<public>:prompt_slot_provider = external {}
 
@@ -88,7 +89,7 @@ persona_definition<native><epic_internal> := class<final>:
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # NPC Persona component
-persona_component<native><epic_internal> := class<final_super>(component):
+persona_component<native><public> := class<final_super>(component):
     OnInitialized<override>():void = external {}
 
     var<epic_internal> HearingRange<native><epic_internal>:float = external {}
@@ -158,17 +159,17 @@ persona_component<native><epic_internal> := class<final_super>(component):
 @experimental
 # Sets the persona the player will attempt to prompt when they use the relevant hotkey.
 #  The persona must be in the voice channel with the player in order for the player to be able to successfully prompt.
-(Player:player where member_info:subtype(has_voice_member_info)).SetConversationTarget<native><epic_internal>((local:)Persona:persona_component, Channel:voice_channel(member_info))<transacts>:void
+(Player:player where member_info:subtype(has_voice_member_info)).SetConversationTarget<native><public>((local:)Persona:persona_component, Channel:voice_channel(member_info))<transacts>:void
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Retrieve the persona and channel the player is currently bound to prompt.
-(Player:player).GetConversationTarget<native><epic_internal>()<reads><decides>:tuple(persona_component, voice_channel(has_voice_member_info))
+(Player:player).GetConversationTarget<native><public>()<reads><decides>:tuple(persona_component, voice_channel(has_voice_member_info))
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Unbind player from prompting personas
-(Player:player).ClearConversationTarget<native><epic_internal>()<transacts>:void
+(Player:player).ClearConversationTarget<native><public>()<transacts>:void
 
 @available {MinUploadedAtFNVersion := 4000}
 non_parametric_agent_subscribable_persona_event<epic_internal> := class(subscribable_event_intrnl(agent)):
@@ -363,13 +364,13 @@ persona_device<native><epic_internal> := class<concrete><final>(creative_device_
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Base class for the abstraction of how prompts are constructed
-prompt_template<native><epic_internal> := class<abstract><castable><epic_internal>:
+prompt_template<native><public> := class<abstract><castable><epic_internal>:
 
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # A prompt definition which is used by persona's - used to build a personality which knows things in the world.
-persona_prompt_template<native><epic_internal> := class<final>(prompt_template):
+persona_prompt_template<native><public> := class<final>(prompt_template):
     # Defines the personality
     PersonaDefinition<native><public>:persona_definition
 
@@ -379,7 +380,7 @@ persona_prompt_template<native><epic_internal> := class<final>(prompt_template):
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # The persona voice used when converting text-to-voice
-voice_model<native><epic_internal> := class<abstract><epic_internal>:
+voice_model<native><public> := class<abstract><epic_internal>:
     VoiceName<native><epic_internal>:string
 
 @available {MinUploadedAtFNVersion := 4000}
@@ -390,179 +391,179 @@ alice_voice<final><epic_internal> := class(voice_model):
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Comic, High, Warm
-lily_voice<final><epic_internal> := class(voice_model):
+lily_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Refined, Med, Warm
-julienne_voice<final><epic_internal> := class(voice_model):
+julienne_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Glamorous, Animated, warm
-victoria_voice<final><epic_internal> := class(voice_model):
+victoria_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Tough, Low, Gravelly
-wyatt_voice<final><epic_internal> := class(voice_model):
+wyatt_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Comic, Med, Natural
-caleb_voice<final><epic_internal> := class(voice_model):
+caleb_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Whimsical, High, Warm
-ethan_voice<final><epic_internal> := class(voice_model):
+ethan_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Tough, Med, Natural
-vera_voice<final><epic_internal> := class(voice_model):
+vera_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Refined, Med, Natural
-grant_voice<final><epic_internal> := class(voice_model):
+grant_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Narrator, Low, Warm
-rex_voice<final><epic_internal> := class(voice_model):
+rex_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Whimsical, High, Warm
-luna_voice<final><epic_internal> := class(voice_model):
+luna_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Whimsical, Med, Warm
-chloe_voice<final><epic_internal> := class(voice_model):
+chloe_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Tough, Med, Natural
-roxy_voice<final><epic_internal> := class(voice_model):
+roxy_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Tough, Low, Natural
-vivienne_voice<final><epic_internal> := class(voice_model):
+vivienne_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Narrator, Med, Natural
-milo_voice<final><epic_internal> := class(voice_model):
+milo_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Cinematic, Med, Natural
-clara_voice<final><epic_internal> := class(voice_model):
+clara_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Comic, Med, Natural
-dante_voice<final><epic_internal> := class(voice_model):
+dante_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Cinematic, High, Natural
-marcus_voice<final><epic_internal> := class(voice_model):
+marcus_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Whimsical, Med, Natural
-aria_voice<final><epic_internal> := class(voice_model):
+aria_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Comic, High, Natural
-victor_voice<final><epic_internal> := class(voice_model):
+victor_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Narrator, Med, Warm
-alaina_voice<final><epic_internal> := class(voice_model):
+alaina_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Narrator, Low, Warm
-maisie_voice<final><epic_internal> := class(voice_model):
+maisie_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Cinematic, Med, Warm
-arthur_voice<final><epic_internal> := class(voice_model):
+arthur_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Comic, High, Natural
-felix_voice<final><epic_internal> := class(voice_model):
+felix_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Cinematic, Med, Natural
-walter_voice<final><epic_internal> := class(voice_model):
+walter_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Refined, Med, Warm
-simon_voice<final><epic_internal> := class(voice_model):
+simon_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Whimsical, High, Warm
-troy_voice<final><epic_internal> := class(voice_model):
+troy_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Tough, High, Warm
-brenna_voice<final><epic_internal> := class(voice_model):
+brenna_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Tough, High, Natural
-marina_voice<final><epic_internal> := class(voice_model):
+marina_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Glamorous, Low, Natural
-helen_voice<final><epic_internal> := class(voice_model):
+helen_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Glamorous, Med, Natural
-graham_voice<final><epic_internal> := class(voice_model):
+graham_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}

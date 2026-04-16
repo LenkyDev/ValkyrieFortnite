@@ -162,7 +162,6 @@
 			"/TabascoShuriken/SetupAssets/WID_Lime_Tabasco_Shuriken_T4.WID_Lime_Tabasco_Shuriken_T4",
 			"/TabascoShuriken/SetupAssets/WID_Lime_Tabasco_Shuriken_T5.WID_Lime_Tabasco_Shuriken_T5",
 			"___Weapons_End___",
-
 			"___Consumables_Begin___",
 			"/Game/Items/ResourcePickups/WoodItemData.WoodItemData",
 			"/Game/Items/ResourcePickups/StoneItemData.StoneItemData",
@@ -181,7 +180,6 @@
 			"/LimeSlapJuice/WID_Lime_Consumable_SlapJuice.WID_Lime_Consumable_SlapJuice",
 			"/LimeSlurpJuice/WID_Lime_Consumable_SlurpJuice.WID_Lime_Consumable_SlurpJuice",
 			"___Consumables_End___",
-
 			"___Devices_Begin___",
 			"/CRD_Accolades/SetupAssets/PID_Device_Accolade.PID_Device_Accolade",
 			"/CRD_Analytic/SetupAssets/PID_Device_AnalyticDevice.PID_Device_AnalyticDevice",
@@ -322,7 +320,6 @@
 			"/CRD_Simple_Voting_Option/SetupAssets/PID_CP_Devices_Simple_Voting_Group.PID_CP_Devices_Simple_Voting_Group",
 			"/CRD_Simple_Voting_Option/SetupAssets/PID_CP_Devices_Simple_Voting_Option.PID_CP_Devices_Simple_Voting_Option",
 			"___Devices_End___",
-
 			"/CRD_VerseDevices/UEFNExposedAssets/UEFN_Expose_CRD_Verse.UEFN_Expose_CRD_Verse",
 			"/CRD_SkydomeDevice/SkyDome_ExposedAssets.SkyDome_ExposedAssets",
 			"/CRD_VFX_Creator/UEFNExposedAssets/UEFN_Expose_VFX_Creator.UEFN_Expose_VFX_Creator",
@@ -1410,24 +1407,24 @@
 			"/Script/AtomModelImporterEditor.AtomAssetImportData":
 			{
 			},
-			"/Script/AtomModelImporterEditor.AtomModelMergeOptions": 
+			"/Script/AtomModelImporterEditor.AtomModelMergeOptions":
 			{
 			},
-			"/Script/AtomRuntime.AtomCommonPartStaticMeshAssetUserData": 
+			"/Script/AtomRuntime.AtomCommonPartStaticMeshAssetUserData":
 			{
 			},
-			"/Script/AtomRuntime.AtomEditorModePrimitiveUserData": 
+			"/Script/AtomRuntime.AtomEditorModePrimitiveUserData":
 			{
 			},
-			"/Script/AtomRuntime.AtomPrimitiveStaticMeshComponent": 
-			{
-				"Visible": true
-			},			
-			"/Script/AtomRuntime.AtomCollisionComponent": 
+			"/Script/AtomRuntime.AtomPrimitiveStaticMeshComponent":
 			{
 				"Visible": true
 			},
-			"/Script/AtomRuntime.AtomPrimitiveAssetUserData": 
+			"/Script/AtomRuntime.AtomCollisionComponent":
+			{
+				"Visible": true
+			},
+			"/Script/AtomRuntime.AtomPrimitiveAssetUserData":
 			{
 			},
 			"/Script/AtomRuntime.AtomPrimitiveMapping":
@@ -1436,13 +1433,16 @@
 			"/Script/AtomRuntime.AtomModelMapping":
 			{
 			},
-			"/Script/LimeNativeEditor.AtomActorValidator_Materials": {
+			"/Script/LimeNativeEditor.AtomActorValidator_Materials":
+			{
 				"Visible": false
 			},
-			"/Script/LimeNativeEditor.AtomActorValidator_Overlap": {
+			"/Script/LimeNativeEditor.AtomActorValidator_Overlap":
+			{
 				"Visible": false
 			},
-			"/Script/LimeNativeEditor.AtomActorValidator_Scale": {
+			"/Script/LimeNativeEditor.AtomActorValidator_Scale":
+			{
 				"Visible": false
 			},
 			"/Script/AtomRuntime.AtomBoneReference":
@@ -1564,7 +1564,7 @@
 			},
 			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeHollowCylinder":
 			{
-			},			
+			},
 			"/Script/AtomRuntime.AtomPrimitiveCollisionVolumeSphere":
 			{
 			},
@@ -1757,29 +1757,47 @@
 			{
 				"Visible": true
 			},
-			"/LimeEvade/Components/BP_UserOptionComponent_LimeEvade.BP_UserOptionComponent_LimeEvade_C": 
+			"/LimeEvade/Components/BP_UserOptionComponent_LimeEvade.BP_UserOptionComponent_LimeEvade_C":
 			{
 			},
-			"/CreativeCoreDevices/ExperienceSettings/BP_UserOptionComponent_Cosmetic.BP_UserOptionComponent_Cosmetic_C": { },
-			"/CreativeCoreDevices/ExperienceSettings/BP_UserOptionComponent_VoiceChat.BP_UserOptionComponent_VoiceChat_C": { },
-			"/Script/Creative_TemporaryTeamsRuntime.FortUserOptionComponent_TemporaryTeams": { },
-			"/Script/Creative_TemporaryTeamsRuntime.FortUserOptionComponent_TemporaryTeams_TeamSettingsAndInventory": { },
-			"/Creative_TemporaryTeams/Components/BP_UserOptionComponent_TemporaryTeams.BP_UserOptionComponent_TemporaryTeams_C": { },
-			"/Creative_TemporaryTeams/Components/BP_TemporaryTeams_TeamSettingsAndInventory.BP_TemporaryTeams_TeamSettingsAndInventory_C": { },
-			"/Script/CreativeCompanionRuntime.FortUserOptionComponent_Sidekicks": { },
+			"/CreativeCoreDevices/ExperienceSettings/BP_UserOptionComponent_Cosmetic.BP_UserOptionComponent_Cosmetic_C":
+			{
+			},
+			"/CreativeCoreDevices/ExperienceSettings/BP_UserOptionComponent_VoiceChat.BP_UserOptionComponent_VoiceChat_C":
+			{
+			},
+			"/Script/Creative_TemporaryTeamsRuntime.FortUserOptionComponent_TemporaryTeams":
+			{
+			},
+			"/Script/Creative_TemporaryTeamsRuntime.FortUserOptionComponent_TemporaryTeams_TeamSettingsAndInventory":
+			{
+			},
+			"/Creative_TemporaryTeams/Components/BP_UserOptionComponent_TemporaryTeams.BP_UserOptionComponent_TemporaryTeams_C":
+			{
+			},
+			"/Creative_TemporaryTeams/Components/BP_TemporaryTeams_TeamSettingsAndInventory.BP_TemporaryTeams_TeamSettingsAndInventory_C":
+			{
+			},
+			"/Script/CreativeCompanionRuntime.FortUserOptionComponent_Sidekicks":
+			{
+			},
 			"/CreativeCompanion/Assets/BP_FortUserOptionsComponent_Sidekicks.BP_FortUserOptionsComponent_Sidekicks_C":
 			{
 				"Visible": true
 			}
 		},
-		"AllowedEditorModes": {
+		"AllowedEditorModes":
+		{
 			"+": [
 				"EM_AtomEditorMode"
 			]
 		},
-		"AllowedTabs": {
-			"LevelEditor": {
-				"AllowList": {
+		"AllowedTabs":
+		{
+			"LevelEditor":
+			{
+				"AllowList":
+				{
 					"+": [
 						"AtomPaletteTab_v2"
 					]
@@ -1787,7 +1805,8 @@
 			}
 		}
 	},
-	"PropertyEditorClassPermissionList": {
+	"PropertyEditorClassPermissionList":
+	{
 		"+": [
 			{
 				"Type": "/LimeAISpawnerGuard/SpawnDefinitions/Types/CharacterType_LimeGuard.CharacterType_LimeGuard_C",
@@ -1872,7 +1891,6 @@
 				"bAllowListAllProperties": true,
 				"bAllowListAllSubclassProperties": true
 			}
-
 		]
 	}
 }

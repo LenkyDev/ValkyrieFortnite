@@ -284,7 +284,6 @@ rarity_component<native><public> := class<final_super>(component):
 (InEntity:entity).GetSimulationEntity<native><public>()<transacts><decides>:entity
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # A component that when attached to an entity allows for it to merge or 'stack' with other entities with compatible components.
 stackable_component<native><public> := class<abstract><final_super>(component):
     @editable_number(int) {MinValue := option {1}}
@@ -320,7 +319,6 @@ stackable_component<native><public> := class<abstract><final_super>(component):
     OnEndSimulation<override>():void = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 change_stack_size_result<native><public> := class<epic_internal>:
     StackableComponent<native><public>:stackable_component
 
@@ -329,7 +327,6 @@ change_stack_size_result<native><public> := class<epic_internal>:
     CurrentStackSize<native><public>:int
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 change_max_stack_size_result<native><public> := class<epic_internal>:
     StackableComponent<native><public>:stackable_component
 
@@ -337,7 +334,6 @@ change_max_stack_size_result<native><public> := class<epic_internal>:
 
     CurrentMaxStackSize<native><public>:?int
 
-@experimental
 # Merge Rules Interface. Implemented by components that want to participate in entity mergeability checks.
 has_merge_rules<public> := interface<unique>:
     AllowMergeInto<public>(TargetEntity:entity)<reads><decides>:void = external {}
@@ -345,7 +341,6 @@ has_merge_rules<public> := interface<unique>:
     OnMergeInto<public>(TargetEntity:entity, MergeAmount:int)<transacts>:void = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 basic_stackable_component<native><public> := class(stackable_component):
     @editable
     # The prefab used when this entity merges with another or when it is split into a new instance.

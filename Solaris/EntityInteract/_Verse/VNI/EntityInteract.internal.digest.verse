@@ -1,4 +1,5 @@
 using {/Verse.org/Temporary/EpicGamesRestricted/Network}
+using {/Verse.org/Native}
 using {/Verse.org/Simulation}
 # An interactable component with a composable feature set.
 basic_interactable_component<native><public> := class(interactable_component):
@@ -15,6 +16,19 @@ basic_interactable_component<native><public> := class(interactable_component):
 
     # The agents which are currently interacting with this interactable.
     var<private> InteractingAgents<native><public>:[]agent = external {}
+
+    @available {MinUploadedAtFNVersion := 4020}
+    InteractMessage<override>(Agent:agent)<reads><decides>:message = external {}
+
+    @available {MinUploadedAtFNVersion := 4020}
+    @editable
+    # Message shown if CanInteract succeeds.
+    var CanInteractMessage<public>:message = external {}
+
+    @available {MinUploadedAtFNVersion := 4020}
+    @editable
+    # Message shown if CanInteract fails.
+    var CannotInteractMessage<public>:message = external {}
 
     @editable
     @replicated("")

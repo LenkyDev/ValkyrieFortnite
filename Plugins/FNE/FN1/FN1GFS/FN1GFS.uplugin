@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/FN1",
-	"FortReleaseVersion": "40.10",
+	"FortReleaseVersion": "40.20",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"Version": 0,
@@ -51,11 +51,6 @@
 		},
 		{
 			"Name": "CalmSambucusMapContent",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "CleverGeyser_Quests",
 			"Enabled": true,
 			"Optional": true
 		},
@@ -116,6 +111,11 @@
 		},
 		{
 			"Name": "LACity_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "MatchMistMapContent",
 			"Enabled": true,
 			"Optional": true
 		},

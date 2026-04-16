@@ -3,14 +3,14 @@ using {/Verse.org/Simulation}
 using {/Verse.org/Native}
 using {/Verse.org/SceneGraph}
 using {/UnrealEngine.com/Itemization}
-@experimental
-# `fort_inventory_component` is a shared class for all Fortnite inventories, with appropriate default UI and behavior.
+# `fort_inventory_component` is a shared class for all Fortnite inventories, with appropriate default UI and behavior. The HUD when using the BR Style Inventory Configuration will only be shown when using the default configuration. If new inventories are added you will need to create your own custom HUD using Verse UI.
 fort_inventory_component<native><public> := class<epic_internal>(inventory_component):
     # Returns the total number of slots in this inventory.
     GetMaxSlots<native><public>()<reads><decides>:int
 
-    # Returns the item in the specified slot, if there is one.
-    GetItemInSlot<native><public>(Slot:int)<reads><decides>:item_component
+    @experimental
+    # Returns the item in the specified slot, if there is one. NOTE: this function will only work consistently with custom (pure Verse) inventories *not* fort_inventory_weapon_hotbar_component
+    GetItemInSlot<native><epic_internal>(Slot:int)<reads><decides>:item_component
 
     # Moves the item to a particular slot. If the item is not already in the inventory, AddItem is called on it. Swaps places with any item already in that slot.
     SetItemInSlot<native><epic_internal>(Item:entity, Slot:int)<reads><decides>:void
@@ -18,7 +18,6 @@ fort_inventory_component<native><public> := class<epic_internal>(inventory_compo
     # Takes either a Melee or Ranged weapon item and reloads its initial ammount of ammo. Does not grant extra ammo
     ResetWeaponState<native><epic_internal>(Weapon:item_component)<transacts><decides>:void
 
-@experimental
 # `fort_inventory_legacy_quickbar_component` is a shared class for all Fortnite inventories that rely on coupling to the legacy AFortQuickBars class.
 fort_inventory_legacy_quickbar_component<native><epic_internal> := class(fort_inventory_component):
 
@@ -28,7 +27,6 @@ fort_inventory_legacy_quickbar_component<native><epic_internal> := class(fort_in
 fort_br_inventory_legacy_quickbar_component<native><epic_internal> := class(fort_inventory_legacy_quickbar_component):
 
 
-@experimental
 # `fort_inventory_weapon_hotbar_component` is the UEFN inventory for Fortnite weapons and gadgets.
 fort_inventory_weapon_hotbar_component<native><public> := class<final>(fort_inventory_component):
     # Returns the item currently selected, if there is one.
@@ -64,7 +62,6 @@ fort_npc_inventory_weapon_component<native><epic_internal> := class<final>(fort_
     @available {MinUploadedAtFNVersion := 4000}
     OnReceive<override>(Event:scene_event):logic = external {}
 
-@experimental
 # `fort_inventory_build_hotbar_component` is the UEFN inventory for Fortnite build tools.
 fort_inventory_build_hotbar_component<native><public> := class<final>(fort_inventory_component):
     # Returns the item currently selected, if there is one.
@@ -75,7 +72,6 @@ fort_inventory_build_hotbar_component<native><public> := class<final>(fort_inven
 fort_br_inventory_build_hotbar_component<native><epic_internal> := class<final>(fort_br_inventory_legacy_quickbar_component):
 
 
-@experimental
 # `fort_inventory_harvest_tool_component` is the UEFN inventory for the Fortnite harvest tool.
 fort_inventory_harvest_tool_component<native><public> := class<final>(fort_inventory_component):
     # Returns the item currently selected, if there is one.
@@ -86,7 +82,6 @@ fort_inventory_harvest_tool_component<native><public> := class<final>(fort_inven
 fort_br_inventory_harvest_tool_component<native><epic_internal> := class<final>(fort_br_inventory_legacy_quickbar_component):
 
 
-@experimental
 # `fort_inventory_trap_component` is the UEFN inventory for the Fortnite trap slot.
 fort_inventory_trap_component<native><public> := class<final>(fort_inventory_legacy_quickbar_component):
     # Returns the item currently selected, if there is one.
@@ -100,22 +95,18 @@ fort_inventory_trap_component<native><public> := class<final>(fort_inventory_leg
 fort_br_inventory_trap_component<native><epic_internal> := class<final>(fort_br_inventory_legacy_quickbar_component):
 
 
-@experimental
 # `fort_inventory_collectible_component` is the inventory for Fortnite collectibles.
-fort_inventory_collectibles_component<native><public> := class<final>(fort_inventory_component):
+fort_inventory_collectibles_component<native><epic_internal> := class<final>(fort_inventory_component):
 
 
-@experimental
 # `fort_inventory_resources_component` is the inventory for Fortnite resources.
 fort_inventory_resources_component<native><public> := class<final>(fort_inventory_component):
 
 
-@experimental
 # `fort_inventory_ammo_component` is the inventory for Fortnite ammo.
 fort_inventory_ammo_component<native><public> := class<final>(fort_inventory_component):
 
 
-@experimental
 # `fort_inventory_currencies_component` is the inventory for Fortnite currencies.
 fort_inventory_currencies_component<native><public> := class<final>(fort_inventory_component):
 
@@ -125,29 +116,22 @@ fort_inventory_currencies_component<native><public> := class<final>(fort_invento
 fort_inventory_edit_mode_component<native><epic_internal> := class<final>(fort_inventory_component):
 
 
-@experimental
 hidden_item_category<epic_internal> := class<allocates>(item_category):
 
 
 # Module import path: /Fortnite.com/Itemization/FortniteItemCategories
 FortniteItemCategories<public> := module:
     using {/UnrealEngine.com/Itemization}
-    @experimental
     WorldItem<public>:item_category = external {}
 
-    @experimental
     Currency<public>:item_category = external {}
 
-    @experimental
-    Collectible<public>:item_category = external {}
+    Collectible<epic_internal>:item_category = external {}
 
-    @experimental
     Trap<public>:item_category = external {}
 
-    @experimental
     Ammo<public>:item_category = external {}
 
-    @experimental
     Resource<public>:item_category = external {}
 
     @experimental
@@ -165,29 +149,37 @@ FortniteItemCategories<public> := module:
     @experimental
     WeaponRanged<epic_internal>:item_category = external {}
 
-@experimental
 fort_item_definition_entity_base<native><epic_internal> := class<concrete>(entity):
     ItemDefinitionID<native><protected>:string = external {}
 
-@experimental
 fort_item_definition_entity<native><epic_internal> := class<concrete>(fort_item_definition_entity_base):
     @field("Components")
     @available {MinUploadedAtFNVersion := 4000}
     ItemComponent<native><protected>:item_component = external {}
 
-@experimental
+    @field("Components")
+    @available {MinUploadedAtFNVersion := 4020}
+    IconComponent<native><protected>:?icon_component = external {}
+
+    @field("Components")
+    @available {MinUploadedAtFNVersion := 4020}
+    RarityComponent<native><protected>:?rarity_component = external {}
+
+    @field("Components")
+    @available {MinUploadedAtFNVersion := 4020}
+    StackableComponent<native><protected>:?basic_stackable_component = external {}
+
 ExpandItemComponents<native><epic_internal>(InEntity:fort_item_definition_entity_base)<converges>:void
 
-@experimental
+MakeItemComponent<native><epic_internal>(Category:item_category)<converges>:item_component
+
 MakeIconComponent<native><epic_internal>(IconTexture:texture)<converges>:?icon_component
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 MakeRarityComponent<native><epic_internal>(Rarity:rarity)<converges>:?rarity_component
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
-MakeStackableComponent<native><epic_internal>(SplitPrefabType:castable_concrete_subtype(entity), StackSize:int, MaxStackSize:?int)<converges>:?stackable_component
+MakeStackableComponent<native><epic_internal>(SplitPrefabType:castable_concrete_subtype(entity), StackSize:int, MaxStackSize:?int)<converges>:?basic_stackable_component
 
 # Module import path: /Fortnite.com/Itemization/FortniteItemDefinitionUtils
 FortniteItemDefinitionUtils<epic_internal> := module:
