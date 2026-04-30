@@ -7,20 +7,6 @@
 <kbd> Verse </kbd>
 </summary>
 
-### [Digests][Solaris/VerseProject/Digests]
-
-### Public
-| [Fortnite][Solaris/VerseProject/Digests/Fortnite] | [UnrealEngine][Solaris/VerseProject/Digests/UnrealEngine] | [Verse][Solaris/VerseProject/Digests/Verse] |
-| :---: | :---: | :---: |
-|  |  |  |
-
-### Internal
-| [FortniteInternal][Solaris/VerseProject/Digests/FortniteInternal] | [UnrealEngineInternal][Solaris/VerseProject/Digests/UnrealEngineInternal] | [VerseInternal][Solaris/VerseProject/Digests/VerseInternal] |
-| :---: | :---: | :---: |
-|  |  |  |
-
-
-
 ### [Classes & Modules][Solaris]
 
 `{AssetName}.deprecated.internal.digest.verse`
@@ -48,13 +34,7 @@ ___
 <kbd> FortniteGame/Plugins </kbd>
 </summary>
 
-- [**ValkyrieFortnite**][ValkyrieFortnite]
-
-- [**EntityFortnite**][EntityFortnite]
-
-- [**EntityFrameworkFortnite**][EntityFrameworkFortnite]
-
-- [**FNE**][FNE]
+## UEFN
 
 - [ForEngine/**Valkyrie**][ForEngine/Valkyrie]
 
@@ -64,11 +44,35 @@ ___
 
 - [**UEFNExposedAssets**][UEFNExposedAssets]
 
+- [**ValkyrieFortnite**][ValkyrieFortnite]
+
+- [**ValkyrieGfsSettings**][ValkyrieGfsSettings]
+
 - [**ValkyrieValidation**][ValkyrieValidation]
 
 - [**VerseDevices**][VerseDevices]
 
 - [**VerseFortnite**][VerseFortnite]
+
+- [**VerseFortniteInput**][VerseFortniteInput]
+
+- [**VerseFortniteUIWidget**][VerseFortniteUIWidget]
+
+- [**VerseUIManagerInternal**][VerseUIManagerInternal]
+
+## SceneGraph (EntityFramework)
+
+- [**EntityFortnite**][EntityFortnite]
+
+- [**EntityFrameworkFortnite**][EntityFrameworkFortnite]
+
+## FNE (Fortnite Ecosystem)
+
+- [**FM**][FM]
+
+- [**FNE**][FNE]
+
+- [**TestGFS_Min**][TestGFS_Min]
 
 </details>
 
@@ -116,15 +120,6 @@ ___
 
 <!-- Solaris -->
 [Solaris]: Solaris
-[Solaris/VerseProject/Digests]: VerseProject/
-[Solaris/VerseProject/Digests/Public]: VerseProject/FortniteGame/
-[Solaris/VerseProject/Digests/Fortnite]: VerseProject/FortniteGame/Fortnite/
-[Solaris/VerseProject/Digests/UnrealEngine]: VerseProject/FortniteGame/UnrealEngine/
-[Solaris/VerseProject/Digests/Verse]: VerseProject/FortniteGame/Verse/
-[Solaris/VerseProject/Digests/Internal]: VerseProject/FortniteGame-Internal/
-[Solaris/VerseProject/Digests/FortniteInternal]: VerseProject/FortniteGame-Internal/Fortnite
-[Solaris/VerseProject/Digests/UnrealEngineInternal]: VerseProject/FortniteGame-Internal/UnrealEngine
-[Solaris/VerseProject/Digests/VerseInternal]: VerseProject/FortniteGame-Internal/Verse
 
 <!-- FortniteGame/Plugins -->
 [FortniteGame/Plugins]: Plugins
@@ -139,6 +134,12 @@ ___
 [ValkyrieValidation]: Plugins/ValkyrieValidation
 [VerseDevices]: Plugins/VerseDevices
 [VerseFortnite]: Plugins/VerseFortnite
+[ValkyrieGfsSettings]: Plugins/ValkyrieGfsSettings
+[VerseFortniteInput]: Plugins/VerseFortniteInput
+[VerseFortniteUIWidget]: Plugins/VerseFortniteUIWidget
+[VerseUIManagerInternal]: Plugins/VerseUIManagerInternal
+[FM]: Plugins/FM
+[TestGFS_Min]: Plugins/TestGFS_Min
 
 <!-- Engine/Plugins -->
 [Engine/Plugins]: Engine/Plugins
