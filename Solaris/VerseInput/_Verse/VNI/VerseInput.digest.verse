@@ -75,7 +75,7 @@ Input<public> := module:
         #   * PreviousTab: Q/Gamepad Left Shoulder
         #   * NextPage: C/Gamepad Right Trigger
         #   * PreviousPage: Z/Gamepad Left Trigger
-        #   * NextTab: E/Gamepad Right Shoulder
+        #   * Back: Escape/Gamepad Back Button
         MenuNavigationMapping<public>:input_mapping = external {}
 
         @available {MinUploadedAtFNVersion := 4000}
@@ -89,6 +89,9 @@ Input<public> := module:
 
         @available {MinUploadedAtFNVersion := 4000}
         PreviousPage<public>:input_action(logic) = external {}
+
+        @available {MinUploadedAtFNVersion := 4030}
+        Back<public>:input_action(logic) = external {}
 
         @available {MinUploadedAtFNVersion := 4000}
         # InventoryMenuMapping includes the following actions with default key bindings:

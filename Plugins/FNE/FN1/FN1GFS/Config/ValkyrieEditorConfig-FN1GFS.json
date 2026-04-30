@@ -493,7 +493,7 @@
 			},
 			{
 				"Type": "/Script/FortniteGame.FortGameFeatureData",
-				"AllowList": [ "DefaultLootTableData", "DefaultGameData", "PlaylistBaseCurveTableOverrides", "PlaylistBaseDataTableOverrides", "Actions", "AssetBundleData" ]
+				"AllowList": [ "DefaultLootTableData", "DefaultGameData", "PlaylistBaseCurveTableOverrides", "PlaylistBaseDataTableOverrides", "Actions", "AssetBundleData", "UIMapManagerOverrideClass" ]
 			},
 			{
 				"Type": "/Script/FN1NativeRuntime.VerseFortniteStormVolumeComponent",
@@ -581,6 +581,10 @@
 			{
 				"Type": "/Script/Engine.WorldPartition",
 				"AllowList": ["RuntimeCellsTransformerStack"]
+			},
+			{
+				"Type": "/Script/Engine.StaticMeshComponent",
+				"AllowList": ["NanitePixelProgrammableDistance"]
 			}
 		],
 		"-": [

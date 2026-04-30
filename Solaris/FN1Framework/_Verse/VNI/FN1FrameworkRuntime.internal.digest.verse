@@ -53,15 +53,6 @@ Matchmaking<epic_internal> := module:
     using {/Fortnite.com/Playspaces}
     using {/Verse.org/SceneGraph}
     using {/Verse.org/Simulation}
-    # A player agent method to play again.
-    (InAgent:agent).PlayAgain<native><epic_internal>():void
-
-    # A player agent method indicating ready for matchmaking (used w/ PlayAgain).
-    (InAgent:agent).SetReadyForMatchmaking<native><epic_internal>(IsReady:logic):void
-
-    # Get the desired number of bots to spawn.
-    (InSimulationEntity:simulation_entity).GetMatchmakingDesiredBotCount<native><epic_internal>():int
-
     # The struct of rank progress data for a player.
     ranked_progress<native><epic_internal> := struct<concrete>:
         GameId<native><public>:string = external {}
@@ -87,6 +78,27 @@ Matchmaking<epic_internal> := module:
         bProgressIsStale<native><public>:logic = external {}
 
         bSkippedRequestDueToTTL<native><public>:logic = external {}
+
+    # A player agent method to play again.
+    (InAgent:agent).PlayAgain<native><epic_internal>():void
+
+    # A player agent method indicating ready for matchmaking (used w/ PlayAgain).
+    (InAgent:agent).SetReadyForMatchmaking<native><epic_internal>(IsReady:logic):void
+
+    # Get the desired number of bots to spawn.
+    (InSimulationEntity:simulation_entity).GetMatchmakingDesiredBotCount<native><epic_internal>():int
+
+    # Get a matchmaking attribute from the session as an int
+    (InSimulationEntity:simulation_entity).GetMatchmakingAttributeAsInt<native><epic_internal>(AttributeKey:string)<transacts><decides>:int
+
+    # Get a matchmaking attribute from the session as an float
+    (InSimulationEntity:simulation_entity).GetMatchmakingAttributeAsFloat<native><epic_internal>(AttributeKey:string)<transacts><decides>:float
+
+    # Get a matchmaking attribute from the session as a logic
+    (InSimulationEntity:simulation_entity).GetMatchmakingAttributeAsLogic<native><epic_internal>(AttributeKey:string)<transacts><decides>:logic
+
+    # Get a matchmaking attribute from the session as a string
+    (InSimulationEntity:simulation_entity).GetMatchmakingAttributeAsString<native><epic_internal>(AttributeKey:string)<transacts><decides>:string
 
     # Method to check if the match being played is ranked or not.
     IsMatchRanked<native><epic_internal>(Playspace:fort_playspace)<transacts><decides>:void

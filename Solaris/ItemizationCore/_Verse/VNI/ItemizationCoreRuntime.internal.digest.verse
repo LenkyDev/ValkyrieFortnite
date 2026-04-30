@@ -180,16 +180,6 @@ inventory_component<native><public> := class<final_super>(component):
 
     var<private> PickupPriority<native><epic_internal>:int = external {}
 
-    GetInputAction<epic_internal>(ItemSlot:int):?input_action(type) = external {}
-
-    GetNativeInputAction<native><epic_internal>(ItemSlot:int):?input_action(type)
-
-    GetNavigatePreviousInputAction<native><epic_internal>():?input_action(type)
-
-    GetNavigateNextInputAction<native><epic_internal>():?input_action(type)
-
-    SlotBindingList<native><epic_internal>:[]tuple(input_action(type), int) = external {}
-
     EquipItemEvent<native><final><public>:listenable(equip_item_result) = external {}
 
     UnequipItemEvent<native><final><public>:listenable(unequip_item_result) = external {}

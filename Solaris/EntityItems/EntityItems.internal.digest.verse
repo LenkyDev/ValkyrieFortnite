@@ -996,6 +996,22 @@ Items<public> := module:
         StackableComponent<override>:?basic_stackable_component = external {}
 
     @preload
+    Currency_Ballistic_V1_Common<epic_internal> := class<final><concrete>(fort_item_definition_entity):
+        ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        StackableComponent<override>:?basic_stackable_component = external {}
+
+    @preload
     DamageTrap_BR_CH1S2_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
         ItemDefinitionID<override>:string = external {}
 
@@ -2098,6 +2114,35 @@ Items<public> := module:
         RarityComponent<override>:?rarity_component = external {}
 
     @preload
+    InstantLargeShield_Ballistic_V1_Exotic<epic_internal> := class<final><concrete>(fort_item_definition_entity):
+        ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        StackableComponent<override>:?basic_stackable_component = external {}
+
+    @preload
+    InstantShield_Ballistic_V1_Exotic<epic_internal> := class<final><concrete>(fort_item_definition_entity):
+        ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+    @preload
     JellyBean_BR_CH2S4_Common<public> := class<final><concrete>(fort_item_definition_entity):
         ItemDefinitionID<override>:string = external {}
 
@@ -2478,6 +2523,22 @@ Items<public> := module:
 
     @preload
     MedMistSmokeGrenade_BR_CH6S2_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        StackableComponent<override>:?basic_stackable_component = external {}
+
+    @preload
+    MedMistSmokeGrenade_Ballistic_V1_Common<epic_internal> := class<final><concrete>(fort_item_definition_entity):
         ItemDefinitionID<override>:string = external {}
 
         @available {MinUploadedAtFNVersion := 4000}
@@ -4243,6 +4304,22 @@ Items<public> := module:
 
     @preload
     Thermite_BR_CH6S2_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        ItemDefinitionID<override>:string = external {}
+
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        StackableComponent<override>:?basic_stackable_component = external {}
+
+    @preload
+    TheWall_Ballistic_V1_Common<epic_internal> := class<final><concrete>(fort_item_definition_entity):
         ItemDefinitionID<override>:string = external {}
 
         @available {MinUploadedAtFNVersion := 4000}

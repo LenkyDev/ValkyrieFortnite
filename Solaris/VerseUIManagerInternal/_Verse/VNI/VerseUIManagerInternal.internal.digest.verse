@@ -3,7 +3,7 @@ using {/Verse.org/Simulation}
 using {/UnrealEngine.com/Temporary/UI}
 using {/UnrealEngine.com/Temporary/SpatialMath}
 dynamic_ui_z_order<native><epic_internal> := enum:
-    Back
+    (/Fortnite.com/UI/dynamic_ui_z_order:)Back
     Middle
     Front
     Custom

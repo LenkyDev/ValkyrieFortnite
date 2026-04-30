@@ -140,12 +140,12 @@ button_device<public> := class<concrete><final>(creative_device_base):
     GetInteractionTime<public>()<transacts>:float = external {}
 
     # Sets the maximum amount of times this button can be interacted with before it will be disabled.
-    #  * `MaxCount` must be between `0` and `10`.
+    #  * `MaxCount` must be between `0` and `10000`.
     #  * `0` indicates no limit on trigger count.
     SetMaxTriggerCount<public>(MaxCount:int):void = external {}
 
     # Returns the maximum amount of times this button can be interacted with before it will be disabled.
-    #  * `GetTriggerMaxCount` will be between `0` and `10`.
+    #  * `GetTriggerMaxCount` will be between `0` and `10000`.
     #  * `0` indicates no limit on trigger count.
     GetMaxTriggerCount<public>()<transacts>:int = external {}
 

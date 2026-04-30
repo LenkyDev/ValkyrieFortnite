@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/PerfectKiwi",
-	"FortReleaseVersion": "40.20",
+	"FortReleaseVersion": "40.30",
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {

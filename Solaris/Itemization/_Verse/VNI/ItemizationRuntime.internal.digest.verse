@@ -13,7 +13,7 @@ fort_inventory_component<native><public> := class<epic_internal>(inventory_compo
     GetItemInSlot<native><epic_internal>(Slot:int)<reads><decides>:item_component
 
     # Moves the item to a particular slot. If the item is not already in the inventory, AddItem is called on it. Swaps places with any item already in that slot.
-    SetItemInSlot<native><epic_internal>(Item:entity, Slot:int)<reads><decides>:void
+    SetItemInSlot<native><epic_internal>(Item:entity, Slot:int)<transacts><decides>:void
 
     # Takes either a Melee or Ranged weapon item and reloads its initial ammount of ammo. Does not grant extra ammo
     ResetWeaponState<native><epic_internal>(Weapon:item_component)<transacts><decides>:void
@@ -22,13 +22,16 @@ fort_inventory_component<native><public> := class<epic_internal>(inventory_compo
 fort_inventory_legacy_quickbar_component<native><epic_internal> := class(fort_inventory_component):
 
 
-@experimental
 # `fort_br_inventory_legacy_quickbar_component` is a shared class for FNBR inventories that rely on coupling to the legacy AFortQuickBars class.
-fort_br_inventory_legacy_quickbar_component<native><epic_internal> := class(fort_inventory_legacy_quickbar_component):
+fort_br_inventory_legacy_quickbar_component<native><epic_internal> := class<abstract>(fort_inventory_legacy_quickbar_component):
+
+
+# `fort_br_inventory_weapon_hotbar_component` is the FNBR inventory for Fortnite weapons and gadgets.
+fort_br_inventory_weapon_hotbar_component<native><epic_internal> := class(fort_br_inventory_legacy_quickbar_component):
 
 
 # `fort_inventory_weapon_hotbar_component` is the UEFN inventory for Fortnite weapons and gadgets.
-fort_inventory_weapon_hotbar_component<native><public> := class<final>(fort_inventory_component):
+fort_inventory_weapon_hotbar_component<native><public> := class<final>(fort_br_inventory_weapon_hotbar_component):
     # Returns the item currently selected, if there is one.
     GetEquippedItem<native><epic_internal>()<reads><decides>:item_component
 
@@ -38,20 +41,11 @@ fort_inventory_weapon_hotbar_component<native><public> := class<final>(fort_inve
     # Sets the total number of slots.
     SetMaxSlots<native><public>(InNumSlots:int):void
 
-    # Called when the time changes from 0 to the reload time, then every frame with the updated time until it reaches 0, or when the reload is canceled and the time is set to 0 early.
-    ReloadTimeChangedEvent<native><final><epic_internal>:listenable(float) = external {}
-
     # Called when the inventory owner's team changes.
     TeamChangedEvent<native><final><epic_internal>:listenable(tuple()) = external {}
 
     # Called when the inventory owner's class changes.
     ClassChangedEvent<native><final><epic_internal>:listenable(tuple()) = external {}
-
-@experimental
-# `fort_br_inventory_weapon_hotbar_component` is the FNBR inventory for Fortnite weapons and gadgets.
-fort_br_inventory_weapon_hotbar_component<native><epic_internal> := class<final>(fort_br_inventory_legacy_quickbar_component):
-    # Sets the total number of slots.
-    SetMaxSlots<native><public>(InNumSlots:int):void
 
 @experimental
 # `fort_npc_inventory_weapon_component` is the NPC inventory for Fortnite weapons and gadgets.
@@ -62,37 +56,30 @@ fort_npc_inventory_weapon_component<native><epic_internal> := class<final>(fort_
     @available {MinUploadedAtFNVersion := 4000}
     OnReceive<override>(Event:scene_event):logic = external {}
 
+# `fort_br_inventory_build_hotbar_component` is the FNBR inventory for Fortnite build tools.
+fort_br_inventory_build_hotbar_component<native><epic_internal> := class(fort_br_inventory_legacy_quickbar_component):
+
+
 # `fort_inventory_build_hotbar_component` is the UEFN inventory for Fortnite build tools.
-fort_inventory_build_hotbar_component<native><public> := class<final>(fort_inventory_component):
+fort_inventory_build_hotbar_component<native><public> := class<final>(fort_br_inventory_build_hotbar_component):
     # Returns the item currently selected, if there is one.
     GetEquippedItem<native><epic_internal>()<reads><decides>:item_component
 
-@experimental
-# `fort_br_inventory_build_hotbar_component` is the FNBR inventory for Fortnite build tools.
-fort_br_inventory_build_hotbar_component<native><epic_internal> := class<final>(fort_br_inventory_legacy_quickbar_component):
+# `fort_br_inventory_harvest_tool_component` is the FNBR inventory for the Fortnite harvest tool.
+fort_br_inventory_harvest_tool_component<native><epic_internal> := class(fort_br_inventory_legacy_quickbar_component):
 
 
 # `fort_inventory_harvest_tool_component` is the UEFN inventory for the Fortnite harvest tool.
-fort_inventory_harvest_tool_component<native><public> := class<final>(fort_inventory_component):
+fort_inventory_harvest_tool_component<native><public> := class<final>(fort_br_inventory_harvest_tool_component):
     # Returns the item currently selected, if there is one.
     GetEquippedItem<native><epic_internal>()<reads><decides>:item_component
 
-@experimental
-# `fort_br_inventory_harvest_tool_component` is the FNBR inventory for the Fortnite harvest tool.
-fort_br_inventory_harvest_tool_component<native><epic_internal> := class<final>(fort_br_inventory_legacy_quickbar_component):
+# `fort_br_inventory_trap_component` is the FNBR inventory for the Fortnite trap slot.
+fort_br_inventory_trap_component<native><epic_internal> := class(fort_br_inventory_legacy_quickbar_component):
 
 
 # `fort_inventory_trap_component` is the UEFN inventory for the Fortnite trap slot.
-fort_inventory_trap_component<native><public> := class<final>(fort_inventory_legacy_quickbar_component):
-    # Returns the item currently selected, if there is one.
-    GetEquippedItem<native><epic_internal>()<reads><decides>:item_component
-
-    # Called when the trap inventory is updated and visibility flags for each item should be reset
-    OnTrapInventoryVisibiltyRefreshEvent<native><final><epic_internal>:listenable(entity) = external {}
-
-@experimental
-# `fort_br_inventory_trap_component` is the FNBR inventory for the Fortnite trap slot.
-fort_br_inventory_trap_component<native><epic_internal> := class<final>(fort_br_inventory_legacy_quickbar_component):
+fort_inventory_trap_component<native><public> := class<final>(fort_br_inventory_trap_component):
 
 
 # `fort_inventory_collectible_component` is the inventory for Fortnite collectibles.
@@ -220,19 +207,14 @@ fort_item_pickup_component<native><final><epic_internal> := class<final_super>(c
 # Module import path: /Fortnite.com/Itemization/FortniteRarities
 FortniteRarities<public> := module:
     using {/Verse.org/SceneGraph}
-    @experimental
     Common<public>:rarity = external {}
 
-    @experimental
     Uncommon<public>:rarity = external {}
 
-    @experimental
     Rare<public>:rarity = external {}
 
-    @experimental
     Epic<public>:rarity = external {}
 
-    @experimental
     Legendary<public>:rarity = external {}
 
     @experimental
@@ -274,3 +256,6 @@ item_attributes_component<native><final><epic_internal> := class<final_super>(co
     GetAmmoIcon<native><public>()<reads><decides>:texture
 
     GetCurrentReserveAmmoValue<native><public>()<reads>:int
+
+    # Called when the time changes from 0 to the reload time, then every frame with the updated time until it reaches 0, or when the reload is canceled and the time is set to 0 early.
+    ReloadTimeChangedEvent<native><final><epic_internal>:listenable(float) = external {}

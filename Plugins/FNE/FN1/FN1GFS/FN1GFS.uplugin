@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/FN1",
-	"FortReleaseVersion": "40.20",
+	"FortReleaseVersion": "40.30",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"Version": 0,
@@ -66,19 +66,7 @@
 			"Optional": true
 		},
 		{
-			"Name": "FeralCorgiAccolades",
-			"Enabled": true,
-			"Activate": true,
-			"Optional": true
-		},
-		{
 			"Name": "FeralCorgiMaps",
-			"Enabled": true,
-			"Activate": true,
-			"Optional": true
-		},
-		{
-			"Name": "FeralCorgiQuests",
 			"Enabled": true,
 			"Activate": true,
 			"Optional": true

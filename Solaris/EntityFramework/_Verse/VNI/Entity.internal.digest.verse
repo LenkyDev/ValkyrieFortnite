@@ -148,7 +148,7 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
     # Set callbacks to `TickEvents.PrePhysics` and `TickEvents.PostPhysics` to receive per-frame updates before and after physics is updated on your object.
     var<private> TickEvents<protected>:tick_events = external {}
 
-    # Send a scene event to this component, invoking OnReceive.  Return true to consume the event and halt propagation to the next entity.
+    # Send a scene event to this component, invoking OnReceive.  Returns true if any participant consumed the event.
     SendDown<native><native_callable><final><public>(SceneEvent:scene_event):logic
 
     @available {MinUploadedAtFNVersion := 4000}

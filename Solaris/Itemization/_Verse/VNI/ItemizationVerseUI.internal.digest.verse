@@ -46,6 +46,7 @@ inventory_item_action_property_interface<epic_internal> := class<public>(paramet
 
 @available {MinUploadedAtFNVersion := 4000}
 @class_and_subclass_group_names("inventory")
+@deprecated
 @experimental
 @hide_in_editor
 inventory_item_view_model_component<native><epic_internal> := class<final><final_super>(component):
@@ -60,8 +61,6 @@ inventory_item_view_model_component<native><epic_internal> := class<final><final
     OnTeamOrClassChanged<protected>():void = external {}
 
     OnItemCountChanged<protected>(ItemComponent:item_component):void = external {}
-
-    OnEquippedChanged<protected>(ItemEquippedChange:change_equipped_result):void = external {}
 
     OnStackSizeChanged<protected>(ItemStackSizeChange:change_stack_size_result):void = external {}
 
@@ -89,6 +88,7 @@ inventory_item_view_model_component<native><epic_internal> := class<final><final
 
 @available {MinUploadedAtFNVersion := 4000}
 @class_and_subclass_group_names("inventory")
+@deprecated
 @experimental
 @hide_in_editor
 inventory_ui_action_component<native><epic_internal> := class<final><final_super>(component):
@@ -192,6 +192,7 @@ InventoryActionPropertyInterface_subscribable_property_changed_event<epic_intern
 
 @available {MinUploadedAtFNVersion := 4000}
 @class_and_subclass_group_names("inventory")
+@deprecated
 @experimental
 @hide_in_editor
 inventory_view_model_component<native><epic_internal> := class<final><final_super>(component):

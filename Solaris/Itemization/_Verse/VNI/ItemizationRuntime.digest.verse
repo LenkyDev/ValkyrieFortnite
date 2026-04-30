@@ -51,17 +51,12 @@ FortniteItemCategories<public> := module:
 # Module import path: /Fortnite.com/Itemization/FortniteRarities
 FortniteRarities<public> := module:
     using {/Verse.org/SceneGraph}
-    @experimental
     Common<public>:rarity = external {}
 
-    @experimental
     Uncommon<public>:rarity = external {}
 
-    @experimental
     Rare<public>:rarity = external {}
 
-    @experimental
     Epic<public>:rarity = external {}
 
-    @experimental
     Legendary<public>:rarity = external {}
