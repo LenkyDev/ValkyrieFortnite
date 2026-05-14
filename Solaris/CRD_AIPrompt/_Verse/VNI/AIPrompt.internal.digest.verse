@@ -108,10 +108,10 @@ persona_component<native><public> := class<final_super>(component):
     var Session<public>:llm_session = external {}
 
     # The voice assigned to this persona.
-    var Voice<public>:voice_model
+    var Voice<public>:voice_model = external {}
 
     # How the persona will handle overlapping prompts.
-    var InterruptionRule<public>:persona_interruption_rule
+    var InterruptionRule<public>:persona_interruption_rule = external {}
 
     # Listenable which is signaled when the player starts prompting the persona.
     StartHearEvent<native><public>:listenable(agent) = external {}
@@ -239,6 +239,9 @@ conversation_target<native><epic_internal> := interface<unique><epic_internal>:
 @experimental
 # Returns the persona a participant is assigned to, fails if unassigned.
 (Participant:agent).GetConversationTargetForAgent<native><epic_internal>()<reads><decides>:conversation_target
+
+internal_response_data<native><epic_internal> := struct:
+    TargetAgent<native><localizes>:message
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental

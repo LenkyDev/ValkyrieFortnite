@@ -1,9 +1,4 @@
 using {/Verse.org/Native}
-localizable_llm_string<native><epic_internal> := class(localizable_value):
-
-
-(/UnrealEngine.com/Conversations:)MakeLocalizableValue<epic_internal>(V:llm_string):localizable_llm_string = external {}
-
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Base interface for retrieving the content in a slot on a prompt template at runtime.

@@ -7,7 +7,6 @@ Input<public> := module:
     using {/Verse.org/Native}
     using {/Verse.org/Simulation}
     @available {MinUploadedAtFNVersion := 4000}
-    @experimental
     # Access input-related data and settings for a player.
     GetPlayerInput<native><public>(Player:player)<transacts><decides>:player_input
 
@@ -16,7 +15,6 @@ Input<public> := module:
 
 
     @available {MinUploadedAtFNVersion := 4000}
-    @experimental
     # Input_events is a container for user input events which can be subscribed to.
     #   * Use the 'GetPlayerInput' and 'GetInputEvents' functions to retrieve an input_events object for a given player.
     #   * Low-level notifications of current user input: BeginDetectEvent, DetectionOngoingEvent, and EndDetectEvent.
@@ -59,7 +57,6 @@ Input<public> := module:
         EndDetectEvent<native><public>:listenable(tuple(player, float)) = external {}
 
     @available {MinUploadedAtFNVersion := 4000}
-    @experimental
     # This is the main manager class for input-related settings and functions for a player.
     player_input<native><public> := class:
         AddInputMapping<native><public>(InputMapping:input_mapping):void

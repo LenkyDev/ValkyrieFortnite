@@ -1,10 +1,33 @@
 # Module import path: /Fortnite.com/VerseInternalTesting/NexusFramework
 NexusFramework<public> := module:
+    using {/UnrealEngine.com/Temporary/Diagnostics}
+    using {/Verse.org/SceneGraph}
     using {/Verse.org/Simulation}
     using {/Fortnite.com/Devices}
     using {/UnrealEngine.com/Temporary/Testing}
+    nexus_failure_category<epic_internal> := enum:
+        Feature
+        Initialization
+        Lifecycle
+        State
+        (/Fortnite.com/VerseInternalTesting/NexusFramework/nexus_failure_category:)Concurrency
+        (/Fortnite.com/VerseInternalTesting/NexusFramework/nexus_failure_category:)Persistence
+        Integration
+        Timeout
+
+    FailureCategoryToString<epic_internal>(Category:nexus_failure_category):string = external {}
+
+    nexus_test_case<epic_internal> := struct:
+        Name<public>:string
+
+        Func<public>:type {_()<suspends>:void}
+
+        TimeoutOverride<public>:?float = external {}
+
     nexus_test_reporter<epic_internal> := class:
         AddResult<epic_internal>(TestName:string, TestResult:test_result, ContextString:string, TestSuiteName:string):void = external {}
+
+        AddResultWithCategory<epic_internal>(TestName:string, TestResult:test_result, ContextString:string, TestSuiteName:string, FailureCategory:nexus_failure_category):void = external {}
 
     nexus_test_runner<epic_internal> := class(creative_device):
         OnEnd<override>():void = external {}
@@ -19,18 +42,141 @@ NexusFramework<public> := module:
 
         AddFail<epic_internal>(TestName:string, ContextString:string):void = external {}
 
+        AddPassWithCategory<epic_internal>(TestName:string, ContextString:string, Category:nexus_failure_category):void = external {}
+
+        AddFailWithCategory<epic_internal>(TestName:string, ContextString:string, Category:nexus_failure_category):void = external {}
+
         AddCheck<epic_internal>(IsPassed:logic, TestName:string, ContextString:string):void = external {}
 
+        AddCheckWithCategory<epic_internal>(IsPassed:logic, TestName:string, ContextString:string, Category:nexus_failure_category):void = external {}
+
         AddSkip<epic_internal>(IsPassed:logic, TestName:string, ContextString:string):void = external {}
+
+        NexusExpect<epic_internal>(Condition:logic, TestName:string, Context:string):void = external {}
+
+        NexusGuard<epic_internal>(Condition:logic, TestName:string):void = external {}
+
+        ResetGuard<epic_internal>():void = external {}
 
         OnBegin<override>()<suspends>:void = external {}
 
         OnEnd<override>():void = external {}
+
+        TestCases<public>():[]nexus_test_case = external {}
+
+        BeforeAll<public>()<suspends>:void = external {}
+
+        AfterAll<public>()<suspends>:void = external {}
+
+        BeforeEach<public>()<suspends>:void = external {}
+
+        AfterEach<public>()<suspends>:void = external {}
+
+        StartPhase<public>(PhaseName:string, ?Category:?nexus_failure_category = external {}):void = external {}
+
+        EndPhase<public>(PhaseName:string):void = external {}
+
+        RunHeartbeat<public>(IntervalSeconds:float)<suspends>:void = external {}
+
+        RunTestCases<public>()<suspends>:void = external {}
 
     example_nexus_device<epic_internal> := class(nexus_test_device):
         OnBegin<override>()<suspends>:void = external {}
 
         OnEnd<override>():void = external {}
+
+    nexus_test_component<epic_internal> := class<final_super>(component):
+        @editable
+        TestSuiteName<public>:string = external {}
+
+        var NexusRunner<protected>:?nexus_test_runner_component = external {}
+
+        OnSimulate<override>()<suspends>:void = external {}
+
+        InitializeNexusReporting<protected>():void = external {}
+
+        AddPass<public>(TestName:string, Context:string):void = external {}
+
+        AddFail<public>(TestName:string, Context:string):void = external {}
+
+        AddPassWithCategory<public>(TestName:string, Context:string, Category:nexus_failure_category):void = external {}
+
+        AddFailWithCategory<public>(TestName:string, Context:string, Category:nexus_failure_category):void = external {}
+
+        AddCheck<public>(Passed:logic, TestName:string, Context:string):void = external {}
+
+        AddCheckWithCategory<public>(Passed:logic, TestName:string, Context:string, Category:nexus_failure_category):void = external {}
+
+        AddSkip<public>(TestName:string, Context:string):void = external {}
+
+        NexusExpect<public>(Condition:logic, TestName:string, Context:string):void = external {}
+
+        NexusGuard<public>(Condition:logic, TestName:string):void = external {}
+
+        ResetGuard<public>():void = external {}
+
+        StartPhase<public>(PhaseName:string, ?Category:?nexus_failure_category = external {}):void = external {}
+
+        EndPhase<public>(PhaseName:string):void = external {}
+
+        RunHeartbeat<public>(IntervalSeconds:float)<suspends>:void = external {}
+
+        TestCases<public>():[]nexus_test_case = external {}
+
+        BeforeAll<public>()<suspends>:void = external {}
+
+        AfterAll<public>()<suspends>:void = external {}
+
+        BeforeEach<public>()<suspends>:void = external {}
+
+        AfterEach<public>()<suspends>:void = external {}
+
+    nexus_test_runner_component<epic_internal> := class<final_super>(component):
+        @editable
+        TestReportName<public>:string = external {}
+
+        @editable
+        SummaryLogLevel<public>:log_level = external {}
+
+        TestReporter<public>:test_reporter = external {}
+
+        var CurrentPhase<public>:string = external {}
+
+        var PassCount<public>:int = external {}
+
+        var FailCount<public>:int = external {}
+
+        var SkipCount<public>:int = external {}
+
+        var FailuresByCategory<public>:[nexus_failure_category]int = external {}
+
+        var PassesByCategory<public>:[nexus_failure_category]int = external {}
+
+        RegisterComponent<public>(Component:nexus_test_component):void = external {}
+
+        AddResult<public>(SuiteName:string, TestName:string, Passed:logic, Context:string):void = external {}
+
+        AddSkip<public>(SuiteName:string, TestName:string, Context:string):void = external {}
+
+        AddResultWithCategory<public>(SuiteName:string, TestName:string, Passed:logic, Context:string, Category:nexus_failure_category):void = external {}
+
+        GetFailureCount<public>(Category:nexus_failure_category):int = external {}
+
+        GetPassCount<public>(Category:nexus_failure_category):int = external {}
+
+        StartPhase<public>(PhaseName:string):void = external {}
+
+        EndPhase<public>(PhaseName:string):void = external {}
+
+        Heartbeat<public>(ComponentName:string):void = external {}
+
+        OnEndSimulation<override>():void = external {}
+
+        DisplayResults<public>():void = external {}
+
+        RunStructuredTests<public>()<suspends>:void = external {}
+
+        GetRegisteredComponentCount<public>():int = external {}
 
 # Module import path: /Fortnite.com/VerseInternalTesting/VerseFramework
 VerseFramework<public> := module:
@@ -496,6 +642,8 @@ VerseFramework<public> := module:
         CheckEqual<public>(Expected:agent, Actual:agent, Message:any):void = external {}
 
         CheckTrue<public>(Actual:logic, Message:any):void = external {}
+
+        CheckFalse<public>(Actual:logic, Message:any):void = external {}
 
         CheckNotEqual<public>(Actual:creative_object, Expected:(/Verse.org/SpatialMath:)transform, Message:any, ?Tolerance:float = external {}, ?Timeout:float = external {})<suspends>:void = external {}
 

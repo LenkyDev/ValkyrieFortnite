@@ -556,6 +556,13 @@ AI<public> := module:
         # Signaled when the Sidekick ends playing a reaction, returns the reaction that played.
         StopPlayReactionEvent<override><native>:listenable(sidekick_reaction) = external {}
 
+        # Enable or disable antics (idle personality animations) on the Sidekick. Enabled by default.
+        var AnticsEnabled<epic_internal>:logic = external {}
+
+        GetAnticsEnabled<native><epic_internal>(__dupe___unnamed_parameter_129:accessor)<transacts>:logic
+
+        SetAnticsEnabled<native><epic_internal>(__dupe___unnamed_parameter_130:accessor, NewAnticsEnabled:logic)<transacts>:void
+
         # Apply the look and customizations of agent's currently equipped Sidekick to this Sidekick NPC.
         # This will fail if the NPC does not use the FortniteSidekick cosmetic look or if the given agent does not have a Sidekick equipped in their locker.
         ApplyEquippedSidekickCosmetic<native><epic_internal>(Agent:agent)<transacts><decides>:void
@@ -564,13 +571,13 @@ AI<public> := module:
         # Fails if the NPC does not use the FortniteSidekick cosmetic look or if NPC companion usage is not enabled for the given cosmetic.
         ApplySidekickCosmetic<native><epic_internal>(CosmeticDef:sidekick_cosmetic_definition)<transacts><decides>:void
 
-        # Request to play a given reaction on the Sidekick
-        PlayReactionAndWait<native><epic_internal>(Reaction:sidekick_reaction)<suspends>:logic
+        # Request to play a given reaction on the Sidekick and wait for it to complete.
+        PlayReactionAndWait<native><epic_internal>(Reaction:sidekick_reaction, BlendInTime:float, BlendOutTime:float)<suspends>:logic
 
         PlayReactionAndWait<native><epic_internal>(Reaction:sidekick_reaction_internal_test)<suspends>:logic
 
         # Play an animation on the Sidekick and wait for it to complete.
-        PlayAnimAndWait<native><epic_internal>(AnimationSequence:animation_sequence)<suspends>:play_animation_result
+        PlayAnimAndWait<native><epic_internal>(AnimationSequence:animation_sequence, BlendInTime:float, BlendOutTime:float)<suspends>:play_animation_result
 
 # Module import path: /Fortnite.com/Animation
 Animation<public> := module:

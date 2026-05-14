@@ -1,3 +1,9 @@
+# Module import path: /Fortnite.com/Framework/Competitive
+Competitive<epic_internal> := module:
+    using {/Verse.org/Simulation}
+    # Sends tournaments stats for this player to the Events Service
+    (InPlayer:player).SendTournamentStats<native><epic_internal>(GameId:string, StatsMap:[string]int):void
+
 # Module import path: /Fortnite.com/Framework/CVarUtils
 CVarUtils<epic_internal> := module:
     IsCVarEnabled<native><epic_internal>(CVarName:string)<transacts><decides>:void

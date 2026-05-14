@@ -1,4 +1,6 @@
 using {/Verse.org/Native}
+using {/Verse.org/Simulation}
+using {/Verse.org/SceneGraph}
 using {/UnrealEngine.com/Itemization}
 # `fort_inventory_component` is a shared class for all Fortnite inventories, with appropriate default UI and behavior. The HUD when using the BR Style Inventory Configuration will only be shown when using the default configuration. If new inventories are added you will need to create your own custom HUD using Verse UI.
 fort_inventory_component<native><public> := class<epic_internal>(inventory_component):
@@ -46,6 +48,22 @@ FortniteItemCategories<public> := module:
     Ammo<public>:item_category = external {}
 
     Resource<public>:item_category = external {}
+
+@available {MinUploadedAtFNVersion := 4040}
+@experimental
+# Place this component onto an entity to allow it to be added to an agent inventory on interaction. The owning entity should have an item_component and a mesh_component. This component expects the interacting agent to have a subentity with an inventory_component.
+fort_item_pickup_interactable_component<public> := class(basic_interactable_component):
+    OnAddedToScene<override>():void = external {}
+
+    OnRemovingFromScene<override>():void = external {}
+
+    EnableItemInteraction<protected>():void = external {}
+
+    DisableItemInteraction<protected>():void = external {}
+
+    OnInteractionSucceeded<protected>(Agent:agent):void = external {}
+
+    GetInteractorInventory<public>(Agent:agent)<transacts><decides>:inventory_component = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 # Module import path: /Fortnite.com/Itemization/FortniteRarities

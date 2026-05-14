@@ -78,10 +78,10 @@ persona_component<native><public> := class<final_super>(component):
     var Session<public>:llm_session = external {}
 
     # The voice assigned to this persona.
-    var Voice<public>:voice_model
+    var Voice<public>:voice_model = external {}
 
     # How the persona will handle overlapping prompts.
-    var InterruptionRule<public>:persona_interruption_rule
+    var InterruptionRule<public>:persona_interruption_rule = external {}
 
     # Listenable which is signaled when the player starts prompting the persona.
     StartHearEvent<native><public>:listenable(agent) = external {}
