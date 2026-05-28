@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Lime",
-	"FortReleaseVersion": "40.40",
+	"FortReleaseVersion": "40.41",
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
@@ -453,12 +453,6 @@
 		{
 			"Name": "LimeWeaponScythe",
 			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "Locker",
-			"Enabled": true,
-			"Activate": true,
 			"Optional": true
 		},
 		{
