@@ -43,3 +43,5 @@ prop_manipulator_device<public> := class<concrete><final>(creative_device_base):
 
     # Sets the *Override Resource* option to *No*.
     DisableResourceNodeOverrides<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

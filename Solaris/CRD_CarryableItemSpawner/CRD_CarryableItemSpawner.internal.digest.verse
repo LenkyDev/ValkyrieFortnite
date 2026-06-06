@@ -118,3 +118,5 @@ carryable_spawner_device<public> := class<concrete><final>(creative_device_base,
 
     # Succeeds if the object is enabled, fails if it is disabled.
     IsEnabled<override>()<transacts><decides>:void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

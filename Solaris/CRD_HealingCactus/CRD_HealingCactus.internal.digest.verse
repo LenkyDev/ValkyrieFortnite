@@ -24,3 +24,5 @@ healing_cactus_device<public> := class<concrete><final>(creative_device_base):
     # Burst the plant if the device is enabled, passing in the triggering `agent`.
     # If there is no triggering `agent`, players will only be healed if `Heal Targets` is set to `Everyone`.
     Burst<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

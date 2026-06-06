@@ -18,10 +18,10 @@ earth_sprite_device<public> := class<concrete><final>(creative_device_base, enab
     # Sends the triggering `agent`.
     GrantTimerCompletedEvent<public>:listenable(?agent) = external {}
 
-    # Enable the device’s ability to grant items.
+    # Enable the device's ability to grant items.
     EnableItemGranting<public>():void = external {}
 
-    # Disable the device’s ability to grant items. Can still interact and consume weapons.
+    # Disable the device's ability to grant items. Can still interact and consume weapons.
     DisableItemGranting<public>():void = external {}
 
     # Makes the Earth Sprite invisible.
@@ -35,3 +35,5 @@ earth_sprite_device<public> := class<concrete><final>(creative_device_base, enab
 
     # Prevents the `agent` from trading.
     DisableTradingForPlayer<public>(Agent:agent):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

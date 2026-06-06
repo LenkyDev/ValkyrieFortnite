@@ -42,6 +42,11 @@
 			"LoadingPhase": "Default"
 		},
 		{
+			"Name": "VkConversion",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
 			"Name": "VkContentService",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"

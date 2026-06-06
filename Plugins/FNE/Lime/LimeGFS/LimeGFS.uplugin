@@ -10,7 +10,8 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Lime",
-	"FortReleaseVersion": "40.41",
+	"FortReleaseVersion": "41.00",
+	"ProductChunkId": 13,
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
@@ -99,6 +100,11 @@
 		},
 		{
 			"Name": "FNEC_Spring",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNGameplayCues",
 			"Enabled": true,
 			"Optional": true
 		},
@@ -193,6 +199,11 @@
 			"Name": "LimeCoconut",
 			"Enabled": true,
 			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LimeComponentCraftingCosmetics",
+			"Enabled": true,
 			"Optional": true
 		},
 		{

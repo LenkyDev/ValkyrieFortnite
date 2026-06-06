@@ -31,7 +31,7 @@ hive_stash_device<public> := class<concrete><final>(creative_device_base, enable
     # Triggers whenever the hive stash is opened, returning the instigating `agent` if applicable.
     OpenEvent<public>:listenable(?agent) = external {}
 
-    # Triggers whenever an `agent` is rescued, either by the hive stash opening with a linked spawner, or by calling *RescueAgent* while the hive stash is closed.
+    # Triggers whenever an `agent` is rescued, either by the hive stash opening with a linked spawner, or by calling `RescueAgent` while the hive stash is closed.
     #  * Returns the rescued `agent`.
     RescueEvent<public>:listenable(agent) = external {}
 
@@ -62,27 +62,27 @@ hive_stash_device<public> := class<concrete><final>(creative_device_base, enable
     HasLinkedSpawner<public>()<transacts><decides>:void = external {}
 
     # Open the hive stash. If a spawner is linked, trigger it and rescue the resulting `agent` from the hive stash.
-    #  * When the `agent` is rescued, if *ShouldPlayRescuedAnimation* is `true`, they will play a short animation to get off the hive stash.
+    #  * When the `agent` is rescued, if `ShouldPlayRescuedAnimation` is `true`, they will play a short animation to get off the hive stash.
     Open<public>():void = external {}
 
     # Succeeds if the hive stash is currently open, fails otherwise.
     IsOpen<public>()<transacts><decides>:void = external {}
 
-    # Teleport `Agent` to the hive stash. If *ShouldPlayRescuedAnimation* is `true`, they will play a short animation to get off the hive stash.
+    # Teleport `Agent` to the hive stash. If `ShouldPlayRescuedAnimation` is `true`, they will play a short animation to get off the hive stash.
     #  * If the hive stash is closed, it will burst open first, ignoring a linked spawner. This will not clear a linked spawner.
     #  * Has no effect if `Agent` cannot be teleported for any reason, such as not being in the game anymore.
     RescueAgent<public>(Agent:agent):void = external {}
 
-    # Reset the hive stash. This closes it, sets it to full health, and sets *ShouldPlayRescuedAnimation*, *CanBeDamaged*, *CanDropItems*, *InteractTextOverride*, and *HiveStashStyle* to their initial values.
-    #  * This can also clear the link to a spawner depending on *ShouldKeepLinkOnReset*. 
+    # Reset the hive stash. This closes it, sets it to full health, and sets `ShouldPlayRescuedAnimation`, `CanBeDamaged`, `CanDropItems`, `InteractTextOverride`, and `HiveStashStyle` to their initial values.
+    #  * This can also clear the link to a spawner depending on `ShouldKeepLinkOnReset`. 
     #  * The hive stash will not reset if the rescue animation is currently playing.
     (/Fortnite.com/Devices/hive_stash_device:)Reset<public>():void = external {}
 
-    # Whether to keep or clear a spawner link when *Reset* is called. Links can always be cleared with *ClearSpawnerLink*.
+    # Whether to keep or clear a spawner link when `Reset` is called. Links can always be cleared with `ClearSpawnerLink`.
     #  * `true` by default.
     var ShouldKeepLinkOnReset<public>:logic = external {}
 
-    # Whether an `agent` spawned from registered data or teleported by *FreeAgent* plays a short animation to get them off the hive stash.
+    # Whether an `agent` spawned from registered data or teleported by `FreeAgent` plays a short animation to get them off the hive stash.
     #  * The animation may not work properly on skeletons other than the average player skeleton.
     #  * `true` by default.
     var ShouldPlayRescuedAnimation<public>:logic = external {}
@@ -98,7 +98,8 @@ hive_stash_device<public> := class<concrete><final>(creative_device_base, enable
     # If set, this overrides the text shown when interacting while the hive stash is closed.
     var InteractTextOverride<public>:message = external {}
 
-    # Determines what players can see inside the hive stash, as well as its interaction text. This does not affect what happens when it opens.
+    # Determines what players can see inside the hive stash, as well as its interaction text. This does not affect what comes out of the hive stash when it opens.
+    # See `SetLinkedSpawner` and `SetLinkedSpawnerFromAgent` for more information.
     #  * `Empty` shows nothing and says `Break Open`.
     #  * `Loot` shows a chest and says `Break Open`.
     #  * `Trapped` shows a floating character and says `Rescue`.

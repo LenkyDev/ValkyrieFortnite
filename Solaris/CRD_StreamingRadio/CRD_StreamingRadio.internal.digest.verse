@@ -15,3 +15,5 @@ streaming_radio_device<epic_internal> := class<concrete><final>(creative_device_
 
     # Changes audio channel for `Agent`.
     ChangeChannel<public>(Agent:agent):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

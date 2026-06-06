@@ -1,3 +1,4 @@
+using {/Verse.org/Presentation}
 using {/Verse.org/Assets}
 using {/Verse.org/Simulation}
 using {/Verse.org/Native}
@@ -130,11 +131,9 @@ FortniteItemCategories<public> := module:
     @experimental
     WeaponHarvest<epic_internal>:item_category = external {}
 
-    @experimental
-    WeaponMelee<epic_internal>:item_category = external {}
+    WeaponMelee<public>:item_category = external {}
 
-    @experimental
-    WeaponRanged<epic_internal>:item_category = external {}
+    WeaponRanged<public>:item_category = external {}
 
 fort_item_definition_entity_base<native><epic_internal> := class<concrete>(entity):
     ItemDefinitionID<native><protected>:string = external {}
@@ -160,13 +159,25 @@ ExpandItemComponents<native><epic_internal>(InEntity:fort_item_definition_entity
 
 MakeItemComponent<native><epic_internal>(Category:item_category)<converges>:item_component
 
+@available {MinUploadedAtFNVersion := 4100}
+InitializeIconComponentField<native><epic_internal>(IconTexture:texture)<converges>:icon_component
+
 MakeIconComponent<native><epic_internal>(IconTexture:texture)<converges>:?icon_component
+
+@available {MinUploadedAtFNVersion := 4100}
+InitializeRarityComponentField<native><epic_internal>(Rarity:rarity)<converges>:rarity_component
 
 @available {MinUploadedAtFNVersion := 4000}
 MakeRarityComponent<native><epic_internal>(Rarity:rarity)<converges>:?rarity_component
 
+@available {MinUploadedAtFNVersion := 4100}
+InitializeStackableComponentField<native><epic_internal>(SplitPrefabType:castable_concrete_subtype(entity), StackSize:int, MaxStackSize:?int)<converges>:basic_stackable_component
+
 @available {MinUploadedAtFNVersion := 4000}
 MakeStackableComponent<native><epic_internal>(SplitPrefabType:castable_concrete_subtype(entity), StackSize:int, MaxStackSize:?int)<converges>:?basic_stackable_component
+
+@available {MinUploadedAtFNVersion := 4100}
+InitializeDescriptionComponentField<native><epic_internal>(Name:message, Description:message, ShortDescription:message)<converges>:description_component
 
 # Module import path: /Fortnite.com/Itemization/FortniteItemDefinitionUtils
 FortniteItemDefinitionUtils<epic_internal> := module:
@@ -205,12 +216,15 @@ fort_item_pickup_component<native><final><epic_internal> := class<final_super>(c
 
 @available {MinUploadedAtFNVersion := 4040}
 @class_and_subclass_group_names("item")
-@experimental
 # Place this component onto an entity to allow it to be added to an agent inventory on interaction. The owning entity should have an item_component and a mesh_component. This component expects the interacting agent to have a subentity with an inventory_component.
 fort_item_pickup_interactable_component<public> := class(basic_interactable_component):
     OnAddedToScene<override>():void = external {}
 
     OnRemovingFromScene<override>():void = external {}
+
+    Enable<override>():void = external {}
+
+    Disable<override>():void = external {}
 
     EnableItemInteraction<protected>():void = external {}
 
@@ -234,11 +248,9 @@ FortniteRarities<public> := module:
 
     Legendary<public>:rarity = external {}
 
-    @experimental
-    Mythic<epic_internal>:rarity = external {}
+    Mythic<public>:rarity = external {}
 
-    @experimental
-    Exotic<epic_internal>:rarity = external {}
+    Exotic<public>:rarity = external {}
 
     @experimental
     Impossible<epic_internal>:rarity = external {}

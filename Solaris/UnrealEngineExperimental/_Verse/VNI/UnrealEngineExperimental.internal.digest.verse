@@ -139,6 +139,7 @@ Testing<public> := module:
         Passed
         Failed
         Skipped
+        Blocked
 
     # test_reporter is a test result aggregator that writes test results to a log stream and can compile and print a summary of test results.
     test_reporter<native><epic_internal> := class:
@@ -162,6 +163,9 @@ Testing<public> := module:
 
         # Report a test result of `Skipped`. `Category` and `SubCategory` are used to calculate test result stats as part of printing the summary.
         ReportTestSkipped<native><epic_internal>(Message:string, ?Category:string = external {}, ?SubCategory:string = external {}, ?StartTimeSec:float = external {}, ?DurationSec:float = external {}):void
+
+        # Report a test result of `Blocked`. `Category` and `SubCategory` are used to calculate test result stats as part of printing the summary.
+        ReportTestBlocked<native><epic_internal>(Message:string, ?Category:string = external {}, ?SubCategory:string = external {}, ?StartTimeSec:float = external {}, ?DurationSec:float = external {}):void
 
         # Report a test result of `Result`. `Category` and `SubCategory` are used to calculate test result stats as part of printing the summary.
         ReportTestResult<native><epic_internal>(Message:string, Result:test_result, ?Category:string = external {}, ?SubCategory:string = external {}, ?StartTimeSec:float = external {}, ?DurationSec:float = external {}):void

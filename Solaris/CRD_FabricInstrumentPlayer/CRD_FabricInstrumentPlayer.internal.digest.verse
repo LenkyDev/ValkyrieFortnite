@@ -9,3 +9,5 @@ instrument_player_device<public> := class<concrete><final>(patchwork_device):
     var Detune<epic_internal>:float = external {}
 
     var Instrument<epic_internal>:int = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

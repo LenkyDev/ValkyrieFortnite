@@ -35,3 +35,5 @@ shared_saved_data_device<epic_internal> := class<concrete><final>(creative_devic
 
     # Checks the device state with `Agent` acting as the instigator of the action.
     CheckState<public>(Agent:agent):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

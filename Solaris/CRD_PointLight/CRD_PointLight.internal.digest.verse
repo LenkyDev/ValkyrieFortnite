@@ -23,3 +23,5 @@ customizable_light_device<public> := class<concrete><final>(creative_device_base
 
     # Brightens the light by *Dimming Amount*.
     UndimLight<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

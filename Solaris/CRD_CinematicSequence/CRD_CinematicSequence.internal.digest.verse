@@ -57,3 +57,5 @@ cinematic_sequence_device<public> := class<concrete><final>(creative_device_base
 
     # Returns the playback rate of the sequence.
     GetPlayRate<public>()<transacts>:float = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

@@ -186,6 +186,14 @@
 		{
 			"Name": "UAFAnimGraph",
 			"Enabled": true
+		},
+		{
+			"Name": "VerseTypeEditor",
+			"Enabled": true
+		},
+		{
+			"Name": "FlowAnalytics",
+			"Enabled": true
 		}
 	]
 }

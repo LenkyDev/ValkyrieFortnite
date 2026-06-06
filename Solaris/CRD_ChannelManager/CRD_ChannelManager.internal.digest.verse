@@ -14,3 +14,5 @@ signal_remote_manager_device<public> := class<concrete><final>(creative_device_b
 
     # Disables this device.
     Disable<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

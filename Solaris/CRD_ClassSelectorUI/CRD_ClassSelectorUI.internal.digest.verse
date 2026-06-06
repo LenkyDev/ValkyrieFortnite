@@ -25,3 +25,5 @@ class_selector_ui_device<public> := class<concrete><final>(creative_device_base)
 
     # Show the *Class Selector UI* to `Agent`.
     Show<public>(Agent:agent):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

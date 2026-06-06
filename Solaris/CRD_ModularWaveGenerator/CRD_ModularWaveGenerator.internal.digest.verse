@@ -15,3 +15,5 @@ lfo_modulator_device<public> := class<concrete><final>(patchwork_device):
     var Rate<epic_internal>:float = external {}
 
     var FreeSpeedHz<epic_internal>:float = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

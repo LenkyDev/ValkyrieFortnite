@@ -9,7 +9,7 @@
 	"BuiltInAutoRegister": true,
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
-	"FortReleaseVersion": "40.41",
+	"FortReleaseVersion": "41.00",
 	"IsGameFeatureSet": true,
 	"Version": 0,
 	"VersionName": "",
@@ -25,6 +25,7 @@
 	"IsExperimentalVersion": false,
 	"Installed": false,
 	"CookAsDLC": "Creative",
+	"ProductChunkId": 13,
 	"EditorCustomVirtualPath": "FNE/Beanstalk",
 	"RequiredEntitlements": {
 		"Edit": {
@@ -114,6 +115,11 @@
 		},
 		{
 			"Name": "BeanStarter",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNGameplayCues",
 			"Enabled": true,
 			"Optional": true
 		},

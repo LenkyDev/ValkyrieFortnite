@@ -1,5 +1,3 @@
-using {/Verse.org/Assets}
-using {/Verse.org/Presentation}
 using {/Verse.org/Simulation}
 using {/Verse.org/Native}
 using {/Verse.org/SceneGraph}
@@ -207,28 +205,3 @@ item_component<native><public> := class<final_super>(component):
 
 @available {MinUploadedAtFNVersion := 3800}
 (Item:item_component).CanUnequip<native><public>()<transacts>:result(false, []unequip_item_error)
-
-@deprecated
-@experimental
-# Deprecated. Please use description_component instead.
-item_details_component<native><public> := class<final_super>(component, has_description):
-    var Name<override>:message = external {}
-
-    var Description<override>:message = external {}
-
-    var ShortDescription<override>:message = external {}
-
-    OnBeginSimulation<override>():void = external {}
-
-    OnEndSimulation<override>():void = external {}
-
-@deprecated
-@experimental
-# Deprecated. Please use icon_component instead.
-item_icon_component<native><public> := class<final_super>(component, has_icon):
-    OnBeginSimulation<override>():void = external {}
-
-    OnEndSimulation<override>():void = external {}
-
-    @editable
-    var Icon<native><override>:texture

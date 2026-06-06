@@ -46,3 +46,5 @@ progress_based_mesh_device<public> := class<concrete><final>(creative_device_bas
     # # This event fires whenever this device changes meshes as a result of 'CurrentProgress' value causing a new Threshold to be met.
     #  The ThresholdMeshe field can be found under the 'Visuals' category on an instance of a progress_based_mesh_device in Unreal Editor Fortnite.
     ProgressThresholdCrossEvent<public>:listenable(float) = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

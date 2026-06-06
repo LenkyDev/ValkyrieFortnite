@@ -51,7 +51,7 @@ guard_spawner_device<public> := class<concrete><final>(creative_device_base):
     # Determines how the guard uses its `VisibilityRange` as defined by `guard_spawner_visibility_range_restriction`.
     var Accuracy<public>:guard_spawner_accuracy = external {}
 
-    # If true, displays the guard’s health to players.
+    # If true, displays the guard's health to players.
     var ShowHealthBar<public>:logic = external {}
 
     # Determines if the guard displays its alertness level over its head.
@@ -176,3 +176,5 @@ guard_spawner_device<public> := class<concrete><final>(creative_device_base):
     # Returns the agent spawned or false if the device has reached its maximum spawn count.
     # This function is `<suspends>` because it takes time to load the NPC before it can be returned.
     SpawnAt<public>(Position:(/Verse.org/SpatialMath:)vector3, ?Rotation:?(/Verse.org/SpatialMath:)rotation = external {})<suspends>:?agent = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

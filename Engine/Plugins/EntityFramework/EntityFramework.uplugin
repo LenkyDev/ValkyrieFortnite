@@ -6,6 +6,10 @@
 	"VerseScope": "PublicAPI",
 	"Description": "",
 	"Category": "Verse",
+	"TestConfig":
+	{
+		"TestPlugin": "SceneGraphTests"
+	},
 	"CreatedBy": "Epic Games, Inc.",
 	"CreatedByURL": "http://epicgames.com",
 	"DocsURL": "",
@@ -52,23 +56,11 @@
 			"LoadingPhase": "Default"
 		},
 		{
-			"Name": "EntityTestSuite",
-			"Type": "Runtime"
-		},
-		{
 			"Name": "Execution",
 			"Type": "Runtime"
 		},
 		{
-			"Name": "ExecutionTestSuite",
-			"Type": "Runtime"
-		},
-		{
 			"Name": "Component",
-			"Type": "Runtime"
-		},
-		{
-			"Name": "ComponentTestSuite",
 			"Type": "Runtime"
 		},
 		{
@@ -93,16 +85,20 @@
 			"LoadingPhase": "Default"
 		},
 		{
-			"Name": "EntityRegistryTestSuite",
-			"Type": "Runtime"
-		},
-		{
 			"Name": "EntitySkeletalAnimation",
 			"Type": "Runtime"
 		},
 		{
 			"Name": "EntitySkeletalAnimationEditor",
 			"Type": "Editor"
+		},
+		{
+			"Name": "EntityLandscape",
+			"Type": "Runtime"
+		},
+		{
+			"Name": "EntityModifiers",
+			"Type": "Runtime"
 		}
 	],
 	"Plugins": [

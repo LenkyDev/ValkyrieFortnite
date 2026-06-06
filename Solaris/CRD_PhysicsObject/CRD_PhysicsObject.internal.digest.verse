@@ -21,6 +21,8 @@ physics_boulder_device<public> := class<concrete><final>(physics_object_base_dev
     # Destroys the current rolling boulder.
     DestroyRollingBoulder<public>():void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Base class for various physics-based gameplay elements (e.g. boulders/trees).
 physics_object_base_device<public> := class<abstract><epic_internal>(prop_spawner_base_device):
 
@@ -47,3 +49,5 @@ physics_tree_device<public> := class<concrete><final>(physics_object_base_device
 
     # Destroys the current stump.
     DestroyStump<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

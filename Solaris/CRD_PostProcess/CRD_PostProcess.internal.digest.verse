@@ -36,3 +36,5 @@ post_process_device<public> := class<concrete><final>(creative_device_base):
 
     # Resets to the starting strength, ending any ongoing blending for all players.
     ResetForAll<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

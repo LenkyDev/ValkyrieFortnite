@@ -176,3 +176,5 @@ wildlife_spawner_device<public> := class<concrete><final>(creative_device_base):
     # Returns the agent spawned or false if the device has reached its maximum spawn count.
     # This function is `<suspends>` because it takes time to load the NPC before it can be returned.
     SpawnAt<public>(Position:(/Verse.org/SpatialMath:)vector3, ?Rotation:?(/Verse.org/SpatialMath:)rotation = external {})<suspends>:?agent = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

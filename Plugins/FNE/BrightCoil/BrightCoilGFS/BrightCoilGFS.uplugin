@@ -10,9 +10,10 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/BrightCoil",
-	"FortReleaseVersion": "40.41",
+	"FortReleaseVersion": "41.00",
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
+	"ProductChunkId": 13,
 	"RequiredEntitlements": {
 		"Create": {
 			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
@@ -78,6 +79,11 @@
 			"Enabled": true,
 			"Optional": true,
 			"Activate": true
+		},
+		{
+			"Name": "FNGameplayCues",
+			"Enabled": true,
+			"Optional": true
 		}
 	],
 	"Version": 0,

@@ -51,3 +51,5 @@ nitro_hoop_device<public> := class<concrete><final>(creative_device_base):
     #  * The cooldown delay does not apply to cooldowns triggered by *StartCooldown* or *Disable*.
     #  * `Seconds` is clamped between `0.0` and `5.0`.
     SetCooldownDelay<public>(Seconds:float):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

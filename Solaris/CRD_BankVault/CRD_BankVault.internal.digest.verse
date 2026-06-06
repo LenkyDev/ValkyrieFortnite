@@ -74,3 +74,5 @@ bank_vault_device<public> := class<concrete><final>(creative_device_base, bank_v
 
     # The max health of this device's weakpoints.
     var MaxWeakpointHealth<override>:float = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

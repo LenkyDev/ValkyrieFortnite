@@ -16,6 +16,8 @@ barrier_device<public> := class<concrete><final>(creative_device_base):
     # Removes all `agent`s from the ignore list. `Agent`s will still be ignored if they are on an ignored team or of an ignored class.
     RemoveAllFromIgnoreList<public>():void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Used to specify an area volume which can damage `agent`s, vehicles, and creatures.
 damage_volume_device<public> := class<concrete><final>(effect_volume_device):
     # Signaled when an `agent` enters the volume.
@@ -54,9 +56,7 @@ damage_volume_device<public> := class<concrete><final>(effect_volume_device):
 
     GetSelectedTeam<epic_internal>():int = external {}
 
-    GetSelectedClassFunction<epic_internal>:device_function_get_int = external {}
-
-    GetSelectedTeamFunction<epic_internal>:device_function_get_int = external {}
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Base class for types of volumes with special gameplay properties.
 effect_volume_device<public> := class<abstract><epic_internal>(creative_device_base):
@@ -66,6 +66,8 @@ effect_volume_device<public> := class<abstract><epic_internal>(creative_device_b
     # Disables this device.
     Disable<public>():void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Used to specify an area which allows (or prevents) various objects, terrain, or buildings from being set on fire.
 fire_volume_device<public> := class<concrete><final>(effect_volume_device):
     # Extinguishes objects inside this device area.
@@ -73,6 +75,8 @@ fire_volume_device<public> := class<concrete><final>(effect_volume_device):
 
     # Ignites objects inside this device area.
     Ignite<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Used to specify a zone where custom gameplay effects can be applied (e.g. gravity, no build, no weapons).
 mutator_zone_device<public> := class<concrete><final>(effect_volume_device):
@@ -104,6 +108,8 @@ mutator_zone_device<public> := class<concrete><final>(effect_volume_device):
     # Returns an array of agents that are currently occupying the volume.
     GetAgentsInVolume<public>()<reads>:[]agent = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Used to create a zone where players are put into a skydive state. Can customize the amount of force used to push the player, and how fast players are launched into the air. The direction of the push is in relation to the device, so you can rotate and overlap several devices, then use variable speeds to create pneumatic tubes that propel players in different directions. You can even create unique traversal (traveling) options, where players can use these zones to reach places on your island they couldn't reach any other way.
 skydive_volume_device<public> := class<concrete><final>(effect_volume_device):
     # Signaled when an `agent` enters the volume.
@@ -133,3 +139,5 @@ skydive_volume_device<public> := class<concrete><final>(effect_volume_device):
 
     # Returns an array of agents that are currently occupying the volume.
     GetAgentsInVolume<public>()<reads>:[]agent = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

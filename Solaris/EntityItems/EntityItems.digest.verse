@@ -97,6 +97,9 @@ Items<public> := module:
     Bouncer_BR_CH1S4_Rare<public> := class<final><concrete>(entity):
 
 
+    BrickABunker_BR_CH7S2_Common<public> := class<final><concrete>(entity):
+
+
     BubbleShield_Ballistic_V1_Common<public> := class<final><concrete>(entity):
 
 
@@ -118,6 +121,11 @@ Items<public> := module:
     CattyCornerKeycard_BR_CH2S3_Legendary<public> := class<final><concrete>(entity):
 
 
+    CeilingZapper_BR_CH1S1_Rare<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use CeilingZapper_BR_CH1S1_Rare instead.
     CeilingZapper_BR_CH4MS1_Rare<public> := class<final><concrete>(entity):
 
 
@@ -454,6 +462,9 @@ Items<public> := module:
     LilWhipsSpecialServe_BR_CH3S3_Legendary<public> := class<final><concrete>(entity):
 
 
+    LimitlessSevenSliders_BR_CH7S3_Mythic<public> := class<final><concrete>(entity):
+
+
     LumpOfCoal_BR_CH2S1_Common<public> := class<final><concrete>(entity):
 
 
@@ -670,6 +681,9 @@ Items<public> := module:
     RustyCan_BR_CH2S1_Common<public> := class<final><concrete>(entity):
 
 
+    SevenSliders_BR_CH7S3_Epic<public> := class<final><concrete>(entity):
+
+
     ShadowBomb_BR_CH1S8_Uncommon<public> := class<final><concrete>(entity):
 
 
@@ -781,6 +795,9 @@ Items<public> := module:
     SneakySnowman_BR_CH2S1_Rare<public> := class<final><concrete>(entity):
 
 
+    SneakySnowman_OG_CH1S7_Common<public> := class<final><concrete>(entity):
+
+
     SnowyFlopper_BR_CH2S5_Uncommon<public> := class<final><concrete>(entity):
 
 
@@ -880,6 +897,11 @@ Items<public> := module:
     NightRosesVoidOniMask_BR_CH6S1_Mythic<public> := class<final><concrete>(entity):
 
 
+    WallDynamo_BR_CH1S1_Rare<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use WallDynamo_BR_CH1S1_Rare instead.
     WallDynamo_BR_CH4MS1_Rare<public> := class<final><concrete>(entity):
 
 
@@ -1117,6 +1139,21 @@ Weapons<public> := module:
     ChainsOfHades_BR_CH5S2_Epic<public> := class<final><concrete>(entity):
 
 
+    ChaosExploderRifle_BR_CH7S3_Common<public> := class<final><concrete>(entity):
+
+
+    ChaosExploderRifle_BR_CH7S3_Uncommon<public> := class<final><concrete>(entity):
+
+
+    ChaosExploderRifle_BR_CH7S3_Rare<public> := class<final><concrete>(entity):
+
+
+    ChaosExploderRifle_BR_CH7S3_Epic<public> := class<final><concrete>(entity):
+
+
+    ChaosExploderRifle_BR_CH7S3_Legendary<public> := class<final><concrete>(entity):
+
+
     ChaosReloaderShotgun_BR_CH7S2_Common<public> := class<final><concrete>(entity):
 
 
@@ -1345,10 +1382,22 @@ Weapons<public> := module:
     Crossbow_BR_CH1S3_Epic<public> := class<final><concrete>(entity):
 
 
+    CubeRifle_BR_CH7S2_Epic<public> := class<final><concrete>(entity):
+
+
+    CubeRifle_BR_CH7S2_Legendary<public> := class<final><concrete>(entity):
+
+
+    CubeRifle_BR_CH7S2_Mythic<public> := class<final><concrete>(entity):
+
+
     CupidsCrossbow_BR_CH1S2_Epic<public> := class<final><concrete>(entity):
 
 
     EmpoweredCupidsCrossbow_BR_CH7S1_Mythic<public> := class<final><concrete>(entity):
+
+
+    DarkVoyagersChaosRifle_BR_CH7S3_Mythic<public> := class<final><concrete>(entity):
 
 
     DeadeyeAssaultRifle_BR_CH7S1_Common<public> := class<final><concrete>(entity):
@@ -1663,6 +1712,12 @@ Weapons<public> := module:
     TheAgelessChampionsExCaliberRifle_BR_CH4S1_Mythic<public> := class<final><concrete>(entity):
 
 
+    ExoticLeapingLightningGun_BR_CH7S2_Exotic<public> := class<final><concrete>(entity):
+
+
+    ExoticReconBow_BR_CH7S2_Exotic<public> := class<final><concrete>(entity):
+
+
     ExplosiveGooGun_BR_CH3S4_Rare<public> := class<final><concrete>(entity):
 
 
@@ -1682,6 +1737,21 @@ Weapons<public> := module:
 
 
     ExplosiveRepeaterRifle_BR_CH4S3_Mythic<public> := class<final><concrete>(entity):
+
+
+    ExtendingFocusShotgun_BR_CH7S3_Common<public> := class<final><concrete>(entity):
+
+
+    ExtendingFocusShotgun_BR_CH7S3_Uncommon<public> := class<final><concrete>(entity):
+
+
+    ExtendingFocusShotgun_BR_CH7S3_Rare<public> := class<final><concrete>(entity):
+
+
+    ExtendingFocusShotgun_BR_CH7S3_Epic<public> := class<final><concrete>(entity):
+
+
+    ExtendingFocusShotgun_BR_CH7S3_Legendary<public> := class<final><concrete>(entity):
 
 
     FalconEyeSniper_BR_CH6S2_Common<public> := class<final><concrete>(entity):
@@ -1837,9 +1907,19 @@ Weapons<public> := module:
     GrenadeLauncher_BR_PreSeason_Legendary<public> := class<final><concrete>(entity):
 
 
+    GuidedMissile_OG_CH1S3_Epic<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use GuidedMissile_OG_CH1S3_Epic instead.
     GuidedMissile_BR_CH4MS1_Epic<public> := class<final><concrete>(entity):
 
 
+    GuidedMissile_OG_CH1S3_Legendary<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use GuidedMissile_OG_CH1S3_Legendary instead.
     GuidedMissile_BR_CH4MS1_Legendary<public> := class<final><concrete>(entity):
 
 
@@ -1877,6 +1957,21 @@ Weapons<public> := module:
 
 
     HammerPumpShotgun_Ballistic_V1_Common<public> := class<final><concrete>(entity):
+
+
+    HammerRevolver_BR_CH7S2_Uncommon<public> := class<final><concrete>(entity):
+
+
+    HammerRevolver_BR_CH7S2_Rare<public> := class<final><concrete>(entity):
+
+
+    HammerRevolver_BR_CH7S2_Epic<public> := class<final><concrete>(entity):
+
+
+    HammerRevolver_BR_CH7S2_Legendary<public> := class<final><concrete>(entity):
+
+
+    HammerRevolver_BR_CH7S2_Mythic<public> := class<final><concrete>(entity):
 
 
     HandCannon_BR_CH1S3_Epic<public> := class<final><concrete>(entity):
@@ -2797,6 +2892,9 @@ Weapons<public> := module:
     PulseRifle_BR_CH7S2_Uncommon<public> := class<final><concrete>(entity):
 
 
+    OverdrivePulseRifle_BR_CH7S2_Exotic<public> := class<final><concrete>(entity):
+
+
     PumpDump_BR_CH6S2_Common<public> := class<final><concrete>(entity):
 
 
@@ -2956,6 +3054,9 @@ Weapons<public> := module:
     RapidFireSMG_BR_CH3S4_Mythic<public> := class<final><concrete>(entity):
 
 
+    ReacherExtendingShotgun_BR_CH7S3_Mythic<public> := class<final><concrete>(entity):
+
+
     ReaperModularSniperRifle_BR_CH5S1_Uncommon<public> := class<final><concrete>(entity):
 
 
@@ -3019,18 +3120,43 @@ Weapons<public> := module:
     Revolver_BR_CH1S9_Legendary<public> := class<final><concrete>(entity):
 
 
+    Revolver_OG_CH1S1_Common<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use Revolver_OG_CH1S1_Common instead.
     Revolver_BR_CH4MS1_Common<public> := class<final><concrete>(entity):
 
 
+    Revolver_OG_CH1S1_Uncommon<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use Revolver_OG_CH1S1_Uncommon instead.
     Revolver_BR_CH4MS1_Uncommon<public> := class<final><concrete>(entity):
 
 
+    Revolver_OG_CH1S1_Rare<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use Revolver_OG_CH1S1_Rare instead.
     Revolver_BR_CH4MS1_Rare<public> := class<final><concrete>(entity):
 
 
+    Revolver_OG_CH1S1_Epic<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use Revolver_OG_CH1S1_Epic instead.
     Revolver_BR_CH4MS1_Epic<public> := class<final><concrete>(entity):
 
 
+    Revolver_OG_CH1S1_Legendary<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use Revolver_OG_CH1S1_Legendary instead.
     Revolver_BR_CH4MS1_Legendary<public> := class<final><concrete>(entity):
 
 
@@ -3487,13 +3613,37 @@ Weapons<public> := module:
     SubmachineGun_BR_CH4S2_Legendary<public> := class<final><concrete>(entity):
 
 
+    SubmachineGun_OG_CH1S1_Common<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use SubmachineGun_OG_CH1S1_Common instead.
     SubmachineGun_BR_CH4MS1_Common<public> := class<final><concrete>(entity):
 
 
+    SubmachineGun_OG_CH1S1_Uncommon<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use SubmachineGun_OG_CH1S1_Uncommon instead.
     SubmachineGun_BR_CH4MS1_Uncommon<public> := class<final><concrete>(entity):
 
 
+    SubmachineGun_OG_CH1S1_Rare<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use SubmachineGun_OG_CH1S1_Rare instead.
     SubmachineGun_BR_CH4MS1_Rare<public> := class<final><concrete>(entity):
+
+
+    SuperShredder_BR_CH7S2_Rare<public> := class<final><concrete>(entity):
+
+
+    SuperShredder_BR_CH7S2_Epic<public> := class<final><concrete>(entity):
+
+
+    SuperShredder_BR_CH7S2_Legendary<public> := class<final><concrete>(entity):
 
 
     SuppressedAssaultRifle_BR_CH1S5_Epic<public> := class<final><concrete>(entity):
@@ -3769,6 +3919,9 @@ Weapons<public> := module:
     HuntmasterSabersThermalRifle_BR_CH3S2_Mythic<public> := class<final><concrete>(entity):
 
 
+    TheVoidbladesBurstRifle_BR_CH7S3_Mythic<public> := class<final><concrete>(entity):
+
+
     ModularThunderBurstSMG_BR_CH5S1_Common<public> := class<final><concrete>(entity):
 
 
@@ -3913,6 +4066,21 @@ Weapons<public> := module:
     UnstableFrostfireShotgun_BR_CH6S3_Exotic<public> := class<final><concrete>(entity):
 
 
+    VanguardBurstRifle_BR_CH7S3_Common<public> := class<final><concrete>(entity):
+
+
+    VanguardBurstRifle_BR_CH7S3_Uncommon<public> := class<final><concrete>(entity):
+
+
+    VanguardBurstRifle_BR_CH7S3_Rare<public> := class<final><concrete>(entity):
+
+
+    VanguardBurstRifle_BR_CH7S3_Epic<public> := class<final><concrete>(entity):
+
+
+    VanguardBurstRifle_BR_CH7S3_Legendary<public> := class<final><concrete>(entity):
+
+
     Vector7DMR_BR_CH7S2_Rare<public> := class<final><concrete>(entity):
 
 
@@ -4009,4 +4177,9 @@ Weapons<public> := module:
     EradicatorMarksmanWreckerRevolver_BR_CH6S4_Exotic<public> := class<final><concrete>(entity):
 
 
+    Zapotron_OG_CH1S2_Legendary<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use Zapotron_OG_CH1S2_Legendary instead.
     Zapotron_OG_CH1S1_Legendary<public> := class<final><concrete>(entity):

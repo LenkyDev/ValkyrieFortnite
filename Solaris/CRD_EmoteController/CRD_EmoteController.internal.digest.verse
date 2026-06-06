@@ -17,3 +17,5 @@ emote_controller_device<epic_internal> := class<concrete><final>(creative_device
 
     # Grants emote item all `agent`s.
     GrantEmoteItemAll<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

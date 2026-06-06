@@ -44,6 +44,8 @@ creature_manager_device<public> := class<concrete><final>(creative_device_base):
     # Disables this device.
     Disable<public>():void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Used to spawn a creature at a specified location.
 creature_placer_device<public> := class<concrete><final>(creative_device_base):
     # Signaled when a creature is spawned.
@@ -61,10 +63,12 @@ creature_placer_device<public> := class<concrete><final>(creative_device_base):
     # Despawns the creature.
     Despawn<public>():void = external {}
 
-    # Spawn a creature at the given position. When Rotation is not provided, it will default to the Device’s rotation. 
+    # Spawn a creature at the given position. When Rotation is not provided, it will default to the Device's rotation. 
     # Returns the agent spawned or false if the device has reached its maximum spawn count. 
-    # This function is ‘<suspends>’ because it takes time to load the creature before it can be returned.
+    # This function is '<suspends>' because it takes time to load the creature before it can be returned.
     SpawnAt<public>(Position:(/Verse.org/SpatialMath:)vector3, ?Rotation:?(/Verse.org/SpatialMath:)rotation = external {})<suspends>:?agent = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Used to spawn one or more waves of creatures of customizable types at selected time intervals.
 creature_spawner_device<public> := class<concrete><final>(creative_device_base):
@@ -72,9 +76,9 @@ creature_spawner_device<public> := class<concrete><final>(creative_device_base):
     # Sends the `agent` creature who was spawned.
     SpawnedEvent<public>:listenable(agent) = external {}
 
-    # Spawn a creature at the given position. When Rotation is not provided, it will default to the Device’s rotation. 
+    # Spawn a creature at the given position. When Rotation is not provided, it will default to the Device's rotation. 
     # Returns the agent spawned or false if the device has reached its maximum spawn count. 
-    # This function is ‘<suspends>’ because it takes time to load the creature before it can be returned.
+    # This function is `<suspends>` because it takes time to load the creature before it can be returned.
     SpawnAt<public>(Position:(/Verse.org/SpatialMath:)vector3, ?Rotation:?(/Verse.org/SpatialMath:)rotation = external {})<suspends>:?agent = external {}
 
     # Signaled when a creature is eliminated.
@@ -96,3 +100,5 @@ creature_spawner_device<public> := class<concrete><final>(creative_device_base):
 
     # Returns the spawn limit of the device.
     GetSpawnLimit<public>()<transacts>:int = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

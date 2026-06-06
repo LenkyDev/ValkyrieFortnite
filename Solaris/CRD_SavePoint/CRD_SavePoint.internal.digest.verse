@@ -39,3 +39,5 @@ save_point_device<epic_internal> := class<concrete><final>(creative_device_base)
 
     # Returns whether the `agent`'s data is automatically saved while they play.
     GetAutoSaveEnabled<public>()<transacts>:logic = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

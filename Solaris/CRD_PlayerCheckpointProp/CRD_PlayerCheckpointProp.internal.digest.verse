@@ -23,3 +23,5 @@ player_checkpoint_device<public> := class<concrete><final>(creative_device_base)
 
     # Succeeds when `Agent` is registered to this checkpoint.
     IsRegistered<public>(Agent:agent)<transacts><decides>:void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

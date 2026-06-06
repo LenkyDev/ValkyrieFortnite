@@ -40,3 +40,5 @@ down_but_not_out_device<public> := class<concrete><final>(creative_device_base):
 
     # Sets the `Agent` to the `healthy` player state if they are in the `down but not out` player state.
     Revive<public>(Agent:agent):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

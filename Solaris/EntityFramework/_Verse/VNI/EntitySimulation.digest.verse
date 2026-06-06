@@ -4,6 +4,8 @@ Simulation<public> := module:
     agent<native><public> := class<unique><epic_internal>(entity):
 
 
+    (/Verse.org/Simulation:)MakeLocalizableValue<epic_internal>(Agent:agent):localizable_agent = external {}
+
     player<native><public> := class<unique><persistent><module_scoped_var_weak_map_key><epic_internal>(agent):
         # Succeeds when this `player` may be used as a module-scoped `var` `weak_map` key. This coincides with the corresponding player having joined the game and not yet left. Using a `player` as a module-scope `var` `weak_map` key when this method fails results in a runtime error.
         IsActive<native><public>()<reads><decides>:void

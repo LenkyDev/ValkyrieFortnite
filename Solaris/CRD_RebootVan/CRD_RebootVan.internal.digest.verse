@@ -44,6 +44,8 @@ reboot_van_device<public> := class<concrete><final>(creative_device_base, reboot
     #  * Only used if `CanPurchaseRebootCard` is `true`.
     var PurchaseRebootCardOptions<override>:?reboot_card_purchase_options = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 reboot_progress_decay_behavior<public> := enum<open>:
     # Set a custom multiplier on the decay rate.
     CustomDecay

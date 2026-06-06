@@ -20,6 +20,8 @@ character_device<public> := class<concrete>(creative_device_base):
     # Plays an emote on the character created by this device.
     PlayEmote<public>():void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Allows management of groups of `character_device`s e.g. changing all to have the same outfit, emote, or animation.
 character_device_controller_device<epic_internal> := class<concrete><final>(creative_device_base):
     # Changes the character appearance of the associated `character_device`s.
@@ -37,5 +39,9 @@ character_device_controller_device<epic_internal> := class<concrete><final>(crea
     # Resets the character appearance of the associated `character_device`s.
     ResetCharacters<public>():void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 item_shop_mannequin_device<epic_internal> := class<final>(character_device):
     OpenStore<public>(Agent:agent):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

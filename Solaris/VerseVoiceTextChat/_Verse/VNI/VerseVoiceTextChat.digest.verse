@@ -27,10 +27,33 @@ voice_channel<native><public>(member_info:subtype(has_voice_member_info)) := cla
     @available {MinUploadedAtFNVersion := 4294967041}
     (/Verse.org/Chat/voice_channel:)Chat_voice_channel_Variance_Inherited<private>():tuple(member_info) = external {}
 
+    (/Verse.org/Chat/voice_channel:)Chat_voice_channel_Variance<private>(:member_info, :member_info):tuple() = external {}
+
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
+# Returns the registered voice channels on the `simulation_entity`
 (Entity:entity).GetVoiceChannels<native><public>()<reads>:[]voice_channel(has_voice_member_info)
 
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+# Registers a `voice_channel` or `text_channel` to the `simulation_entity`.
+# Fails if the `MaxSize` of the channel's `agent_group` is undefined or larger than the channel type's limit.
+# * Voice Chat Max Size = 80 participants.
+# * Text Chat Max Size = 100 participants.
+(Entity:entity where MemberInfo:subtype(member_info_interface)).AddChatChannel<native><public>(Channel:chat_channel(MemberInfo)):result(void, add_channel_error)
+
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+# Deregisters a `voice_channel` or `text channel` from the `simulation_entity`.
+(Entity:entity where MemberInfo:subtype(member_info_interface)).RemoveChatChannel<native><public>(Channel:chat_channel(MemberInfo)):result(void, remove_channel_error)
+
+@available {MinUploadedAtFNVersion := 4000}
 @experimental
 # Error returned when a channel cannot be added via the `AddChatChannel` function.
 add_channel_error<public> := class<computes>:
+
+
+@available {MinUploadedAtFNVersion := 4000}
+@experimental
+# Error returned when a channel cannot be removed via the `RemoveChatChannel` function.
+remove_channel_error<public> := class<computes>:

@@ -595,6 +595,8 @@ VerseFramework<public> := module:
 
         AddExcludeFilter<public>(Filter:string)<transacts>:void = external {}
 
+        AddSkipVVMFilterIfNeeded<public>()<transacts>:void = external {}
+
         IsTestCaseIncluded<public>(TestCase:test_case)<transacts><decides>:void = external {}
 
         BuildRunPlan<public>():void = external {}

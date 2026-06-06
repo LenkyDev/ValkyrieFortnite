@@ -91,12 +91,12 @@ Persona<epic_internal> := module:
     ToJson<native><epic_internal>(__dupe___unnamed_parameter_0:type)<reads><decides><converges>:string
 
     # From an array of types produce a JSON schema corresponding to an object with optional fields of name 0, 1, etc., i.e. a sparse array.
-    ToJson<native><epic_internal>(__dupe___unnamed_parameter_3:[]type)<reads><decides><converges>:string
+    ToJson<native><epic_internal>(__dupe___unnamed_parameter_0:[]type)<reads><decides><converges>:string
 
     # From a JSON string conforming to the schema for a type, produce a value of that type.
-    FromJson<native><epic_internal>(__dupe___unnamed_parameter_4:string, t:type)<reads><decides><converges>:t
+    FromJson<native><epic_internal>(__dupe___unnamed_parameter_0:string, t:type)<reads><decides><converges>:t
 
     # From a JSON string representing a sparse array where each element, if it exists, conforms to the corresponding type element, produce array of optional values.
-    FromJson<native><epic_internal>((__dupe___unnamed_parameter_7:string, __dupe___unnamed_parameter_8:[]subtype(t)) where t:type)<reads><decides><converges>:[]?t
+    FromJson<native><epic_internal>((__dupe___unnamed_parameter_0:string, __dupe___unnamed_parameter_1:[]subtype(t)) where t:type)<reads><decides><converges>:[]?t
 
-    Cast<native><epic_internal>(__dupe___unnamed_parameter_9:any, t:type)<decides><converges>:t
+    Cast<native><epic_internal>(__dupe___unnamed_parameter_0:any, t:type)<decides><converges>:t

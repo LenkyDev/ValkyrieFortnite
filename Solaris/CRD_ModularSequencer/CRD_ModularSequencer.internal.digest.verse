@@ -15,3 +15,5 @@ note_sequencer_device<public> := class<concrete><final>(patchwork_device):
     var StepRate<epic_internal>:float = external {}
 
     var TimingStyle<epic_internal>:int = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

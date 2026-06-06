@@ -26,3 +26,5 @@ camera_focus_device<epic_internal> := class<concrete><final>(creative_device_bas
 
     # Drops focus from all `agent`s.
     DropFocusForAll<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

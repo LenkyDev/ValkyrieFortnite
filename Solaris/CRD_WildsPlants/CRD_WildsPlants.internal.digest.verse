@@ -33,3 +33,5 @@ wilds_plant_device<public> := class<concrete><final>(creative_device_base):
     #  * This applies across the device’s entire lifetime and is unaffected by *Enable* and *Disable*.
     #  * This value is clamped.
     SetMaximumRegrowths<public>(MaximumRegrowths:int):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

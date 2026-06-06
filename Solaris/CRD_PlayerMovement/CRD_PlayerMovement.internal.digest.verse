@@ -32,3 +32,5 @@ player_movement_settings_device<public> := class<concrete><final>(creative_devic
 
     # Returns the player agents registered to this device.
     GetRegisteredAgents<public>()<reads>:[]agent = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

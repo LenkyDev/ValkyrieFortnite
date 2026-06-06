@@ -39,3 +39,5 @@ player_marker_device<public> := class<concrete><final>(creative_device_base):
 
     # Detaches markers from all marked `agent`s.
     DetachFromAll<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

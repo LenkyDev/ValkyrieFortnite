@@ -66,3 +66,5 @@ spire_spike_device<public> := class<concrete><final>(creative_device_base):
 
     # Force begins the knockback charge timer. Will restart the charge timer if already active.
     ChargeKnockback<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

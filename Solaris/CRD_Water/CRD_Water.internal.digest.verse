@@ -35,3 +35,5 @@ water_device<public> := class<concrete><final>(creative_device_base):
 
     # Resumes either filling or emptying the volume.
     ResumeVerticalMovement<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

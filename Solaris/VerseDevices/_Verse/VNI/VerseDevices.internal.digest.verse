@@ -1,14 +1,15 @@
 # Module import path: /Fortnite.com/Devices
 Devices<public> := module:
     using {/Fortnite.com/AI}
-    using {/Verse.org/Colors}
-    using {/Fortnite.com/Vehicles}
-    using {/Verse.org/Simulation}
     using {/UnrealEngine.com/Temporary/Diagnostics}
     using {/Verse.org/Simulation/Tags}
     using {/Fortnite.com/Game}
     using {/Verse.org/SceneGraph}
+    using {/Fortnite.com/Vehicles}
+    using {/Fortnite.com/Assets}
     using {/Verse.org/Assets}
+    using {/Verse.org/Colors}
+    using {/Verse.org/Simulation}
     using {/Verse.org/Native}
     using {/Verse.org/SpatialMath}
     using {/UnrealEngine.com/Temporary/SpatialMath}
@@ -39,19 +40,19 @@ Devices<public> := module:
         # Convenience interpolation modes. These built in modes are based on the CSS animation standard: https://www.w3.org/TR/css-easing-1/
         InterpolationTypes<public> := module:
             # `Linear` animations move at a constant speed.
-            Linear<public>:cubic_bezier_parameters = external {}
+            (/Fortnite.com/Devices/CreativeAnimation/InterpolationTypes:)Linear<public>:cubic_bezier_parameters = external {}
 
             # `Ease` animations start slowly, speed up, then end slowly. The speed of the animation is slightly slower at the end than the start.
-            Ease<public>:cubic_bezier_parameters = external {}
+            (/Fortnite.com/Devices/CreativeAnimation/InterpolationTypes:)Ease<public>:cubic_bezier_parameters = external {}
 
             # `EaseIn` animations start slow, then speed up towards the end.
-            EaseIn<public>:cubic_bezier_parameters = external {}
+            (/Fortnite.com/Devices/CreativeAnimation/InterpolationTypes:)EaseIn<public>:cubic_bezier_parameters = external {}
 
             # `EaseOut` animations start fast, then slow down towards the end.
-            EaseOut<public>:cubic_bezier_parameters = external {}
+            (/Fortnite.com/Devices/CreativeAnimation/InterpolationTypes:)EaseOut<public>:cubic_bezier_parameters = external {}
 
             # `EaseInOut` animations are similar to `Ease` but the start and end animation speed is symmetric.
-            EaseInOut<public>:cubic_bezier_parameters = external {}
+            (/Fortnite.com/Devices/CreativeAnimation/InterpolationTypes:)EaseInOut<public>:cubic_bezier_parameters = external {}
 
         # Instead of specifying the actual keyframe positions, we specify the keyframe *deltas*. This allows us to treat the initial position of the prop as keyframe 0 and avoid the question of how to get the prop to its initial location. For a `animation_mode.Loop` animation, the net rotation and translation must both be zero. Each delta is interpreted as a world-space transformation to be concatenated onto the previous transform(s).
         keyframe_delta<native><public> := struct:
@@ -247,7 +248,7 @@ Devices<public> := module:
         MoveTo<public>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, OverTime:float)<suspends>:move_to_result = external {}
 
         # Gets the global transform of this device.
-        GetGlobalTransform<public>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
+        GetGlobalTransform<override>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
 
         # Sets the global transform of this device.
         SetGlobalTransform<public>(NewGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void = external {}
@@ -273,6 +274,70 @@ Devices<public> := module:
 
         # Set this device invisible in the world.
         Hide_Internal<native><epic_internal>()<transacts>:void
+
+        GetBPFunctionNamesForValidation<native_callable><epic_internal>():[]string = external {}
+
+        InvokeDeviceFunction<native><epic_internal>(FunctionName:string):void
+
+        InvokeDeviceFunction<native><epic_internal>(FunctionName:string, Agent:agent):void
+
+        DeviceFunctionSetInt<native><epic_internal>(FunctionName:string, Value:int):void
+
+        DeviceFunctionSetFloat<native><epic_internal>(FunctionName:string, Value:float):void
+
+        DeviceFunctionSetLogic<native><epic_internal>(FunctionName:string, Value:logic):void
+
+        DeviceFunctionSetString<native><epic_internal>(FunctionName:string, Value:string):void
+
+        DeviceFunctionSetMessage<native><epic_internal>(FunctionName:string, Value:message):void
+
+        DeviceFunctionSetColor<native><epic_internal>(FunctionName:string, Value:color):void
+
+        DeviceFunctionSetAgent<native><epic_internal>(FunctionName:string, Agent:?agent):void
+
+        DeviceFunctionSetAgentArray<native><epic_internal>(FunctionName:string, Agents:[]agent):void
+
+        DeviceFunctionSetVector3<native><epic_internal>(FunctionName:string, Value:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):void
+
+        DeviceFunctionSetTexture<native><epic_internal>(FunctionName:string, Value:?texture):void
+
+        DeviceFunctionSetCreativeProp<native><epic_internal>(FunctionName:string, Value:?creative_prop):void
+
+        DeviceFunctionSetCharacterDefinition<native><epic_internal>(FunctionName:string, Value:?npc_character_definition)<transacts>:void
+
+        DeviceFunctionGetInt<native><epic_internal>(FunctionName:string)<reads>:int
+
+        DeviceFunctionGetFloat<native><epic_internal>(FunctionName:string)<reads>:float
+
+        DeviceFunctionGetLogic<native><epic_internal>(FunctionName:string)<reads>:logic
+
+        DeviceFunctionGetString<native><epic_internal>(FunctionName:string)<reads>:string
+
+        DeviceFunctionGetColor<native><epic_internal>(FunctionName:string)<reads>:color
+
+        DeviceFunctionGetAgent<native><epic_internal>(FunctionName:string)<reads>:?agent
+
+        DeviceFunctionGetAgentArray<native><epic_internal>(FunctionName:string)<reads>:[]agent
+
+        DeviceFunctionGetDevice<native><epic_internal>(FunctionName:string)<reads>:?creative_device_base
+
+        DeviceFunctionGetDeviceArray<native><epic_internal>(FunctionName:string)<reads>:[]creative_device_base
+
+        DeviceFunctionGetVehicle<native><epic_internal>(FunctionName:string)<reads>:?fort_vehicle
+
+        DeviceFunctionGetVector3<native><epic_internal>(FunctionName:string)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
+
+        DeviceFunctionGetTransform<native><epic_internal>(FunctionName:string)<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)transform
+
+        DeviceFunctionGetCharacterDefinition<native><epic_internal>(FunctionName:string)<reads>:?npc_character_definition
+
+        InvokeDeviceFunctionByType<native><epic_internal>(FunctionName:string, Params:[]function_parameter_base)<transacts>:?function_parameter_base
+
+        InvokeDeviceFunctionByTypeConst<native><epic_internal>(FunctionName:string, Params:[]function_parameter_base)<reads>:?function_parameter_base
+
+        InvokeDeviceFunctionByName<native><epic_internal>(FunctionName:string, Params:[string]function_parameter_base)<transacts>:?function_parameter_base
+
+        InvokeDeviceFunctionByNameConst<native><epic_internal>(FunctionName:string, Params:[string]function_parameter_base)<reads>:?function_parameter_base
 
     # Internal asset for representing creative devices.
     creative_device_asset<native><public> := class<computes><final><epic_internal>(asset):
@@ -325,7 +390,7 @@ Devices<public> := module:
         MoveTo<public>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, OverTime:float)<suspends>:move_to_result = external {}
 
         # Gets the global transform of this object.
-        GetGlobalTransform<public>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
+        GetGlobalTransform<override>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
 
         # Sets the global transform of this object.
         SetGlobalTransform<public>(NewGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void = external {}
@@ -468,9 +533,9 @@ Devices<public> := module:
     # Base implementation for events on `creative_device`s.
     device_event<native><epic_internal>(t:type) := class<abstract>(listenable(t)):
         @available {MinUploadedAtFNVersion := 4294967041}
-        (/Fortnite.com/Devices/device_event:)Devices_device_event_Variance_Inherited<private>():tuple(t) = external {}
+        (/Fortnite.com/Devices/device_event:)Devices_device_event_Variance_Inherited<private>():tuple(t, t, t, t) = external {}
 
-        (/Fortnite.com/Devices/device_event:)Devices_device_event_Variance<private>(:t):tuple(t) = external {}
+        (/Fortnite.com/Devices/device_event:)Devices_device_event_Variance<private>(:t):tuple(t, t, t) = external {}
 
         EventName<native><public>:string
 
@@ -640,100 +705,11 @@ Devices<public> := module:
     function_parameter_mesh<native><epic_internal> := class<computes>(function_parameter_base):
         Value<native><epic_internal>:?mesh
 
-    device_function<native><epic_internal> := class:
-        FunctionName<native><epic_internal>:string
+    function_parameter_creative_prop<native><epic_internal> := class<computes>(function_parameter_base):
+        Value<native><epic_internal>:?creative_prop
 
-        Invoke<native><epic_internal>():void
-
-        Invoke<native><epic_internal>(InAgent:agent):void
-
-    device_function_set_base<native><epic_internal> := class<abstract>:
-        FunctionName<native><epic_internal>:string
-
-    device_function_set_int<native><epic_internal> := class(device_function_set_base):
-        Invoke<native><epic_internal>(Value:int):void
-
-    device_function_set_float<native><epic_internal> := class(device_function_set_base):
-        Invoke<native><epic_internal>(Value:float):void
-
-    device_function_set_logic<native><epic_internal> := class(device_function_set_base):
-        Invoke<native><epic_internal>(Value:logic):void
-
-    device_function_set_string<native><epic_internal> := class(device_function_set_base):
-        Invoke<native><epic_internal>(Value:string):void
-
-    device_function_set_message<native><epic_internal> := class(device_function_set_base):
-        Invoke<native><epic_internal>(Value:message):void
-
-    device_function_set_color<native><epic_internal> := class(device_function_set_base):
-        Invoke<native><epic_internal>(Value:color):void
-
-    device_function_set_agent<native><epic_internal> := class(device_function_set_base):
-        Invoke<native><epic_internal>(InAgent:?agent):void
-
-    device_function_set_agent_array<native><epic_internal> := class(device_function_set_base):
-        Invoke<native><epic_internal>(InAgents:[]agent):void
-
-    device_function_set_vector3<native><epic_internal> := class(device_function_set_base):
-        Invoke<native><epic_internal>(Value:(/UnrealEngine.com/Temporary/SpatialMath:)vector3):void
-
-    device_function_set_texture<native><epic_internal> := class(device_function_set_base):
-        Invoke<native><epic_internal>(Value:?texture):void
-
-    device_function_get_base<native><epic_internal> := class<abstract>:
-        FunctionName<native><epic_internal>:string
-
-    device_function_get_int<native><epic_internal> := class(device_function_get_base):
-        Invoke<native><epic_internal>()<reads>:int
-
-    device_function_get_float<native><epic_internal> := class(device_function_get_base):
-        Invoke<native><epic_internal>()<reads>:float
-
-    device_function_get_logic<native><epic_internal> := class(device_function_get_base):
-        Invoke<native><epic_internal>()<reads>:logic
-
-    device_function_get_string<native><epic_internal> := class(device_function_get_base):
-        Invoke<native><epic_internal>()<reads>:string
-
-    device_function_get_color<native><epic_internal> := class(device_function_get_base):
-        Invoke<native><epic_internal>()<reads>:color
-
-    device_function_get_agent<native><epic_internal> := class(device_function_get_base):
-        Invoke<native><epic_internal>()<reads>:?agent
-
-    device_function_get_agent_array<native><epic_internal> := class(device_function_get_base):
-        Invoke<native><epic_internal>()<reads>:[]agent
-
-    device_function_get_device<native><epic_internal> := class(device_function_get_base):
-        Invoke<native><epic_internal>()<reads>:?creative_device_base
-
-    device_function_get_device_array<native><epic_internal> := class(device_function_get_base):
-        Invoke<native><epic_internal>()<reads>:[]creative_device_base
-
-    device_function_get_vector3<native><epic_internal> := class(device_function_get_base):
-        Invoke<native><epic_internal>()<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
-
-    device_function_get_transform<native><epic_internal> := class(device_function_get_base):
-        Invoke<native><epic_internal>()<reads>:(/UnrealEngine.com/Temporary/SpatialMath:)transform
-
-    device_function_set_multi_parameter_base<native><epic_internal> := class<abstract>(device_function_set_base):
-        return_type<native><epic_internal>:?subtype(function_parameter_base) = external {}
-
-    device_function_set_params_by_name<native><epic_internal> := class(device_function_set_multi_parameter_base):
-        Invoke<native><epic_internal>(NamedParameters:[string]function_parameter_base)<transacts>:?function_parameter_base
-
-        parameter_types<native><epic_internal>:[string]subtype(function_parameter_base)
-
-    device_function_set_params_by_name_const<native><epic_internal> := class(device_function_set_params_by_name):
-        InvokeConst<native><epic_internal>(NamedParameters:[string]function_parameter_base)<reads>:?function_parameter_base
-
-    device_function_set_params_by_type<native><epic_internal> := class(device_function_set_multi_parameter_base):
-        Invoke<native><epic_internal>(TypeExclusiveParameters:[]function_parameter_base)<transacts>:?function_parameter_base
-
-        parameter_types<native><epic_internal>:[]subtype(function_parameter_base)
-
-    device_function_set_params_by_type_const<native><epic_internal> := class(device_function_set_params_by_type):
-        InvokeConst<native><epic_internal>(TypeExclusiveParameters:[]function_parameter_base)<reads>:?function_parameter_base
+    function_parameter_character_definition<native><epic_internal> := class<computes>(function_parameter_base):
+        Value<native><epic_internal>:?npc_character_definition
 
     # Class that implements the common logic for a healthful, damageable, healable device.
     device_health<native><epic_internal> := class<epic_internal>(healthful, damageable, healable):

@@ -36,3 +36,5 @@ nitro_barrel_spawner_device<public> := class<concrete><final>(creative_device_ba
 
     # Returns the delay between exploding and respawning (if allowed), in seconds.
     GetRespawnDelay<public>():float = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

@@ -16,3 +16,5 @@ firefly_spawner_device<public> := class<concrete><final>(creative_device_base):
 
     # Resets respawn count.
     ResetRespawnCount<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

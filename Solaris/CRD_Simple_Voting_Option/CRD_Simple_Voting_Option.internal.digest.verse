@@ -34,6 +34,8 @@ vote_group_device<public> := class<concrete><final>(creative_device_base):
     #  If zero or less, players cannot vote.
     GetMaxVotesPerPlayer<final><public>():int = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Represents an individual choice in a poll.
 #  For example, in a poll “What to have for lunch?” an option might be “Tacos”
 #  Tracks how many times each agent has voted for this option.
@@ -77,5 +79,7 @@ vote_option_device<public> := class(vote_option_interface, creative_device_base)
     WinVoteEvent<override>:listenable(?agent) = external {}
 
     GetOptionDescription<override>():message = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 VotingStringToMessage<localizes><epic_internal>(Value:string):message = external {}

@@ -73,3 +73,5 @@ conversation_device<public> := class<concrete><final>(creative_device_base, enab
     # The value of CharactersPerSecond is the default value used when initiating a conversation.
     # CharactersPerSecond will be clamped between 0.25 and 100.0. If set to false all the characters will reveal instantly.
     var CharactersPerSecond<public>:?float = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

@@ -96,5 +96,8 @@ vehicle_spawner_device<public> := class<abstract><epic_internal>(creative_device
     # Spawns a new vehicle. The previous vehicle will be destroyed before a new vehicle spawns.
     RespawnVehicle<public>():void = external {}
 
+    # The `fort_vehicle` currently associated with this spawner, if one exists.
+    var<private> Vehicle<public>:?fort_vehicle = external {}
+
 # Specialized `vehicle_spawner_device` that allows a Whiplash sports car to be configured and spawned.
 vehicle_spawner_sports_car_device<public> := class<concrete><final>(vehicle_spawner_device):

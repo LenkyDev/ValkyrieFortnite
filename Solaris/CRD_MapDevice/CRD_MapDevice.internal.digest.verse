@@ -34,3 +34,5 @@ map_controller_device<public> := class<concrete><final>(creative_device_base):
 
     # Returns the *Capture Box Size* (in meters).
     GetCaptureBoxSize<public>()<transacts>:float = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

@@ -294,6 +294,10 @@ AI<public> := module:
         Emote
         Angry
         Worried
+        Attack
+        HitReact
+        Sleeping
+        Eat
 
     @available {MinUploadedAtFNVersion := 3800}
     # Component to manage functionality shared by all Sidekick types.
@@ -319,6 +323,9 @@ AI<public> := module:
         # Signaled when the Sidekick ends playing a reaction, returns the reaction that played.
         StopPlayReactionEvent<native><public>:listenable(sidekick_reaction)
 
+        # Enable or disable antics (idle personality animations) on the Sidekick. Enabled by default.
+        var IdleAnticsEnabled<public>:logic = external {}
+
     @available {MinUploadedAtFNVersion := 3800}
     # Component to manage functionality specifically for an NPC Sidekick.
     npc_sidekick_component<native><public> := class<final_super><epic_internal>(sidekick_component):
@@ -342,6 +349,10 @@ AI<public> := module:
 
         # Signaled when the Sidekick ends playing a reaction, returns the reaction that played.
         StopPlayReactionEvent<override><native>:listenable(sidekick_reaction) = external {}
+
+        # Apply the look and customizations of agent's currently equipped Sidekick to this Sidekick NPC.
+        # This will fail if the NPC does not use the FortniteSidekick cosmetic look or if the given agent does not have a Sidekick equipped in their locker.
+        ApplyEquippedSidekickCosmetic<native><public>(Agent:agent)<transacts><decides>:void
 
 # Module import path: /Fortnite.com/Animation
 Animation<public> := module:

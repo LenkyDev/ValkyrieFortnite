@@ -9,3 +9,5 @@ analytics_device<public> := class<concrete><final>(creative_device_base):
 
     # Submits an event for `Agent`.
     Submit<public>(Agent:agent):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

@@ -44,3 +44,5 @@ player_reference_device<public> := class<concrete><final>(creative_device_base):
 
     # Returns the stat value that this device is currently tracking
     GetStatValue<public>():int = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

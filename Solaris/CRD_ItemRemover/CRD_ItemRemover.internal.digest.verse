@@ -9,3 +9,5 @@ item_remover_device<public> := class<concrete><final>(creative_device_base):
 
     # Remove items from `Agent`s inventory. The items that are removed can be configured using *Affected Items*.
     Remove<public>(Agent:agent):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

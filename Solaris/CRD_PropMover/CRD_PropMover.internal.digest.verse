@@ -61,3 +61,5 @@ prop_mover_device<public> := class<concrete><final>(creative_device_base):
 
     # Returns the speed (in meters per second) at which the prop mover will move the prop to its destination.
     GetTargetSpeed<public>()<transacts>:float = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

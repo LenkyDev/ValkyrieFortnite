@@ -199,6 +199,8 @@ vehicle_mod_box_spawner_device<public> := class<concrete><final>(creative_device
     # Reset the text of the tooltip that appears when a player gets close to the mod box without a vehicle, if it's been customized.
     ResetPlayerTooltip<public>():void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Settings for vehicle mod boxes, used with vehicle_mod_box_spawner_device.
 vehicle_mod_box_settings<public> := class<final><public>:
     var Index<epic_internal>:int = external {}

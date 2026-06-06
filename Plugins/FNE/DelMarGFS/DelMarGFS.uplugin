@@ -9,9 +9,10 @@
 	"BuiltInAutoRegister": true,
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
-	"FortReleaseVersion": "40.41",
+	"FortReleaseVersion": "41.00",
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
+	"ProductChunkId": 13,
 	"RequiredEntitlements": {
 		"Create": {
 			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad"
@@ -70,15 +71,20 @@
 			"Optional": true
 		},
 		{
+			"Name": "CreativeCompanion",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
 			"Name": "DelMarValidator",
 			"Enabled": true,
 			"Activate": true,
 			"Optional": true
 		},
 		{
-			"Name": "CreativeCompanion",
+			"Name": "FNGameplayCues",
 			"Enabled": true,
-			"Activate": true,
 			"Optional": true
 		}
 	],

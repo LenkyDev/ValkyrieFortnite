@@ -58,7 +58,7 @@ Verse<public> := module:
     @experimental
     # A `classifiable_subset` is a container that holds a set of elements. A classifiable_subset can hold multiple elements of the same type.
     classifiable_subset<native><public>(element_type:type) := class<final><computes><internal>:
-        (/Verse.org/Verse/classifiable_subset:)Verse_classifiable_subset_Variance<private>():tuple(element_type) = external {}
+        (/Verse.org/Verse/classifiable_subset:)Verse_classifiable_subset_Variance<private>():tuple(element_type, element_type, element_type) = external {}
 
         # Temporary function for constraining variance correctly.
         CovarianceConstraint<protected>():?element_type = external {}
@@ -112,6 +112,40 @@ Verse<public> := module:
         # Cleans up this object.
         Dispose<public>():void
 
+    @available {MinUploadedAtFNVersion := 4100}
+    # Module import path: /Verse.org/Verse/Easing
+    Easing<public> := module:
+        using {/Verse.org/Native}
+        @available {MinUploadedAtFNVersion := 4100}
+        @experimental
+        # Make a cubic bezier interpolation function.
+        CubicBezier<native><public>(X1:float, Y1:float, X2:float, Y2:float)<converges>:type {_(:float)<reads>:float}
+
+        @available {MinUploadedAtFNVersion := 4100}
+        @experimental
+        # Linear interpolation function. `Linear` animations move at a constant speed.
+        Linear<native_callable><public>(Value:float)<reads>:float = external {}
+
+        @available {MinUploadedAtFNVersion := 4100}
+        @experimental
+        # Ease interpolation function. `Ease` animations start slowly, speed up, then end slowly. The speed of the animation is slightly slower at the end than the start.
+        Ease<native_callable><public>(Value:float)<reads>:float = external {}
+
+        @available {MinUploadedAtFNVersion := 4100}
+        @experimental
+        # Ease-in interpolation function. `EaseIn` animations start slow, then speed up towards the end.
+        EaseIn<native_callable><public>(Value:float)<reads>:float = external {}
+
+        @available {MinUploadedAtFNVersion := 4100}
+        @experimental
+        # Ease-out interpolation function. `EaseOut` animations start fast, then slow down towards the end.
+        EaseOut<native_callable><public>(Value:float)<reads>:float = external {}
+
+        @available {MinUploadedAtFNVersion := 4100}
+        @experimental
+        # Ease-in-out interpolation function. `EaseInOut` animations are similar to `Ease` but the start and end animation speed is symmetric.
+        EaseInOut<native_callable><public>(Value:float)<reads>:float = external {}
+
     # Implemented by classes whose instances can be enabled and disabled.
     enableable<native><public> := interface<public>:
         # Enable this object.
@@ -129,7 +163,7 @@ Verse<public> := module:
     # A *recurring*, successively signaled parametric `event` with a `payload` allowing a simple mechanism to coordinate between concurrent tasks.
     event<native><public>(t:type) := class(signalable(t), awaitable(t)):
         @available {MinUploadedAtFNVersion := 4294967041}
-        (/Verse.org/Verse/event:)Verse_event_Variance_Inherited<private>(:t):tuple(t) = external {}
+        (/Verse.org/Verse/event:)Verse_event_Variance_Inherited<private>(:t):tuple(t, t) = external {}
 
         (/Verse.org/Verse/event:)Verse_event_Variance<private>(:t):tuple(t) = external {}
 
@@ -178,7 +212,7 @@ Verse<public> := module:
     # A parametric interface combining `awaitable` and `subscribable`.
     listenable<public>(payload:type) := interface(awaitable(payload), subscribable(payload)):
         @available {MinUploadedAtFNVersion := 4294967041}
-        (/Verse.org/Verse/listenable:)Verse_listenable_Variance_Inherited<private>():tuple(payload) = external {}
+        (/Verse.org/Verse/listenable:)Verse_listenable_Variance_Inherited<private>():tuple(payload, payload, payload) = external {}
 
     # A parameterless interface combining `awaitable` and `subscribable`.
     listenable<public>() := listenable(tuple())
@@ -193,6 +227,10 @@ Verse<public> := module:
 
     # Makes a `string` by localizing `Message` based on the current `locale`.
     Localize<native><public>(Message:message)<reads>:string
+
+    @available {MinUploadedAtFNVersion := 4100}
+    # Makes a `message` by concatenating `Separator` between the elements of `Messages`.
+    Join<native><public>(Messages:[]message, Separator:message)<transacts>:message
 
     localizable_value<native><epic_internal> := class:
 

@@ -104,5 +104,9 @@
 			]
 		}
 	],
-	"IsExperimentalVersion": false
+	"IsExperimentalVersion": false,
+	"TestConfig":
+	{
+		"TestPlugin": "VerseTestSample"
+	}
 }

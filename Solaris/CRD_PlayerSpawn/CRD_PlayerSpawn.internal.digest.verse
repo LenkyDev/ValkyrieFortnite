@@ -15,3 +15,5 @@ player_spawner_device<public> := class<concrete><final>(creative_device_base):
     # Uses the device's `ShouldRespawnAlivePlayers` setting to control behavior when called on an alive player.
     # If the device is not a valid spawn for that player, they will respawn from a valid spawn device, or from skydive if none are found.
     SpawnPlayer<public>(Player:player):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

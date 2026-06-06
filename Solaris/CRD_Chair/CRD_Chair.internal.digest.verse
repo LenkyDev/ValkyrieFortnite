@@ -43,3 +43,5 @@ chair_device<public> := class<concrete><final>(creative_device_base):
 
     # Returns the `agent` currently occupying the chair.
     GetSeatedAgent<public>():?agent = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

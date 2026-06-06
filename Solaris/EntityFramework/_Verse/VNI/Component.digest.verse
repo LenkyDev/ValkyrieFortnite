@@ -127,7 +127,7 @@ KeyframedMovement<public> := module:
 
         @editable
         # Easing function to use for playback.
-        Easing<native><public>:easing_function = external {}
+        (/Verse.org/SceneGraph/KeyframedMovement/keyframed_movement_delta:)Easing<native><public>:easing_function = external {}
 
     # Provides teleportation and simple keyframe-based animation for an entity. Animations play back in the Pre-Physics tick phase. When animating an entity with a parent_constraint, animation will be relative to the parent entity.
     keyframed_movement_component<native><public> := class<final><final_super>(component):

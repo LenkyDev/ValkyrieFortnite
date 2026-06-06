@@ -78,3 +78,5 @@ popup_dialog_device<public> := class<concrete><final>(creative_device_base):
 
     # Sets the *Title*, *Description* and *Buttons* for this popup then displays a message for all users.
     SetAndShow<epic_internal>(Title:message, Description:message, ButtonsText:[]message):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

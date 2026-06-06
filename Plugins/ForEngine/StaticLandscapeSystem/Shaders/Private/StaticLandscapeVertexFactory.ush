@@ -295,10 +295,12 @@ FMaterialVertexParameters GetMaterialVertexParameters(
 #endif // 1
 #endif // 0
 
+	Result.LWCData = MakeMaterialLWCData(Result);
+
 #if ENABLE_NEW_HLSL_GENERATOR
+	// This needs to be called after MakeMaterialLWCData, so that GetWorldPosition can be used :
 	EvaluateVertexMaterialAttributes(Result);
 #endif
-	Result.LWCData = MakeMaterialLWCData(Result);
 
 	return Result;
 }

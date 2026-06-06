@@ -17,3 +17,5 @@ bouncer_device<public> := class<concrete><final>(creative_device_base):
 
     # Disables bouncing on this device, as well as any visual and audio effects.
     Disable<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

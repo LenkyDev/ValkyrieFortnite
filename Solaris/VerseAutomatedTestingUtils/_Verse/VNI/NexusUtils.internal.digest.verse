@@ -19,3 +19,6 @@ NexusUtils<public> := module:
 
         # Call a console command on all clients
         ExecuteConsoleCommandOnAllClients<native><epic_internal>(ConsoleCommand:string):void
+
+        # Returns true when running on the new Verse VM (VVM); false on legacy Blueprint VM (BPVM). Build-time decision; never changes at runtime.
+        IsVVM<native><epic_internal>()<computes>:logic

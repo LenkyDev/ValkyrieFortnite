@@ -7,3 +7,5 @@ filter_effect_device<epic_internal> := class<concrete><final>(patchwork_device):
     var Mix<public>:float = external {}
 
     var FilterType<public>:int = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

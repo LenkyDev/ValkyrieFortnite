@@ -94,6 +94,8 @@ roly_poly_spawner_device<public> := class<concrete><final>(creative_device_base,
 
     GetActiveRolyPoly<public>()<transacts><decides>:?roly_poly = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Roly Poly spawned from the 'roly_poly_spawner_device'
 roly_poly<public> := class<concrete><final>(positional, healthful, healable, damageable):
     # Returns the transform of the Roly Poly

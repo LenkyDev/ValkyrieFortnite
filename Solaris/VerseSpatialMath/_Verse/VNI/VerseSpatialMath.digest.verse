@@ -3,6 +3,7 @@ SpatialMath<public> := module:
     using {/Verse.org/Simulation}
     using {/Verse.org/Native}
     @import_as("/*.FVRotation")
+    # An abstract representation of an orientation change in 3d-space.
     rotation<native><public> := struct<concrete>:
 
 

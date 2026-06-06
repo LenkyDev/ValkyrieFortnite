@@ -18,3 +18,5 @@ hud_controller_device<public> := class<concrete><final>(creative_device_base):
 
     # Resets the *Affected Team* option to its starting value.
     ResetAffectedTeam<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

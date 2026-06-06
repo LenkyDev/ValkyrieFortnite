@@ -55,3 +55,5 @@ vehicle_spawner_drivable_reboot_van_device<public> := class<concrete><final>(veh
 
     # Succeeds if the revival seat is enabled, fails if it's disabled.
     IsEnabledRevive<public>()<transacts><decides>:void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

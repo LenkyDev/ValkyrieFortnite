@@ -31,3 +31,5 @@ hero_device<public> := class<concrete><final>(creative_device_base):
     # The second optional `agent` describes who ended the transformation if ended by elimination.
     # The conditions outlining when a transformation will end are set in the device's user options.
     TransformedPlayerEliminateEvent<public>:listenable(tuple(player, ?agent)) = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

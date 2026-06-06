@@ -18,3 +18,5 @@ volume_device<public> := class<concrete><final>(creative_device_base):
 
     # Succeeds when `Agent` is in the volume.
     IsInVolume<public>(Agent:agent)<transacts><decides>:void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

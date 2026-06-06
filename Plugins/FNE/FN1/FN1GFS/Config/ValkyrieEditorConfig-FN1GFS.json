@@ -77,7 +77,49 @@
 			"/Script/Landscape.LandscapeLayerInfoObject": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/Landscape.LandscapeGrassType": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/Engine.DataLayerAsset": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
-			"/Script/Synthesis.SubmixEffectStereoToQuadPreset": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] }
+			"/Script/Synthesis.SubmixEffectStereoToQuadPreset": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
+			"/Script/AudioGameplayVolume.AudioGameplayVolume": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/ConditionalTransitionsRuntime.FortConditionalTransitionComponent": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/Engine.AudioVolume": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/Engine.ExternalDataLayerInstance": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/Engine.TargetPoint": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteAI.FortAthenaPatrolPath": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteAI.FortAthenaPatrolPoint": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteAI.PatrolPathRenderingComponent": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteAI.PatrolPointRenderingComponent": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteEditor.SimpleDestructiblePropCellTransformer": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.FortCollisionAudioComponent": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.FortEmoteVolume": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.FortEventReaction_CustomVerbMessage": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.FortEventReaction_FortQuestIconVisibility": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.FortEventReaction_PlayAudio": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.FortEventReaction_PlayVFX": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.FortEventReaction_QuestReward": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.FortEventReaction_RemoveGameplayEffects": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.FortEventReaction_RemoveUrgentQuest": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.FortEventReaction_SetVisibility": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.FortGameplayConditional_Interact": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.FortGameplayConditional_Overlap": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.FortInstancedStaticMeshComponent": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.FortObjectiveFilter_MatchTimeElapsed": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.FortRewardEntry_Quest": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.FortVehicleAudioVoice": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.GameplayConditional_QuestState": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.GameplayConditional_Verbs": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.GameplayQuery_TagQuery": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.MinimapCameraStreamingSourceComponent": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.TargetedReactionType_InstigatorActor": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteGame.TargetedReactionType_SourceActor": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteQuest.EventReaction_Conditional": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteQuest.FortEventReaction_GrantGameplayEffects": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/FortniteQuest.ReactionCondition_GameplayQuery": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/LagerRuntime.FortAthenaLivingWorldStaticPointProvider": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/LagerRuntime.FortAthenaLivingWorldVolume": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/MidMatchRadioTowerGameplayRuntime.RemoveFoliageBoxComponent": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/PCG.PCGVolume": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/StaticLandscapeSystem.LandscapeStaticMesh": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/StaticLandscapeSystem.LandscapeStaticMeshComponent": { "Rules": [ "View", "Create", "Import" ] },
+			"/Script/UnrealEd.ConeBuilder": { "Rules": [ "View", "Create", "Import" ] }
 		},
 		"AllowedClasses": {
 			"/Script/AmbientAudio.AmbientAudioComponent": { "Visible": true },
@@ -191,6 +233,7 @@
 			"/Script/FN1NativeRuntime.VerseFortniteStormVolumeComponent": { "Visible": true },
 			"/Script/FN1NativeRuntime.VerseFortniteBusVolumeComponent": { "Visible": true },
 			"/Script/DelMarCore.DelMarLevelDataAsset": { "Visible": true },
+			"/FN1UEFNFramework/Components/BP_ServerConfig_Component.BP_ServerConfig_Component_C": { "Visible": true },
 			"/BlastBerry/Components/BP_Reload_SlurpWaterHeal.BP_Reload_SlurpWaterHeal_C": { "Visible": true },
 			"/BlastBerry/Components/BP_Reload_SlurpWaterBodyMobileMaterial.BP_Reload_SlurpWaterBodyMobileMaterial_C": { "Visible": true },
 			"/BlastBerry/Components/BP_Reload_SlurpWaterMaterialOverride.BP_Reload_SlurpWaterMaterialOverride_C": { "Visible": true },
@@ -257,6 +300,16 @@
 			"/BlastBerryAI/Bots/CharacterType/Modifiers/CharacterModifier_BotBehavior.CharacterModifier_BotBehavior_C": { "Visible": true },
 			"/BlastBerryAI/Bots/CharacterType/Modifiers/CharacterModifier_BotCosmetic.CharacterModifier_BotCosmetic_C": { "Visible": true },
 			"/BlastBerryAI/Bots/CharacterType/Modifiers/CharacterModifier_BotVerseBehavior.CharacterModifier_BotVerseBehavior_C": { "Visible": true },
+			"/Game/Athena/Playlists/Creative/Mutators/CreativeIslandMutatorList.CreativeIslandMutatorList_C": { "Visible": true },
+			"/Game/Athena/BuildingActors/FortVolumeActor_Base.FortVolumeActor_Base_C": { "Visible": true },
+			"/Script/ActorEntity.ActorEntityPrefabComponent": { "Visible": true },
+			"/Script/DynamicVolume.FortDynamicVolumeComponent": { "Visible": true },
+			"/Script/FortniteGame.CreativeDeferredTaskComponent": { "Visible": true },
+			"/Script/FortniteGame.FortIslandLocalizationComponent": { "Visible": true },
+			"/Script/FortniteGame.FortMinigameStatsComponent": { "Visible": true },
+			"/Script/FortniteGame.FortMinigameVolumeComponent": { "Visible": true },
+			"/Script/FortniteGame.FortPropertyOverrideReplComponent": { "Visible": true },
+			"/Script/FortniteGame.PlaysetLevelStreamComponent": { "Visible": true },
 			"/Script/ValetRuntime.DagwoodNetworkPhysicsComponent": { "Visible": true },
 			"/Script/FortniteGame.FortSkyTubePhysicsComponent": { "Visible": true },
 			"/Script/FortniteGame.FortSoundLibraryComponent": { "Visible": true },
@@ -290,7 +343,7 @@
 			"/Script/LevelSequence.LevelSequenceActor": { "Visible": true },
 			"/Script/LevelSequence.DefaultLevelSequenceInstanceData": { "Visible": true },
 			"/Script/StateDrivenActorRuntime.WorldInstancedStateTreeComponent": { "Visible": true },
-			"/Script/Engine.WorldPartitionRuntimeCellTransformer":									{ "Visible": true, "Subclasses": "All" }
+			"/Script/Engine.WorldPartitionRuntimeCellTransformer": { "Visible": true, "Subclasses": "All" }
 		},
 		"AllowedMenus": {
 			"LevelEditor.MainMenu": {
@@ -321,7 +374,7 @@
 			},
 			"LevelEditor.LevelViewportToolbar.Show": {
 				"AllowList": {
-					"+": [ "Common_Cameras", "Common_Cloud", "Common_Hair", "Common_WidgetComponents", "ShowVolumes", "SFG_Advanced" ]
+					"+": [ "Common_Cameras", "Common_Cloud", "Common_Hair", "Common_WidgetComponents", "ShowVolumes", "SFG_Advanced", "Common_Navigation" ]
 				}
 			},
 			"LevelEditor.LevelViewportToolbar.Show.SFG_Advanced": {
@@ -424,7 +477,7 @@
 		"+": [
 			{
 				"Type": "/Script/FortniteGame.BuildingLevelInstance",
-				"AllowList": [ "WorldAsset" ]
+				"AllowList": [ "WorldAsset", "DesiredRuntimeBehavior" ]
 			},
 			{
 				"Type": "/Script/Engine.RuntimeVirtualTextureComponent",
@@ -568,11 +621,7 @@
 			},
 			{
 				"Type": "/Script/Engine.HLODLayer",
-				"AllowList": [ "CellSize", "LoadingRange", "HLODActorClass", "ParentLayer" ]
-			},
-			{
-				"Type": "/Script/Engine.MaterialProxySettings",
-				"AllowList": [ "bAllowTwoSidedMaterial" ]
+				"AllowList": [ "CellSize", "LoadingRange", "HLODActorClass", "ParentLayer", "HLODBuilderSettings", "HLODBuilderClass" ]
 			},
 			{
 				"Type": "/Script/Engine.SoundAttenuationSettings",
@@ -583,8 +632,56 @@
 				"AllowList": ["RuntimeCellsTransformerStack"]
 			},
 			{
+				"Type": "/Script/ActorEntity.ActorEntityPrefabComponent",
+				"AllowList":[ "EntityClass"]
+			},
+			{
+				"Type": "/Script/DynamicVolume.FortDynamicVolumeComponent",
+				"AllowList":[ "bAutoLoad", "DefaultLinkCode","bForceMinigameSpawnAtCurrentLocation","bAdoptParentPlayspaceUsers"]
+			},
+			{
+				"Type": "/Script/Engine.BodySetup",
+				"AllowList":[ "bGenerateNonMirroredCollision" ]
+			},
+			{
+				"Type": "/Script/Engine.SoundAttenuationSettings",
+				"AllowList":[ "bAttenuateWithLPF", "LPFRadiusMin", "LPFRadiusMax", "HPFFrequencyAtMax" ]
+			},
+			{
+				"Type": "/Script/UnrealEd.ConeBuilder",
+				"AllowList":[ "Sides" ]
+			},
+			{
+				"Type": "/Script/Engine.MaterialProxySettings",
+				"AllowList":[ "bAllowTwoSidedMaterial", "RoughnessConstant", "SpecularConstant", "TextureSize", "bNormalMap", "bEmissiveMap", "bMetallicMap", "bRoughnessMap", "bSpecularMap" ]
+			},
+			{
+				"Type": "/Script/Engine.MeshMergingSettings",
+				"AllowList":[ "bBakeVertexDataToMesh", "bUseVertexDataForBakingMaterial", "bMergeEquivalentMaterials", "MaterialSettings" ]
+			},
+			{
+				"Type": "/Script/Engine.WorldPartition",
+				"AllowList":[ "RuntimeCellsTransformerStack" ]
+			},
+			{
+				"Type": "/Script/Engine.LightComponentBase",
+				"AllowList":[ "bAffectReflection", "bAffectTranslucentLighting" ]
+			},
+			{
+				"Type": "/Script/Engine.PrimitiveComponent",
+				"AllowList":[ "bReplicatePhysicsToAutonomousProxy" ]
+			},
+			{
 				"Type": "/Script/Engine.StaticMeshComponent",
-				"AllowList": ["NanitePixelProgrammableDistance"]
+				"AllowList":[ "bWorldPositionOffsetWritesVelocity", "NanitePixelProgrammableDistance" ]
+			},
+			{
+				"Type": "/Script/Water.WaterMeshComponent",
+				"AllowList":[ "FarDistanceMeshHeightWithoutOcean" ]
+			},
+			{
+				"Type": "/Script/Engine.PostProcessSettings",
+				"AllowList":[ "DepthOfFieldScale", "DepthOfFieldFocalRegion" ]				
 			}
 		],
 		"-": [

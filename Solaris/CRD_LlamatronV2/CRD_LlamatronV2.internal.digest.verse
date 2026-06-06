@@ -45,3 +45,5 @@ video_player_device<public> := class<concrete><final>(creative_device_base):
 
     # If any streaming device has forced control of the stream, this will release it and play the highest priority stream in line.
     ReleaseControl<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

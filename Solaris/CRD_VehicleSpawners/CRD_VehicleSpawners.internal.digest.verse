@@ -12,6 +12,8 @@ vehicle_spawner_baller_device<public> := class<concrete><final>(vehicle_spawner_
     # Refills the vehicle's energy.
     RefillEnergy<public>():void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Specialized `vehicle_spawner_device` that allows a pickup truck to be configured and spawned.
 vehicle_spawner_pickup_truck_device<public> := class<concrete><final>(vehicle_spawner_device):
 
@@ -143,6 +145,11 @@ vehicle_spawner_device<public> := class<abstract><epic_internal>(creative_device
 
     # Returns the `agent` who is currently driving the vehicle.
     GetDriver<epic_internal>()<transacts><decides>:agent = external {}
+
+    # The `fort_vehicle` currently associated with this spawner, if one exists.
+    var<private> Vehicle<public>:?fort_vehicle = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Specialized `vehicle_spawner_device` that allows a Whiplash sports car to be configured and spawned.
 vehicle_spawner_sports_car_device<public> := class<concrete><final>(vehicle_spawner_device):

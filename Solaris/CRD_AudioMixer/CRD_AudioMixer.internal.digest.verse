@@ -15,3 +15,5 @@ audio_mixer_device<public> := class<concrete><final>(creative_device_base):
 
     # Removes all previously registered `agent`s when using the *CanBeHeardBy* Registered Players or NonRegisteredPlayers options.
     UnregisterAll<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

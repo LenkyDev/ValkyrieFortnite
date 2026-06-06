@@ -36,19 +36,19 @@ Devices<public> := module:
         # Convenience interpolation modes. These built in modes are based on the CSS animation standard: https://www.w3.org/TR/css-easing-1/
         InterpolationTypes<public> := module:
             # `Linear` animations move at a constant speed.
-            Linear<public>:cubic_bezier_parameters = external {}
+            (/Fortnite.com/Devices/CreativeAnimation/InterpolationTypes:)Linear<public>:cubic_bezier_parameters = external {}
 
             # `Ease` animations start slowly, speed up, then end slowly. The speed of the animation is slightly slower at the end than the start.
-            Ease<public>:cubic_bezier_parameters = external {}
+            (/Fortnite.com/Devices/CreativeAnimation/InterpolationTypes:)Ease<public>:cubic_bezier_parameters = external {}
 
             # `EaseIn` animations start slow, then speed up towards the end.
-            EaseIn<public>:cubic_bezier_parameters = external {}
+            (/Fortnite.com/Devices/CreativeAnimation/InterpolationTypes:)EaseIn<public>:cubic_bezier_parameters = external {}
 
             # `EaseOut` animations start fast, then slow down towards the end.
-            EaseOut<public>:cubic_bezier_parameters = external {}
+            (/Fortnite.com/Devices/CreativeAnimation/InterpolationTypes:)EaseOut<public>:cubic_bezier_parameters = external {}
 
             # `EaseInOut` animations are similar to `Ease` but the start and end animation speed is symmetric.
-            EaseInOut<public>:cubic_bezier_parameters = external {}
+            (/Fortnite.com/Devices/CreativeAnimation/InterpolationTypes:)EaseInOut<public>:cubic_bezier_parameters = external {}
 
         # Instead of specifying the actual keyframe positions, we specify the keyframe *deltas*. This allows us to treat the initial position of the prop as keyframe 0 and avoid the question of how to get the prop to its initial location. For a `animation_mode.Loop` animation, the net rotation and translation must both be zero. Each delta is interpreted as a world-space transformation to be concatenated onto the previous transform(s).
         keyframe_delta<native><public> := struct:
@@ -167,7 +167,7 @@ Devices<public> := module:
         MoveTo<public>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, OverTime:float)<suspends>:move_to_result = external {}
 
         # Gets the global transform of this device.
-        GetGlobalTransform<public>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
+        GetGlobalTransform<override>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
 
         # Sets the global transform of this device.
         SetGlobalTransform<public>(NewGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void = external {}
@@ -218,7 +218,7 @@ Devices<public> := module:
         MoveTo<public>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, OverTime:float)<suspends>:move_to_result = external {}
 
         # Gets the global transform of this object.
-        GetGlobalTransform<public>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
+        GetGlobalTransform<override>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
 
         # Sets the global transform of this object.
         SetGlobalTransform<public>(NewGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void = external {}

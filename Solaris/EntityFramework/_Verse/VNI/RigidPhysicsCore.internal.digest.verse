@@ -1,3 +1,4 @@
+using {/Verse.org/Native}
 using {/Verse.org/SpatialMath}
 # Specifies how a collision volume pair should interact. See collision_profile.
 collision_interaction<native><public> := enum:
@@ -15,7 +16,7 @@ collision_channel<native><public> := class<concrete><epic_internal>:
 # An alias for the function type used to map a collision_channel to a collision_interaction used by  collision_profile.
 collision_channel_to_interaction<public> := type {_(:collision_channel)<computes>:collision_interaction}
 
-DefaultChannelToInteraction<epic_internal>(__dupe___unnamed_parameter_96:collision_channel)<computes>:collision_interaction = external {}
+DefaultChannelToInteraction<epic_internal>(__dupe___unnamed_parameter_0:collision_channel)<computes>:collision_interaction = external {}
 
 # A collision profile determines how a volume interacts with other volumes for Overlap queries, Sweep queries, and physics simulation. When two volumes are being tested to see how they interact, the algorithm looks like this:
 #    GetInteraction(A:collision_profile, B:collision_profile):collision_interaction = 
@@ -153,6 +154,7 @@ sweep_hit<native><public> := struct<epic_internal>:
     # If TargetVolume is a polygonal object (mesh, convex hull, etc.) and the contact point is on an edge or vertex, this is the most-opposing face normal of the faces that share that edge or vertex. Otherwise it is the same as HitNormal.
     ContactFaceNormal<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
 
+@available {MinUploadedAtFNVersion := 4100}
 @experimental
 contact_point<native><epic_internal> := struct<epic_internal>:
     ContactPosition<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
@@ -163,6 +165,7 @@ contact_point<native><epic_internal> := struct<epic_internal>:
 
     ContactDepth<native><public>:float = external {}
 
+@available {MinUploadedAtFNVersion := 4100}
 @experimental
 collision_volume_pair<native><epic_internal> := struct<epic_internal>:
     SourceComponent<native><public>:component
@@ -173,6 +176,7 @@ collision_volume_pair<native><epic_internal> := struct<epic_internal>:
 
     TargetVolume<native><public>:collision_element
 
+@available {MinUploadedAtFNVersion := 4100}
 @experimental
 collision_hit<native><epic_internal> := struct<epic_internal>:
     CollisionVolumes<native><public>:collision_volume_pair

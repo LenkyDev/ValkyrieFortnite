@@ -37,6 +37,8 @@ air_vent_device<public> := class<concrete><final>(creative_device_base):
     # Activates this device.
     Activate<public>():void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Evaluates attributes for `agent` when signaled from other devices. Acts as branching logic, checking whether the `agent` associated with the signal passes all of the tests setup in this device, then sends a signal on either `PassEvent` or `FailEvent`.
 attribute_evaluator_device<public> := class<concrete><final>(trigger_base_device):
     # Signaled when the `agent` from `EvaluateAgent` passes the requirements specified by this device.
@@ -50,6 +52,8 @@ attribute_evaluator_device<public> := class<concrete><final>(trigger_base_device
     # Tests whether the specified agent satisfies the required conditions specified on the device (e.g. eliminations/score), and fires either the `PassEvent` or `FailEvent` accordingly.
     EvaluateAgent<public>(Agent:agent):void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Used to spawn various types of balls. Can be used to control HUD elements related to the spawned balls.
 ball_spawner_device<public> := class<concrete><final>(creative_device_base):
     # Shows the floating HUD Icons to players, if these have been configured by the device.
@@ -57,6 +61,8 @@ ball_spawner_device<public> := class<concrete><final>(creative_device_base):
 
     # Hides the floating HUD Icons from players, if these have been configured by the device.
     HideHUD<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Base class for devices that spawn items.
 base_item_spawner_device<public> := class<abstract><epic_internal>(creative_device_base):
@@ -69,6 +75,8 @@ base_item_spawner_device<public> := class<abstract><epic_internal>(creative_devi
 
     # Disables this device.
     Disable<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # A simplified storm device that provides a way to create a single-phase storm and control its basic behaviors.
 # To control multiple phases of the storm see `advanced_storm_controller_device`.
@@ -91,6 +99,8 @@ beacon_device<public> := class<concrete><final>(creative_device_base):
 
     # Removes all `agent`s from the show list. `Agent`s will still see the Beacon if they meet the Team Visibility check.
     RemoveAllFromShowList<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Used to display custom text messages on a billboard.
 billboard_device<public> := class<concrete><final>(creative_device_base):
@@ -120,6 +130,8 @@ billboard_device<public> := class<concrete><final>(creative_device_base):
 
     # Returns the *Text Size* of the device *Text*.
     GetTextSize<public>()<transacts>:int = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Used to create a button which can trigger other devices when an agent interacts with it.
 button_device<public> := class<concrete><final>(creative_device_base):
@@ -157,6 +169,8 @@ button_device<public> := class<concrete><final>(creative_device_base):
 
     # Returns the number of times that this button can still be interacted with before it will be disabled. Will return `0` if `GetMaxTriggerCount` is unlimited.
     GetTriggerCountRemaining<public>()<transacts>:int = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Used to create a zone that can trigger effects once players enter it. Can be set up to be capturable by a team, to provide a score while held, or to require a specific item as a drop-off.
 capture_area_device<public> := class<concrete><final>(creative_device_base):
@@ -261,6 +275,8 @@ capture_area_device<public> := class<concrete><final>(creative_device_base):
     # Is true when `Agent` is in the Capture Area.
     IsInArea<public>(Agent:agent)<transacts><decides>:void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Spawns and tracks a single item as a game objective (e.g. flag).
 capture_item_spawner_device<public> := class<concrete><final>(creative_device_base):
     # Signaled when spawned item is captured.
@@ -288,6 +304,8 @@ capture_item_spawner_device<public> := class<concrete><final>(creative_device_ba
     # Disables this device.
     Disable<public>():void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Sends an Event for every signal it receives. A simple relay to connect multiple devices together.
 # It can also broadcast an event to the playspace and listen for any other channel devices broadcasting
 # to the playspace.
@@ -297,6 +315,8 @@ channel_device<public> := class<concrete><final>(creative_device_base):
 
     # Calls `ReceivedTransmitEvent`, optionally with `Agent` as the instigator.
     Transmit<public>(Agent:?agent):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Used together with `class_designer_device` to control how/when created classes can be accessed by `agent`s.
 class_and_team_selector_device<public> := class<concrete><final>(creative_device_base):
@@ -326,6 +346,8 @@ class_and_team_selector_device<public> := class<concrete><final>(creative_device
     # Changes the selecting team.
     ChangeSelectorTeam<public>(Agent:agent):void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Used together with `class_and_team_selector_device` to create class based gameplay. Defines custom class attributes and inventory loadouts.
 class_designer_device<public> := class<concrete><final>(creative_device_base):
     # Returns an array of agents that are currently of *Class* defined by this device.
@@ -333,6 +355,8 @@ class_designer_device<public> := class<concrete><final>(creative_device_base):
 
     # Is true if `Agent` is on *Class* defined by this device.
     IsOfClass<public>(Agent:agent)<transacts><decides>:void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Used to place a collectible item into the world.
 collectible_object_device<public> := class<concrete><final>(creative_device_base):
@@ -352,6 +376,8 @@ collectible_object_device<public> := class<concrete><final>(creative_device_base
 
     # Immediately respawns the object for all agents.
     RespawnForAll<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Used to create a tile that changes colors when `agent`s interact with it.
 color_changing_tiles_device<public> := class<concrete><final>(creative_device_base):
@@ -376,6 +402,8 @@ color_changing_tiles_device<public> := class<concrete><final>(creative_device_ba
 
     # Sets the color of the tile to `Agent`'s team color.
     (/Fortnite.com/Devices/color_changing_tiles_device:)SetTeam<public>(Agent:agent):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Used to create a specialized button which can only be activated when `agent`s are carrying specific items.
 conditional_button_device<public> := class<concrete><final>(creative_device_base):
@@ -442,6 +470,8 @@ conditional_button_device<public> := class<concrete><final>(creative_device_base
     # Returns if the `Agent` is currently holding the item stored at `KeyItemIndex`.
     IsHoldingItem<public>(Agent:agent, KeyItemIndex:int)<transacts><decides>:void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Used to create a specialized light which can be enabled and disabled and set to a desired color in response to in game events.
 customizable_color_light_device<epic_internal> := class<concrete><final>(creative_device_base):
     # Signaled when this `popup_device` is turned on for an `agent`.
@@ -467,6 +497,8 @@ customizable_color_light_device<epic_internal> := class<concrete><final>(creativ
     # Sets the light color to `Agent`'s team color.
     SetToTeamColor<public>(Agent:agent):void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Used to amplify an `agent`'s damage temporarily. This applies to any weapon the `agent` is using at the time of the powerup.
 damage_amplifier_powerup_device<public> := class<concrete><final>(powerup_device):
     # Sets the *Magnitude* for this powerup, clamped to the Min and Max defined in the device.
@@ -477,6 +509,8 @@ damage_amplifier_powerup_device<public> := class<concrete><final>(powerup_device
     # Returns the current *Magnitude* for the powerup.
     # For the Damage Amplifier Powerup, this is the damage multiplier.
     GetMagnitude<public>()<transacts>:float = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Used to spawn items when an `agent` or specified target is eliminated.
 elimination_manager_device<public> := class<concrete><final>(base_item_spawner_device):
@@ -510,6 +544,8 @@ explosive_device<public> := class<concrete><final>(creative_device_base):
     # Triggers this device to explode. Passes `Agent` as the instigator of the resulting `ExplodedEvent`.
     Explode<public>(Agent:agent):void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Used to provide fuel sources for vehicles. Can also be used to deal considerable damage to `agent`s and the environment when destroyed.
 fuel_pump_device<public> := class<concrete><final>(creative_device_base):
     # Signaled when the fuel pump is emptied.
@@ -527,6 +563,8 @@ fuel_pump_device<public> := class<concrete><final>(creative_device_base):
 
     # Grants fuel to `Agent`.
     Empty<public>(Agent:agent):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Used to let `agent`s slide on any surface with accompanying visual and audio effects.
 grind_powerup_device<public> := class<concrete><final>(powerup_device):
@@ -582,6 +620,8 @@ hud_message_device<public> := class<concrete><final>(creative_device_base):
 
     # Called when all queued *Messages* from all players that are affected by this HUD Message Device have been cleared.
     ClearAllMessagesEvent<public>:listenable(agent) = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Used to grant items to `agent`s. Items can either be dropped at the `agent`'s location or added directly to their inventory.
 item_granter_device<public> := class<concrete><final>(creative_device_base):
@@ -687,6 +727,8 @@ item_granter_device<public> := class<concrete><final>(creative_device_base):
 
     GetItemInventoryCountAtIndex<epic_internal>(Agent:agent, Index:int)<transacts>:int = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Used to configuration and spawn items that players can pick up and use.
 item_spawner_device<public> := class<concrete><final>(base_item_spawner_device):
     # Cycles device to next configured item.
@@ -706,6 +748,8 @@ item_spawner_device<public> := class<concrete><final>(base_item_spawner_device):
 
     # Returns the *Time Between Spawns* (in seconds) after an item is collected before the next is spawned, if this device has *Respawn Item on Timer* enabled (see `SetEnableRespawnTimer`)
     GetTimeBetweenSpawns<public>()<transacts>:float = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Used to customize the state and accessibility of doors. `lock_device` only works with assets that have a door attached.
 lock_device<public> := class<concrete><final>(creative_device_base):
@@ -727,6 +771,8 @@ lock_device<public> := class<concrete><final>(creative_device_base):
     # Toggles between `Open` and `Close`. `Agent` is the instigator of the action.
     ToggleOpened<public>(Agent:agent):void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Used to create custom points of interest and markers on the minimap and overview map.
 map_indicator_device<public> := class<concrete><final>(creative_device_base):
     # Enables this device.
@@ -741,6 +787,8 @@ map_indicator_device<public> := class<concrete><final>(creative_device_base):
     # Deactivates the objective pulse at `Agent`'s location.
     DeactivateObjectivePulse<public>(Agent:agent):void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Used to take players to different islands and to link experiences together.
 matchmaking_portal_device<public> := class<concrete><final>(creative_device_base):
     # Enables this device.
@@ -748,6 +796,8 @@ matchmaking_portal_device<public> := class<concrete><final>(creative_device_base
 
     # Disables this device.
     Disable<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Used to temporarily modify the speed of `agent`s and vehicles.
 movement_modulator_device<public> := class<concrete><final>(creative_device_base):
@@ -763,6 +813,8 @@ movement_modulator_device<public> := class<concrete><final>(creative_device_base
 
     # Activates this device's movement effect on `Agent`.
     Activate<public>(Agent:agent):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Provides a collection of destructible devices that you can select from to use as objectives in your game.
 objective_device<public> := class<concrete><final>(creative_device_base, healthful, damageable, healable):
@@ -808,6 +860,8 @@ objective_device<public> := class<concrete><final>(creative_device_base, healthf
     # Sets the device either invulnerable or damageable
     SetInvulnerable<public>(Invulnerable:logic):void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Specialized `trigger_base_device` that will fire output events based on line of sight between `agent`s and the device.
 perception_trigger_device<public> := class<concrete><final>(trigger_base_device):
     # Signaled when an `agent` has direct line of sight to this device.
@@ -838,6 +892,8 @@ perception_trigger_device<public> := class<concrete><final>(trigger_base_device)
     # Succeeds when `Agent` is registered to this checkpoint.
     IsLookingAtDevice<public>(Agent:agent)<transacts><decides>:void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # A triggered bumper that can knock players back, damage them, and award points.
 pinball_bumper_device<public> := class<concrete><final>(creative_device_base):
     # Signaled when this device is activated by an `agent`.
@@ -853,6 +909,8 @@ pinball_bumper_device<public> := class<concrete><final>(creative_device_base):
     # Activates this device.
     Activate<public>():void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Used to move, damage, and give scores to players that interact with it. By default, it is activated by any player touching its front face, which rotates it counterclockwise and knocks those players away from it and slightly upward.
 pinball_flipper_device<public> := class<concrete><final>(creative_device_base):
     # Signaled when this device is activated by an `agent`.
@@ -867,6 +925,8 @@ pinball_flipper_device<public> := class<concrete><final>(creative_device_base):
 
     # Causes `Agent` to activate this device.
     Activate<public>(Agent:agent):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Base class for various powerup devices offering common events like `ItemPickedUpEvent`.
 powerup_device<public> := class<abstract><epic_internal>(creative_device_base):
@@ -904,6 +964,8 @@ powerup_device<public> := class<abstract><epic_internal>(creative_device_base):
     # Grants this powerup without an agent reference.
     # Requires *Apply To* set to *All Players*.
     Pickup<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Allows customization of the Prop-o-Matic weapon functions and how the game reacts to players using it.
 prop_o_matic_manager_device<public> := class<concrete><final>(creative_device_base):
@@ -947,6 +1009,8 @@ prop_o_matic_manager_device<public> := class<concrete><final>(creative_device_ba
     # Returns whether a player is currently hiding or not.
     IsPlayerProp<public>(Agent:agent)<transacts><decides>:void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Base class for devices that spawn a prop object.
 prop_spawner_base_device<public> := class<abstract><epic_internal>(creative_device_base):
     # Enables this device.
@@ -960,6 +1024,8 @@ prop_spawner_base_device<public> := class<abstract><epic_internal>(creative_devi
 
     # Destroys all props spawned from this device.
     DestroyAllSpawnedObjects<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # A device used to damage players who collide with it. Can also be used as a trigger to activate other devices.
 pulse_trigger_device<public> := class<concrete><final>(creative_device_base):
@@ -1009,6 +1075,8 @@ pulse_trigger_device<public> := class<concrete><final>(creative_device_base):
     # Returns the speed (in meters per second) at which the pulses generated by this pulse trigger will travel.
     GetWaveSpeed<public>()<transacts>:float = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Used to play curated music from the device or one or more registered `agent`s.
 radio_device<public> := class<concrete><final>(creative_device_base):
     # Starts playing audio from this device.
@@ -1031,6 +1099,8 @@ radio_device<public> := class<concrete><final>(creative_device_base):
 
     # Hides this device from the world.
     Hide<public>()<transacts>:void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Used to generate random numbers between a minimum and maximum value. Events are signaled when numbers are generated.
 #  * *Value Limit 1* is the minimum value for generation.
@@ -1072,6 +1142,8 @@ rng_device<public> := class<concrete><final>(creative_device_base):
     # Cancels the active number generation.
     Cancel<public>():void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Used to customize gameplay for any round-based game. It generally defines what happens to the`agent`'s inventory and rewards in each round.
 round_settings_device<public> := class<concrete><final>(creative_device_base):
     # Signaled when a game round starts.
@@ -1097,6 +1169,8 @@ round_settings_device<public> := class<concrete><final>(creative_device_base):
 
     # Ends the round immediately with `Agent`'s team set as the winner of the round.
     EndRound<public>(Agent:agent):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Used to manipulate scores using in-experience triggers. If *Activating Team* is set to a specific team, then you should use the `agent` overloads of each function. The `agent`'s team will be used to determine if that `agent` is allowed to affect the state of the device.
 score_manager_device<public> := class<concrete><final>(creative_device_base):
@@ -1159,6 +1233,8 @@ score_manager_device<public> := class<concrete><final>(creative_device_base):
     # Immediately awards the specified score quantity to the indicated agent. Does not require Activate to be called subsequently, and will not modify the device's current Score Award quantity
     AwardScore<epic_internal>(Agent:agent, ScoreToAward:int):void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # A single customizable pop up target that can be hit by `agent`s to trigger various events.
 shooting_range_target_device<public> := class<concrete><final>(creative_device_base):
     # Signaled when the target is hit in the bullseye area.
@@ -1202,6 +1278,8 @@ shooting_range_target_device<public> := class<concrete><final>(creative_device_b
 
     # Causes a target to transition from standing upright (active) to lying flat (inactive).
     PopDown<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # A set of customizable pop up targets that can be hit by players to trigger various events.
 shooting_range_target_track_device<public> := class<concrete><final>(creative_device_base):
@@ -1265,6 +1343,8 @@ shooting_range_target_track_device<public> := class<concrete><final>(creative_de
     # Starts the target moving toward the start of the track.
     MoveToStart<public>():void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Base class for various specialized storm devices. See also: * `basic_storm_controller_device` * `advanced_storm_controller_device`
 storm_controller_device<public> := class<abstract><epic_internal>(creative_device_base):
     # Signaled when storm resizing ends. Use this with the *On Finish Behavior* option for better controls.
@@ -1291,6 +1371,8 @@ storm_controller_device<public> := class<abstract><epic_internal>(creative_devic
     # Moves the `storm_controller_device` to the specified `Transform` over the specified time, in seconds. 
     # Existing storms will not target the new location, but newly generated storms will.
     MoveTo<override>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, OverTime:float)<suspends>:move_to_result = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # DEPRECATED This device is no longer supported.Used to inform players of other content made by a creator using a Support-A-Creator code. When players activate the device, it will bring up the same Support-A-Creator dialog box they would see in the Creative hub. The Support-A-Creator information shows when the dialog box opens for the player.
 support_a_creator_device<public> := class<concrete><final>(creative_device_base):
@@ -1331,7 +1413,7 @@ team_settings_and_inventory_device<public> := class<concrete><final>(creative_de
     # This will return them to the team they were on before they joined a Temporary Team
     RemoveTemporaryMemberFromTeam<public>(Agent:agent):void = external {}
 
-    # Returns all temporary team members for this Device’s Team Setting Value back to their original Teams.
+    # Returns all temporary team members for this Device's Team Setting Value back to their original Teams.
     # If the device is configured to All, then this function will remove all Temporary Team members from any Temporary Team they are on, returning them to their original team.
     RemoveTemporaryMembersFromTeam<public>():void = external {}
 
@@ -1353,6 +1435,8 @@ team_settings_and_inventory_device<public> := class<concrete><final>(creative_de
     # * If this is set to TRUE, it allows members of this team to Emote and invite other players to their team.
     # * If this is set to FALSE, it prevents members of this team from using an Emote to invite other players to this team.
     var AllowTemporaryTeamMemberInvitations<public>:?logic = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Customizable rift that allows `agent`s to move instantly between locations. You can use this to move players around your island, or create multi-island experiences with teleporters that take players from one island to another.
 teleporter_device<public> := class<concrete><final>(creative_device_base):
@@ -1384,6 +1468,8 @@ teleporter_device<public> := class<concrete><final>(creative_device_base):
 
     # Teleport `Agent` to this device.
     Teleport<public>(Agent:agent):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Configures game modes where players can start or stop timers to advance gameplay objectives, such as Attack/Defend Bomb objectives.
 timed_objective_device<public> := class<concrete><final>(creative_device_base):
@@ -1440,6 +1526,8 @@ timed_objective_device<public> := class<concrete><final>(creative_device_base):
 
     # Completes the objective with `Agent` acting as the user the interacted this device.
     Complete<public>(Agent:agent):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Provides a way to keep track of the time something has taken, either for scoreboard purposes, or to trigger actions. It can be configured in several ways, either acting as a countdown to an event that is triggered at the end, or as a stopwatch for an action that needs to be completed before a set time runs out.
 timer_device<public> := class<concrete><final>(creative_device_base):
@@ -1590,6 +1678,8 @@ timer_device<public> := class<concrete><final>(creative_device_base):
     # Succeeds if this device is tracking timer state for each individual `agent` independently. Fails if state is being tracked globally for all `agent`'s.
     IsStatePerAgent<public>()<transacts><decides>:void = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Allows creation and HUD tracking of custom objectives for `agent`s to complete.
 tracker_device<public> := class<concrete><final>(creative_device_base):
     # Resets the progress for `Agent` (and any `agent`s sharing progress).
@@ -1711,6 +1801,8 @@ tracker_device<public> := class<concrete><final>(creative_device_base):
     # Returns an array of agents that currently have this tracker active.
     GetActiveAgents<public>()<reads>:[]agent = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # A trap device that destroys the tile it's placed on when activated.
 trick_tile_device<public> := class<concrete><final>(creative_device_base):
     # Signaled when the tile this device is attached to is removed. This may occur later than `TriggeredEvent` if *Activation Delay* is set on the device.
@@ -1761,6 +1853,8 @@ trick_tile_device<public> := class<concrete><final>(creative_device_base):
     # Only the trigger will move, the target buildings will not change. 
     MoveTo<override>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, OverTime:float)<suspends>:move_to_result = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Base class for various specialized trigger devices. See also: * `trigger_device` * `perception_trigger_device` * `attribute_evaluator_device`
 trigger_base_device<public> := class<abstract><epic_internal>(creative_device_base):
     # Enables this device.
@@ -1797,6 +1891,8 @@ trigger_base_device<public> := class<abstract><epic_internal>(creative_device_ba
     # Gets the time (in seconds) which must pass after triggering, before this device informs other external devices that it has been triggered.
     GetTransmitDelay<public>()<transacts>:float = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Used to relay events to other linked devices.
 trigger_device<public> := class<concrete><final>(trigger_base_device):
     # Signaled when an `agent` triggers this device.
@@ -1808,6 +1904,8 @@ trigger_device<public> := class<concrete><final>(trigger_base_device):
 
     # Triggers this device, causing it to activate its `TriggeredEvent` event.
     Trigger<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Holds and spawns items, with an optional cost for each item. Can hold up to three items, and `agent`s can cycle between these by hitting the machine with their pickaxe.
 vending_machine_device<public> := class<concrete><final>(creative_device_base):
@@ -1826,6 +1924,8 @@ vending_machine_device<public> := class<concrete><final>(creative_device_base):
 
     # Spawns an item.
     SpawnItem<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Used to trigger a visual effect (a glow or an outline) when `agent`s pick it up.
 visual_effect_powerup_device<public> := class<concrete><final>(powerup_device):

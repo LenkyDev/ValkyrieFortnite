@@ -18,14 +18,13 @@ children_streaming_policy<native><public> := enum:
 @experimental
 streaming_component<native><epic_internal> := class<final_super>(component):
     @editable
-    @experimental
+    # Determines how the entity will be streamed on clients with regards to its parent.
     EntityStreamingPolicy<native><epic_internal>:?entity_streaming_policy = external {}
 
     @editable
-    @experimental
+    # Determines how the entity will stream its children on clients.
     ChildrenStreamingPolicy<native><epic_internal>:?children_streaming_policy = external {}
 
-@experimental
-(InEntity:entity).GetEntityStreamingPolicy<native><epic_internal>()<transacts>:?entity_streaming_policy
-
-(InEntity:entity).GetChildrenStreamingPolicy<native><epic_internal>()<transacts>:?children_streaming_policy
+    @editable
+    # Determines the streaming distance at which the entity will be loaded on clients, in meters.
+    StreamingDistance<native><epic_internal>:?float = external {}

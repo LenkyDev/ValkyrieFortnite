@@ -76,3 +76,5 @@ hiding_prop_device<public> := class<concrete><final>(creative_device_base, enabl
     # This value controls whether or not Hidden Travel is enabled or disabled
     #  Modifying this value will take effect the next time a player attempts a hidden travel.
     var EnableHiddenTravel<public>:logic = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

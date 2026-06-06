@@ -308,6 +308,9 @@ FortPlayerUtilities<public> := module:
     # Sends `InPlayer` back to the main game lobby.
     (InPlayer:player).SendToLobby<native><public>()<transacts>:void
 
+    # Sends `InPlayer` back to the main game lobby with the specified reason.
+    (InPlayer:player).SendToLobbyWithReason<native><epic_internal>(Reason:string)<transacts>:void
+
     # Succeeds if `InAgent` is spectating the experience. Fails otherwise.
     (InAgent:agent).IsSpectator<native><public>()<transacts><decides>:void
 
@@ -341,8 +344,8 @@ FortPlayerUtilities<public> := module:
 # Module import path: /Fortnite.com/Game
 Game<public> := module:
     using {/UnrealEngine.com/Temporary/Diagnostics}
+    using {/Verse.org/SpatialMath}
     using {/UnrealEngine.com/Temporary/SpatialMath}
-    using {/Verse.org/SceneGraph/VerseCamera}
     using {/Verse.org/Simulation}
     using {/Verse.org/SceneGraph}
     using {/UnrealEngine.com/Abilities}
@@ -356,7 +359,7 @@ Game<public> := module:
         EliminatingCharacter<native><public>:?fort_character
 
     @experimental
-    fort_ability_component<native><epic_internal> := class(ability_component):
+    fort_ability_component<native><epic_internal> := class(old_ability_component):
         OnBeginSimulation<native><override>():void
 
         OnEndSimulation<native><override>():void
@@ -418,22 +421,13 @@ Game<public> := module:
     # Returns the round manager from the simulation entity.
     (InEntity:entity).GetFortRoundManager<public>()<transacts><decides>:fort_round_manager = external {}
 
-    @experimental
-    # Component used to associate a camera behavior component with a player
-    fort_player_camera_view<native><epic_internal> := class<epic_internal>(player_camera_view):
-
-
-    @experimental
-    GetPlayerCameraView<native><epic_internal>(Player:player)<transacts><decides>:fort_player_camera_view
-
-    @experimental
-    fort_player_camera_activation<native><epic_internal> := class(cancelable):
-        Cancel<native><override>()<transacts>:void
-
     # Implemented by objects to allow reading position information.
     positional<native><public> := interface<epic_internal>:
         # Returns the transform of the object.
         GetTransform<public>()<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)transform
+
+        # Returns the transform of the object.
+        GetGlobalTransform<public>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
 
     # Implemented by Fortnite objects that have health state and can be eliminated.
     healthful<native><public> := interface<epic_internal>:
@@ -545,6 +539,9 @@ Game<public> := module:
 
         # Player, weapon, vehicle, etc. that damaged `Target`. Can be false when damage is caused by code, the environment, etc.
         Source<native><public>:?game_action_causer = external {}
+
+        # `true` if the damage hit a weakpoint, `false` otherwise.
+        IsWeakpointDamage<native><public>:logic = external {}
 
     # Parameters for common healing functions on Fortnite objects.
     healing_args<native><public> := struct:
@@ -688,25 +685,20 @@ FortSafeZone<public> := module:
 
 # Module import path: /Fortnite.com/Teams
 Teams<public> := module:
-    using {/Verse.org/Simulation/Tags}
     using {/Verse.org/SceneGraph}
+    using {/Verse.org/Simulation/Tags}
     using {/Verse.org/Simulation}
     using {/Verse.org/Native}
-    using {/Verse.org/Chat}
     using {/Verse.org/AgentGroup}
     @available {MinUploadedAtFNVersion := 4000}
     @experimental
-    fort_team_member_info<native><epic_internal> := class(member_info_interface, has_voice_member_info):
+    fort_team_member_info<native><epic_internal> := class(member_info_interface):
 
 
     @available {MinUploadedAtFNVersion := 4000}
     @experimental
-    # A fortnite instance of a team that is able to reference the current simulations member map.Contains a voice_channel for managing team communications
+    # A fortnite instance of a team that is able to reference the current simulations member map
     fort_team<native><epic_internal> := class<unique>(team, agent_group_interface(fort_team_member_info)):
-        GetTeamVoiceChannel<native_callable><public>()<transacts>:?voice_channel(fort_team_member_info) = external {}
-
-        RemoveTeamVoiceChannel<native_callable><public>(SimulationEntity:simulation_entity)<transacts>:void = external {}
-
         # Get the underlying member map for this team
         GetMemberMap<override><native_callable>()<reads>:[agent]fort_team_member_info = external {}
 
@@ -864,9 +856,9 @@ Teams<public> := module:
 
 # Module import path: /Fortnite.com/Vehicles
 Vehicles<public> := module:
-    using {/Verse.org/Simulation}
     using {/Verse.org/SceneGraph}
     using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Verse.org/Simulation}
     using {/Fortnite.com/Game}
     using {/Fortnite.com/Characters}
     # Returns the `fort_vehicle` for `InCharacter`.
@@ -884,8 +876,14 @@ Vehicles<public> := module:
         # Succeeds if this `fort_vehicle` is standing in water.
         IsInWater<public>()<transacts><decides>:void
 
-        # Returns an array with all the passengers of the vehicle.
-        GetPassengers<public>()<transacts>:[]fort_character
+        # Returns an array of every `fort_character` in the vehicle. Calls `GetOccupants()` and casts each occupying agent to a `fort_character`.
+        GetPassengers<public>()<transacts>:[]fort_character = external {}
+
+        # Returns an array with all `agent` currently occupying the vehicle.
+        GetOccupants<public>()<reads>:[]agent
+
+        # Returns an array with all the current drivers of the vehicle, which is usually a single agent.
+        GetDrivers<public>()<reads>:[]agent
 
         # Returns the fuel state of the vehicle. If the vehicle uses fuel, this value will be between 0.0 and `GetFuelCapacity`. Otherwise, this value will be -1.0.
         GetFuelRemaining<public>()<transacts>:float
@@ -908,6 +906,32 @@ Vehicles<public> := module:
         # The maximum boost capacity of the vehicle. If the vehicle uses boost, this value will be between 1.0 and Inf. Otherwise, this value will be false.
         var<private> BoostCapacity<public>:?float
 
+        # Removes the specified agent from the vehicle. Fails if the agent is not in the vehicle.
+        RemoveAgent<public>(InAgent:agent)<transacts><decides>:void
+
+        # Removes all occupying agents from the vehicle.
+        RemoveAll<public>()<transacts>:void
+
+        # Attempts to add the agent to the `fort_vehicle`. If there are no empty seats, or the agent cannot otherwise be placed in the vehicle, the operation fails.
+        AddAgent<public>(InAgent:agent)<transacts><decides>:void
+
+        # Returns an array of all `fort_vehicle_seat`s in the `fort_vehicle`.
+        GetSeats<public>()<reads>:[]fort_vehicle_seat
+
+    # Represents a seat in a `fort_vehicle`.
+    fort_vehicle_seat<native><public> := class<unique><epic_internal>:
+        # Succeeds if this is a driver seat.
+        IsDriverSeat<native><public>()<reads><decides>:void
+
+        # The `agent` currently occupying this seat, if any.
+        var<private> Occupant<public>:?agent
+
+        # Attempts to seat `Agent` into this seat. Fails if the seat is occupied or the agent cannot be seated. Setting the occupant to `false` will remove any seated agent.
+        SetOccupant<native><public>(Value:?agent)<transacts><decides>:void
+
+        # The `fort_vehicle` this seat belongs to.
+        var<private> Vehicle<public>:fort_vehicle
+
     @hide_in_editor
     @experimental
     @deprecated
@@ -921,7 +945,9 @@ Vehicles<public> := module:
 
         IsInWater<override>()<transacts><decides>:void = external {}
 
-        GetPassengers<override>()<transacts>:[]fort_character = external {}
+        GetOccupants<override>()<reads>:[]agent = external {}
+
+        GetDrivers<override>()<reads>:[]agent = external {}
 
         # Returns the fuel state of the vehicle. If the vehicle uses fuel, this value will be between 0.0 and `GetFuelCapacity`. Otherwise, this value will be -1.0.
         GetFuelRemaining<override>()<transacts>:float = external {}
@@ -935,6 +961,14 @@ Vehicles<public> := module:
         Damage<override>(Amount:float):void = external {}
 
         Damage<override>(Args:damage_args):void = external {}
+
+        RemoveAgent<override>(InAgent:agent)<transacts><decides>:void = external {}
+
+        RemoveAll<override>()<transacts>:void = external {}
+
+        AddAgent<override>(InAgent:agent)<transacts><decides>:void = external {}
+
+        GetSeats<override>()<reads>:[]fort_vehicle_seat = external {}
 
         GetHealth<override>()<transacts>:float = external {}
 

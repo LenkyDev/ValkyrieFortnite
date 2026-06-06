@@ -247,7 +247,7 @@ overlord_spire_device<public> := class<concrete><final>(creative_device_base, ha
     # Removes the target set from `SetTarget` and allows the Spire to return to its normal targeting pattern
     ClearTarget<public>():void = external {}
 
-    # Triggers when the Spire’s player target is changed to a different player
+    # Triggers when the Spire's player target is changed to a different player
     TargetChangeEvent<public>:listenable(agent) = external {}
 
     # Succeeds if the Spire must wait until all projectiles have spawned before moving on to the next attack 
@@ -260,3 +260,5 @@ overlord_spire_device<public> := class<concrete><final>(creative_device_base, ha
 
     # Fades out the preview clouds above where the Spire spawns.
     HideClouds<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

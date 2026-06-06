@@ -15,4 +15,4 @@ end_game_device<public> := class<concrete><final>(creative_device_base):
     # If *Activating Team* is set to *Any* it will work the same as if *Winning Team* was set to *Winning Team*.
     ActivateNoAgent<epic_internal>():void = external {}
 
-    ActivateNoAgentFunction<epic_internal>:device_function_set_params_by_type = external {}
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

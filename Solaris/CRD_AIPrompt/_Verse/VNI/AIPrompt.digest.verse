@@ -34,10 +34,11 @@ llm_session<native><public> := class<unique>:
     # Removes all the history events from the session. Including conversation history.
     ClearHistory<native><public>()<transacts>:void
 
+    @available {MinUploadedAtFNVersion := 4100}
     # The result will conform to the result type. The result type must be a struct which can contain.
     #  - numeric types, message, bools and enums, as well as structs or arrays which only contain those types, anything else results in an error.
     #  Use the names of the fields and name of the type of the struct to direct the prompt or facts on how to fill out the data structure.
-    Prompt<native><public>(PromptTemplate:prompt_template, response_type:type)<suspends>:result(response_type, llm_prompt_error)
+    Prompt<native><public>((local:)Prompt:prompt, response_type:type)<suspends>:result(response_type, llm_prompt_error)
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
@@ -52,24 +53,13 @@ persona_interruption_rule<native><public> := enum<open>:
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental
-# Defines the persona and what it knows.
-persona_definition<native><public> := class<final>:
-    # Defines the personality
-    var PersonalitySlot<public>:prompt_slot_provider = external {}
-
-    var PersonalitySlotInternal<native><public>:prompt_slot_provider = external {}
-
-    # What the persona currently knows
-    var KnowledgeSlot<public>:prompt_slot_provider = external {}
-
-    var KnowledgeSlotInternal<native><public>:prompt_slot_provider = external {}
-
-@available {MinUploadedAtFNVersion := 4000}
-@experimental
 # NPC Persona component
 persona_component<native><public> := class<final_super>(component):
-    # Defines the persona and what it knows
-    PersonaDefinition<native><public>:persona_definition = external {}
+    # The personality of the persona
+    var Personality<public>:message = external {}
+
+    # What the persona knows
+    var Knowledge<public>:message = external {}
 
     # The session which will process all this persona's prompts
     # When the persona is in a voice channel, every session in that channel will automatically
@@ -89,18 +79,23 @@ persona_component<native><public> := class<final_super>(component):
     # Listenable which is signaled when the player finishes prompting the persona.
     StopHearEvent<native><public>:listenable(agent) = external {}
 
-    # Listenable which is signaled when the persona starts talking.
-    #  1/ The agent (if involved) which prompted the response
-    #  2/ The message being said.
-    #  3/ Cancelable to stop the target from talking
-    StartSayEvent<native><public>:listenable(tuple(?agent, message, cancelable)) = external {}
+    # Listenable which is signaled when the persona begins speaking (before moderation resolves).
+    #  1/ The agent (if involved) that prompted the response.
+    #  2/ Cancelable to stop the persona from talking.
+    StartSayEvent<native><public>:listenable(tuple(?agent, cancelable)) = external {}
+
+    # Listenable which is signaled when the spoken message is finalized (after moderation).
+    #  Contains the actual message delivered — either the original or the canned replacement.
+    #  1/ The agent (if involved) that prompted the response.
+    #  2/ The final message that was said.
+    CommitSayEvent<native><public>:listenable(tuple(?agent, message)) = external {}
 
     # Listenable which is signaled when the target stops talking.
     #  1/ logic that is true when interrupted
     StopSayEvent<native><public>:listenable(logic) = external {}
 
     # Requests the Persona to talk on the topic provided, requires the persona to be on a channel
-    RequestToTalk<native><public>(RequestInstruction:prompt_slot_provider)<transacts><decides>:void
+    RequestToTalk<native><public>(Instructions:message)<transacts><decides>:void
 
     # Registers a callback for when the persona receives structured data in the format of response_type.
     #  Required forces this be filled out every time the persona is prompted.
@@ -135,21 +130,31 @@ persona_component<native><public> := class<final_super>(component):
 # Unbind player from prompting personas
 (Player:player).ClearConversationTarget<native><public>()<transacts>:void
 
-@available {MinUploadedAtFNVersion := 4000}
+@available {MinUploadedAtFNVersion := 4100}
 @experimental
-# Base class for the abstraction of how prompts are constructed
-prompt_template<native><public> := class<abstract><castable><epic_internal>:
+# Base class for all prompts sent to an llm session
+prompt<native><public> := class<abstract><castable><epic_internal>:
 
 
-@available {MinUploadedAtFNVersion := 4000}
+@available {MinUploadedAtFNVersion := 4100}
 @experimental
-# A prompt definition which is used by persona's - used to build a personality which knows things in the world.
-persona_prompt_template<native><public> := class<final>(prompt_template):
-    # Defines the personality
-    PersonaDefinition<native><public>:persona_definition
+# A basic prompt for carrying out instructions
+basic_prompt<native><public> := class<final>(prompt):
+    # What the llm should do
+    var Instructions<native><public>:message
 
-    # Directions to the persona - what should it do
-    InstructionSlot<native><public>:prompt_slot_provider
+@available {MinUploadedAtFNVersion := 4100}
+@experimental
+# A prompt which defines a persona and tells it to do something
+persona_prompt<native><public> := class<final>(prompt):
+    # The personality of the persona
+    var Personality<native><public>:message
+
+    # What the persona knows
+    var Knowledge<native><public>:message
+
+    # What the persona should do
+    var Instructions<native><public>:message
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental

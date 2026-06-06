@@ -1,4 +1,3 @@
-using {/Verse.org/Presentation}
 using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 using {/UnrealEngine.com/Abilities}
 using {/Verse.org/Assets}
@@ -409,6 +408,7 @@ item_component<native><public> := class<final_super>(component):
     # Fails if not in an inventory, not currently equipped or if unequip_item_query_event contains any errors after querying.
     Unequip<final><native><public>()<transacts>:result(false, []unequip_item_error)
 
+    @replicated("")
     @editable
     # Add one or more category instances to help define and organize this item.
     Categories<native><public>:[]item_category = external {}
@@ -434,55 +434,6 @@ item_component<native><public> := class<final_super>(component):
 
 @available {MinUploadedAtFNVersion := 3800}
 (Item:item_component).CanUnequip<native><public>()<transacts>:result(false, []unequip_item_error)
-
-@deprecated
-@experimental
-# Deprecated. Please use change_description_component_event instead.
-change_item_details_component_event<epic_internal> := class(scene_event):
-    Entity<public>:entity
-
-    ItemDetailsComponent<public>:?item_details_component = external {}
-
-@class_and_subclass_group_names("item")
-@deprecated
-@experimental
-# Deprecated. Please use description_component instead.
-item_details_component<native><public> := class<final_super>(component, has_description):
-    var Name<override>:message = external {}
-
-    var Description<override>:message = external {}
-
-    var ShortDescription<override>:message = external {}
-
-    OnItemDetailsChanged<native><epic_internal>()<transacts>:void
-
-    OnBeginSimulation<override>():void = external {}
-
-    OnEndSimulation<override>():void = external {}
-
-@deprecated
-@experimental
-# Deprecated. Please use change_icon_component_event instead.
-change_item_icon_component_event<epic_internal> := class(scene_event):
-    Entity<public>:entity
-
-    ItemIconComponent<public>:?item_icon_component = external {}
-
-@class_and_subclass_group_names("item")
-@deprecated
-@experimental
-# Deprecated. Please use icon_component instead.
-item_icon_component<native><public> := class<final_super>(component, has_icon):
-    OnInitialized<override>():void = external {}
-
-    OnUninitializing<override>():void = external {}
-
-    OnBeginSimulation<override>():void = external {}
-
-    OnEndSimulation<override>():void = external {}
-
-    @editable
-    var Icon<native><override>:texture
 
 @import_as("/Script/ItemizationCoreRuntime.UItemDefinitionBase")
 item_definition_base<native><epic_internal> := class<epic_internal>:

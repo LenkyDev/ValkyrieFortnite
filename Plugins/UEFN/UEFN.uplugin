@@ -3,5 +3,11 @@
 	"CanContainContent": true,
 	"ExplicitlyLoaded": false,
 	"EnabledByDefault": false,
-	"EditorOnly": true
+	"EditorOnly": true,
+	"Plugins": [
+		{
+			"Name": "VerseStaticMeshEditorExtension",
+			"Enabled": true
+		}
+	]
 }

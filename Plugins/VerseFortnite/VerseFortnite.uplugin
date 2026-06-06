@@ -24,7 +24,8 @@
 		{
 			"Name": "VerseFortniteTestSuite",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"TargetConfigurationDenyList": [ "Shipping", "Test" ]
 		}
 	],
 	"Plugins": [
@@ -47,6 +48,11 @@
 		{
 			"Name": "EntityFramework",
 			"Enabled": true
+		},
+		{
+			"Name": "EntityFrameworkTests",
+			"Enabled": true,
+			"TargetConfigurationDenyList": [ "Shipping", "Test" ]
 		},
 		{
 			"Name": "EpicGamesEngine",
@@ -117,10 +123,6 @@
 			"Enabled": true
 		},
 		{
-			"Name": "VerseVoiceTextChat",
-			"Enabled": true
-		},
-		{
 			"Name": "VerseRestricted",
 			"Enabled": true
 		},
@@ -130,10 +132,6 @@
 		},
 		{
 			"Name": "VerseTags",
-			"Enabled": true
-		},
-		{
-			"Name": "VerseCamera",
 			"Enabled": true
 		},
 		{

@@ -51,7 +51,7 @@ guard_spawner_device<public> := class<concrete><final>(creative_device_base):
     # Determines how the guard uses its `VisibilityRange` as defined by `guard_spawner_visibility_range_restriction`.
     var Accuracy<public>:guard_spawner_accuracy = external {}
 
-    # If true, displays the guard’s health to players.
+    # If true, displays the guard's health to players.
     var ShowHealthBar<public>:logic = external {}
 
     # Determines if the guard displays its alertness level over its head.

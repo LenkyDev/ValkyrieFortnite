@@ -10,10 +10,11 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/DarkVortex",
-	"FortReleaseVersion": "40.41",
+	"FortReleaseVersion": "41.00",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"CookAsDLC": "Creative",
+	"ProductChunkId": 13,
 	"RequiredEntitlements": {
 		"Create": {
 			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
@@ -73,6 +74,11 @@
 		},
 		{
 			"Name": "DarkVortexSharedVFX",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNGameplayCues",
 			"Enabled": true,
 			"Optional": true
 		},

@@ -13,3 +13,5 @@ patchwork_device<public> := class<concrete>(creative_device_base):
 
     # Disables this device.
     Disable<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

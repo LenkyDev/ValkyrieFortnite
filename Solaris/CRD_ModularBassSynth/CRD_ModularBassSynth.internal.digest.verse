@@ -13,3 +13,5 @@ omega_synthesizer_device<public> := class<concrete><final>(patchwork_device):
     var Resonance<epic_internal>:float = external {}
 
     var Sync<epic_internal>:float = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

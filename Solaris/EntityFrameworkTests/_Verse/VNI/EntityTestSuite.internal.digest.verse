@@ -65,6 +65,10 @@ EntityTestSuite<public> := module:
 
 
     @hide_in_editor
+    test_component_netgroup_condition<native><epic_internal> := class<final_super>(component):
+
+
+    @hide_in_editor
     test_entity_creationorder<native><epic_internal> := class<final_super>(entity):
 
 
@@ -73,15 +77,23 @@ EntityTestSuite<public> := module:
 
 
     @hide_in_editor
-    test_component_creationorder_1<native><epic_internal> := class<final_super>(component):
+    test_subobject_with_subobject<native><epic_internal> := class:
 
 
     @hide_in_editor
-    test_component_creationorder_2<native><epic_internal> := class<final_super>(component):
+    test_component_creationorder_first<native><epic_internal> := class<final_super>(component):
 
 
     @hide_in_editor
-    test_component_creationorder_3<native><epic_internal> := class<final_super>(component):
+    test_component_creationorder_second<native><epic_internal> := class<final_super>(component):
+
+
+    @hide_in_editor
+    test_component_creationorder_third<native><epic_internal> := class<final_super>(component):
+
+
+    @hide_in_editor
+    test_component_creationorder_embedded<native><epic_internal> := class<final_super>(component):
 
 
     @hide_in_editor
@@ -137,6 +149,14 @@ EntityTestSuite<public> := module:
         OnSimulate<override>()<suspends>:void = external {}
 
     @hide_in_editor
+    property_component<native><epic_internal> := class<final_super>(component):
+        @editable
+        Integer<native><public>:int = external {}
+
+        @editable
+        String<native><public>:string = external {}
+
+    @hide_in_editor
     derived_entity<epic_internal> := class<concrete>(entity):
 
 
@@ -152,6 +172,20 @@ EntityTestSuite<public> := module:
     overridden_test_entity<native><epic_internal> := class<concrete>(test_entity):
 
 
+    test_rootobject_component<native><epic_internal> := class<final_super>(component):
+        @editable {}
+        @display_name("StableRootObject")
+        @replicated("")
+        var<public> TestRootObject<native><epic_internal>:?test_rootobject = external {}
+
+    test_rootobject<native><epic_internal> := class:
+
+
+    @hide_in_editor
+    test_rootobject_holder_component<native><epic_internal> := class<final_super>(component):
+        @replicated("")
+        var HeldRootObject<native><epic_internal>:?test_rootobject = external {}
+
     @hide_in_editor
     test_material_component<native><epic_internal> := class<final_super>(component):
         OnBeginSimulation<override>():void = external {}
@@ -166,25 +200,46 @@ EntityTestSuite<public> := module:
 
     # Module import path: /UnrealEngine.com/EntityTestSuite/TestPhysicsHook
     TestPhysicsHook<epic_internal> := module:
-        using {/Verse.org/SpatialMath}
         using {/Verse.org/Assets}
+        using {/Verse.org/SpatialMath}
         using {/Verse.org/Simulation}
         using {/Verse.org/SceneGraph}
+        using {/Verse.org/Native}
+        @available {MinUploadedAtFNVersion := 4100}
         physics_test<epic_internal> := enum<open>:
             Test_SetDynamic
             Test_ApplyLinearImpulse
             Test_LUF
             Test_CollisionEvents
+            Test_OverlapEnteredEventFires
+            Test_OverlapExitedEventFires
+            Test_OverlapPerMeshPartScoping
+            Test_OverlapHitPayload
+            Test_FindOverlapHits_MeshParts
+            Test_FindSweepHits_MeshParts
             Test_Gravity
             Test_MaxAngularVelocity
             Test_SleepType
+            Test_Collision_Material
+            Test_UE_Collision_Material
+            Test_UE_Collision_Material_PublicAPI_Interaction
 
+        @available {MinUploadedAtFNVersion := 4100}
         @experimental
         physics_test_visualizer_component<epic_internal> := class<final_super><epic_internal>(component):
             @editable
             var TestToRun<epic_internal>:physics_test = external {}
 
-            Run<epic_internal>()<suspends>:void = external {}
+            @editable
+            var AutoRun<public>:logic = external {}
+
+            @editable
+            var PIE_Cleanup<public>:logic = external {}
+
+            @editable
+            var OffsetLocation<public>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+            Run<epic_internal>()<suspends>:test_physics_result = external {}
 
             OnSimulate<override>()<suspends>:void = external {}
 
@@ -193,66 +248,134 @@ EntityTestSuite<public> := module:
 
             var What<native><epic_internal>:string = external {}
 
+        @available {MinUploadedAtFNVersion := 4100}
         @hide_in_editor
+        @experimental
         test_physics_cube_part<native><epic_internal> := class<epic_internal>(mesh_part, has_collision):
 
 
+        @available {MinUploadedAtFNVersion := 4100}
         @hide_in_editor
+        @experimental
         test_physics_cube_mesh_component<native><epic_internal> := class<final_super><epic_internal>(mesh_component):
             Mesh<override>:mesh = external {}
 
+            @experimental
             Body<native><epic_internal>:test_physics_cube_part = external {}
 
+        @available {MinUploadedAtFNVersion := 4100}
         @hide_in_editor
+        @experimental
         test_physics_sphere_part<native><epic_internal> := class<epic_internal>(mesh_part, has_dynamics, has_collision, has_ue_physics_properties):
 
 
+        @available {MinUploadedAtFNVersion := 4100}
         @hide_in_editor
+        @experimental
         test_physics_sphere_mesh_component<native><epic_internal> := class<final_super><epic_internal>(mesh_component):
             Mesh<override>:mesh = external {}
 
+            @experimental
             Body<native><epic_internal>:test_physics_sphere_part = external {}
 
+        @available {MinUploadedAtFNVersion := 4100}
         @hide_in_editor
+        @experimental
         left_cube_mesh_part<epic_internal> := class<epic_internal>(mesh_part, has_collision):
 
 
+        @available {MinUploadedAtFNVersion := 4100}
         @hide_in_editor
+        @experimental
         right_cube_mesh_part<epic_internal> := class<epic_internal>(mesh_part, has_collision):
 
 
+        @available {MinUploadedAtFNVersion := 4100}
         @hide_in_editor
+        @experimental
         left_right_cube_mesh_component<epic_internal> := class<final_super><epic_internal>(mesh_component):
             Mesh<override>:mesh = external {}
 
+            @experimental
             Left<epic_internal>:left_cube_mesh_part = external {}
 
+            @experimental
             Right<epic_internal>:right_cube_mesh_part = external {}
 
+        @available {MinUploadedAtFNVersion := 4100}
         @hide_in_editor
         test_physics_component<native><epic_internal> := class<final_super><epic_internal>(component):
+            var TestEntities<epic_internal>:[]entity = external {}
+
+            var TestEventListeners<epic_internal>:[]cancelable = external {}
+
+            @experimental
             Init_Sphere<native_callable><epic_internal>(Sim:entity, Translation:(/Verse.org/SpatialMath:)vector3, ?Scale:(/Verse.org/SpatialMath:)vector3 = external {}):test_physics_sphere_mesh_component = external {}
 
+            @experimental
             Init_Ground<native_callable><epic_internal>(Sim:entity, ?Translation:(/Verse.org/SpatialMath:)vector3 = external {}, ?Scale:(/Verse.org/SpatialMath:)vector3 = external {}):test_physics_cube_mesh_component = external {}
 
+            @experimental
+            Init_LeftRightCube<epic_internal>(Sim:entity, ?Translation:(/Verse.org/SpatialMath:)vector3 = external {}, ?Scale:(/Verse.org/SpatialMath:)vector3 = external {}):left_right_cube_mesh_component = external {}
+
+            @experimental
             Test_SetDynamic<native_callable><epic_internal>()<suspends>:test_physics_result = external {}
 
+            @experimental
             Test_ApplyLinearImpulse<native_callable><epic_internal>()<suspends>:test_physics_result = external {}
 
+            @experimental
             Test_LUF<native_callable><epic_internal>()<suspends>:test_physics_result = external {}
 
             @experimental
             Test_CollisionEvents<native_callable><epic_internal>()<suspends>:test_physics_result = external {}
 
+            @experimental
+            SpawnRestitutionTest<epic_internal>():?tuple(test_physics_sphere_mesh_component, test_physics_sphere_mesh_component, test_physics_cube_mesh_component) = external {}
+
+            @experimental
+            RestitutionTestRecordMaxHeights<epic_internal>(Sphere1:test_physics_sphere_mesh_component, Sphere2:test_physics_sphere_mesh_component)<suspends>:tuple(float, float) = external {}
+
+            @experimental
+            Test_Collision_Material<native_callable><epic_internal>()<suspends>:test_physics_result = external {}
+
+            @experimental
+            Test_OverlapEnteredEventFires<native_callable><epic_internal>()<suspends>:test_physics_result = external {}
+
+            @experimental
+            Test_OverlapExitedEventFires<native_callable><epic_internal>()<suspends>:test_physics_result = external {}
+
+            @experimental
+            Test_OverlapPerMeshPartScoping<native_callable><epic_internal>()<suspends>:test_physics_result = external {}
+
+            @experimental
+            Test_OverlapHitPayload<native_callable><epic_internal>()<suspends>:test_physics_result = external {}
+
+            @experimental
+            Test_FindOverlapHits_MeshParts<native_callable><epic_internal>()<suspends>:test_physics_result = external {}
+
+            @experimental
+            Test_FindSweepHits_MeshParts<native_callable><epic_internal>()<suspends>:test_physics_result = external {}
+
+            @experimental
             Test_Gravity<native_callable><epic_internal>()<suspends>:test_physics_result = external {}
 
+            @experimental
             Test_GravityGroupIndex<native_callable><epic_internal>()<suspends>:test_physics_result = external {}
 
             SetupTestPredicts<native_callable><epic_internal>(Sim:entity):test_physics_predicts_component = external {}
 
+            @experimental
             Test_MaxAngularVelocity<native_callable><epic_internal>()<suspends>:test_physics_result = external {}
 
+            @experimental
             Test_SleepType<native_callable><epic_internal>()<suspends>:test_physics_result = external {}
+
+            @experimental
+            Test_UE_Collision_Material<native_callable><epic_internal>()<suspends>:test_physics_result = external {}
+
+            @experimental
+            Test_UE_Collision_Material_PublicAPI_Interaction<native_callable><epic_internal>()<suspends>:test_physics_result = external {}
 
         @hide_in_editor
         test_physics_predicts_component<native><epic_internal> := class<final_super><epic_internal>(component):
@@ -261,3 +384,10 @@ EntityTestSuite<public> := module:
             PredictsEvent<native><predicts><epic_internal>:listenable(tuple()) = external {}
 
             Test_PredictsSetup<native_callable><epic_internal>():void = external {}
+
+    @hide_in_editor
+    test_task_entity<native><epic_internal> := class<concrete><unique><transacts>(entity):
+
+
+    @hide_in_editor
+    test_sim_entity<native><epic_internal> := class<concrete><unique><transacts>(simulation_entity):

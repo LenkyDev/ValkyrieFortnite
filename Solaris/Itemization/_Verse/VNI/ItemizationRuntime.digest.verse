@@ -49,13 +49,20 @@ FortniteItemCategories<public> := module:
 
     Resource<public>:item_category = external {}
 
+    WeaponMelee<public>:item_category = external {}
+
+    WeaponRanged<public>:item_category = external {}
+
 @available {MinUploadedAtFNVersion := 4040}
-@experimental
 # Place this component onto an entity to allow it to be added to an agent inventory on interaction. The owning entity should have an item_component and a mesh_component. This component expects the interacting agent to have a subentity with an inventory_component.
 fort_item_pickup_interactable_component<public> := class(basic_interactable_component):
     OnAddedToScene<override>():void = external {}
 
     OnRemovingFromScene<override>():void = external {}
+
+    Enable<override>():void = external {}
+
+    Disable<override>():void = external {}
 
     EnableItemInteraction<protected>():void = external {}
 
@@ -78,3 +85,7 @@ FortniteRarities<public> := module:
     Epic<public>:rarity = external {}
 
     Legendary<public>:rarity = external {}
+
+    Mythic<public>:rarity = external {}
+
+    Exotic<public>:rarity = external {}

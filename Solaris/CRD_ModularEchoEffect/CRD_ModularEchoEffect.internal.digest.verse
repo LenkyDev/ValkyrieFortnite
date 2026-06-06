@@ -9,3 +9,5 @@ echo_effect_device<public> := class<concrete><final>(patchwork_device):
     var Feedback<epic_internal>:float = external {}
 
     var BeatDelay<epic_internal>:float = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

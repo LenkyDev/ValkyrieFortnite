@@ -9,7 +9,7 @@
 	"BuiltInAutoRegister": true,
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
-	"FortReleaseVersion": "40.41",
+	"FortReleaseVersion": "41.00",
 	"IsGameFeatureSet": true,
 	"Version": 0,
 	"VersionName": "",
@@ -23,5 +23,6 @@
 	"SupportURL": "",
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
-	"Installed": false
+	"Installed": false,
+	"ProductChunkId": 40
 }

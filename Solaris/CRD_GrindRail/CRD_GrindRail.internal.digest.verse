@@ -23,6 +23,8 @@ grind_rail_device<public> := class<concrete><final>(creative_device_base):
     # Signaled when an `agent` starts grinding on this `grind_rail_device`.
     EndedGrindingEvent<public>:listenable(agent) = external {}
 
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
+
 # Used to create a customizable vine version of the Grind Rails.
 vine_rail_device<public> := class<concrete><final>(creative_device_base):
     # Enables this device, letting players grind on the vines.
@@ -42,3 +44,5 @@ vine_rail_device<public> := class<concrete><final>(creative_device_base):
 
     # Signaled when an `agent` starts grinding on this `vine_rail_device`.
     EndedGrindingEvent<public>:listenable(agent) = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

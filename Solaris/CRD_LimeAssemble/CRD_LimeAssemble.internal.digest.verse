@@ -54,3 +54,5 @@ assembly_device<public> := class<concrete><final>(creative_device_base, enableab
 
     # The amount of progress the device has made towards fully assembling (1.0) or fully disassembling (0.0).
     var<private> Progress<public>:float = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

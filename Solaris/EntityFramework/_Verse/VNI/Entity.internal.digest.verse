@@ -171,8 +171,16 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
 
 @available {MinUploadedAtFNVersion := 4000}
 # Use this method to create a component without the need of providing an entity.
-# This is an internal method and should only be used to intialize a component field inside a verse class
+# This is an internal method and should only be used to initialize a component field inside a verse class
 InitializeComponentField<native><epic_internal>(component_type:castable_subtype(component))<converges>:component_type
+
+@available {MinUploadedAtFNVersion := 4100}
+# Helper function to aide in initializing the Entity pointer for components during component field construction inside a verse class
+GetSelfEntityForComponentInitialization<native><epic_internal>()<converges>:entity
+
+# Internal component used to flag an entity as the source of a Content Scope
+content_scope_component<native><epic_internal> := class<final><final_super>(component):
+
 
 # An event which can be sent through the scene graph.
 scene_event<native><public> := interface:
@@ -277,10 +285,6 @@ entity<native><public> := class<concrete><unique><transacts><castable>(base_enti
     @available {MinUploadedAtFNVersion := 3200}
     # Succeeds if at least of the types in `tag_types` is found in this container, fails otherwise. Note that this means that if `tag_types` is empty this call fails.
     ContainsAnyTag<override><native><final>(tag_types:[]castable_subtype(tag))<reads><decides>:void
-
-@hide_in_editor
-root_entity<native><epic_internal> := class<concrete><unique><transacts>(entity):
-
 
 # Reference type to editor defined prefab. Only generated digest code should reference this type.
 entity_prefab<native><public> := class<computes><epic_internal>(asset):
@@ -389,12 +393,10 @@ legendary_rarity<public> := class<allocates>(epic_rarity):
     Color<override>:color = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 mythic_rarity<epic_internal> := class<allocates>(legendary_rarity):
     Color<override>:color = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 exotic_rarity<epic_internal> := class<allocates>(mythic_rarity):
     Color<override>:color = external {}
 
@@ -417,9 +419,9 @@ rarity_component<native><public> := class<final_super>(component):
 
     var<private> HasChangedFields<native><epic_internal>:logic = external {}
 
-    GetRarity<native><epic_internal>(__dupe___unnamed_parameter_100:accessor)<transacts>:rarity
+    GetRarity<native><epic_internal>(__dupe___unnamed_parameter_0:accessor)<transacts>:rarity
 
-    SetRarity<native><epic_internal>(__dupe___unnamed_parameter_101:accessor, InRarity:rarity)<transacts>:void
+    SetRarity<native><epic_internal>(__dupe___unnamed_parameter_0:accessor, InRarity:rarity)<transacts>:void
 
     OnBeginSimulation<override>():void = external {}
 
@@ -450,8 +452,8 @@ replication_component<native><epic_internal> := class<final_super>(component):
 
     ClearNetCullDistanceOverride<native><epic_internal>()<transacts>:void
 
-@hide_in_editor
-simulation_entity<native><epic_internal> := class<concrete><unique><transacts>(root_entity):
+@hide_in_editor {CVar := "SimulationEntity.AllowCustomSimulationEntities"; Hidden := false}
+simulation_entity<native><epic_internal> := class<concrete><unique><transacts>(entity):
 
 
 # Returns the simulation entity parent for this entity.

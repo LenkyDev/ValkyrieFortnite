@@ -6,6 +6,7 @@ using {/Verse.org/Native}
     @available {MinUploadedAtFNVersion := 3720}
     # Module import path: /Fortnite.com/Input/Character
     Character<public> := module:
+        using {/Verse.org/SpatialMath}
         using {/Verse.org/Native}
         using {/Verse.org/Assets}
         @available {MinUploadedAtFNVersion := 3720}
@@ -31,3 +32,6 @@ using {/Verse.org/Native}
 
         @available {MinUploadedAtFNVersion := 3720}
         Jump<public>:input_action(logic) = external {}
+
+        @experimental
+        Movement<epic_internal>:input_action((/Verse.org/SpatialMath:)vector3) = external {}

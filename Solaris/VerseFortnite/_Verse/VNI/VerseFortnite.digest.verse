@@ -148,6 +148,7 @@ FortPlayerUtilities<public> := module:
 
 # Module import path: /Fortnite.com/Game
 Game<public> := module:
+    using {/Verse.org/SpatialMath}
     using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/Verse.org/SceneGraph}
     using {/Fortnite.com/Characters}
@@ -177,6 +178,9 @@ Game<public> := module:
     positional<native><public> := interface<epic_internal>:
         # Returns the transform of the object.
         GetTransform<public>()<transacts>:(/UnrealEngine.com/Temporary/SpatialMath:)transform
+
+        # Returns the transform of the object.
+        GetGlobalTransform<public>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
 
     # Implemented by Fortnite objects that have health state and can be eliminated.
     healthful<native><public> := interface<epic_internal>:
@@ -267,6 +271,9 @@ Game<public> := module:
 
         # Player, weapon, vehicle, etc. that damaged `Target`. Can be false when damage is caused by code, the environment, etc.
         Source<native><public>:?game_action_causer = external {}
+
+        # `true` if the damage hit a weakpoint, `false` otherwise.
+        IsWeakpointDamage<native><public>:logic = external {}
 
     # Parameters for common healing functions on Fortnite objects.
     healing_args<native><public> := struct:
@@ -394,6 +401,7 @@ Teams<public> := module:
 # Module import path: /Fortnite.com/Vehicles
 Vehicles<public> := module:
     using {/UnrealEngine.com/Temporary/SpatialMath}
+    using {/Verse.org/Simulation}
     using {/Fortnite.com/Game}
     using {/Fortnite.com/Characters}
     # Returns the `fort_vehicle` for `InCharacter`.
@@ -411,8 +419,14 @@ Vehicles<public> := module:
         # Succeeds if this `fort_vehicle` is standing in water.
         IsInWater<public>()<transacts><decides>:void
 
-        # Returns an array with all the passengers of the vehicle.
-        GetPassengers<public>()<transacts>:[]fort_character
+        # Returns an array of every `fort_character` in the vehicle. Calls `GetOccupants()` and casts each occupying agent to a `fort_character`.
+        GetPassengers<public>()<transacts>:[]fort_character = external {}
+
+        # Returns an array with all `agent` currently occupying the vehicle.
+        GetOccupants<public>()<reads>:[]agent
+
+        # Returns an array with all the current drivers of the vehicle, which is usually a single agent.
+        GetDrivers<public>()<reads>:[]agent
 
         # Returns the fuel state of the vehicle. If the vehicle uses fuel, this value will be between 0.0 and `GetFuelCapacity`. Otherwise, this value will be -1.0.
         GetFuelRemaining<public>()<transacts>:float
@@ -431,3 +445,29 @@ Vehicles<public> := module:
 
         # The maximum boost capacity of the vehicle. If the vehicle uses boost, this value will be between 1.0 and Inf. Otherwise, this value will be false.
         var<private> BoostCapacity<public>:?float
+
+        # Removes the specified agent from the vehicle. Fails if the agent is not in the vehicle.
+        RemoveAgent<public>(InAgent:agent)<transacts><decides>:void
+
+        # Removes all occupying agents from the vehicle.
+        RemoveAll<public>()<transacts>:void
+
+        # Attempts to add the agent to the `fort_vehicle`. If there are no empty seats, or the agent cannot otherwise be placed in the vehicle, the operation fails.
+        AddAgent<public>(InAgent:agent)<transacts><decides>:void
+
+        # Returns an array of all `fort_vehicle_seat`s in the `fort_vehicle`.
+        GetSeats<public>()<reads>:[]fort_vehicle_seat
+
+    # Represents a seat in a `fort_vehicle`.
+    fort_vehicle_seat<native><public> := class<unique><epic_internal>:
+        # Succeeds if this is a driver seat.
+        IsDriverSeat<native><public>()<reads><decides>:void
+
+        # The `agent` currently occupying this seat, if any.
+        var<private> Occupant<public>:?agent
+
+        # Attempts to seat `Agent` into this seat. Fails if the seat is occupied or the agent cannot be seated. Setting the occupant to `false` will remove any seated agent.
+        SetOccupant<native><public>(Value:?agent)<transacts><decides>:void
+
+        # The `fort_vehicle` this seat belongs to.
+        var<private> Vehicle<public>:fort_vehicle

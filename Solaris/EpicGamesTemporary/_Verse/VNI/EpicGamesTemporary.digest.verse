@@ -5,6 +5,7 @@
     using {/Verse.org/Simulation}
     @editable
     @import_as("/Script/EpicGamesTemporary.FVerseRotation_Deprecated")
+    # An abstract representation of an orientation change in 3d-space.
     (/UnrealEngine.com/Temporary/SpatialMath:)rotation<native><public> := struct<concrete>:
 
 

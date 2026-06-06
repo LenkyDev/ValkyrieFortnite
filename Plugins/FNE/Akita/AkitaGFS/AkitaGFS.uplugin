@@ -10,7 +10,8 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Akita",
-	"FortReleaseVersion": "40.41",
+	"FortReleaseVersion": "41.00",
+	"ProductChunkId": 13,
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"RequiredEntitlements": {
@@ -261,6 +262,11 @@
 		},
 		{
 			"Name": "FNEShockGrenade",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNGameplayCues",
 			"Enabled": true,
 			"Optional": true
 		},

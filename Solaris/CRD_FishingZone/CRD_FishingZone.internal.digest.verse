@@ -23,3 +23,5 @@ fishing_zone_device<public> := class<concrete><final>(creative_device_base):
 
     # Returns all caught and removed items to the inventory. This only works when *Pool Type* is set to *Device Inventory*.
     Restock<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

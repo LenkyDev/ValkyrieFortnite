@@ -57,3 +57,5 @@ service_station_device<public> := class<concrete><final>(creative_device_base, h
 
     # Check if any vehicle is inside the service station.
     IsAnyVehicleInside<public>()<transacts><decides>:void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

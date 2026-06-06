@@ -36,3 +36,5 @@ supply_drop_spawner_device<public> := class<concrete><final>(creative_device_bas
 
     # Destroys supply drops spawned by this device.
     DestroySpawnedDrops<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

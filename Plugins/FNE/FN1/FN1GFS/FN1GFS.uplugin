@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/FN1",
-	"FortReleaseVersion": "40.41",
+	"FortReleaseVersion": "41.00",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"Version": 0,
@@ -26,7 +26,7 @@
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false,
-	"CookAsDLC": "Creative",
+	"ProductChunkId": 90,
 	"RequiredEntitlements": {
 		"Create": {
 			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad"
@@ -37,6 +37,11 @@
 			"Name": "Accolades",
 			"Enabled": true,
 			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "AccoladesUI",
+			"Enabled": true,
 			"Optional": true
 		},
 		{
@@ -61,7 +66,7 @@
 			"Optional": true
 		},
 		{
-			"Name": "DragonCartNarrative",
+			"Name": "DynamicVolume",
 			"Enabled": true,
 			"Optional": true
 		},
@@ -79,6 +84,16 @@
 		},
 		{
 			"Name": "FNE_UI",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNGameplayCues",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "ForbiddenBlastBerryOldMapContent",
 			"Enabled": true,
 			"Optional": true
 		},

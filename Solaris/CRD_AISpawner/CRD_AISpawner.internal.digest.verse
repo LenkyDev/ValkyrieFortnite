@@ -1,4 +1,5 @@
 using {/Verse.org/SpatialMath}
+using {/Fortnite.com/Assets}
 using {/Verse.org/Simulation}
 # Used to spawn NPCs made with Character Definition asset.
 npc_spawner_device<public> := class<concrete><final>(creative_device_base):
@@ -20,6 +21,9 @@ npc_spawner_device<public> := class<concrete><final>(creative_device_base):
     # Resets the spawn count allowing spawning of a new batch of characters.
     (/Fortnite.com/Devices/npc_spawner_device:)Reset<public>():void = external {}
 
+    # Set the NPC character definition to use. Fails if the character type is different from one in the current definition.
+    SetNPCCharacterDefinition<epic_internal>(CharacterDefinition:npc_character_definition)<transacts><decides>:void = external {}
+
     # Tries to spawn a character.
     Spawn<public>():void = external {}
 
@@ -33,3 +37,5 @@ npc_spawner_device<public> := class<concrete><final>(creative_device_base):
 
     # Get all agents created by this device.
     GetAgents<public>()<transacts>:[]agent = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

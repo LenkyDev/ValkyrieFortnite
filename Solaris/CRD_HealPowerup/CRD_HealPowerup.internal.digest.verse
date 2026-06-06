@@ -8,3 +8,5 @@ health_powerup_device<public> := class<concrete><final>(powerup_device):
     # Returns the current *Magnitude* for the powerup.
     # For the Health Powerup, this is the amount of health or shield that the powerup will add or remove,
     GetMagnitude<public>()<transacts>:float = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

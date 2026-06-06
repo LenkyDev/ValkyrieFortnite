@@ -11,3 +11,5 @@ zipline_device<epic_internal> := class<concrete><final>(creative_device_base):
 
     # Returns true if `Agent`is currently attached to this zipline.
     IsAttached<public>(Agent:agent)<transacts><decides>:void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

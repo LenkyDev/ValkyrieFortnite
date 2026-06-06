@@ -9,3 +9,5 @@ distortion_effect_device<public> := class<concrete><final>(patchwork_device):
     var Drive<epic_internal>:float = external {}
 
     var Style<epic_internal>:int = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

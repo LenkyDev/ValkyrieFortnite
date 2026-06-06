@@ -56,3 +56,5 @@ vfx_creator_device<public> := class<concrete><final>(creative_device_base):
 
     # Spawns the effect at `Agent`'s location. This option is only valid if *Stick to Player* is enabled.
     SpawnAt<public>(Agent:agent):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

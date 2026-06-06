@@ -117,3 +117,5 @@ switch_device<public> := class<concrete><final>(creative_device_base):
     # Returns the time, in seconds, before the switch will reset itself to default for *Agent*.
     #  Returns -1.0 if there is no active reset timer.
     GetCurrentResetTime<public>(Agent:agent):float = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

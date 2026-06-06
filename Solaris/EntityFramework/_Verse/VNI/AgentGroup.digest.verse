@@ -31,7 +31,7 @@ agent_group<native><public>(member_info:subtype(member_info_interface)) := class
     @available {MinUploadedAtFNVersion := 4294967041}
     (/Verse.org/AgentGroup/agent_group:)AgentGroup_agent_group_Variance_Inherited<private>():tuple(member_info) = external {}
 
-    (/Verse.org/AgentGroup/agent_group:)AgentGroup_agent_group_Variance<private>(:member_info):tuple(member_info) = external {}
+    (/Verse.org/AgentGroup/agent_group:)AgentGroup_agent_group_Variance<private>(:member_info, :member_info):tuple(member_info) = external {}
 
     # Get the members of this agent group with their member info
     GetMemberMap<override><native>()<reads>:[agent]member_info

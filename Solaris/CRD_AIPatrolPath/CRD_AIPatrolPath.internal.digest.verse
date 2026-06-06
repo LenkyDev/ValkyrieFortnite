@@ -27,3 +27,5 @@ ai_patrol_path_device<public> := class<concrete><final>(creative_device_base):
 
     # Commands patroller to follow the *Next Patrol Path* in the *Patrol Path Group*.
     GoToNextPatrolPath<epic_internal>(Patroller:agent):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

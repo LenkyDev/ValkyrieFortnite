@@ -35,3 +35,5 @@ input_trigger_device<public> := class<concrete><final>(creative_device_base):
 
     # Succeeds if `Agent` is currently holding the input.
     IsHeld<public>(Agent:agent)<transacts><decides>:void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

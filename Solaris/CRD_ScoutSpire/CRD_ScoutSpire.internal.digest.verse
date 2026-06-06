@@ -125,3 +125,5 @@ scout_spire_device<public> := class<concrete><final>(creative_device_base, has_s
 
     # Triggers when the Spire shoots its laser attack. Triggers once, even if it shoots at multiple targets
     EndChargeAndFireLaserEvent<public>:listenable(tuple()) = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

@@ -6,3 +6,5 @@ clapboard_device<epic_internal> := class<concrete><final>(creative_device_base):
 
     # Disables this device.
     Disable<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

@@ -8,3 +8,5 @@ animated_mesh_device<public> := class<concrete><final>(creative_device_base):
 
     # Starts or resumes reverse playback of the animation.
     PlayReverse<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

@@ -82,3 +82,5 @@ automated_turret_device<public> := class<concrete><final>(creative_device_base, 
     # Sets the range in meters at which the turret will target to `Range`.
     # This is clamped between `2.0` and `100.0` meters. Setting it lower than 2m will disable Targeting.
     SetTargetRange<public>(Range:float):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

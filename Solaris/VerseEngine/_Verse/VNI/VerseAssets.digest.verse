@@ -19,7 +19,7 @@ Assets<public> := module:
     texture<native><public> := class<computes><final><epic_internal>:
 
 
-    input_action<native><public>(t:type) := class<computes><epic_internal>:
+    input_action<native><public>(t:type) := class<allocates><unique><computes><epic_internal>:
         (/Verse.org/Assets/input_action:)Assets_input_action_Variance<private>():tuple(t) = external {}
 
     input_mapping<native><public> := class<computes><epic_internal>:

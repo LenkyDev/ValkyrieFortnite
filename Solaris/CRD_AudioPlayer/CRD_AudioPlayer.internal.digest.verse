@@ -33,3 +33,5 @@ audio_player_device<public> := class<concrete><final>(creative_device_base):
 
     # Hides this device from the world.
     Hide<public>()<transacts>:void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

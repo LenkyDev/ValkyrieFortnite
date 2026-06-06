@@ -13,3 +13,5 @@ elimination_feed_device<public> := class<concrete><final>(creative_device_base):
     # Activates this device.
     # Requires *Activated by Team / Class* be set to `All`.
     Activate<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

@@ -44,3 +44,5 @@ campfire_device<public> := class<concrete><final>(creative_device_base):
 
     # Extinguishes this device.
     Extinguish<public>(Agent:agent):void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

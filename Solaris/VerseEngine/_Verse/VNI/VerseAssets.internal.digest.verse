@@ -1,8 +1,16 @@
 # Module import path: /Verse.org/Assets
 Assets<public> := module:
     using {/Verse.org/Simulation}
+    using {/Verse.org/Colors}
     using {/Verse.org/Native}
     using {/Verse.org/Restricted}
+    @attribscope_class
+    @customattribhandler
+    asset_proxy_attribute<epic_internal> := class<computes><internal>(attribute):
+
+
+    asset_proxy<constructor><epic_internal>(AssetProxy:string)<computes>:asset_proxy_attribute = external {}
+
     @attribscope_class
     @attribscope_struct
     @attribscope_data
@@ -34,19 +42,21 @@ Assets<public> := module:
     animation_sequence<native><public> := class<computes><final><epic_internal>(asset, animation_asset):
 
 
-    material<native><public> := class<epic_internal>(asset, property_changed_interface):
+    material_like<native><epic_internal> := interface<computes><epic_internal>:
+
+
+    material<native><public> := class<epic_internal>(asset, property_changed_interface, material_like):
         MaterialPath<native><epic_internal>:string = external {}
 
-        OnPropertyChangedFromVerse<native><override>(PropertyName:string)<transacts>:void
-
-    material_parameter_collection<native><epic_internal> := class<epic_internal>(asset, property_changed_interface):
-        MPCPath<native><epic_internal>:string = external {}
+        bUsesGetSetters<native><epic_internal>:logic = external {}
 
         OnPropertyChangedFromVerse<native><override>(PropertyName:string)<transacts>:void
 
-        var Enabled<public>:logic = external {}
+        SetFloatProperty<native><epic_internal>(PropertyName:string, NewFloat:float)<transacts>:void
 
-        ___PropertyInterface_On_Enabled_Changed<epic_internal>():void = external {}
+        SetColorProperty<native><epic_internal>(PropertyName:string, NewColor:color)<transacts>:void
+
+        SetTextureProperty<native><epic_internal>(PropertyName:string, NewTexture:texture)<transacts>:void
 
     particle_system<native><public> := class<computes><final><epic_internal>(client_asset):
 
@@ -55,6 +65,9 @@ Assets<public> := module:
 
 
     skeletal_mesh<native><epic_internal> := class<computes><final><epic_internal>(mesh):
+
+
+    landscape_mesh<native><epic_internal> := class<computes><final><epic_internal>(mesh):
 
 
     mesh<native><public> := class<computes><epic_internal>(asset):
@@ -78,10 +91,10 @@ Assets<public> := module:
     texture_base<native><epic_internal> := class<computes><epic_internal>(asset):
 
 
-    texture<native><public> := class<computes><final><epic_internal>(texture_base):
+    texture<native><public> := class<computes><final><epic_internal>(texture_base, material_like):
 
 
-    input_action<native><public>(t:type) := class<computes><epic_internal>(asset):
+    input_action<native><public>(t:type) := class<allocates><unique><computes><epic_internal>(asset):
         (/Verse.org/Assets/input_action:)Assets_input_action_Variance<private>():tuple(t) = external {}
 
         Path<native><epic_internal>:string = external {}
@@ -92,6 +105,9 @@ Assets<public> := module:
 
 
     camera_rig_asset<native><epic_internal> := class<computes><epic_internal>(asset):
+
+
+    network_physics_settings_data<native><epic_internal> := class<computes><epic_internal>(asset):
 
 
     # Interface that provides an icon.

@@ -178,3 +178,5 @@ skilled_interaction_device<public> := class<concrete><final>(creative_device_bas
     # When modified will take effect after the current interaction is completed.
     # Can only be set to values greater than or equal to 0
     var NextInQueueExecutionDelay<public>:float = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

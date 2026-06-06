@@ -12,3 +12,5 @@ music_manager_device<public> := class<concrete><final>(patchwork_device):
 
     # Returns the number of elapsed beats since the Patchwork timeline has started, for tracking current musical time.
     GetElapsedBeats<epic_internal>()<reads>:float = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

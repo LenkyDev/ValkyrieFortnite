@@ -1253,7 +1253,7 @@ team_settings_and_inventory_device<public> := class<concrete><final>(creative_de
     # This will return them to the team they were on before they joined a Temporary Team
     RemoveTemporaryMemberFromTeam<public>(Agent:agent):void = external {}
 
-    # Returns all temporary team members for this Device’s Team Setting Value back to their original Teams.
+    # Returns all temporary team members for this Device's Team Setting Value back to their original Teams.
     # If the device is configured to All, then this function will remove all Temporary Team members from any Temporary Team they are on, returning them to their original team.
     RemoveTemporaryMembersFromTeam<public>():void = external {}
 

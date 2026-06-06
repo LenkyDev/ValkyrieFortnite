@@ -31,3 +31,5 @@ dance_mannequin_device<public> := class<concrete><final>(creative_device_base):
 
     # Deactivates the hologram.
     DeactivateSkinAndEmoteCapture<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

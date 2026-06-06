@@ -55,3 +55,5 @@ sentry_device<public> := class<concrete><final>(creative_device_base):
 
     # Resets the alert state.
     ResetAlertCooldown<public>():void = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}

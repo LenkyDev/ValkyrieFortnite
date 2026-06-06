@@ -75,3 +75,5 @@ hero_chest_device<public> := class<concrete><final>(creative_device_base, enable
     var LockedDescription<public>:message = external {}
 
     StringToMessage<localizes><epic_internal>(Value:string):message = external {}
+
+    GetBPFunctionNamesForValidation<override>():[]string = external {}
