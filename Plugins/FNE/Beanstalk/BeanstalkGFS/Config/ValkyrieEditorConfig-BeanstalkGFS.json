@@ -1091,6 +1091,7 @@
 			"/CRD_DirectionalLauncher/GA_Launched_LowGravDirectional_Device.GA_Launched_LowGravDirectional_Device_C": {},
 			"/CRD_DirectionalLauncher/GA_Launched_Device_Parent.GA_Launched_Device_Parent_C": {},
 			"/CreativeCoreDevices/ExperienceSettings/BP_UserOptionComponent_VoiceChat.BP_UserOptionComponent_VoiceChat_C": { },
+			"/CreativeCoreDevices/ExperienceSettings/BP_UserOptionComponent_Music.BP_UserOptionComponent_Music_C": { },
 			"/Script/Creative_TemporaryTeamsRuntime.FortUserOptionComponent_TemporaryTeams": {},
 			"/Script/Creative_TemporaryTeamsRuntime.FortUserOptionComponent_TemporaryTeams_TeamSettingsAndInventory": {},
 			"/Creative_TemporaryTeams/Components/BP_UserOptionComponent_TemporaryTeams.BP_UserOptionComponent_TemporaryTeams_C": {},

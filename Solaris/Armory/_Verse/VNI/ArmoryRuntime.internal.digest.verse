@@ -1,6 +1,6 @@
-using {/UnrealEngine.com/Itemization}
 using {/Fortnite.com/Itemization}
 using {/Verse.org/Presentation}
+using {/UnrealEngine.com/Itemization}
 using {/Verse.org/SceneGraph}
 using {/Verse.org/Native}
 using {/Verse.org/Assets}
@@ -47,7 +47,7 @@ fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_compo
 
     SetEnvironmentalDamageMultiplier<native><public>(Val:float):void
 
-    @editable
+    @editable {}
     @category("Weapon Damage")
     @replicated("RepNotify")
     # Range based damage multiplier
@@ -175,7 +175,7 @@ fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_compo
 
     SetShotAmmoCost<native><public>(Val:int):void
 
-    @editable
+    @editable {}
     @category("Weapon Visuals")
     @replicated("RepNotify")
     # The transform by which to offset the weapon muzzle
@@ -183,7 +183,7 @@ fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_compo
 
     SetMuzzleOffset<native><public>(Val:(/Verse.org/SpatialMath:)transform):void
 
-    @editable
+    @editable {}
     @category("Weapon Visuals")
     @replicated("RepNotify")
     # The particle system to use for weapon muzzle flash
@@ -191,7 +191,7 @@ fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_compo
 
     SetMuzzleFlash<native><public>(Val:?particle_system):void
 
-    @editable
+    @editable {}
     @category("Weapon Visuals")
     @replicated("RepNotify")
     # The particle system to use for weapon bullet tracers. The FX system's HitDistance parameter will update with impact distance or max range of the weapon.
@@ -199,7 +199,7 @@ fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_compo
 
     SetBulletTracer<native><public>(Val:?particle_system):void
 
-    @editable
+    @editable {}
     @category("Weapon Visuals")
     @replicated("RepNotify")
     # The transform by which to offset the bullet shell ejection FX
@@ -207,7 +207,7 @@ fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_compo
 
     SetEjectionPortOffset<native><public>(Val:(/Verse.org/SpatialMath:)transform):void
 
-    @editable
+    @editable {}
     @category("Weapon Visuals")
     @replicated("RepNotify")
     # The particle system to use for weapon bullet shells
@@ -215,7 +215,7 @@ fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_compo
 
     SetBulletShells<native><public>(Val:?particle_system):void
 
-    @editable
+    @editable {}
     @category("Weapon Sounds")
     @replicated("RepNotify")
     # The sounds to use when firing the weapon
@@ -223,7 +223,7 @@ fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_compo
 
     SetWeaponFireSound<native><public>(Val:[]sound_wave):void
 
-    @editable
+    @editable {}
     @category("Weapon Sounds")
     @replicated("RepNotify")
     # The sounds to use when equipping the weapon
@@ -231,7 +231,7 @@ fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_compo
 
     SetEquipSound<native><public>(Val:[]sound_wave):void
 
-    @editable
+    @editable {}
     @category("Weapon Sounds")
     @replicated("RepNotify")
     # The sounds to use when starting aiming down sights
@@ -239,7 +239,7 @@ fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_compo
 
     SetAimingDownSightsStartSound<native><public>(Val:[]sound_wave):void
 
-    @editable
+    @editable {}
     @category("Weapon Sounds")
     @replicated("RepNotify")
     # The sounds to use when ending aiming down sights
@@ -247,7 +247,7 @@ fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_compo
 
     SetAimingDownSightsEndSound<native><public>(Val:[]sound_wave):void
 
-    @editable
+    @editable {}
     @category("Weapon Sounds")
     @replicated("RepNotify")
     # The sounds to use when starting a reload
@@ -255,7 +255,7 @@ fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_compo
 
     SetReloadStartSound<native><public>(Val:[]sound_wave):void
 
-    @editable
+    @editable {}
     @category("Weapon Sounds")
     @replicated("RepNotify")
     # The sounds to use when inserting a magazine during reload
@@ -263,7 +263,7 @@ fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_compo
 
     SetReloadInsertSound<native><public>(Val:[]sound_wave):void
 
-    @editable
+    @editable {}
     @category("Weapon Sounds")
     @replicated("RepNotify")
     # The sounds to use when finishing a reload
@@ -271,7 +271,7 @@ fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_compo
 
     SetReloadEndSound<native><public>(Val:[]sound_wave):void
 
-    @editable
+    @editable {}
     @category("Weapon Sounds")
     @replicated("RepNotify")
     # The sounds to use when the weapon is out of ammo
@@ -308,6 +308,8 @@ pistol_mesh<public> := class<final>(mesh_component):
 pistol_template<public> := class<concrete><final>(weapon_entity):
     ItemDefinitionID<override>:string = external {}
 
+    ItemComponent<override>:?item_component = external {}
+
     @available {MinUploadedAtFNVersion := 4020}
     IconComponent<override>:?icon_component = external {}
 
@@ -327,6 +329,8 @@ assault_rifle_mesh<public> := class<final>(mesh_component):
 # The entity prefab for a creator customizable assault rifle
 assault_rifle_template<public> := class<concrete><final>(weapon_entity):
     ItemDefinitionID<override>:string = external {}
+
+    ItemComponent<override>:?item_component = external {}
 
     @available {MinUploadedAtFNVersion := 4020}
     IconComponent<override>:?icon_component = external {}
@@ -348,6 +352,8 @@ sub_machine_gun_mesh<public> := class<final>(mesh_component):
 sub_machine_gun_template<public> := class<concrete><final>(weapon_entity):
     ItemDefinitionID<override>:string = external {}
 
+    ItemComponent<override>:?item_component = external {}
+
     @available {MinUploadedAtFNVersion := 4020}
     IconComponent<override>:?icon_component = external {}
 
@@ -368,6 +374,8 @@ shotgun_mesh<public> := class<final>(mesh_component):
 shotgun_template<public> := class<concrete><final>(weapon_entity):
     ItemDefinitionID<override>:string = external {}
 
+    ItemComponent<override>:?item_component = external {}
+
     @available {MinUploadedAtFNVersion := 4020}
     IconComponent<override>:?icon_component = external {}
 
@@ -380,6 +388,7 @@ shotgun_template<public> := class<concrete><final>(weapon_entity):
 
     WeaponComponent<override>:?fort_weapon_component = external {}
 
+@hide_in_editor
 weapon_entity<native><epic_internal> := class<concrete><internal>(fort_item_definition_entity_base):
     @field("Components")
     @available {MinUploadedAtFNVersion := 4000}

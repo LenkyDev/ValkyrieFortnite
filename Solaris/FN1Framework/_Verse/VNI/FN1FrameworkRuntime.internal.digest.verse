@@ -135,3 +135,19 @@ Persistence<public> := module:
     BindInterface<native><epic_internal>(Interface:persistence_interface):void
 
     UnbindInterface<native><epic_internal>(Interface:persistence_interface):void
+
+# Module import path: /Fortnite.com/Framework/Spectating
+Spectating<epic_internal> := module:
+    using {/Verse.org/SceneGraph}
+    using {/Verse.org/Simulation}
+    spectator_manager<native><epic_internal> := class<internal>:
+        # Get all live spectators that are part of the session
+        GetLiveSpectators<native><epic_internal>()<transacts>:[]player
+
+        # Signaled when a live spectator joins the session.
+        LiveSpectatorAddedEvent<native><epic_internal>:subscribable_event_intrnl(player) = external {}
+
+        # Signaled when a live spectator leaves the session.
+        LiveSpectatorRemovedEvent<native><epic_internal>:subscribable_event_intrnl(player) = external {}
+
+    (InEntity:entity).GetSpectatorManager<native><epic_internal>()<transacts><decides>:spectator_manager

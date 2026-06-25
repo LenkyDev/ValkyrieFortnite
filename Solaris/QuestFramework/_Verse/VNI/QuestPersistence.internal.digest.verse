@@ -1,4 +1,5 @@
 using {/Verse.org/Progression}
+@experimental
 progress_objective_snapshot<native><epic_internal> := class<final><persistable><epic_internal>:
     ObjectiveId<native><epic_internal>:string = external {}
 
@@ -8,6 +9,7 @@ progress_objective_snapshot<native><epic_internal> := class<final><persistable><
 
     RequiredCount<native><epic_internal>:float = external {}
 
+@experimental
 composite_objective_snapshot<native><epic_internal> := class<final><persistable><epic_internal>:
     ObjectiveId<native><epic_internal>:string = external {}
 
@@ -19,6 +21,7 @@ composite_objective_snapshot<native><epic_internal> := class<final><persistable>
 
     Children<native><epic_internal>:[]objective_snapshot = external {}
 
+@experimental
 sequential_objective_snapshot<native><epic_internal> := class<final><persistable><epic_internal>:
     ObjectiveId<native><epic_internal>:string = external {}
 
@@ -28,6 +31,7 @@ sequential_objective_snapshot<native><epic_internal> := class<final><persistable
 
     Children<native><epic_internal>:[]objective_snapshot = external {}
 
+@experimental
 timed_objective_snapshot<native><epic_internal> := class<final><persistable><epic_internal>:
     ObjectiveId<native><epic_internal>:string = external {}
 
@@ -37,6 +41,7 @@ timed_objective_snapshot<native><epic_internal> := class<final><persistable><epi
 
     Inner<native><epic_internal>:?objective_snapshot = external {}
 
+@experimental
 state_machine_objective_snapshot<native><epic_internal> := class<final><persistable><epic_internal>:
     ObjectiveId<native><epic_internal>:string = external {}
 
@@ -44,6 +49,7 @@ state_machine_objective_snapshot<native><epic_internal> := class<final><persista
 
     CurrentStateId<native><epic_internal>:string = external {}
 
+@experimental
 objective_snapshot<native><epic_internal> := class<final><persistable><epic_internal>:
     Progress<native><epic_internal>:?progress_objective_snapshot = external {}
 
@@ -55,10 +61,13 @@ objective_snapshot<native><epic_internal> := class<final><persistable><epic_inte
 
     StateMachine<native><epic_internal>:?state_machine_objective_snapshot = external {}
 
+@experimental
 SnapshotQuestData<native><epic_internal>(Quest:quest)<reads>:quest_progress_data
 
+@experimental
 RestoreQuestData<native><epic_internal>(Data:quest_progress_data)<transacts><decides>:quest
 
+@experimental
 quest_progress_data<native><epic_internal> := class<final><persistable><epic_internal>:
     QuestId<native><epic_internal>:string = external {}
 

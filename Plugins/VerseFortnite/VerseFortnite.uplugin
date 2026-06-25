@@ -46,6 +46,10 @@
 			"Enabled": true
 		},
 		{
+			"Name": "CosmeticsFrameworkLoadouts",
+			"Enabled": true
+		},
+		{
 			"Name": "EntityFramework",
 			"Enabled": true
 		},
@@ -145,6 +149,10 @@
 		},
 		{
 			"Name": "VerseGameplayTags",
+			"Enabled": true
+		},
+		{
+			"Name": "ValkyrieEngine",
 			"Enabled": true
 		}
 	]

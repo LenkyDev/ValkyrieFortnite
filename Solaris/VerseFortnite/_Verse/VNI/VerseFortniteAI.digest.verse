@@ -425,3 +425,4 @@ Animation<public> := module:
 
 # Module import path: /Fortnite.com/Assets
 (/Fortnite.com:)Assets<public> := module:
+    npc_character_definition<native><public> := class<computes><final><epic_internal>:

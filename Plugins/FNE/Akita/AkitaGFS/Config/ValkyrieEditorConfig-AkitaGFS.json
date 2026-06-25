@@ -16,6 +16,7 @@
 			"/NPCDefault/Types/CharacterType_Wildlife.CharacterType_Wildlife_C": { "Visible": true },
 			"/NPCDefault/Types/CharacterType_Participant.CharacterType_Participant_C": { "Visible": true },
 			"/FNEDodgyBean/CreatureType/BP_DodgyBean_CharacterType.BP_DodgyBean_CharacterType_C": { "Visible": true },
+			"/FNEDodgyBean/CreatureType/BP_DodgyBean_Mountain_CharacterType.BP_DodgyBean_Mountain_CharacterType_C": { "Visible": true },
 			"/SW_C_Assets/SetupAssets/DSA/Blueprints/DSA_BinarySuns.DSA_BinarySuns_C": { "Visible": true },
 			"/SW_D_Assets/SetupAssets/DSA/Blueprints/DSA_Space.DSA_Space_C": { "Visible": true },
 			"/FNE_SW_UI_Assets/CharacterHUDs/UW_HUD_Chewbacca_Info.UW_HUD_Chewbacca_Info_C": { "Visible": true },
@@ -34,7 +35,22 @@
 			"/FNE_SW_UI_Assets/PlayerHUD/UW_HUD_PlayerInfo.UW_HUD_PlayerInfo_C": { "Visible": true },
 			"/FNE_SW_UI_Assets/PlayerHUD/UW_HUD_Quickbar.UW_HUD_Quickbar_C": { "Visible": true },
 			"/FNE_SWLoneMamba/Characters/Jawa/Jawa.Jawa_C": { "Visible": true },
-			"/FNE_SWNiceCrown/Vehicles/AT_AT/AT_AT.AT_AT_C": { "Visible": true }
+			"/FNE_SWNiceCrown/Vehicles/AT_AT/AT_AT.AT_AT_C": { "Visible": true },
+			"/FNEAmusingTarpon/Assets/Meshes/B1Battle_CR.B1Battle_CR_C": { "Visible": true },
+			"/FNEFeignedMagnolia/Assets/Meshes/ARG_CR.ARG_CR_C": { "Visible": true },
+			"/FNEGapingChapstick/Assets/Meshes/BDXExplorer_CR.BDXExplorer_CR_C": { "Visible": true },
+			"/FNEGuiltySandpaper/Assets/Meshes/A-LT_CR.A-LT_CR_C": { "Visible": true },
+			"/FNEInquisitiveStapler/Assets/Meshes/B-R72_CR.B-R72_CR_C": { "Visible": true },
+			"/FNENonchalantXenon/Assets/Meshes/ViperProbe_CR.ViperProbe_CR_C": { "Visible": true },
+			"/FNEOnerousColander/Assets/Meshes/DJR3X_CR.DJR3X_CR_C": { "Visible": true },
+			"/FNERecycledHawfinch/Assets/Meshes/Mouse_CR.Mouse_CR_C": { "Visible": true },
+			"/FNESecretivePomelo/Assets/Meshes/SenateHovercam_CR.SenateHovercam_CR_C": { "Visible": true },
+			"/FNETorpidSealant/Assets/Meshes/B2Super_CR.B2Super_CR_C": { "Visible": true },
+			"/FNEUnkemptEscarole/Assets/Meshes/MisterBones_CR.MisterBones_CR_C": { "Visible": true },
+			"/FNEUnseriousDustpan/Assets/Meshes/Gonk_CR.Gonk_CR_C": { "Visible": true },
+			"/FNEWoozyBonesaw/Assets/Meshes/BB-8_CR.BB-8_CR_C": { "Visible": true },
+			"/FNEYieldingBlouse/Assets/Meshes/ID10_CR.ID10_CR_C": { "Visible": true },
+			"/FNETediousBuckeye/Assets/Meshes/Pit_CRig.Pit_CRig_C": { "Visible": true}
 		},
 		"_comment_AllowedGatherFolders": "Allowed folders to gather assets from when exposing assets"
 
@@ -68,8 +84,17 @@
 				"DenyList": [ "SelectedAI" ]
 			},
 			{
+				"Type": "/FNEDodgyBean/CreatureType/BP_DodgyBean_Mountain_CharacterType.BP_DodgyBean_Mountain_CharacterType_C",
+				"AllowList": [ "DisplayName" ], 
+				"DenyList": [ "SelectedAI" ]
+			},
+			{
 				"Type": "/PartnerQuestTrigger/Blueprints/Device_Partner_Quest_Trigger.Device_Partner_Quest_Trigger_C",
 				"AllowList": [ "IslandIdForQuests", "QuestVerb", "Count" ]
+			},
+			{
+				"Type": "/FNETannedSilicon/Assets/BP_Droid_Tintable.BP_Droid_Tintable_C",
+				"AllowList": [ "Primary", "Secondary", "Tertiary" ]
 			}
 		]
 	}

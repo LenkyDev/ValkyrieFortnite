@@ -1,5 +1,5 @@
-using {/Verse.org/Native}
 using {/Verse.org/Temporary/EpicGamesRestricted/Network}
+using {/Verse.org/Native}
 using {/Verse.org/Simulation}
 @available {MinUploadedAtFNVersion := 4100}
 @experimental
@@ -9,12 +9,10 @@ easing_window<native><public> := struct<concrete>:
     (/Verse.org/SceneGraph/easing_window:)Easing<native>:type {_(:float)<reads>:float} = external {}
 
     @editable
-    @replicated("")
     # Duration of the easing window in seconds
     Duration<native>:float = external {}
 
     @editable
-    @replicated("")
     # Offset of the easing window in seconds
     # The offset allows the window to be moved later or earlier relative to the easing modifier’s internal timeline.
     # For example, moving the ease-in window later (ie +Offset) would cause the blend to happen later - ie delay it.
@@ -63,10 +61,8 @@ easing_modifier<native><epic_internal>(t:type) := class<final><epic_internal>(ea
     # Target to transition into or out from
     Target<native><epic_internal>:modifier(t)
 
-    @replicated("")
     # Easing to apply when easing in (i.e. 'towards' the target).
     EaseInWindow<native><epic_internal>:easing_window = external {}
 
-    @replicated("")
     # Easing to apply when easing out (i.e. 'away from' the target).
     EaseOutWindow<native><epic_internal>:easing_window = external {}

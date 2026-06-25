@@ -348,7 +348,6 @@ Game<public> := module:
     using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/Verse.org/Simulation}
     using {/Verse.org/SceneGraph}
-    using {/UnrealEngine.com/Abilities}
     using {/Fortnite.com/Characters}
     # Result data for `fort_character` elimination events.
     elimination_result<native><public> := struct<epic_internal>:
@@ -359,7 +358,7 @@ Game<public> := module:
         EliminatingCharacter<native><public>:?fort_character
 
     @experimental
-    fort_ability_component<native><epic_internal> := class(old_ability_component):
+    fort_ability_component<native><epic_internal> := class<final_super>(component):
         OnBeginSimulation<native><override>():void
 
         OnEndSimulation<native><override>():void

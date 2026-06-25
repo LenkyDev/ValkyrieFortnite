@@ -288,6 +288,19 @@ particle_system_component<native><public> := class<final_super><epic_internal>(c
 # Find all objects in the scene that would intersect Volume if they were swept from GlobalTransform along the Displacement vector Hits are sorted by hit distance. NOTE: This entity defines the context(scene) for the query but does not otherwise take part in the sweep.
 (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3, StartGlobalTransform:(/Verse.org/SpatialMath:)transform, Volume:collision_volume)<transacts>:generator(sweep_hit) = external {}
 
+# Marks an entity that can be possessed by an agent.
+possessable_component<native><public> := class<final_super><epic_internal>(component):
+    # Which agent is this entity currently possessed by.
+    var<private> Agent<native><final><public>:?agent = external {}
+
+    OnEndSimulation<override>():void = external {}
+
+# All entities possessed by this agent.
+(InAgent:agent).GetPossessedEntities<public>()<reads>:[]possessable_component = external {}
+
+# Checks if an entity is possessed.
+(InAgent:agent).IsEntityPossessed<public>(PossessableComponent:possessable_component)<reads><decides>:void = external {}
+
 @available {MinUploadedAtFNVersion := 3800}
 # Assign the players that this entity will be presented to. False = presentable to everyone, array = presentable to no one.
 (Entity:entity).SetPresentableToPlayers<native><public>(Players:?[]player):void

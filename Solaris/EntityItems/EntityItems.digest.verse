@@ -1715,9 +1715,6 @@ Weapons<public> := module:
     ExoticLeapingLightningGun_BR_CH7S2_Exotic<public> := class<final><concrete>(entity):
 
 
-    ExoticReconBow_BR_CH7S2_Exotic<public> := class<final><concrete>(entity):
-
-
     ExplosiveGooGun_BR_CH3S4_Rare<public> := class<final><concrete>(entity):
 
 
@@ -3072,6 +3069,9 @@ Weapons<public> := module:
     ReaperSniperRifle_Ballistic_V1_Common<public> := class<final><concrete>(entity):
 
 
+    ExoticReconBow_BR_CH7S2_Exotic<public> := class<final><concrete>(entity):
+
+
     ReconScanner_BR_CH2S7_Rare<public> := class<final><concrete>(entity):
 
 
@@ -3724,6 +3724,21 @@ Weapons<public> := module:
     EnhancedSurgefireSMG_BR_CH6S1_Mythic<public> := class<final><concrete>(entity):
 
 
+    VanguardBurstRifle_BR_CH7S3_Common<public> := class<final><concrete>(entity):
+
+
+    VanguardBurstRifle_BR_CH7S3_Uncommon<public> := class<final><concrete>(entity):
+
+
+    VanguardBurstRifle_BR_CH7S3_Rare<public> := class<final><concrete>(entity):
+
+
+    VanguardBurstRifle_BR_CH7S3_Epic<public> := class<final><concrete>(entity):
+
+
+    VanguardBurstRifle_BR_CH7S3_Legendary<public> := class<final><concrete>(entity):
+
+
     Swarmstrike_BR_CH6S4_Epic<public> := class<final><concrete>(entity):
 
 
@@ -4064,21 +4079,6 @@ Weapons<public> := module:
 
 
     UnstableFrostfireShotgun_BR_CH6S3_Exotic<public> := class<final><concrete>(entity):
-
-
-    VanguardBurstRifle_BR_CH7S3_Common<public> := class<final><concrete>(entity):
-
-
-    VanguardBurstRifle_BR_CH7S3_Uncommon<public> := class<final><concrete>(entity):
-
-
-    VanguardBurstRifle_BR_CH7S3_Rare<public> := class<final><concrete>(entity):
-
-
-    VanguardBurstRifle_BR_CH7S3_Epic<public> := class<final><concrete>(entity):
-
-
-    VanguardBurstRifle_BR_CH7S3_Legendary<public> := class<final><concrete>(entity):
 
 
     Vector7DMR_BR_CH7S2_Rare<public> := class<final><concrete>(entity):

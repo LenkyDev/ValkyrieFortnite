@@ -116,10 +116,10 @@ HasCollisionInvalids<epic_internal> := module:
 @experimental
 has_collision<native><epic_internal> := interface<epic_internal>(has_mesh_part_support):
     # True if any associated physics objects are physically collidable
-    GetCollidable<final><native_callable><public>()<reads>:logic = external {}
+    GetCollidable<final><native_callable><epic_internal>()<reads>:logic = external {}
 
     # Set the physics collidability for all associated physics objects
-    SetCollidable<final><native_callable><public>(In:logic):void = external {}
+    SetCollidable<final><native_callable><epic_internal>(In:logic):void = external {}
 
     GetCollisionMaterial<final><native_callable><epic_internal>()<reads>:collision_material = external {}
 
@@ -760,6 +760,11 @@ mesh_component<native><public> := class<final_super><epic_internal>(component, e
     @experimental
     GetRigidBody<native><epic_internal>()<transacts>:rigid_body
 
+    @available {MinUploadedAtFNVersion := 4110}
+    @experimental
+    # Get mesh_part's on this mesh_component.
+    GetMeshParts<native><epic_internal>():[]mesh_part
+
     OnPropertyChangedFromVerse<native><override>(PropertyName:string)<transacts>:void
 
     @editable {EpicOnly := true}
@@ -1112,6 +1117,57 @@ physics_scene_component<native><epic_internal> := class<final><final_super><epic
 
     @available {MinUploadedAtFNVersion := 2930}
     FindEntitySweepHits<native><public>(QueryEntity:entity, QueryTransform:(/Verse.org/SpatialMath:)transform, QueryTraceVector:(/Verse.org/SpatialMath:)vector3)<transacts>:generator(sweep_hit)
+
+# Payload of the AgentChangeEvent. Contains the previous and the current possessing agent.
+agent_changed_result<native><epic_internal> := struct:
+    PreviousAgent<native>:?agent = external {}
+
+    CurrentAgent<native>:?agent = external {}
+
+# Marks an entity that can be possessed by an agent.
+possessable_component<native><public> := class<final_super><epic_internal>(component):
+    # Which agent is this entity currently possessed by.
+    var<private> Agent<native><final><public>:?agent = external {}
+
+    OnEndSimulation<override>():void = external {}
+
+    # Notify when the possessing agent changes.
+    AgentChangeEvent<native><final><epic_internal>:listenable(agent_changed_result) = external {}
+
+    # Entity's opinion on whether it can be possessed by a specific agent.
+    #  By default it fails if the entity is already possessed.
+    CanBePossessedBy<native_callable><epic_internal>(AgentToCheck:agent)<reads><decides>:void = external {}
+
+    # Internal function to call when possessing for updating status and triggering the AgentChangeEvent.
+    BeginPossess<final><epic_internal>(NewPossessingAgent:agent)<transacts>:void = external {}
+
+    # Internal function to call when unpossessing for updating status and triggering the AgentChangeEvent.
+    EndPossess<final><epic_internal>()<transacts>:void = external {}
+
+    # Signals the AgentChangeEvent.
+    SignalAgentChangeEvent<final><epic_internal>(PreviousAgent:?agent)<transacts>:void = external {}
+
+    # Internal function that signals the AgentChangeEvent.
+    SignalAgentChangeEventInternal<native><final><epic_internal>(AgentChangedResult:agent_changed_result)<transacts>:void
+
+# All entities possessed by this agent.
+(InAgent:agent).GetPossessedEntities<public>()<reads>:[]possessable_component = external {}
+
+# Checks if an entity is possessed.
+(InAgent:agent).IsEntityPossessed<public>(PossessableComponent:possessable_component)<reads><decides>:void = external {}
+
+# Possess an entity. Fails if PossessableComponent.CanBePossessedBy[Self] fails.
+(InAgent:agent).BeginPossess<epic_internal>(PossessableComponent:possessable_component)<transacts><decides>:void = external {}
+
+# Unpossess an entity.
+(InAgent:agent).EndPossess<epic_internal>(PossessableComponent:possessable_component)<transacts>:void = external {}
+
+# Event that will fire when a new entity is possessed.
+(InAgent:agent).GetBeginPossessEvent<epic_internal>():listenable(possessable_component) = external {}
+
+# Event that will fire when an entity is unpossessed.
+#  Entities are automatically unpossessed when removed from the scene
+(InAgent:agent).GetEndPossessEvent<epic_internal>():listenable(possessable_component) = external {}
 
 presentation_component<native><epic_internal> := class<final_super>(component):
 

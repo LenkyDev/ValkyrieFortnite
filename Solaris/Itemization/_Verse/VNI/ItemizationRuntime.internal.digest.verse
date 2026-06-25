@@ -135,9 +135,11 @@ FortniteItemCategories<public> := module:
 
     WeaponRanged<public>:item_category = external {}
 
+@hide_in_editor
 fort_item_definition_entity_base<native><epic_internal> := class<concrete>(entity):
     ItemDefinitionID<native><protected>:string = external {}
 
+@hide_in_editor
 fort_item_definition_entity<native><epic_internal> := class<concrete>(fort_item_definition_entity_base):
     @field("Components")
     @available {MinUploadedAtFNVersion := 4000}
@@ -178,16 +180,6 @@ MakeStackableComponent<native><epic_internal>(SplitPrefabType:castable_concrete_
 
 @available {MinUploadedAtFNVersion := 4100}
 InitializeDescriptionComponentField<native><epic_internal>(Name:message, Description:message, ShortDescription:message)<converges>:description_component
-
-# Module import path: /Fortnite.com/Itemization/FortniteItemDefinitionUtils
-FortniteItemDefinitionUtils<epic_internal> := module:
-    using {/UnrealEngine.com/Itemization}
-    using {/Verse.org/SceneGraph}
-    @experimental
-    AddItemComponents<native><epic_internal>(InEntity:entity, InItemDefinitionID:string, InItemComponentType:subtype(item_component))<converges>:void
-
-    @experimental
-    AddItemComponents<native><epic_internal>(InEntity:entity, InItemDefinitionID:string)<converges>:void
 
 @experimental
 pickup_overflow_behavior<native><epic_internal> := enum:

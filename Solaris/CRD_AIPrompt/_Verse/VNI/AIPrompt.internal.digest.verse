@@ -220,7 +220,9 @@ conversation_target<native><epic_internal> := interface<unique><epic_internal>:
 # Returns the persona a participant is assigned to, fails if unassigned.
 (Participant:agent).GetConversationTargetForAgent<native><epic_internal>()<reads><decides>:conversation_target
 
+@experimental
 internal_response_data<native><epic_internal> := struct:
+    @llm_description("Use this to output the name of the targeted conversation participant")
     TargetAgent<native>:?agent
 
 @available {MinUploadedAtFNVersion := 4000}

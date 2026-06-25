@@ -1,12 +1,22 @@
 using {/Verse.org/Temporary/EpicGamesRestricted/Network}
-using {/UnrealEngine.com/Abilities}
 using {/Verse.org/Assets}
-using {/Verse.org/Native}
 using {/Verse.org/Simulation}
+using {/Verse.org/Native}
 using {/Verse.org/SceneGraph}
 @experimental
 copy_from_item<native><epic_internal> := interface<epic_internal>:
     CopyFromItem<native_callable><epic_internal>(SourceItem:entity)<transacts>:void
+
+@hide_in_editor
+subscribable_inventory_event<native><epic_internal>(t:type) := class(subscribable_event_intrnl(t)):
+    @available {MinUploadedAtFNVersion := 4294967041}
+    (/UnrealEngine.com/Itemization/subscribable_inventory_event:)Itemization_subscribable_inventory_event_Variance_Inherited<private>(:t, :t, :t, :t):tuple(t, t, t, t, t, t) = external {}
+
+    (/UnrealEngine.com/Itemization/subscribable_inventory_event:)Itemization_subscribable_inventory_event_Variance<private>():tuple(t, t) = external {}
+
+    Await<native><override>()<suspends>:t
+
+    Subscribe<native><override>(Callback:type {_(:t):void})<transacts>:cancelable
 
 add_inventory_result<native><epic_internal> := class<epic_internal>:
     ParentInventory<native><public>:inventory_component
@@ -297,9 +307,6 @@ item_ability_binding<native><final><epic_internal> := class<concrete>:
     @editable
     var<private> Cooldowns<native><public>:[]item_ability_cooldown = external {}
 
-    @editable
-    var<private> Ability<native><public>:?ability = external {}
-
 @class_and_subclass_group_names("item")
 @experimental
 @hide_in_editor
@@ -426,6 +433,8 @@ item_component<native><public> := class<final_super>(component):
     # Fails if this item is already in an inventory, or the inventory cannot accept the item.
     PickUp<native><public>(Inventory:inventory_component)<transacts><decides>:void
 
+    ItemDefinitionAsset<native><epic_internal>:?item_definition = external {}
+
     @replicated("")
     var<private> ItemDefinition<native><epic_internal>:?item_definition_base = external {}
 
@@ -434,6 +443,9 @@ item_component<native><public> := class<final_super>(component):
 
 @available {MinUploadedAtFNVersion := 3800}
 (Item:item_component).CanUnequip<native><public>()<transacts>:result(false, []unequip_item_error)
+
+item_definition<native><epic_internal> := class<epic_internal>(asset):
+
 
 @import_as("/Script/ItemizationCoreRuntime.UItemDefinitionBase")
 item_definition_base<native><epic_internal> := class<epic_internal>:

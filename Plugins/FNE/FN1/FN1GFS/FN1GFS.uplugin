@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/FN1",
-	"FortReleaseVersion": "41.00",
+	"FortReleaseVersion": "41.10",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"Version": 0,
@@ -175,6 +175,11 @@
 		},
 		{
 			"Name": "SquareClub_Accolades",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "SquareClub_Dailies",
 			"Enabled": true,
 			"Optional": true
 		},

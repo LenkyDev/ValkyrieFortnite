@@ -1,12 +1,19 @@
 using {/Verse.org/SceneGraph}
-using {/UnrealEngine.com/Progression}
 using {/Verse.org/Native}
-using {/Verse.org/Simulation}
 using {/Verse.org/Progression}
+using {/Verse.org/Simulation}
+using {/UnrealEngine.com/Progression}
+@experimental
 @hide_in_editor
 test_quest<native><epic_internal> := class(basic_quest):
 
 
+@experimental
+@hide_in_editor
+test_quest_no_display<native><epic_internal> := class(basic_quest):
+
+
+@experimental
 @hide_in_editor
 test_objective_basic<native><epic_internal> := class(quest_objective):
     var CompletedFlag<native><epic_internal>:logic = external {}
@@ -17,6 +24,7 @@ test_objective_basic<native><epic_internal> := class(quest_objective):
 
     MarkComplete<native><epic_internal>():void
 
+@experimental
 @hide_in_editor
 test_reward<native><epic_internal> := class(quest_reward):
     var WasGranted<native><epic_internal>:logic = external {}
@@ -24,15 +32,18 @@ test_reward<native><epic_internal> := class(quest_reward):
     @available {MinUploadedAtFNVersion := 4000}
     GrantReward<override><native>(EligibleParticipants:[]quest_participant)<transacts>:result(void, []grant_quest_reward_error)
 
+@experimental
 @hide_in_editor
 test_reward_failing<native><epic_internal> := class(quest_reward):
     @available {MinUploadedAtFNVersion := 4000}
     GrantReward<override><native>(EligibleParticipants:[]quest_participant)<transacts>:result(void, []grant_quest_reward_error)
 
+@experimental
 @hide_in_editor
 test_participant<native><epic_internal> := class(quest_participant):
 
 
+@experimental
 @hide_in_editor
 tracking_test_quest<native><epic_internal> := class(basic_quest):
     var OnCompleteCalledFlag<native><epic_internal>:logic = external {}
@@ -47,6 +58,7 @@ tracking_test_quest<native><epic_internal> := class(basic_quest):
 
     OnRemove<override><native>(Manager:quest_manager_component):void
 
+@experimental
 @hide_in_editor
 ordered_tracking_modular_quest<native><epic_internal> := class(modular_quest):
     var OnActivateOrder<native><epic_internal>:int = external {}
@@ -65,16 +77,19 @@ ordered_tracking_modular_quest<native><epic_internal> := class(modular_quest):
 
     OnAbandon<override><native>(QuestParticipant:quest_participant):void
 
+@experimental
 @hide_in_editor
 veto_test_quest<native><epic_internal> := class(basic_quest):
     @available {MinUploadedAtFNVersion := 4000}
     CanJoin<override><native>(QuestParticipant:quest_participant)<reads>:result(void, []join_quest_error)
 
+@experimental
 @hide_in_editor
 veto_test_participant<native><epic_internal> := class(quest_participant):
     @available {MinUploadedAtFNVersion := 4000}
     CanJoin<override><native>(Quest:quest)<reads>:result(void, []join_quest_error)
 
+@experimental
 @hide_in_editor
 tracking_test_participant<native><epic_internal> := class(quest_participant):
     var OnJoinCalledFlag<native><epic_internal>:logic = external {}
@@ -97,6 +112,7 @@ tracking_test_participant<native><epic_internal> := class(quest_participant):
 
     OnComplete<override><native>(Quest:quest):void
 
+@experimental
 @hide_in_editor
 tracking_test_objective<native><epic_internal> := class(test_objective_basic):
     var OnActivateCalledFlag<native><epic_internal>:logic = external {}
@@ -115,12 +131,14 @@ tracking_test_objective<native><epic_internal> := class(test_objective_basic):
 
     OnAbandon<override><native>(QuestParticipant:quest_participant):void
 
+@experimental
 @hide_in_editor
 pure_verse_test_objective<epic_internal> := class(test_objective_basic):
     OnActivate<override>():void = external {}
 
     IsOnActivateCalledInVerse<epic_internal>()<reads>:logic = external {}
 
+@experimental
 @hide_in_editor
 veto_test_quest_abandon<native><epic_internal> := class(basic_quest):
     var ShouldVeto<native><epic_internal>:logic = external {}
@@ -128,6 +146,7 @@ veto_test_quest_abandon<native><epic_internal> := class(basic_quest):
     @available {MinUploadedAtFNVersion := 4000}
     CanAbandon<override><native>(QuestParticipant:quest_participant)<reads>:result(void, []abandon_quest_error)
 
+@experimental
 @hide_in_editor
 veto_test_participant_abandon<native><epic_internal> := class(quest_participant):
     var ShouldVeto<native><epic_internal>:logic = external {}
@@ -135,20 +154,24 @@ veto_test_participant_abandon<native><epic_internal> := class(quest_participant)
     @available {MinUploadedAtFNVersion := 4000}
     CanAbandon<override><native>(Quest:quest)<reads>:result(void, []abandon_quest_error)
 
+@experimental
 @hide_in_editor
 veto_test_quest_add<native><epic_internal> := class(basic_quest):
     CanAdd<override><native>(Manager:quest_manager_component)<reads><decides>:void
 
+@experimental
 @hide_in_editor
 test_granter_component<native><epic_internal> := class<final_super>(quest_granter_component):
     var OnGrantCallCount<native><epic_internal>:int = external {}
 
     OnGrant<override><native>(Manager:quest_manager_component, Quest:quest):void
 
+@experimental
 @hide_in_editor
 veto_granter_component<native><epic_internal> := class<final_super>(quest_granter_component):
     CanGrant<override><native>(Manager:quest_manager_component)<reads><decides>:void
 
+@experimental
 @hide_in_editor
 tracking_test_extension<native><epic_internal> := class<epic_internal>(quest_extension):
     var OnActivateCalledFlag<native><epic_internal>:logic = external {}
@@ -171,6 +194,7 @@ tracking_test_extension<native><epic_internal> := class<epic_internal>(quest_ext
 
     OnComplete<override><native>():void
 
+@experimental
 @hide_in_editor
 ordered_tracking_extension<native><epic_internal> := class<epic_internal>(quest_extension):
     var OnActivateOrder<native><epic_internal>:int = external {}
@@ -189,11 +213,13 @@ ordered_tracking_extension<native><epic_internal> := class<epic_internal>(quest_
 
     OnAbandon<override><native>(QuestParticipant:quest_participant):void
 
+@experimental
 @hide_in_editor
 test_veto_join_extension<native><epic_internal> := class<epic_internal>(quest_extension):
     @available {MinUploadedAtFNVersion := 4000}
     CanJoin<override><native>(QuestParticipant:quest_participant)<reads>:result(void, []join_quest_error)
 
+@experimental
 @hide_in_editor
 test_veto_abandon_extension<native><epic_internal> := class<epic_internal>(quest_extension):
     var ShouldVeto<native><epic_internal>:logic = external {}
@@ -201,15 +227,22 @@ test_veto_abandon_extension<native><epic_internal> := class<epic_internal>(quest
     @available {MinUploadedAtFNVersion := 4000}
     CanAbandon<override><native>(QuestParticipant:quest_participant)<reads>:result(void, []abandon_quest_error)
 
+ObjectiveDisplayDataTestName<localizes><epic_internal>:message = external {}
+
+RewardDisplayDataTestName<localizes><epic_internal>:message = external {}
+
+@experimental
 test_boilerplate_objects<epic_internal> := struct:
     Collection:quest_collection
 
     Quest:test_quest
 
+    @available {MinUploadedAtFNVersion := 4000}
     Info:quest_participant_info
 
     Participant:test_participant
 
+@experimental
 @hide_in_editor
 quest_test_component<native><epic_internal> := class<final_super>(component):
     var<private> EventFiredFlag<native><epic_internal>:logic = external {}
@@ -252,12 +285,6 @@ quest_test_component<native><epic_internal> := class<final_super>(component):
 
     TEST_Quest_Fail_NoOpWhenCompleted<native_callable><epic_internal>():logic = external {}
 
-    TEST_Collection_JoinQuest_RejectsCompletedQuest<native_callable><epic_internal>():logic = external {}
-
-    TEST_Collection_JoinQuest_RejectsFailedQuest<native_callable><epic_internal>():logic = external {}
-
-    TEST_Collection_JoinQuest_RejectsInactiveQuest<native_callable><epic_internal>():logic = external {}
-
     TEST_Collection_JoinQuest_RejectsDifferentCollection<native_callable><epic_internal>():logic = external {}
 
     TEST_Collection_JoinQuest_CreatesMembership<native_callable><epic_internal>():logic = external {}
@@ -284,11 +311,13 @@ quest_test_component<native><epic_internal> := class<final_super>(component):
 
     TEST_BasicQuest_AutoCompletes_WhenObjectiveDone<native_callable><epic_internal>():logic = external {}
 
-    TEST_BasicQuest_DoesNotAutoComplete_WhenInactive<native_callable><epic_internal>():logic = external {}
+    TEST_BasicQuest_AutoCompletes_WhenInactive<native_callable><epic_internal>():logic = external {}
 
     TEST_BasicQuest_SetObjective_ChangesObjective<native_callable><epic_internal>():logic = external {}
 
     TEST_BasicQuest_AutoGrantsRewardOnComplete<native_callable><epic_internal>():logic = external {}
+
+    TEST_BasicQuest_DirectComplete_GrantsReward<native_callable><epic_internal>():logic = external {}
 
     TEST_BasicQuest_AutoCompletes_WithJoin<native_callable><epic_internal>():logic = external {}
 
@@ -297,6 +326,8 @@ quest_test_component<native><epic_internal> := class<final_super>(component):
     TEST_BasicQuest_SetObjective_InactiveQuestNoLifecycle<native_callable><epic_internal>():logic = external {}
 
     TEST_BasicQuest_SetObjective_CompletedObjectiveAutoCompletes<native_callable><epic_internal>():logic = external {}
+
+    TEST_BasicQuest_SetObjective_CompletedObjectiveAutoCompletes_FromInactive<native_callable><epic_internal>():logic = external {}
 
     TEST_BasicQuest_SetObjective_CompletedQuestNoOp<native_callable><epic_internal>():logic = external {}
 
@@ -333,6 +364,8 @@ quest_test_component<native><epic_internal> := class<final_super>(component):
     TEST_Manager_GrantEvent_Fires<native_callable><epic_internal>():logic = external {}
 
     TEST_Manager_RevokeQuest_DeactivatesQuest<native_callable><epic_internal>():logic = external {}
+
+    TEST_Manager_GrantQuest_NoRollbackWhenQuestCompletesDuringActivate<native_callable><epic_internal>():logic = external {}
 
     TEST_Manager_AddQuest_DuplicateRejected<native_callable><epic_internal>():logic = external {}
 
@@ -421,3 +454,43 @@ quest_test_component<native><epic_internal> := class<final_super>(component):
     TEST_Quest_Complete_SetsDefaultContext<native_callable><epic_internal>():logic = external {}
 
     TEST_Quest_Fail_SetsFailedContext<native_callable><epic_internal>():logic = external {}
+
+    TEST_Bridge_AssertObjectiveViewUID<native><epic_internal>(Objective:quest_objective, ExpectedUID:string):logic
+
+    TEST_Objective_Construct_BasePopulatesUID<native_callable><epic_internal>():logic = external {}
+
+    TEST_Bridge_AssertBasicQuestViewType<native><epic_internal>(Quest:basic_quest, ExpectedUID:string):logic
+
+    TEST_Bridge_AssertBasicQuestNoObjectiveDropsAndWarns<native><epic_internal>(Quest:basic_quest):logic
+
+    TEST_BasicQuest_Construct_ReturnsBasicQuestView<native_callable><epic_internal>():logic = external {}
+
+    TEST_BasicQuest_Construct_NoObjective_LogsWarning<native_callable><epic_internal>():logic = external {}
+
+    TEST_Bridge_AssertObjectiveApplyDisplayDataHappyAndGraceful<native><epic_internal>(Objective:quest_objective):logic
+
+    TEST_Bridge_AssertRewardApplyDisplayDataHappyAndGraceful<native><epic_internal>(Reward:quest_reward):logic
+
+    TEST_Objective_ApplyDisplay_HappyAndFailurePaths<native_callable><epic_internal>():logic = external {}
+
+    TEST_Reward_ApplyDisplay_HappyAndFailurePaths<native_callable><epic_internal>():logic = external {}
+
+    TEST_Bridge_AssertIQuestConstructViewValid<native><epic_internal>(Quest:basic_quest):logic
+
+    TEST_Bridge_AssertIBasicQuestPopulatesObjectiveStates<native><epic_internal>(Quest:basic_quest):logic
+
+    TEST_Bridge_AssertIModularQuestPopulatesObjectivesAndExtensions<native><epic_internal>(Quest:modular_quest, ExpectedExtensionCount:int):logic
+
+    TEST_Interface_IQuest_ConstructView_VerseImpl_ReturnsValidStruct<native_callable><epic_internal>():logic = external {}
+
+    TEST_Interface_IBasicQuest_ConstructView_VerseImpl_PopulatesObjectiveStates<native_callable><epic_internal>():logic = external {}
+
+    TEST_Interface_IModularQuest_ConstructView_VerseImpl_PopulatesObjectivesAndExtensions<native_callable><epic_internal>():logic = external {}
+
+    TEST_Public_Membership_FieldsCorrect<native_callable><epic_internal>():logic = external {}
+
+    TEST_Public_ParticipantInfo_ContributesFalse_ExcludedFromContributors<native_callable><epic_internal>():logic = external {}
+
+    TEST_Public_ParticipantInfo_ReceivesFalse_ExcludedFromRecipients<native_callable><epic_internal>():logic = external {}
+
+    TEST_Public_Quest_IsComplete_PublicAPI<native_callable><epic_internal>():logic = external {}

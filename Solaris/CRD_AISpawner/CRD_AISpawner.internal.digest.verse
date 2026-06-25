@@ -22,7 +22,7 @@ npc_spawner_device<public> := class<concrete><final>(creative_device_base):
     (/Fortnite.com/Devices/npc_spawner_device:)Reset<public>():void = external {}
 
     # Set the NPC character definition to use. Fails if the character type is different from one in the current definition.
-    SetNPCCharacterDefinition<epic_internal>(CharacterDefinition:npc_character_definition)<transacts><decides>:void = external {}
+    SetNPCCharacterDefinition<public>(CharacterDefinition:npc_character_definition)<transacts><decides>:void = external {}
 
     # Tries to spawn a character.
     Spawn<public>():void = external {}

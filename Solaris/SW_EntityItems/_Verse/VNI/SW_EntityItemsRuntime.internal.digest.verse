@@ -3,11 +3,15 @@ Items<public> := module:
     # Module import path: /Fortnite.com/Items/StarWars
     (/Fortnite.com/Items:)StarWars<public> := module:
         using {/Verse.org/Native}
+        using {/UnrealEngine.com/Itemization}
         using {/Fortnite.com/Itemization}
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         Jetpack_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
@@ -80,366 +84,583 @@ Weapons<public> := module:
     # Module import path: /Fortnite.com/Weapons/StarWars
     (/Fortnite.com/Weapons:)StarWars<public> := module:
         using {/Verse.org/Native}
+        using {/UnrealEngine.com/Itemization}
         using {/Fortnite.com/Itemization}
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         AmbanSniperRifle_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         AmbanSniperRifle_InfiniteAmmo_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         E11BlasterRifle_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         DC15BlasterRifle_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         BARMST12ScatterBlaster_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         BARMST12ScatterBlaster_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         BARMST12ScatterBlaster_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         BARMST12ScatterBlaster_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         BARMST12ScatterBlaster_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         BARMST12ScatterBlaster_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         CR2Blaster_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         CR2Blaster_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         CR2Blaster_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         CR2Blaster_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         CR2Blaster_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         CR2Blaster_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         DLT19BlasterRifle_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         DLT19BlasterRifle_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         DLT19BlasterRifle_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         DLT19BlasterRifle_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         DLT19BlasterRifle_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         DLT19BlasterRifle_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         ACPScatterBlaster_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         ACPScatterBlaster_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         ACPScatterBlaster_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         ACPScatterBlaster_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         ACPScatterBlaster_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         ACPScatterBlaster_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         A280CFEBlasterRifle_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         A280CFEBlasterRifle_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         A280CFEBlasterRifle_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         A280CFEBlasterRifle_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         A280CFEBlasterRifle_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         A280CFEBlasterRifle_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         CA87JawaScatterBlaster_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         CA87JawaScatterBlaster_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         CA87JawaScatterBlaster_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         CA87JawaScatterBlaster_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         CA87JawaScatterBlaster_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         CA87JawaScatterBlaster_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         WESTAR34BlasterPistols_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         WESTAR34BlasterPistols_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         WESTAR34BlasterPistols_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         WESTAR34BlasterPistols_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         WESTAR34BlasterPistols_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         WESTAR34BlasterPistols_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         IQA11MarksmanBlasterRifle_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         IQA11MarksmanBlasterRifle_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         IQA11MarksmanBlasterRifle_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         IQA11MarksmanBlasterRifle_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         IQA11MarksmanBlasterRifle_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         IQA11MarksmanBlasterRifle_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         DL44BlasterPistol_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         DL44BlasterPistol_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         DL44BlasterPistol_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         DL44BlasterPistol_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         DL44BlasterPistol_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         DL44BlasterPistol_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         F11DBlaster_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         F11DBlaster_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         F11DBlaster_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         F11DBlaster_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         F11DBlaster_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         F11DBlaster_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         WookieeBowcaster_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         WookieeBowcaster_V1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         WookieeBowcaster_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         WookieeBowcaster_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         WookieeBowcaster_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         WookieeBowcaster_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         ThermalImploder_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
 
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
+
         @available {MinUploadedAtFNVersion := 4020}
         @preload
         ThermalImploder_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
             ItemDefinitionID<override>:string = external {}
+
+            @available {MinUploadedAtFNVersion := 4000}
+            ItemComponent<override>:item_component = external {}
 
         @available {MinUploadedAtFNVersion := 4020}
         @preload

@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Akita",
-	"FortReleaseVersion": "41.00",
+	"FortReleaseVersion": "41.10",
 	"ProductChunkId": 13,
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
@@ -148,6 +148,21 @@
 			"Optional": true
 		},
 		{
+			"Name": "FNEAmusingCapelin",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEAmusingRemora",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEAmusingTarpon",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "FNEBoldTiger",
 			"Enabled": true,
 			"Optional": true,
@@ -214,6 +229,16 @@
 			"Optional": true
 		},
 		{
+			"Name": "FNEFeignedMagnolia",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEFoamyParsnip",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "FNEGalileoBun",
 			"Enabled": true,
 			"Optional": true,
@@ -225,16 +250,36 @@
 			"Optional": true
 		},
 		{
+			"Name": "FNEGapingChapstick",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "FNEGothicFonts",
 			"Enabled": true,
 			"Optional": true,
 			"Activate": true
 		},
 		{
+			"Name": "FNEGuiltySandpaper",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "FNEGuineaPig",
 			"Enabled": true,
 			"Optional": true,
 			"Activate": true
+		},
+		{
+			"Name": "FNEHushedDunlin",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEInquisitiveStapler",
+			"Enabled": true,
+			"Optional": true
 		},
 		{
 			"Name": "FNEIronPuck",
@@ -255,13 +300,143 @@
 			"Activate": true
 		},
 		{
+			"Name": "FNEMingledFlagfin",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "FNEMintGrove",
 			"Enabled": true,
 			"Activate": true,
 			"Optional": true
 		},
 		{
+			"Name": "FNENonchalantXenon",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEOnerousColander",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNERecycledHawfinch",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNESecretivePomelo",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "FNEShockGrenade",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNESpottyBoron",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNESpottyBromine",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNESpottyCerium",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNESpottyCesium",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNESpottyCranberry",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNESpottyOsmium",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNESpottyScandium",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNESpottySelenium",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNETannedSilicon",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNETaxedThootpick",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNETediousBuckeye",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNETorpidMaxilla",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNETorpidSealant",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNETorpidThootpaste",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEUnequalLanyard",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEUnkemptEscarole",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEUnseriousDustpan",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEUnsightlyQuince",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEWillingSpinach",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEWoozyBonesaw",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEYieldingBlouse",
 			"Enabled": true,
 			"Optional": true
 		},

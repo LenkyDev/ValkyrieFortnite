@@ -1,4 +1,5 @@
 using {/Verse.org/Native}
+using {/UnrealEngine.com/Itemization}
 using {/Fortnite.com/Itemization}
 using {/Fortnite.com/Devices}
 using {/Verse.org/Simulation}
@@ -65,6 +66,9 @@ telekineticon_component<native><public> := class<final_super>(component):
 
 Telekineticon_Creative_V1_Common<native><public> := class<final><concrete>(fort_item_definition_entity):
     ItemDefinitionID<override>:string = external {}
+
+    @available {MinUploadedAtFNVersion := 4000}
+    ItemComponent<override>:item_component = external {}
 
     @field("Components")
     @available {MinUploadedAtFNVersion := 4100}

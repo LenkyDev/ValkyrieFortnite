@@ -1,7 +1,7 @@
 # Module import path: /Verse.org/Assets
 Assets<public> := module:
-    using {/Verse.org/Simulation}
     using {/Verse.org/Colors}
+    using {/Verse.org/Simulation}
     using {/Verse.org/Native}
     using {/Verse.org/Restricted}
     @attribscope_class
@@ -46,6 +46,7 @@ Assets<public> := module:
 
 
     material<native><public> := class<epic_internal>(asset, property_changed_interface, material_like):
+        @transient
         MaterialPath<native><epic_internal>:string = external {}
 
         bUsesGetSetters<native><epic_internal>:logic = external {}

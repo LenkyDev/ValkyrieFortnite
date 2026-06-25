@@ -679,7 +679,7 @@ Animation<public> := module:
     sidekick_cosmetic_definition<native><epic_internal> := class<computes><final><epic_internal>(asset):
         GetDisplayName<native><epic_internal>()<reads><decides>:message
 
-    npc_character_definition<native><epic_internal> := class<computes><final><epic_internal>(asset):
+    npc_character_definition<native><public> := class<computes><final><epic_internal>(asset):
         IsSameType<native><epic_internal>(NPCCharacterDefinition:npc_character_definition)<reads><decides>:void
 
     (InPlayspace:fort_playspace).SpawnCharacter<native><epic_internal>(CharacterDefinition:npc_character_definition, Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform)<suspends>:?agent

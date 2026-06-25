@@ -12,18 +12,6 @@ basic_quest<native><public> := class<abstract>(quest, has_icon, has_description)
     # already completed.
     SetObjective<native><final><public>(InObjective:quest_objective)<transacts>:void
 
-    OnActivate<override><native><native_callable>():void
-
-    OnDeactivate<override><native><native_callable>():void
-
-    OnJoin<override><native><native_callable>(QuestParticipant:quest_participant):void
-
-    OnAbandon<override><native><native_callable>(QuestParticipant:quest_participant):void
-
-    CanGrantRewards<native><native_callable><epic_internal>()<reads><decides>:void
-
-    GrantRewardsToParticipants<native><native_callable><final><epic_internal>():void
-
     # Progression model for the quest.
     var<private> Objective<native><public>:quest_objective
 
@@ -47,33 +35,11 @@ quest_objective<native><public> := class<abstract>(has_icon, has_description):
     # Signals ProgressEvent. Call from a subclass to notify progress subscribers.
     SignalProgressEvent<native><final><protected>()<transacts>:void
 
-    CanProgress<native><native_callable><epic_internal>()<reads><decides>:void
-
-    GetOwningQuest<native><final><epic_internal>()<reads>:quest
-
-    OnActivate<native><native_callable><epic_internal>():void
-
-    OnDeactivate<native><native_callable><epic_internal>():void
-
-    OnJoin<native><native_callable><epic_internal>(QuestParticipant:quest_participant):void
-
-    OnAbandon<native><native_callable><epic_internal>(QuestParticipant:quest_participant):void
-
-    OnComplete<native><native_callable><epic_internal>():void
-
     # Signaled when this objective is considered complete.
     CompleteEvent<native><final><public>:listenable(quest_objective) = external {}
 
     # Signaled when this objective's progress changes. Payload: this objective.
     ProgressEvent<native><final><public>:listenable(quest_objective) = external {}
-
-    ActivateEvent<native><final><epic_internal>:listenable(quest_objective) = external {}
-
-    DeactivateEvent<native><final><epic_internal>:listenable(quest_objective) = external {}
-
-    JoinEvent<native><final><epic_internal>:listenable(tuple(quest_objective, quest_membership)) = external {}
-
-    AbandonEvent<native><final><epic_internal>:listenable(tuple(quest_objective, quest_membership)) = external {}
 
 @experimental
 # Returned when a reward cannot be granted.
@@ -94,11 +60,3 @@ quest_reward<native><public> := class<abstract>(has_icon, has_description):
 
     # Signaled after this reward has been granted to recipients.
     GrantEvent<native><final><public>:listenable(tuple(quest_reward, []quest_participant)) = external {}
-
-@available {MinUploadedAtFNVersion := 4000}
-@experimental
-MakeGrantRewardSuccessResult<native_callable><epic_internal>():result(comparable, []grant_quest_reward_error) = external {}
-
-@available {MinUploadedAtFNVersion := 4000}
-@experimental
-MakeGrantRewardErrorResult<native_callable><epic_internal>():result(void, []grant_quest_reward_error) = external {}

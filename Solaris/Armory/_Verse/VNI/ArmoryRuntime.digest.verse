@@ -36,7 +36,7 @@ fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_compo
 
     SetEnvironmentalDamageMultiplier<native><public>(Val:float):void
 
-    @editable
+    @editable {}
     # Range based damage multiplier
     var<private> RangeDamageMultiplier<native><public>:[]fort_range_damage_multiplier = external {}
 
@@ -132,79 +132,79 @@ fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_compo
 
     SetShotAmmoCost<native><public>(Val:int):void
 
-    @editable
+    @editable {}
     # The transform by which to offset the weapon muzzle
     var<private> MuzzleOffset<native><public>:(/Verse.org/SpatialMath:)transform = external {}
 
     SetMuzzleOffset<native><public>(Val:(/Verse.org/SpatialMath:)transform):void
 
-    @editable
+    @editable {}
     # The particle system to use for weapon muzzle flash
     var<private> MuzzleFlash<native><public>:?particle_system = external {}
 
     SetMuzzleFlash<native><public>(Val:?particle_system):void
 
-    @editable
+    @editable {}
     # The particle system to use for weapon bullet tracers. The FX system's HitDistance parameter will update with impact distance or max range of the weapon.
     var<private> BulletTracer<native><public>:?particle_system = external {}
 
     SetBulletTracer<native><public>(Val:?particle_system):void
 
-    @editable
+    @editable {}
     # The transform by which to offset the bullet shell ejection FX
     var<private> EjectionPortOffset<native><public>:(/Verse.org/SpatialMath:)transform = external {}
 
     SetEjectionPortOffset<native><public>(Val:(/Verse.org/SpatialMath:)transform):void
 
-    @editable
+    @editable {}
     # The particle system to use for weapon bullet shells
     var<private> BulletShells<native><public>:?particle_system = external {}
 
     SetBulletShells<native><public>(Val:?particle_system):void
 
-    @editable
+    @editable {}
     # The sounds to use when firing the weapon
     var<private> WeaponFireSound<native><public>:[]sound_wave = external {}
 
     SetWeaponFireSound<native><public>(Val:[]sound_wave):void
 
-    @editable
+    @editable {}
     # The sounds to use when equipping the weapon
     var<private> EquipSound<native><public>:[]sound_wave = external {}
 
     SetEquipSound<native><public>(Val:[]sound_wave):void
 
-    @editable
+    @editable {}
     # The sounds to use when starting aiming down sights
     var<private> AimingDownSightsStartSound<native><public>:[]sound_wave = external {}
 
     SetAimingDownSightsStartSound<native><public>(Val:[]sound_wave):void
 
-    @editable
+    @editable {}
     # The sounds to use when ending aiming down sights
     var<private> AimingDownSightsEndSound<native><public>:[]sound_wave = external {}
 
     SetAimingDownSightsEndSound<native><public>(Val:[]sound_wave):void
 
-    @editable
+    @editable {}
     # The sounds to use when starting a reload
     var<private> ReloadStartSound<native><public>:[]sound_wave = external {}
 
     SetReloadStartSound<native><public>(Val:[]sound_wave):void
 
-    @editable
+    @editable {}
     # The sounds to use when inserting a magazine during reload
     var<private> ReloadInsertSound<native><public>:[]sound_wave = external {}
 
     SetReloadInsertSound<native><public>(Val:[]sound_wave):void
 
-    @editable
+    @editable {}
     # The sounds to use when finishing a reload
     var<private> ReloadEndSound<native><public>:[]sound_wave = external {}
 
     SetReloadEndSound<native><public>(Val:[]sound_wave):void
 
-    @editable
+    @editable {}
     # The sounds to use when the weapon is out of ammo
     var<private> OutOfAmmoSound<native><public>:[]sound_wave = external {}
 

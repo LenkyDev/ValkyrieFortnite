@@ -4,8 +4,17 @@ using {/Verse.org/Native}
 Input<public> := module:
     using {/Verse.org/SpatialMath}
     using {/Verse.org/Assets}
-    using {/Verse.org/Native}
     using {/Verse.org/Simulation}
+    using {/Verse.org/Native}
+    @available {MinUploadedAtFNVersion := 4110}
+    # Module import path: /Verse.org/Input/Gameplay
+    # The module contains input mappings that are available during gameplay.
+    Gameplay<public> := module:
+        using {/Verse.org/Native}
+        using {/Verse.org/Assets}
+        @available {MinUploadedAtFNVersion := 4110}
+        HotbarMapping<public>:input_mapping = external {}
+
     # Represents the player's current preferred input method.
     input_method<native><public> := enum<open>:
         KeyboardAndMouse
