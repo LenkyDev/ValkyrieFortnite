@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Akita",
-	"FortReleaseVersion": "41.10",
+	"FortReleaseVersion": "41.20",
 	"ProductChunkId": 13,
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
@@ -223,6 +223,11 @@
 			"Activate": true
 		},
 		{
+			"Name": "FNEDazzlingTwezeer",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "FNEDodgyBean",
 			"Enabled": true,
 			"Activate": true,
@@ -316,6 +321,16 @@
 			"Optional": true
 		},
 		{
+			"Name": "FNEObservantPurifier",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEOmniscientBolster",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "FNEOnerousColander",
 			"Enabled": true,
 			"Optional": true
@@ -356,6 +371,11 @@
 			"Optional": true
 		},
 		{
+			"Name": "FNESpottyChlorine",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "FNESpottyCranberry",
 			"Enabled": true,
 			"Optional": true
@@ -372,6 +392,11 @@
 		},
 		{
 			"Name": "FNESpottySelenium",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNEStirringBathrobe",
 			"Enabled": true,
 			"Optional": true
 		},

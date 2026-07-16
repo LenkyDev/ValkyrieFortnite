@@ -121,12 +121,17 @@ Items<public> := module:
     CattyCornerKeycard_BR_CH2S3_Legendary<public> := class<final><concrete>(entity):
 
 
-    CeilingZapper_BR_CH1S1_Rare<public> := class<final><concrete>(entity):
+    CeilingZapper_OG_CH1S1_Rare<public> := class<final><concrete>(entity):
 
 
     @deprecated
-    # Deprecated. Please use CeilingZapper_BR_CH1S1_Rare instead.
+    # Deprecated. Please use CeilingZapper_OG_CH1S1_Rare instead.
     CeilingZapper_BR_CH4MS1_Rare<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use CeilingZapper_OG_CH1S1_Rare instead.
+    CeilingZapper_BR_CH1S1_Rare<public> := class<final><concrete>(entity):
 
 
     ChiliChugSplash_BR_CH2S8_Exotic<public> := class<final><concrete>(entity):
@@ -333,6 +338,9 @@ Items<public> := module:
     FragGrenade_Ballistic_V1_Common<public> := class<final><concrete>(entity):
 
 
+    FriendZoneBubble_BR_CH7S3_Exotic<public> := class<final><concrete>(entity):
+
+
     FrozenIcecreamCone_BR_CH3S3_Common<public> := class<final><concrete>(entity):
 
 
@@ -360,10 +368,15 @@ Items<public> := module:
     Grenade_BR_PreSeason_Common<public> := class<final><concrete>(entity):
 
 
-    Grenade_BR_CH4MS1_Common<public> := class<final><concrete>(entity):
-
-
     Grenade_BR_CH7S1_Common<public> := class<final><concrete>(entity):
+
+
+    Grenade_OG_CH1S1_Common<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use Grenade_OG_CH1S1_Common instead.
+    Grenade_BR_CH4MS1_Common<public> := class<final><concrete>(entity):
 
 
     GrottoKeycard_BR_CH2S2_Legendary<public> := class<final><concrete>(entity):
@@ -720,6 +733,9 @@ Items<public> := module:
     ShieldPotion_BR_CH5S1_Rare<public> := class<final><concrete>(entity):
 
 
+    ShockRock_BR_CH7S3_Epic<public> := class<final><concrete>(entity):
+
+
     ShockwaveGrenade_BR_CH1S5_Epic<public> := class<final><concrete>(entity):
 
 
@@ -784,6 +800,9 @@ Items<public> := module:
 
 
     SmallShieldPotion_BR_CH5S1_Uncommon<public> := class<final><concrete>(entity):
+
+
+    SmokeCloud_BR_CH7S3_Common<public> := class<final><concrete>(entity):
 
 
     SmokeGrenade_BR_CH1S1_Uncommon<public> := class<final><concrete>(entity):
@@ -897,12 +916,17 @@ Items<public> := module:
     NightRosesVoidOniMask_BR_CH6S1_Mythic<public> := class<final><concrete>(entity):
 
 
-    WallDynamo_BR_CH1S1_Rare<public> := class<final><concrete>(entity):
+    WallDynamo_OG_CH1S1_Rare<public> := class<final><concrete>(entity):
 
 
     @deprecated
-    # Deprecated. Please use WallDynamo_BR_CH1S1_Rare instead.
+    # Deprecated. Please use WallDynamo_OG_CH1S1_Rare instead.
     WallDynamo_BR_CH4MS1_Rare<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use WallDynamo_OG_CH1S1_Rare instead.
+    WallDynamo_BR_CH1S1_Rare<public> := class<final><concrete>(entity):
 
 
     Wheat_Creative_V1_Common<public> := class<final><concrete>(entity):
@@ -1025,6 +1049,21 @@ Weapons<public> := module:
     BallisticShield_BR_CH5S1_Epic<public> := class<final><concrete>(entity):
 
 
+    BankShotPistol_BR_CH7S3_Uncommon<public> := class<final><concrete>(entity):
+
+
+    BankShotPistol_BR_CH7S3_Rare<public> := class<final><concrete>(entity):
+
+
+    BankShotPistol_BR_CH7S3_Epic<public> := class<final><concrete>(entity):
+
+
+    BankShotPistol_BR_CH7S3_Legendary<public> := class<final><concrete>(entity):
+
+
+    BankShotPistol_BR_CH7S3_Mythic<public> := class<final><concrete>(entity):
+
+
     BasicHammer_Creative_V1_Common<public> := class<final><concrete>(entity):
 
 
@@ -1106,18 +1145,43 @@ Weapons<public> := module:
     SlonesBurstAssaultRifle_BR_CH2S8_Mythic<public> := class<final><concrete>(entity):
 
 
+    BurstAssaultRifle_OG_CH1S1_Common<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use BurstAssaultRifle_OG_CH1S1_Common instead.
     BurstAssaultRifle_BR_CH4MS1_Common<public> := class<final><concrete>(entity):
 
 
+    BurstAssaultRifle_OG_CH1S1_Uncommon<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use BurstAssaultRifle_OG_CH1S1_Uncommon instead.
     BurstAssaultRifle_BR_CH4MS1_Uncommon<public> := class<final><concrete>(entity):
 
 
+    BurstAssaultRifle_OG_CH1S1_Rare<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use BurstAssaultRifle_OG_CH1S1_Rare instead.
     BurstAssaultRifle_BR_CH4MS1_Rare<public> := class<final><concrete>(entity):
 
 
+    BurstAssaultRifle_OG_CH1S1_Epic<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use BurstAssaultRifle_OG_CH1S1_Epic instead.
     BurstAssaultRifle_BR_CH4MS1_Epic<public> := class<final><concrete>(entity):
 
 
+    BurstAssaultRifle_OG_CH1S1_Legendary<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use BurstAssaultRifle_OG_CH1S1_Legendary instead.
     BurstAssaultRifle_BR_CH4MS1_Legendary<public> := class<final><concrete>(entity):
 
 
@@ -2949,18 +3013,43 @@ Weapons<public> := module:
     PumpShotgun_BR_CH2S1_Common<public> := class<final><concrete>(entity):
 
 
+    PumpShotgun_OG_CH1S1_Common<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use PumpShotgun_OG_CH1S1_Common instead.
     PumpShotgun_BR_CH4MS1_Common<public> := class<final><concrete>(entity):
 
 
+    PumpShotgun_OG_CH1S1_Uncommon<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use PumpShotgun_OG_CH1S1_Uncommon instead.
     PumpShotgun_BR_CH4MS1_Uncommon<public> := class<final><concrete>(entity):
 
 
+    PumpShotgun_OG_CH1S3_Rare<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use PumpShotgun_OG_CH1S3_Rare instead.
     PumpShotgun_BR_CH4MS1_Rare<public> := class<final><concrete>(entity):
 
 
+    PumpShotgun_OG_CH1S6_Epic<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use PumpShotgun_OG_CH1S6_Epic instead.
     PumpShotgun_BR_CH4MS1_Epic<public> := class<final><concrete>(entity):
 
 
+    PumpShotgun_OG_CH1S6_Legendary<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use PumpShotgun_OG_CH1S6_Legendary instead.
     PumpShotgun_BR_CH4MS1_Legendary<public> := class<final><concrete>(entity):
 
 
@@ -3069,6 +3158,11 @@ Weapons<public> := module:
     ReaperSniperRifle_Ballistic_V1_Common<public> := class<final><concrete>(entity):
 
 
+    ReconBow_BR_CH7S2_Exotic<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use ReconBow_BR_CH7S2_Exotic instead.
     ExoticReconBow_BR_CH7S2_Exotic<public> := class<final><concrete>(entity):
 
 
@@ -3724,18 +3818,43 @@ Weapons<public> := module:
     EnhancedSurgefireSMG_BR_CH6S1_Mythic<public> := class<final><concrete>(entity):
 
 
+    SurgicalBurstRifle_BR_CH7S3_Common<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use SurgicalBurstRifle_BR_CH7S3_Common instead.
     VanguardBurstRifle_BR_CH7S3_Common<public> := class<final><concrete>(entity):
 
 
+    SurgicalBurstRifle_BR_CH7S3_Uncommon<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use SurgicalBurstRifle_BR_CH7S3_Uncommon instead.
     VanguardBurstRifle_BR_CH7S3_Uncommon<public> := class<final><concrete>(entity):
 
 
+    SurgicalBurstRifle_BR_CH7S3_Rare<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use SurgicalBurstRifle_BR_CH7S3_Rare instead.
     VanguardBurstRifle_BR_CH7S3_Rare<public> := class<final><concrete>(entity):
 
 
+    SurgicalBurstRifle_BR_CH7S3_Epic<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use SurgicalBurstRifle_BR_CH7S3_Epic instead.
     VanguardBurstRifle_BR_CH7S3_Epic<public> := class<final><concrete>(entity):
 
 
+    SurgicalBurstRifle_BR_CH7S3_Legendary<public> := class<final><concrete>(entity):
+
+
+    @deprecated
+    # Deprecated. Please use SurgicalBurstRifle_BR_CH7S3_Legendary instead.
     VanguardBurstRifle_BR_CH7S3_Legendary<public> := class<final><concrete>(entity):
 
 

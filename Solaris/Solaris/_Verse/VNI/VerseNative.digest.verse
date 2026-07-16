@@ -29,3 +29,6 @@ Concurrency<public> := module:
         (/Verse.org/Concurrency/task:)Concurrency_task_Variance<private>():tuple(t) = external {}
 
         Await<native><override>()<suspends>:t
+
+# Module import path: /Verse.org/Diagnostics
+Diagnostics<public> := module:

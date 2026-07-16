@@ -1097,5 +1097,15 @@
 			"/Creative_TemporaryTeams/Components/BP_UserOptionComponent_TemporaryTeams.BP_UserOptionComponent_TemporaryTeams_C": {},
 			"/Creative_TemporaryTeams/Components/BP_TemporaryTeams_TeamSettingsAndInventory.BP_TemporaryTeams_TeamSettingsAndInventory_C": {}
 		}
+	},
+	"HiddenPropertyClassPermissionList" : {
+		"+": [
+			{
+				"Type": "/BeanstalkExperienceSettings/Device_ExperienceSettings_FallGuys.Device_ExperienceSettings_FallGuys_C",
+				"AllowList": [],
+				"DenyList": [],
+				"bAllowListAllProperties": true
+			}
+		]
 	}
 }

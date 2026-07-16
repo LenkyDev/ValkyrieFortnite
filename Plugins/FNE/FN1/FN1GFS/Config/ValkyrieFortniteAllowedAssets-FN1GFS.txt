@@ -554,6 +554,7 @@
 /BlastBerryMapContent/Game/Athena/Maps/Landscape/Rufus_SnobbyShores_StaticMeshes_DefaultHLODLayer.Rufus_SnobbyShores_StaticMeshes_DefaultHLODLayer
 /BlastBerryMapContent/Game/Blueprints/ATK/Rufus_GolfCartSpawner.Rufus_GolfCartSpawner
 /BlastBerryMapContent/Game/Blueprints/Cooler/Rufus_Recreation_Cooler.Rufus_Recreation_Cooler
+/BlastBerryMapContent/Game/Blueprints/DriftBoard/JackalVehicle_Rufus.JackalVehicle_Rufus_C
 /BlastBerryMapContent/Game/Blueprints/GasTanks/IND_Rufus_PropaneTank_01.IND_Rufus_PropaneTank_01
 /BlastBerryMapContent/Game/Blueprints/GasTanks/Rufus_Prop_Commerce_GasPump_03.Rufus_Prop_Commerce_GasPump_03
 /BlastBerryMapContent/Game/Blueprints/GasTanks/Rufus_Prop_Commerce_GasPump_04.Rufus_Prop_Commerce_GasPump_04
@@ -850,6 +851,7 @@
 /BlueTargetEnv/Props/BlueTarget/BlueTarget_Turret_A/Blueprints/BP_BlueTarget_Turret_A.BP_BlueTarget_Turret_A
 /BlueTargetEnv/Props/BlueTarget/BlueTarget_Turret_A/Blueprints/BP_BlueTarget_Turret_B.BP_BlueTarget_Turret_B
 /BlueTargetEnv/Props/BlueTarget/BlueTarget_Turret_A/Materials/MI_BlueTarget_TurretGun_B.MI_BlueTarget_TurretGun_B
+/BowlVenus/Gameplay/B_BowlVenusPOIClaim_Spawner_Child.B_BowlVenusPOIClaim_Spawner_Child
 /BRCoreMaterials/Hera/Terrain/BiomeMask/MF_Hera_BiomeMasks.MF_Hera_BiomeMasks
 /BRCoreMaterials/Hera/Terrain/BiomeMask/MF_HeraBiomeMasks_Isolated.MF_HeraBiomeMasks_Isolated
 /BRCoreMaterials/Hera/Terrain/BiomeMask/T_GolfCourse.T_GolfCourse
@@ -1914,6 +1916,8 @@
 /Engine/EngineResources/LandscapeVisibilityLayerInfo.LandscapeVisibilityLayerInfo
 /Engine/EngineResources/WhiteSquareTexture.WhiteSquareTexture
 /Engine/Functions/Engine_MaterialFunctions01/ImageAdjustment/BlurSampleOffsets.BlurSampleOffsets
+/Engine/Functions/Engine_MaterialFunctions01/ImageAdjustment/CheapContrast.CheapContrast
+/Engine/Functions/Engine_MaterialFunctions01/ImageAdjustment/LinearTosRGB.LinearTosRGB
 /Engine/Functions/Engine_MaterialFunctions01/Opacity/CameraDepthFade.CameraDepthFade
 /Engine/Functions/Engine_MaterialFunctions01/Texturing/ScaleUVsByCenter.ScaleUVsByCenter
 /Engine/Functions/Engine_MaterialFunctions01/WorldPositionOffset/SplineThicken.SplineThicken
@@ -1931,13 +1935,16 @@
 /Engine/Functions/Engine_MaterialFunctions02/Utility/BreakOutFloat2Components.BreakOutFloat2Components
 /Engine/Functions/Engine_MaterialFunctions02/Utility/BreakOutFloat3Components.BreakOutFloat3Components
 /Engine/Functions/Engine_MaterialFunctions02/Utility/BreakOutFloat4Components.BreakOutFloat4Components
+/Engine/Functions/Engine_MaterialFunctions02/Utility/DebugScalarValues.DebugScalarValues
 /Engine/Functions/Engine_MaterialFunctions02/Utility/DepthFromWorldPosition.DepthFromWorldPosition
 /Engine/Functions/Engine_MaterialFunctions02/Utility/DitherTemporalAA.DitherTemporalAA
 /Engine/Functions/Engine_MaterialFunctions02/Utility/VectorLength.VectorLength
+/Engine/Functions/Engine_MaterialFunctions02/UVs/WorldPositionBehindTranslucency.WorldPositionBehindTranslucency
 /Engine/Functions/Engine_MaterialFunctions02/WorldPositionOffset/CameraOffset.CameraOffset
 /Engine/Functions/Engine_MaterialFunctions02/WorldPositionOffset/ComponentPivotLocation.ComponentPivotLocation
 /Engine/Functions/Engine_MaterialFunctions02/WorldPositionOffset/ObjectPivotPoint.ObjectPivotPoint
 /Engine/Functions/Engine_MaterialFunctions02/WorldPositionOffset/Sprite.Sprite
+/Engine/Functions/Engine_MaterialFunctions02/WorldPositionOffset/V2/ObjectScale.ObjectScale
 /Engine/Functions/Engine_MaterialFunctions03/Math/MultiplyVectorWithQuaternion.MultiplyVectorWithQuaternion
 /Engine/Functions/Engine_MaterialFunctions03/Procedurals/GeneratedBand.GeneratedBand
 /Engine/Functions/Engine_MaterialFunctions03/Texturing/PeriodicWorldPosition.PeriodicWorldPosition
@@ -3802,7 +3809,9 @@
 /Game/Athena/DrivableVehicles/FlyingVehicleBoundarySpline.FlyingVehicleBoundarySpline_C
 /Game/Athena/DrivableVehicles/Golf_Cart/Golf_Cart_Base/Materials/gray.gray
 /Game/Athena/DrivableVehicles/Hoverboard/DEMO/black.black
+/Game/Athena/DrivableVehicles/JackalVehicle_Athena.JackalVehicle_Athena_C
 /Game/Athena/DrivableVehicles/M_VehicleSpawner_Yellow.M_VehicleSpawner_Yellow
+/Game/Athena/DrivableVehicles/Quad/M_BoostMeter_Bar.M_BoostMeter_Bar
 /Game/Athena/Effects/Blueprints/Environments/Apollo/BP_Apollo_PowerPlant_LiquidGlowEdge.BP_Apollo_PowerPlant_LiquidGlowEdge
 /Game/Athena/Effects/Blueprints/Environments/Apollo/BP_Apollo_Powerplant_Smokestack.BP_Apollo_Powerplant_Smokestack
 /Game/Athena/Effects/Blueprints/Environments/Apollo/BP_Apollo_SnowSmoke.BP_Apollo_SnowSmoke
@@ -3893,6 +3902,7 @@
 /Game/Athena/Environments/MaterialFunctions/MF_TriplanarDithered.MF_TriplanarDithered
 /Game/Athena/Environments/MaterialFunctions/MF_TriplanarFlat.MF_TriplanarFlat
 /Game/Athena/Environments/MaterialFunctions/MF_TriplanarNormalTangentToWorld.MF_TriplanarNormalTangentToWorld
+/Game/Athena/Environments/MaterialFunctions/RayTraceSphereFalloffMinClamp.RayTraceSphereFalloffMinClamp
 /Game/Athena/Environments/Materials/M_Athena_TV_Screen.M_Athena_TV_Screen
 /Game/Athena/Environments/Materials/M_Athena_TV_Screen_Stream.M_Athena_TV_Screen_Stream
 /Game/Athena/Environments/Materials/Water/M_Athena_Water_PostProcess_1152.M_Athena_Water_PostProcess_1152
@@ -4074,6 +4084,7 @@
 /Game/Athena/Helios/Environments/Landscape/WorldBuildingTools/PCGGrass/Utilities/Heatmap/EUW_MeshGrass_Heatmap_Panel.EUW_MeshGrass_Heatmap_Panel
 /Game/Athena/Helios/Environments/Water/Helios_Waterbody_LakeOceanEdge_Parent.Helios_Waterbody_LakeOceanEdge_Parent_C
 /Game/Athena/Helios/Environments/Water/Helios_Waterbody_SwimmingPool_Parent.Helios_Waterbody_SwimmingPool_Parent
+/Game/Athena/Helios/Maps/Landmarks/Glacier/Textures/T_Artemis_Cliff_01_H.T_Artemis_Cliff_01_H
 /Game/Athena/Helios/Maps/Test/Dev/ChrisK/Blueprints/Helios_WindMillSpin.Helios_WindMillSpin_C
 /Game/Athena/HLODSetup/1x1BuildingsSetup.1x1BuildingsSetup
 /Game/Athena/HLODSetup/3x3BuildingsSetup.3x3BuildingsSetup
@@ -4095,6 +4106,7 @@
 /Game/Athena/HLODSetup/Materials/BaseFlattenMaterialAthena_MedHLOD_Roads.BaseFlattenMaterialAthena_MedHLOD_Roads
 /Game/Athena/HLODSetup/Materials/BaseWaterFlattenMaterialHermes.BaseWaterFlattenMaterialHermes
 /Game/Athena/HLODSetup/Materials/BaseWaterFlattenMaterialHermes_Athena.BaseWaterFlattenMaterialHermes_Athena
+/Game/Athena/HLODSetup/Materials/MF_HLODProxyColorSpaceCorrection.MF_HLODProxyColorSpaceCorrection
 /Game/Athena/HLODSetup/POI_LargeSetup.POI_LargeSetup
 /Game/Athena/HLODSetup/POI_LargeSetup_MRS.POI_LargeSetup_MRS_C
 /Game/Athena/HLODSetup/POI_MediumSetup.POI_MediumSetup
@@ -5436,6 +5448,7 @@
 /Game/Creative/BuildingActors/Props/CP_OilRig_Generator_01.CP_OilRig_Generator_01
 /Game/Creative/BuildingActors/Props/CP_PirateShip_Cargo_Net_D.CP_PirateShip_Cargo_Net_D
 /Game/Creative/BuildingActors/Props/CP_Plant_Desert_Bush_4.CP_Plant_Desert_Bush_4
+/Game/Creative/BuildingActors/Props/CP_PP_CoolingTower.CP_PP_CoolingTower
 /Game/Creative/BuildingActors/Props/CP_Prop_Bedroom_Bed_Queen_01.CP_Prop_Bedroom_Bed_Queen_01
 /Game/Creative/BuildingActors/Props/CP_Prop_BurstReaction_Exploding_GasPump_03.CP_Prop_BurstReaction_Exploding_GasPump_03
 /Game/Creative/BuildingActors/Props/CP_Prop_Commerce_CashRegister.CP_Prop_Commerce_CashRegister
@@ -5557,6 +5570,7 @@
 /Game/Effects/Fort_Effects/Gameplay/CheatInventory/cheatbox.cheatbox
 /Game/Effects/Fort_Effects/Gameplay/CheatInventory/Cube.Cube
 /Game/Effects/Fort_Effects/Gameplay/Slone/NS_Slone_Restores.NS_Slone_Restores
+/Game/Effects/Fort_Effects/Materials/_Functions/Color_Time_of_Day.Color_Time_of_Day
 /Game/Effects/Fort_Effects/Materials/_Functions/InverseLerp_MF.InverseLerp_MF
 /Game/Effects/Fort_Effects/Materials/_Functions/MF_DistanceBehindTranslucency_01.MF_DistanceBehindTranslucency_01
 /Game/Effects/Fort_Effects/Materials/_Functions/MF_Fresnel_FX.MF_Fresnel_FX
@@ -16215,6 +16229,7 @@
 /Game/Global/Materials/Character_Parent_2023/Anime_Parent_2023/MaterialFunctions/MFC_DistanceFade_FOV_compensation.MFC_DistanceFade_FOV_compensation
 /Game/Global/Materials/Lighting/M_FakeLumenLight.M_FakeLumenLight
 /Game/Global/Materials/Lighting/M_FakeLumenLight_hoteltest_Inst.M_FakeLumenLight_hoteltest_Inst
+/Game/Global/Materials/MaterialGym/Materials/GhostNoise/Textures/T_ghost_swirls_01.T_ghost_swirls_01
 /Game/Global/Materials/MaterialGym/Materials/SmokeWithFlowmap/Textures/T_Swirly_Noise_MiddleDetail.T_Swirly_Noise_MiddleDetail
 /Game/Global/Materials/Posters/M_PosterBase.M_PosterBase
 /Game/Global/Textures/Default/Blanks/AD_Swatch_White.AD_Swatch_White
@@ -16262,6 +16277,7 @@
 /Game/Global/Textures/Default/Noise/T_SwirlNoise_N_height.T_SwirlNoise_N_height
 /Game/Global/Textures/Default/Noise/T_Tiling_Noise_01.T_Tiling_Noise_01
 /Game/Global/Textures/Default/Noise/T_TilingClouds_N.T_TilingClouds_N
+/Game/Global/Textures/Default/Noise/TilingNoise06.TilingNoise06
 /Game/Global/Textures/Default/Tileable_Patterns/T_Inky_Smoke_Tile.T_Inky_Smoke_Tile
 /Game/Global/Textures/Default/Tileable_Patterns/T_TRV_Moss_01_N.T_TRV_Moss_01_N
 /Game/Global/Textures/Default/Tileable_Patterns/T_Water2_N.T_Water2_N
@@ -16705,6 +16721,7 @@
 /Game/Packages/Fortress_SharedMaterials/Base_Material_Functions/MF_Curie_Scorched_Med.MF_Curie_Scorched_Med
 /Game/Packages/Fortress_SharedMaterials/Base_Material_Functions/MF_Curie_WorldAlignedTexture.MF_Curie_WorldAlignedTexture
 /Game/Packages/Fortress_SharedMaterials/Base_Material_Functions/MF_CurieFallbackEffect.MF_CurieFallbackEffect
+/Game/Packages/Fortress_SharedMaterials/Base_Material_Functions/MF_WindGlobals.MF_WindGlobals
 /Game/Packages/Fortress_SharedMaterials/Base_Material_Functions/RemapValue_0-1.RemapValue_0-1
 /Game/Packages/Fortress_SharedMaterials/Base_Material_Functions/SwizzleWorldAlignedSpecOutputForFortnite.SwizzleWorldAlignedSpecOutputForFortnite
 /Game/Packages/Fortress_SharedMaterials/Base_Material_Functions/VertexColorMask.VertexColorMask
@@ -22428,7 +22445,6 @@
 /SharedNPCAnims/Animation/NPC/NPC_TalkingArmsCrossed_Loop.NPC_TalkingArmsCrossed_Loop
 /Shogun_Comp/SetupAssets/Maps/PPIDs/Icons/PPID_ST_Shogun_Comp_BP_FloatMax_SignHorizontal_A_b9a01b2e.PPID_ST_Shogun_Comp_BP_FloatMax_SignHorizontal_A_b9a01b2e
 /Shogun_Comp/SetupAssets/Maps/PPIDs/PPID_Shogun_Comp_BP_FloatMax_SignHorizontal_A_b9a01b2e.PPID_Shogun_Comp_BP_FloatMax_SignHorizontal_A_b9a01b2e
-/SonicSpearGameplay/DataLayer/EDL_SonicSpear.EDL_SonicSpear
 /SourSpawnMapContent/Assets/BP_Lightsource_SuburbanLamp_B_Sourspawn.BP_Lightsource_SuburbanLamp_B_Sourspawn
 /SourSpawnMapContent/Assets/BP_Lightsource_SuburbanLamp_Parent_SourSpawn.BP_Lightsource_SuburbanLamp_Parent_SourSpawn
 /SourSpawnMapContent/Assets/Suburban_Door_C_Sourspawn.Suburban_Door_C_Sourspawn

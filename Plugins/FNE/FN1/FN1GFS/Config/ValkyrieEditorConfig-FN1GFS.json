@@ -124,6 +124,7 @@
 		"AllowedClasses": {
 			"/Script/AmbientAudio.AmbientAudioComponent": { "Visible": true },
 			"/Script/AudioGameplay.AudioComponentGroup": { "Visible": true },
+			"/Script/AudioGameplayVolume.AudioGameplayVolumeComponent": { "Visible": true },
 			"/Script/AudioShapes.AudioShapeSphereComponent": { "Visible": true },
 			"/Script/CommonUI.CommonTextBlock": { "Visible": true },
 			"/Script/CommonUI.CommonUserWidget": { "Visible": true },

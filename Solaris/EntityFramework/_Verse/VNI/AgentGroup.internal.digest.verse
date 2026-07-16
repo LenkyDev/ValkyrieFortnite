@@ -1,15 +1,13 @@
 using {/Verse.org/Simulation}
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Interface that defines a class as being usable as member info in an agent group
 member_info_interface<native><public> := interface:
 
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Interface that defines a class as providing an agent group.
-agent_group_interface<public>(member_info:subtype(member_info_interface)) := interface:
+agent_group_interface<public>(member_info:subtype(member_info_interface)) := interface<unique>:
     (/Verse.org/AgentGroup/agent_group_interface:)AgentGroup_agent_group_interface_Variance<private>():tuple(member_info) = external {}
 
     # Get the members of this agent group with their member info
@@ -25,7 +23,6 @@ agent_group_interface<public>(member_info:subtype(member_info_interface)) := int
     MemberInfoChangeEvent<public>:listenable(tuple(agent, member_info))
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # An agent group is defined as a set of agents that share a common ownership.This class stores agents and specific information about each member via the member_info type provided.
 agent_group<native><public>(member_info:subtype(member_info_interface)) := class<unique>(agent_group_interface(member_info)):
     @available {MinUploadedAtFNVersion := 4294967041}
@@ -60,12 +57,10 @@ agent_group<native><public>(member_info:subtype(member_info_interface)) := class
     MakeRemoveMemberResultInternal<final><native_callable><epic_internal>(IsSuccess:logic):result(comparable, remove_member_error) = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Base class for all errors returned from agent_group.AddMember.
 add_member_error<native><public> := class<computes>:
 
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Base class for all errors returned from agent_group.RemoveMember.
 remove_member_error<native><public> := class<computes>:

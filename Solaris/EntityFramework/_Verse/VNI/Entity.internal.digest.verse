@@ -174,7 +174,7 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
 # This is an internal method and should only be used to initialize a component field inside a verse class
 InitializeComponentField<native><epic_internal>(component_type:castable_subtype(component))<converges>:component_type
 
-@available {MinUploadedAtFNVersion := 4100}
+@available {MinUploadedAtFNVersion := 4000}
 # Helper function to aide in initializing the Entity pointer for components during component field construction inside a verse class
 GetSelfEntityForComponentInitialization<native><epic_internal>()<converges>:entity
 

@@ -1,50 +1,63 @@
 using {/Fortnite.com/Devices}
 using {/Verse.org/Colors}
 using {/Verse.org/SceneGraph}
+using {/Verse.org/Diagnostics}
 using {/Verse.org/Simulation}
 using {/Verse.org/Chat}
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
-llm_prompt_error<native><public> := class:
+ai_error<native><public> := class:
     Message<native><public>:message
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
-llm_prompt_timeout_error<native><public> := class(llm_prompt_error):
+ai_timeout_error<native><public> := class(ai_error):
 
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
-llm_prompt_throttled_error<native><public> := class(llm_prompt_error):
+ai_throttled_error<native><public> := class(ai_error):
 
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
-llm_prompt_moderated_error<native><public> := class(llm_prompt_error):
+ai_moderated_error<native><public> := class(ai_error):
 
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
-llm_prompt_character_limit_error<native><public> := class(llm_prompt_error):
+ai_character_limit_error<native><public> := class(ai_error):
 
+
+@available {MinUploadedAtFNVersion := 4120}
+# Describes a capability registered on a session. The Name and Description are provided to the AI in the prompt.
+prompt_binding_definition<native><public> := struct:
+    # Human-readable name the AI prompt sees when deciding which capability to call.
+    Name<native><public>:message
+
+    # Describes when/why the AI prompt should pick this capability.
+    Description<native><public>:message
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
-# An abstraction around a recorded history of events and sending prompts with that history context included.
-llm_session<native><public> := class<unique>:
+@export_metadata {Category := "PublishingMutators"; Key := "Conversations"; Value := ""}
+# Manages AI session state: conversation history, pinned entries, and registered capabilities (tools, signals, listenables).
+#  History is automatically compacted by the runtime. Completed goals are summarized into history.
+ai_session<native><public> := class<unique>:
     var VoiceChannelSubscriptions<epic_internal>:[]cancelable = external {}
 
-    # Removes all the history events from the session. Including conversation history.
+    # Removes all the history events from the session.
     ClearHistory<native><public>()<transacts>:void
 
     @available {MinUploadedAtFNVersion := 4100}
-    # The result will conform to the result type. The result type must be a struct which can contain.
-    #  - numeric types, message, bools and enums, as well as structs or arrays which only contain those types, anything else results in an error.
-    #  Use the names of the fields and name of the type of the struct to direct the prompt or facts on how to fill out the data structure.
-    Prompt<native><public>((local:)Prompt:prompt, response_type:type)<suspends>:result(response_type, llm_prompt_error)
+    # Sends instructions to the model with the session's full context (personality, pinned facts, history).
+    #  The response is parsed into response_type, which must be a struct containing only:
+    #  numeric types, messages, booleans, enums, agents, or structs/arrays of those types.
+    #  Field names and type names guide the model on how to fill out the structure.
+    Prompt<native><public>((local:)Prompt:message, response_type:type)<suspends>:result(response_type, ai_error)
 
-    OnLLMSessionConstructed<native><epic_internal>()<transacts>:void
+    @available {MinUploadedAtFNVersion := 4120}
+    # Registers a fire-and-forget side-output the model can emit alongside any response, during prompts and goals.
+    #  When Required is true, the model must emit this every response.
+    #  Returns a cancelable that unregisters the action.
+    RegisterAction<native><public>(Definition:prompt_binding_definition, Required:logic, input_type:type, Callback:type {_(:input_type):void})<transacts>:cancelable
+
+    OnAISessionConstructed<native><epic_internal>()<transacts>:void
 
     SubscribeToVoiceChannelMemberAdded<native_callable><epic_internal>(VoiceChannel:voice_channel(member_info) where member_info:subtype(has_voice_member_info))<transacts>:cancelable = external {}
 
@@ -56,14 +69,16 @@ llm_session<native><public> := class<unique>:
 
     OnRemoveMemberEvent<native><epic_internal>((Agent:agent, MemberInfo:member_info) where member_info:subtype(has_voice_member_info))<transacts>:void
 
+@available {MinUploadedAtFNVersion := 4120}
+session_type_subscription<native><epic_internal> := class(cancelable):
+    Cancel<native><override>()<transacts>:void
+
 @available {MinUploadedAtFNVersion := 4100}
 @import_as("/Script/AIPrompt.UPersonaPrompt")
-@experimental
 persona_editor_prompt<native><epic_internal> := class<concrete><final><epic_internal>:
 
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Defines the way the persona will handle attempts to prompt it while it is processing.
 persona_interruption_rule<native><public> := enum<open>:
     # Cannot be interrupted, will ignore any input until the finished.
@@ -74,7 +89,7 @@ persona_interruption_rule<native><public> := enum<open>:
     InterruptOnResponseStart
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
+@export_metadata {Category := "PublishingMutators"; Key := "Conversations"; Value := ""}
 # NPC Persona component
 persona_component<native><public> := class<final_super>(component):
     OnInitialized<override>():void = external {}
@@ -88,20 +103,17 @@ persona_component<native><public> := class<final_super>(component):
     # The personality of the persona
     var Personality<public>:message = external {}
 
-    # What the persona knows
-    var Knowledge<public>:message = external {}
-
     # The session which will process all this persona's prompts
     # When the persona is in a voice channel, every session in that channel will automatically
     # propagate conversation history entries to all sessions found in the channel.
     # All and only conversation directly to or from a persona will be automatically recorded.
-    var Session<public>:llm_session = external {}
+    GetAISession<native><public>()<transacts>:ai_session
 
     # The voice assigned to this persona.
     var Voice<public>:voice_model = external {}
 
     # How the persona will handle overlapping prompts.
-    var InterruptionRule<public>:persona_interruption_rule = external {}
+    var PromptInterruptionRule<public>:persona_interruption_rule = external {}
 
     # Listenable which is signaled when the player starts prompting the persona.
     StartHearEvent<native><public>:listenable(agent) = external {}
@@ -124,16 +136,14 @@ persona_component<native><public> := class<final_super>(component):
     #  1/ logic that is true when interrupted
     StopSayEvent<native><public>:listenable(logic) = external {}
 
-    # Requests the Persona to talk on the topic provided, requires the persona to be on a channel
-    RequestToTalk<native><public>(Instructions:message)<transacts><decides>:void
+    # Prompts the session with instructions and speaks the result to the channel parameter.
+    #  Fails if the interrupt rule prevents the prompt being submitted or the persona isn't in a channel.
+    PromptToTalk<native><public>((Instructions:message, Channel:voice_channel(member_info)) where member_info:subtype(has_voice_member_info))<transacts><decides>:void
 
-    # Registers a callback for when the persona receives structured data in the format of response_type.
-    #  Required forces this be filled out every time the persona is prompted.
-    #  The returned cancelable unregisters this callback and stops the llm from attempting to send this kind of structured data.
-    #  The result type must be a struct which can contain.
-    #  - numeric types, message, bools and enums, as well as structs or arrays which only contain those types, anything else results in an error.
-    #  Use the names of the fields and name of the type of the struct to direct the prompt or facts on how to fill out the data structure.
-    SubscribeToResponseType<native><public>(response_type:type, Required:logic, Callback:type {_(:?agent, :response_type):void})<transacts>:cancelable
+    # Prompts the session with instructions and speaks the result to the channel parameter.
+    #  Fails if the interrupt rule prevents the prompt being submitted or the persona isn't in a channel.
+    #  Override the interrupt rules for this prompt only.
+    PromptToTalk<native><public>((Instructions:message, PromptInterrupt:persona_interruption_rule, Channel:voice_channel(member_info)) where member_info:subtype(has_voice_member_info))<transacts><decides>:void
 
     @available {MinUploadedAtFNVersion := 4000}
     OnReceive<override>(SceneEvent:scene_event):logic = external {}
@@ -146,23 +156,20 @@ persona_component<native><public> := class<final_super>(component):
     #  Callback receives:
     #    1) The persona which had the failure
     #    2) The error
-    PromptFailureEvent<native><public>:listenable(llm_prompt_error) = external {}
+    PromptFailureEvent<native><public>:listenable(ai_error) = external {}
 
     OnPersonaComponentConstructed<native><epic_internal>()<transacts>:void
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Sets the persona the player will attempt to prompt when they use the relevant hotkey.
 #  The persona must be in the voice channel with the player in order for the player to be able to successfully prompt.
 (Player:player where member_info:subtype(has_voice_member_info)).SetConversationTarget<native><public>((local:)Persona:persona_component, Channel:voice_channel(member_info))<transacts>:void
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Retrieve the persona and channel the player is currently bound to prompt.
 (Player:player).GetConversationTarget<native><public>()<reads><decides>:tuple(persona_component, voice_channel(has_voice_member_info))
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Unbind player from prompting personas
 (Player:player).ClearConversationTarget<native><public>()<transacts>:void
 
@@ -177,7 +184,6 @@ MakePersonaSuccessResult<native_callable><epic_internal>(Result:success_type whe
 MakePersonaErrorResult<native_callable><epic_internal>(Result:error_type where error_type:type):result(false, error_type) = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 conversation_target<native><epic_internal> := interface<unique><epic_internal>:
     # Succeeds if the agent can target Self for conversation.
     CanConversationTargeterBeAdded<native_callable><epic_internal>(ConversationTargeter:agent)<reads><decides>:void = external {}
@@ -204,29 +210,24 @@ conversation_target<native><epic_internal> := interface<unique><epic_internal>:
     SignalRemoveConversationTargeterEvent<native_callable><epic_internal>(Agent:agent):void = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # A participant can only speak to one conversation target at a time.
 #  A conversation target can be spoken to by many participants at a time.
 #  Fails if the conversation target refuses the addition, or if the participant is assigned to a different conversation target.
 (Participant:agent).SetConversationTargetForAgent<native><epic_internal>(ConversationTarget:conversation_target)<transacts><decides>:void
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Removes any persona assignment for a participant.
 (Participant:agent).ClearConversationTargetForAgent<native><epic_internal>()<transacts>:void
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Returns the persona a participant is assigned to, fails if unassigned.
 (Participant:agent).GetConversationTargetForAgent<native><epic_internal>()<reads><decides>:conversation_target
 
-@experimental
 internal_response_data<native><epic_internal> := struct:
-    @llm_description("Use this to output the name of the targeted conversation participant")
+    @ai_description("Use this to output the name of the targeted conversation participant")
     TargetAgent<native>:?agent
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 persona_conversation_target<native><epic_internal> := class(conversation_target):
     # All the agents currently targeting Self for conversation.
     var ConversationTargeters<override>:[]agent = external {}
@@ -253,14 +254,6 @@ persona_conversation_target<native><epic_internal> := class(conversation_target)
     # Requests the Persona to talk on the topic provided.
     PromptToTalk<native><public>(Topic:message):void
 
-    # The result will conform to the result type. The result type must be a struct or a concrete class with no private fields which can contain
-    # numeric types, messages, bools and enums, as well as structs, concrete classes with no private fields or arrays which only contain those types, anything else results in an error.
-    # Use the names of the fields and name of the type of the struct to direct the prompt or facts on how to fill out the data structure.
-    # The result will conform to the result type. The result type must be a struct or a concrete class with no private fields which can contain
-    # numeric types, messages, bools and enums, as well as structs, concrete classes with no private fields or arrays which only contain those types, anything else results in an error.
-    # Use the names of the fields and name of the type of the struct to direct the prompt or facts on how to fill out the data structure.
-    SubscribeToResponseType<native><public>(response_type:type, Callback:type {_(:?agent, :response_type):void}, Required:logic)<transacts>:cancelable
-
     # Returns a diagnostic of the Persona facts, both static and dynamic.
     DiagnoseFacts<native><public>()<reads>:diagnostic
 
@@ -269,11 +262,6 @@ persona_utterance<native><epic_internal> := class(cancelable):
     Cancel<native><override>()<transacts>:void
 
 @available {MinUploadedAtFNVersion := 4000}
-persona_type_subscription<native><epic_internal> := class(cancelable):
-    Cancel<native><override>()<transacts>:void
-
-@available {MinUploadedAtFNVersion := 4000}
-@experimental
 # A persona device manages conversations involving one or multiple persona objects
 # that are either standalone (announcer) or in the future attachable to NPCs,
 # behind the scenes using a single LLM session.
@@ -293,7 +281,7 @@ persona_device<native><epic_internal> := class<concrete><final>(creative_device_
     # The result will conform to the result type. The result type must be a struct or a concrete class with no private fields which can contain
     # numeric types, messages, bools and enums, as well as structs, concrete classes with no private fields or arrays which only contain those types, anything else results in an error.
     # Use the names of the fields and name of the type of the struct to direct the prompt or facts on how to fill out the data structure.
-    Prompt<native><epic_internal>(UserPrompt:string, response_type:type)<suspends>:result(response_type, llm_prompt_error)
+    Prompt<native><epic_internal>(UserPrompt:string, response_type:type)<suspends>:result(response_type, ai_error)
 
     # Removes all conversation history from the device.
     ClearHistory<native><public>()<transacts>:void
@@ -330,219 +318,174 @@ persona_device<native><epic_internal> := class<concrete><final>(creative_device_
 
     GetBPFunctionNamesForValidation<override>():[]string = external {}
 
-@available {MinUploadedAtFNVersion := 4100}
-@experimental
-# Base class for all prompts sent to an llm session
-prompt<native><public> := class<abstract><castable><epic_internal>:
-
-
-@available {MinUploadedAtFNVersion := 4100}
-@experimental
-# A basic prompt for carrying out instructions
-basic_prompt<native><public> := class<final>(prompt):
-    # What the llm should do
-    var Instructions<native><public>:message
-
-@available {MinUploadedAtFNVersion := 4100}
-@experimental
-# A prompt which defines a persona and tells it to do something
-persona_prompt<native><public> := class<final>(prompt):
-    # The personality of the persona
-    var Personality<native><public>:message
-
-    # What the persona knows
-    var Knowledge<native><public>:message
-
-    # What the persona should do
-    var Instructions<native><public>:message
-
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # The persona voice used when converting text-to-voice
 voice_model<native><public> := class<abstract><epic_internal>:
     VoiceName<native><epic_internal>:string
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
-alice_voice<final><epic_internal> := class(voice_model):
-    VoiceName<override>:string = external {}
-
-@available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Comic, High, Warm
-lily_voice<final><public> := class(voice_model):
+brite_bomber_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Refined, Med, Warm
-julienne_voice<final><public> := class(voice_model):
+elmira_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Glamorous, Animated, warm
-victoria_voice<final><public> := class(voice_model):
+helsie_midnight_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Tough, Low, Gravelly
-wyatt_voice<final><public> := class(voice_model):
+mancake_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
-# Comic, Med, Natural
-caleb_voice<final><public> := class(voice_model):
-    VoiceName<override>:string = external {}
-
-@available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Whimsical, High, Warm
-ethan_voice<final><public> := class(voice_model):
+munitions_master_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
-# Tough, Med, Natural
-vera_voice<final><public> := class(voice_model):
-    VoiceName<override>:string = external {}
-
-@available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Refined, Med, Natural
-grant_voice<final><public> := class(voice_model):
+peely_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Narrator, Low, Warm
-rex_voice<final><public> := class(voice_model):
+terns_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Whimsical, High, Warm
-luna_voice<final><public> := class(voice_model):
+lexa_hexbringer_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Whimsical, Med, Warm
-chloe_voice<final><public> := class(voice_model):
+battle_gamer_mae_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Tough, Med, Natural
-roxy_voice<final><public> := class(voice_model):
+halley_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Tough, Low, Natural
-vivienne_voice<final><public> := class(voice_model):
+aura_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
-# Narrator, Med, Natural
-milo_voice<final><public> := class(voice_model):
-    VoiceName<override>:string = external {}
-
-@available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Cinematic, Med, Natural
-clara_voice<final><public> := class(voice_model):
+brute_gunner_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Comic, Med, Natural
-dante_voice<final><public> := class(voice_model):
+field_commander_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Cinematic, High, Natural
-marcus_voice<final><public> := class(voice_model):
+ziggy_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Whimsical, Med, Natural
-aria_voice<final><public> := class(voice_model):
+haylee_skye_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Comic, High, Natural
-victor_voice<final><public> := class(voice_model):
+orin_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Narrator, Med, Warm
-alaina_voice<final><public> := class(voice_model):
+moxie_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Narrator, Low, Warm
-maisie_voice<final><public> := class(voice_model):
+kor_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Cinematic, Med, Warm
-arthur_voice<final><public> := class(voice_model):
+clover_swift_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Comic, High, Natural
-felix_voice<final><public> := class(voice_model):
+chase_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Cinematic, Med, Natural
-walter_voice<final><public> := class(voice_model):
+fishstick_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Refined, Med, Warm
-simon_voice<final><public> := class(voice_model):
+guild_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Whimsical, High, Warm
-troy_voice<final><public> := class(voice_model):
+sunspot_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Tough, High, Warm
-brenna_voice<final><public> := class(voice_model):
+the_imagined_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Tough, High, Natural
-marina_voice<final><public> := class(voice_model):
+red_ruin_joni_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Glamorous, Low, Natural
-helen_voice<final><public> := class(voice_model):
+nezumi_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Glamorous, Med, Natural
-graham_voice<final><public> := class(voice_model):
+magnus_voice<final><public> := class(voice_model):
+    VoiceName<override>:string = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+revolt_voice<final><public> := class(voice_model):
+    VoiceName<override>:string = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+tomatohead_voice<final><public> := class(voice_model):
+    VoiceName<override>:string = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+raven_voice<final><public> := class(voice_model):
+    VoiceName<override>:string = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+cuddle_team_leader_voice<final><public> := class(voice_model):
+    VoiceName<override>:string = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+midas_voice<final><public> := class(voice_model):
+    VoiceName<override>:string = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+mecha_team_leader_voice<final><public> := class(voice_model):
+    VoiceName<override>:string = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+jonesy_voice<final><public> := class(voice_model):
+    VoiceName<override>:string = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+hope_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}

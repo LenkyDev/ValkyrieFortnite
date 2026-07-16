@@ -21,6 +21,8 @@ skeletal_animation_base<native><epic_internal> := class<epic_internal>:
 skeletal_animation<native><public> := class<castable><epic_internal>(skeletal_animation_base, modifier(skeleton)):
     Evaluate<native><override>(InValue:skeleton)<reads>:skeleton
 
+    SetProperty<native><epic_internal>(PropertyName:string, NewValue:any, MarkDirty:logic)<transacts>:void
+
     InternalAsset<native><epic_internal>:animation_asset = external {}
 
 @available {MinUploadedAtFNVersion := 4100}

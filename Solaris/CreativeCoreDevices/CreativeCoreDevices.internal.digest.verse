@@ -814,6 +814,12 @@ movement_modulator_device<public> := class<concrete><final>(creative_device_base
     # Activates this device's movement effect on `Agent`.
     Activate<public>(Agent:agent):void = external {}
 
+    # Removes the movement effect from `Agent`.
+    Deactivate<public>(Agent:agent)<transacts>:void = external {}
+
+    # Removes the movement effect from all Agents.
+    DeactivateForAll<public>()<transacts>:void = external {}
+
     GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 # Provides a collection of destructible devices that you can select from to use as objectives in your game.
@@ -964,6 +970,14 @@ powerup_device<public> := class<abstract><epic_internal>(creative_device_base):
     # Grants this powerup without an agent reference.
     # Requires *Apply To* set to *All Players*.
     Pickup<public>():void = external {}
+
+    @available {MinUploadedAtFNVersion := 4120}
+    # Removes the powerup effect from `Agent`.
+    Clear<public>(Agent:agent):void = external {}
+
+    # Removes the powerup effect without an agent reference.
+    # Requires *Apply To* set to *All Players*.
+    ClearForAll<public>():void = external {}
 
     GetBPFunctionNamesForValidation<override>():[]string = external {}
 
@@ -1169,6 +1183,9 @@ round_settings_device<public> := class<concrete><final>(creative_device_base):
 
     # Ends the round immediately with `Agent`'s team set as the winner of the round.
     EndRound<public>(Agent:agent):void = external {}
+
+    # The current round number.
+    var<internal> RoundNumber<public>:int = external {}
 
     GetBPFunctionNamesForValidation<override>():[]string = external {}
 

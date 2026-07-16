@@ -164,31 +164,6 @@ using {/Verse.org/Native}
 
 
     @available {MinUploadedAtFNVersion := 4000}
-    @hide_in_editor
-    # UI element that renders text.
-    text_widget_component<native><epic_internal> := class(widget_component):
-        OnBeginSimulationInternal<native><override>():void
-
-        OnInitializedInternal<native><override>():void
-
-        OnUninitializingInternal<native><override>():void
-
-        # The text to render.
-        var Text<public>:message = external {}
-
-        # How the text should be horizontally aligned within the text frame.
-        var HorizontalAlignment<public>:horizontal_text_alignment = external {}
-
-        # How the text should be vertically aligned within the text frame.
-        var VerticalAlignment<public>:vertical_text_alignment = external {}
-
-        # The policy that determines what happens when the text is larger than the frame.
-        var OverflowPolicy<public>:text_frame_overflow_policy = external {}
-
-        # The style to apply to the rendered text.
-        var Style<public>:text_style = external {}
-
-    @available {MinUploadedAtFNVersion := 4000}
     @cpp_name("umg_widget_entity")
     @hide_in_editor
     (/Verse.org/SceneGraph/UI:)umg_widget<native><epic_internal> := class((/Verse.org/SceneGraph/UI:)widget):
@@ -204,27 +179,14 @@ using {/Verse.org/Native}
         CreateMessage<native><protected>(LocalizableMessage:localizable_message_internal)<transacts>:message
 
     @available {MinUploadedAtFNVersion := 4000}
-    umg_widget_component<native><epic_internal> := class<final_super>(widget_component):
+    @hide_in_editor
+    umg_widget_component<native><epic_internal> := class<final_super>(component):
 
 
     @available {MinUploadedAtFNVersion := 4000}
     @cpp_name("widget_entity")
-    (/Verse.org/SceneGraph/UI:)widget<native><epic_internal> := class(entity, showable):
-        var Show<override>:logic = external {}
+    (/Verse.org/SceneGraph/UI:)widget<native><epic_internal> := class(entity):
 
-        var Size<public>:(/Verse.org/SpatialMath:)vector3 = external {}
-
-        var IsFocusable<public>:logic = external {}
-
-    @available {MinUploadedAtFNVersion := 4000}
-    widget_component<native><epic_internal> := class<final_super>(component):
-        @replicated("RepNotify")
-        var Show<native><public>:logic = external {}
-
-        var Size<public>:(/Verse.org/SpatialMath:)vector3 = external {}
-
-        @replicated("RepNotify")
-        var IsFocusable<native><public>:logic = external {}
 
 @available {MinUploadedAtFNVersion := 4100}
 @experimental

@@ -153,7 +153,7 @@ FortSceneGraphCameras<public> := module:
         @experimental
         @replicated("")
         # Translation offset applied on top of the calculated offset.
-        var TranslationOffset<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
+        var PositionOffset<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
 
         @experimental
         @replicated("")
@@ -198,6 +198,8 @@ FortSceneGraphCameras<public> := module:
     @experimental
     # Camera modifier that implements a fixed point camera.
     fort_fixed_point_camera_modifier<native><epic_internal> := class<concrete>(camera_modifier):
+        NativeCameraRigAsset<override>:camera_rig_asset = external {}
+
         @experimental
         @replicated("")
         # Rotation offset applied to the camera's orientation.
@@ -217,6 +219,11 @@ FortSceneGraphCameras<public> := module:
         @replicated("")
         # The ideal vertical screen-space position of the target.
         var IdealFramingLocationScreenSpaceUp<native><public>:float = external {}
+
+        @experimental
+        @replicated("")
+        # On first activation of this camera, snap the framing so the target is already at the ideal location instead of easing into it. Set to false for a pop-free entry from a wider blend.
+        var InitializeWithIdealFraming<native><public>:logic = external {}
 
         @experimental
         @replicated("")

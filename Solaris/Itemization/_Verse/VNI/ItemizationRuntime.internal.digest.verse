@@ -181,13 +181,11 @@ MakeStackableComponent<native><epic_internal>(SplitPrefabType:castable_concrete_
 @available {MinUploadedAtFNVersion := 4100}
 InitializeDescriptionComponentField<native><epic_internal>(Name:message, Description:message, ShortDescription:message)<converges>:description_component
 
-@experimental
 pickup_overflow_behavior<native><epic_internal> := enum:
     DropExcess
     DestroyExcess
 
 @class_and_subclass_group_names("item")
-@experimental
 @hide_in_editor
 fort_item_pickup_component<native><final><epic_internal> := class<final_super>(component, copy_from_item):
     var<private> PickupLifetime<native><public>:float = external {}
@@ -209,7 +207,7 @@ fort_item_pickup_component<native><final><epic_internal> := class<final_super>(c
 @available {MinUploadedAtFNVersion := 4040}
 @class_and_subclass_group_names("item")
 # Place this component onto an entity to allow it to be added to an agent inventory on interaction. The owning entity should have an item_component and a mesh_component. This component expects the interacting agent to have a subentity with an inventory_component.
-fort_item_pickup_interactable_component<public> := class(basic_interactable_component):
+fort_item_pickup_interactable_component<native><public> := class(basic_interactable_component):
     OnAddedToScene<override>():void = external {}
 
     OnRemovingFromScene<override>():void = external {}
@@ -217,6 +215,8 @@ fort_item_pickup_interactable_component<public> := class(basic_interactable_comp
     Enable<override>():void = external {}
 
     Disable<override>():void = external {}
+
+    CanInteract<native><override>(Agent:agent)<reads><decides>:void
 
     EnableItemInteraction<protected>():void = external {}
 

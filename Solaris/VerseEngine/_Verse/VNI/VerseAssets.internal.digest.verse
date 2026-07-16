@@ -20,6 +20,9 @@ Assets<public> := module:
     # Create an asset reference to the given internal asset path
     MakeAsset<native><epic_internal>(asset_type:subtype(asset), AssetPath:string)<converges>:asset_type
 
+    # Create a texture asset reference with dimensions sourced at manifest-generation time
+    MakeTextureAsset<native><epic_internal>(AssetPath:string, Width:float, Height:float)<converges>:texture
+
     asset<native><epic_internal> := class<computes><epic_internal>:
         SyncLoad<native><epic_internal>():logic
 
@@ -59,6 +62,14 @@ Assets<public> := module:
 
         SetTextureProperty<native><epic_internal>(PropertyName:string, NewTexture:texture)<transacts>:void
 
+    @available {MinUploadedAtFNVersion := 4100}
+    control_rig<native><epic_internal> := class<final><epic_internal>(asset, animation_asset):
+
+
+    @available {MinUploadedAtFNVersion := 4100}
+    control_rig_blueprint<native><epic_internal> := class<final><epic_internal>(asset, animation_asset):
+
+
     particle_system<native><public> := class<computes><final><epic_internal>(client_asset):
 
 
@@ -89,11 +100,18 @@ Assets<public> := module:
     level<native><epic_internal> := class<computes><final><epic_internal>(asset):
 
 
+    image_dimensions<native><epic_internal> := interface<computes>:
+        Height<epic_internal>:float
+
+        Width<epic_internal>:float
+
     texture_base<native><epic_internal> := class<computes><epic_internal>(asset):
 
 
-    texture<native><public> := class<computes><final><epic_internal>(texture_base, material_like):
+    texture<native><public> := class<computes><final><epic_internal>(texture_base, material_like, image_dimensions):
+        Height<native><override>:float = external {}
 
+        Width<native><override>:float = external {}
 
     input_action<native><public>(t:type) := class<allocates><unique><computes><epic_internal>(asset):
         (/Verse.org/Assets/input_action:)Assets_input_action_Variance<private>():tuple(t) = external {}

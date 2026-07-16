@@ -5,7 +5,7 @@ Curves<public> := module:
         Evaluate<native><public>(Time:float):float
 
 # Module import path: /UnrealEngine.com/Temporary/Diagnostics
-Diagnostics<public> := module:
+(/UnrealEngine.com/Temporary:)Diagnostics<public> := module:
     using {/Verse.org/Native}
     using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/Verse.org/Colors}

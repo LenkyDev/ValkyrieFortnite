@@ -3,7 +3,6 @@ using {/Verse.org/Assets}
 using {/Verse.org/Simulation}
 using {/Verse.org/Native}
 using {/Verse.org/SceneGraph}
-@experimental
 copy_from_item<native><epic_internal> := interface<epic_internal>:
     CopyFromItem<native_callable><epic_internal>(SourceItem:entity)<transacts>:void
 

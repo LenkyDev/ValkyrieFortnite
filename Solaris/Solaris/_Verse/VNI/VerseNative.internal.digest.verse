@@ -85,6 +85,20 @@ Concurrency<public> := module:
 
         Cancel<native><epic_internal>()<suspends>:void
 
+# Module import path: /Verse.org/Diagnostics
+Diagnostics<public> := module:
+    @attribscope_class
+    @attribscope_struct
+    @attribscope_data
+    @attribscope_function
+    @attribscope_interface
+    export_metadata<epic_internal> := class<computes>(attribute):
+        Category<epic_internal>:string
+
+        Key<epic_internal>:string
+
+        Value<epic_internal>:string
+
 # Module import path: /Verse.org/Persona
 Persona<epic_internal> := module:
     # From a type produce a JSON schema.

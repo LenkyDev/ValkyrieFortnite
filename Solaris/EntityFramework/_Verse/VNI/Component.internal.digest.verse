@@ -125,20 +125,36 @@ has_collision<native><epic_internal> := interface<epic_internal>(has_mesh_part_s
 
     SetCollisionMaterial<final><native_callable><epic_internal>(In:collision_material):void = external {}
 
+    @deprecated
     @experimental
     GetCollisionEnteredEvent<final><native_callable><epic_internal>():listenable(generator(collision_hit)) = external {}
+
+    @deprecated
+    @experimental
+    GetCollisionExitedEvent<final><native_callable><epic_internal>():listenable(generator(collision_hit)) = external {}
+
+    @deprecated
+    @experimental
+    GetOverlapEnteredEvent<final><native_callable><epic_internal>():listenable(generator(overlap_hit)) = external {}
+
+    @deprecated
+    @experimental
+    GetOverlapExitedEvent<final><native_callable><epic_internal>():listenable(generator(overlap_hit)) = external {}
+
+    @experimental
+    GetBeginCollideEvent<final><native_callable><epic_internal>():listenable(generator(collision_hit)) = external {}
 
     @experimental
     GetCollisionEvent<final><native_callable><epic_internal>():listenable(generator(collision_hit)) = external {}
 
     @experimental
-    GetCollisionExitedEvent<final><native_callable><epic_internal>():listenable(generator(collision_hit)) = external {}
+    GetEndCollideEvent<final><native_callable><epic_internal>():listenable(generator(collision_hit)) = external {}
 
     @experimental
-    GetOverlapEnteredEvent<final><native_callable><epic_internal>():listenable(generator(overlap_hit)) = external {}
+    GetBeginOverlapEvent<final><native_callable><epic_internal>():listenable(generator(overlap_hit)) = external {}
 
     @experimental
-    GetOverlapExitedEvent<final><native_callable><epic_internal>():listenable(generator(overlap_hit)) = external {}
+    GetEndOverlapEvent<final><native_callable><epic_internal>():listenable(generator(overlap_hit)) = external {}
 
 @available {MinUploadedAtFNVersion := 4100}
 has_collision_impl<native><final><epic_internal> := class<epic_internal>:
@@ -867,7 +883,7 @@ has_mesh_part_support<native><epic_internal> := interface<epic_internal>:
 
 @available {MinUploadedAtFNVersion := 4100}
 @experimental
-mesh_part<native><epic_internal> := class<abstract><epic_internal>(diagnosable):
+mesh_part<native><epic_internal> := class<abstract><unique><epic_internal>(diagnosable):
     HasCollisionImpl<native><epic_internal>:has_collision_impl = external {}
 
     HasDynamicsImpl<native><epic_internal>:has_dynamics_impl = external {}
@@ -1124,6 +1140,7 @@ agent_changed_result<native><epic_internal> := struct:
 
     CurrentAgent<native>:?agent = external {}
 
+@hide_in_editor
 # Marks an entity that can be possessed by an agent.
 possessable_component<native><public> := class<final_super><epic_internal>(component):
     # Which agent is this entity currently possessed by.

@@ -3,7 +3,6 @@ using {/Verse.org/Simulation}
 using {/Verse.org/Native}
 using {/Verse.org/AgentGroup}
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 chat_channel<native><public>(member_info:subtype(member_info_interface)) := class<unique><abstract><internal>:
     (/Verse.org/Chat/chat_channel:)Chat_chat_channel_Variance<private>():tuple(member_info) = external {}
 
@@ -19,7 +18,6 @@ chat_channel<native><public>(member_info:subtype(member_info_interface)) := clas
     GetAllAgents<native_callable><epic_internal>()<reads>:[]agent = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Used to specify permissions and other settings for a voice_channel.
 has_voice_member_info<native><public> := interface(member_info_interface):
     # Determines if the participant can send voice messages to the channel.
@@ -27,7 +25,6 @@ has_voice_member_info<native><public> := interface(member_info_interface):
     var CanBroadcast<public>:logic = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # A `voice_channel` defines a group of agents who can communicate via voice chat.
 # An agent can be a member of more than one `voice_channel`.Voice channels can accommodate 80 members of the channel's `Group`. Agents beyond this limit are not included in the chat.A chat participant in a `voice_channel` may be restricted from voice chat based on parental controls and/or user settings.
 voice_channel<native><public>(member_info:subtype(has_voice_member_info)) := class<final>(chat_channel(member_info)):
@@ -58,17 +55,14 @@ voice_channel<native><public>(member_info:subtype(has_voice_member_info)) := cla
     CancelSubscriptions<epic_internal>():void = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Returns the registered voice channels on the `simulation_entity`
 (Entity:entity).GetVoiceChannels<native><public>()<reads>:[]voice_channel(has_voice_member_info)
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Returns all the voice channels where the agent is part of the agent_group.
 (Entity:simulation_entity).GetVoiceChannelsForAgent<native><epic_internal>(Agent:agent):[]voice_channel(has_voice_member_info)
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Registers a `voice_channel` or `text_channel` to the `simulation_entity`.
 # Fails if the `MaxSize` of the channel's `agent_group` is undefined or larger than the channel type's limit.
 # * Voice Chat Max Size = 80 participants.
@@ -76,39 +70,32 @@ voice_channel<native><public>(member_info:subtype(has_voice_member_info)) := cla
 (Entity:entity where MemberInfo:subtype(member_info_interface)).AddChatChannel<native><public>(Channel:chat_channel(MemberInfo)):result(void, add_channel_error)
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Deregisters a `voice_channel` or `text channel` from the `simulation_entity`.
 (Entity:entity where MemberInfo:subtype(member_info_interface)).RemoveChatChannel<native><public>(Channel:chat_channel(MemberInfo)):result(void, remove_channel_error)
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Unregisters and removes all members from all voice channels currently on the simulation.
 (Entity:entity).ClearChatChannels<native><epic_internal>():void
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Error returned when a channel cannot be added via the `AddChatChannel` function.
 add_channel_error<public> := class<computes>:
 
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Used in native to create a channel result when registering a channel.
 MakeAddChannelResult<native_callable><epic_internal>(IsSuccess:logic):result(comparable, add_channel_error) = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Used in native to create a channel result when unregistering a channel.
 MakeRemoveChannelResult<native_callable><epic_internal>(IsSuccess:logic):result(comparable, remove_channel_error) = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 # Error returned when a channel cannot be removed via the `RemoveChatChannel` function.
 remove_channel_error<public> := class<computes>:
 
 
 @available {MinUploadedAtFNVersion := 4000}
-@experimental
 voice_manager_component<native><epic_internal> := class<final_super>(component):
     var VoiceChannelsOnSimulation<native><epic_internal>:[]voice_channel(has_voice_member_info) = external {}
 

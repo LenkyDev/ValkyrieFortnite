@@ -171,6 +171,15 @@ Game<public> := module:
         # Subscribed callbacks will be invoked when a Fortnite round ends
         SubscribeRoundEnded<public>(Callback:type {_():void}):cancelable
 
+        # The current round number.
+        #  - Starts at 0 before the first round begins. 
+        #   - Increments by 1 when a round starts, the value is already updated
+        #  when SubscribeRoundStarted callbacks are invoked. 
+        #   - Retains its value between rounds - it is not reset when a round ends.
+        #  - Resets to 0 when the game ends (after the final RoundEndEvent fires
+        #   and before the EndGameEvent fires).
+        var RoundNumber<public>:int
+
     # Returns the round manager from the simulation entity.
     (InEntity:entity).GetFortRoundManager<public>()<transacts><decides>:fort_round_manager = external {}
 

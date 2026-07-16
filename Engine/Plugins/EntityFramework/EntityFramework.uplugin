@@ -193,6 +193,10 @@
 		{
 			"Name": "RigVM",
 			"Enabled": true
+		},
+		{
+			"Name": "UAFControlRig",
+			"Enabled": true
 		}
 	],
 	"IsExperimentalVersion": false

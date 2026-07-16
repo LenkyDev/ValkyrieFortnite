@@ -695,6 +695,12 @@ movement_modulator_device<public> := class<concrete><final>(creative_device_base
     # Activates this device's movement effect on `Agent`.
     Activate<public>(Agent:agent):void = external {}
 
+    # Removes the movement effect from `Agent`.
+    Deactivate<public>(Agent:agent)<transacts>:void = external {}
+
+    # Removes the movement effect from all Agents.
+    DeactivateForAll<public>()<transacts>:void = external {}
+
 # Provides a collection of destructible devices that you can select from to use as objectives in your game.
 objective_device<public> := class<concrete><final>(creative_device_base, healthful, damageable, healable):
     GetHealth<override>()<transacts>:float = external {}
@@ -835,6 +841,14 @@ powerup_device<public> := class<abstract><epic_internal>(creative_device_base):
     # Grants this powerup without an agent reference.
     # Requires *Apply To* set to *All Players*.
     Pickup<public>():void = external {}
+
+    @available {MinUploadedAtFNVersion := 4120}
+    # Removes the powerup effect from `Agent`.
+    Clear<public>(Agent:agent):void = external {}
+
+    # Removes the powerup effect without an agent reference.
+    # Requires *Apply To* set to *All Players*.
+    ClearForAll<public>():void = external {}
 
 # Allows customization of the Prop-o-Matic weapon functions and how the game reacts to players using it.
 prop_o_matic_manager_device<public> := class<concrete><final>(creative_device_base):
@@ -1022,6 +1036,9 @@ round_settings_device<public> := class<concrete><final>(creative_device_base):
 
     # Ends the round immediately with `Agent`'s team set as the winner of the round.
     EndRound<public>(Agent:agent):void = external {}
+
+    # The current round number.
+    var<internal> RoundNumber<public>:int = external {}
 
 # Used to manipulate scores using in-experience triggers. If *Activating Team* is set to a specific team, then you should use the `agent` overloads of each function. The `agent`'s team will be used to determine if that `agent` is allowed to affect the state of the device.
 score_manager_device<public> := class<concrete><final>(creative_device_base):
