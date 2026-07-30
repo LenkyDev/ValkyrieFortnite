@@ -13,7 +13,7 @@ description_component<native><public> := class<final_super>(component, has_descr
 
     var ShortDescription<override>:message = external {}
 
-    OnDescriptionChanged<native><epic_internal>()<transacts>:void
+    OnDescriptionChanged<native_callable><epic_internal>():void = external {}
 
     OnBeginSimulation<override>():void = external {}
 

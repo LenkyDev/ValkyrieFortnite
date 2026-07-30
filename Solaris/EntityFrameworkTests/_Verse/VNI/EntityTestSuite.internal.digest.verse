@@ -223,6 +223,7 @@ EntityTestSuite<public> := module:
             Test_Collision_Material
             Test_UE_Collision_Material
             Test_UE_Collision_Material_PublicAPI_Interaction
+            Test_AssociationNOOP
 
         @available {MinUploadedAtFNVersion := 4100}
         @experimental
@@ -304,6 +305,30 @@ EntityTestSuite<public> := module:
 
         @available {MinUploadedAtFNVersion := 4100}
         @hide_in_editor
+        @experimental
+        association_noop_cube_bodies_mesh_part<epic_internal> := class<epic_internal>(mesh_part, has_dynamics, has_collision):
+
+
+        @available {MinUploadedAtFNVersion := 4100}
+        @hide_in_editor
+        @experimental
+        association_noop_cube_shapes_mesh_part<epic_internal> := class<epic_internal>(mesh_part, has_dynamics, has_collision):
+
+
+        @available {MinUploadedAtFNVersion := 4100}
+        @hide_in_editor
+        @experimental
+        association_noop_cube_mesh_component<epic_internal> := class<final_super><epic_internal>(mesh_component):
+            Mesh<override>:mesh = external {}
+
+            @experimental
+            Bodies<epic_internal>:association_noop_cube_bodies_mesh_part = external {}
+
+            @experimental
+            Shapes<epic_internal>:association_noop_cube_shapes_mesh_part = external {}
+
+        @available {MinUploadedAtFNVersion := 4100}
+        @hide_in_editor
         test_physics_component<native><epic_internal> := class<final_super><epic_internal>(component):
             var TestEntities<epic_internal>:[]entity = external {}
 
@@ -317,6 +342,9 @@ EntityTestSuite<public> := module:
 
             @experimental
             Init_LeftRightCube<epic_internal>(Sim:entity, ?Translation:(/Verse.org/SpatialMath:)vector3 = external {}, ?Scale:(/Verse.org/SpatialMath:)vector3 = external {}):left_right_cube_mesh_component = external {}
+
+            @experimental
+            Test_AssociationNOOP<native_callable><epic_internal>()<suspends>:test_physics_result = external {}
 
             @experimental
             Test_SetDynamic<native_callable><epic_internal>()<suspends>:test_physics_result = external {}

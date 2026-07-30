@@ -9,7 +9,6 @@
 	"BuiltInAutoActivate": false,
 	"FortReleaseVersion": "36.10",
 	"EditorCustomVirtualPath": "FNE/SolidWave",
-	"CookAsDLC": "Creative",
 	"RequiredEntitlements":
 	{
 		"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",

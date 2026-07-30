@@ -468,6 +468,7 @@ VerseFramework<public> := module:
         Failed
         Skipped
         Blocked
+        Warned
 
     node<epic_internal> := class:
 
@@ -564,6 +565,8 @@ VerseFramework<public> := module:
         var ShouldBuildRunPlanFromFile<public>:logic = external {}
 
         var RandomizeTestCaseOrder<public>:logic = external {}
+
+        var FlakeyAsWarning<public>:logic = external {}
 
         DefaultSetupFunctionTimeoutInSeconds<public>:float = external {}
 

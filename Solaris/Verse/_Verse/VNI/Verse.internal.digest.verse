@@ -539,7 +539,6 @@ Verse<public> := module:
     @available {MinUploadedAtFNVersion := 3800}
     MakeError<public>(Result:error_type where error_type:type)<computes>:result(false, error_type) = external {}
 
-    @available {MinUploadedAtFNVersion := 3800}
     # Implemented by classes whose instances can change visibility to be shown or hidden.
     showable<native><public> := interface:
         # Set this value to hide or show the class.

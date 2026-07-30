@@ -65,7 +65,9 @@ persona_interruption_rule<native><public> := enum<open>:
 # NPC Persona component
 persona_component<native><public> := class<final_super>(component):
     # The personality of the persona
-    var Personality<public>:message = external {}
+    var<private> Personality<public>:message = external {}
+
+    SetPersonality<native><public>(NewPersonality:message)<transacts><decides>:void
 
     # The session which will process all this persona's prompts
     # When the persona is in a voice channel, every session in that channel will automatically
@@ -74,7 +76,9 @@ persona_component<native><public> := class<final_super>(component):
     GetAISession<native><public>()<transacts>:ai_session
 
     # The voice assigned to this persona.
-    var Voice<public>:voice_model = external {}
+    var<private> Voice<public>:voice_model = external {}
+
+    SetVoice<native><public>(NewVoice:voice_model)<transacts><decides>:void
 
     # How the persona will handle overlapping prompts.
     var PromptInterruptionRule<public>:persona_interruption_rule = external {}
@@ -138,7 +142,7 @@ voice_model<native><public> := class<abstract><epic_internal>:
 
 @available {MinUploadedAtFNVersion := 4000}
 # Comic, High, Warm
-brite_bomber_voice<final><public> := class(voice_model):
+brite_bomber_voice<final><public> := class<epic_internal>(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
@@ -153,7 +157,7 @@ helsie_midnight_voice<final><public> := class(voice_model):
 
 @available {MinUploadedAtFNVersion := 4000}
 # Tough, Low, Gravelly
-mancake_voice<final><public> := class(voice_model):
+mancake_voice<final><public> := class<epic_internal>(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
@@ -163,7 +167,7 @@ munitions_master_voice<final><public> := class(voice_model):
 
 @available {MinUploadedAtFNVersion := 4000}
 # Refined, Med, Natural
-peely_voice<final><public> := class(voice_model):
+peely_voice<final><public> := class<epic_internal>(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
@@ -203,12 +207,12 @@ field_commander_voice<final><public> := class(voice_model):
 
 @available {MinUploadedAtFNVersion := 4000}
 # Cinematic, High, Natural
-ziggy_voice<final><public> := class(voice_model):
+ziggy_voice<final><public> := class<epic_internal>(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
 # Whimsical, Med, Natural
-haylee_skye_voice<final><public> := class(voice_model):
+haylee_skye_voice<final><public> := class<epic_internal>(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
@@ -223,7 +227,7 @@ moxie_voice<final><public> := class(voice_model):
 
 @available {MinUploadedAtFNVersion := 4000}
 # Narrator, Low, Warm
-kor_voice<final><public> := class(voice_model):
+kor_voice<final><public> := class<epic_internal>(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
@@ -238,7 +242,7 @@ chase_voice<final><public> := class(voice_model):
 
 @available {MinUploadedAtFNVersion := 4000}
 # Cinematic, Med, Natural
-fishstick_voice<final><public> := class(voice_model):
+fishstick_voice<final><public> := class<epic_internal>(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
@@ -253,12 +257,12 @@ sunspot_voice<final><public> := class(voice_model):
 
 @available {MinUploadedAtFNVersion := 4000}
 # Tough, High, Warm
-the_imagined_voice<final><public> := class(voice_model):
+the_imagined_voice<final><public> := class<epic_internal>(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
 # Tough, High, Natural
-red_ruin_joni_voice<final><public> := class(voice_model):
+red_ruin_joni_voice<final><public> := class<epic_internal>(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
@@ -276,28 +280,28 @@ revolt_voice<final><public> := class(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
-tomatohead_voice<final><public> := class(voice_model):
+tomatohead_voice<final><public> := class<epic_internal>(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
-raven_voice<final><public> := class(voice_model):
+raven_voice<final><public> := class<epic_internal>(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
-cuddle_team_leader_voice<final><public> := class(voice_model):
+cuddle_team_leader_voice<final><public> := class<epic_internal>(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
-midas_voice<final><public> := class(voice_model):
+midas_voice<final><public> := class<epic_internal>(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
-mecha_team_leader_voice<final><public> := class(voice_model):
+mecha_team_leader_voice<final><public> := class<epic_internal>(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
-jonesy_voice<final><public> := class(voice_model):
+jonesy_voice<final><public> := class<epic_internal>(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
-hope_voice<final><public> := class(voice_model):
+hope_voice<final><public> := class<epic_internal>(voice_model):

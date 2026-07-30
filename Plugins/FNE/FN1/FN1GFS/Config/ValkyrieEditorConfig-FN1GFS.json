@@ -328,6 +328,8 @@
 			"/Script/FortniteGame.FortItemEntryComponent": { "Visible": true },
 			"/Script/FortniteGame.FortFoliageSpawnerSet": { "Visible": true },
 			"/Script/FortniteGame.FortMainHLOD": { "Visible": true },
+			"/Script/FortniteGame.AthenaSmartObjectInteractExtensionComponent": { "Visible": true },
+			"/Script/FortniteGame.FortContextualAnimSceneActorComponent": { "Visible": true },
 			"/Script/FortniteAI.FortNavMesh": { "Visible": true },
 			"/Script/FortniteAI.FortNavigationGraph": { "Visible": true },
 			"/Script/Foliage.ProceduralFoliageSpawner": { "Visible": true },
@@ -705,6 +707,45 @@
 			{
 				"Type": "/Script/CreativeCompanionRuntime.ESidekickVisibilityUserOptionValues",
 				"AllowList": ["Owner", "Everyone", "Squad"]
+			}
+		]
+	},
+	"HiddenPropertyClassPermissionList": {
+		"+": [
+			{
+				"Type": "/WildEstate/Environment/Terrain/Roads/Meshes/MeshDecals/BP_ParkingLot.BP_ParkingLot_C",
+				"AllowList": [ "DefaultSceneRoot", "SM_ParkingLotDecal_01" ],
+				"WarnForDisallowedPropertiesPhase": 2
+			},
+			{
+				"Type": "/BlastBerry/AI/NPC/VigorKnack_BlastberrySpawnerData.VigorKnack_BlastberrySpawnerData_C",
+				"AllowList": [ "DefaultSceneRoot" ],
+				"WarnForDisallowedPropertiesPhase": 2
+			},
+			{
+				"Type": "/Game/Athena/Effects/Blueprints/Environments/Apollo/BP_Apollo_SnowSmoke.BP_Apollo_SnowSmoke_C",
+				"AllowList": [ "DefaultSceneRoot", "SM_NoTickHaze" ],
+				"WarnForDisallowedPropertiesPhase": 2
+			},
+			{
+				"Type": "/Game/Athena/Prototype/Blueprints/CalendarProps/BP_DataLayerRandomActivate_Basic.BP_DataLayerRandomActivate_Basic_C",
+				"AllowList": [ "DefaultSceneRoot", "Billboard", "DataLayersToPickFrom" ],
+				"WarnForDisallowedPropertiesPhase": 2
+			},
+			{
+				"Type": "/Script/FortniteGame.FortInGameMapManager",
+				"AllowList": [ "DefaultMapLocationFont", "IconPreviewIndicatorBrush", "MapLayerSize", "MapMaterial", "MobileMapLocationFontSizeOverride", "StaticCaptureCameraName" ],
+				"WarnForDisallowedPropertiesPhase": 2
+			},
+			{
+				"Type": "/Script/FortniteGame.FortInGameMapManagerAthena",
+				"AllowList": [ "MapMaskMaterial" ],
+				"WarnForDisallowedPropertiesPhase": 2
+			},
+			{
+				"Type": "/Game/Athena/Prototype/Blueprints/CalendarProps/BP_CalendarProps_V2.BP_CalendarProps_V2_C",
+				"AllowList": [ "EditMode(Don'tTouch)", "EventName", "Propdata", "Scene" ],
+				"WarnForDisallowedPropertiesPhase": 2
 			}
 		]
 	}

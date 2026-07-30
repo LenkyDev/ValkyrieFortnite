@@ -9,7 +9,6 @@
 	"builtInAutoActivate": false,
 	"FortReleaseVersion": "37.30",
 	"EditorCustomVirtualPath": "FNE/PerfectKiwi",
-	"CookAsDLC": "Creative",
 	"RequiredEntitlements": {
 		"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
 		"VKCreateUGCPerfectKiwi": "56d25e349bad42f9b39adb35b2053997"

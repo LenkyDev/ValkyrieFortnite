@@ -1,0 +1,31 @@
+{
+	"FileVersion": 1,
+	"Version": 1,
+	"VersionName": "0.1",
+	"FriendlyName": "EvoDownload",
+	"Description": "Stateful, unified download/install core for Evo content (UEvoDownloadManager). Disabled by default until release.",
+	"Category": "Evo",
+	"CreatedBy": "Epic Games, Inc.",
+	"CreatedByURL": "http://epicgames.com",
+	"EnabledByDefault": true,
+	"CanContainContent": false,
+	"IsBetaVersion": true,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "EvoDownload",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ContentResolver",
+			"Enabled": true
+		},
+		{
+			"Name": "ValkyrieEngine",
+			"Enabled": true
+		}
+	]
+}

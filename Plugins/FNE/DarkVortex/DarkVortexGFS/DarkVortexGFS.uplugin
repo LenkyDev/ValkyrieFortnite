@@ -10,10 +10,14 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/DarkVortex",
-	"FortReleaseVersion": "41.20",
+	"FortReleaseVersion": "41.30",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
-	"CookAsDLC": "Creative",
+	"InstallItem": {
+		"Name": "DarkVortexGFS",
+		"DependsOn": "Creative",
+		"BootStage": "Product"
+	},
 	"ProductChunkId": 13,
 	"RequiredEntitlements": {
 		"Create": {

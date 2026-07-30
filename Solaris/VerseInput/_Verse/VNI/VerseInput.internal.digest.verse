@@ -21,6 +21,16 @@ Input<public> := module:
         Gamepad
         Touch
 
+    # Flags for input devices currently available to the player. Updates at runtime as devices connect or disconnect. Note that `Keyboard` and `Mouse` always carry the same value because the engine groups them as a single capability today.
+    available_input_devices<native><public> := struct:
+        Gamepad<native><public>:logic = external {}
+
+        Keyboard<native><public>:logic = external {}
+
+        Mouse<native><public>:logic = external {}
+
+        Touch<native><public>:logic = external {}
+
     @available {MinUploadedAtFNVersion := 4000}
     # Access input-related data and settings for a player.
     GetPlayerInput<native><public>(Player:player)<transacts><decides>:player_input
@@ -83,6 +93,9 @@ Input<public> := module:
 
         # The player's current preferred input method, updated when the player switches between keyboard/mouse, gamepad, or touch.
         var<internal> PreferredInputMethod<native><public>:input_method = external {}
+
+        # The set of input device capabilities currently available to the player, updated at runtime as devices connect or disconnect.
+        var<internal> AvailableInputDevices<native><public>:available_input_devices = external {}
 
         MakeLogicInputEvents<native_callable><epic_internal>():input_events(logic) = external {}
 
@@ -214,5 +227,6 @@ Input<public> := module:
         @experimental
         PointerSelect<public>:input_action((/Verse.org/SpatialMath:)vector3) = external {}
 
+        @available {MinUploadedAtFNVersion := 4120}
         @experimental
-        PointerZoom<epic_internal>:input_action((/Verse.org/SpatialMath:)vector3) = external {}
+        PointerZoom<public>:input_action((/Verse.org/SpatialMath:)vector3) = external {}

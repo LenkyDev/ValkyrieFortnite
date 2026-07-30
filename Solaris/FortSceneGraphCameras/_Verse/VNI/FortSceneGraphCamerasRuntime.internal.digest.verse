@@ -107,8 +107,8 @@ FortSceneGraphCameras<public> := module:
 
         @experimental
         @replicated("")
-        # Optional entity the camera is attached to. If empty, falls back to the parent entity of the camera component.
-        TargetEntity<native><public>:?entity = external {}
+        # Entity the camera is attached to
+        TargetEntity<native><public>:entity = external {}
 
         @experimental
         @replicated("")
@@ -132,18 +132,14 @@ FortSceneGraphCameras<public> := module:
 
     @available {MinUploadedAtFNVersion := 4110}
     @experimental
-    MakeFirstPersonCamera<constructor><epic_internal>(TargetEntityIn:entity):fort_first_person_camera_modifier = external {}
-
-    @available {MinUploadedAtFNVersion := 4110}
-    @experimental
     # Camera modifier that implements a fixed angle camera.
     fort_fixed_angle_camera_modifier<native><epic_internal> := class<concrete>(camera_modifier):
         NativeCameraRigAsset<override>:camera_rig_asset = external {}
 
         @experimental
         @replicated("")
-        # Optional entity the camera is attached to. If empty, falls back to the parent entity of the camera component.
-        TargetEntity<native><public>:?entity = external {}
+        # Entity the camera is attached to.
+        TargetEntity<native><public>:entity = external {}
 
         @experimental
         @replicated("")
@@ -192,10 +188,6 @@ FortSceneGraphCameras<public> := module:
 
     @available {MinUploadedAtFNVersion := 4110}
     @experimental
-    MakeFixedAngleCamera<constructor><epic_internal>(TargetEntityIn:entity):fort_fixed_angle_camera_modifier = external {}
-
-    @available {MinUploadedAtFNVersion := 4110}
-    @experimental
     # Camera modifier that implements a fixed point camera.
     fort_fixed_point_camera_modifier<native><epic_internal> := class<concrete>(camera_modifier):
         NativeCameraRigAsset<override>:camera_rig_asset = external {}
@@ -207,7 +199,7 @@ FortSceneGraphCameras<public> := module:
 
         @experimental
         @replicated("")
-        # Entities to frame in the camera. Empty array uses the rig's fallback (typically the camera component's parent entity.)
+        # Entities to frame in the camera.
         var TargetEntities<native><public>:[]entity = external {}
 
         @experimental
@@ -271,8 +263,8 @@ FortSceneGraphCameras<public> := module:
 
         @experimental
         @replicated("")
-        # Optional entity the camera is attached to. If empty, falls back to the parent entity of the camera component.
-        TargetEntity<native><public>:?entity = external {}
+        # Entity the camera is attached to
+        TargetEntity<native><public>:entity = external {}
 
         @experimental
         @replicated("")

@@ -10,9 +10,13 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/BrightCoil",
-	"FortReleaseVersion": "41.20",
+	"FortReleaseVersion": "41.30",
 	"IsGameFeatureSet": true,
-	"CookAsDLC": "Creative",
+	"InstallItem": {
+		"Name": "BrightCoilGFS",
+		"DependsOn": "Creative",
+		"BootStage": "Product"
+	},
 	"ProductChunkId": 13,
 	"RequiredEntitlements": {
 		"Create": {

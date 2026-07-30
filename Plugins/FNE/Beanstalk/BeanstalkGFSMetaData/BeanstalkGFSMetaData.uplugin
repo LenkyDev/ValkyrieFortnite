@@ -21,7 +21,7 @@
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false,
-	"CookAsDLC": "Creative",
+
 	"EditorCustomVirtualPath": "FNE/Beanstalk",
 	"Plugins": [
 		{

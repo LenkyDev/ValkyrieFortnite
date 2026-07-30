@@ -10,9 +10,14 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/MeltedIron",
-	"FortReleaseVersion": "41.20",
+	"FortReleaseVersion": "41.30",
 	"ProductChunkId": 13,
 	"IsGameFeatureSet": true,
+	"InstallItem": {
+		"Name": "MeltedIronGFS",
+		"DependsOn": "Creative",
+		"BootStage": "Product"
+	},
 	"RequiredEntitlements": {
 		"Create": {
 			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",

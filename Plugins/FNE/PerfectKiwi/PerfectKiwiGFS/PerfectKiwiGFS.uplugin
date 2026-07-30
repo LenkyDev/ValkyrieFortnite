@@ -10,9 +10,13 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/PerfectKiwi",
-	"FortReleaseVersion": "41.20",
+	"FortReleaseVersion": "41.30",
 	"IsGameFeatureSet": true,
-	"CookAsDLC": "Creative",
+	"InstallItem": {
+		"Name": "PerfectKiwiGFS",
+		"DependsOn": "Creative",
+		"BootStage": "Product"
+	},
 	"ProductChunkId": 13,
 	"RequiredEntitlements": {
 		"Create": {

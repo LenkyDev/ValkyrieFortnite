@@ -306,8 +306,6 @@ pistol_mesh<public> := class<final>(mesh_component):
 @preload
 # The entity prefab for a creator customizable pistol
 pistol_template<public> := class<concrete><final>(weapon_entity):
-    ItemDefinitionID<override>:string = external {}
-
     ItemComponent<override>:?item_component = external {}
 
     @available {MinUploadedAtFNVersion := 4020}
@@ -328,8 +326,6 @@ assault_rifle_mesh<public> := class<final>(mesh_component):
 @preload
 # The entity prefab for a creator customizable assault rifle
 assault_rifle_template<public> := class<concrete><final>(weapon_entity):
-    ItemDefinitionID<override>:string = external {}
-
     ItemComponent<override>:?item_component = external {}
 
     @available {MinUploadedAtFNVersion := 4020}
@@ -350,8 +346,6 @@ sub_machine_gun_mesh<public> := class<final>(mesh_component):
 @preload
 # The entity prefab for a creator customizable SMG
 sub_machine_gun_template<public> := class<concrete><final>(weapon_entity):
-    ItemDefinitionID<override>:string = external {}
-
     ItemComponent<override>:?item_component = external {}
 
     @available {MinUploadedAtFNVersion := 4020}
@@ -372,8 +366,6 @@ shotgun_mesh<public> := class<final>(mesh_component):
 @preload
 # The entity prefab for a creator customizable shotgun
 shotgun_template<public> := class<concrete><final>(weapon_entity):
-    ItemDefinitionID<override>:string = external {}
-
     ItemComponent<override>:?item_component = external {}
 
     @available {MinUploadedAtFNVersion := 4020}

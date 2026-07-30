@@ -276,6 +276,36 @@
 				"Visible": true
 			}
 		},
+		"AllowedInputCommands": {
+			"": {
+				"AllowList": {
+					"+": [
+						"AtomEditorMode"
+					]
+				}
+			},
+			"AtomEditorMode": {
+				"AllowList": {
+					"+": [
+						"KragleModelAsStaticMeshCommand",
+						"SeparateModelCommand",
+						"RotatePitchDown",
+						"RotatePitchUp",
+						"RotateYawLeft",
+						"RotateYawRight",
+						"RotateRollLeft",
+						"RotateRollRight",
+						"NudgeForward",
+						"NudgeBackward",
+						"NudgeRight",
+						"NudgeLeft",
+						"NudgeUp",
+						"NudgeDown",
+						"SnapPaintMode"
+					]
+				}
+			}
+		},
 		"AllowedEditorModes": {
 			"+": [
 				"EM_AtomEditorMode"

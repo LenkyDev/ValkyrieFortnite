@@ -13,7 +13,7 @@ timeline_element<native><epic_internal> := class(timeline_element_base_cancelabl
 # A timeline element that occupies a single point in time.
 timeline_element_point<native><epic_internal> := class<abstract>(timeline_element):
     # The time of this point. May be +/-Inf.NaN will never be updated or queried.
-    var<private> Time<native><public>:float = external {}
+    var<private> Time<native><public>:float
 
     SetTime<native><public>(NewTime:float)<transacts>:void
 

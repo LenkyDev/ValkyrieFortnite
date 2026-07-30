@@ -65,8 +65,6 @@ telekineticon_component<native><public> := class<final_super>(component):
     GrabProp<native><epic_internal>(Agent:agent, PropToGrab:creative_prop)<transacts><decides>:void
 
 Telekineticon_Creative_V1_Common<native><public> := class<final><concrete>(fort_item_definition_entity):
-    ItemDefinitionID<override>:string = external {}
-
     @available {MinUploadedAtFNVersion := 4000}
     ItemComponent<override>:item_component = external {}
 

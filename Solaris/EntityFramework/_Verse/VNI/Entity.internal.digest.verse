@@ -312,7 +312,7 @@ icon_component<native><public> := class<final_super>(component, has_icon):
 
     var<private> HasChangedFields<native><epic_internal>:logic = external {}
 
-    OnIconChanged<native><epic_internal>()<transacts>:void
+    OnIconChanged<native_callable><epic_internal>():void = external {}
 
     OnBeginSimulation<override>():void = external {}
 

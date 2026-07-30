@@ -418,7 +418,7 @@ Vehicles<public> := module:
     (InCharacter:fort_character).GetVehicle<native><public>()<transacts><decides>:fort_vehicle
 
     # Main API implemented by Fortnite vehicles.
-    fort_vehicle<native><public> := interface<unique><epic_internal>(positional, healthful, damageable, game_action_causer):
+    fort_vehicle<native><public> := interface<unique><epic_internal>(positional, healthful, damageable, game_action_causer, showable):
         # Succeeds if this `fort_vehicle` is standing on ground.
         IsOnGround<public>()<transacts><decides>:void
 

@@ -10,9 +10,14 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FM/FriedRice",
-	"FortReleaseVersion": "41.20",
+	"FortReleaseVersion": "41.30",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
+	"InstallItem": {
+		"Name": "FriedRiceGFS",
+		"DependsOn": "Creative",
+		"BootStage": "Product"
+	},
 	"Version": 0,
 	"VersionName": "",
 	"FriendlyName": "",
@@ -26,7 +31,6 @@
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false,
-	"CookAsDLC": "Creative",
 	"ProductChunkId": 13,
 	"RequiredEntitlements": {
 		"Create": {

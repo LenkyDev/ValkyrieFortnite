@@ -137,7 +137,7 @@ FortniteItemCategories<public> := module:
 
 @hide_in_editor
 fort_item_definition_entity_base<native><epic_internal> := class<concrete>(entity):
-    ItemDefinitionID<native><protected>:string = external {}
+
 
 @hide_in_editor
 fort_item_definition_entity<native><epic_internal> := class<concrete>(fort_item_definition_entity_base):

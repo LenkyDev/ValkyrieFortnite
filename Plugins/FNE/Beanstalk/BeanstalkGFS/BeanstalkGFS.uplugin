@@ -9,8 +9,13 @@
 	"BuiltInAutoRegister": true,
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
-	"FortReleaseVersion": "41.20",
+	"FortReleaseVersion": "41.30",
 	"IsGameFeatureSet": true,
+	"InstallItem": {
+		"Name": "BeanstalkGFS",
+		"DependsOn": "Creative",
+		"BootStage": "Product"
+	},
 	"Version": 0,
 	"VersionName": "",
 	"FriendlyName": "",
@@ -24,7 +29,6 @@
 	"IsBetaVersion": false,
 	"IsExperimentalVersion": false,
 	"Installed": false,
-	"CookAsDLC": "Creative",
 	"ProductChunkId": 13,
 	"EditorCustomVirtualPath": "FNE/Beanstalk",
 	"RequiredEntitlements": {

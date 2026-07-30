@@ -9,7 +9,7 @@
 	"BuiltInAutoActivate": false,
 	"FortReleaseVersion": "40.00",
 	"EditorCustomVirtualPath": "FNE/Akita",
-	"CookAsDLC": "Creative",
+
 	"RequiredEntitlements":
 	{
 		"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
