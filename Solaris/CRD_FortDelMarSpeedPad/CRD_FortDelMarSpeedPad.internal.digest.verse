@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # A boost pad that applies speed to Rocket Racing Vehicles driving over it.
 boost_pad_rocketracing_device<public> := class<concrete><final>(creative_device_base, enableable):

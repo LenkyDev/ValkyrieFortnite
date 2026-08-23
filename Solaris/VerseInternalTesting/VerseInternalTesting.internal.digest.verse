@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/VerseInternalTesting
 # Module import path: /Fortnite.com/VerseInternalTesting/NexusFramework
 NexusFramework<public> := module:
     using {/UnrealEngine.com/Temporary/Diagnostics}
@@ -17,6 +18,19 @@ NexusFramework<public> := module:
 
     FailureCategoryToString<epic_internal>(Category:nexus_failure_category):string = external {}
 
+    nexus_verse_feature<epic_internal> := enum:
+        AutoRTFM
+        VersePersistence
+        NewVM
+        DynamicSubsimulations
+        (/Fortnite.com/VerseInternalTesting/NexusFramework/nexus_verse_feature:)Itemization
+        (/Fortnite.com/VerseInternalTesting/NexusFramework/nexus_verse_feature:)SceneGraph
+        CreativeDevices
+        (/Fortnite.com/VerseInternalTesting/NexusFramework/nexus_verse_feature:)UI
+        Uncategorized
+
+    VerseFeatureToString<epic_internal>(Feature:nexus_verse_feature):string = external {}
+
     nexus_test_case<epic_internal> := struct:
         Name<public>:string
 
@@ -30,11 +44,15 @@ NexusFramework<public> := module:
         AddResultWithCategory<epic_internal>(TestName:string, TestResult:test_result, ContextString:string, TestSuiteName:string, FailureCategory:nexus_failure_category):void = external {}
 
     nexus_test_runner<epic_internal> := class(creative_device):
+        FlushResults<epic_internal>():void = external {}
+
         OnEnd<override>():void = external {}
 
     nexus_test_device<epic_internal> := class(creative_device):
         @editable
         var TestRunner<public>:nexus_test_runner = external {}
+
+        QualifiedSuite<epic_internal>():string = external {}
 
         AddResults<epic_internal>(TestName:string, Passed:logic, ContextString:string):void = external {}
 
@@ -55,6 +73,8 @@ NexusFramework<public> := module:
         NexusExpect<epic_internal>(Condition:logic, TestName:string, Context:string):void = external {}
 
         NexusGuard<epic_internal>(Condition:logic, TestName:string):void = external {}
+
+        NexusTry<epic_internal>(TestName:string, Context:string, Check:type {_()<transacts><decides>:void}):void = external {}
 
         ResetGuard<epic_internal>():void = external {}
 
@@ -89,7 +109,12 @@ NexusFramework<public> := module:
         @editable
         TestSuiteName<public>:string = external {}
 
+        @editable
+        Feature<public>:nexus_verse_feature = external {}
+
         var NexusRunner<protected>:?nexus_test_runner_component = external {}
+
+        QualifiedSuite<protected>():string = external {}
 
         OnSimulate<override>()<suspends>:void = external {}
 
@@ -170,6 +195,8 @@ NexusFramework<public> := module:
 
         Heartbeat<public>(ComponentName:string):void = external {}
 
+        FlushResults<epic_internal>():void = external {}
+
         OnEndSimulation<override>():void = external {}
 
         DisplayResults<public>():void = external {}
@@ -180,7 +207,6 @@ NexusFramework<public> := module:
 
 # Module import path: /Fortnite.com/VerseInternalTesting/VerseFramework
 VerseFramework<public> := module:
-    using {/Fortnite.com/Characters}
     using {/Verse.org/SpatialMath}
     using {/Verse.org/Colors}
     using {/UnrealEngine.com/Temporary/SpatialMath}
@@ -195,6 +221,11 @@ VerseFramework<public> := module:
     using {/Fortnite.com/Game}
     using {/Verse.org/Simulation}
     using {/Fortnite.com/Devices}
+    using {/Fortnite.com/Characters}
+    TapTestInput<epic_internal>((local:)Character:fort_character, KeyName:string)<transacts>:void = external {}
+
+    HoldTestInput<epic_internal>((local:)Character:fort_character, KeyName:string, DurationSeconds:float)<suspends>:void = external {}
+
     test_device<epic_internal> := class(creative_device):
         var TestRunner<public>:test_runner = external {}
 

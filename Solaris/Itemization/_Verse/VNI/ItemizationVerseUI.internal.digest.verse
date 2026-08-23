@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Itemization
 using {/UnrealEngine.com/Itemization}
 using {/Verse.org/Simulation}
 using {/Verse.org/Native}

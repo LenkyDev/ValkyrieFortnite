@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices/Patchwork
 # Base class for all Patchwork devices.
 patchwork_device<public> := class<concrete>(creative_device_base):
     # Enables this device.

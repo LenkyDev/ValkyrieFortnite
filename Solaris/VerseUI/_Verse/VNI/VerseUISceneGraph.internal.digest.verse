@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/SceneGraph
 using {/Verse.org/SceneGraph}
 using {/Verse.org/Simulation}
 using {/Verse.org/Native}
@@ -7,10 +8,142 @@ using {/Verse.org/Native}
     using {/UnrealEngine.com/Temporary/UI}
     using {/Verse.org/SpatialMath}
     using {/Verse.org/Colors}
+    using {/Verse.org/Assets}
     using {/Verse.org/Temporary/EpicGamesRestricted/Network}
     using {/Verse.org/Simulation}
     using {/Verse.org/Native}
-    using {/Verse.org/Assets}
+    @available {MinUploadedAtFNVersion := 4210}
+    ui_alignment<native><epic_internal> := enum:
+        Start
+        Center
+        End
+        Fill
+
+    @available {MinUploadedAtFNVersion := 4210}
+    @replicatable
+    ui_margin<native><epic_internal> := struct<concrete><computes>:
+        @editable
+        Top:float = external {}
+
+        @editable
+        Right:float = external {}
+
+        @editable
+        Bottom:float = external {}
+
+        @editable
+        Left:float = external {}
+
+    @available {MinUploadedAtFNVersion := 4210}
+    @hide_in_editor
+    container_element_component<native><epic_internal> := class<final_super>(component):
+
+
+    @available {MinUploadedAtFNVersion := 4210}
+    # Layout hints for a child placed inside a grid_container.
+    grid_container_element_component<native><epic_internal> := class(container_element_component):
+        @editable
+        @replicated("")
+        @tool_tip("Row index of the cell this item occupies. 0 = first row. Negative values count from the end: -1 = last row, -2 = second-to-last. Out-of-range values clamp to the nearest valid row.")
+        # Row index of this item's anchor cell. Zero-based from the start; negative values count from the end (-1 = last row). Out-of-range values are clamped to the nearest valid row.
+        var Row<native><public>:int = external {}
+
+        @editable
+        @replicated("")
+        @tool_tip("Column index of the cell this item occupies. 0 = first column. Negative values count from the end: -1 = last column, -2 = second-to-last. Out-of-range values clamp to the nearest valid column.")
+        # Column index of this item's anchor cell. Zero-based from the start; negative values count from the end (-1 = last column). Out-of-range values are clamped to the nearest valid column.
+        var Column<native><public>:int = external {}
+
+        # Number of rows this item spans across, starting at Row.
+        var RowSpan<public>:int = external {}
+
+        # Number of columns this item spans across, starting at Column.
+        var ColumnSpan<public>:int = external {}
+
+        @editable
+        @replicated("")
+        @tool_tip("How this item is aligned along the horizontal axis within its cell.")
+        var HorizontalAlignment<native><public>:ui_alignment = external {}
+
+        @editable
+        @replicated("")
+        @tool_tip("How this item is aligned along the vertical axis within its cell.")
+        var VerticalAlignment<native><public>:ui_alignment = external {}
+
+        @editable
+        @replicated("")
+        @tool_tip("Margin applied around this element within its cell, in centimeters.")
+        var Margin<native><public>:ui_margin = external {}
+
+    @available {MinUploadedAtFNVersion := 4210}
+    # Container widget that arranges its children in a 2D row/column layout.
+    grid_container<native><epic_internal> := class((/Verse.org/SceneGraph/UI:)widget):
+        # Add a row track definition to the grid. No-op if the same definition is already present.
+        AddRowDefinition<native><public>(Definition:grid_track_definition)<transacts>:void
+
+        # Remove a previously added row track definition from the grid.
+        RemoveRowDefinition<native><public>(Definition:grid_track_definition)<transacts>:void
+
+        # Return the current ordered list of row track definitions.
+        GetRowDefinitions<native><public>()<reads>:[]grid_track_definition
+
+        # Add a column track definition to the grid. No-op if the same definition is already present.
+        AddColumnDefinition<native><public>(Definition:grid_track_definition)<transacts>:void
+
+        # Remove a previously added column track definition from the grid.
+        RemoveColumnDefinition<native><public>(Definition:grid_track_definition)<transacts>:void
+
+        # Return the current ordered list of column track definitions.
+        GetColumnDefinitions<native><public>()<reads>:[]grid_track_definition
+
+        # Spacing between rows, in centimeters.
+        var RowGap<public>:float = external {}
+
+        # Spacing between columns, in centimeters.
+        var ColumnGap<public>:float = external {}
+
+    @available {MinUploadedAtFNVersion := 4210}
+    # Abstract base class for a single row or column track inside a grid_container.
+    grid_track_definition<native><epic_internal> := class<abstract><unique><internal>:
+
+
+    @available {MinUploadedAtFNVersion := 4210}
+    # A row or column track that has a fixed size, in centimeters.
+    fixed_grid_track<native><epic_internal> := class<final>(grid_track_definition):
+        @editable
+        @replicated("")
+        @tool_tip("Fixed size of this track, in centimeters.")
+        var Size<native><public>:float = external {}
+
+    @available {MinUploadedAtFNVersion := 4210}
+    # Sizes to its content along its axis, clamped to [MinSize, MaxSize]. Use proportional_grid_track to fill leftover container space.
+    auto_grid_track<native><epic_internal> := class<final>(grid_track_definition):
+        @editable
+        @replicated("")
+        @tool_tip("Minimum resolved size, in centimeters.")
+        var MinSize<native><public>:float = external {}
+
+        @editable
+        @replicated("")
+        @tool_tip("Maximum resolved size, in centimeters. Inf = unbounded. Floored by MinSize.")
+        var MaxSize<native><public>:float = external {}
+
+    @available {MinUploadedAtFNVersion := 4210}
+    # Takes a weighted share of the container's leftover space. Clamped to [MinSize, MaxSize].
+    proportional_grid_track<native><epic_internal> := class<final>(grid_track_definition):
+        # Weight when dividing leftover space. Weight 2 gets twice the share of weight 1. Clamped to >= 0.
+        var Proportion<public>:float = external {}
+
+        @editable
+        @replicated("")
+        @tool_tip("Minimum resolved size, in centimeters.")
+        var MinSize<native><public>:float = external {}
+
+        @editable
+        @replicated("")
+        @tool_tip("Maximum resolved size, in centimeters. Inf = unbounded. Floored by MinSize.")
+        var MaxSize<native><public>:float = external {}
+
     @available {MinUploadedAtFNVersion := 4000}
     @experimental
     # UI element that renders an image
@@ -159,6 +292,7 @@ using {/Verse.org/Native}
 
     DefaultTextValue<localizes><epic_internal>:message = external {}
 
+    @replicatable
     @import_as("/Script/LocalizableMessage.FLocalizableMessage")
     localizable_message_internal<native><epic_internal> := struct<concrete>:
 

@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FM/FriedRice",
-	"FortReleaseVersion": "41.30",
+	"FortReleaseVersion": "42.00",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"InstallItem": {
@@ -42,6 +42,36 @@
 		{
 			"Name": "FNGameplayCues",
 			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FMDanceSpotlight",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "Piggyback",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "SpotlightCamera",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "SparksMicrophone",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "SparksVocalStreaming",
+			"Enabled": true,
+			"Activate": true,
 			"Optional": true
 		}
 	]

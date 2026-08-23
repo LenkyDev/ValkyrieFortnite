@@ -1,0 +1,39 @@
+
+[EXCERPT:entity]
+# The Scene Graph System
+
+The scene graph is a new way of building 3D scenes and gameplay that blends traditional game editor workflows with the power and flexibility of Verse scripting.
+
+![The scene graph can help build complex worlds from modular custom prefabs.](prefabs.png)
+
+---
+
+## Beta: Use with Caution
+
+The scene graph system is in Beta. You can try it out in your UEFN projects, and you can even release projects that use it. However, the system is still in active development, and many of its available workflows are limited. 
+
+For example:
+
+-   Team collaboration. Scene graph elements like entities and prefabs are saved in your level. Anytime you modify one, you modify the level asset. That means, if you use a revision control system like Unreal Revision Control or Perforce, only one person at a time can work on a level.
+
+-   The Prefab Editor only offers a small subset of the editing features offered by the Level Editor.
+
+-   Possible data loss. You can write your own custom Verse classes for scene graph elements like entities and components. You can then add instances of these classes to the level in the editor and customize their data. But in some cases, those instances or their data may be lost if you delete, move, rename, or modify the Verse classes later, or if you save the level while your Verse code does not compile.
+
+For more information on the scene graph system, including a more detailed list of its limitations, see the online documentation.
+
+[VAR:ToolTipOverride]
+The entity is the base class for all scene graph objects.
+You can customize its behavior by adding components, extend it by adding child entities,
+and save your entities out to reusable prefab assets.
+
+Caution: the scene graph system is in Beta. Some workflows are limited,
+especially the ability to collaborate over revision control.
+[/VAR]
+[VAR:ToolTipFullLink]
+scene-graph-in-unreal-editor-for-fortnite
+[/VAR]
+[VAR:BaseUrl]
+UEFN
+[/VAR]
+[/EXCERPT:entity]

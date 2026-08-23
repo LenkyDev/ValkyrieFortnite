@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com
 # Module import path: /Fortnite.com/FN1Native
 FN1Native<public> := module:
     using {/Verse.org/SceneGraph}
@@ -358,6 +359,6 @@ FN1Native<public> := module:
 
         (Volume:fort_volume_actor_wrapper).InitializePhysics<native><epic_internal>():void
 
-        (Volume:fort_volume_actor_wrapper).EncompassesPoint<native><epic_internal>(Point:(/Verse.org/SpatialMath:)vector3)<reads><decides>:void
+        (Volume:fort_volume_actor_wrapper).EncompassesPoint<native><epic_internal>(Point:(/Verse.org/SpatialMath:)vector3)<decides><reads>:void
 
         (Volume:fort_volume_actor_wrapper).GetLineTraceHit<native><epic_internal>(TraceStart:(/Verse.org/SpatialMath:)vector3, TraceEnd:(/Verse.org/SpatialMath:)vector3)<transacts><decides>:(/Verse.org/SpatialMath:)vector3

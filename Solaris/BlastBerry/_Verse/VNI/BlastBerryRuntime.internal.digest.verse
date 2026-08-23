@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com
 # Module import path: /Fortnite.com/Blastberry
 Blastberry<public> := module:
     # Module import path: /Fortnite.com/Blastberry/Respawn

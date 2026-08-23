@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/SceneGraph
 # Module import path: /Verse.org/SceneGraph/FNECon
 FNECon<public> := module:
     using {/Verse.org/Simulation}

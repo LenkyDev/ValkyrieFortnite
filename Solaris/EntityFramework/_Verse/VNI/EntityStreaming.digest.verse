@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/SceneGraph
 # Entity client streaming modes
 entity_streaming_policy<native><public> := enum:
     # Entity will be spatially loaded.

@@ -1,7 +1,9 @@
+# Verse path: /UnrealEngine.com
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4110}
 # Module import path: /UnrealEngine.com/Progression
 Progression<public> := module:
+    using {/Verse.org/Native}
     using {/Verse.org/SceneGraph}
     register_gameplay_conditional_error<native><public> := class<epic_internal>:
 
@@ -26,14 +28,14 @@ Progression<public> := module:
 
         IsRegistered<native><epic_internal>()<transacts><decides>:void
 
-    gameplay_conditional<native><epic_internal> := class<abstract>:
-        OnInitialization<native_callable><epic_internal>(ContextAnchor:entity):void
+    gameplay_conditional<native><epic_internal> := class:
+        OnInitialization<native_callable><epic_internal>(ContextAnchor:entity):void = external {}
 
-        OnInvalidation<native_callable><epic_internal>():void
+        OnInvalidation<native_callable><epic_internal>():void = external {}
 
-        OnParticipantAdded<native_callable><epic_internal>(Participant:entity):void
+        OnParticipantAdded<native_callable><epic_internal>(Participant:entity):void = external {}
 
-        OnParticipantRemoved<native_callable><epic_internal>(Participant:entity):void
+        OnParticipantRemoved<native_callable><epic_internal>(Participant:entity):void = external {}
 
         Execute<native><final><epic_internal>(ContextObject:gameplay_conditional_context):void
 
@@ -46,11 +48,10 @@ Progression<public> := module:
 
         Evaluate<native_callable><epic_internal>()<decides>:void
 
-    RegisterGameplayConditional<native><epic_internal>(ContextAnchor:entity, GameplayConditional:subtype(gameplay_conditional), Callback:type {_(:gameplay_conditional_context):void})<transacts>:result(gameplay_conditional_listener_handle, []register_gameplay_conditional_error)
-
-    RegisterInstancedGameplayConditional<native><epic_internal>(ContextAnchor:entity, GameplayConditional:gameplay_conditional, Callback:type {_(:gameplay_conditional_context):void})<transacts>:result(gameplay_conditional_listener_handle, []register_gameplay_conditional_error)
+    RegisterGameplayConditional<native><epic_internal>(ContextAnchor:entity, GameplayConditional:concrete_subtype(gameplay_conditional), Callback:type {_(:gameplay_conditional_context):void})<transacts>:result(gameplay_conditional_listener_handle, []register_gameplay_conditional_error)
 
     has_gameplay_conditionals<native><epic_internal> := interface<epic_internal>:
-        Conditionals<epic_internal>:[]subtype(gameplay_conditional) = external {}
+        @available {MinUploadedAtFNVersion := 4200}
+        Conditionals<epic_internal>:[]concrete_subtype(gameplay_conditional) = external {}
 
         OnConditionalExecuted<native_callable><epic_internal>(Context:gameplay_conditional_context):void

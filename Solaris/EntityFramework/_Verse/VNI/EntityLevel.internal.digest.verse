@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/SceneGraph
 using {/Verse.org/Simulation}
 @hide_in_editor {CVar := "LevelEntity.ShowLevelEntityInOutliner"; Hidden := false}
 level_entity<native><epic_internal> := class<concrete><unique><transacts>(entity):

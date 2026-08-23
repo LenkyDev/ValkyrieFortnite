@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/SceneGraph
 using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 using {/Verse.org/Native}
 using {/Verse.org/Simulation}
@@ -24,8 +25,33 @@ easing_window<native><public> := struct<concrete>:
 @experimental
 # Interface used to trigger easing behaviors
 easeable<public> := interface<epic_internal>(cancelable):
-    # Trigger an ease-out. If an easing_window is provided here, then it will override any previous provided window.
-    (/Verse.org/SceneGraph/easeable:)EaseOut<public>(EaseOutWindow:?easing_window)<transacts>:void
+    # Trigger an ease-in.
+    # Triggering an ease-in again when already easing-in or when fully eased-in has no effect unless a different target weight is specified.
+    (/Verse.org/SceneGraph/easeable:)EaseIn<epic_internal>()<transacts>:void
+
+    # Trigger an ease-in providing a new ease-in window, overriding any previously provided window.
+    # Triggering an ease-in again when already easing-in or when fully eased-in has no effect unless a different target weight is specified.
+    (/Verse.org/SceneGraph/easeable:)EaseIn<epic_internal>(EaseInWindow:easing_window)<transacts>:void
+
+    # Trigger an ease-out.
+    # Triggering an ease-out again when already easing-out, or when fully eased-out has no effect
+    (/Verse.org/SceneGraph/easeable:)EaseOut<epic_internal>()<transacts>:void
+
+    # Trigger an ease-out. If an easing_window is provided here, then it will override any previously provided window.
+    # Triggering an ease-out again when already easing-out, or when fully eased-out has no effect
+    (/Verse.org/SceneGraph/easeable:)EaseOut<epic_internal>(EaseOutWindow:easing_window)<transacts>:void
+
+    # Event that gets called when an ease in is started.
+    EaseInEvent<epic_internal>:listenable(tuple())
+
+    # Event that gets called when an ease in is finished.
+    PostEaseInEvent<epic_internal>:listenable(tuple())
+
+    # Event that gets called when an ease out starts.
+    EaseOutEvent<epic_internal>:listenable(tuple())
+
+    # Event that gets called when an ease out finishes.
+    PostEaseOutEvent<epic_internal>:listenable(tuple())
 
 @import_as("/Script/EntityModifiers.UEntityEasingModifierBase")
 easing_modifier_base<native><epic_internal> := class<epic_internal>:
@@ -33,8 +59,8 @@ easing_modifier_base<native><epic_internal> := class<epic_internal>:
 
 @available {MinUploadedAtFNVersion := 4100}
 @experimental
-# Modifier that eases in and out based around its target modifier's timeline (internal).
-# The internal timeline begins when the modifier is constructed and ends either:
+# Modifier that eases in and out based around a duration, with timing based on a clock.
+# The internal timeline begins when the modifier is eased-in and ends either:
 # - When a timer of finite length expires.
 # - When the modifier is removed from the stack via cancelable.Cancel().
 # - When the modifier is eased out by calling EaseOut and the ease-out window completes.
@@ -52,7 +78,21 @@ easing_modifier<native><epic_internal>(t:type) := class<final><epic_internal>(ea
 
     Evaluate<native><override>(InValue:t)<reads>:t
 
-    (/Verse.org/SceneGraph/easeable:)EaseOut<native><override>((local:)EaseOutWindow:?easing_window)<transacts>:void
+    # Trigger an ease-in.
+    # Triggering an ease-in again when already easing-in or when fully eased-in has no effect unless a different target weight is specified.
+    (/Verse.org/SceneGraph/easeable:)EaseIn<native><override>()<transacts>:void
+
+    # Trigger an ease-in providing a new ease-in window, overriding any previously provided window.
+    # Triggering an ease-in again when already easing-in or when fully eased-in has no effect unless a different target weight is specified.
+    (/Verse.org/SceneGraph/easeable:)EaseIn<native><override>((local:)EaseInWindow:easing_window)<transacts>:void
+
+    # Trigger an ease-out.
+    # Triggering an ease-out again when already easing-out, or when fully eased-out has no effect
+    (/Verse.org/SceneGraph/easeable:)EaseOut<native><override>()<transacts>:void
+
+    # Trigger an ease-out. If an easing_window is provided here, then it will override any previously provided window.
+    # Triggering an ease-out again when already easing-out, or when fully eased-out has no effect
+    (/Verse.org/SceneGraph/easeable:)EaseOut<native><override>((local:)EaseOutWindow:easing_window)<transacts>:void
 
     Cancel<override>()<transacts>:void = external {}
 
@@ -66,3 +106,15 @@ easing_modifier<native><epic_internal>(t:type) := class<final><epic_internal>(ea
 
     # Easing to apply when easing out (i.e. 'away from' the target).
     EaseOutWindow<native><epic_internal>:easing_window = external {}
+
+    # Event that gets called when an ease in is started.
+    EaseInEvent<native><override>:listenable(tuple()) = external {}
+
+    # Event that gets called when an ease in is finished.
+    PostEaseInEvent<native><override>:listenable(tuple()) = external {}
+
+    # Event that gets called when an ease out starts.
+    EaseOutEvent<native><override>:listenable(tuple()) = external {}
+
+    # Event that gets called when an ease out finishes.
+    PostEaseOutEvent<native><override>:listenable(tuple()) = external {}

@@ -1,3 +1,4 @@
+# Verse path: /UnrealEngine.com/Temporary
 # Module import path: /UnrealEngine.com/Temporary/UI
 (/UnrealEngine.com/Temporary:)UI<public> := module:
     using {/Verse.org/Colors}
@@ -160,7 +161,7 @@
 
     # The anchors of a `widget` determine its the position and sizing relative to its parent.
     # `anchor`s range from `(0.0, 0.0)` (left, top) to `(1.0, 1.0)` (right, bottom).
-    anchors<native><public> := struct:
+    anchors<native><public> := struct<concrete><computes>:
         # Holds the minimum anchors, (left, top). The valid range is between `0.0` and `1.0`.
         Minimum<native><public>:vector2 = external {}
 
@@ -169,7 +170,7 @@
 
     # Specifies the gap outside each edge separating a `widget` from its neighbors.
     # Distance is measured in units where `1.0` unit is the width of a pixel at 1080p resolution.
-    margin<native><public> := struct:
+    margin<native><public> := struct<concrete><computes>:
         # The left edge spacing.
         Left<native><public>:float = external {}
 

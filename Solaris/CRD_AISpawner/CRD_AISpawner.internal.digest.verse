@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/SpatialMath}
 using {/Fortnite.com/Assets}
 using {/Verse.org/Simulation}

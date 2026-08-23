@@ -1,3 +1,4 @@
+# Verse path: /UnrealEngine.com/Conversations
 using {/Verse.org/Chat}
 using {/Verse.org/Simulation}
 using {/Verse.org/SceneGraph}
@@ -129,7 +130,7 @@ persona_component<native><public> := class<final_super>(component):
 
 @available {MinUploadedAtFNVersion := 4000}
 # Retrieve the persona and channel the player is currently bound to prompt.
-(Player:player).GetConversationTarget<native><public>()<reads><decides>:tuple(persona_component, voice_channel(has_voice_member_info))
+(Player:player).GetConversationTarget<native><public>()<decides><reads>:tuple(persona_component, voice_channel(has_voice_member_info))
 
 @available {MinUploadedAtFNVersion := 4000}
 # Unbind player from prompting personas
@@ -276,15 +277,7 @@ magnus_voice<final><public> := class(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
-revolt_voice<final><public> := class(voice_model):
-
-
-@available {MinUploadedAtFNVersion := 4000}
-tomatohead_voice<final><public> := class<epic_internal>(voice_model):
-
-
-@available {MinUploadedAtFNVersion := 4000}
-raven_voice<final><public> := class<epic_internal>(voice_model):
+hope_voice<final><public> := class<epic_internal>(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
@@ -292,7 +285,15 @@ cuddle_team_leader_voice<final><public> := class<epic_internal>(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
-midas_voice<final><public> := class<epic_internal>(voice_model):
+raven_voice<final><public> := class<epic_internal>(voice_model):
+
+
+@available {MinUploadedAtFNVersion := 4000}
+tomatohead_voice<final><public> := class<epic_internal>(voice_model):
+
+
+@available {MinUploadedAtFNVersion := 4000}
+revolt_voice<final><public> := class(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
@@ -300,8 +301,8 @@ mecha_team_leader_voice<final><public> := class<epic_internal>(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
-jonesy_voice<final><public> := class<epic_internal>(voice_model):
+midas_voice<final><public> := class<epic_internal>(voice_model):
 
 
 @available {MinUploadedAtFNVersion := 4000}
-hope_voice<final><public> := class<epic_internal>(voice_model):
+jonesy_voice<final><public> := class<epic_internal>(voice_model):

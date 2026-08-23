@@ -1,7 +1,10 @@
+# Verse path: /Verse.org
 # Module import path: /Verse.org/Colors
 Colors<public> := module:
     using {/Verse.org/Native}
+    using {/Verse.org/Temporary/EpicGamesRestricted/Network}
     using {/Verse.org/Simulation}
+    @replicatable
     @import_as("/*.FVColor")
     # Represents colors as RGB triples in the ACES 2065-1 color space.
     # Component values are linear (i.e. `*gamma* = 1.0`).
@@ -379,6 +382,7 @@ Colors<public> := module:
         YellowGreen<public>:color = external {}
 
     @available {MinUploadedAtFNVersion := 3800}
+    @replicatable
     @import_as("/*.FVColorAlpha")
     # Represents colors as RGB triples in the ACES 2065-1 color space with an additional alpha channel A.
     # This reasons about the `Color` and alpha (`A`) as separate concepts instead of as a single concept.
@@ -401,7 +405,7 @@ Colors<public> := module:
     @available {MinUploadedAtFNVersion := 3800}
     # Blend colors `CA1` and `CA2` with `CA1` over `CA2` using two non-premultiplied `color_alpha` values.
     # Alpha components are clamped between `0.0` and `1.0`. Fails if the value of both clamped Alpha components are `0.0`.
-    Over<public>(CA1:color_alpha, CA2:color_alpha)<reads><decides>:color_alpha = external {}
+    Over<public>(CA1:color_alpha, CA2:color_alpha)<decides><reads>:color_alpha = external {}
 
     @available {MinUploadedAtFNVersion := 3800}
     # Makes a new `tuple(float, float, float, float)` from a `color_alpha`.

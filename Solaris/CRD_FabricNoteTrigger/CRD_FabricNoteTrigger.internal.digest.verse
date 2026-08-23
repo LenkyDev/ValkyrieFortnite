@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices/Patchwork
 device_event_noteon<epic_internal> := class(listenable(any)):
     BPEvent<epic_internal>:listenable(tuple(int, float))
 

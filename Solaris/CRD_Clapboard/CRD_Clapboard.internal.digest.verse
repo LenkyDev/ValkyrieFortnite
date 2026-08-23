@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 clapboard_device<epic_internal> := class<concrete><final>(creative_device_base):
     TimeReachedEvent<public>:listenable(tuple()) = external {}
 

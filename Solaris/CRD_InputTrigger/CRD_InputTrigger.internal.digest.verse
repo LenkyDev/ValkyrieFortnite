@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to listen for the player activating or releasing certain inputs.
 # The input is defined by the *Input* option.

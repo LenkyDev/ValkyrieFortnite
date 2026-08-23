@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to create an environmental prop that applies Nitro to those around it when it is destroyed.
 nitro_barrel_spawner_device<public> := class<concrete><final>(creative_device_base):

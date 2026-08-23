@@ -1,0 +1,20 @@
+{
+    "OutputPlugin": "MeltedIronEntityItems",
+    "DefaultProductModuleName": "TMNT",
+    "DefaultCategoryModuleName": "Items",
+    "DefaultModuleProperties": {
+        "bExperimentalStatus": false,
+        "bAllowInternalItems": false,
+        "AccessLevel": "Public"
+    },
+    "InternalProductModuleNames": [],
+    "ProductModules": {
+        "TMNT": { "Tags": [ "MeltedIron" ] }
+    },
+    "CategoryModules": {
+        "Items": { "Tags": [ "Item" ] },
+        "Weapons": { "Tags": [ "Weapon" ] }
+    },
+    "ExcludeAssetsInFeatureSets": [ "" ],
+    "VariantModules": {}
+}

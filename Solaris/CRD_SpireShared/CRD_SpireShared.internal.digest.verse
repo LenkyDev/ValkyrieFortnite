@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # An interface for shared functionality between different spire devices
 has_spire_functionality<public> := interface<epic_internal>(enableable):

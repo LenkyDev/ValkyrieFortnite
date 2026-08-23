@@ -1,3 +1,4 @@
+# Verse path: /Verse.org
 # Module import path: /Verse.org/Assets
 Assets<public> := module:
     using {/Verse.org/Colors}

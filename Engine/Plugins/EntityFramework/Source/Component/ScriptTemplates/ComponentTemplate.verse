@@ -1,3 +1,5 @@
+# Copyright Epic Games, Inc. All Rights Reserved.
+
 using { /Verse.org }
 using { /Verse.org/Native }
 using { /Verse.org/SceneGraph }

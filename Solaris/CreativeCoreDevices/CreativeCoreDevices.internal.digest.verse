@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Fortnite.com/Game}
 using {/Verse.org/Native}
 using {/Verse.org/Simulation}
@@ -637,7 +638,7 @@ item_granter_device<public> := class<concrete><final>(creative_device_base):
     # Sends the `agent` that was granted the item, as well as the number of items granted.
     GrantItemWithCountEvent<public>:listenable(tuple(agent, int)) = external {}
 
-    @deprecated
+    @deprecated {Message := "Use `GrantItemWithCountEvent` instead."}
     # Deprecated: Use `GrantItemWithCountEvent` instead.
     # Signaled when an item is granted to an `agent`.
     # Sends the `agent` that was granted the item, as well as the number of items granted.
@@ -702,12 +703,12 @@ item_granter_device<public> := class<concrete><final>(creative_device_base):
     #  If *Cycle Behavior* is *Wrap*, `ItemIndex` is modulo'd to the number of items in the Item Granter.
     SetItemGrantCountAtIndex<public>(ItemIndex:int, Count:int):void = external {}
 
-    @deprecated
+    @deprecated {Message := "Use `GetItemGrantCountAtIndex` instead."}
     # Deprecated: Use `GetItemGrantCountAtIndex` instead.
     # Returns the number of items this item granter will award for at the specified index in the Item Granter. This will return 0 if the index is invalid.
     GetItemCountAtIndex<epic_internal>(Index:int)<transacts>:int = external {}
 
-    @deprecated
+    @deprecated {Message := "Use `SetItemGrantCountAtIndex` instead."}
     # Deprecated: Use `SetItemGrantCountAtIndex` instead.
     # Sets the number of items this item granter will award for the item at `Index`.
     # `Number` must be greater than 0.
@@ -1055,7 +1056,7 @@ pulse_trigger_device<public> := class<concrete><final>(creative_device_base):
     # Stops the damage pulse.
     End<public>():void = external {}
 
-    @deprecated
+    @deprecated {Message := "Use `ResumePulse` instead."}
     # This function is deprecated. Use `ResumePulse` instead of this.
     # Resumes the damage sequence from the last position where it was stopped.
     ResumeSequence<public>():void = external {}

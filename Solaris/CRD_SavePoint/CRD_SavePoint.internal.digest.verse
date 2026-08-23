@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Gives the ability to save player progress, location, resources and stats persistently across games.
 save_point_device<epic_internal> := class<concrete><final>(creative_device_base):

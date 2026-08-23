@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 # Physics boulder that can be dislodged and damage `agent`s, vehicles, creatures, and structures.
 physics_boulder_device<public> := class<concrete><final>(physics_object_base_device):
     # Signaled when the balanced boulder is spawned on the base.

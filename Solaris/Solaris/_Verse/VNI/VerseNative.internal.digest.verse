@@ -1,3 +1,5 @@
+# Verse path: /Verse.org
+using {/Verse.org/Native}
 # Module import path: /Verse.org/Native
 Native<public> := module:
     @attribscope_function
@@ -11,6 +13,7 @@ Native<public> := module:
     @attribscope_struct
     @attribscope_enum
     @attribscope_interface
+    @attribscope_module
     cpp_name_attribute<epic_internal> := class<computes><internal>(attribute):
 
 
@@ -44,14 +47,16 @@ Native<public> := module:
     preload<epic_internal> := class<computes>(attribute):
 
 
+    @cpp_name("verse::property_changed_interface")
     property_changed_interface<native><epic_internal> := interface:
         OnPropertyChangedFromVerse<epic_internal>(PropertyName:string)<transacts>:void
 
 # Module import path: /Verse.org/Concurrency
 Concurrency<public> := module:
     using {/Verse.org/Native}
+    @cpp_name("verse::awaitable")
     # A parametric interface implemented by events with a `payload` that can be waited on. Matched with `signalable.`
-    awaitable<public>(payload:type) := interface:
+    awaitable<native><public>(payload:type) := interface:
         (/Verse.org/Concurrency/awaitable:)Concurrency_awaitable_Variance<private>():tuple(payload) = external {}
 
         # Suspends the current task until resumed by a matching call to `signalable.Signal`. Returns the event `payload`.
@@ -59,6 +64,7 @@ Concurrency<public> := module:
 
     awaitable<public>() := awaitable(void)
 
+    @cpp_name("verse::task")
     task<native><public>(t:type) := class<abstract><final>(awaitable(t)):
         @available {MinUploadedAtFNVersion := 4294967041}
         (/Verse.org/Concurrency/task:)Concurrency_task_Variance_Inherited<private>():tuple(t) = external {}
@@ -99,18 +105,19 @@ Diagnostics<public> := module:
 
         Value<epic_internal>:string
 
+@cpp_name("verse::VerseNative_Verse_org_Persona_module_impl")
 # Module import path: /Verse.org/Persona
 Persona<epic_internal> := module:
     # From a type produce a JSON schema.
-    ToJson<native><epic_internal>(__dupe___unnamed_parameter_0:type)<reads><decides><converges>:string
+    ToJson<native><epic_internal>(__dupe___unnamed_parameter_0:type)<decides><reads><converges>:string
 
     # From an array of types produce a JSON schema corresponding to an object with optional fields of name 0, 1, etc., i.e. a sparse array.
-    ToJson<native><epic_internal>(__dupe___unnamed_parameter_0:[]type)<reads><decides><converges>:string
+    ToJson<native><epic_internal>(__dupe___unnamed_parameter_0:[]type)<decides><reads><converges>:string
 
     # From a JSON string conforming to the schema for a type, produce a value of that type.
-    FromJson<native><epic_internal>(__dupe___unnamed_parameter_0:string, t:type)<reads><decides><converges>:t
+    FromJson<native><epic_internal>(__dupe___unnamed_parameter_0:string, t:type)<decides><reads><converges>:t
 
     # From a JSON string representing a sparse array where each element, if it exists, conforms to the corresponding type element, produce array of optional values.
-    FromJson<native><epic_internal>((__dupe___unnamed_parameter_0:string, __dupe___unnamed_parameter_1:[]subtype(t)) where t:type)<reads><decides><converges>:[]?t
+    FromJson<native><epic_internal>((__dupe___unnamed_parameter_0:string, __dupe___unnamed_parameter_1:[]subtype(t)) where t:type)<decides><reads><converges>:[]?t
 
     Cast<native><epic_internal>(__dupe___unnamed_parameter_0:any, t:type)<decides><converges>:t

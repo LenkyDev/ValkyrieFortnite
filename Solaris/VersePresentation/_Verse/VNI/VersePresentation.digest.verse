@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/Presentation
 using {/Verse.org/Simulation}
 using {/Verse.org/SceneGraph}
 # Component that holds the details for an entity, such as name and description.

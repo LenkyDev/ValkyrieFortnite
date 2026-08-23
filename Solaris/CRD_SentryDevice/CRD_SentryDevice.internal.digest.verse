@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Generates an AI bot that spawns in a location and usually attacks players when they come in range.
 sentry_device<public> := class<concrete><final>(creative_device_base):

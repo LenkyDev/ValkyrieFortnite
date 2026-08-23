@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to trigger a custom response to a *Primary* or *Secondary* signal, sent by a *Signal Remote* item.
 signal_remote_manager_device<public> := class<concrete><final>(creative_device_base):

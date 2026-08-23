@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 #  Represents a poll.
 # For example, in a poll “What to have for lunch?” the group represents the question and contains the possible answers.

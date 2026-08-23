@@ -1,3 +1,4 @@
+# Verse path: /UnrealEngine.com/JSON
 value<native><public> := class:
     # Retrieve an object value or fail if value is not a json object
     AsObject<native><public>()<transacts><decides>:[string]value

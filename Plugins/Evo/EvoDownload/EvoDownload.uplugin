@@ -7,7 +7,6 @@
 	"Category": "Evo",
 	"CreatedBy": "Epic Games, Inc.",
 	"CreatedByURL": "http://epicgames.com",
-	"EnabledByDefault": true,
 	"CanContainContent": false,
 	"IsBetaVersion": true,
 	"Installed": false,

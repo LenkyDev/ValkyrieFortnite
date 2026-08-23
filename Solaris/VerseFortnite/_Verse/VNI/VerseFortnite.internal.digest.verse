@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com
 # Module import path: /Fortnite.com/Building
 Building<public> := module:
     using {/Verse.org/SceneGraph}
@@ -170,7 +171,7 @@ Characters<public> := module:
 
     @hide_in_editor
     @experimental
-    @deprecated
+    @deprecated {Message := "Use `fort_character` directly instead."}
     fort_character_component<native><epic_internal> := class<final><final_super>(component, fort_character):
         @experimental
         FortCharacter<native><public>:fort_character
@@ -291,6 +292,9 @@ Characters<public> := module:
 
         MarkedEvent<override>():listenable(tuple(fort_character, logic)) = external {}
 
+    pawn_linked_event<native><epic_internal> := class(scene_event):
+
+
 # Module import path: /Fortnite.com/FortPlayerUtilities
 FortPlayerUtilities<public> := module:
     using {/UnrealEngine.com/Temporary/SpatialMath}
@@ -328,7 +332,7 @@ FortPlayerUtilities<public> := module:
     (InPlayer:player).GetPlayersSpectating<native><public>()<transacts>:[]player
 
     # Returns the agent a spectator is currently spectating, fails if the spectator isn't spectating or isn't spectating an agent.
-    (InAgent:agent).GetSpectatedAgent<native><public>()<reads><decides>:agent
+    (InAgent:agent).GetSpectatedAgent<native><public>()<decides><reads>:agent
 
     # Returns an `[]agent`s currently spectating `InAgent`.
     (InAgent:agent).GetSpectators<native><public>()<transacts>:[]agent
@@ -358,10 +362,8 @@ Game<public> := module:
         EliminatingCharacter<native><public>:?fort_character
 
     @experimental
-    fort_ability_component<native><epic_internal> := class<final_super>(component):
-        OnBeginSimulation<native><override>():void
+    fort_ability_component<native><epic_internal> := class:
 
-        OnEndSimulation<native><override>():void
 
     @experimental
     fort_damageable_component<native><epic_internal> := class(damageable_component):
@@ -886,7 +888,7 @@ Vehicles<public> := module:
         # Succeeds if this `fort_vehicle` is standing in water.
         IsInWater<public>()<transacts><decides>:void
 
-        # Returns an array of every `fort_character` in the vehicle. Calls `GetOccupants()` and casts each occupying agent to a `fort_character`.
+        @deprecated {Message := "Use `GetOccupants` instead. To convert to `fort_character`, use `for (Agent : Vehicle.GetOccupants(), Character := Agent.GetFortCharacter[])\{ Character \}`."}
         GetPassengers<public>()<transacts>:[]fort_character = external {}
 
         # Returns an array with all `agent` currently occupying the vehicle.
@@ -931,7 +933,7 @@ Vehicles<public> := module:
     # Represents a seat in a `fort_vehicle`.
     fort_vehicle_seat<native><public> := class<unique><epic_internal>:
         # Succeeds if this is a driver seat.
-        IsDriverSeat<native><public>()<reads><decides>:void
+        IsDriverSeat<native><public>()<decides><reads>:void
 
         # The `agent` currently occupying this seat, if any.
         var<private> Occupant<public>:?agent
@@ -944,7 +946,7 @@ Vehicles<public> := module:
 
     @hide_in_editor
     @experimental
-    @deprecated
+    @deprecated {Message := "Use `fort_vehicle` directly instead."}
     fort_vehicle_component<native><epic_internal> := class<final_super>(component, fort_vehicle):
         @experimental
         FortVehicle<native><public>:fort_vehicle

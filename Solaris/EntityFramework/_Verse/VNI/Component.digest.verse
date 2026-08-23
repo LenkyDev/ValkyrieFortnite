@@ -1,7 +1,8 @@
-using {/Verse.org/SpatialMath}
+# Verse path: /Verse.org/SceneGraph
 using {/Verse.org/Native}
 using {/Verse.org/Simulation}
 using {/Verse.org/Colors}
+using {/Verse.org/SpatialMath}
 # A `capsule_light_component` emits light in all directions into the scene from a capsule shaped source with a specified radius and length. A radius and length of 0 makes it a point light. You can use these
 # to simulate any kind of light sources that emit in all directions and need an elongated source shape, such as a long light bulb.
 capsule_light_component<native><public> := class<final>(light_component):
@@ -19,6 +20,186 @@ capsule_light_component<native><public> := class<final>(light_component):
 
     # Length of the source capsule shape in centimeters along the local Z axis. Note that light shapes which intersect shadow casting geometry can cause shadowing artifacts.
     var SourceLength<public>:float = external {}
+
+# Specifies how a collision volume pair should interact. See collision_profile.
+collision_interaction<native><public> := enum:
+    # The pair will not be detected by Overlap and Sweep queries. The pair will not collide in the physics simulation.
+    Ignore
+    # The pair will be detected by Overlap and Sweep queries. The pair will not collide in the physics simulation.
+    Overlap
+    # The pair will be detected by Overlap and Sweep queries. The pair will collide in the physics simulation.
+    Block
+
+# Every volume has a collision channel as part of its collision_profile. It is used to determine how two volumes interact. See collision_profile.
+collision_channel<native><public> := class<concrete><epic_internal>:
+
+
+# An alias for the function type used to map a collision_channel to a collision_interaction used by  collision_profile.
+collision_channel_to_interaction<public> := type {_(:collision_channel)<computes>:collision_interaction}
+
+# A collision profile determines how a volume interacts with other volumes for Overlap queries, Sweep queries, and physics simulation. When two volumes are being tested to see how they interact, the algorithm looks like this:
+#    GetInteraction(A:collision_profile, B:collision_profile):collision_interaction = 
+#        InteractionA = B.GetChannelInteraction(A.Channel) 
+#        InteractionB = A.GetChannelInteraction(B.Channel) 
+#        return Min(InteractionA, InteractionB) 
+collision_profile<native><public> := class<concrete>:
+    # The collision channel for the owning object.
+    Channel<native><public>:collision_channel = external {}
+
+    # How the owning object should interact with other objects.GetChannelInteraction is a function which maps a collision_channel to a collision_interaction. It can be implemented as an simple sequence of if statements. For example, to block all channels except camera:
+    #     BlockAllIgnoreCamera(Channel:collision_channel)<computes>:collision_interaction =
+    #         if (CollisionChannels.camera[Channel]):
+    #             return collision_interaction.Ignore
+    #         return collision_interaction.Block
+    #     MyProfile<public>:collision_profile = MakeCollisionProfile(CollisionChannels.dynamic, BlockAllIgnoreCamera)
+    GetChannelInteraction<native><public>:collision_channel_to_interaction = external {}
+
+# Module import path: /Verse.org/SceneGraph/CollisionChannels
+# The set of built-in collision_channels. This is a closed set for now.
+CollisionChannels<public> := module:
+    stationary<native><public> := class(collision_channel):
+
+
+    dynamic<native><public> := class(collision_channel):
+
+
+    avatar<native><public> := class(collision_channel):
+
+
+    visibility<native><public> := class(collision_channel):
+
+
+    camera<native><public> := class(collision_channel):
+
+
+    physics<native><public> := class(collision_channel):
+
+
+# Module import path: /Verse.org/SceneGraph/CollisionProfiles
+# A set of useful collision profiles. New profiles can be created in Verse code
+CollisionProfiles<public> := module:
+    # Stationary collision channel, Ignore all channels
+    StationaryIgnoreAll<public>:collision_profile = external {}
+
+    # Stationary collision channel, Overlap all channels
+    StationaryOverlapAll<public>:collision_profile = external {}
+
+    # Stationary collision channel, Block all channels
+    StationaryBlockAll<public>:collision_profile = external {}
+
+    # Dynamic collision channel, Ignore all channels
+    DynamicIgnoreAll<public>:collision_profile = external {}
+
+    # Dynamic collision channel, Overlap all channels
+    DynamicOverlapAll<public>:collision_profile = external {}
+
+    # Dynamic collision channel, Block all channels
+    DynamicBlockAll<public>:collision_profile = external {}
+
+    # Stationary collision channel, Block all channels except visibility (used for e.g., invisible wall, glass)
+    StationaryBlockVisible<public>:collision_profile = external {}
+
+    # Visibility collision channel, Overlap all channel (used for e.g., visibility testing)
+    VisibilityOverlapAll<public>:collision_profile = external {}
+
+@deprecated {Message := "Use `CollisionChannels` instead."}
+# Module import path: /Verse.org/SceneGraph/collision_channels
+(/Verse.org/SceneGraph:)collision_channels<public> := module:
+
+
+@deprecated {Message := "Use `CollisionProfiles` instead."}
+# Module import path: /Verse.org/SceneGraph/collision_profiles
+(/Verse.org/SceneGraph:)collision_profiles<public> := module:
+
+
+# The results of an overlap query. See entity.FindOverlapHits(). We will get one overlap_hit for each intersection of any volume in SourceVolumes with any other volume.
+overlap_hit<native><public> := struct<epic_internal>:
+    # The source component and volume (query input). For compound inputs (like an entity hierarchy) this will be a component/volume in that hierarchy. The SourceTransform is the transform of SourceVolume used for the overlap test. For single volume inputs like a sphere, the Source volume and transform are just the inputs to the overlap test, and the component is false.
+    SourceComponent<native><public>:?component
+
+    # The source volume (query input)
+    SourceVolume<native><public>:collision_volume
+
+    # The source volume transform
+    SourceGlobalTransform<native><public>:(/Verse.org/SpatialMath:)transform
+
+    # The component that was hit by SourceVolume
+    TargetComponent<native><public>:component
+
+    # The volume that was hit by SourceVolume
+    TargetVolume<native><public>:collision_element
+
+# The results of a sweep query. See entity.FindSweepHits(). We will get one sweep_hit for each intersection of any volume in SourceVolumes with any other volume.
+sweep_hit<native><public> := struct<epic_internal>:
+    # The source component and volume (query input). For compound inputs (like an entity hierarchy) this will be a component/volume in that hierarchy. The SourceGlobalTransform is the transform of SourceVolume at the start of the sweep. For single volume inputs like a sphere, the volume and transform are just the inputs to the sweep, and the component is false.
+    SourceComponent<native><public>:?component
+
+    # The source volume (query input).
+    SourceVolume<native><public>:collision_volume
+
+    # The source volume transform at the start of the sweep.
+    SourceStartGlobalTransform<native><public>:(/Verse.org/SpatialMath:)transform
+
+    # The world-space translation (relative to SourceStartGlobalTransform) of SourceVolume when it touches TargetVolume.
+    SourceHitTranslation<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+    # The Distance along the sweep at which SourceVolume touches TargetVolume.
+    SourceHitDistance<native><public>:float = external {}
+
+    # The component that was hit by SourceVolume.
+    TargetComponent<native><public>:component
+
+    # The volume that was hit by SourceVolume.
+    TargetVolume<native><public>:collision_element
+
+    # The point of contact between SourceVolume and TargetVolume.
+    ContactPosition<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+    # The normal on TargetVolume at the HitPosition.
+    ContactNormal<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+    # If TargetVolume is a polygonal object (mesh, convex hull, etc.) and the contact point is on an edge or vertex, this is the most-opposing face normal of the faces that share that edge or vertex. Otherwise it is the same as HitNormal.
+    ContactFaceNormal<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+# Collision Volumes represent the collision shapes of meshes. They can be detected by Overlap and Sweep queries and generate collisions in the physics simulation.
+collision_volume<native><public> := class<abstract>:
+    # Enable/disable collision on this volume.
+    var Collidable<public>:logic = external {}
+
+    # Enable/disable spatial queries against this volume.
+    var Queryable<public>:logic = external {}
+
+    # Get the transform of this volume in the space of its owner (usually a component on an entity)
+    GetLocalTransform<public>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
+
+    # Set the transform of this volume in the space of its owner (usually a component on an entity)
+    SetLocalTransform<public>(NewLocalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void = external {}
+
+# Base class for collision_volumes that consist of a single volume with a single collision_profile and collision_material for the whole volume. This covers most volume types used in queries and physics, except compound types like a mesh. A query will always return an element rather than a general volume. For example when colliding with a mesh, the element will be a collision_triangle, which is a collision_element and has a single material, rather than a collision_triangle_mesh, which is not an element and has a material palette.
+collision_element<native><public> := class<abstract>(collision_volume):
+    # The collision_profile for this volume.
+    var CollisionProfile<public>:collision_profile = external {}
+
+# A collision capsule aligned along the Z axis.
+collision_capsule<native><public> := class(collision_element):
+    # The radius of the capsule
+    var Radius<public>:float = external {}
+
+    # The length of the capsule's cylindrical section (distance between the two end cap centers)
+    var Length<public>:float = external {}
+
+# A collision sphere.
+collision_sphere<native><public> := class(collision_element):
+    # The radius of the sphere
+    var Radius<public>:float = external {}
+
+# A collision point.
+collision_point<native><public> := class<concrete>(collision_element):
+
+
+# An axis-aligned collision box.
+collision_box<native><public> := class(collision_element):
+    var Extents<public>:(/Verse.org/SpatialMath:)vector3
 
 # A `directional_light_component` simulates light that is being emitted from a source that is infinitely far away. This means that all shadows cast by this light will be parallel, making this the ideal choice for simulating sunlight.
 directional_light_component<native><public> := class<final>(light_component):
@@ -153,10 +334,10 @@ KeyframedMovement<public> := module:
         PausedEvent<native><public>:listenable(tuple()) = external {}
 
         # Is the animation currently playing?
-        IsPlaying<native><public>()<reads><decides>:void
+        IsPlaying<native><public>()<decides><reads>:void
 
         # Is the animation paused?
-        IsPaused<native><public>()<reads><decides>:void
+        IsPaused<native><public>()<decides><reads>:void
 
         # Gets the duration in seconds this keyframed movement will take. Fails if a fixed duration is not known (ex: looping animations).
         var<private> Duration<native><public>:?float = external {}
@@ -168,7 +349,7 @@ KeyframedMovement<public> := module:
         SetKeyframes<native><public>(RelativeKeyframes:[]keyframed_movement_delta, PlaybackMode:keyframed_movement_playback_mode):void
 
         # Is there a valid set of playable keyframes?
-        HasValidAnimation<native><public>()<reads><decides>:void
+        HasValidAnimation<native><public>()<decides><reads>:void
 
         # Signaled when any keyframe is reached. (Keyframe:int, IsReversed:logic).
         KeyframeReachedEvent<native><public>:listenable(tuple(int, logic)) = external {}
@@ -264,27 +445,21 @@ particle_system_component<native><public> := class<final_super><epic_internal>(c
     # Controls if the `particle_system_component` should play the simulation automatically when added to the scene, or when enabled from a disabled state.
     var<private> AutoPlay<native><public>:logic = external {}
 
-@available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that currently overlap this entity.
 (Entity:entity).FindOverlapHits<public>()<transacts>:generator(overlap_hit) = external {}
 
-@available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would overlap this entity if it were placed at GlobalTransform.
 (Entity:entity).FindOverlapHits<public>(GlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:generator(overlap_hit) = external {}
 
-@available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would overlap Volume if they were placed at GlobalTransform. NOTE: This entity defines the context(scene) for the query but does not otherwise take part in the sweep.
 (Entity:entity).FindOverlapHits<public>(GlobalTransform:(/Verse.org/SpatialMath:)transform, Volume:collision_volume)<transacts>:generator(overlap_hit) = external {}
 
-@available {MinUploadedAtFNVersion := 2930}
 # Find objects in the scene that would intersect this entity if it were swept from its location along the Displacement vector. Returns the first object interacting as collision_interaction.Block, and all objects interacting as collision_interaction.Overlap encountered before the first block. Hits are sorted by hit distance, so the blocking hit will be last.
 (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3)<transacts>:generator(sweep_hit) = external {}
 
-@available {MinUploadedAtFNVersion := 2930}
 # Find objects in the scene that would intersect this entity if it were swept from GlobalTransform along the Displacement vector. Returns the first object interacting as collision_interaction.Block, and all objects interacting as collision_interaction.Overlap encountered before the first block. Hits are sorted by hit distance, so the blocking hit will be last.
 (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3, StartGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:generator(sweep_hit) = external {}
 
-@available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would intersect Volume if they were swept from GlobalTransform along the Displacement vector Hits are sorted by hit distance. NOTE: This entity defines the context(scene) for the query but does not otherwise take part in the sweep.
 (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3, StartGlobalTransform:(/Verse.org/SpatialMath:)transform, Volume:collision_volume)<transacts>:generator(sweep_hit) = external {}
 
@@ -299,7 +474,7 @@ possessable_component<native><public> := class<final_super><epic_internal>(compo
 (InAgent:agent).GetPossessedEntities<public>()<reads>:[]possessable_component = external {}
 
 # Checks if an entity is possessed.
-(InAgent:agent).IsEntityPossessed<public>(PossessableComponent:possessable_component)<reads><decides>:void = external {}
+(InAgent:agent).IsEntityPossessed<public>(PossessableComponent:possessable_component)<decides><reads>:void = external {}
 
 @available {MinUploadedAtFNVersion := 3800}
 # Assign the players that this entity will be presented to. False = presentable to everyone, array = presentable to no one.

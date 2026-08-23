@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com
 # Module import path: /Fortnite.com/AI
 AI<public> := module:
     using {/Fortnite.com/Animation/PlayAnimation}
@@ -134,14 +135,14 @@ AI<public> := module:
     # Get the current fort_leashable interface for the specified character.
     (InCharacter:fort_character).GetFortLeashable<public>()<transacts><decides>:fort_leashable = external {}
 
-    @import_as("/Script/VerseFortniteAI.UNPCComponentSettings")
-    fort_npc_component_settings<native><epic_internal> := class:
-
-
     # NPC Component
     fort_npc_component<native><epic_internal> := class<final_super>(component):
         @editable
-        Settings<native><epic_internal>:fort_npc_component_settings = external {}
+        # Path to AI spawner data to spawn the interop actor
+        SpawnerData<native><epic_internal>:string = external {}
+
+        @editable
+        Logs<epic_internal>:logic = external {}
 
         OnBeginSimulation<override>():void = external {}
 
@@ -267,10 +268,10 @@ AI<public> := module:
         DenyAction<native><epic_internal>():void
 
         # Return if the associated action is currently in progress.
-        IsActionInProgress<native><epic_internal>()<reads><decides>:void
+        IsActionInProgress<native><epic_internal>()<decides><reads>:void
 
         # Return if the associated action is currently allowed.
-        IsActionAllowed<native><epic_internal>()<reads><decides>:void
+        IsActionAllowed<native><epic_internal>()<decides><reads>:void
 
         # Triggered when the associated action is started.
         ActionStartedEvent<native><epic_internal>:listenable(tuple()) = external {}
@@ -436,7 +437,7 @@ AI<public> := module:
         # Returns the entity associated with this behavior.
         GetEntity<native><public>()<transacts><decides>:entity
 
-        @deprecated
+        @deprecated {Message := "Use `GetEntity[].GetPlayspaceForEntity[]` instead."}
         # Returns the `fort_playspace` associated with this behavior.
         GetPlayspace<epic_internal>()<transacts><decides>:fort_playspace = external {}
 
@@ -651,7 +652,6 @@ Animation<public> := module:
         # Get the play_animation_controller for the specified character.
         (InCharacter:fort_character).GetPlayAnimationController<native><public>()<transacts><decides>:play_animation_controller
 
-        @experimental
         fort_npc_play_animation_component<native><epic_internal> := class<final_super><epic_internal>(component, play_animation_controller):
             @editable
             PlayAnimationSettings<native><epic_internal>:fort_npc_play_animation_settings = external {}
@@ -677,10 +677,10 @@ Animation<public> := module:
 
 
     sidekick_cosmetic_definition<native><epic_internal> := class<computes><final><epic_internal>(asset):
-        GetDisplayName<native><epic_internal>()<reads><decides>:message
+        GetDisplayName<native><epic_internal>()<decides><reads>:message
 
     npc_character_definition<native><public> := class<computes><final><epic_internal>(asset):
-        IsSameType<native><epic_internal>(NPCCharacterDefinition:npc_character_definition)<reads><decides>:void
+        IsSameType<native><epic_internal>(NPCCharacterDefinition:npc_character_definition)<decides><reads>:void
 
     (InPlayspace:fort_playspace).SpawnCharacter<native><epic_internal>(CharacterDefinition:npc_character_definition, Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform)<suspends>:?agent
 

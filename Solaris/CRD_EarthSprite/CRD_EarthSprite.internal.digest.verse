@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Use to create a sprite that players can trade in a weapon for a random legendary weapon or a custom item list.
 earth_sprite_device<public> := class<concrete><final>(creative_device_base, enableable):

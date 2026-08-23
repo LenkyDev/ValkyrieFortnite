@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 # The state of a progress_based_mesh_device.
 progress_device_state<public> := enum<open>:
     # This device is currently progressing, and will increase its 'CurrentProgress' by its 'ProgressRate'.

@@ -1,10 +1,11 @@
+# Verse path: /Verse.org
 # Module import path: /Verse.org/SpatialMath
 SpatialMath<public> := module:
     using {/Verse.org/Simulation}
     using {/Verse.org/Native}
     @import_as("/*.FVRotation")
     # An abstract representation of an orientation change in 3d-space.
-    rotation<native><public> := struct<concrete>:
+    rotation<native><public> := struct<concrete><uht_comparable>:
 
 
     @available {MinUploadedAtFNVersion := 3600}
@@ -144,7 +145,7 @@ SpatialMath<public> := module:
 
     @import_as("/*.FVTransform")
     # A combination of scale, rotation, and translation, applied in that order.
-    transform<native><public> := struct<concrete><computes>:
+    transform<native><public> := struct<concrete><computes><uht_comparable>:
         @editable
         # The location of this `transform`.
         Translation<native><public>:vector3 = external {}

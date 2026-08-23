@@ -1,3 +1,4 @@
+# Verse path: /Verse.org
 # Module import path: /Verse.org/Verse
 Verse<public> := module:
     using {/Verse.org/Concurrency}
@@ -70,17 +71,17 @@ Verse<public> := module:
     @available {MinUploadedAtFNVersion := 3800}
     @experimental
     # Succeeds if `element_type` is present in `InSet`.
-    (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).Contains<public>(element_type:castable_subtype(k))<reads><decides>:void = external {}
+    (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).Contains<public>(element_type:castable_subtype(k))<decides><reads>:void = external {}
 
     @available {MinUploadedAtFNVersion := 3800}
     @experimental
     # Succeeds if all the `element_types` are present in `InSet`.
-    (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).ContainsAll<public>(element_types:[]castable_subtype(k))<reads><decides>:void = external {}
+    (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).ContainsAll<public>(element_types:[]castable_subtype(k))<decides><reads>:void = external {}
 
     @available {MinUploadedAtFNVersion := 3800}
     @experimental
     # Succeeds if any of the `element_types` are present in `InSet`.
-    (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).ContainsAny<public>(element_types:[]castable_subtype(k))<reads><decides>:void = external {}
+    (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).ContainsAny<public>(element_types:[]castable_subtype(k))<decides><reads>:void = external {}
 
     @experimental
     # Returns a new set that is the union of all elements in `InSetL` set and `InSetR`.
@@ -181,19 +182,19 @@ Verse<public> := module:
 
     # Returns the smallest `int` that is greater than or equal to `Val`.
     # Fails if `not IsFinite(Val)`.
-    Ceil<native><public>(Val:float)<reads><decides>:int
+    Ceil<native><public>(Val:float)<decides><reads>:int
 
     # Returns the largest `int` that is less than or equal to `Val`.
     # Fails if `not IsFinite(Val)`.
-    Floor<native><public>(Val:float)<reads><decides>:int
+    Floor<native><public>(Val:float)<decides><reads>:int
 
     # Returns `Val` rounded to the nearest `int`. When the fractional part of `Val` is `0.5`, rounds to the nearest *even* `int` (per the IEEE-754 default rounding mode).
     # Fails if `not IsFinite(Val)`.
-    Round<native><public>(Val:float)<reads><decides>:int
+    Round<native><public>(Val:float)<decides><reads>:int
 
     # Returns the `int` that equals `Val` without the fractional part.
     # Fails if `not IsFinite(val)`.
-    Int<native><public>(Val:float)<reads><decides>:int
+    Int<native><public>(Val:float)<decides><reads>:int
 
     # Makes a `string` representation of `Val`.
     ToString<native><public>(Val:float)<reads>:string
@@ -210,7 +211,7 @@ Verse<public> := module:
         IsValid<public>()<transacts><decides>:void
 
     # A parametric interface combining `awaitable` and `subscribable`.
-    listenable<public>(payload:type) := interface(awaitable(payload), subscribable(payload)):
+    listenable<native><public>(payload:type) := interface(awaitable(payload), subscribable(payload)):
         @available {MinUploadedAtFNVersion := 4294967041}
         (/Verse.org/Verse/listenable:)Verse_listenable_Variance_Inherited<private>():tuple(payload, payload, payload) = external {}
 
@@ -425,7 +426,7 @@ Verse<public> := module:
 
     @available {MinUploadedAtFNVersion := 3800}
     # Implemented by classes that provide a result for an operation, which can fail or be successful
-    result<public>(success_type:type, error_type:type) := interface<computes><internal>:
+    result<native><public>(success_type:type, error_type:type) := interface<computes><internal>:
         (/Verse.org/Verse/result:)Verse_result_Variance<private>():tuple(success_type, error_type) = external {}
 
         # Returns the success data of the specified type.
@@ -447,7 +448,7 @@ Verse<public> := module:
 
     # A parametric interface implemented by events with a `payload` that can be signaled.
     # Can be used with `awaitable`, `subscribable`, or both (see: `listenable`).
-    signalable<public>(payload:type) := interface:
+    signalable<native><public>(payload:type) := interface:
         (/Verse.org/Verse/signalable:)Verse_signalable_Variance<private>(:payload):tuple() = external {}
 
         # Concurrently resumes the tasks waiting for this event in `awaitable.Await` and synchronously invokes any callbacks added to this event by `subscribable.Subscribe`.
@@ -464,7 +465,7 @@ Verse<public> := module:
 
     # A parametric interface implemented by events with a `payload` that can be subscribed to.
     # Matched with `signalable.`
-    subscribable<public>(t:type) := interface:
+    subscribable<native><public>(t:type) := interface:
         (/Verse.org/Verse/subscribable:)Verse_subscribable_Variance<private>():tuple(t) = external {}
 
         # Registers `Callback` to be invoked on matching calls to `signable.Signal`.
@@ -476,7 +477,7 @@ Verse<public> := module:
 
 # Module import path: /Verse.org/Random
 Random<public> := module:
-    # Returns a random `float` between `Low` and `High`, inclusive.
+    # Returns a uniformly distributed, cryptographically-secure random `float` between `Low` and `High`, inclusive. (`Low` and `High` can be out of order.)
     GetRandomFloat<native><public>(Low:float, High:float)<transacts>:float
 
     # Returns a uniformly distributed, cryptographically-secure random `int` between `Low` and `High`, inclusive. (`Low` and `High` can be out of order.)

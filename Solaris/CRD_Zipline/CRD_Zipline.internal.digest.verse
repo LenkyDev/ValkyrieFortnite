@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Creates a zipline that moves players from point to point.
 zipline_device<epic_internal> := class<concrete><final>(creative_device_base):

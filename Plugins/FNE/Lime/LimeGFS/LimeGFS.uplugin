@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Lime",
-	"FortReleaseVersion": "41.30",
+	"FortReleaseVersion": "42.00",
 	"ProductChunkId": 13,
 	"IsGameFeatureSet": true,
 	"InstallItem": {
@@ -44,6 +44,11 @@
 		}
 	],
 	"Plugins": [
+		{
+			"Name": "LimeEntityItems",
+			"Enabled": true,
+			"Optional": true
+		},
 		{
 			"Name": "Containers_Assets",
 			"Enabled": true,
@@ -463,6 +468,11 @@
 			"Optional": true
 		},
 		{
+			"Name": "LimeTabascoKatana",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "LimeTabascoTwist",
 			"Enabled": true,
 			"Optional": true,
@@ -476,11 +486,6 @@
 		},
 		{
 			"Name": "LimeWeaponScythe",
-			"Enabled": true,
-			"Optional": true
-		},
-		{
-			"Name": "LimeTabascoKatana",
 			"Enabled": true,
 			"Optional": true
 		},
@@ -558,6 +563,18 @@
 		{
 			"Name": "TownScaper",
 			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "JunoStamina",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "LFNTacticalSprint",
+			"Enabled": true,
+			"Activate": true,
 			"Optional": true
 		}
 	]

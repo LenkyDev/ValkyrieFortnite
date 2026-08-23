@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # A vault door that requires a start of a sequence to damage a number of weakpoints to open.
 bank_vault_device<public> := class<concrete><final>(creative_device_base, bank_vault_interface):

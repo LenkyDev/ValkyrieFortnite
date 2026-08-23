@@ -1,0 +1,20 @@
+{
+    "OutputPlugin": "SolidWaveEntityItems",
+    "DefaultProductModuleName": "SquidGame",
+    "DefaultCategoryModuleName": "Items",
+    "DefaultModuleProperties": {
+        "bExperimentalStatus": false,
+        "bAllowInternalItems": false,
+        "AccessLevel": "Public"
+    },
+    "InternalProductModuleNames": [],
+    "ProductModules": {
+        "SquidGame": { "Tags": [ "SolidWave" ] }
+    },
+    "CategoryModules": {
+        "Items": { "Tags": [ "Item" ] },
+        "Weapons": { "Tags": [ "Weapon" ] }
+    },
+    "ExcludeAssetsInFeatureSets": [ "" ],
+    "VariantModules": {}
+}

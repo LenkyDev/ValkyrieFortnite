@@ -1,3 +1,4 @@
+# Verse path: /UnrealEngine.com/Conversations
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4100}
 @attribscope_data

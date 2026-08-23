@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # A configurable EMP Volume Hazard that slows Rocket Racing Vehicles.
 emp_volume_hazard_rocketracing_device<public> := class<concrete><final>(creative_device_base, enableable):

@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices/Patchwork
 note_on_message<epic_internal> := class:
     NoteNumber<public>:int = external {}
 

@@ -1,24 +1,26 @@
+# Verse path: /UnrealEngine.com/Tests
 # Module import path: /UnrealEngine.com/Tests/NexusUtils
 NexusUtils<public> := module:
-    nexus_utils<native><epic_internal> := class:
-        PrintEpicAPIFunctionLog<native><public>():void
+    PrintEpicAPIFunctionLog<native><epic_internal>():void
 
-        # Takes a screenshot on clients that are connected to the server this is called onPasses in the file name of the screenshot that gets saved to a fixed directory
-        ScreenshotAllClients<native><epic_internal>(ScreenshotFileName:string):void
+    # Takes a screenshot on clients that are connected to the server this is called onPasses in the file name of the screenshot that gets saved to a fixed directory
+    ScreenshotAllClients<native><epic_internal>(ScreenshotFileName:string):void
 
-        # Reads a file at a given path, returns a string array. Optionally prepends path to executables 'Saved' directory
-        ReadFile<native><epic_internal>(FilePath:[]string)<transacts><decides>:[]string
+    # Reads a file at a given path, returns a string array. Optionally prepends path to executables 'Saved' directory
+    ReadFile<native><epic_internal>(FilePath:[]string)<transacts><decides>:[]string
 
-        # Writes a string array of lines to a file at a given path. Optionally prepends path to executables 'Saved' directory
-        WriteFile<native><epic_internal>(FilePath:[]string, Lines:[]string)<transacts>:void
+    # Writes a string array of lines to a file at a given path. Optionally prepends path to executables 'Saved' directory
+    WriteFile<native><epic_internal>(FilePath:[]string, Lines:[]string)<transacts>:void
 
-        GetSavedDir<native><epic_internal>():string
+    GetSavedDir<native><epic_internal>():string
 
-        # Force a client garbage collection for all connected clients
-        ForceGarbageCollectionOnAllClients<native><epic_internal>():void
+    # Force a client garbage collection for all connected clients
+    ForceGarbageCollectionOnAllClients<native><epic_internal>():void
 
-        # Call a console command on all clients
-        ExecuteConsoleCommandOnAllClients<native><epic_internal>(ConsoleCommand:string):void
+    # Call a console command on all clients
+    ExecuteConsoleCommandOnAllClients<native><epic_internal>(ConsoleCommand:string):void
 
-        # Returns true when running on the new Verse VM (VVM); false on legacy Blueprint VM (BPVM). Build-time decision; never changes at runtime.
-        IsVVM<native><epic_internal>()<computes>:logic
+    # Returns true when running on the new Verse VM (VVM); false on legacy Blueprint VM (BPVM). Build-time decision; never changes at runtime.
+    IsVVM<native><epic_internal>()<computes>:logic
+
+    StoreValueForAutomation<native><epic_internal>(Key:string, Value:string):void

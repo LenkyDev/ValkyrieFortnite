@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to trigger level sequences that allow coordination of cinematic animation, transformation, and audio tracks.
 cinematic_sequence_device<public> := class<concrete><final>(creative_device_base):

@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 # Used to trigger in game events based on real world time.
 real_time_clock_device<public> := class<concrete><final>(creative_device_base):
     # Signaled when the optional second *Duration* time has been reached.

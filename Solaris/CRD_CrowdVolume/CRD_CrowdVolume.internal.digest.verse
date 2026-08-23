@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 # Spawns a crowd to cheer you on.
 crowd_volume_device<public> := class<concrete><final>(creative_device_base):
     # Enables this device.

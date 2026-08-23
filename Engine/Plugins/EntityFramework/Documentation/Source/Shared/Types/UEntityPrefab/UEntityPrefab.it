@@ -1,0 +1,41 @@
+
+[EXCERPT:UEntityPrefab]
+# Il sistema Scene Graph
+
+Lo Scene Graph è un nuovo modo di costruire scene 3D e gameplay che unisce i flussi di lavoro tradizionali degli editor di giochi alla potenza e alla flessibilità dello scripting di Verse.
+
+![Lo Scene Graph può aiutare a costruire mondi complessi a partire da prefabbricati personalizzati modulari.](prefabs.png)
+
+---
+
+## Beta: da usare con cautela
+
+Il sistema Scene Graph è in versione beta. Puoi provarlo nei tuoi progetti UEFN e puoi persino pubblicare progetti che lo utilizzano. Tuttavia, il sistema è ancora in fase di sviluppo attivo e molti dei suoi flussi di lavoro disponibili sono limitati. 
+
+Come ad esempio:
+
+-   Collaborazione in team. Gli elementi del Scene Graph come entità e prefabbricati vengono salvati nel tuo livello. Ogni volta che ne modifichi uno, modifichi l'asset del livello. Ciò significa che, se utilizzi un sistema di controllo delle revisioni come Unreal Revision Control o Perforce, solo una persona alla volta può lavorare su un livello.
+
+-   L'editor dei prefab offre solo un piccolo sottoinsieme delle funzionalità di modifica offerte dall'editor di livello.
+
+-   Possibile perdita di dati. Puoi scrivere le tue classi Verse personalizzate per elementi del Scene Graph come entità e componenti. È quindi possibile aggiungere istanze di queste classi al livello nell'editor e personalizzarne i dati. Tuttavia, in alcuni casi, tali istanze o i relativi dati potrebbero andare persi se in seguito si eliminano, si spostano, si rinominano o si modificano le classi Verse, oppure se si salva il livello mentre il codice Verse non è compilato.
+
+Per ulteriori informazioni sul sistema Scene Graph, compreso un elenco più dettagliato delle sue limitazioni, consulta la documentazione online.
+
+[VAR:ToolTipOverride]
+Un asset prefabbricato è un modello riutilizzabile per un'entità. 
+Puoi personalizzarne il comportamento aggiungendo componenti ed estenderlo aggiungendo entità figlie.
+Puoi trascinare e rilasciare tutte le istanze del prefabbricato che desideri nei tuoi livelli,
+e personalizzare ogni istanza individualmente. Gli aggiornamenti apportati successivamente all'asset prefabbricato vengono
+applicati automaticamente anche alle istanze.
+
+Attenzione: il sistema Scene Graph è in versione beta. Alcuni flussi di lavoro sono limitati,
+in particolare la possibilità di collaborare tramite il controllo delle revisioni.
+[/VAR]
+[VAR:ToolTipFullLink]
+scene-graph-in-unreal-editor-for-fortnite
+[/VAR]
+[VAR:BaseUrl]
+UEFN
+[/VAR]
+[/EXCERPT:UEntityPrefab]

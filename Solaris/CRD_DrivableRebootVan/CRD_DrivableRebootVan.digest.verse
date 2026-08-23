@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 vehicle_spawner_drivable_reboot_van_device<public> := class<concrete><final>(vehicle_spawner_device, reboot_van_interface):
     # Enable the device.

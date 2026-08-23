@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/SceneGraph
 using {/Verse.org/Simulation}
 using {/Verse.org/SpatialMath}
 using {/Verse.org/Native}
@@ -82,6 +83,9 @@ modular_vehicle_component<native><epic_internal> := class<final_super><epic_inte
     # Apply control input of type MAxis3D
     SetInput<native><public>(InputName:string, Value:(/Verse.org/SpatialMath:)vector3):void
 
+    # Possess the vehicle proxy actor with the given player's controller. Required for camera/view control.
+    PossessProxyActor<native><epic_internal>(InPlayer:player):void
+
     # Apply state input of type MBoolean
     SetState<native><public>(InputName:string, Value:logic):void
 
@@ -107,6 +111,36 @@ vehicle_engine_component<native><epic_internal> := class<final><epic_internal>(v
     GetRPM<epic_internal>(Accessor:accessor)<transacts>:float = external {}
 
     GetTorque<epic_internal>(Accessor:accessor)<transacts>:float = external {}
+
+@experimental
+modular_vehicle_input_component<native><epic_internal> := class<final_super><epic_internal>(component):
+    GetThrottlePressedEvent<public>()<reads>:subscribable_event_intrnl(tuple()) = external {}
+
+    GetBrakePressedEvent<public>()<reads>:subscribable_event_intrnl(tuple()) = external {}
+
+    GetSteeringPressedEvent<public>()<reads>:subscribable_event_intrnl(tuple()) = external {}
+
+    GetHandbrakePressedEvent<public>()<reads>:subscribable_event_intrnl(tuple()) = external {}
+
+    GetRollPressedEvent<public>()<reads>:subscribable_event_intrnl(tuple()) = external {}
+
+    GetPitchPressedEvent<public>()<reads>:subscribable_event_intrnl(tuple()) = external {}
+
+    GetYawPressedEvent<public>()<reads>:subscribable_event_intrnl(tuple()) = external {}
+
+    GetGearUpPressedEvent<public>()<reads>:subscribable_event_intrnl(tuple()) = external {}
+
+    GetGearDownPressedEvent<public>()<reads>:subscribable_event_intrnl(tuple()) = external {}
+
+    RegisterAllPlayerBindings<public>():void = external {}
+
+    UnregisterAllPlayerBindings<public>():void = external {}
+
+    OnPlayerAdded<public>(InPlayer:player):void = external {}
+
+    OnPlayerRemoved<public>(InPlayer:player):void = external {}
+
+    OnEndSimulation<override>():void = external {}
 
 @hide_in_editor
 @experimental

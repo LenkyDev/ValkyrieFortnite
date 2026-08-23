@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/SpatialMath}
 using {/Verse.org/Simulation}
 # Used to customize the properties of NPCs spawned by this device.

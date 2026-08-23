@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/SceneGraph}
 using {/Verse.org/Native}
 @import_as("/Script/FortniteGame.ULevelSaveRecord")

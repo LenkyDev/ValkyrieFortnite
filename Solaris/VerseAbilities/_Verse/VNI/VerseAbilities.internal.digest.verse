@@ -1,7 +1,12 @@
+# Verse path: /UnrealEngine.com/Abilities
 using {/Verse.org/Assets}
-using {/Verse.org/Native}
 using {/Verse.org/SceneGraph}
 using {/Verse.org/Simulation}
+using {/Verse.org/Native}
+@available {MinUploadedAtFNVersion := 4130}
+@experimental
+MakeAbilityEffectComponent<native><public>(component_type:castable_subtype(ability_effect_component))<converges>:component_type
+
 @available {MinUploadedAtFNVersion := 4130}
 @experimental
 # Data passed on activation of an ability. Holds who fired, who helped, and what got hit. 
@@ -31,7 +36,7 @@ ability<native><public>(context_type:subtype(ability_context), ability_effect_ty
 
     Use<native_callable><final><public>(AbilityEffectParent:entity, AbilityContext:context_type):?ability_effect_type = external {}
 
-    CanUse<public>(AbilityEffectParent:entity, AbilityContext:context_type)<reads><decides>:void = external {}
+    CanUse<public>(AbilityEffectParent:entity, AbilityContext:context_type)<decides><reads>:void = external {}
 
     BeginUseEvent<native><public>:listenable(entity) = external {}
 

@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to project a hologram of a character performing dance emotes.
 dance_mannequin_device<public> := class<concrete><final>(creative_device_base):

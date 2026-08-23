@@ -1,3 +1,4 @@
+# Verse path: /Verse.org
 # Module import path: /Verse.org/Simulation
 Simulation<public> := module:
     using {/Verse.org/Native}

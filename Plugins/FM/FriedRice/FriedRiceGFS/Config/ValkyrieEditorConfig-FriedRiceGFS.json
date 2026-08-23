@@ -52,7 +52,9 @@
 			"/Script/EnhancedInput.InputTriggerHold": { "Rules": [ "View", "Create" ] }
 		},
 		"AllowedClasses": {
+			"/Script/ActorEntity.ActorEntityPrefabComponent": { "Visible": true },
 			"/Script/AmbientAudio.AmbientAudioComponent": { "Visible": true },
+			"/Script/DynamicVolume.FortDynamicVolumeComponent": { "Visible": true },
 			"/Script/CommonUI.CommonTextBlock": { "Visible": true },
 			"/Script/CommonUI.CommonUserWidget": { "Visible": true },
 			"/Script/Engine.MaterialExpressionMeshPaintTextureObject": {
@@ -125,21 +127,32 @@
 			"/Script/AudioWorldization.GameFeatureAction_SetAudioWorldizationSettings": { "Visible": true },
 			"/Script/Engine.MaterialExpressionModulo": { "Visible": true },
 			"/Script/Engine.TextRenderActor": { "Visible": true },
-			"/Script/FeralCorgiGameplayRuntime.FortCheatManager_FeralCorgi": { "Visible": true },
 			"/Script/FortniteGame.FortCinematicCameraActor": { "Visible": true },
 			"/Script/FortniteGame.GameFeatureAction_ActivateControlBusMix": { "Visible": true },
 			"/Script/GameFeatures.GameFeatureAction_AddCheats": { "Visible": true },
 			"/Script/GameFeatures.GameFeatureAction_AddComponents": { "Visible": true },
 			"/Script/SoundLibrary.GameFeatureAction_AddSoundLibraryCollection": { "Visible": true },
-			"/Script/FortniteGame.FortGameFeatureAction_AddMutators": { "Visible": true },
 			"/Script/FortniteGame.BuildingStaticGeo": { "Visible": true },
+			"/Script/FortniteGame.CreativeDeferredTaskComponent": {},
+			"/Script/FortniteGame.FortCreativeDynamicXPComponent": {},
+			"/Script/FortniteGame.FortGameFeatureAction_AddMutators": { "Visible": true },
 			"/Script/FortniteGame.FortGameState": { "Visible": true },
+			"/Script/FortniteGame.FortIslandLocalizationComponent": {},
+			"/Script/FortniteGame.FortLevelSaveComponent": {},
+			"/Script/FortniteGame.FortMinigameStatsComponent": {},
+			"/Script/FortniteGame.FortMinigameVolumeComponent": {},
 			"/Script/FortniteGame.FortPawn": { "Visible": true },
+			"/Script/FortniteGame.FortPropertyOverrideReplComponent": {},
+			"/Script/FortniteGame.FortVolumeTimeOfDayComponent": {},
+			"/Script/FortniteGame.PlaysetLevelStreamComponent": {},
 			"/Script/FMJamPlayspaceRuntime.JamPlayspaceVolumeComponent_ProvideTransforms": { "Visible": true },
 			"/Script/FN1NativeRuntime.VerseFortniteStormVolumeComponent": { "Visible": true },
 			"/Script/FN1NativeRuntime.VerseFortniteBusVolumeComponent": { "Visible": true },
+			"/Script/RidingCodeRuntime.RidableComponent": { "Visible": true },
 			"/Game/Athena/Asteria/Environments/Landscape/Materials/DistanceFog/BP_JungleFog.BP_JungleFog_C": {},
 			"/Game/Athena/Balance/MapInfos/DefaultMapInfo.DefaultMapInfo_C": { "Visible": true },
+			"/Game/Athena/BuildingActors/FortVolumeActor.FortVolumeActor_C": {},
+			"/Game/Athena/BuildingActors/FortVolumeActor_Base.FortVolumeActor_Base_C": {},
 			"/Game/Athena/BuildingActors/Prop/Athena_Prop_TheHatch.Athena_Prop_TheHatch_C": { "Visible": true },
 			"/Game/Athena/Environments/Blueprints/Athena_Tree_Medium_03_b.Athena_Tree_Medium_03_b_C": { "Visible": true },
 			"/Game/Athena/Environments/Blueprints/Tiered_Athena_FloorLoot_01.Tiered_Athena_FloorLoot_01_C": { "Visible": true },
@@ -150,6 +163,7 @@
 			"/Game/Athena/Helios/Environments/Landscape/WorldBuildingTools/PCGGrass/BP_MeshGrassIOComponent.BP_MeshGrassIOComponent_C": { "Visible": true },
 			"/Game/Athena/Helios/Environments/Landscape/WorldBuildingTools/PCGGrass/EUBP_MeshGrassUtilityComponent.EUBP_MeshGrassUtilityComponent_C": { "Visible": true },
 			"/Game/Athena/Items/EnvironmentalItems/B_ActorSpawner_Parent.B_ActorSpawner_Parent_C": { "Visible": true },
+			"/Game/Athena/Playlists/Creative/Mutators/CreativeIslandMutatorList.CreativeIslandMutatorList_C": {},
 			"/Game/Athena/SafeZone/BP_SafeZoneStorm.BP_SafeZoneStorm_C": { "Visible": true },
 			"/Game/Athena/Sounds/Water/BP_WaterSpline_AudioOnly_Ocean.BP_WaterSpline_AudioOnly_Ocean_C": { "Visible": true },
 			"/Game/Athena/Sounds/Water/BP_WaterSpline_AudioOnly.BP_WaterSpline_AudioOnly_C": { "Visible": true },
@@ -321,6 +335,10 @@
 				"AllowList": [ "WorldAsset" ]
 			}, 
 			{
+				"Type": "/Script/Engine.ChildActorComponent",
+				"AllowList": ["EditorTreeViewVisualizationMode"]
+			},
+			{
 				"Type": "/Script/Engine.RuntimeVirtualTextureComponent",
 				"AllowList": [ "BoundsAlignActor", "bSetBoundsButton", "bSnapBoundsToLandscape", "ExpandBounds", "VirtualTexture", "EnableInGamePerPlatform", "bEnableForNaniteOnly", "bUseMinMaterialQuality", "MinInGameMaterialQuality", "bEnableScalability", 
 				"ScalabilityGroup", "bHidePrimitives", "StreamingTexture", "StreamLowMips", "bBuildStreamingMipsButton", "LossyCompressionAmount", "bUseStreamingMipsFixedColor", "StreamingMipsFixedColor", "bUseStreamingMipsOnly", "UseStreamingMipsInEditorMode" ]
@@ -356,6 +374,10 @@
 			{
 				"Type": "/Game/Creative/Devices/Lighting/BP_DaySequenceModifier_Device.BP_DaySequenceModifier_Device_C",
 				"AllowList": [ "UserDaySequence" ]
+			},
+			{
+				"Type": "/Script/DynamicVolume.FortDynamicVolumeComponent",
+				"AllowList":[ "bAutoLoad", "DefaultLinkCode","RuntimeSettings","bAdoptParentPlayspaceUsers","UnloadedProxyEntityClass","UnloadedProxyActorClass"]
 			},
 			{
 				"Type": "/Script/FortniteGame.FortDaySequenceActor",

@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Armory
 using {/Verse.org/SceneGraph}
 using {/Verse.org/Assets}
 using {/Verse.org/SpatialMath}

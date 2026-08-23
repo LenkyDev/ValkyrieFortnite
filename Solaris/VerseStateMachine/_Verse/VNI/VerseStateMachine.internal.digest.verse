@@ -1,3 +1,4 @@
+# Verse path: /Verse.org
 # Module import path: /Verse.org/StateMachine
 StateMachine<public> := module:
     state<native><epic_internal> := class<abstract><unique><final_super_base>(state_container):
@@ -37,10 +38,10 @@ StateMachine<public> := module:
         Children<native><public>:[]state
 
     # Wether the Leaf is the Parent state, or is a child of the Parent state.
-    IsChildStateOf<native><epic_internal>(Leaf:state, Parent:state_container)<reads><decides>:void
+    IsChildStateOf<native><epic_internal>(Leaf:state, Parent:state_container)<decides><reads>:void
 
     # Wether the leaves are the Parent state, or are a child of the Parent state.
-    AreChildStatesOf<native><epic_internal>(Leaves:[]state, Parent:state_container)<reads><decides>:void
+    AreChildStatesOf<native><epic_internal>(Leaves:[]state, Parent:state_container)<decides><reads>:void
 
     state_machine<native><epic_internal> := class(state_container, diagnosable):
         # Transition to the new leaf states, replacing all the active states.  Propagating from leaf to root, OnExit will be invoked on active states that are not in the new transition.  Then, propagating from root to leaf, OnEnter will be invoked for the new states that were not previously activated.  Other transitions can occur while invoking OnExit or in OnEnter.  The current OnExit or OnEnter invocation will complete before the new transition executes.  The previous transition will merge with the new transition. In case of conflict, the new transition takes precedence.

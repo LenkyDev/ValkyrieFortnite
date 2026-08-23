@@ -1,3 +1,4 @@
+# Verse path: /Verse.org
 # Module import path: /Verse.org/Simulation
 Simulation<public> := module:
     using {/Verse.org/SceneGraph}
@@ -8,4 +9,4 @@ Simulation<public> := module:
 
     player<native><public> := class<unique><persistent><module_scoped_var_weak_map_key><epic_internal>(agent):
         # Succeeds when this `player` may be used as a module-scoped `var` `weak_map` key. This coincides with the corresponding player having joined the game and not yet left. Using a `player` as a module-scope `var` `weak_map` key when this method fails results in a runtime error.
-        IsActive<native><public>()<reads><decides>:void
+        IsActive<native><public>()<decides><reads>:void

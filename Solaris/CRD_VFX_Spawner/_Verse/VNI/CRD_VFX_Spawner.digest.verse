@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 # Used to place visual effects around your island. You can use these effects to enhance the overall theme and experience of your game.
 vfx_spawner_device<native><public> := class<concrete><final>(creative_device_base):
     # Signaled when the effect is enabled.

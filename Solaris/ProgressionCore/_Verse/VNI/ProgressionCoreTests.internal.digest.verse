@@ -1,7 +1,9 @@
+# Verse path: /UnrealEngine.com
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4110}
 # Module import path: /UnrealEngine.com/ProgressionCoreTests
 ProgressionCoreTests<public> := module:
+    using {/Verse.org/Native}
     using {/Verse.org/StateMachine}
     using {/Verse.org/SceneGraph}
     using {/Verse.org}
@@ -24,7 +26,7 @@ ProgressionCoreTests<public> := module:
 
     @experimental
     @hide_in_editor
-    test_conditional<native><epic_internal> := class<epic_internal>((/UnrealEngine.com:)Progression.gameplay_conditional):
+    test_conditional<native><epic_internal> := class<concrete><epic_internal>((/UnrealEngine.com:)Progression.gameplay_conditional):
         OnInitialization<override>(ContextAnchor:entity):void = external {}
 
         OnInvalidation<override>():void = external {}
@@ -61,7 +63,7 @@ ProgressionCoreTests<public> := module:
     gated_progress_objective<epic_internal> := class((/UnrealEngine.com:)Progression.progress_quest_objective):
         var ProgressAllowed<epic_internal>:logic = external {}
 
-        CanProgress<override>()<reads><decides>:void = external {}
+        CanProgress<override>()<decides><reads>:void = external {}
 
         SetProgressAllowed<epic_internal>(InAllowed:logic)<transacts>:void = external {}
 
@@ -80,7 +82,7 @@ ProgressionCoreTests<public> := module:
 
         GetProgress<override><native>()<reads>:message
 
-        IsComplete<override><native>()<reads><decides>:void
+        IsComplete<override><native>()<decides><reads>:void
 
         MarkComplete<native><epic_internal>():void
 
@@ -98,6 +100,7 @@ ProgressionCoreTests<public> := module:
 
     ProgressViewTestShortDescription<localizes><epic_internal>:message = external {}
 
+    @available {MinUploadedAtFNVersion := 4200}
     @experimental
     @hide_in_editor
     progression_core_test_component<native><epic_internal> := class<final_super>(component):
@@ -111,7 +114,7 @@ ProgressionCoreTests<public> := module:
 
         MakeTimedObjective<epic_internal>(Objective:(/UnrealEngine.com:)Progression.quest_objective, TimeLimit:float)<transacts>:(/UnrealEngine.com:)Progression.timed_quest_objective = external {}
 
-        MakeConditionalObjective<epic_internal>(Progress:float, RequiredCount:float, Conditionals:[]subtype((/UnrealEngine.com:)Progression.gameplay_conditional))<transacts>:(/UnrealEngine.com:)Progression.conditional_quest_objective = external {}
+        MakeConditionalObjective<epic_internal>(Progress:float, RequiredCount:float, Conditionals:[]concrete_subtype((/UnrealEngine.com:)Progression.gameplay_conditional))<transacts>:(/UnrealEngine.com:)Progression.conditional_quest_objective = external {}
 
         MakeNestedLifecycleRecorder<epic_internal>()<transacts>:nested_lifecycle_recorder = external {}
 

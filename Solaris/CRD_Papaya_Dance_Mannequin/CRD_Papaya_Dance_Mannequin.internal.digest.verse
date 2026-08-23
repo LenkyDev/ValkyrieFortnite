@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to capture `agent` dance moves.
 dance_capture_device<epic_internal> := class<concrete><final>(creative_device_base):

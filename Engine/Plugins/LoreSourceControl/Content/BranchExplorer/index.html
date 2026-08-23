@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>My App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      (function () {
+        if (!window.ue) return;
+        if (!window.ue.ucs_commands) window.ue.ucs_commands = {};
+        window.ue.ucs_commands.enqueueCommand = function () {};
+      })();
+    </script>
+    <script src="bundle.js"></script>
+  </body>
+</html>

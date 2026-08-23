@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 shared_saved_data_device<epic_internal> := class<concrete><final>(creative_device_base):
     # Signaled if the save result is on when the state is checked.

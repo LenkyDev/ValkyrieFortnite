@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to set and trigger conversations made via the Conversation Graph. The conversation triggered is assigned to the device.
 conversation_device<public> := class<concrete><final>(creative_device_base, enableable):

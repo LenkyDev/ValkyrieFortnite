@@ -1,3 +1,4 @@
+# Verse path: /UnrealEngine.com
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4110}
 # Module import path: /UnrealEngine.com/Progression
@@ -19,7 +20,7 @@ using {/Verse.org/Native}
 
         OnComplete<override><native><native_callable>():void
 
-        CanGrantRewards<override><native><native_callable>()<reads><decides>:void
+        CanGrantRewards<override><native><native_callable>()<decides><reads>:void
 
         Extensions<native><epic_internal>:[]quest_extension
 
@@ -39,6 +40,6 @@ using {/Verse.org/Native}
 
         OnComplete<native><native_callable><epic_internal>():void
 
-        CanGrantRewards<native><native_callable><epic_internal>()<reads><decides>:void
+        CanGrantRewards<native><native_callable><epic_internal>()<decides><reads>:void
 
         GetOwningQuest<native><final><epic_internal>()<reads>:(/Verse.org:)Progression.quest

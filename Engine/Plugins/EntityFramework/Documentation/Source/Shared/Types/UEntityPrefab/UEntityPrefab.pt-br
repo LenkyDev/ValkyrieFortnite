@@ -1,0 +1,41 @@
+
+[EXCERPT:UEntityPrefab]
+# Sistema Scene Graph
+
+O Scene Graph é uma nova forma de criar cenas e jogabilidade 3D que mescla fluxos de trabalho do editor de jogo tradicional com a potência e a flexibilidade da programação em Verse.
+
+![O Scene Graph permite a criação de mundos complexos a partir de estruturas pré-fabricadas personalizadas modulares.](prefabs.png)
+
+---
+
+## Beta: use com cuidado
+
+O sistema Scene Graph está em versão Beta. Você pode experimentá-lo nos seus projetos do UEFN e pode até lançar projetos que o usam. Porém, o sistema ainda está em desenvolvimento ativo e muitos de seus fluxos de trabalho disponíveis são limitados. 
+
+Por exemplo:
+
+-   Colaboração em equipe. Os elementos do Scene Graph, como entidades e estruturas pré-fabricadas, são salvos no seu nível. Sempre que você modificar um deles, modifica o ativo do nível. Isso significa que se usar um sistema de controle de revisão como o Unreal Revision Control ou o Perforce, somente uma pessoa pode trabalhar no nível de cada vez.
+
+-   O Editor de Estruturas Pré-fabricadas oferece apenas um subconjunto limitado das funcionalidades de edição oferecidas pelo Editor de Níveis.
+
+-   Possível perda de dados. Você pode programar suas próprias classes Verse personalizadas para os elementos do Scene Graph, como entidades e componentes. E depois, pode adicionar instâncias dessas classes no nível pelo editor e personalizar os dados delas. Mas, em alguns casos, essas instâncias ou seus dados podem ser perdidos se você excluir, mover, renomear ou modificar as classes Verse posteriormente, ou se salvar o nível enquanto seu código Verse ainda não tiver sido compilado.
+
+Consulte mais informações sobre o sistema Scene Graph, incluindo uma lista mais detalhada de suas limitações, na documentação on-line.
+
+[VAR:ToolTipOverride]
+Um ativo de estrutura pré-fabricada é um modelo reutilizável para uma entidade. 
+Você pode personalizar seu comportamento adicionando componentes e estendê-lo adicionando entidades filhas.
+Pode também arrastar e soltar nos seus níveis quantas instâncias da estrutura pré-fabricada quiser,
+além de poder personalizar cada instância individualmente. As atualizações feitas no ativo de estrutura pré-fabricada posteriormente são
+automaticamente aplicadas nas instâncias.
+
+Cuidado: o sistema Scene Graph está em versão Beta. Alguns fluxos de trabalho estão limitados,
+especialmente a capacidade de colaborar por meio do controle de revisão.
+[/VAR]
+[VAR:ToolTipFullLink]
+scene-graph-in-unreal-editor-for-fortnite
+[/VAR]
+[VAR:BaseUrl]
+UEFN
+[/VAR]
+[/EXCERPT:UEntityPrefab]

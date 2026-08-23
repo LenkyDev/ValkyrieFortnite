@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # A boss-like environmental encounter that will attack players with different abilities
 overlord_spire_device<public> := class<concrete><final>(creative_device_base, has_spire_functionality):

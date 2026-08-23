@@ -1,0 +1,41 @@
+
+[EXCERPT:UEntityPrefab]
+# Scene Graph Sistemi
+
+Scene Graph, geleneksel editör iş akışlarını Verse kodlamanın gücü ve esnekliğiyle birleştiren yeni bir 3D sahne ve oynanış oluşturma yöntemidir.
+
+![Scene Graph, özelleştirilmiş modüler prefablardan karmaşık dünyalar oluşturmaya yardımcı olur.](prefabs.png)
+
+---
+
+## Beta: Dikkatli Kullan
+
+Scene Graph sistemi beta aşamasındadır. Bunu UEFN projelerinde deneyebilir ve hatta bunu kullanan projelerini yayınlayabilirsin. Ancak sistem henüz aktif geliştirme aşamasındadır ve çoğu mevcut iş akışı sınırlıdır. 
+
+Örneğin:
+
+-  Takım İşbirliği: Varlıklar ve prefablar gibi Scene Graph unsurları, bölümünde kaydedilir. Birini değiştirdiğinde bölüm öğesini de değiştirmiş olursun. Unreal Revision Control veya Perforce gibi bir revizyon kontrolü sistemi kullanırsan aynı anda yalnızca bir kişi bir bölüm üzerinde çalışabilir.
+
+-  Prefab Editörü, Bölüm Editörü'nün sunduğu düzenleme özelliklerinin yalnızca küçük bir bölümünü sunar.
+
+-  Veri kaybı ihtimali vardır. Varlıklar ve bileşenler gibi Scene Graph elemanları için kendi özel Verse sınıflarını yazabilirsin. Ardından bu sınıfların örneklerini editördeki bölüme ekleyebilir ve verilerini özelleştirebilirsin. Ancak bazı durumlarda, Verse sınıflarını silersen, taşırsan, yeniden adlandırırsan veya değiştirirsen ya da Verse kodun derlenmemişken bölümünü kaydedersen bu örnekleri veya verileri kaybedebilirsin.
+
+Scene Graph sistemi hakkında, sınırları da dahil olmak üzere daha fazla bilgi için çevrimiçi dokümantasyonu inceleyebilirsin.
+
+[VAR:ToolTipOverride]
+Bir prefab öğesi, bir varlık için yeniden kullanılabilir bir şablondur. 
+Bunun davranışını bileşenler ekleyerek özelleştirebilir, alt varlıklar ekleyerek genişletebilir ve varlıklarını yeniden kullanılabilir prefab öğelerine kaydedebilirsin.
+Bölümlerine istediğin kadar prefab örneğini sürükleyip bırakabilir ve
+her bir örneği ayrı ayrı özelleştirebilirsin. Prefab öğesine daha sonra yaptığın güncellemeler
+otomatik olarak örneklere de uygulanır.
+
+Dikkat: Scene Graph sistemi beta aşamasındadır. Bazı iş akışları sınırlıdır.
+Özellikle revizyon kontrolü üzerinde ortak çalışma konusunda sınırlar bulunmaktadır.
+[/VAR]
+[VAR:ToolTipFullLink]
+scene-graph-in-unreal-editor-for-fortnite
+[/VAR]
+[VAR:BaseUrl]
+UEFN
+[/VAR]
+[/EXCERPT:UEntityPrefab]

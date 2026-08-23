@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to update the player character's movement settings on different movement mode.
 player_movement_settings_device<public> := class<concrete><final>(creative_device_base, enableable):

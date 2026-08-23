@@ -1,3 +1,4 @@
+# Verse path: /Verse.org
 # Module import path: /Verse.org/Predicts
 Predicts<public> := module:
     PredictsServerRegisterObject<native><epic_internal>(__dupe___unnamed_parameter_0:any)<transacts>:any
@@ -21,6 +22,10 @@ Predicts<public> := module:
     PredictsDebugRemoveClientWithID<native><epic_internal>(ClientID:int)<transacts>:void
 
     PredictsDebugFindObjectID<native><epic_internal>(Obj:any)<transacts><decides>:int
+
+    PredictsDebugGetObjectSeq<native><epic_internal>(Obj:any)<transacts><decides>:int
+
+    PredictsDebugGetObjectGen<native><epic_internal>(Obj:any)<transacts><decides>:int
 
     PredictsDebugFindObject<native><epic_internal>(ObjectID:int)<transacts><decides>:any
 

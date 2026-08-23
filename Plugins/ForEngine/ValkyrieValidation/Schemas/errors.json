@@ -1,0 +1,50 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"$id": "http://epicgames.com/schemas/valkyrie/errors.json",
+	"description": "ContentSentry validation errors",
+	"type": "object",
+
+	"anyOf": [
+		{ "required": ["additionalErrors"] },
+		{ "required": ["errorCode"] },
+		{ "required": ["errorMessage"] }
+	],
+  
+	"properties": {
+		"errorCode": {
+			"type": "string"
+		},
+		"errorMessage": {
+			"type": "string"
+		},
+		"crashSessionGuid": {
+			"type": "string"
+		},
+		"additionalErrors": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"message": {
+						"type": "string"
+					},
+					"params": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"key": {
+									"type": "string"
+								},
+								"value": {
+									"type": "string"
+								}
+							},
+							"required": [ "key", "value" ]
+						}
+					}
+				}
+			}
+		}
+	}
+}

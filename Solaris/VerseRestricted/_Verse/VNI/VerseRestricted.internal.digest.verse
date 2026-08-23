@@ -1,3 +1,4 @@
+# Verse path: /Verse.org
 # Module import path: /Verse.org/Restricted
 Restricted<public> := module:
     using {/Verse.org/Native}
@@ -7,7 +8,7 @@ Restricted<public> := module:
 
         (/Verse.org/Restricted/sticky_event:)Restricted_sticky_event_Variance<private>(:t):tuple(t) = external {}
 
-        IsSignaled<native><public>()<reads><decides>:void
+        IsSignaled<native><public>()<decides><reads>:void
 
         ClearSignal<native><public>()<writes>:void
 

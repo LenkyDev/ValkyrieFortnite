@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to create a minigame which expects specific input timing from the player.
 # Visuals may vary, but always feature a scrubber that moves from 0.0 to 1.0.

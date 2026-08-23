@@ -1,0 +1,41 @@
+
+[EXCERPT:UEntityPrefab]
+# Das Scene-Graph-System
+
+Das Szenendiagramm ist eine neue Methode zur Erstellung von 3D-Szenen und Gameplay, das traditionelle Spieleditor-Workflows mit der Macht und Flexibilität von Verse-Scripting kombiniert.
+
+![Das Szenendiagramm kann helfen, komplexe Welten aus modularen benutzerdefinierten Prefabs zu erstellen.](prefabs.png)
+
+---
+
+## Beta: Mit Vorsicht zu verwenden
+
+Das Szenendiagramm-System befindet sich in der Beta-Phase. Du kannst es in deinen UEFN-Projekten testen und kannst Projekte veröffentlichen, die es verwenden. Das System befindet sich noch in der aktiven Entwicklung und viele der verfügbaren Workflows sind eingeschränkt. 
+
+Zum Beispiel:
+
+-   Team-Zusammenarbeit. Szenendiagramm-Elemente wie Entitäten und Prefabs werden in deinem Level gespeichert. Jedes Mal, wenn du eines davon änderst, änderst du das Level-Asset. Das bedeutet, dass jeweils nur eine Person an einem Level arbeiten kann, wenn du ein Revisionskontrolle-System wie Unreal Revision Control oder Perforce nutzt.
+
+-   Der Prefab-Editor bietet nur eine kleine Teilmenge der Bearbeitungsfunktionen, die der Level-Editor bietet.
+
+-   Möglicher Datenverlust. Du kannst deine eigenen benutzerdefinierten Verse-Klassen für Szenendiagramm-Elemente wie Entitäten und Komponenten schreiben. Du kannst dann Instanzen dieser Klassen im Editor zu dem Level hinzufügen und ihre Daten anpassen. Aber in einigen Fällen gehen diese Instanzen oder ihre Daten möglicherweise verloren, wenn du die Verse-Klassen später löschst, umbenennst oder änderst oder wenn du das Level speicherst, der Verse-Code aber nicht kompiliert wurde.
+
+Weitere Informationen zum Szenendiagramm-System sowie eine detaillierter Liste dieser Einschränkungen findest du in der Online-Dokumentation.
+
+[VAR:ToolTipOverride]
+Ein Prefab-Asset ist eine wiederverwendbare Vorlage für eine Entität. 
+Du kannst dieses Verhalten anpassen, indem du Komponenten hinzufügst und sie durch das Hinzufügen von Child-Entitäten erweiterst.
+Du kannst so viele Instanzen des Prefab wie du möchtest in deine Level ziehen und dort ablegen
+und jede Instanz einzeln anpassen. Aktualisierungen, die du an dem Prefab-Asset vornimmst, werden später
+auch automatisch auf die Instanzen übernommen.
+
+Achtung: Das Szenendiagramm-System befindet sich in der Beta-Phase. Einige Workflows sind eingeschränkt,
+insbesondere die Möglichkeit zur Zusammenarbeit bei der Revisionskontrolle.
+[/VAR]
+[VAR:ToolTipFullLink]
+scene-graph-in-unreal-editor-for-fortnite
+[/VAR]
+[VAR:BaseUrl]
+UEFN
+[/VAR]
+[/EXCERPT:UEntityPrefab]

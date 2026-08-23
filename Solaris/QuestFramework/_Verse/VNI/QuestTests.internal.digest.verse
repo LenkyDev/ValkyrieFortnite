@@ -1,9 +1,9 @@
+# Verse path: /Verse.org
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4110}
 # Module import path: /Verse.org/QuestFrameworkTests
 QuestFrameworkTests<public> := module:
     using {/Verse.org/SceneGraph}
-    using {/Verse.org/Native}
     using {/Verse.org}
     using {/Verse.org/Simulation}
     using {/UnrealEngine.com}
@@ -24,7 +24,7 @@ QuestFrameworkTests<public> := module:
 
         GetProgress<override><native>()<reads>:message
 
-        IsComplete<override><native>()<reads><decides>:void
+        IsComplete<override><native>()<decides><reads>:void
 
         MarkComplete<native><epic_internal>():void
 
@@ -33,13 +33,11 @@ QuestFrameworkTests<public> := module:
     test_reward<native><epic_internal> := class((/UnrealEngine.com:)Progression.quest_reward):
         var WasGranted<native><epic_internal>:logic = external {}
 
-        @available {MinUploadedAtFNVersion := 4110}
         GrantReward<override><native>(EligibleParticipants:[](/Verse.org:)Progression.quest_participant)<transacts>:result(void, [](/UnrealEngine.com:)Progression.grant_quest_reward_error)
 
     @experimental
     @hide_in_editor
     test_reward_failing<native><epic_internal> := class((/UnrealEngine.com:)Progression.quest_reward):
-        @available {MinUploadedAtFNVersion := 4110}
         GrantReward<override><native>(EligibleParticipants:[](/Verse.org:)Progression.quest_participant)<transacts>:result(void, [](/UnrealEngine.com:)Progression.grant_quest_reward_error)
 
     @experimental
@@ -84,13 +82,11 @@ QuestFrameworkTests<public> := module:
     @experimental
     @hide_in_editor
     veto_test_quest<native><epic_internal> := class((/UnrealEngine.com:)Progression.basic_quest):
-        @available {MinUploadedAtFNVersion := 4110}
         CanJoin<override><native>(QuestParticipant:(/Verse.org:)Progression.quest_participant)<reads>:result(void, [](/Verse.org:)Progression.join_quest_error)
 
     @experimental
     @hide_in_editor
     veto_test_participant<native><epic_internal> := class((/Verse.org:)Progression.quest_participant):
-        @available {MinUploadedAtFNVersion := 4110}
         CanJoin<override><native>(Quest:(/Verse.org:)Progression.quest)<reads>:result(void, [](/Verse.org:)Progression.join_quest_error)
 
     @experimental
@@ -147,7 +143,6 @@ QuestFrameworkTests<public> := module:
     veto_test_quest_abandon<native><epic_internal> := class((/UnrealEngine.com:)Progression.basic_quest):
         var ShouldVeto<native><epic_internal>:logic = external {}
 
-        @available {MinUploadedAtFNVersion := 4110}
         CanAbandon<override><native>(QuestParticipant:(/Verse.org:)Progression.quest_participant)<reads>:result(void, [](/Verse.org:)Progression.abandon_quest_error)
 
     @experimental
@@ -155,13 +150,12 @@ QuestFrameworkTests<public> := module:
     veto_test_participant_abandon<native><epic_internal> := class((/Verse.org:)Progression.quest_participant):
         var ShouldVeto<native><epic_internal>:logic = external {}
 
-        @available {MinUploadedAtFNVersion := 4110}
         CanAbandon<override><native>(Quest:(/Verse.org:)Progression.quest)<reads>:result(void, [](/Verse.org:)Progression.abandon_quest_error)
 
     @experimental
     @hide_in_editor
     veto_test_quest_add<native><epic_internal> := class((/UnrealEngine.com:)Progression.basic_quest):
-        CanAdd<override><native>(Manager:(/Verse.org:)Progression.quest_manager_component)<reads><decides>:void
+        CanAdd<override><native>(Manager:(/Verse.org:)Progression.quest_manager_component)<decides><reads>:void
 
     @experimental
     @hide_in_editor
@@ -173,7 +167,7 @@ QuestFrameworkTests<public> := module:
     @experimental
     @hide_in_editor
     veto_granter_component<native><epic_internal> := class<final_super>((/Verse.org:)Progression.quest_granter_component):
-        CanGrant<override><native>(Manager:(/Verse.org:)Progression.quest_manager_component)<reads><decides>:void
+        CanGrant<override><native>(Manager:(/Verse.org:)Progression.quest_manager_component)<decides><reads>:void
 
     @experimental
     @hide_in_editor
@@ -220,7 +214,6 @@ QuestFrameworkTests<public> := module:
     @experimental
     @hide_in_editor
     test_veto_join_extension<native><epic_internal> := class<epic_internal>((/UnrealEngine.com:)Progression.quest_extension):
-        @available {MinUploadedAtFNVersion := 4110}
         CanJoin<override><native>(QuestParticipant:(/Verse.org:)Progression.quest_participant)<reads>:result(void, [](/Verse.org:)Progression.join_quest_error)
 
     @experimental
@@ -228,7 +221,6 @@ QuestFrameworkTests<public> := module:
     test_veto_abandon_extension<native><epic_internal> := class<epic_internal>((/UnrealEngine.com:)Progression.quest_extension):
         var ShouldVeto<native><epic_internal>:logic = external {}
 
-        @available {MinUploadedAtFNVersion := 4110}
         CanAbandon<override><native>(QuestParticipant:(/Verse.org:)Progression.quest_participant)<reads>:result(void, [](/Verse.org:)Progression.abandon_quest_error)
 
     ObjectiveDisplayDataTestName<localizes><epic_internal>:message = external {}
@@ -237,12 +229,10 @@ QuestFrameworkTests<public> := module:
 
     @experimental
     test_boilerplate_objects<epic_internal> := struct:
-        @available {MinUploadedAtFNVersion := 4110}
         Collection:(/Verse.org:)Progression.quest_collection
 
         Quest:test_quest
 
-        @available {MinUploadedAtFNVersion := 4110}
         Info:(/Verse.org:)Progression.quest_participant_info
 
         Participant:test_participant

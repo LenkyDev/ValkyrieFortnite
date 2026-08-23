@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to transform character appearance.
 character_transformation_device<epic_internal> := class<concrete><final>(creative_device_base):

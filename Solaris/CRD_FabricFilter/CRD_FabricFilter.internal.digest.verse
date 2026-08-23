@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices/Patchwork
 # Apply a filter effect to Patchwork audio inputs.
 filter_effect_device<epic_internal> := class<concrete><final>(patchwork_device):
     var Cutoff<public>:float = external {}

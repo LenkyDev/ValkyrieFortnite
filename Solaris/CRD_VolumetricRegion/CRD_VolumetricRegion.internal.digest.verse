@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Creates an impenetrable zone that can block `agent` movement and weapon fire.
 barrier_device<public> := class<concrete><final>(creative_device_base):

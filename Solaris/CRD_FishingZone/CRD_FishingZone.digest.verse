@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to add fishing mechanics to experiences, such as:
 #  * Fishing competitions between players.

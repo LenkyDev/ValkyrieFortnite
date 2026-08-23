@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to play streamed music.
 streaming_radio_device<epic_internal> := class<concrete><final>(creative_device_base):

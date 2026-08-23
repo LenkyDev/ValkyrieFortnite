@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/UI
 using {/Verse.org/Assets}
 using {/Verse.org/Simulation}
 using {/UnrealEngine.com/Temporary/UI}

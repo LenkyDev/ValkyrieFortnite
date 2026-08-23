@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to focus the camera on specific `agent`s.
 camera_focus_device<epic_internal> := class<concrete><final>(creative_device_base):

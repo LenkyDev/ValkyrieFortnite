@@ -1,0 +1,20 @@
+{
+    "OutputPlugin": "DarkVortexEntityItems",
+    "DefaultProductModuleName": "TheWalkingDead",
+    "DefaultCategoryModuleName": "Items",
+    "DefaultModuleProperties": {
+        "bExperimentalStatus": false,
+        "bAllowInternalItems": false,
+        "AccessLevel": "Public"
+    },
+    "InternalProductModuleNames": [],
+    "ProductModules": {
+        "TheWalkingDead": { "Tags": [ "DarkVortex" ] }
+    },
+    "CategoryModules": {
+        "Items": { "Tags": [ "Item" ] },
+        "Weapons": { "Tags": [ "Weapon" ] }
+    },
+    "ExcludeAssetsInFeatureSets": [ "" ],
+    "VariantModules": {}
+}

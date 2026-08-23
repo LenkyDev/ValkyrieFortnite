@@ -1,3 +1,4 @@
+# Verse path: /UnrealEngine.com/WebAPI
 # Usage:
 #     Licensed users create a derived version of `client_id` in their module.
 #     The Verse class path for your derived `client_id` is then used as the 

@@ -1,10 +1,37 @@
+# Verse path: /Fortnite.com/Framework
 # Module import path: /Fortnite.com/Framework/Competitive
 Competitive<epic_internal> := module:
+    using {/Verse.org/SceneGraph}
     using {/Verse.org/Simulation}
-    @deprecated
-    # Sends tournaments stats for this player to the Events Service
-    (InPlayer:player).SendTournamentStats<native><epic_internal>(GameId:string, StatsMap:[string]int):void
+    ranked_leaderboard_params<native><epic_internal> := struct:
+        GameIdOverride<native><public>:?string = external {}
 
+        LeaderboardIdOverride<native><public>:?string = external {}
+
+        DivisionIndexOverride<native><public>:?int = external {}
+
+        NumDesiredResults<native><public>:int = external {}
+
+    ranked_leaderboard_entry<native><epic_internal> := struct:
+        Position<native><public>:int = external {}
+
+        Points<native><public>:int = external {}
+
+        DisplayName<native><public>:string = external {}
+
+    ranked_leaderboard<native><epic_internal> := struct:
+        Entries<native><public>:[]ranked_leaderboard_entry = external {}
+
+    competitive_manager<native><epic_internal> := class<internal>:
+        # Sends tournaments stats for this team to the Events Service
+        SendTournamentStatsForTeam<native><epic_internal>(InTeam:team, StatsMap:[string]int, ?GameIdOverride:string = external {}):void
+
+        # Returns the top players for a given mode
+        GetRankedLeaderboard<native><epic_internal>(LeaderboardParams:ranked_leaderboard_params)<suspends>:ranked_leaderboard
+
+    (Entity:entity).GetCompetitiveManager<native><epic_internal>()<transacts><decides>:competitive_manager
+
+    @deprecated
     # Sends tournaments stats for this team to the Events Service
     (InTeam:team).SendTournamentStats<native><epic_internal>(GameId:string, StatsMap:[string]int):void
 
@@ -139,6 +166,21 @@ Persistence<public> := module:
     BindInterface<native><epic_internal>(Interface:persistence_interface):void
 
     UnbindInterface<native><epic_internal>(Interface:persistence_interface):void
+
+    sprite_collection<native><epic_internal> := struct:
+        SpriteIds<native><public>:[]string = external {}
+
+        Points<native><public>:int = external {}
+
+        Succeeded<native><public>:logic = external {}
+
+    # Internal (1P-only) read access to a player's BR Extraction sprite collection: every collected
+    # sprite entitlement id across every configured season module, plus sprite points from the current
+    # season's module. Read-only: does not grant, consume, or otherwise alter BR inventory.
+    # Check Succeeded before trusting an empty SpriteIds.
+    # Player is any player in the playspace, not necessarily the caller — acceptable because this
+    # function is epic_internal and restricted to 1P projects.
+    (Player:player).GetSpriteCollection<native><epic_internal>()<suspends>:sprite_collection
 
 # Module import path: /Fortnite.com/Framework/Spectating
 Spectating<epic_internal> := module:

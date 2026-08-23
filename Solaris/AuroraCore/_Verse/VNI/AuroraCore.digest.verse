@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Marketplace
 using {/Verse.org/Native}
 using {/Verse.org/Simulation}
 using {/Verse.org/Presentation}
@@ -56,10 +57,10 @@ bundle_offer<native><public> := class<castable>(offer):
 
 # Informs if usage of paid random items is restricted for `Player`
 # due to platform, territory, age, or user configuration restrictions.
-RestrictPaidRandomItems<native><public>(Player:player)<reads><decides>:void
+RestrictPaidRandomItems<native><public>(Player:player)<decides><reads>:void
 
 # Informs if usage of direct prompts to purchase is restricted for `Player`.
-RestrictDirectPromptsToPurchase<native><public>(Player:player)<reads><decides>:void
+RestrictDirectPromptsToPurchase<native><public>(Player:player)<decides><reads>:void
 
 # Displays the Epic purchase UI to the player to purchase the `Offer`.
 # Returns true if an offer was purchased.

@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/SceneGraph
 using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 using {/Verse.org/Native}
 using {/Verse.org/Simulation}
@@ -18,7 +19,7 @@ basic_interactable_component<native><public> := class(interactable_component):
     var<private> InteractingAgents<native><public>:[]agent = external {}
 
     @available {MinUploadedAtFNVersion := 4020}
-    InteractMessage<override>(Agent:agent)<reads><decides>:message = external {}
+    InteractMessage<override>(Agent:agent)<decides><reads>:message = external {}
 
     @available {MinUploadedAtFNVersion := 4020}
     @editable
@@ -94,10 +95,10 @@ interactable_component<native><public> := class<final_super>(component, enableab
     OnStarted<native><native_callable><protected>(Agent:agent)<transacts><decides>:void
 
     # Returns whether the specified agent can interact.
-    CanInteract<native><native_callable><public>(Agent:agent)<reads><decides>:void
+    CanInteract<native><native_callable><public>(Agent:agent)<decides><reads>:void
 
     # Returns an appropriate message to display to players to communicate the current state of the interactable.
-    InteractMessage<native><native_callable><public>(Agent:agent)<reads><decides>:message
+    InteractMessage<native><native_callable><public>(Agent:agent)<decides><reads>:message
 
 # Used to set a cooldown when interacted.
 interactable_cooldown<native><public> := class<concrete>:
@@ -178,7 +179,7 @@ interactable_duration<native><public> := class<concrete>:
     GetMaxSimultaneousInteractors<native><epic_internal>(__dupe___unnamed_parameter_0:accessor)<transacts>:?int
 
     # Returns an agent’s remaining duration, in seconds, for interaction. Fails if the agent is not interacting with this component.Returns the same value when called multiple times within a transaction.
-    GetRemainingInteractDurationForAgent<final><native><public>(Agent:agent)<reads><decides>:float
+    GetRemainingInteractDurationForAgent<final><native><public>(Agent:agent)<decides><reads>:float
 
     # Sets an agent’s remaining duration, in seconds, for interaction. Fails if the agent is not interacting with this component.
     SetRemainingInteractDurationForAgent<final><native><public>(Agent:agent, RemainingDuration:float)<transacts>:void

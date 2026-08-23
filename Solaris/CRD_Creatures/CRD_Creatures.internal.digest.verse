@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/SpatialMath}
 using {/Verse.org/Simulation}
 # Used to customize one creature type at a time. Place multiple `creature_manager_device`s for each type of creature on your island.

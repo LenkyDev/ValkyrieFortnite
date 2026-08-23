@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to customize (or prevent) the 'down but not out' player state between 'healthy' and 'removed from game'.
 down_but_not_out_device<public> := class<concrete><final>(creative_device_base):

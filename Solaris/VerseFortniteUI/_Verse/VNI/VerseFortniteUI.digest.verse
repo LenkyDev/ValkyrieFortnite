@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com
 # Module import path: /Fortnite.com/UI
 (/Fortnite.com:)UI<public> := module:
     using {/Verse.org/Colors}
@@ -35,17 +36,17 @@
     button_quiet<native><public> := class<final>(text_button_base):
 
 
-    @deprecated
+    @deprecated {Message := "Use `fort_playspace.GetHUDController().ShowElements()` instead."}
     # Deprecated. This function affects all players. Please use `fort_playspace.GetHUDController().ShowElements()`.
     # Shows a set of HUD elements.
     (PlayerUI:player_ui).ShowHUDElements<native><public>(HUDElements:[]hud_element_identifier):void
 
-    @deprecated
+    @deprecated {Message := "Use `fort_playspace.GetHUDController().HideElements()` instead."}
     # Deprecated. This function affects all players. Please use `fort_playspace.GetHUDController().HideElements()`.
     # Hides a set of HUD elements.
     (PlayerUI:player_ui).HideHUDElements<native><public>(HUDElements:[]hud_element_identifier):void
 
-    @deprecated
+    @deprecated {Message := "Use `fort_playspace.GetHUDController().ResetElementVisibility()` instead."}
     # Deprecated. This function affects all players. Please use `fort_playspace.GetHUDController().ResetElementVisibility()`.
     # Resets the visibility for a set of HUD elements.
     (PlayerUI:player_ui).ResetHUDElementVisibility<native><public>(HUDElements:[]hud_element_identifier):void

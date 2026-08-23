@@ -1,3 +1,4 @@
+# Verse path: /UnrealEngine.com
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4110}
 # Module import path: /UnrealEngine.com/Progression
@@ -23,7 +24,7 @@ using {/Verse.org/Native}
 
         OnAbandon<override><native><native_callable>(QuestParticipant:(/Verse.org:)Progression.quest_participant):void
 
-        CanGrantRewards<native><native_callable><epic_internal>()<reads><decides>:void
+        CanGrantRewards<native><native_callable><epic_internal>()<decides><reads>:void
 
         GrantRewardsToParticipants<native><native_callable><final><epic_internal>():void
 
@@ -45,12 +46,12 @@ using {/Verse.org/Native}
         GetContributors<native><native_callable><public>(Memberships:[](/Verse.org:)Progression.quest_membership)<reads>:[](/Verse.org:)Progression.quest_participant
 
         # Succeeds if this objective is currently complete.
-        IsComplete<native><native_callable><public>()<reads><decides>:void
+        IsComplete<native><native_callable><public>()<decides><reads>:void
 
         # Signals ProgressEvent. Call from a subclass to notify progress subscribers.
         SignalProgressEvent<native><final><protected>()<transacts>:void
 
-        CanProgress<native><native_callable><epic_internal>()<reads><decides>:void
+        CanProgress<native><native_callable><epic_internal>()<decides><reads>:void
 
         GetOwningQuest<native><final><epic_internal>()<reads>:(/Verse.org:)Progression.quest
 

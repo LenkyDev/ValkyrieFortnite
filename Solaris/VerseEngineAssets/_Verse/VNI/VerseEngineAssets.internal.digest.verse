@@ -1,3 +1,4 @@
+# Verse path: /UnrealEngine.com
 # Module import path: /UnrealEngine.com/BasicShapes
 BasicShapes<public> := module:
     using {/Verse.org/Assets}
@@ -17,6 +18,6 @@ BasicShapes<public> := module:
     cylinder<public> := class<final><public>(mesh_component):
         Mesh<override>:mesh = external {}
 
-@deprecated
+@deprecated {Message := "Use Verse.org/SceneGraph instead"}
 # Module import path: /UnrealEngine.com/SceneGraph
 (/UnrealEngine.com:)SceneGraph<public> := module:

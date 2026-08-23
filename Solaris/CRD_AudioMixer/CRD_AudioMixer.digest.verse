@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to manage sound buses via control bus mixes set on the Audio Mixer Device.
 audio_mixer_device<public> := class<concrete><final>(creative_device_base):

@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to create HUD text boxes that give players information, and allows responses to be customized to player choices.
 popup_dialog_device<public> := class<concrete><final>(creative_device_base):

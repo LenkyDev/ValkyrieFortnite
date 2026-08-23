@@ -1,3 +1,4 @@
+# Verse path: /UnrealEngine.com/Temporary
 # Module import path: /UnrealEngine.com/Temporary/SpatialMath
 (/UnrealEngine.com/Temporary:)SpatialMath<public> := module:
     using {/Verse.org/SpatialMath}
@@ -198,7 +199,7 @@
 
     # Makes a `vector2` by inverting the `SurfaceNormal` component of `Direction`.
     # Fails if `not SurfaceNormal.MakeUnitVector[]`.
-    (/UnrealEngine.com/Temporary/SpatialMath:)ReflectVector<public>(Direction:vector2, SurfaceNormal:vector2)<reads><decides>:vector2 = external {}
+    (/UnrealEngine.com/Temporary/SpatialMath:)ReflectVector<public>(Direction:vector2, SurfaceNormal:vector2)<decides><reads>:vector2 = external {}
 
     # Returns the dot product of `V1` and `V2`.
     (/UnrealEngine.com/Temporary/SpatialMath:)DotProduct<public>(V1:vector2, V2:vector2)<reads>:float = external {}
@@ -211,7 +212,7 @@
 
     # Makes a unit length `vector2` pointing in the same direction of `V`.
     # Fails if `V.IsAlmostZero[] or not V.IsFinite[]`.
-    (V:vector2).(/UnrealEngine.com/Temporary/SpatialMath:)MakeUnitVector<public>()<reads><decides>:vector2 = external {}
+    (V:vector2).(/UnrealEngine.com/Temporary/SpatialMath:)MakeUnitVector<public>()<decides><reads>:vector2 = external {}
 
     # Returns the length of `V`.
     (V:vector2).(/UnrealEngine.com/Temporary/SpatialMath:)Length<public>()<reads>:float = external {}
@@ -279,7 +280,7 @@
     (/UnrealEngine.com/Temporary/SpatialMath:)ToString<public>(V:vector2i)<computes>:string = external {}
 
     # Makes a `vector2i` by component-wise truncation of `V` to `ints`s.
-    ToVector2i<public>(V:vector2)<reads><decides>:vector2i = external {}
+    ToVector2i<public>(V:vector2)<decides><reads>:vector2i = external {}
 
     # Makes a `vector2i` by inverting the signs of `Operand`.
     (/UnrealEngine.com/Temporary/SpatialMath:)prefix'-'<public>(Operand:vector2i)<computes>:vector2i = external {}
@@ -309,7 +310,7 @@
 
     # Makes a `vector3` by inverting the `SurfaceNormal` component of `Direction`.
     # Fails if `not SurfaceNormal.MakeUnitVector[]`.
-    (/UnrealEngine.com/Temporary/SpatialMath:)ReflectVector<public>(Direction:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, SurfaceNormal:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+    (/UnrealEngine.com/Temporary/SpatialMath:)ReflectVector<public>(Direction:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, SurfaceNormal:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<decides><reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
     # Returns the dot product of `V1` and `V2`.
     (/UnrealEngine.com/Temporary/SpatialMath:)DotProduct<public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:float = external {}
@@ -331,7 +332,7 @@
 
     # Makes a unit length `vector3` pointing in the same direction of `V`.
     # Fails if `V.IsAlmostZero[] or not V.IsFinite[]`.
-    (V:(/UnrealEngine.com/Temporary/SpatialMath:)vector3).(/UnrealEngine.com/Temporary/SpatialMath:)MakeUnitVector<public>()<reads><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
+    (V:(/UnrealEngine.com/Temporary/SpatialMath:)vector3).(/UnrealEngine.com/Temporary/SpatialMath:)MakeUnitVector<public>()<decides><reads>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3 = external {}
 
     # Makes a `string` representation of `V`.
     (/UnrealEngine.com/Temporary/SpatialMath:)ToString<public>(V:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<reads>:string = external {}
@@ -386,15 +387,15 @@
     # Succeeds when each component of `V1` and `V2` are within `AbsoluteTolerance` of each other.
     (/UnrealEngine.com/Temporary/SpatialMath:)IsAlmostEqual<public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, AbsoluteTolerance:float)<computes><decides>:void = external {}
 
-@deprecated
+@deprecated {Message := "Use `CollisionChannels` and `CollisionProfiles` from `RigidPhysicsCore` instead."}
 # Module import path: /UnrealEngine.com/Temporary/SceneGraph
 SceneGraph<public> := module:
-    @deprecated
+    @deprecated {Message := "Use `CollisionChannels` from `RigidPhysicsCore` instead."}
     # Module import path: /UnrealEngine.com/Temporary/SceneGraph/collision_channels
     collision_channels<public> := module:
 
 
-    @deprecated
+    @deprecated {Message := "Use `CollisionProfiles` from `RigidPhysicsCore` instead."}
     # Module import path: /UnrealEngine.com/Temporary/SceneGraph/collision_profiles
     collision_profiles<public> := module:
 

@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/SpatialMath}
 using {/Verse.org/Simulation}
 # Used with `guard_spawner_device.Accuracy` to define how accurate the NPC is when it fires at targets.

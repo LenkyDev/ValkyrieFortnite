@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to apply a cosmetic disguise to the player.
 # The disguise to apply is defined on the device, as are the conditions for when the disguise breaks.

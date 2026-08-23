@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/Leaderboards
 using {/Verse.org/Simulation}
 # # Leaderboard that supports a `GetTop` implementation that only returns the data needed to display the leaderboard.
 # # Leaderboard that supports a `GetTop` implementation that only returns the data needed to display the leaderboard.

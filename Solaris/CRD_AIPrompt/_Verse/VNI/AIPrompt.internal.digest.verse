@@ -1,3 +1,4 @@
+# Verse path: /UnrealEngine.com/Conversations
 using {/Fortnite.com/Devices}
 using {/Verse.org/Colors}
 using {/Verse.org/SceneGraph}
@@ -171,7 +172,7 @@ persona_component<native><public> := class<final_super>(component):
 
 @available {MinUploadedAtFNVersion := 4000}
 # Retrieve the persona and channel the player is currently bound to prompt.
-(Player:player).GetConversationTarget<native><public>()<reads><decides>:tuple(persona_component, voice_channel(has_voice_member_info))
+(Player:player).GetConversationTarget<native><public>()<decides><reads>:tuple(persona_component, voice_channel(has_voice_member_info))
 
 @available {MinUploadedAtFNVersion := 4000}
 # Unbind player from prompting personas
@@ -190,7 +191,7 @@ MakePersonaErrorResult<native_callable><epic_internal>(Result:error_type where e
 @available {MinUploadedAtFNVersion := 4000}
 conversation_target<native><epic_internal> := interface<unique><epic_internal>:
     # Succeeds if the agent can target Self for conversation.
-    CanConversationTargeterBeAdded<native_callable><epic_internal>(ConversationTargeter:agent)<reads><decides>:void = external {}
+    CanConversationTargeterBeAdded<native_callable><epic_internal>(ConversationTargeter:agent)<decides><reads>:void = external {}
 
     # When agent targets Self for conversation.
     AddConversationTargeterEvent<final><public>:listenable(agent) = external {}
@@ -225,7 +226,7 @@ conversation_target<native><epic_internal> := interface<unique><epic_internal>:
 
 @available {MinUploadedAtFNVersion := 4000}
 # Returns the persona a participant is assigned to, fails if unassigned.
-(Participant:agent).GetConversationTargetForAgent<native><epic_internal>()<reads><decides>:conversation_target
+(Participant:agent).GetConversationTargetForAgent<native><epic_internal>()<decides><reads>:conversation_target
 
 internal_response_data<native><epic_internal> := struct:
     @ai_description("Use this to output the name of the targeted conversation participant")
@@ -237,7 +238,7 @@ persona_conversation_target<native><epic_internal> := class(conversation_target)
     var ConversationTargeters<override>:[]agent = external {}
 
     # Fails if the participant is not in the list of participants
-    CanConversationTargeterBeAdded<override><native>(ConversationTargeter:agent)<reads><decides>:void
+    CanConversationTargeterBeAdded<override><native>(ConversationTargeter:agent)<decides><reads>:void
 
     # Allow player to to talk to this persona.
     AddPlayer<native><override>(Player:agent)<transacts><decides>:void
@@ -463,15 +464,7 @@ magnus_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-revolt_voice<final><public> := class(voice_model):
-    VoiceName<override>:string = external {}
-
-@available {MinUploadedAtFNVersion := 4000}
-tomatohead_voice<final><public> := class<epic_internal>(voice_model):
-    VoiceName<override>:string = external {}
-
-@available {MinUploadedAtFNVersion := 4000}
-raven_voice<final><public> := class<epic_internal>(voice_model):
+hope_voice<final><public> := class<epic_internal>(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
@@ -479,7 +472,15 @@ cuddle_team_leader_voice<final><public> := class<epic_internal>(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-midas_voice<final><public> := class<epic_internal>(voice_model):
+raven_voice<final><public> := class<epic_internal>(voice_model):
+    VoiceName<override>:string = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+tomatohead_voice<final><public> := class<epic_internal>(voice_model):
+    VoiceName<override>:string = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+revolt_voice<final><public> := class(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
@@ -487,9 +488,9 @@ mecha_team_leader_voice<final><public> := class<epic_internal>(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-jonesy_voice<final><public> := class<epic_internal>(voice_model):
+midas_voice<final><public> := class<epic_internal>(voice_model):
     VoiceName<override>:string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
-hope_voice<final><public> := class<epic_internal>(voice_model):
+jonesy_voice<final><public> := class<epic_internal>(voice_model):
     VoiceName<override>:string = external {}

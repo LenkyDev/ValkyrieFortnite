@@ -640,7 +640,7 @@
 			},
 			{
 				"Type": "/Script/DynamicVolume.FortDynamicVolumeComponent",
-				"AllowList":[ "bAutoLoad", "DefaultLinkCode","bForceMinigameSpawnAtCurrentLocation","bAdoptParentPlayspaceUsers"]
+				"AllowList":[ "bAutoLoad", "DefaultLinkCode","bForceMinigameSpawnAtCurrentLocation","RuntimeSettings","bAdoptParentPlayspaceUsers","bAutoStartMinigameOnContentLoad","bCancelRequestOnContentFailure"]
 			},
 			{
 				"Type": "/Script/Engine.BodySetup",

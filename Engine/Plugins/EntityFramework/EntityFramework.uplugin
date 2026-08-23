@@ -7,9 +7,19 @@
 	"Description": "",
 	"Category": "Verse",
 	"TestConfig":
-	{
-		"TestPlugin": "SceneGraphTests"
-	},
+	[
+		{
+			"TestPlugin": "ModularTestFrameworkTests",
+			"Suites": [ "UMTFSmoke_Suite" ],
+			"TagFilter": "[Smoke]",
+			"Then":
+			[
+				{
+					"TestPlugin": "SceneGraphTests"
+				}
+			]
+		}
+	],
 	"CreatedBy": "Epic Games, Inc.",
 	"CreatedByURL": "http://epicgames.com",
 	"DocsURL": "",
@@ -64,6 +74,14 @@
 			"Type": "Runtime"
 		},
 		{
+			"Name": "TedsVerseEntityFields",
+			"Type": "Editor"
+		},
+		{
+			"Name": "TedsVersePathRegistry",
+			"Type": "Editor"
+		},
+		{
 			"Name": "EntityEditor",
 			"Type": "Editor"
 		},
@@ -74,10 +92,6 @@
 		{
 			"Name": "ComponentEditor",
 			"Type": "Editor"
-		},
-		{
-			"Name": "RigidPhysicsCore",
-			"Type": "Runtime"
 		},
 		{
 			"Name": "EntityRegistry",

@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/Chat
 using {/Verse.org/SceneGraph}
 using {/Verse.org/Simulation}
 using {/Verse.org/Native}
@@ -11,7 +12,7 @@ chat_channel<native><public>(member_info:subtype(member_info_interface)) := clas
     @available {MinUploadedAtFNVersion := 4000}
     Group<public>:agent_group_interface(member_info)
 
-    IsAgentInChannel<native_callable><epic_internal>(Agent:agent)<reads><decides>:void = external {}
+    IsAgentInChannel<native_callable><epic_internal>(Agent:agent)<decides><reads>:void = external {}
 
     GetAllPlayerAgents<native_callable><epic_internal>()<reads>:[]agent = external {}
 

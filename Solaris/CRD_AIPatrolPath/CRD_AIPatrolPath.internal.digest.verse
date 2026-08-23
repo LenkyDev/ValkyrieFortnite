@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to create patrolling behavior for guards spawned with the `guard_spawner_device`.
 ai_patrol_path_device<public> := class<concrete><final>(creative_device_base):

@@ -1,4 +1,4 @@
-using {/Verse.org/Presentation}
+# Verse path: /Fortnite.com/Itemization
 using {/Verse.org/Assets}
 using {/Verse.org/Simulation}
 using {/Verse.org/Native}
@@ -7,11 +7,11 @@ using {/UnrealEngine.com/Itemization}
 # `fort_inventory_component` is a shared class for all Fortnite inventories, with appropriate default UI and behavior. The HUD when using the BR Style Inventory Configuration will only be shown when using the default configuration. If new inventories are added you will need to create your own custom HUD using Verse UI.
 fort_inventory_component<native><public> := class<epic_internal>(inventory_component):
     # Returns the total number of slots in this inventory.
-    GetMaxSlots<native><public>()<reads><decides>:int
+    GetMaxSlots<native><public>()<decides><reads>:int
 
     @experimental
     # Returns the item in the specified slot, if there is one. NOTE: this function will only work consistently with custom (pure Verse) inventories *not* fort_inventory_weapon_hotbar_component
-    GetItemInSlot<native><epic_internal>(Slot:int)<reads><decides>:item_component
+    GetItemInSlot<native><epic_internal>(Slot:int)<decides><reads>:item_component
 
     # Moves the item to a particular slot. If the item is not already in the inventory, AddItem is called on it. Swaps places with any item already in that slot.
     SetItemInSlot<native><epic_internal>(Item:entity, Slot:int)<transacts><decides>:void
@@ -34,10 +34,10 @@ fort_br_inventory_weapon_hotbar_component<native><epic_internal> := class(fort_b
 # `fort_inventory_weapon_hotbar_component` is the UEFN inventory for Fortnite weapons and gadgets.
 fort_inventory_weapon_hotbar_component<native><public> := class<final>(fort_br_inventory_weapon_hotbar_component):
     # Returns the item currently selected, if there is one.
-    GetEquippedItem<native><epic_internal>()<reads><decides>:item_component
+    GetEquippedItem<native><epic_internal>()<decides><reads>:item_component
 
     # Succeeds if the inventory has infinite consumables.
-    HasInfiniteConsumables<native><epic_internal>()<reads><decides>:void
+    HasInfiniteConsumables<native><epic_internal>()<decides><reads>:void
 
     # Sets the total number of slots.
     SetMaxSlots<native><public>(InNumSlots:int):void
@@ -52,7 +52,7 @@ fort_inventory_weapon_hotbar_component<native><public> := class<final>(fort_br_i
 # `fort_npc_inventory_weapon_component` is the NPC inventory for Fortnite weapons and gadgets.
 fort_npc_inventory_weapon_component<native><epic_internal> := class<final>(fort_inventory_component):
     # Returns the item currently selected, if there is one.
-    GetEquippedItem<native><epic_internal>()<reads><decides>:item_component
+    GetEquippedItem<native><epic_internal>()<decides><reads>:item_component
 
     @available {MinUploadedAtFNVersion := 4000}
     OnReceive<override>(Event:scene_event):logic = external {}
@@ -64,7 +64,7 @@ fort_br_inventory_build_hotbar_component<native><epic_internal> := class(fort_br
 # `fort_inventory_build_hotbar_component` is the UEFN inventory for Fortnite build tools.
 fort_inventory_build_hotbar_component<native><public> := class<final>(fort_br_inventory_build_hotbar_component):
     # Returns the item currently selected, if there is one.
-    GetEquippedItem<native><epic_internal>()<reads><decides>:item_component
+    GetEquippedItem<native><epic_internal>()<decides><reads>:item_component
 
 # `fort_br_inventory_harvest_tool_component` is the FNBR inventory for the Fortnite harvest tool.
 fort_br_inventory_harvest_tool_component<native><epic_internal> := class(fort_br_inventory_legacy_quickbar_component):
@@ -73,7 +73,7 @@ fort_br_inventory_harvest_tool_component<native><epic_internal> := class(fort_br
 # `fort_inventory_harvest_tool_component` is the UEFN inventory for the Fortnite harvest tool.
 fort_inventory_harvest_tool_component<native><public> := class<final>(fort_br_inventory_harvest_tool_component):
     # Returns the item currently selected, if there is one.
-    GetEquippedItem<native><epic_internal>()<reads><decides>:item_component
+    GetEquippedItem<native><epic_internal>()<decides><reads>:item_component
 
 # `fort_br_inventory_trap_component` is the FNBR inventory for the Fortnite trap slot.
 fort_br_inventory_trap_component<native><epic_internal> := class(fort_br_inventory_legacy_quickbar_component):
@@ -159,51 +159,6 @@ fort_item_definition_entity<native><epic_internal> := class<concrete>(fort_item_
 
 ExpandItemComponents<native><epic_internal>(InEntity:fort_item_definition_entity_base)<converges>:void
 
-MakeItemComponent<native><epic_internal>(Category:item_category)<converges>:item_component
-
-@available {MinUploadedAtFNVersion := 4100}
-InitializeIconComponentField<native><epic_internal>(IconTexture:texture)<converges>:icon_component
-
-MakeIconComponent<native><epic_internal>(IconTexture:texture)<converges>:?icon_component
-
-@available {MinUploadedAtFNVersion := 4100}
-InitializeRarityComponentField<native><epic_internal>(Rarity:rarity)<converges>:rarity_component
-
-@available {MinUploadedAtFNVersion := 4000}
-MakeRarityComponent<native><epic_internal>(Rarity:rarity)<converges>:?rarity_component
-
-@available {MinUploadedAtFNVersion := 4100}
-InitializeStackableComponentField<native><epic_internal>(SplitPrefabType:castable_concrete_subtype(entity), StackSize:int, MaxStackSize:?int)<converges>:basic_stackable_component
-
-@available {MinUploadedAtFNVersion := 4000}
-MakeStackableComponent<native><epic_internal>(SplitPrefabType:castable_concrete_subtype(entity), StackSize:int, MaxStackSize:?int)<converges>:?basic_stackable_component
-
-@available {MinUploadedAtFNVersion := 4100}
-InitializeDescriptionComponentField<native><epic_internal>(Name:message, Description:message, ShortDescription:message)<converges>:description_component
-
-pickup_overflow_behavior<native><epic_internal> := enum:
-    DropExcess
-    DestroyExcess
-
-@class_and_subclass_group_names("item")
-@hide_in_editor
-fort_item_pickup_component<native><final><epic_internal> := class<final_super>(component, copy_from_item):
-    var<private> PickupLifetime<native><public>:float = external {}
-
-    var<private> PickupOverflowBehavior<native><epic_internal>:pickup_overflow_behavior = external {}
-
-    var<private> DestroyOnDropFromInventory<native><epic_internal>:logic = external {}
-
-    var<private> DropOnOwnerElimination<native><epic_internal>:logic = external {}
-
-    var<private> DropOnOwnerExit<native><epic_internal>:logic = external {}
-
-    OnSimulate<override>()<suspends>:void = external {}
-
-    OnEndSimulation<override>():void = external {}
-
-    CopyFromItem<override><final><native>(SourceItem:entity)<transacts>:void
-
 @available {MinUploadedAtFNVersion := 4040}
 @class_and_subclass_group_names("item")
 # Place this component onto an entity to allow it to be added to an agent inventory on interaction. The owning entity should have an item_component and a mesh_component. This component expects the interacting agent to have a subentity with an inventory_component.
@@ -216,7 +171,7 @@ fort_item_pickup_interactable_component<native><public> := class(basic_interacta
 
     Disable<override>():void = external {}
 
-    CanInteract<native><override>(Agent:agent)<reads><decides>:void
+    CanInteract<native><override>(Agent:agent)<decides><reads>:void
 
     EnableItemInteraction<protected>():void = external {}
 
@@ -225,6 +180,8 @@ fort_item_pickup_interactable_component<native><public> := class(basic_interacta
     OnInteractionSucceeded<protected>(Agent:agent):void = external {}
 
     GetInteractorInventory<public>(Agent:agent)<transacts><decides>:inventory_component = external {}
+
+    CancelInteractionSubscription<epic_internal>():void = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 # Module import path: /Fortnite.com/Itemization/FortniteRarities
@@ -252,7 +209,7 @@ FortniteRarities<public> := module:
 @hide_in_editor
 item_attributes_component<native><final><epic_internal> := class<final_super>(component):
     # Succeeds if the item entity is a consumable.
-    IsItemConsumable<native><public>()<reads><decides>:void
+    IsItemConsumable<native><public>()<decides><reads>:void
 
     GetCurrentDurability<native><public>()<reads>:float
 
@@ -274,7 +231,7 @@ item_attributes_component<native><final><epic_internal> := class<final_super>(co
 
     ShowMagazineAsPercentage<native><public>()<reads>:logic
 
-    GetAmmoIcon<native><public>()<reads><decides>:texture
+    GetAmmoIcon<native><public>()<decides><reads>:texture
 
     GetCurrentReserveAmmoValue<native><public>()<reads>:int
 

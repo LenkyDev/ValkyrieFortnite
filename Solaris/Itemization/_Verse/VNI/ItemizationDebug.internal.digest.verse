@@ -1,5 +1,7 @@
+# Verse path: /Fortnite.com/Itemization
 # Module import path: /Fortnite.com/Itemization/ItemizationTests
 ItemizationTests<epic_internal> := module:
+    using {/Verse.org/Colors}
     using {/Verse.org/Native}
     using {/Verse.org/SceneGraph}
     using {/Verse.org/Simulation}
@@ -12,12 +14,12 @@ ItemizationTests<epic_internal> := module:
     @experimental
     @hide_in_editor
     mergeable_item_component<native><epic_internal> := class(item_component, has_merge_rules):
-        AllowMergeInto<override>(TargetEntity:entity)<reads><decides>:void = external {}
+        AllowMergeInto<override>(TargetEntity:entity)<decides><reads>:void = external {}
 
     @experimental
     @hide_in_editor
     non_mergeable_item_component<native><epic_internal> := class(item_component, has_merge_rules):
-        AllowMergeInto<override>(TargetEntity:entity)<reads><decides>:void = external {}
+        AllowMergeInto<override>(TargetEntity:entity)<decides><reads>:void = external {}
 
     @available {MinUploadedAtFNVersion := 4000}
     @experimental
@@ -67,3 +69,32 @@ ItemizationTests<epic_internal> := module:
         OnInitialized<override>():void = external {}
 
         OnUninitializing<override>():void = external {}
+
+    @available {MinUploadedAtFNVersion := 4000}
+    @experimental
+    @hide_in_editor
+    test_custom_rarity<epic_internal> := class<allocates>(rare_rarity):
+        Color<override>:color = external {}
+
+    @experimental
+    @hide_in_editor
+    TestPrefab_AmmoHeavyBullets_BR_PreSeason_Common<epic_internal> := class<final><concrete>(fort_item_definition_entity):
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        StackableComponent<override>:?basic_stackable_component = external {}
+
+    @experimental
+    @hide_in_editor
+    itemization_test_library<native><epic_internal> := class:
+        @available {MinUploadedAtFNVersion := 4000}
+        CreateTestCustomRarity<native_callable><epic_internal>():rarity = external {}
+
+        CreateTestPrefab<native_callable><epic_internal>():entity = external {}

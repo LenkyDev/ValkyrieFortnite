@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to mark an `agent`'s position on the minimap and configure the information shown for marked `agent`s.
 # 

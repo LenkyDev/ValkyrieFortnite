@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/FeralCorgi
 using {/Verse.org/Colors}
 using {/Verse.org/Assets}
 using {/UnrealEngine.com/Temporary/SpatialMath}

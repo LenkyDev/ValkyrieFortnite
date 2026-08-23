@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/StarWars
 using {/Verse.org/Colors}
 using {/Verse.org/SceneGraph}
 using {/UnrealEngine.com/Itemization}
@@ -6,7 +7,7 @@ force_power_item_component<native><public> := class<abstract><epic_internal>(ite
 
 # Represents an item that gives its holder the Force Lightning power.
 force_power_lightning_component<native><public> := class<epic_internal>(force_power_item_component, has_merge_rules):
-    AllowMergeInto<override>(TargetEntity:entity)<reads><decides>:void = external {}
+    AllowMergeInto<override>(TargetEntity:entity)<decides><reads>:void = external {}
 
     var Damage<public>:float = external {}
 
@@ -18,7 +19,7 @@ force_power_lightning_component<native><public> := class<epic_internal>(force_po
 
 # Represents an item that gives its holder the Force Push power.
 force_power_push_component<native><public> := class<epic_internal>(force_power_item_component, has_merge_rules):
-    AllowMergeInto<override>(TargetEntity:entity)<reads><decides>:void = external {}
+    AllowMergeInto<override>(TargetEntity:entity)<decides><reads>:void = external {}
 
     var PushForce<public>:float = external {}
 
@@ -26,7 +27,7 @@ force_power_push_component<native><public> := class<epic_internal>(force_power_i
 
 # Represents an item that gives its holder the Force Pull power.
 force_power_pull_component<native><public> := class<epic_internal>(force_power_item_component, has_merge_rules):
-    AllowMergeInto<override>(TargetEntity:entity)<reads><decides>:void = external {}
+    AllowMergeInto<override>(TargetEntity:entity)<decides><reads>:void = external {}
 
     var PullForce<epic_internal>:float = external {}
 
@@ -34,7 +35,7 @@ force_power_pull_component<native><public> := class<epic_internal>(force_power_i
 
 # Represents an item that gives its holder the Force Throw power.
 force_power_throw_component<native><public> := class<epic_internal>(force_power_item_component, has_merge_rules):
-    AllowMergeInto<override>(TargetEntity:entity)<reads><decides>:void = external {}
+    AllowMergeInto<override>(TargetEntity:entity)<decides><reads>:void = external {}
 
     var Damage<public>:float = external {}
 
@@ -46,7 +47,7 @@ force_power_throw_component<native><public> := class<epic_internal>(force_power_
 
 # Represents an item that gives its holder the Force Shield power.
 force_power_shield_component<native><public> := class<epic_internal>(force_power_item_component, has_merge_rules):
-    AllowMergeInto<override>(TargetEntity:entity)<reads><decides>:void = external {}
+    AllowMergeInto<override>(TargetEntity:entity)<decides><reads>:void = external {}
 
     var Energy<public>:float = external {}
 
@@ -62,7 +63,7 @@ force_power_shield_component<native><public> := class<epic_internal>(force_power
 
 # Represents an item that gives its holder the Force Heal power.
 force_power_heal_component<native><public> := class<epic_internal>(force_power_item_component, has_merge_rules):
-    AllowMergeInto<override>(TargetEntity:entity)<reads><decides>:void = external {}
+    AllowMergeInto<override>(TargetEntity:entity)<decides><reads>:void = external {}
 
     var Energy<epic_internal>:float = external {}
 
@@ -78,7 +79,7 @@ force_power_heal_component<native><public> := class<epic_internal>(force_power_i
 
 # Represents an item that gives its holder the Force Training power (Jump and Sprint).
 force_power_training_component<native><public> := class<epic_internal>(force_power_item_component, has_merge_rules):
-    AllowMergeInto<override>(TargetEntity:entity)<reads><decides>:void = external {}
+    AllowMergeInto<override>(TargetEntity:entity)<decides><reads>:void = external {}
 
     var JumpStaminaCost<public>:float = external {}
 
@@ -86,7 +87,7 @@ force_power_training_component<native><public> := class<epic_internal>(force_pow
 
 # Represents an item that gives its holder the Force Awareness power.
 force_power_awareness_component<native><public> := class<epic_internal>(force_power_item_component, has_merge_rules):
-    AllowMergeInto<override>(TargetEntity:entity)<reads><decides>:void = external {}
+    AllowMergeInto<override>(TargetEntity:entity)<decides><reads>:void = external {}
 
     var Duration<public>:float = external {}
 
@@ -94,7 +95,7 @@ force_power_awareness_component<native><public> := class<epic_internal>(force_po
 
 # Represents an item that gives its holder the Force Mind Trick power.
 force_power_trick_component<native><public> := class<epic_internal>(force_power_item_component, has_merge_rules):
-    AllowMergeInto<override>(TargetEntity:entity)<reads><decides>:void = external {}
+    AllowMergeInto<override>(TargetEntity:entity)<decides><reads>:void = external {}
 
     var Duration<public>:float = external {}
 
@@ -104,7 +105,7 @@ force_power_trick_component<native><public> := class<epic_internal>(force_power_
 
 # Represents an item that gives its holder the Force Distraction power.
 force_power_distraction_component<native><public> := class<epic_internal>(force_power_item_component, has_merge_rules):
-    AllowMergeInto<override>(TargetEntity:entity)<reads><decides>:void = external {}
+    AllowMergeInto<override>(TargetEntity:entity)<decides><reads>:void = external {}
 
     var Health<public>:float = external {}
 
@@ -112,7 +113,7 @@ force_power_distraction_component<native><public> := class<epic_internal>(force_
 
 # Represents an item that gives its holder the Force Saber Throw power.
 force_power_saber_throw_component<native><public> := class<epic_internal>(force_power_item_component, has_merge_rules):
-    AllowMergeInto<override>(TargetEntity:entity)<reads><decides>:void = external {}
+    AllowMergeInto<override>(TargetEntity:entity)<decides><reads>:void = external {}
 
     var Damage<public>:float = external {}
 
@@ -169,10 +170,10 @@ lightsaber_item_component<native><public> := class<abstract><epic_internal>(item
 
 
 lightsaber_item_single<native><public> := class<abstract><epic_internal>(lightsaber_item_component, has_merge_rules):
-    AllowMergeInto<override>(TargetEntity:entity)<reads><decides>:void = external {}
+    AllowMergeInto<override>(TargetEntity:entity)<decides><reads>:void = external {}
 
 lightsaber_item_crossguard<native><public> := class<abstract><epic_internal>(lightsaber_item_component, has_merge_rules):
-    AllowMergeInto<override>(TargetEntity:entity)<reads><decides>:void = external {}
+    AllowMergeInto<override>(TargetEntity:entity)<decides><reads>:void = external {}
 
 lightsaber_item_kenobi<public> := class<final><epic_internal>(lightsaber_item_single):
 

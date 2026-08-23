@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to dynamically assemble or disassemble one or more building actors. Only available in LEGO islands.
 assembly_device<public> := class<concrete><final>(creative_device_base, enableable):

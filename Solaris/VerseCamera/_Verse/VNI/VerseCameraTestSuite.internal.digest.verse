@@ -1,3 +1,4 @@
+# Verse path: /UnrealEngine.com
 # Module import path: /UnrealEngine.com/VerseCameraTestSuite
 VerseCameraTestSuite<public> := module:
     using {/Verse.org/Temporary/EpicGamesRestricted/Network}

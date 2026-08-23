@@ -1,3 +1,4 @@
+# Verse path: /UnrealEngine.com
 # Module import path: /UnrealEngine.com/StateMachine
 (/UnrealEngine.com:)StateMachine<public> := module:
     using {/Verse.org/StateMachine}

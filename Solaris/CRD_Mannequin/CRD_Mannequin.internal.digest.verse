@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to configure a single interactive mannequin, that can visualize characters, clothing, and perform emotes.
 character_device<public> := class<concrete>(creative_device_base):

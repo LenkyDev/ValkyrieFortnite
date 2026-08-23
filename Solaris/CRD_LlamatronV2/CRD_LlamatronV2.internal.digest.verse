@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to display curated videos onto in-game screens or player HUDs.
 video_player_device<public> := class<concrete><final>(creative_device_base):

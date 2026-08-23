@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/SceneGraph
 using {/Verse.org/SpatialMath}
 using {/Verse.org/Simulation}
 using {/Verse.org/Native}
@@ -86,7 +87,7 @@ has_camera_modifier<native><public> := interface:
 @experimental
 # Base class for objects that can modify camera state.
 camera_modifier<native><public> := class(modifier(camera_state)):
-    Evaluate<override>(InValue:camera_state)<reads>:camera_state = external {}
+    Evaluate<override><native_callable>(InValue:camera_state)<reads>:camera_state = external {}
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental

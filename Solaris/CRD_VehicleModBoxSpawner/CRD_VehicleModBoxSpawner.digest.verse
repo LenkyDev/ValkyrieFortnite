@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Assets}
 using {/Verse.org/Colors}
 using {/Fortnite.com/Vehicles}

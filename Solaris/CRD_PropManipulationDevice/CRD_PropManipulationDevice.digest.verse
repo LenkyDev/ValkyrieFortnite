@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to manipulate the properties of one or more props in a specified area (e.g. Visibility/Destructibility).
 prop_manipulator_device<public> := class<concrete><final>(creative_device_base):

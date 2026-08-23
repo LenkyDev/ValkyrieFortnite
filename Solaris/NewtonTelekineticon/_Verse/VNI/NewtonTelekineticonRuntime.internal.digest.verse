@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Items
 using {/Verse.org/Native}
 using {/UnrealEngine.com/Itemization}
 using {/Fortnite.com/Itemization}
@@ -44,8 +45,8 @@ telekineticon_component<native><public> := class<final_super>(component):
     var HoldStiffness<public>:float = external {}
 
     @editable
-    # The strength of the force, in kg*m/second^2, which forces the hold to break.  With a 1kg prop ~`1.0` causes nearly any force to break the hold. ~`10.0` is a strong hold on the object that can withstand significant forces. Allows objects to push into a wall around 1m ~`100.0` is almost unbreakable. Supports a distance of around 15m, will go through most walls - depending on how wide they are If `0.0`, `NaN`, or a negative value is provided, any physical interaction will cause the object to be dropped. If `Inf` is provided, the hold on the object cannot be broken.
-    var BreakHoldStiffness<public>:float = external {}
+    # The hold breaks when an applied force pushes the object past this distance, in cm, from its hold position.  Larger values will allow the object to be pushed around and spring back to its hold position.  If `0.0`, `NaN`, or a negative value is provided, any physical interaction will cause the object to be dropped.  If `Inf` is provided, the hold on the object cannot be broken.
+    var BreakDistance<public>:float = external {}
 
     # If the item has a grabbed object, drop it. Fails if no object is being grabbed.
     (/Fortnite.com/Items/telekineticon_component:)Drop<native><public>()<transacts><decides>:void
@@ -64,10 +65,11 @@ telekineticon_component<native><public> := class<final_super>(component):
 
     GrabProp<native><epic_internal>(Agent:agent, PropToGrab:creative_prop)<transacts><decides>:void
 
+@experimental
 Telekineticon_Creative_V1_Common<native><public> := class<final><concrete>(fort_item_definition_entity):
-    @available {MinUploadedAtFNVersion := 4000}
+    @available {MinUploadedAtFNVersion := 4200}
     ItemComponent<override>:item_component = external {}
 
     @field("Components")
-    @available {MinUploadedAtFNVersion := 4100}
+    @available {MinUploadedAtFNVersion := 4200}
     TelekineticonComponent<native><protected>:telekineticon_component = external {}

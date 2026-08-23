@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # The Rift Point volume is used to interface with and manage the Rift Point item,
 # and provides an area that enables players to plant the item to create search and destroy style gameplay.

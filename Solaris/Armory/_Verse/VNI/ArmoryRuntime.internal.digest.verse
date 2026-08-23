@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Armory
 using {/Fortnite.com/Itemization}
 using {/Verse.org/Presentation}
 using {/UnrealEngine.com/Itemization}
@@ -17,6 +18,7 @@ fort_multi_trace_weapon_component<native><public> := class<final_super><internal
 
     SetBulletsPerShot<native><public>(Val:int):void
 
+@replicatable
 # Struct that defines a range based damage multiplier
 fort_range_damage_multiplier<native><public> := struct<concrete>:
     @editable_number(float) {MinValue := option {0.000000}}
@@ -279,6 +281,7 @@ fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_compo
 
     SetOutOfAmmoSound<native><public>(Val:[]sound_wave):void
 
+@replicatable
 @import_as("/Script/ArmoryRuntime.FFortWeaponComponentData")
 fort_weapon_component_data<native><epic_internal> := struct<concrete>:
 

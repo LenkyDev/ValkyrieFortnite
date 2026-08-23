@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to set an `agent`'s spawn point when activated. This can also clear the `agent`'s inventory.
 player_checkpoint_device<public> := class<concrete><final>(creative_device_base):

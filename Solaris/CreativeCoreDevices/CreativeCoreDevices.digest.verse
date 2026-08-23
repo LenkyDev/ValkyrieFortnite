@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Fortnite.com/Game}
 using {/Verse.org/Native}
 using {/Verse.org/Simulation}
@@ -920,7 +921,7 @@ pulse_trigger_device<public> := class<concrete><final>(creative_device_base):
     # Stops the damage pulse.
     End<public>():void = external {}
 
-    @deprecated
+    @deprecated {Message := "Use `ResumePulse` instead."}
     # This function is deprecated. Use `ResumePulse` instead of this.
     # Resumes the damage sequence from the last position where it was stopped.
     ResumeSequence<public>():void = external {}

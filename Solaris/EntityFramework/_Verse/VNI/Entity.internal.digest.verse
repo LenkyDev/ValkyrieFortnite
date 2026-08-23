@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/SceneGraph
 using {/Verse.org/Colors}
 using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 using {/Verse.org/Assets}
@@ -133,17 +134,17 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
     # Succeeds if the component is currently initialized with its parent entity.
     #   * After `OnInitialized` is called this call succeeds.
     #   * After `OnUninitializing` is called this call fails.
-    IsInitialized<native><final><epic_internal>()<reads><decides>:void
+    IsInitialized<native><final><epic_internal>()<decides><reads>:void
 
     # Succeeds if the component is currently in the scene.
     #   * After `OnAddedToScene` is called this call succeeds.
     #   * After `OnRemovingFromScene` is called this call fails.
-    IsInScene<native><final><public>()<reads><decides>:void
+    IsInScene<native><final><public>()<decides><reads>:void
 
     # Succeeds if the component is currently simulating.
     #   * After `OnBeginSimulation` is called this call succeeds.
     #   * After `OnEndSimulation` is called this call fails.
-    IsSimulating<native><final><public>()<reads><decides>:void
+    IsSimulating<native><final><public>()<decides><reads>:void
 
     # Set callbacks to `TickEvents.PrePhysics` and `TickEvents.PostPhysics` to receive per-frame updates before and after physics is updated on your object.
     var<private> TickEvents<protected>:tick_events = external {}
@@ -170,11 +171,6 @@ component<native><public> := class<abstract><unique><castable><final_super_base>
     GetDiagnostic<override><native>()<reads>:diagnostic
 
 @available {MinUploadedAtFNVersion := 4000}
-# Use this method to create a component without the need of providing an entity.
-# This is an internal method and should only be used to initialize a component field inside a verse class
-InitializeComponentField<native><epic_internal>(component_type:castable_subtype(component))<converges>:component_type
-
-@available {MinUploadedAtFNVersion := 4000}
 # Helper function to aide in initializing the Entity pointer for components during component field construction inside a verse class
 GetSelfEntityForComponentInitialization<native><epic_internal>()<converges>:entity
 
@@ -184,10 +180,6 @@ content_scope_component<native><epic_internal> := class<final><final_super>(comp
 
 # An event which can be sent through the scene graph.
 scene_event<native><public> := interface:
-
-
-@import_as("/Script/Entity.UBaseEntity")
-base_entity<native><epic_internal> := class<abstract>:
 
 
 # Entities are the base object in the SceneGraph.
@@ -208,12 +200,12 @@ base_entity<native><epic_internal> := class<abstract>:
 #   that you do not add code directly to the entity class, and instead keep logic in components. Keeping logic and data in
 #   components allows you to restructure your prefabs throughout production of your experience, without needing to massively
 #   refactor your class structure.
-entity<native><public> := class<concrete><unique><transacts><castable>(base_entity, diagnosable, has_tags):
+entity<native><public> := class<concrete><unique><transacts><castable>(diagnosable, has_tags):
     # Returns the parent entity of this entity.
     #   * The parent entity controls the lifetime of its child entities and components. When an entity
     #     is removed from the scene, all its child entities and components will be removed as well.
     #   * Method fails if there is currently no parent entity.
-    GetParent<native><final><public>()<reads><decides>:entity
+    GetParent<native><final><public>()<decides><reads>:entity
 
     # Removes this entity from its parent. This is used to remove entities from the scene.
     #   * Components on this entity and its children will run through `OnEndSimulation` -> `OnRemovingFromScene`.
@@ -230,11 +222,10 @@ entity<native><public> := class<concrete><unique><transacts><castable>(base_enti
     #     the Find* query methods instead.
     GetEntities<native><final><public>()<reads>:[]entity
 
-    @available {MinUploadedAtFNVersion := 3200}
     # Succeeds and returns the child component of type `component_type` if it exists and is accessible from the calling context.
     #   Note: When called during the AddedToScene or BeginSimulation phase, it will make sure the returned component has achieved the corresponding phase.
     #   Fails if no component of `component_type` exists or can be accessed.
-    GetComponent<native><final><public>(component_type:castable_subtype(component))<reads><decides>:component_type
+    GetComponent<native><final><public>(component_type:castable_subtype(component))<decides><reads>:component_type
 
     # Returns the child components belonging to this entity which are accessible from the calling context.
     GetComponents<native><final><public>()<reads>:[]component
@@ -262,41 +253,35 @@ entity<native><public> := class<concrete><unique><transacts><castable>(base_enti
     # Removes the tag instance associated with the `tag_key`, succeeds if an instance was removed, fails otherwise.
     RemoveTag<override><native><final>(Key:tag_key)<transacts><decides>:void
 
-    @available {MinUploadedAtFNVersion := 3200}
     # Removes all tag instances of type `tag_type`, succeeds if at least one instance was removed, fails otherwise.
     RemoveAllTags<override><native><final>(tag_type:castable_subtype(tag))<transacts><decides>:void
 
-    @available {MinUploadedAtFNVersion := 3200}
     # Removes all tag instances that are not of type `tag_type`, succeeds if at least one instance was removed, fails otherwise.
     RemoveAllTagsExcept<override><native><final>(tag_type:castable_subtype(tag))<transacts><decides>:void
 
-    @available {MinUploadedAtFNVersion := 3200}
     # Removes all tag instances that are not of any of the types in `tag_types`, succeeds if at least one instance was removed, fails otherwise.
     RemoveAllTagsExcept<override><native><final>(tag_types:[]castable_subtype(tag))<transacts><decides>:void
 
-    @available {MinUploadedAtFNVersion := 3200}
     # Succeeds if at least one tag of type `tag_type` is found in this container, fails otherwise.
-    ContainsTag<override><native><final>(tag_type:castable_subtype(tag))<reads><decides>:void
+    ContainsTag<override><native><final>(tag_type:castable_subtype(tag))<decides><reads>:void
 
-    @available {MinUploadedAtFNVersion := 3200}
     # Fails if at least one type in `tag_types` cannot be found in this container, succeeds otherwise. Note that this means that if `tag_types` is empty this call succeeds.
-    ContainsAllTags<override><native><final>(tag_types:[]castable_subtype(tag))<reads><decides>:void
+    ContainsAllTags<override><native><final>(tag_types:[]castable_subtype(tag))<decides><reads>:void
 
-    @available {MinUploadedAtFNVersion := 3200}
     # Succeeds if at least of the types in `tag_types` is found in this container, fails otherwise. Note that this means that if `tag_types` is empty this call fails.
-    ContainsAnyTag<override><native><final>(tag_types:[]castable_subtype(tag))<reads><decides>:void
+    ContainsAnyTag<override><native><final>(tag_types:[]castable_subtype(tag))<decides><reads>:void
+
+(InEntity:entity).Preload<native><epic_internal>()<suspends>:logic
 
 # Reference type to editor defined prefab. Only generated digest code should reference this type.
 entity_prefab<native><public> := class<computes><epic_internal>(asset):
 
 
-@available {MinUploadedAtFNVersion := 3200}
 # Finds all descendant entities including `InEntity` that has any tags of type `tag_type`.
 # When querying from the simulation entity, the simulation entity itself is not included in the results.
 # The order of the returned entities is unspecified and subject to change.
 (InEntity:entity).FindDescendantEntitiesWithTag<native><public>(tag_type:castable_subtype(tag))<transacts>:generator(entity)
 
-@available {MinUploadedAtFNVersion := 3200}
 # Finds all ancestor entities to `InEntity` that has any tags of type `tag_type`.
 # The order of the returned entities is unspecified and subject to change.
 (InEntity:entity).FindAncestorEntitiesWithTag<native><public>(tag_type:castable_subtype(tag))<transacts>:generator(entity)
@@ -318,19 +303,10 @@ icon_component<native><public> := class<final_super>(component, has_icon):
 
     OnEndSimulation<override>():void = external {}
 
-@hide_in_editor
-mass_component<native><epic_internal> := class<final_super><epic_internal>(component):
-    OnUninitializingInternal<native><override>():void
-
-    OnAddedToSceneInternal<native><override>():void
-
-    OnRemovingFromSceneInternal<native><override>():void
-
 # Interface to provide alternative origin to an entity which is defaulted to its parent. See `transform_component`
 origin<native><public> := interface<epic_internal>:
     GetTransform<native_callable><public>()<transacts>:(/Verse.org/SpatialMath:)transform
 
-@available {MinUploadedAtFNVersion := 3200}
 # class to provide alternative origin to the 'transform_component' as an entity
 entity_origin<native><public> := class<final>(origin):
     @editable
@@ -347,15 +323,16 @@ entity_origin<native><public> := class<final>(origin):
 
     GetTransform<override>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
 
-@import_as("/Script/CoreUObject.UObject")
-actor<native><epic_internal> := class:
+@replicatable
+@import_as("/Script/Entity.FActorOriginData")
+actor_data<native><epic_internal> := struct<concrete>:
 
 
 # class to provide alternative origin to the 'transform_component' as an actor. This class should never be public and is intended for internal use only.
 actor_origin<native><epic_internal> := class(origin):
     @editable
     @replicated("RepNotify")
-    Actor<native><epic_internal>:actor
+    ActorData<native><epic_internal>:actor_data
 
     GetTransform<native><override>()<transacts>:(/Verse.org/SpatialMath:)transform
 
@@ -464,10 +441,12 @@ simulation_entity<native><epic_internal> := class<concrete><unique><transacts>(e
 @available {MinUploadedAtFNVersion := 4000}
 # A component that when attached to an entity allows for it to merge or 'stack' with other entities with compatible components.
 stackable_component<native><public> := class<abstract><final_super>(component):
+    @replicated("RepNotify")
     @editable_number(int) {MinValue := option {1}}
     # The current amount of this entity held in the stack.
     var<private> StackSize<native><public>:int = external {}
 
+    @replicated("RepNotify")
     @editable
     # The maximum amount this component can hold. If unset, it holds an unlimited amount.
     var<private> MaxStackSize<native><public>:?int = external {}
@@ -483,7 +462,7 @@ stackable_component<native><public> := class<abstract><final_super>(component):
     Split<native_callable><public>(Amount:int)<transacts><decides>:entity
 
     # Succeeds if this entity can be merged into the target entity. Merging an entity with itself will always fail. Note that merging should be checked in both directions!
-    CanMergeInto<native_callable><public>(TargetEntity:entity)<reads><decides>:void = external {}
+    CanMergeInto<native_callable><public>(TargetEntity:entity)<decides><reads>:void = external {}
 
     CanMergeIntoInternal<final><native><epic_internal>(TargetEntity:entity)<reads>:?logic
 
@@ -526,7 +505,7 @@ change_stackable_component_event<epic_internal> := class(scene_event):
 
 # Merge Rules Interface. Implemented by components that want to participate in entity mergeability checks.
 has_merge_rules<public> := interface<unique>:
-    AllowMergeInto<public>(TargetEntity:entity)<reads><decides>:void = external {}
+    AllowMergeInto<public>(TargetEntity:entity)<decides><reads>:void = external {}
 
     OnMergeInto<public>(TargetEntity:entity, MergeAmount:int)<transacts>:void = external {}
 
@@ -539,7 +518,7 @@ basic_stackable_component<native><public> := class(stackable_component):
     Split<override>(Amount:int)<transacts><decides>:entity = external {}
 
     # Succeeds if this entity can be merged into the target entity. Merging an entity with itself will always fail.
-    CanMergeInto<override>(TargetEntity:entity)<reads><decides>:void = external {}
+    CanMergeInto<override>(TargetEntity:entity)<decides><reads>:void = external {}
 
 # Describes discrete phases of a frame update. Subscribe to members of the tick_events object to run code before or after the physics system has updated your object, allowing you to affect or react to these updates.
 tick_events<native><public> := class<epic_internal>:

@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to create plants with explosive pods that players can detonate and launch.
 wilds_plant_device<public> := class<concrete><final>(creative_device_base):

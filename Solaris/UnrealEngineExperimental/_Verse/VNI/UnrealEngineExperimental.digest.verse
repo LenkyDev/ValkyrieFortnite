@@ -1,3 +1,4 @@
+# Verse path: /UnrealEngine.com/Temporary
 # Module import path: /UnrealEngine.com/Temporary/Curves
 Curves<public> := module:
     editable_curve<native><public> := class<final><concrete>:

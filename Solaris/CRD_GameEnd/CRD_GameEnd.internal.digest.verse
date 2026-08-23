@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to configure rules that can end the current round or game.
 end_game_device<public> := class<concrete><final>(creative_device_base):

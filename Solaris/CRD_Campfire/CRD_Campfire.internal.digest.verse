@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to place a campfire in the world that an `agent` can use to heal themselves.
 campfire_device<public> := class<concrete><final>(creative_device_base):

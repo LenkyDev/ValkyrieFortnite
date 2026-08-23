@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/Temporary
 # Module import path: /Verse.org/Temporary/EpicGamesRestricted
 EpicGamesRestricted<public> := module:
     # Module import path: /Verse.org/Temporary/EpicGamesRestricted/Network
@@ -8,3 +9,6 @@ EpicGamesRestricted<public> := module:
 
 
         replicated<constructor><epic_internal>(ReplicationArgs:string)<computes>:replicated_attribute = external {}
+
+        @attribscope_struct
+        replicatable<epic_internal> := class<computes><internal>(attribute):

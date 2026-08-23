@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 using {/Fortnite.com/Game}
 hive_stash_style<public> := enum<open>:

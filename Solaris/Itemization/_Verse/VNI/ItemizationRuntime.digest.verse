@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Itemization
 using {/Verse.org/Native}
 using {/Verse.org/Simulation}
 using {/Verse.org/SceneGraph}
@@ -5,7 +6,7 @@ using {/UnrealEngine.com/Itemization}
 # `fort_inventory_component` is a shared class for all Fortnite inventories, with appropriate default UI and behavior. The HUD when using the BR Style Inventory Configuration will only be shown when using the default configuration. If new inventories are added you will need to create your own custom HUD using Verse UI.
 fort_inventory_component<native><public> := class<epic_internal>(inventory_component):
     # Returns the total number of slots in this inventory.
-    GetMaxSlots<native><public>()<reads><decides>:int
+    GetMaxSlots<native><public>()<decides><reads>:int
 
 # `fort_inventory_weapon_hotbar_component` is the UEFN inventory for Fortnite weapons and gadgets.
 fort_inventory_weapon_hotbar_component<native><public> := class<final>(fort_inventory_component):
@@ -64,7 +65,7 @@ fort_item_pickup_interactable_component<native><public> := class(basic_interacta
 
     Disable<override>():void = external {}
 
-    CanInteract<native><override>(Agent:agent)<reads><decides>:void
+    CanInteract<native><override>(Agent:agent)<decides><reads>:void
 
     EnableItemInteraction<protected>():void = external {}
 

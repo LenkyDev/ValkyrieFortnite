@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Assets}
 using {/UnrealEngine.com/Temporary/SpatialMath}
 using {/Verse.org/Simulation}
@@ -13,7 +14,7 @@ carryable_spawner_device<public> := class<concrete><final>(creative_device_base,
     SpawnEvent<public>:listenable(tuple()) = external {}
 
     # Fails if the carryable does not exist in-world.
-    IsSpawned<public>()<reads><decides>:void = external {}
+    IsSpawned<public>()<decides><reads>:void = external {}
 
     # Explode the carryable, if it exists.
     Explode<public>():void = external {}

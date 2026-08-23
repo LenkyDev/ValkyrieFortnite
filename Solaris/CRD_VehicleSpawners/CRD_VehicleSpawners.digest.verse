@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Fortnite.com/Vehicles}
 using {/Verse.org/Simulation}
 # Specialized `vehicle_spawner_device` that allows an ATK (all terrain kart) to be configured and spawned.

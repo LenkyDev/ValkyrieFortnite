@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to configure and play audio from the device location or from registered `agent`s.
 audio_player_device<public> := class<concrete><final>(creative_device_base):

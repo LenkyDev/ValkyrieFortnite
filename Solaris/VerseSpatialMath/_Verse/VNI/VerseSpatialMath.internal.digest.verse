@@ -1,10 +1,13 @@
+# Verse path: /Verse.org
 # Module import path: /Verse.org/SpatialMath
 SpatialMath<public> := module:
     using {/Verse.org/Simulation}
     using {/Verse.org/Native}
+    using {/Verse.org/Temporary/EpicGamesRestricted/Network}
+    @replicatable
     @import_as("/*.FVRotation")
     # An abstract representation of an orientation change in 3d-space.
-    rotation<native><public> := struct<concrete>:
+    rotation<native><public> := struct<concrete><uht_comparable>:
 
 
     @available {MinUploadedAtFNVersion := 3600}
@@ -142,9 +145,10 @@ SpatialMath<public> := module:
     # Returns degrees from `Radians`.
     RadiansToDegrees<public>(Radians:float)<reads>:float = external {}
 
+    @replicatable
     @import_as("/*.FVTransform")
     # A combination of scale, rotation, and translation, applied in that order.
-    transform<native><public> := struct<concrete><computes>:
+    transform<native><public> := struct<concrete><computes><uht_comparable>:
         @editable
         # The location of this `transform`.
         Translation<native><public>:vector3 = external {}
@@ -165,6 +169,7 @@ SpatialMath<public> := module:
     # `"{Translation = {ToString(`InTransform.Translation`)}, Rotation = {ToString(`InTransform.Rotation`)}, Scale = {ToString(`InTransform.Scale`)}}".
     (/Verse.org/SpatialMath:)ToString<public>(InTransform:transform)<reads>:string = external {}
 
+    @replicatable
     @import_as("/*.FVVector3")
     # 3-dimensional vector with `float` components.
     vector3<native><public> := struct<concrete><computes><persistable><uht_comparable>:

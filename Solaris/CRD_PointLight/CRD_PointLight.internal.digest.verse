@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 # Used to create a light which can have its color and brightness manipulated in response to in-game events.
 customizable_light_device<public> := class<concrete><final>(creative_device_base):
     # Enables this device.

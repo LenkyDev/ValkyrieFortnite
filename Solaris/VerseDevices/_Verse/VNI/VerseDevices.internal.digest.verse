@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com
 # Module import path: /Fortnite.com/Devices
 Devices<public> := module:
     using {/Fortnite.com/AI}
@@ -733,52 +734,45 @@ Devices<public> := module:
 
         HealedEvent<override>():listenable(healing_result) = external {}
 
-    @available {MinUploadedAtFNVersion := 3200}
     # Generates a `creative_object_interface` for every creative object that has any tag of type `tag_type`. Will not find anything if called on a default constructed object.
     (InCreativeDevice:creative_device).FindCreativeObjectsWithTag<public>(tag_type:castable_subtype(tag))<transacts>:generator(creative_object_interface) = external {}
 
-    @available {MinUploadedAtFNVersion := 3200}
     # Generates a `creative_object_interface` for every creative object that has any tag of type `tag_type`. Will not find anything if called on a default constructed object.
     (InCreativeDevice:creative_device_base).FindCreativeObjectsWithTag<public>(tag_type:castable_subtype(tag))<transacts>:generator(creative_object_interface) = external {}
 
-    @available {MinUploadedAtFNVersion := 3200}
     # Generates a `creative_object_interface` for every creative object that has any tag of type `tag_type`. Will not find anything if called on an `npc_behavior` that is not simulating.
     (InNPCBehavior:npc_behavior).FindCreativeObjectsWithTag<native><public>(tag_type:castable_subtype(tag))<transacts>:generator(creative_object_interface)
 
-    @available {MinUploadedAtFNVersion := 3200}
     # Generates a `creative_object_interface` for every creative object that has any tag of type `tag_type`. Will not find anything if called on an `entity` that is not in the scene.
     (InEntity:entity).FindCreativeObjectsWithTag<native><public>(tag_type:castable_subtype(tag))<transacts>:generator(creative_object_interface)
 
-    @available {MinUploadedAtFNVersion := 2930}
-    @deprecated
+    @deprecated {Message := "Use the overload that takes a tag type instead of a tag instance."}
     # DEPRECATED - use corresponding extension methods that takes a tag type instead of a tag instance.
     # Generates a `creative_object_interface` for every creative object that has been marked with the specified `Tag`. Will not find anything if called on a default constructed object.
     (InCreativeDevice:creative_device).FindCreativeObjectsWithTag<public>(Tag:tag)<transacts>:generator(creative_object_interface) = external {}
 
-    @available {MinUploadedAtFNVersion := 2930}
-    @deprecated
+    @deprecated {Message := "Use the overload that takes a tag type instead of a tag instance."}
     # DEPRECATED - use corresponding extension methods that takes a tag type instead of a tag instance.
     # Generates a `creative_object_interface` for every creative object that has been marked with the specified `Tag`. Will not find anything if called on a default constructed object.
     (InCreativeDevice:creative_device_base).FindCreativeObjectsWithTag<public>(Tag:tag)<transacts>:generator(creative_object_interface) = external {}
 
     @available {MinUploadedAtFNVersion := 3300}
-    @deprecated
+    @deprecated {Message := "Use the overload that takes a tag type instead of a tag instance."}
     # DEPRECATED - use corresponding extension methods that takes a tag type instead of a tag instance.
     # Generates a `creative_object_interface` for every creative object that has been marked with the specified `Tag`. Will not find anything if called on an `npc_behavior` that is not simulating.
     (InNPCBehavior:npc_behavior).FindCreativeObjectsWithTag<native><public>(Tag:tag)<transacts>:generator(creative_object_interface)
 
-    @available {MinUploadedAtFNVersion := 2930}
-    @deprecated
+    @deprecated {Message := "Use the overload that takes a tag type instead of a tag instance."}
     # DEPRECATED - use corresponding extension methods that takes a tag type instead of a tag instance.
     # Generates a `creative_object_interface` for every creative object that has been marked with the specified `Tag`. Will not find anything if called on an `entity` that is not in the scene.
     (InEntity:entity).FindCreativeObjectsWithTag<native><public>(Tag:tag)<transacts>:generator(creative_object_interface)
 
-    @deprecated
+    @deprecated {Message := "Use `FindCreativeObjectsWithTag` instead."}
     # DEPRECATED - use `FindCreativeObjectsWithTag` instead.
     # Returns an array containing all creative objects which have been marked with the specified `Tag`.
     GetCreativeObjectsWithTag<native><public>(Tag:tag)<transacts>:[]creative_object_interface
 
-    @deprecated
+    @deprecated {Message := "Use `FindCreativeObjectsWithTag` instead."}
     # DEPRECATED - use `FindCreativeObjectsWithTag` instead.
     # Returns an array containing creative objects which have tag(s) matching the specified `SearchCriteria`.
     GetCreativeObjectsWithTags<native><public>(SearchCriteria:tag_search_criteria)<transacts>:[]creative_object_interface

@@ -1,3 +1,4 @@
+# Verse path: /Verse.org
 # Module import path: /Verse.org/Native
 Native<public> := module:
     @attribscope_class
@@ -14,7 +15,7 @@ Native<public> := module:
 Concurrency<public> := module:
     using {/Verse.org/Native}
     # A parametric interface implemented by events with a `payload` that can be waited on. Matched with `signalable.`
-    awaitable<public>(payload:type) := interface:
+    awaitable<native><public>(payload:type) := interface:
         (/Verse.org/Concurrency/awaitable:)Concurrency_awaitable_Variance<private>():tuple(payload) = external {}
 
         # Suspends the current task until resumed by a matching call to `signalable.Signal`. Returns the event `payload`.

@@ -9,7 +9,7 @@
 	"BuiltInAutoRegister": true,
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
-	"FortReleaseVersion": "41.30",
+	"FortReleaseVersion": "42.00",
 	"IsGameFeatureSet": true,
 	"InstallItem": {
 		"Name": "BeanstalkGFS",
@@ -70,7 +70,17 @@
 			"Optional": true
 		},
 		{
+			"Name": "BeanstalkAudio",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "BeanstalkCosmetics",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "BeanstalkDevicesCore",
 			"Enabled": true,
 			"Optional": true
 		},

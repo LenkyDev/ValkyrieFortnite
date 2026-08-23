@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to track `agent` events used to generate analytics.
 analytics_device<public> := class<concrete><final>(creative_device_base):

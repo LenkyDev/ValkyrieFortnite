@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 emote_controller_device<epic_internal> := class<concrete><final>(creative_device_base):
     # Enables this device.

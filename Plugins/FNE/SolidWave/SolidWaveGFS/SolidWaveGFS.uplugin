@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/SolidWave",
-	"FortReleaseVersion": "41.30",
+	"FortReleaseVersion": "42.00",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"InstallItem": {
@@ -26,6 +26,11 @@
 		}
 	},
 	"Plugins": [
+		{
+			"Name": "SolidWaveEntityItems",
+			"Enabled": true,
+			"Optional": true
+		},
 		{
 			"Name": "CR_Legacy",
 			"Enabled": true,

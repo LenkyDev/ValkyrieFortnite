@@ -1,0 +1,20 @@
+{
+    "OutputPlugin": "LimeEntityItems",
+    "DefaultProductModuleName": "LEGO",
+    "DefaultCategoryModuleName": "Items",
+    "DefaultModuleProperties": {
+        "bExperimentalStatus": false,
+        "bAllowInternalItems": false,
+        "AccessLevel": "Public"
+    },
+    "InternalProductModuleNames": [],
+    "ProductModules": {
+        "LEGO": { "Tags": [ "Lime" ] }
+    },
+    "CategoryModules": {
+        "Items": { "Tags": [ "Item" ] },
+        "Weapons": { "Tags": [ "Weapon" ] }
+    },
+    "ExcludeAssetsInFeatureSets": [ "" ],
+    "VariantModules": {}
+}

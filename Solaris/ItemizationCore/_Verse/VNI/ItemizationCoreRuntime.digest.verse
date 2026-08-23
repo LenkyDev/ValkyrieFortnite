@@ -1,3 +1,5 @@
+# Verse path: /UnrealEngine.com/Itemization
+using {/Verse.org/SpatialMath}
 using {/Verse.org/Simulation}
 using {/Verse.org/Native}
 using {/Verse.org/SceneGraph}
@@ -40,7 +42,7 @@ add_item_error<native><public> := class<computes>:
 
 
 # When adding an item, 'find_inventory_event' is used as a first pass to find the best inventory for an item. It is sent downwards.
-# 'add_item_query_event' can be used to veto inventory choices. It is sent upwards.
+# 'add_item_query_event' can be used to veto inventory choices, sent upwards from the inventory (to its ancestors) and downwards from the item entity (to its children).
 add_item_query_event<native><public> := class<epic_internal>(scene_event):
     Item<native><public>:item_component
 
@@ -53,6 +55,7 @@ add_item_query_event<native><public> := class<epic_internal>(scene_event):
 remove_item_error<native><public> := class<computes>:
 
 
+# Can be used to veto item removal. Sent upwards from the inventory (to its ancestors) and downwards from the item entity (to its children).
 remove_item_query_event<native><public> := class<epic_internal>(scene_event):
     Item<native><public>:item_component
 
@@ -84,7 +87,6 @@ inventory_component<native><public> := class<final_super>(component):
     # Returns a list of items within this inventory only.
     GetItems<native><final><public>()<reads>:[]entity
 
-    @available {MinUploadedAtFNVersion := 3200}
     # Returns a list of items (of a specific type) within this inventory only.
     GetItems<native><final><public>(Type:castable_subtype(item_component))<reads>:[]entity
 
@@ -92,7 +94,6 @@ inventory_component<native><public> := class<final_super>(component):
     # Returns a list of all items within this inventory and its descendant inventories.
     FindItems<native><final><public>()<reads>:generator(entity)
 
-    @available {MinUploadedAtFNVersion := 3200}
     # Returns a list of all items (of a specific type) within this inventory and its descendant inventories.
     FindItems<native><final><public>(Type:castable_subtype(item_component))<reads>:[]entity
 
@@ -105,12 +106,16 @@ inventory_component<native><public> := class<final_super>(component):
 
     GetEquippedItems<final><native><public>():[]entity
 
+    # Triggered when an item is added. Fires on this inventory, then propagates up to all ancestor inventories.
     AddItemEvent<native><final><public>:listenable(add_item_result) = external {}
 
+    # Triggered when an item is removed. Fires on this inventory, then propagates up to all ancestor inventories.
     RemoveItemEvent<native><final><public>:listenable(remove_item_result) = external {}
 
+    # Triggered when an item is equipped. Fires on this inventory, then propagates up to all ancestor inventories.
     EquipItemEvent<native><final><public>:listenable(equip_item_result) = external {}
 
+    # Triggered when an item is unequipped. Fires on this inventory, then propagates up to all ancestor inventories.
     UnequipItemEvent<native><final><public>:listenable(unequip_item_result) = external {}
 
 @available {MinUploadedAtFNVersion := 3800}
@@ -144,6 +149,7 @@ change_inventory_result<native><public> := class<epic_internal>:
 equip_item_error<native><public> := class<computes>:
 
 
+# When equipping an item, 'equip_item_query_event' can be used to veto the equip. It is sent upwards from the inventory (to its ancestors) and downwards from the item entity (to its children).
 equip_item_query_event<native><public> := class(scene_event):
     Item<native><public>:item_component
 
@@ -154,6 +160,7 @@ equip_item_query_event<native><public> := class(scene_event):
 unequip_item_error<native><public> := class<computes>:
 
 
+# When unequipping an item, 'unequip_item_query_event' can be used to veto the unequip. It is sent upwards from the inventory (to its ancestors) and downwards from the item entity (to its children).
 unequip_item_query_event<native><public> := class(scene_event):
     Item<native><public>:item_component
 
@@ -168,10 +175,10 @@ item_component<native><public> := class<final_super>(component):
     OnEndSimulation<override>():void = external {}
 
     # Returns the inventory_component this item currently resides in. Fails if it cannot find a valid parent inventory.
-    GetParentInventory<native><final><public>()<reads><decides>:inventory_component
+    GetParentInventory<native><final><public>()<decides><reads>:inventory_component
 
     # Succeeds if this item is considered currently within an inventory and equipped.
-    IsEquipped<native><final><public>()<reads><decides>:void
+    IsEquipped<native><final><public>()<decides><reads>:void
 
     # Broadcast when this item changes inventory.
     ChangeInventoryEvent<native><final><public>:listenable(change_inventory_result) = external {}
@@ -196,6 +203,10 @@ item_component<native><public> := class<final_super>(component):
     # Removes the item from its inventory and places it in the simulation world. Works on orphaned items i.e. outside the world or any inventory.
     #  Fails if the item is already a pickup. The transform of the item will not be altered except to unparent it from any inventory.
     (/UnrealEngine.com/Itemization/item_component:)Drop<native><public>()<transacts><decides>:void
+
+    # Removes the item from its inventory and places it in the simulation world. Works on orphaned items i.e. outside the world or any inventory.
+    #  Fails if the item is already in the world. The transform of the dropped item will be set to WorldTransform.
+    (/UnrealEngine.com/Itemization/item_component:)Drop<native><public>(WorldTransform:(/Verse.org/SpatialMath:)transform)<transacts><decides>:void
 
     # Fails if this item is already in an inventory, or the inventory cannot accept the item.
     PickUp<native><public>(Inventory:inventory_component)<transacts><decides>:void

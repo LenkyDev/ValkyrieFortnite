@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com
 # Module import path: /Fortnite.com/Building
 Building<public> := module:
 
@@ -138,7 +139,7 @@ FortPlayerUtilities<public> := module:
     (InPlayer:player).GetPlayersSpectating<native><public>()<transacts>:[]player
 
     # Returns the agent a spectator is currently spectating, fails if the spectator isn't spectating or isn't spectating an agent.
-    (InAgent:agent).GetSpectatedAgent<native><public>()<reads><decides>:agent
+    (InAgent:agent).GetSpectatedAgent<native><public>()<decides><reads>:agent
 
     # Returns an `[]agent`s currently spectating `InAgent`.
     (InAgent:agent).GetSpectators<native><public>()<transacts>:[]agent
@@ -428,7 +429,7 @@ Vehicles<public> := module:
         # Succeeds if this `fort_vehicle` is standing in water.
         IsInWater<public>()<transacts><decides>:void
 
-        # Returns an array of every `fort_character` in the vehicle. Calls `GetOccupants()` and casts each occupying agent to a `fort_character`.
+        @deprecated {Message := "Use `GetOccupants` instead. To convert to `fort_character`, use `for (Agent : Vehicle.GetOccupants(), Character := Agent.GetFortCharacter[])\{ Character \}`."}
         GetPassengers<public>()<transacts>:[]fort_character = external {}
 
         # Returns an array with all `agent` currently occupying the vehicle.
@@ -470,7 +471,7 @@ Vehicles<public> := module:
     # Represents a seat in a `fort_vehicle`.
     fort_vehicle_seat<native><public> := class<unique><epic_internal>:
         # Succeeds if this is a driver seat.
-        IsDriverSeat<native><public>()<reads><decides>:void
+        IsDriverSeat<native><public>()<decides><reads>:void
 
         # The `agent` currently occupying this seat, if any.
         var<private> Occupant<public>:?agent

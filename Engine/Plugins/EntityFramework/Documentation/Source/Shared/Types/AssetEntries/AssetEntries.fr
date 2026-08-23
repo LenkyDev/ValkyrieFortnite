@@ -1,0 +1,39 @@
+
+[EXCERPT:entity]
+# Le système de graphique de scène
+
+Le graphique de scène offre une nouvelle façon de créer des scènes 3D et du gameplay, combinant les flux de travail traditionnels des éditeurs de jeux avec la puissance et la flexibilité des scripts Verse.
+
+![Le graphique de scène permet de créer des mondes complexes à partir de préfabriqués modulaires personnalisés.](prefabs.png)
+
+---
+
+## Bêta : À utiliser avec prudence
+
+Le système de graphique de scène est en version bêta. Vous pouvez l'essayer dans vos projets UEFN et même publier des projets qui l'utilisent. Cependant, le système est encore en développement actif et nombre de ses flux de travail disponibles sont limités. 
+
+Par exemple :
+
+-   Collaboration en équipe. Les éléments de graphique de scène, tels que les entités et les préfabriqués, sont enregistrés dans votre niveau. Lorsque vous modifiez un élément, vous modifiez également la ressource du niveau. Cela signifie que si vous utilisez un système de contrôle de version comme Unreal Revision Control ou Perforce, une seule personne à la fois peut travailler sur un niveau.
+
+-   L'éditeur de préfabriqué n'offre qu'un sous-ensemble restreint des fonctionnalités d'édition offertes par l'éditeur de niveau.
+
+-   Risque de perte de données. Vous pouvez créer vos propres classes Verse personnalisées pour les éléments de graphique de scène, tels que les entités et les composants. Vous pouvez ensuite ajouter des instances de ces classes au niveau dans l'éditeur et personnaliser leurs données. Dans certains cas cependant, ces instances ou leurs données peuvent être perdues si vous supprimez, déplacez, renommez ou modifiez ultérieurement les classes Verse, ou si vous enregistrez le niveau alors que votre code Verse n'a pas encore été compilé.
+
+Pour en savoir plus sur le système de graphique de scène et obtenir une liste plus détaillée de ses limitations, consultez la documentation en ligne.
+
+[VAR:ToolTipOverride]
+L'entité est la classe de base pour tous les objets du graphique de scène.
+Vous pouvez personnaliser son comportement en ajoutant des composants, l'étendre en ajoutant des entités enfants
+et enregistrer vos entités sous forme de ressources de préfabriqué réutilisables.
+
+Attention : le système de graphique de scène est en version bêta. Certains flux de travail sont limités,
+notamment la possibilité de collaborer via le contrôle de version.
+[/VAR]
+[VAR:ToolTipFullLink]
+scene-graph-in-unreal-editor-for-fortnite
+[/VAR]
+[VAR:BaseUrl]
+UEFN
+[/VAR]
+[/EXCERPT:entity]

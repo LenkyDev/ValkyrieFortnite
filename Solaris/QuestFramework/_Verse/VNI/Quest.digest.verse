@@ -1,3 +1,4 @@
+# Verse path: /Verse.org
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4110}
 # Module import path: /Verse.org/Progression
@@ -47,7 +48,7 @@ Progression<public> := module:
         Complete<native><final><public>()<transacts>:void
 
         # Succeeds if this quest is completed.
-        IsComplete<native><final><public>()<reads><decides>:void
+        IsComplete<native><final><public>()<decides><reads>:void
 
         # Signaled when a participant joins this quest.
         JoinEvent<native><final><public>:listenable(quest_membership) = external {}

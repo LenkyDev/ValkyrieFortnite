@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Creates a chair where `Agent`s can sit.
 chair_device<public> := class<concrete><final>(creative_device_base):

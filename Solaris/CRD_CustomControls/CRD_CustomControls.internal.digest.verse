@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to update the gameplay controls scheme based on current control mode.
 gameplay_controls_device<public> := class<abstract><epic_internal>(creative_device_base):

@@ -1,3 +1,4 @@
+# Verse path: /UnrealEngine.com
 # Module import path: /UnrealEngine.com/ControlInput
 ControlInput<public> := module:
     using {/Verse.org/SpatialMath}

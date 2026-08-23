@@ -1,3 +1,4 @@
+# Verse path: /UnrealEngine.com
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4110}
 # Module import path: /UnrealEngine.com/Progression
@@ -25,7 +26,7 @@ using {/Verse.org/Native}
         GetProgress<override><native><final>()<reads>:message
 
         # Succeeds if Progress >= RequiredCount.
-        IsComplete<override><native><final>()<reads><decides>:void
+        IsComplete<override><native><final>()<decides><reads>:void
 
         # Sets current progress. Clamped to [0, RequiredCount].
         SetProgress<native><final><public>(Amount:float)<transacts>:void

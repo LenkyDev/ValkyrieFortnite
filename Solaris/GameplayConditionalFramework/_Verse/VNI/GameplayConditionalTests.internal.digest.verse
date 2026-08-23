@@ -1,3 +1,4 @@
+# Verse path: /UnrealEngine.com
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4110}
 # Module import path: /UnrealEngine.com/GameplayConditionalFrameworkTests
@@ -14,7 +15,7 @@ GameplayConditionalFrameworkTests<public> := module:
         Evaluate<override>()<decides>:void = external {}
 
     @hide_in_editor
-    test_gameplay_conditional<native><epic_internal> := class((/UnrealEngine.com:)Progression.gameplay_conditional):
+    test_gameplay_conditional<native><epic_internal> := class<concrete>((/UnrealEngine.com:)Progression.gameplay_conditional):
         Attributes<override>:[](/UnrealEngine.com:)Progression.gameplay_conditional_attribute = external {}
 
         OnInitialization<override>(ContextAnchor:entity):void = external {}
@@ -37,12 +38,4 @@ GameplayConditionalFrameworkTests<public> := module:
 
         SetupInteropGameplayConditional<native_callable><epic_internal>():logic = external {}
 
-        TEST_Instanced_RegisterAndUnregister_Conditional<native_callable><epic_internal>():logic = external {}
-
-        TEST_Instanced_RegisterAndUnregister_Participant<native_callable><epic_internal>():logic = external {}
-
-        TEST_Instanced_Execute_Participant<native_callable><epic_internal>():logic = external {}
-
-        TEST_Instanced_Execute_Evaluation<native_callable><epic_internal>():logic = external {}
-
-        TEST_Instanced_Execute_Interop<native_callable><epic_internal>():logic = external {}
+        TEST_Execute_Participant<native_callable><epic_internal>():logic = external {}

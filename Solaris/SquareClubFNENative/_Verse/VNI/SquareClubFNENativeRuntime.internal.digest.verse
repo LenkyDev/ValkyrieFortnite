@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com
 # Module import path: /Fortnite.com/SquareClubFNENative
 SquareClubFNENative<public> := module:
     # Module import path: /Fortnite.com/SquareClubFNENative/Abilities

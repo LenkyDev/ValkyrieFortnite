@@ -1,3 +1,4 @@
+# Verse path: /Verse.org
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4110}
 # Module import path: /Verse.org/Progression
@@ -125,9 +126,9 @@ Progression<public> := module:
 
         OnAbandon<native><native_callable><epic_internal>(QuestParticipant:quest_participant):void
 
-        CanAdd<native><native_callable><epic_internal>(Manager:quest_manager_component)<reads><decides>:void
+        CanAdd<native><native_callable><epic_internal>(Manager:quest_manager_component)<decides><reads>:void
 
-        CanRemove<native><native_callable><epic_internal>(Manager:quest_manager_component)<reads><decides>:void
+        CanRemove<native><native_callable><epic_internal>(Manager:quest_manager_component)<decides><reads>:void
 
         OnAdd<native><native_callable><epic_internal>(Manager:quest_manager_component):void
 
@@ -136,9 +137,9 @@ Progression<public> := module:
         GetState<native><final><epic_internal>()<reads>:quest_state
 
         # Succeeds if this quest is completed.
-        IsComplete<native><final><public>()<reads><decides>:void
+        IsComplete<native><final><public>()<decides><reads>:void
 
-        IsActive<native><final><epic_internal>()<reads><decides>:void
+        IsActive<native><final><epic_internal>()<decides><reads>:void
 
         GetCompletionContext<native><final><epic_internal>()<reads>:?quest_completion_context
 
@@ -181,7 +182,7 @@ Progression<public> := module:
 
         GetProgress<native><final><epic_internal>()<reads>:message
 
-        IsComplete<native><final><epic_internal>()<reads><decides>:void
+        IsComplete<native><final><epic_internal>()<decides><reads>:void
 
         var Quests<native><epic_internal>:[]quest
 
@@ -225,7 +226,7 @@ Progression<public> := module:
 
     @experimental
     quest_granter_component<native><epic_internal> := class<final_super><epic_internal>(component):
-        CanGrant<native><native_callable><epic_internal>(Manager:quest_manager_component)<reads><decides>:void
+        CanGrant<native><native_callable><epic_internal>(Manager:quest_manager_component)<decides><reads>:void
 
         OnGrant<native><native_callable><epic_internal>(Manager:quest_manager_component, Quest:quest):void
 
@@ -249,9 +250,9 @@ Progression<public> := module:
 
         RemoveQuest<native><native_callable><epic_internal>(Quest:quest):void
 
-        CanAdd<native><native_callable><epic_internal>(Quest:quest)<reads><decides>:void
+        CanAdd<native><native_callable><epic_internal>(Quest:quest)<decides><reads>:void
 
-        CanRemove<native><native_callable><epic_internal>(Quest:quest)<reads><decides>:void
+        CanRemove<native><native_callable><epic_internal>(Quest:quest)<decides><reads>:void
 
         OnAdd<native><native_callable><epic_internal>(Quest:quest):void
 

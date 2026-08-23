@@ -1,1 +1,1 @@
--EnablePlugins=ValkyrieFortnite -saveddirsuffix=UEFN -enginesaveddirsuffix=UEFN
+-EnablePlugins=ValkyrieFortnite -saveddirsuffix=UEFN -enginesaveddirsuffix=UEFN -ini:Engine:[ConsoleVariables]:verse.ShowBuiltInSource=True

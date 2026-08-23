@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to spawn fireflies that can be collected by `agent`s.
 firefly_spawner_device<public> := class<concrete><final>(creative_device_base):

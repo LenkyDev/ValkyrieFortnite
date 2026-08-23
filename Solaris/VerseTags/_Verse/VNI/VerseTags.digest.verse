@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/Simulation
 # Module import path: /Verse.org/Simulation/Tags
 Tags<public> := module:
     using {/Verse.org/Native}
@@ -9,29 +10,23 @@ Tags<public> := module:
         # Removes the tag instance associated with the `tag_key`, succeeds if an instance was removed, fails otherwise.
         RemoveTag<native_callable><public>(Key:tag_key)<transacts><decides>:void
 
-        @available {MinUploadedAtFNVersion := 3200}
         # Removes all tag instances of type `tag_type`, succeeds if at least one instance was removed, fails otherwise.
         RemoveAllTags<native_callable><public>(tag_type:castable_subtype(tag))<transacts><decides>:void
 
-        @available {MinUploadedAtFNVersion := 3200}
         # Removes all tag instances that are not of type `tag_type`, succeeds if at least one instance was removed, fails otherwise.
         RemoveAllTagsExcept<native_callable><public>(tag_type:castable_subtype(tag))<transacts><decides>:void
 
-        @available {MinUploadedAtFNVersion := 3200}
         # Removes all tag instances that are not of any of the types in `tag_types`, succeeds if at least one instance was removed, fails otherwise.
         RemoveAllTagsExcept<native_callable><public>(tag_types:[]castable_subtype(tag))<transacts><decides>:void
 
-        @available {MinUploadedAtFNVersion := 3200}
         # Succeeds if at least one tag of type `tag_type` is found in this container, fails otherwise.
-        ContainsTag<native_callable><public>(tag_type:castable_subtype(tag))<reads><decides>:void
+        ContainsTag<native_callable><public>(tag_type:castable_subtype(tag))<decides><reads>:void
 
-        @available {MinUploadedAtFNVersion := 3200}
         # Fails if at least one type in `tag_types` cannot be found in this container, succeeds otherwise. Note that this means that if `tag_types` is empty this call succeeds.
-        ContainsAllTags<native_callable><public>(tag_types:[]castable_subtype(tag))<reads><decides>:void
+        ContainsAllTags<native_callable><public>(tag_types:[]castable_subtype(tag))<decides><reads>:void
 
-        @available {MinUploadedAtFNVersion := 3200}
         # Succeeds if at least of the types in `tag_types` is found in this container, fails otherwise. Note that this means that if `tag_types` is empty this call fails.
-        ContainsAnyTag<native_callable><public>(tag_types:[]castable_subtype(tag))<reads><decides>:void
+        ContainsAnyTag<native_callable><public>(tag_types:[]castable_subtype(tag))<decides><reads>:void
 
     # A base type used for tagging objects in order to hierarchically evaluate an objects classification.
     tag<native><public> := class<abstract><castable>:
@@ -39,7 +34,7 @@ Tags<public> := module:
 
     @import_as("/*.FVerseTagKey")
     # A `tag_key` is the return value from adding a `tag` to a container implementing the `has_tags` interface, and is used to selectively remove such an instance from the same container.
-    tag_key<native><public> := struct<internal>:
+    tag_key<native><public> := struct<uht_comparable><internal>:
 
 
     tag_search_sort_type<native><public> := enum:
@@ -63,10 +58,10 @@ Tags<public> := module:
     # A queryable collection of tags.
     tag_view<native><public> := interface<epic_internal>:
         # Determine if TagToCheck is present in this container, also checking against parent tags {"A.1"}.Has("A") will return True, {"A"}.Has("A.1") will return False If TagToCheck is not Valid it will always return False.
-        Has<public>(TagToCheck:tag)<reads><decides>:void
+        Has<public>(TagToCheck:tag)<decides><reads>:void
 
         # Checks if this container contains ANY of the tags in the specified container, also checks against parent tags {"A.1"}.HasAny({"A","B"}) will return True, {"A"}.HasAny({"A.1","B"}) will return False If InTags is empty/invalid it will always return False.
-        HasAny<public>(InTags:[]tag)<reads><decides>:void
+        HasAny<public>(InTags:[]tag)<decides><reads>:void
 
         # Checks if this container contains ALL of the tags in the specified container, also checks against parent tags {"A.1","B.1"}.HasAll({"A","B"}) will return True, {"A","B"}.HasAll({"A.1","B.1"}) will return False If InTags is empty/invalid it will always return True, because there were no failed checks.
-        HasAll<public>(InTags:[]tag)<reads><decides>:void
+        HasAll<public>(InTags:[]tag)<decides><reads>:void

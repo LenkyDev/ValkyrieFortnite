@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Use to create a flaming hoop that accelerates and applies nitro to players and vehicles.
 nitro_hoop_device<public> := class<concrete><final>(creative_device_base):

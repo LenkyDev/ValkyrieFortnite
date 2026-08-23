@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to update the camera's current viewpoint and rotation based on current camera mode.
 gameplay_camera_device<public> := class<abstract><epic_internal>(creative_device_base):

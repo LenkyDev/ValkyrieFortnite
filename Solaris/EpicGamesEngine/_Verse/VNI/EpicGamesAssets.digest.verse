@@ -1,3 +1,4 @@
+# Verse path: /UnrealEngine.com
 # Module import path: /UnrealEngine.com/Assets
 (/UnrealEngine.com:)Assets<public> := module:
     using {/Verse.org/SpatialMath}

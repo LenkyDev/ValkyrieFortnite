@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices/Patchwork
 # Apply a distortion effect to Patchwork audio inputs.
 distortion_effect_device<public> := class<concrete><final>(patchwork_device):
     var Mix<epic_internal>:float = external {}

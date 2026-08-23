@@ -1,0 +1,20 @@
+{
+    "OutputPlugin": "SW_EntityItems",
+    "DefaultProductModuleName": "StarWars",
+    "DefaultCategoryModuleName": "Items",
+    "DefaultModuleProperties": {
+        "bExperimentalStatus": false,
+        "bAllowInternalItems": false,
+        "AccessLevel": "Public"
+    },
+    "InternalProductModuleNames": [],
+    "ProductModules": {
+        "StarWars": { "Tags": [ "Akita" ] }
+    },
+    "CategoryModules": {
+        "Items": { "Tags": [ "Item" ] },
+        "Weapons": { "Tags": [ "Weapon" ] }
+    },
+    "ExcludeAssetsInFeatureSets": [ "SWNativeItemized", "" ],
+    "VariantModules": {}
+}

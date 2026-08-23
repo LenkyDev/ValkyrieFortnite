@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/SceneGraph
 using {/Verse.org/Simulation}
 # Entity client streaming modes
 entity_streaming_policy<native><public> := enum:

@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to spawn and configure an aerial supply drop that can provide players with customized weapons/supplies.
 supply_drop_spawner_device<public> := class<concrete><final>(creative_device_base):

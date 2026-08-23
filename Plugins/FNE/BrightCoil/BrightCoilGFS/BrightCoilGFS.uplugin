@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/BrightCoil",
-	"FortReleaseVersion": "41.30",
+	"FortReleaseVersion": "42.00",
 	"IsGameFeatureSet": true,
 	"InstallItem": {
 		"Name": "BrightCoilGFS",
@@ -25,6 +25,11 @@
 		}
 	},
 	"Plugins": [
+		{
+			"Name": "BrightCoilEntityItems",
+			"Enabled": true,
+			"Optional": true
+		},
 		{
 			"Name": "BrightCoil_Assets",
 			"Enabled": true,

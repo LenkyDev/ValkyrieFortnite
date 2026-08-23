@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to move around a building or prop, and customize responses to various collision event types.
 prop_mover_device<public> := class<concrete><final>(creative_device_base):

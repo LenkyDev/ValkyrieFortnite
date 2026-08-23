@@ -1,3 +1,4 @@
+# Verse path: /Verse.org
 # Module import path: /Verse.org/Verse
 Verse<public> := module:
     using {/Verse.org/Simulation}
@@ -6,7 +7,7 @@ Verse<public> := module:
     @available {MinUploadedAtFNVersion := 4100}
     @experimental
     # Implemented by classes to provide a method for modification evaluation.
-    modifier<public>(t:type) := interface:
+    modifier<native><public>(t:type) := interface:
         (/Verse.org/Verse/modifier:)Verse_modifier_Variance<private>(:t):tuple(t) = external {}
 
         Evaluate<native_callable><public>(InValue:t)<reads>:t

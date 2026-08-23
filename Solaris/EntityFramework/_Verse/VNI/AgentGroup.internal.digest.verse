@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/AgentGroup
 using {/Verse.org/Simulation}
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4000}
@@ -7,7 +8,7 @@ member_info_interface<native><public> := interface:
 
 @available {MinUploadedAtFNVersion := 4000}
 # Interface that defines a class as providing an agent group.
-agent_group_interface<public>(member_info:subtype(member_info_interface)) := interface<unique>:
+agent_group_interface<native><public>(member_info:subtype(member_info_interface)) := interface<unique>:
     (/Verse.org/AgentGroup/agent_group_interface:)AgentGroup_agent_group_interface_Variance<private>():tuple(member_info) = external {}
 
     # Get the members of this agent group with their member info

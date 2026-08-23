@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to track and react to how many players are in a particular area, and optionally display that information in game.
 player_counter_device<public> := class<concrete><final>(creative_device_base):

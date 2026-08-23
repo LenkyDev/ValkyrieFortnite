@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/Presentation
 using {/Verse.org/Simulation}
 using {/Verse.org/SceneGraph}
 change_description_component_event<epic_internal> := class(scene_event):

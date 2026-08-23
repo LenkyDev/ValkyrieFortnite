@@ -1,3 +1,4 @@
+# Verse path: /Verse.org
 using {/Verse.org/Native}
 subscribable_event<epic_internal>(t:type) := class(subscribable_event_intrnl(t)):
     @available {MinUploadedAtFNVersion := 4294967041}

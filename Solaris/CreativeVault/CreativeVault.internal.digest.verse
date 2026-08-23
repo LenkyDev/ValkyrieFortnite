@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 bank_vault_interface<public> := interface<epic_internal>(enableable):
     # Triggers when the vault sequence is started by a player or event.

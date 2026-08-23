@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to send custom messages to the elimination feed.
 elimination_feed_device<public> := class<concrete><final>(creative_device_base):

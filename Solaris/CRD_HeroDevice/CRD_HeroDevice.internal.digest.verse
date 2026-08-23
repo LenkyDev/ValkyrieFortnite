@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to apply a temporary hero transformation to a player.
 # The transformation to apply is specified on the device, as are the conditions for when the transformation will end.

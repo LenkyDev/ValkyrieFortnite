@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/Chat
 using {/Verse.org/SceneGraph}
 using {/Verse.org/Native}
 using {/Verse.org/AgentGroup}

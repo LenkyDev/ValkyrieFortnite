@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to place a crash pad that can bounce players and protect them from fall damage.
 crash_pad_device<public> := class<concrete><final>(creative_device_base):

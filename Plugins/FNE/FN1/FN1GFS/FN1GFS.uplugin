@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/FN1",
-	"FortReleaseVersion": "41.30",
+	"FortReleaseVersion": "42.00",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"InstallItem": {
@@ -77,6 +77,12 @@
 		},
 		{
 			"Name": "DynamicVolume",
+			"Enabled": true,
+			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "DynamicVolumeDebugger",
 			"Enabled": true,
 			"Optional": true
 		},

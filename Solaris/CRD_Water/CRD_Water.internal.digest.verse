@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to create and manipulate volumes of water where players can swim, fish, or drive boats.
 water_device<public> := class<concrete><final>(creative_device_base):

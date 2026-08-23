@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 using {/Fortnite.com/Game}
 # Used to create a customizable turret that can search for nearby targets.

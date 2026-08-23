@@ -1,5 +1,6 @@
-using {/Verse.org/SpatialMath}
+# Verse path: /Verse.org/SceneGraph
 using {/Verse.org/Assets}
+using {/Verse.org/SpatialMath}
 using {/Verse.org/Simulation}
 using {/Verse.org/Native}
 using {/Verse.org/Temporary/EpicGamesRestricted/Network}
@@ -103,6 +104,9 @@ camera_director_component<native><public> := class<final_super>(camera_component
     # Add a camera to the director. The camera with the highest priority will be chosen to be the active camera
     AddCamera<native><public>(Camera:camera_component, Priority:rational)<transacts><decides>:cancelable
 
+    # Returns the current camera transform if available.
+    GetActiveCameraTransform<native><epic_internal>()<decides><reads>:(/Verse.org/SpatialMath:)transform
+
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
 # Camera lens settings
@@ -154,13 +158,16 @@ camera_modifier<native><public> := class(modifier(camera_state)):
     @experimental
     Tick<native_callable><epic_internal>(DeltaTime:float)<transacts>:void = external {}
 
-    Evaluate<override>(InValue:camera_state)<reads>:camera_state = external {}
-
-    @experimental
-    InvokeEvaluate<native_callable><epic_internal>(InValue:camera_state)<reads>:camera_state = external {}
+    Evaluate<override><native_callable>(InValue:camera_state)<reads>:camera_state = external {}
 
     @experimental
     NativeCameraRigAsset<native><epic_internal>:camera_rig_asset = external {}
+
+@available {MinUploadedAtFNVersion := 4110}
+@experimental
+# Epic internal-only camera_modifier class that is free of the restrictions temporarily in place on camera_modifier
+internal_camera_modifier<native><epic_internal> := class(camera_modifier):
+
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental

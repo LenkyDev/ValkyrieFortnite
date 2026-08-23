@@ -1,0 +1,20 @@
+{
+    "OutputPlugin": "BrightCoilEntityItems",
+    "DefaultProductModuleName": "KPopDemonHunters",
+    "DefaultCategoryModuleName": "Items",
+    "DefaultModuleProperties": {
+        "bExperimentalStatus": false,
+        "bAllowInternalItems": false,
+        "AccessLevel": "Public"
+    },
+    "InternalProductModuleNames": [],
+    "ProductModules": {
+        "KPopDemonHunters": { "Tags": [ "BrightCoil" ] }
+    },
+    "CategoryModules": {
+        "Items": { "Tags": [ "Item" ] },
+        "Weapons": { "Tags": [ "Weapon" ] }
+    },
+    "ExcludeAssetsInFeatureSets": [ "" ],
+    "VariantModules": {}
+}

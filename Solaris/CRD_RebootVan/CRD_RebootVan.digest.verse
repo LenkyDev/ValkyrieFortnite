@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Allow players to bring eliminated teammates back into the game.
 reboot_van_device<public> := class<concrete><final>(creative_device_base, reboot_van_interface):

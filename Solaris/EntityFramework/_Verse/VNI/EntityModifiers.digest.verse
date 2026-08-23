@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/SceneGraph
 using {/Verse.org/Native}
 using {/Verse.org/Simulation}
 @available {MinUploadedAtFNVersion := 4100}
@@ -23,5 +24,3 @@ easing_window<native><public> := struct<concrete>:
 @experimental
 # Interface used to trigger easing behaviors
 easeable<public> := interface<epic_internal>(cancelable):
-    # Trigger an ease-out. If an easing_window is provided here, then it will override any previous provided window.
-    (/Verse.org/SceneGraph/easeable:)EaseOut<public>(EaseOutWindow:?easing_window)<transacts>:void

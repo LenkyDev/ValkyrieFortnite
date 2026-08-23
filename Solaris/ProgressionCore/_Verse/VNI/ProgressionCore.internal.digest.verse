@@ -1,16 +1,18 @@
+# Verse path: /UnrealEngine.com
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4110}
 # Module import path: /UnrealEngine.com/Progression
 (/UnrealEngine.com:)Progression<public> := module:
     using {/Verse.org/StateMachine}
     using {/Fortnite.com/Marketplace}
+    using {/Verse.org/Native}
     using {/Verse.org/SceneGraph}
     using {/Verse.org}
     @experimental
     composite_quest_objective<native><epic_internal> := class<epic_internal>(quest_objective):
         GetProgress<override><native><native_callable>()<reads>:message
 
-        IsComplete<override><native><native_callable>()<reads><decides>:void
+        IsComplete<override><native><native_callable>()<decides><reads>:void
 
         OnActivate<override><native><native_callable>():void
 
@@ -54,7 +56,8 @@ using {/Verse.org/Native}
 
         OnEndSimulation<override>():void = external {}
 
-        Events<epic_internal>:[]tuple(gameplay_conditional, []gameplay_reaction)
+        @available {MinUploadedAtFNVersion := 4200}
+        Events<epic_internal>:[]tuple(concrete_subtype(gameplay_conditional), []gameplay_reaction)
 
         var Caches<epic_internal>:[]contextual_reactions_cache = external {}
 
@@ -89,9 +92,9 @@ using {/Verse.org/Native}
 
         OnVerbMessageReceivedWithDelta<protected>(Author:entity, SceneEvent:scene_event, Delta:float):void = external {}
 
-        VerbFilterTypes<epic_internal>:[]subtype(verb_filter)
+        VerbFilterTypes<epic_internal>:[]subtype(verb_filter) = external {}
 
-        VerbMessageTypes<epic_internal>:[]subtype(scene_event)
+        VerbMessageTypes<epic_internal>:[]subtype(scene_event) = external {}
 
     locker_entitlement<native><epic_internal> := class(ecosystem_entitlement):
         Consumable<override><final>:logic = external {}
@@ -106,7 +109,7 @@ using {/Verse.org/Native}
         GetProgress<override><native><final>()<reads>:message
 
         # Succeeds if Progress >= RequiredCount.
-        IsComplete<override><native><final>()<reads><decides>:void
+        IsComplete<override><native><final>()<decides><reads>:void
 
         AddProgress<native><final><epic_internal>(Amount:float)<transacts>:void
 
@@ -141,11 +144,11 @@ using {/Verse.org/Native}
 
     @experimental
     reward_claim_quest_extension<native><epic_internal> := class<epic_internal>(quest_extension):
-        CanGrantRewards<override><native><native_callable>()<reads><decides>:void
+        CanGrantRewards<override><native><native_callable>()<decides><reads>:void
 
         ClaimRewards<native><native_callable><epic_internal>()<transacts>:result(void, []claim_reward_error)
 
-        IsReadyToClaim<native><native_callable><epic_internal>()<reads><decides>:void
+        IsReadyToClaim<native><native_callable><epic_internal>()<decides><reads>:void
 
         var<private> PendingClaim<native><epic_internal>:logic = external {}
 
@@ -159,7 +162,7 @@ using {/Verse.org/Native}
     sequential_quest_objective<native><epic_internal> := class<epic_internal>(quest_objective):
         GetProgress<override><native><native_callable>()<reads>:message
 
-        IsComplete<override><native><native_callable>()<reads><decides>:void
+        IsComplete<override><native><native_callable>()<decides><reads>:void
 
         OnActivate<override><native><native_callable>():void
 
@@ -177,7 +180,7 @@ using {/Verse.org/Native}
     state_machine_quest_objective<native><epic_internal> := class<epic_internal>(quest_objective):
         GetProgress<override><native><native_callable>()<reads>:message
 
-        IsComplete<override><native><native_callable>()<reads><decides>:void
+        IsComplete<override><native><native_callable>()<decides><reads>:void
 
         OnJoin<override><native><native_callable>(QuestParticipant:(/Verse.org:)Progression.quest_participant):void
 
@@ -195,7 +198,7 @@ using {/Verse.org/Native}
     timed_quest_objective<native><epic_internal> := class<epic_internal>(quest_objective):
         GetProgress<override><native><native_callable>()<reads>:message
 
-        IsComplete<override><native><native_callable>()<reads><decides>:void
+        IsComplete<override><native><native_callable>()<decides><reads>:void
 
         OnJoin<override><native><native_callable>(QuestParticipant:(/Verse.org:)Progression.quest_participant):void
 

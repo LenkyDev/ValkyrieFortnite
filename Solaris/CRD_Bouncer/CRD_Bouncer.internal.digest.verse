@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to create a bouncer that can launch players, vehicles, and more into the air with optional effects.
 bouncer_device<public> := class<concrete><final>(creative_device_base):

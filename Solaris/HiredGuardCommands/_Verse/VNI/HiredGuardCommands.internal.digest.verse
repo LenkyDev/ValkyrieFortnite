@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/AI
 # Module import path: /Fortnite.com/AI/HiredGuardCommands
 HiredGuardCommands<public> := module:
     using {/Verse.org/SpatialMath}

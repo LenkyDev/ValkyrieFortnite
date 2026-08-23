@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/MeltedIron",
-	"FortReleaseVersion": "41.30",
+	"FortReleaseVersion": "42.00",
 	"ProductChunkId": 13,
 	"IsGameFeatureSet": true,
 	"InstallItem": {
@@ -25,6 +25,11 @@
 		}
 	},
 	"Plugins": [
+		{
+			"Name": "MeltedIronEntityItems",
+			"Enabled": true,
+			"Optional": true
+		},
 		{
 			"Name": "Alien_Assets",
 			"Enabled": true,

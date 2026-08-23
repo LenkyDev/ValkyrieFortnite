@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/Lime",
-	"FortReleaseVersion": "41.30",
+	"FortReleaseVersion": "42.00",
 	"ProductChunkId": 13,
 	"IsGameFeatureSet": true,
 	"InstallItem": {
@@ -38,6 +38,11 @@
 	"IsExperimentalVersion": false,
 	"Installed": false,
 	"Plugins": [
+		{
+			"Name": "LimeEntityItems",
+			"Enabled": true,
+			"Optional": true
+		},
 		{
 			"Name": "AtomFN",
 			"Enabled": true,
@@ -448,6 +453,11 @@
 			"Optional": true
 		},
 		{
+			"Name": "LimeTabascoKatana",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "LimeTabascoTwist",
 			"Enabled": true,
 			"Optional": true,
@@ -468,11 +478,6 @@
 			"Name": "Locker",
 			"Enabled": true,
 			"Activate": true,
-			"Optional": true
-		},
-		{
-			"Name": "LimeTabascoKatana",
-			"Enabled": true,
 			"Optional": true
 		},
 		{

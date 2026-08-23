@@ -1,3 +1,4 @@
+# Verse path: /Verse.org
 # Module import path: /Verse.org/Colors
 Colors<public> := module:
     using {/Verse.org/Native}
@@ -401,4 +402,4 @@ Colors<public> := module:
     @available {MinUploadedAtFNVersion := 3800}
     # Blend colors `CA1` and `CA2` with `CA1` over `CA2` using two non-premultiplied `color_alpha` values.
     # Alpha components are clamped between `0.0` and `1.0`. Fails if the value of both clamped Alpha components are `0.0`.
-    Over<public>(CA1:color_alpha, CA2:color_alpha)<reads><decides>:color_alpha = external {}
+    Over<public>(CA1:color_alpha, CA2:color_alpha)<decides><reads>:color_alpha = external {}

@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to allow agents to turn other linked devices on/off or other custom state changes.
 switch_device<public> := class<concrete><final>(creative_device_base):

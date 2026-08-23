@@ -1,3 +1,4 @@
+# Verse path: /Verse.org/SceneGraph
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4100}
 @experimental
@@ -11,7 +12,7 @@ play_skeletal_animation_result<public> := struct<epic_internal>:
     # The skeletal_animation that was played
     Animation:skeletal_animation
 
-    # An easable interface used to control blending
+    # An easeable interface used to control blending
     Easeable:easeable
 
 @available {MinUploadedAtFNVersion := 4100}

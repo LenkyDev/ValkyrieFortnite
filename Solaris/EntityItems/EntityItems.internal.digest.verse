@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com
 # Module import path: /Fortnite.com/Items
 Items<public> := module:
     using {/Verse.org/SceneGraph}
@@ -569,7 +570,7 @@ Items<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         StackableComponent<override>:?basic_stackable_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use CeilingZapper_OG_CH1S1_Rare instead."}
     @preload
     # Deprecated. Please use CeilingZapper_OG_CH1S1_Rare instead.
     CeilingZapper_BR_CH4MS1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
@@ -585,7 +586,7 @@ Items<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         StackableComponent<override>:?basic_stackable_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use CeilingZapper_OG_CH1S1_Rare instead."}
     @preload
     # Deprecated. Please use CeilingZapper_OG_CH1S1_Rare instead.
     CeilingZapper_BR_CH1S1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
@@ -1657,7 +1658,7 @@ Items<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         StackableComponent<override>:?basic_stackable_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use Grenade_OG_CH1S1_Common instead."}
     @preload
     # Deprecated. Please use Grenade_OG_CH1S1_Common instead.
     Grenade_BR_CH4MS1_Common<public> := class<final><concrete>(fort_item_definition_entity):
@@ -4111,7 +4112,7 @@ Items<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         StackableComponent<override>:?basic_stackable_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use WallDynamo_OG_CH1S1_Rare instead."}
     @preload
     # Deprecated. Please use WallDynamo_OG_CH1S1_Rare instead.
     WallDynamo_BR_CH4MS1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
@@ -4127,7 +4128,7 @@ Items<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         StackableComponent<override>:?basic_stackable_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use WallDynamo_OG_CH1S1_Rare instead."}
     @preload
     # Deprecated. Please use WallDynamo_OG_CH1S1_Rare instead.
     WallDynamo_BR_CH1S1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
@@ -4959,7 +4960,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use BurstAssaultRifle_OG_CH1S1_Common instead."}
     @preload
     # Deprecated. Please use BurstAssaultRifle_OG_CH1S1_Common instead.
     BurstAssaultRifle_BR_CH4MS1_Common<public> := class<final><concrete>(fort_item_definition_entity):
@@ -4983,7 +4984,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use BurstAssaultRifle_OG_CH1S1_Uncommon instead."}
     @preload
     # Deprecated. Please use BurstAssaultRifle_OG_CH1S1_Uncommon instead.
     BurstAssaultRifle_BR_CH4MS1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
@@ -5007,7 +5008,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use BurstAssaultRifle_OG_CH1S1_Rare instead."}
     @preload
     # Deprecated. Please use BurstAssaultRifle_OG_CH1S1_Rare instead.
     BurstAssaultRifle_BR_CH4MS1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
@@ -5031,7 +5032,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use BurstAssaultRifle_OG_CH1S1_Epic instead."}
     @preload
     # Deprecated. Please use BurstAssaultRifle_OG_CH1S1_Epic instead.
     BurstAssaultRifle_BR_CH4MS1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
@@ -5055,7 +5056,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use BurstAssaultRifle_OG_CH1S1_Legendary instead."}
     @preload
     # Deprecated. Please use BurstAssaultRifle_OG_CH1S1_Legendary instead.
     BurstAssaultRifle_BR_CH4MS1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
@@ -6532,6 +6533,28 @@ Weapons<public> := module:
         RarityComponent<override>:?rarity_component = external {}
 
     @preload
+    DrumGun_BR_CH7S4_Common<public> := class<final><concrete>(fort_item_definition_entity):
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+    @preload
+    DrumGun_BR_CH7S4_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+    @preload
     DrumGun_Ballistic_V1_Common<public> := class<final><concrete>(fort_item_definition_entity):
         @available {MinUploadedAtFNVersion := 4000}
         ItemComponent<override>:item_component = external {}
@@ -6907,6 +6930,61 @@ Weapons<public> := module:
 
     @preload
     EggLauncher_BR_CH2S6_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+    @preload
+    EightBitShotgun_BR_CH7S4_Common<public> := class<final><concrete>(fort_item_definition_entity):
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+    @preload
+    EightBitShotgun_BR_CH7S4_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+    @preload
+    EightBitShotgun_BR_CH7S4_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+    @preload
+    EightBitShotgun_BR_CH7S4_Epic<public> := class<final><concrete>(fort_item_definition_entity):
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+    @preload
+    EightBitShotgun_BR_CH7S4_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
         @available {MinUploadedAtFNVersion := 4000}
         ItemComponent<override>:item_component = external {}
 
@@ -7950,7 +8028,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use GuidedMissile_OG_CH1S3_Epic instead."}
     @preload
     # Deprecated. Please use GuidedMissile_OG_CH1S3_Epic instead.
     GuidedMissile_BR_CH4MS1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
@@ -7974,7 +8052,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use GuidedMissile_OG_CH1S3_Legendary instead."}
     @preload
     # Deprecated. Please use GuidedMissile_OG_CH1S3_Legendary instead.
     GuidedMissile_BR_CH4MS1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
@@ -10353,6 +10431,17 @@ Weapons<public> := module:
         RarityComponent<override>:?rarity_component = external {}
 
     @preload
+    MidasMasterpiece_BR_CH7S4_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+    @preload
     Minigun_BR_CH1S2_Epic<public> := class<final><concrete>(fort_item_definition_entity):
         @available {MinUploadedAtFNVersion := 4000}
         ItemComponent<override>:item_component = external {}
@@ -11761,6 +11850,28 @@ Weapons<public> := module:
         RarityComponent<override>:?rarity_component = external {}
 
     @preload
+    PumpShotgun_BR_CH7S4_Epic<public> := class<final><concrete>(fort_item_definition_entity):
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+    @preload
+    PumpShotgun_BR_CH7S4_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+    @preload
     PumpShotgun_OG_CH1S1_Common<public> := class<final><concrete>(fort_item_definition_entity):
         @available {MinUploadedAtFNVersion := 4000}
         ItemComponent<override>:item_component = external {}
@@ -11771,7 +11882,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use PumpShotgun_OG_CH1S1_Common instead."}
     @preload
     # Deprecated. Please use PumpShotgun_OG_CH1S1_Common instead.
     PumpShotgun_BR_CH4MS1_Common<public> := class<final><concrete>(fort_item_definition_entity):
@@ -11795,7 +11906,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use PumpShotgun_OG_CH1S1_Uncommon instead."}
     @preload
     # Deprecated. Please use PumpShotgun_OG_CH1S1_Uncommon instead.
     PumpShotgun_BR_CH4MS1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
@@ -11819,7 +11930,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use PumpShotgun_OG_CH1S3_Rare instead."}
     @preload
     # Deprecated. Please use PumpShotgun_OG_CH1S3_Rare instead.
     PumpShotgun_BR_CH4MS1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
@@ -11843,7 +11954,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use PumpShotgun_OG_CH1S6_Epic instead."}
     @preload
     # Deprecated. Please use PumpShotgun_OG_CH1S6_Epic instead.
     PumpShotgun_BR_CH4MS1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
@@ -11867,7 +11978,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use PumpShotgun_OG_CH1S6_Legendary instead."}
     @preload
     # Deprecated. Please use PumpShotgun_OG_CH1S6_Legendary instead.
     PumpShotgun_BR_CH4MS1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
@@ -12276,7 +12387,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use ReconBow_BR_CH7S2_Exotic instead."}
     @preload
     # Deprecated. Please use ReconBow_BR_CH7S2_Exotic instead.
     ExoticReconBow_BR_CH7S2_Exotic<public> := class<final><concrete>(fort_item_definition_entity):
@@ -12476,7 +12587,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use Revolver_OG_CH1S1_Common instead."}
     @preload
     # Deprecated. Please use Revolver_OG_CH1S1_Common instead.
     Revolver_BR_CH4MS1_Common<public> := class<final><concrete>(fort_item_definition_entity):
@@ -12500,7 +12611,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use Revolver_OG_CH1S1_Uncommon instead."}
     @preload
     # Deprecated. Please use Revolver_OG_CH1S1_Uncommon instead.
     Revolver_BR_CH4MS1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
@@ -12524,7 +12635,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use Revolver_OG_CH1S1_Rare instead."}
     @preload
     # Deprecated. Please use Revolver_OG_CH1S1_Rare instead.
     Revolver_BR_CH4MS1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
@@ -12548,7 +12659,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use Revolver_OG_CH1S1_Epic instead."}
     @preload
     # Deprecated. Please use Revolver_OG_CH1S1_Epic instead.
     Revolver_BR_CH4MS1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
@@ -12572,7 +12683,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use Revolver_OG_CH1S1_Legendary instead."}
     @preload
     # Deprecated. Please use Revolver_OG_CH1S1_Legendary instead.
     Revolver_BR_CH4MS1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
@@ -14257,7 +14368,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use SubmachineGun_OG_CH1S1_Common instead."}
     @preload
     # Deprecated. Please use SubmachineGun_OG_CH1S1_Common instead.
     SubmachineGun_BR_CH4MS1_Common<public> := class<final><concrete>(fort_item_definition_entity):
@@ -14281,7 +14392,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use SubmachineGun_OG_CH1S1_Uncommon instead."}
     @preload
     # Deprecated. Please use SubmachineGun_OG_CH1S1_Uncommon instead.
     SubmachineGun_BR_CH4MS1_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
@@ -14305,7 +14416,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use SubmachineGun_OG_CH1S1_Rare instead."}
     @preload
     # Deprecated. Please use SubmachineGun_OG_CH1S1_Rare instead.
     SubmachineGun_BR_CH4MS1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
@@ -14648,7 +14759,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use SurgicalBurstRifle_BR_CH7S3_Common instead."}
     @preload
     # Deprecated. Please use SurgicalBurstRifle_BR_CH7S3_Common instead.
     VanguardBurstRifle_BR_CH7S3_Common<public> := class<final><concrete>(fort_item_definition_entity):
@@ -14672,7 +14783,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use SurgicalBurstRifle_BR_CH7S3_Uncommon instead."}
     @preload
     # Deprecated. Please use SurgicalBurstRifle_BR_CH7S3_Uncommon instead.
     VanguardBurstRifle_BR_CH7S3_Uncommon<public> := class<final><concrete>(fort_item_definition_entity):
@@ -14696,7 +14807,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use SurgicalBurstRifle_BR_CH7S3_Rare instead."}
     @preload
     # Deprecated. Please use SurgicalBurstRifle_BR_CH7S3_Rare instead.
     VanguardBurstRifle_BR_CH7S3_Rare<public> := class<final><concrete>(fort_item_definition_entity):
@@ -14720,7 +14831,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use SurgicalBurstRifle_BR_CH7S3_Epic instead."}
     @preload
     # Deprecated. Please use SurgicalBurstRifle_BR_CH7S3_Epic instead.
     VanguardBurstRifle_BR_CH7S3_Epic<public> := class<final><concrete>(fort_item_definition_entity):
@@ -14744,7 +14855,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use SurgicalBurstRifle_BR_CH7S3_Legendary instead."}
     @preload
     # Deprecated. Please use SurgicalBurstRifle_BR_CH7S3_Legendary instead.
     VanguardBurstRifle_BR_CH7S3_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
@@ -15902,6 +16013,17 @@ Weapons<public> := module:
         RarityComponent<override>:?rarity_component = external {}
 
     @preload
+    TwinSiphonShotguns_BR_CH7S2_Exotic<public> := class<final><concrete>(fort_item_definition_entity):
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+    @preload
     TwoShotShotgun_BR_CH3S3_Common<public> := class<final><concrete>(fort_item_definition_entity):
         @available {MinUploadedAtFNVersion := 4000}
         ItemComponent<override>:item_component = external {}
@@ -16374,7 +16496,7 @@ Weapons<public> := module:
         @available {MinUploadedAtFNVersion := 4020}
         RarityComponent<override>:?rarity_component = external {}
 
-    @deprecated
+    @deprecated {Message := "Please use Zapotron_OG_CH1S2_Legendary instead."}
     @preload
     # Deprecated. Please use Zapotron_OG_CH1S2_Legendary instead.
     Zapotron_OG_CH1S1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):

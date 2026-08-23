@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used in tandem with `race_manager_device` to define the route players must traverse.
 race_checkpoint_device<public> := class<concrete><final>(creative_device_base):

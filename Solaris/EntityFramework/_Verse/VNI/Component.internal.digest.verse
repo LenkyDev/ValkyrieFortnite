@@ -1,10 +1,12 @@
+# Verse path: /Verse.org/SceneGraph
 using {/UnrealEngine.com/Temporary/SpatialMath}
-using {/Verse.org/Temporary/EpicGamesRestricted/Network}
+using {/Verse.org/Restricted}
 using {/Verse.org/Colors}
-using {/Verse.org/SpatialMath}
 using {/Verse.org/Simulation}
 using {/Verse.org/Assets}
 using {/Verse.org/Native}
+using {/Verse.org/SpatialMath}
+using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 # A `capsule_light_component` emits light in all directions into the scene from a capsule shaped source with a specified radius and length. A radius and length of 0 makes it a point light. You can use these
 # to simulate any kind of light sources that emit in all directions and need an elongated source shape, such as a long light bulb.
 capsule_light_component<native><public> := class<final>(light_component):
@@ -24,6 +26,233 @@ capsule_light_component<native><public> := class<final>(light_component):
 
     # Length of the source capsule shape in centimeters along the local Z axis. Note that light shapes which intersect shadow casting geometry can cause shadowing artifacts.
     var SourceLength<public>:float = external {}
+
+# Specifies how a collision volume pair should interact. See collision_profile.
+collision_interaction<native><public> := enum:
+    # The pair will not be detected by Overlap and Sweep queries. The pair will not collide in the physics simulation.
+    Ignore
+    # The pair will be detected by Overlap and Sweep queries. The pair will not collide in the physics simulation.
+    Overlap
+    # The pair will be detected by Overlap and Sweep queries. The pair will collide in the physics simulation.
+    Block
+
+# Every volume has a collision channel as part of its collision_profile. It is used to determine how two volumes interact. See collision_profile.
+collision_channel<native><public> := class<concrete><epic_internal>:
+
+
+# An alias for the function type used to map a collision_channel to a collision_interaction used by  collision_profile.
+collision_channel_to_interaction<public> := type {_(:collision_channel)<computes>:collision_interaction}
+
+DefaultChannelToInteraction<epic_internal>(__dupe___unnamed_parameter_0:collision_channel)<computes>:collision_interaction = external {}
+
+# A collision profile determines how a volume interacts with other volumes for Overlap queries, Sweep queries, and physics simulation. When two volumes are being tested to see how they interact, the algorithm looks like this:
+#    GetInteraction(A:collision_profile, B:collision_profile):collision_interaction = 
+#        InteractionA = B.GetChannelInteraction(A.Channel) 
+#        InteractionB = A.GetChannelInteraction(B.Channel) 
+#        return Min(InteractionA, InteractionB) 
+collision_profile<native><public> := class<concrete>:
+    # The collision channel for the owning object.
+    Channel<native><public>:collision_channel = external {}
+
+    # How the owning object should interact with other objects.GetChannelInteraction is a function which maps a collision_channel to a collision_interaction. It can be implemented as an simple sequence of if statements. For example, to block all channels except camera:
+    #     BlockAllIgnoreCamera(Channel:collision_channel)<computes>:collision_interaction =
+    #         if (CollisionChannels.camera[Channel]):
+    #             return collision_interaction.Ignore
+    #         return collision_interaction.Block
+    #     MyProfile<public>:collision_profile = MakeCollisionProfile(CollisionChannels.dynamic, BlockAllIgnoreCamera)
+    GetChannelInteraction<native><public>:collision_channel_to_interaction = external {}
+
+# Module import path: /Verse.org/SceneGraph/CollisionChannels
+# The set of built-in collision_channels. This is a closed set for now.
+CollisionChannels<public> := module:
+    stationary<native><public> := class(collision_channel):
+
+
+    dynamic<native><public> := class(collision_channel):
+
+
+    avatar<native><public> := class(collision_channel):
+
+
+    visibility<native><public> := class(collision_channel):
+
+
+    camera<native><public> := class(collision_channel):
+
+
+    physics<native><public> := class(collision_channel):
+
+
+# Module import path: /Verse.org/SceneGraph/CollisionProfiles
+# A set of useful collision profiles. New profiles can be created in Verse code
+CollisionProfiles<public> := module:
+    # Stationary collision channel, Ignore all channels
+    StationaryIgnoreAll<public>:collision_profile = external {}
+
+    # Stationary collision channel, Overlap all channels
+    StationaryOverlapAll<public>:collision_profile = external {}
+
+    # Stationary collision channel, Block all channels
+    StationaryBlockAll<public>:collision_profile = external {}
+
+    # Dynamic collision channel, Ignore all channels
+    DynamicIgnoreAll<public>:collision_profile = external {}
+
+    # Dynamic collision channel, Overlap all channels
+    DynamicOverlapAll<public>:collision_profile = external {}
+
+    # Dynamic collision channel, Block all channels
+    DynamicBlockAll<public>:collision_profile = external {}
+
+    # Stationary collision channel, Block all channels except visibility (used for e.g., invisible wall, glass)
+    StationaryBlockVisible<public>:collision_profile = external {}
+
+    # Visibility collision channel, Overlap all channel (used for e.g., visibility testing)
+    VisibilityOverlapAll<public>:collision_profile = external {}
+
+@deprecated {Message := "Use `CollisionChannels` instead."}
+# Module import path: /Verse.org/SceneGraph/collision_channels
+(/Verse.org/SceneGraph:)collision_channels<public> := module:
+
+
+@deprecated {Message := "Use `CollisionProfiles` instead."}
+# Module import path: /Verse.org/SceneGraph/collision_profiles
+(/Verse.org/SceneGraph:)collision_profiles<public> := module:
+
+
+MakeCollisionMaterial<native><epic_internal>(StaticFriction:float, DynamicFriction:float, Restitution:float)<converges>:collision_material
+
+@replicatable
+collision_material<native><epic_internal> := struct<epic_internal>:
+    # Friction coefficient for stationary contacts
+    StaticFriction<native>:float = external {}
+
+    # Friction coefficient for sliding contacts
+    DynamicFriction<native>:float = external {}
+
+    # Bounciness of the object
+    Restitution<native>:float = external {}
+
+# The results of an overlap query. See entity.FindOverlapHits(). We will get one overlap_hit for each intersection of any volume in SourceVolumes with any other volume.
+overlap_hit<native><public> := struct<epic_internal>:
+    # The source component and volume (query input). For compound inputs (like an entity hierarchy) this will be a component/volume in that hierarchy. The SourceTransform is the transform of SourceVolume used for the overlap test. For single volume inputs like a sphere, the Source volume and transform are just the inputs to the overlap test, and the component is false.
+    SourceComponent<native><public>:?component
+
+    # The source volume (query input)
+    SourceVolume<native><public>:collision_volume
+
+    # The source volume transform
+    SourceGlobalTransform<native><public>:(/Verse.org/SpatialMath:)transform
+
+    # The component that was hit by SourceVolume
+    TargetComponent<native><public>:component
+
+    # The volume that was hit by SourceVolume
+    TargetVolume<native><public>:collision_element
+
+# The results of a sweep query. See entity.FindSweepHits(). We will get one sweep_hit for each intersection of any volume in SourceVolumes with any other volume.
+sweep_hit<native><public> := struct<epic_internal>:
+    # The source component and volume (query input). For compound inputs (like an entity hierarchy) this will be a component/volume in that hierarchy. The SourceGlobalTransform is the transform of SourceVolume at the start of the sweep. For single volume inputs like a sphere, the volume and transform are just the inputs to the sweep, and the component is false.
+    SourceComponent<native><public>:?component
+
+    # The source volume (query input).
+    SourceVolume<native><public>:collision_volume
+
+    # The source volume transform at the start of the sweep.
+    SourceStartGlobalTransform<native><public>:(/Verse.org/SpatialMath:)transform
+
+    # The world-space translation (relative to SourceStartGlobalTransform) of SourceVolume when it touches TargetVolume.
+    SourceHitTranslation<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+    # The Distance along the sweep at which SourceVolume touches TargetVolume.
+    SourceHitDistance<native><public>:float = external {}
+
+    # The component that was hit by SourceVolume.
+    TargetComponent<native><public>:component
+
+    # The volume that was hit by SourceVolume.
+    TargetVolume<native><public>:collision_element
+
+    # The point of contact between SourceVolume and TargetVolume.
+    ContactPosition<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+    # The normal on TargetVolume at the HitPosition.
+    ContactNormal<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+    # If TargetVolume is a polygonal object (mesh, convex hull, etc.) and the contact point is on an edge or vertex, this is the most-opposing face normal of the faces that share that edge or vertex. Otherwise it is the same as HitNormal.
+    ContactFaceNormal<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+@available {MinUploadedAtFNVersion := 4100}
+@experimental
+contact_point<native><epic_internal> := struct<epic_internal>:
+    ContactPosition<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+    ContactNormal<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+    ContactImpulse<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+    ContactDepth<native><public>:float = external {}
+
+@available {MinUploadedAtFNVersion := 4100}
+@experimental
+collision_volume_pair<native><epic_internal> := struct<epic_internal>:
+    SourceComponent<native><public>:component
+
+    SourceVolume<native><public>:collision_element
+
+    TargetComponent<native><public>:component
+
+    TargetVolume<native><public>:collision_element
+
+@available {MinUploadedAtFNVersion := 4100}
+@experimental
+collision_hit<native><epic_internal> := struct<epic_internal>:
+    CollisionVolumes<native><public>:collision_volume_pair
+
+    ContactPoints<native><public>:[]contact_point
+
+# Collision Volumes represent the collision shapes of meshes. They can be detected by Overlap and Sweep queries and generate collisions in the physics simulation.
+collision_volume<native><public> := class<abstract>:
+    # Enable/disable collision on this volume.
+    var Collidable<public>:logic = external {}
+
+    # Enable/disable spatial queries against this volume.
+    var Queryable<public>:logic = external {}
+
+    # Get the transform of this volume in the space of its owner (usually a component on an entity)
+    GetLocalTransform<public>()<transacts>:(/Verse.org/SpatialMath:)transform = external {}
+
+    # Set the transform of this volume in the space of its owner (usually a component on an entity)
+    SetLocalTransform<public>(NewLocalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:void = external {}
+
+# Base class for collision_volumes that consist of a single volume with a single collision_profile and collision_material for the whole volume. This covers most volume types used in queries and physics, except compound types like a mesh. A query will always return an element rather than a general volume. For example when colliding with a mesh, the element will be a collision_triangle, which is a collision_element and has a single material, rather than a collision_triangle_mesh, which is not an element and has a material palette.
+collision_element<native><public> := class<abstract>(collision_volume):
+    # The collision_profile for this volume.
+    var CollisionProfile<public>:collision_profile = external {}
+
+# A collision capsule aligned along the Z axis.
+collision_capsule<native><public> := class(collision_element):
+    # The radius of the capsule
+    var Radius<public>:float = external {}
+
+    # The length of the capsule's cylindrical section (distance between the two end cap centers)
+    var Length<public>:float = external {}
+
+# A collision sphere.
+collision_sphere<native><public> := class(collision_element):
+    # The radius of the sphere
+    var Radius<public>:float = external {}
+
+# A collision point.
+collision_point<native><public> := class<concrete>(collision_element):
+
+
+# An axis-aligned collision box.
+collision_box<native><public> := class(collision_element):
+    var Extents<public>:(/Verse.org/SpatialMath:)vector3
+
+collision_volume_internal<native><epic_internal> := class<concrete><epic_internal>(collision_element):
+
 
 @experimental
 damageable_component<native><epic_internal> := class<final_super>(component):
@@ -167,23 +396,18 @@ has_collision_impl<native><final><epic_internal> := class<epic_internal>:
     SetCollisionMaterialImpl<native><epic_internal>(In:collision_material):void
 
     @experimental
-    @available {MinUploadedAtFNVersion := 2930}
     CollisionEnteredEventImpl<native><epic_internal>:listenable(generator(collision_hit)) = external {}
 
     @experimental
-    @available {MinUploadedAtFNVersion := 2930}
     CollisionEventImpl<native><epic_internal>:listenable(generator(collision_hit)) = external {}
 
     @experimental
-    @available {MinUploadedAtFNVersion := 2930}
     CollisionExitedEventImpl<native><epic_internal>:listenable(generator(collision_hit)) = external {}
 
     @experimental
-    @available {MinUploadedAtFNVersion := 2930}
     OverlapEnteredEventImpl<native><epic_internal>:listenable(generator(overlap_hit)) = external {}
 
     @experimental
-    @available {MinUploadedAtFNVersion := 2930}
     OverlapExitedEventImpl<native><epic_internal>:listenable(generator(overlap_hit)) = external {}
 
 @available {MinUploadedAtFNVersion := 4100}
@@ -237,12 +461,24 @@ has_dynamics_impl<native><final><epic_internal> := class<epic_internal>:
 
     GetMassImpl<native><epic_internal>():float
 
+@available {MinUploadedAtFNVersion := 4200}
+@experimental
+has_origin<native><epic_internal> := interface<epic_internal>(has_mesh_part_support):
+    # Returns the origin of the socket this mesh_part is attached to, or false if no socket is associated/resolvable
+    GetPartOrigin<final><native_callable><epic_internal>()<reads>:?origin = external {}
+
+@available {MinUploadedAtFNVersion := 4200}
+@experimental
+has_origin_impl<native><final><epic_internal> := class<epic_internal>:
+    GetOriginImpl<native><epic_internal>()<decides><reads>:presentation_origin
+
 @available {MinUploadedAtFNVersion := 4100}
 ue_phys_sleep_type<native><epic_internal> := enum<open>:
     MaterialSleep
     NeverSleep
 
 @available {MinUploadedAtFNVersion := 4100}
+@replicatable
 ue_collision_material<native><epic_internal> := struct<epic_internal>:
     StaticFriction<native>:float = external {}
 
@@ -309,6 +545,9 @@ has_ue_physics_properties<native><epic_internal> := interface<epic_internal>:
 
     UpdateMassProperties<native_callable><epic_internal>():void = external {}
 
+    # Teleports the physics body to InTranslation/InRotation and records the change in the resim buffer. Resets linear and angular velocity
+    SetPhysicsTransform<native_callable><epic_internal>(InTranslation:(/Verse.org/SpatialMath:)vector3, InRotation:(/Verse.org/SpatialMath:)rotation)<transacts>:void = external {}
+
 @available {MinUploadedAtFNVersion := 4100}
 has_ue_physics_properties_impl<native><final><epic_internal> := class:
     GetGravityEnabledImpl<native><epic_internal>()<reads>:logic
@@ -356,6 +595,8 @@ has_ue_physics_properties_impl<native><final><epic_internal> := class:
     SetUE_CollisionMaterialImpl<native><epic_internal>(In:ue_collision_material):void
 
     UpdateMassPropertiesImpl<native><epic_internal>():void
+
+    SetPhysicsTransformImpl<native><epic_internal>(InTranslation:(/Verse.org/SpatialMath:)vector3, InRotation:(/Verse.org/SpatialMath:)rotation)<transacts>:void
 
 @available {MinUploadedAtFNVersion := 4100}
 ue_phys_mat_combine_mode<native><epic_internal> := enum<open>:
@@ -477,6 +718,7 @@ KeyframedMovement<public> := module:
         PlayFrom
         HaltAt
 
+    @replicatable
     # Cubic Bezier function sent to clients to reconstruct the animation curves.
     cubic_bezier_easing_function_native<native><epic_internal> := struct<concrete>:
         X0<native><public>:float = external {}
@@ -487,6 +729,7 @@ KeyframedMovement<public> := module:
 
         Y1<native><public>:float = external {}
 
+    @replicatable
     # Keyframe delta sent to clients to reconstruct the animation frames.
     keyframed_movement_delta_native<native><epic_internal> := struct<concrete>:
         Transform<native><public>:(/Verse.org/SpatialMath:)transform = external {}
@@ -495,6 +738,7 @@ KeyframedMovement<public> := module:
 
         (/Verse.org/SceneGraph/KeyframedMovement/keyframed_movement_delta_native:)Easing<native><public>:cubic_bezier_easing_function_native = external {}
 
+    @replicatable
     # Contains all the information needed for the client to reconstruct the entire animation command.
     keyframed_movement_command_data<native><epic_internal> := struct<concrete>:
         Command<native>:keyframed_movement_net_command = external {}
@@ -537,10 +781,10 @@ KeyframedMovement<public> := module:
         PausedEvent<native><public>:listenable(tuple()) = external {}
 
         # Is the animation currently playing?
-        IsPlaying<native><public>()<reads><decides>:void
+        IsPlaying<native><public>()<decides><reads>:void
 
         # Is the animation paused?
-        IsPaused<native><public>()<reads><decides>:void
+        IsPaused<native><public>()<decides><reads>:void
 
         # Gets the duration in seconds this keyframed movement will take. Fails if a fixed duration is not known (ex: looping animations).
         var<private> Duration<native><public>:?float = external {}
@@ -552,7 +796,7 @@ KeyframedMovement<public> := module:
         SetKeyframes<native><public>(RelativeKeyframes:[]keyframed_movement_delta, PlaybackMode:keyframed_movement_playback_mode):void
 
         # Is there a valid set of playable keyframes?
-        HasValidAnimation<native><public>()<reads><decides>:void
+        HasValidAnimation<native><public>()<decides><reads>:void
 
         # Signaled when any keyframe is reached. (Keyframe:int, IsReversed:logic).
         KeyframeReachedEvent<native><public>:listenable(tuple(int, logic)) = external {}
@@ -705,6 +949,22 @@ light_component<native><public> := class<abstract><final_super><epic_internal>(c
     # Global scale for IES brightness contribution. Only available when "Use IES Intensity" is selected, and a valid IES profile texture is set.
     IESIntensityScale<native><epic_internal>:float = external {}
 
+map_ready_component<native><epic_internal> := class<final_super>(component):
+    AddDependency<native_callable><public>(Event:sticky_event(comparable)):void = external {}
+
+    MapReadyEvent<public>:sticky_event(comparable) = external {}
+
+# Detail level tier required for a `mesh_component` to be rendered. Mirrors UE's `EDetailMode` so the ordinals line up with the `r.DetailMode` scalability CVar (Low=0, Medium=1, High=2, Epic=3).
+detail_mode<native><epic_internal> := enum:
+    # Always rendered. Equivalent to UE's `DM_Low`.
+    Low
+    # Rendered when `r.DetailMode` is at least 1. Equivalent to UE's `DM_Medium`.
+    Medium
+    # Rendered when `r.DetailMode` is at least 2. Equivalent to UE's `DM_High`.
+    High
+    # Rendered only when `r.DetailMode` is 3. Equivalent to UE's `DM_Epic`.
+    Epic
+
 # Used to render a `mesh` at the location of this entity. A mesh is a set of polygons that can be used to represent shapes in the world such as:
 #   * foliage and terrain decorations
 #   * movers (for example, doors and lifts)
@@ -728,7 +988,6 @@ mesh_component<native><public> := class<final_super><epic_internal>(component, e
     # The `mesh` to be rendered by this `mesh_component`.
     Mesh<native><epic_internal>:mesh = external {}
 
-    @available {MinUploadedAtFNVersion := 2930}
     # Get an array of the materials assigned to this mesh's slots.
     GetMaterials<native><epic_internal>()<transacts>:generator(material)
 
@@ -779,7 +1038,7 @@ mesh_component<native><public> := class<final_super><epic_internal>(component, e
     @available {MinUploadedAtFNVersion := 4110}
     @experimental
     # Get mesh_part's on this mesh_component.
-    GetMeshParts<native><epic_internal>():[]mesh_part
+    GetMeshParts<native><epic_internal>()<transacts>:[]mesh_part
 
     OnPropertyChangedFromVerse<native><override>(PropertyName:string)<transacts>:void
 
@@ -861,6 +1120,17 @@ mesh_component<native><public> := class<final_super><epic_internal>(component, e
     # Whether this component should be affected by lighting in channel 2.
     var AffectedByLightingChannel2<native><epic_internal>:logic = external {}
 
+    @editable {EpicOnly := true}
+    @category("Epic Internal")
+    # If true, this component will be visible in ray traced reflections. Screen space traces will ignore this flag, as they directly sample SceneColor
+    var VisibleInReflections<native><epic_internal>:logic = external {}
+
+    @editable {EpicOnly := true}
+    @category("Epic Internal")
+    @experimental
+    # Minimum scalability `r.DetailMode` tier required to render this mesh. If the current scalability tier is lower than this value, no render scene proxy is created. Re-evaluated automatically when the player's quality settings change.
+    var DetailMode<native><epic_internal>:detail_mode = external {}
+
     # Returns the bounded box of this component, in world space.
     GetBoundedGlobalBox<override><native>()<reads>:bounded_box
 
@@ -889,6 +1159,9 @@ mesh_part<native><epic_internal> := class<abstract><unique><epic_internal>(diagn
     HasDynamicsImpl<native><epic_internal>:has_dynamics_impl = external {}
 
     HasUEPhysicsPropertiesImpl<native><epic_internal>:has_ue_physics_properties_impl = external {}
+
+    @available {MinUploadedAtFNVersion := 4200}
+    HasOriginImpl<native><epic_internal>:has_origin_impl = external {}
 
     GetDiagnostic<override><native>()<reads>:diagnostic
 
@@ -1037,6 +1310,7 @@ rotator_quantization<native><epic_internal> := enum<open>:
     ShortComponents
     ByteComponents
 
+@replicatable
 VerseRepMovement<native><epic_internal> := struct:
     LinearVelocity<native>:(/Verse.org/SpatialMath:)vector3 = external {}
 
@@ -1064,6 +1338,8 @@ VerseRepMovement<native><epic_internal> := struct:
 
     RotationQuantizationLevel<native>:rotator_quantization = external {}
 
+    TeleportSeq<native>:int = external {}
+
 @hide_in_editor
 physics_replication_component<native><epic_internal> := class<final_super><epic_internal>(component):
     OnInitializedInternal<native><override>():void
@@ -1083,33 +1359,25 @@ physics_replication_component<native><epic_internal> := class<final_super><epic_
 
 GetPhysicsSceneForEntity<native><epic_internal>(Entity:entity)<transacts><decides>:physics_scene_component
 
-@available {MinUploadedAtFNVersion := 2930}
 EmptyOverlapHitsGenerator<native><epic_internal>()<transacts>:generator(overlap_hit)
 
-@available {MinUploadedAtFNVersion := 2930}
 EmptySweepHitsGenerator<native><epic_internal>()<transacts>:generator(sweep_hit)
 
-@available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that currently overlap this entity.
 (Entity:entity).FindOverlapHits<public>()<transacts>:generator(overlap_hit) = external {}
 
-@available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would overlap this entity if it were placed at GlobalTransform.
 (Entity:entity).FindOverlapHits<public>(GlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:generator(overlap_hit) = external {}
 
-@available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would overlap Volume if they were placed at GlobalTransform. NOTE: This entity defines the context(scene) for the query but does not otherwise take part in the sweep.
 (Entity:entity).FindOverlapHits<public>(GlobalTransform:(/Verse.org/SpatialMath:)transform, Volume:collision_volume)<transacts>:generator(overlap_hit) = external {}
 
-@available {MinUploadedAtFNVersion := 2930}
 # Find objects in the scene that would intersect this entity if it were swept from its location along the Displacement vector. Returns the first object interacting as collision_interaction.Block, and all objects interacting as collision_interaction.Overlap encountered before the first block. Hits are sorted by hit distance, so the blocking hit will be last.
 (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3)<transacts>:generator(sweep_hit) = external {}
 
-@available {MinUploadedAtFNVersion := 2930}
 # Find objects in the scene that would intersect this entity if it were swept from GlobalTransform along the Displacement vector. Returns the first object interacting as collision_interaction.Block, and all objects interacting as collision_interaction.Overlap encountered before the first block. Hits are sorted by hit distance, so the blocking hit will be last.
 (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3, StartGlobalTransform:(/Verse.org/SpatialMath:)transform)<transacts>:generator(sweep_hit) = external {}
 
-@available {MinUploadedAtFNVersion := 2930}
 # Find all objects in the scene that would intersect Volume if they were swept from GlobalTransform along the Displacement vector Hits are sorted by hit distance. NOTE: This entity defines the context(scene) for the query but does not otherwise take part in the sweep.
 (Entity:entity).FindSweepHits<public>(Displacement:(/Verse.org/SpatialMath:)vector3, StartGlobalTransform:(/Verse.org/SpatialMath:)transform, Volume:collision_volume)<transacts>:generator(sweep_hit) = external {}
 
@@ -1122,17 +1390,22 @@ physics_scene_component<native><epic_internal> := class<final><final_super><epic
 
     OnRemovingFromSceneInternal<native><override>():void
 
-    @available {MinUploadedAtFNVersion := 2930}
     FindShapeOverlaps<native><public>(QueryShape:collision_volume, QueryTransform:(/Verse.org/SpatialMath:)transform)<transacts>:generator(overlap_hit)
 
-    @available {MinUploadedAtFNVersion := 2930}
     FindShapeSweepHits<native><public>(QueryShape:collision_volume, QueryTransform:(/Verse.org/SpatialMath:)transform, QueryTraceVector:(/Verse.org/SpatialMath:)vector3)<transacts>:generator(sweep_hit)
 
-    @available {MinUploadedAtFNVersion := 2930}
     FindEntityOverlaps<native><public>(QueryEntity:entity, QueryTransform:(/Verse.org/SpatialMath:)transform)<transacts>:generator(overlap_hit)
 
-    @available {MinUploadedAtFNVersion := 2930}
     FindEntitySweepHits<native><public>(QueryEntity:entity, QueryTransform:(/Verse.org/SpatialMath:)transform, QueryTraceVector:(/Verse.org/SpatialMath:)vector3)<transacts>:generator(sweep_hit)
+
+# Computes per-client Custom Primitive Data for the sibling mesh_component, letting each client render a different value for a CPD-bound material parameter.
+player_primitive_data_component<native><epic_internal> := class<final_super>(component):
+    # Triggers ComputePlayerPrimitiveDataEvent on each client, once per local player, passing UserData to the callbacks.
+    InvalidatePlayerPrimitiveData<epic_internal>(UserData:player_primitive_data_payload):void = external {}
+
+    @transient
+    # Subscribe to set the sibling mesh's custom primitive data per local player. The server triggers it with InvalidatePlayerPrimitiveData.
+    ComputePlayerPrimitiveDataEvent<native><epic_internal>:listenable(player_primitive_data_context) = external {}
 
 # Payload of the AgentChangeEvent. Contains the previous and the current possessing agent.
 agent_changed_result<native><epic_internal> := struct:
@@ -1153,7 +1426,7 @@ possessable_component<native><public> := class<final_super><epic_internal>(compo
 
     # Entity's opinion on whether it can be possessed by a specific agent.
     #  By default it fails if the entity is already possessed.
-    CanBePossessedBy<native_callable><epic_internal>(AgentToCheck:agent)<reads><decides>:void = external {}
+    CanBePossessedBy<native_callable><epic_internal>(AgentToCheck:agent)<decides><reads>:void = external {}
 
     # Internal function to call when possessing for updating status and triggering the AgentChangeEvent.
     BeginPossess<final><epic_internal>(NewPossessingAgent:agent)<transacts>:void = external {}
@@ -1171,7 +1444,7 @@ possessable_component<native><public> := class<final_super><epic_internal>(compo
 (InAgent:agent).GetPossessedEntities<public>()<reads>:[]possessable_component = external {}
 
 # Checks if an entity is possessed.
-(InAgent:agent).IsEntityPossessed<public>(PossessableComponent:possessable_component)<reads><decides>:void = external {}
+(InAgent:agent).IsEntityPossessed<public>(PossessableComponent:possessable_component)<decides><reads>:void = external {}
 
 # Possess an entity. Fails if PossessableComponent.CanBePossessedBy[Self] fails.
 (InAgent:agent).BeginPossess<epic_internal>(PossessableComponent:possessable_component)<transacts><decides>:void = external {}
@@ -1196,6 +1469,23 @@ presentation_component<native><epic_internal> := class<final_super>(component):
 @available {MinUploadedAtFNVersion := 3800}
 # Get the players that this entity is currently be presented to. False = presentable to everyone, array = presentable to no one.
 (Entity:entity).GetPresentableToPlayers<native><public>()<transacts>:?[]player
+
+@available {MinUploadedAtFNVersion := 4200}
+@experimental
+# Positions an entity at a named bone or socket on another entity's mesh.Assign this as the `Origin` of a `transform_component` to have an entity follow a socket/bone.
+presentation_origin<native><epic_internal> := class(origin):
+    @replicated("")
+    SocketName<native><epic_internal>:string
+
+    @replicated("")
+    var MeshEntity<native><epic_internal>:?entity = external {}
+
+    GetTransform<override><native>()<transacts>:(/Verse.org/SpatialMath:)transform
+
+@available {MinUploadedAtFNVersion := 4200}
+@experimental
+# Resolves `SocketName` against `Mesh` and returns a `presentation_origin` that follows that bone/socket.
+FindPresentationOrigin<native><epic_internal>(Mesh:mesh_component, SocketName:string)<decides><reads>:presentation_origin
 
 # A `rect_light_component` emits light into the scene from a rectangular plane with a specified width and height. You can use these
 # to simulate any kind of light sources that have rectangular areas, such as televisions or monitor screens, overhead lighting
@@ -1403,6 +1693,7 @@ spot_light_component<native><public> := class<final>(light_component, bounded):
     LightFalloffExponent<native><epic_internal>:float = external {}
 
 @experimental
+@replicatable
 # A range with a minimum and maximum value. For a value to fall inside of this range, the min value must be less than or equal to the max value.
 float_range<native><public> := struct<concrete>:
     Minimum<native><public>:float = external {}

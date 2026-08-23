@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to track when agents enter and exit a volume.
 volume_device<public> := class<concrete><final>(creative_device_base):

@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 using {/Verse.org/Simulation}
 # Used to apply Post Process Effects to players through the creative device rather than a Post Process Volume.
 post_process_device<public> := class<concrete><final>(creative_device_base):

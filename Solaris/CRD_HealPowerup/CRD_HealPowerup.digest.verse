@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com/Devices
 # Used to regenerate an `agent`'s health and/or shields.
 health_powerup_device<public> := class<concrete><final>(powerup_device):
     # Sets the *Magnitude* for this powerup, clamped to the Min and Max defined in the device.

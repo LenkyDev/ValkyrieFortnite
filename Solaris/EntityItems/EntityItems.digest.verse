@@ -1,3 +1,4 @@
+# Verse path: /Fortnite.com
 # Module import path: /Fortnite.com/Items
 Items<public> := module:
     using {/Verse.org/SceneGraph}
@@ -124,12 +125,12 @@ Items<public> := module:
     CeilingZapper_OG_CH1S1_Rare<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use CeilingZapper_OG_CH1S1_Rare instead."}
     # Deprecated. Please use CeilingZapper_OG_CH1S1_Rare instead.
     CeilingZapper_BR_CH4MS1_Rare<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use CeilingZapper_OG_CH1S1_Rare instead."}
     # Deprecated. Please use CeilingZapper_OG_CH1S1_Rare instead.
     CeilingZapper_BR_CH1S1_Rare<public> := class<final><concrete>(entity):
 
@@ -374,7 +375,7 @@ Items<public> := module:
     Grenade_OG_CH1S1_Common<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use Grenade_OG_CH1S1_Common instead."}
     # Deprecated. Please use Grenade_OG_CH1S1_Common instead.
     Grenade_BR_CH4MS1_Common<public> := class<final><concrete>(entity):
 
@@ -919,12 +920,12 @@ Items<public> := module:
     WallDynamo_OG_CH1S1_Rare<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use WallDynamo_OG_CH1S1_Rare instead."}
     # Deprecated. Please use WallDynamo_OG_CH1S1_Rare instead.
     WallDynamo_BR_CH4MS1_Rare<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use WallDynamo_OG_CH1S1_Rare instead."}
     # Deprecated. Please use WallDynamo_OG_CH1S1_Rare instead.
     WallDynamo_BR_CH1S1_Rare<public> := class<final><concrete>(entity):
 
@@ -1148,7 +1149,7 @@ Weapons<public> := module:
     BurstAssaultRifle_OG_CH1S1_Common<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use BurstAssaultRifle_OG_CH1S1_Common instead."}
     # Deprecated. Please use BurstAssaultRifle_OG_CH1S1_Common instead.
     BurstAssaultRifle_BR_CH4MS1_Common<public> := class<final><concrete>(entity):
 
@@ -1156,7 +1157,7 @@ Weapons<public> := module:
     BurstAssaultRifle_OG_CH1S1_Uncommon<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use BurstAssaultRifle_OG_CH1S1_Uncommon instead."}
     # Deprecated. Please use BurstAssaultRifle_OG_CH1S1_Uncommon instead.
     BurstAssaultRifle_BR_CH4MS1_Uncommon<public> := class<final><concrete>(entity):
 
@@ -1164,7 +1165,7 @@ Weapons<public> := module:
     BurstAssaultRifle_OG_CH1S1_Rare<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use BurstAssaultRifle_OG_CH1S1_Rare instead."}
     # Deprecated. Please use BurstAssaultRifle_OG_CH1S1_Rare instead.
     BurstAssaultRifle_BR_CH4MS1_Rare<public> := class<final><concrete>(entity):
 
@@ -1172,7 +1173,7 @@ Weapons<public> := module:
     BurstAssaultRifle_OG_CH1S1_Epic<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use BurstAssaultRifle_OG_CH1S1_Epic instead."}
     # Deprecated. Please use BurstAssaultRifle_OG_CH1S1_Epic instead.
     BurstAssaultRifle_BR_CH4MS1_Epic<public> := class<final><concrete>(entity):
 
@@ -1180,7 +1181,7 @@ Weapons<public> := module:
     BurstAssaultRifle_OG_CH1S1_Legendary<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use BurstAssaultRifle_OG_CH1S1_Legendary instead."}
     # Deprecated. Please use BurstAssaultRifle_OG_CH1S1_Legendary instead.
     BurstAssaultRifle_BR_CH4MS1_Legendary<public> := class<final><concrete>(entity):
 
@@ -1584,6 +1585,12 @@ Weapons<public> := module:
     DrumGun_BR_CH6MS2_Legendary<public> := class<final><concrete>(entity):
 
 
+    DrumGun_BR_CH7S4_Common<public> := class<final><concrete>(entity):
+
+
+    DrumGun_BR_CH7S4_Uncommon<public> := class<final><concrete>(entity):
+
+
     DrumGun_Ballistic_V1_Common<public> := class<final><concrete>(entity):
 
 
@@ -1687,6 +1694,21 @@ Weapons<public> := module:
 
 
     EggLauncher_BR_CH2S6_Uncommon<public> := class<final><concrete>(entity):
+
+
+    EightBitShotgun_BR_CH7S4_Common<public> := class<final><concrete>(entity):
+
+
+    EightBitShotgun_BR_CH7S4_Uncommon<public> := class<final><concrete>(entity):
+
+
+    EightBitShotgun_BR_CH7S4_Rare<public> := class<final><concrete>(entity):
+
+
+    EightBitShotgun_BR_CH7S4_Epic<public> := class<final><concrete>(entity):
+
+
+    EightBitShotgun_BR_CH7S4_Legendary<public> := class<final><concrete>(entity):
 
 
     ModularEnforcerAR_BR_CH5S1_Common<public> := class<final><concrete>(entity):
@@ -1971,7 +1993,7 @@ Weapons<public> := module:
     GuidedMissile_OG_CH1S3_Epic<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use GuidedMissile_OG_CH1S3_Epic instead."}
     # Deprecated. Please use GuidedMissile_OG_CH1S3_Epic instead.
     GuidedMissile_BR_CH4MS1_Epic<public> := class<final><concrete>(entity):
 
@@ -1979,7 +2001,7 @@ Weapons<public> := module:
     GuidedMissile_OG_CH1S3_Legendary<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use GuidedMissile_OG_CH1S3_Legendary instead."}
     # Deprecated. Please use GuidedMissile_OG_CH1S3_Legendary instead.
     GuidedMissile_BR_CH4MS1_Legendary<public> := class<final><concrete>(entity):
 
@@ -2629,6 +2651,9 @@ Weapons<public> := module:
     MeowsclesPeowPeowRifle_BR_CH2S2_Mythic<public> := class<final><concrete>(entity):
 
 
+    MidasMasterpiece_BR_CH7S4_Mythic<public> := class<final><concrete>(entity):
+
+
     Minigun_BR_CH1S2_Epic<public> := class<final><concrete>(entity):
 
 
@@ -3013,10 +3038,16 @@ Weapons<public> := module:
     PumpShotgun_BR_CH2S1_Common<public> := class<final><concrete>(entity):
 
 
+    PumpShotgun_BR_CH7S4_Epic<public> := class<final><concrete>(entity):
+
+
+    PumpShotgun_BR_CH7S4_Legendary<public> := class<final><concrete>(entity):
+
+
     PumpShotgun_OG_CH1S1_Common<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use PumpShotgun_OG_CH1S1_Common instead."}
     # Deprecated. Please use PumpShotgun_OG_CH1S1_Common instead.
     PumpShotgun_BR_CH4MS1_Common<public> := class<final><concrete>(entity):
 
@@ -3024,7 +3055,7 @@ Weapons<public> := module:
     PumpShotgun_OG_CH1S1_Uncommon<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use PumpShotgun_OG_CH1S1_Uncommon instead."}
     # Deprecated. Please use PumpShotgun_OG_CH1S1_Uncommon instead.
     PumpShotgun_BR_CH4MS1_Uncommon<public> := class<final><concrete>(entity):
 
@@ -3032,7 +3063,7 @@ Weapons<public> := module:
     PumpShotgun_OG_CH1S3_Rare<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use PumpShotgun_OG_CH1S3_Rare instead."}
     # Deprecated. Please use PumpShotgun_OG_CH1S3_Rare instead.
     PumpShotgun_BR_CH4MS1_Rare<public> := class<final><concrete>(entity):
 
@@ -3040,7 +3071,7 @@ Weapons<public> := module:
     PumpShotgun_OG_CH1S6_Epic<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use PumpShotgun_OG_CH1S6_Epic instead."}
     # Deprecated. Please use PumpShotgun_OG_CH1S6_Epic instead.
     PumpShotgun_BR_CH4MS1_Epic<public> := class<final><concrete>(entity):
 
@@ -3048,7 +3079,7 @@ Weapons<public> := module:
     PumpShotgun_OG_CH1S6_Legendary<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use PumpShotgun_OG_CH1S6_Legendary instead."}
     # Deprecated. Please use PumpShotgun_OG_CH1S6_Legendary instead.
     PumpShotgun_BR_CH4MS1_Legendary<public> := class<final><concrete>(entity):
 
@@ -3161,7 +3192,7 @@ Weapons<public> := module:
     ReconBow_BR_CH7S2_Exotic<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use ReconBow_BR_CH7S2_Exotic instead."}
     # Deprecated. Please use ReconBow_BR_CH7S2_Exotic instead.
     ExoticReconBow_BR_CH7S2_Exotic<public> := class<final><concrete>(entity):
 
@@ -3217,7 +3248,7 @@ Weapons<public> := module:
     Revolver_OG_CH1S1_Common<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use Revolver_OG_CH1S1_Common instead."}
     # Deprecated. Please use Revolver_OG_CH1S1_Common instead.
     Revolver_BR_CH4MS1_Common<public> := class<final><concrete>(entity):
 
@@ -3225,7 +3256,7 @@ Weapons<public> := module:
     Revolver_OG_CH1S1_Uncommon<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use Revolver_OG_CH1S1_Uncommon instead."}
     # Deprecated. Please use Revolver_OG_CH1S1_Uncommon instead.
     Revolver_BR_CH4MS1_Uncommon<public> := class<final><concrete>(entity):
 
@@ -3233,7 +3264,7 @@ Weapons<public> := module:
     Revolver_OG_CH1S1_Rare<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use Revolver_OG_CH1S1_Rare instead."}
     # Deprecated. Please use Revolver_OG_CH1S1_Rare instead.
     Revolver_BR_CH4MS1_Rare<public> := class<final><concrete>(entity):
 
@@ -3241,7 +3272,7 @@ Weapons<public> := module:
     Revolver_OG_CH1S1_Epic<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use Revolver_OG_CH1S1_Epic instead."}
     # Deprecated. Please use Revolver_OG_CH1S1_Epic instead.
     Revolver_BR_CH4MS1_Epic<public> := class<final><concrete>(entity):
 
@@ -3249,7 +3280,7 @@ Weapons<public> := module:
     Revolver_OG_CH1S1_Legendary<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use Revolver_OG_CH1S1_Legendary instead."}
     # Deprecated. Please use Revolver_OG_CH1S1_Legendary instead.
     Revolver_BR_CH4MS1_Legendary<public> := class<final><concrete>(entity):
 
@@ -3710,7 +3741,7 @@ Weapons<public> := module:
     SubmachineGun_OG_CH1S1_Common<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use SubmachineGun_OG_CH1S1_Common instead."}
     # Deprecated. Please use SubmachineGun_OG_CH1S1_Common instead.
     SubmachineGun_BR_CH4MS1_Common<public> := class<final><concrete>(entity):
 
@@ -3718,7 +3749,7 @@ Weapons<public> := module:
     SubmachineGun_OG_CH1S1_Uncommon<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use SubmachineGun_OG_CH1S1_Uncommon instead."}
     # Deprecated. Please use SubmachineGun_OG_CH1S1_Uncommon instead.
     SubmachineGun_BR_CH4MS1_Uncommon<public> := class<final><concrete>(entity):
 
@@ -3726,7 +3757,7 @@ Weapons<public> := module:
     SubmachineGun_OG_CH1S1_Rare<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use SubmachineGun_OG_CH1S1_Rare instead."}
     # Deprecated. Please use SubmachineGun_OG_CH1S1_Rare instead.
     SubmachineGun_BR_CH4MS1_Rare<public> := class<final><concrete>(entity):
 
@@ -3821,7 +3852,7 @@ Weapons<public> := module:
     SurgicalBurstRifle_BR_CH7S3_Common<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use SurgicalBurstRifle_BR_CH7S3_Common instead."}
     # Deprecated. Please use SurgicalBurstRifle_BR_CH7S3_Common instead.
     VanguardBurstRifle_BR_CH7S3_Common<public> := class<final><concrete>(entity):
 
@@ -3829,7 +3860,7 @@ Weapons<public> := module:
     SurgicalBurstRifle_BR_CH7S3_Uncommon<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use SurgicalBurstRifle_BR_CH7S3_Uncommon instead."}
     # Deprecated. Please use SurgicalBurstRifle_BR_CH7S3_Uncommon instead.
     VanguardBurstRifle_BR_CH7S3_Uncommon<public> := class<final><concrete>(entity):
 
@@ -3837,7 +3868,7 @@ Weapons<public> := module:
     SurgicalBurstRifle_BR_CH7S3_Rare<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use SurgicalBurstRifle_BR_CH7S3_Rare instead."}
     # Deprecated. Please use SurgicalBurstRifle_BR_CH7S3_Rare instead.
     VanguardBurstRifle_BR_CH7S3_Rare<public> := class<final><concrete>(entity):
 
@@ -3845,7 +3876,7 @@ Weapons<public> := module:
     SurgicalBurstRifle_BR_CH7S3_Epic<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use SurgicalBurstRifle_BR_CH7S3_Epic instead."}
     # Deprecated. Please use SurgicalBurstRifle_BR_CH7S3_Epic instead.
     VanguardBurstRifle_BR_CH7S3_Epic<public> := class<final><concrete>(entity):
 
@@ -3853,7 +3884,7 @@ Weapons<public> := module:
     SurgicalBurstRifle_BR_CH7S3_Legendary<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use SurgicalBurstRifle_BR_CH7S3_Legendary instead."}
     # Deprecated. Please use SurgicalBurstRifle_BR_CH7S3_Legendary instead.
     VanguardBurstRifle_BR_CH7S3_Legendary<public> := class<final><concrete>(entity):
 
@@ -4170,6 +4201,9 @@ Weapons<public> := module:
     HeistedBlinkMagSMG_BR_CH4S1_Exotic<public> := class<final><concrete>(entity):
 
 
+    TwinSiphonShotguns_BR_CH7S2_Exotic<public> := class<final><concrete>(entity):
+
+
     TwoShotShotgun_BR_CH3S3_Common<public> := class<final><concrete>(entity):
 
 
@@ -4299,6 +4333,6 @@ Weapons<public> := module:
     Zapotron_OG_CH1S2_Legendary<public> := class<final><concrete>(entity):
 
 
-    @deprecated
+    @deprecated {Message := "Please use Zapotron_OG_CH1S2_Legendary instead."}
     # Deprecated. Please use Zapotron_OG_CH1S2_Legendary instead.
     Zapotron_OG_CH1S1_Legendary<public> := class<final><concrete>(entity):
