@@ -71,11 +71,11 @@ Characters<public> := module:
         #  - 2: `true` if the character is DBNO. `false` if the character is not DBNO.
         DownButNotOutEvent<epic_internal>():listenable(tuple(fort_character, ?fort_character, logic))
 
-        # Signaled when this `fort_character` is marked by a reconnassaince device 
+        # Signaled when this `fort_character` is marked by a reconnaissance device 
         # Sends `tuple` payload:
         #  - 0: the `fort_character` that was marked. 
         #  - 1: `true` if the character being marked. `false` if the character is being unmarked.
-        MarkedEvent<epic_internal>():listenable(tuple(fort_character, ?fort_character, logic))
+        MarkedEvent<epic_internal>():listenable(tuple(fort_character, logic))
 
         # Succeeds if this `fort_character` is crouching.
         IsCrouching<public>()<transacts><decides>:void
@@ -286,14 +286,17 @@ Characters<public> := module:
 
         EliminatedEvent<override>():listenable(elimination_result) = external {}
 
-        DownButNotOutEvent<override>():listenable(tuple(fort_character, logic)) = external {}
+        DownButNotOutEvent<override>():listenable(tuple(fort_character, ?fort_character, logic)) = external {}
 
         PossessedEvent<override>():listenable(fort_character) = external {}
 
         MarkedEvent<override>():listenable(tuple(fort_character, logic)) = external {}
 
-    pawn_linked_event<native><epic_internal> := class(scene_event):
+    pawn_linked_info<native><epic_internal> := struct:
 
+
+    pawn_interop_interface<native><epic_internal> := interface<epic_internal>:
+        HandlePawnLinked<native_callable><protected>(Info:pawn_linked_info):void
 
 # Module import path: /Fortnite.com/FortPlayerUtilities
 FortPlayerUtilities<public> := module:

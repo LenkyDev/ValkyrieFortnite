@@ -64,11 +64,11 @@ camera_component<native><public> := class<final_super><abstract>(component, has_
 
     @experimental
     # Get transition to use when exiting this camera mode to transition to the destination camera mode
-    GetExitTransition<native_callable><epic_internal>(DestinationCamera:camera_component)<transacts><decides>:camera_transition = external {}
+    GetExitTransition<native_callable><public>(DestinationCamera:camera_component)<transacts><decides>:camera_transition = external {}
 
     @experimental
     # Get transition to use when entering this camera mode to transition to the specified camera mode
-    GetEnterTransition<native_callable><epic_internal>(SourceCamera:camera_component)<transacts><decides>:camera_transition = external {}
+    GetEnterTransition<native_callable><public>(SourceCamera:camera_component)<transacts><decides>:camera_transition = external {}
 
     @experimental
     GetEnterTransition_Internal<native_callable><epic_internal>(SourceCamera:camera_component)<transacts><decides>:camera_transition = external {}
@@ -95,6 +95,10 @@ camera_director_camera_entry<native><epic_internal> := class<epic_internal>(canc
     @experimental
     @replicated("")
     Priority<native><public>:rational
+
+    @experimental
+    @replicated("")
+    var Transition<native><public>:camera_transition = external {}
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
@@ -238,13 +242,16 @@ camera_transition_initial_orientation<native><public> := enum:
 # Controls how a camera mode transitions to another
 camera_transition<native><public> := class<concrete>:
     @editable
+    @replicated("")
     Blend<native><public>:camera_mode_blend = external {}
 
     @editable
+    @replicated("")
     # Sets the duration of the camera transition
     Duration<native><public>:float = external {}
 
     @editable
+    @replicated("")
     InitialTargetOrientation<native><epic_internal>:?camera_transition_initial_orientation = external {}
 
 @available {MinUploadedAtFNVersion := 4110}
@@ -282,6 +289,7 @@ camera_mode_blend_smootherstep<native><public> := class<concrete>(camera_mode_bl
 @experimental
 # Configurable blend between two camera modes
 camera_mode_blend_orbit<native><public> := class<concrete>(camera_mode_blend):
+    @replicated("")
     DrivingBlend<native><public>:camera_mode_blend = external {}
 
 @available {MinUploadedAtFNVersion := 4110}

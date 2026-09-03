@@ -252,7 +252,7 @@ Verse<public> := module:
 
     # A *recurring*, successively signaled parametric `event` with a `payload` allowing a simple mechanism to coordinate between concurrent tasks.
     event<native><public>(t:type) := class(event_base_intrnl, signalable(t), awaitable(t)):
-        @available {MinUploadedAtFNVersion := 4294967041}
+        @available {MinUploadedAtFNVersion := 4210}
         (/Verse.org/Verse/event:)Verse_event_Variance_Inherited<private>(:t):tuple(t, t) = external {}
 
         (/Verse.org/Verse/event:)Verse_event_Variance<private>(:t):tuple(t) = external {}
@@ -270,7 +270,7 @@ Verse<public> := module:
     event<public>() := event(tuple())
 
     subscribable_event_intrnl<native><epic_internal>(t:type) := class(event(t), listenable(t)):
-        @available {MinUploadedAtFNVersion := 4294967041}
+        @available {MinUploadedAtFNVersion := 4210}
         (/Verse.org/Verse/subscribable_event_intrnl:)Verse_subscribable_event_intrnl_Variance_Inherited<private>(:t):tuple(t, t, t) = external {}
 
         (/Verse.org/Verse/subscribable_event_intrnl:)Verse_subscribable_event_intrnl_Variance<private>(:t):tuple(t) = external {}
@@ -315,7 +315,7 @@ Verse<public> := module:
 
     # A parametric interface combining `awaitable` and `subscribable`.
     listenable<native><public>(payload:type) := interface(awaitable(payload), subscribable(payload)):
-        @available {MinUploadedAtFNVersion := 4294967041}
+        @available {MinUploadedAtFNVersion := 4210}
         (/Verse.org/Verse/listenable:)Verse_listenable_Variance_Inherited<private>():tuple(payload, payload, payload) = external {}
 
     # A parameterless interface combining `awaitable` and `subscribable`.

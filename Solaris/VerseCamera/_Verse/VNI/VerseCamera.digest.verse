@@ -38,6 +38,14 @@ camera_component<native><public> := class<final_super><abstract>(component, has_
     # Optionally override the far clipping plane distance. If value is Inf then use the default settings
     var FarClippingPlaneDistance<native><public>:float = external {}
 
+    @experimental
+    # Get transition to use when exiting this camera mode to transition to the destination camera mode
+    GetExitTransition<native_callable><public>(DestinationCamera:camera_component)<transacts><decides>:camera_transition = external {}
+
+    @experimental
+    # Get transition to use when entering this camera mode to transition to the specified camera mode
+    GetEnterTransition<native_callable><public>(SourceCamera:camera_component)<transacts><decides>:camera_transition = external {}
+
 @available {MinUploadedAtFNVersion := 4110}
 GlobalModifierPosition<public>:rational = external {}
 

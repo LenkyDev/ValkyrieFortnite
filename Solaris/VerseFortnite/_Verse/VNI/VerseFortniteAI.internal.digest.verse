@@ -136,13 +136,15 @@ AI<public> := module:
     (InCharacter:fort_character).GetFortLeashable<public>()<transacts><decides>:fort_leashable = external {}
 
     # NPC Component
-    fort_npc_component<native><epic_internal> := class<final_super>(component):
+    fort_npc_component<native><epic_internal> := class<final_super>(component, pawn_interop_interface):
         @editable
         # Path to AI spawner data to spawn the interop actor
         SpawnerData<native><epic_internal>:string = external {}
 
         @editable
         Logs<epic_internal>:logic = external {}
+
+        HandlePawnLinked<override><native>(Info:pawn_linked_info):void
 
         OnBeginSimulation<override>():void = external {}
 
@@ -680,7 +682,7 @@ Animation<public> := module:
         GetDisplayName<native><epic_internal>()<decides><reads>:message
 
     npc_character_definition<native><public> := class<computes><final><epic_internal>(asset):
-        IsSameType<native><epic_internal>(NPCCharacterDefinition:npc_character_definition)<decides><reads>:void
+        IsSame<native><epic_internal>(NPCCharacterDefinition:npc_character_definition)<decides><reads>:void
 
     (InPlayspace:fort_playspace).SpawnCharacter<native><epic_internal>(CharacterDefinition:npc_character_definition, Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform)<suspends>:?agent
 

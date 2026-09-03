@@ -35,4 +35,13 @@ using {/Verse.org/Native}
         Jump<public>:input_action(logic) = external {}
 
         @experimental
-        Movement<epic_internal>:input_action((/Verse.org/SpatialMath:)vector3) = external {}
+        @available {MinUploadedAtFNVersion := 4210}
+        Interact<public>:input_action(logic) = external {}
+
+        @experimental
+        @available {MinUploadedAtFNVersion := 4210}
+        InteractMapping<public>:input_mapping = external {}
+
+        @experimental
+        @available {MinUploadedAtFNVersion := 4210}
+        Move<public>:input_action((/Verse.org/SpatialMath:)vector3) = external {}

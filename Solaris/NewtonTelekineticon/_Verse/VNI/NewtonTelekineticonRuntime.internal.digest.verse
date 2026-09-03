@@ -1,4 +1,5 @@
 # Verse path: /Fortnite.com/Items
+using {/Verse.org/Presentation}
 using {/Verse.org/Native}
 using {/UnrealEngine.com/Itemization}
 using {/Fortnite.com/Itemization}
@@ -73,3 +74,12 @@ Telekineticon_Creative_V1_Common<native><public> := class<final><concrete>(fort_
     @field("Components")
     @available {MinUploadedAtFNVersion := 4200}
     TelekineticonComponent<native><protected>:telekineticon_component = external {}
+
+    @available {MinUploadedAtFNVersion := 4210}
+    IconComponent<override>:?icon_component = external {}
+
+    @available {MinUploadedAtFNVersion := 4210}
+    RarityComponent<override>:?rarity_component = external {}
+
+    @available {MinUploadedAtFNVersion := 4210}
+    DescriptionComponent<override>:?description_component = external {}

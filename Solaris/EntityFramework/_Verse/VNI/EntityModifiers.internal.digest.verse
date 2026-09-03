@@ -35,11 +35,11 @@ easeable<public> := interface<epic_internal>(cancelable):
 
     # Trigger an ease-out.
     # Triggering an ease-out again when already easing-out, or when fully eased-out has no effect
-    (/Verse.org/SceneGraph/easeable:)EaseOut<epic_internal>()<transacts>:void
+    (/Verse.org/SceneGraph/easeable:)EaseOut<public>()<transacts>:void
 
     # Trigger an ease-out. If an easing_window is provided here, then it will override any previously provided window.
     # Triggering an ease-out again when already easing-out, or when fully eased-out has no effect
-    (/Verse.org/SceneGraph/easeable:)EaseOut<epic_internal>(EaseOutWindow:easing_window)<transacts>:void
+    (/Verse.org/SceneGraph/easeable:)EaseOut<public>(EaseOutWindow:easing_window)<transacts>:void
 
     # Event that gets called when an ease in is started.
     EaseInEvent<epic_internal>:listenable(tuple())
@@ -71,7 +71,7 @@ easing_modifier_base<native><epic_internal> := class<epic_internal>:
 # The easing out window is applied when either the internal timeline reaches the window, or the modifier is
 # cancelled on the stack, whichever occurs earlier.
 easing_modifier<native><epic_internal>(t:type) := class<final><epic_internal>(easing_modifier_base, modifier(t), easeable):
-    @available {MinUploadedAtFNVersion := 4294967041}
+    @available {MinUploadedAtFNVersion := 4210}
     (/Verse.org/SceneGraph/easing_modifier:)SceneGraph_easing_modifier_Variance_Inherited<private>(:t, :t):tuple(t, t) = external {}
 
     (/Verse.org/SceneGraph/easing_modifier:)SceneGraph_easing_modifier_Variance<private>(:t, :t):tuple(t, t) = external {}

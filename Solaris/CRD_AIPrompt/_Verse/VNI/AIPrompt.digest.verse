@@ -50,7 +50,7 @@ ai_session<native><public> := class<unique>:
     # Registers a fire-and-forget side-output the model can emit alongside any response, during prompts and goals.
     #  When Required is true, the model must emit this every response.
     #  Returns a cancelable that unregisters the action.
-    RegisterAction<native><public>(Definition:prompt_binding_definition, Required:logic, input_type:type, Callback:type {_(:input_type):void})<transacts>:cancelable
+    RegisterAction<native><public>(Definition:prompt_binding_definition, Required:logic, output_type:type, Callback:type {_(:output_type):void})<transacts>:cancelable
 
 @available {MinUploadedAtFNVersion := 4000}
 # Defines the way the persona will handle attempts to prompt it while it is processing.

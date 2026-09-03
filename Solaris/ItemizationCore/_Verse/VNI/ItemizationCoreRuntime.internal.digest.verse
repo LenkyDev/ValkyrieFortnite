@@ -7,8 +7,8 @@ using {/Verse.org/Simulation}
 using {/Verse.org/Native}
 @hide_in_editor
 subscribable_inventory_event<native><epic_internal>(t:type) := class(subscribable_event_intrnl(t)):
-    @available {MinUploadedAtFNVersion := 4294967041}
-    (/UnrealEngine.com/Itemization/subscribable_inventory_event:)Itemization_subscribable_inventory_event_Variance_Inherited<private>(:t, :t, :t, :t):tuple(t, t, t, t, t, t) = external {}
+    @available {MinUploadedAtFNVersion := 4210}
+    (/UnrealEngine.com/Itemization/subscribable_inventory_event:)Itemization_subscribable_inventory_event_Variance_Inherited<private>(:t, :t, :t, :t, :t, :t):tuple(t, t, t, t, t, t, t, t, t) = external {}
 
     (/UnrealEngine.com/Itemization/subscribable_inventory_event:)Itemization_subscribable_inventory_event_Variance<private>():tuple(t, t) = external {}
 
@@ -215,7 +215,7 @@ inventory_setup_data_result<native><epic_internal> := struct<epic_internal>:
 @experimental
 inventory_starting_item<native><epic_internal> := struct<concrete><epic_internal>:
     @editable
-    ItemDefinition<native>:?item_definition_base = external {}
+    ItemDefinition<native>:?item_definition = external {}
 
     @editable
     ItemEntityClass<native>:?subtype(entity) = external {}
@@ -451,9 +451,6 @@ item_component<native><public> := class<final_super>(component):
 
     ItemDefinitionAsset<native><epic_internal>:?item_definition = external {}
 
-    @replicated("")
-    var<private> ItemDefinition<native><epic_internal>:?item_definition_base = external {}
-
 @available {MinUploadedAtFNVersion := 3800}
 (Item:item_component).CanEquip<native><public>()<transacts>:result(false, []equip_item_error)
 
@@ -461,10 +458,6 @@ item_component<native><public> := class<final_super>(component):
 (Item:item_component).CanUnequip<native><public>()<transacts>:result(false, []unequip_item_error)
 
 item_definition<native><epic_internal> := class<epic_internal>(asset):
-
-
-@import_as("/Script/ItemizationCoreRuntime.UItemDefinitionBase")
-item_definition_base<native><epic_internal> := class<epic_internal>:
 
 
 @experimental

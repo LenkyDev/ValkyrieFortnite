@@ -24,3 +24,10 @@ easing_window<native><public> := struct<concrete>:
 @experimental
 # Interface used to trigger easing behaviors
 easeable<public> := interface<epic_internal>(cancelable):
+    # Trigger an ease-out.
+    # Triggering an ease-out again when already easing-out, or when fully eased-out has no effect
+    (/Verse.org/SceneGraph/easeable:)EaseOut<public>()<transacts>:void
+
+    # Trigger an ease-out. If an easing_window is provided here, then it will override any previously provided window.
+    # Triggering an ease-out again when already easing-out, or when fully eased-out has no effect
+    (/Verse.org/SceneGraph/easeable:)EaseOut<public>(EaseOutWindow:easing_window)<transacts>:void

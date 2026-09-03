@@ -533,8 +533,8 @@ Devices<public> := module:
 
     # Base implementation for events on `creative_device`s.
     device_event<native><epic_internal>(t:type) := class<abstract>(listenable(t)):
-        @available {MinUploadedAtFNVersion := 4294967041}
-        (/Fortnite.com/Devices/device_event:)Devices_device_event_Variance_Inherited<private>():tuple(t, t, t, t) = external {}
+        @available {MinUploadedAtFNVersion := 4210}
+        (/Fortnite.com/Devices/device_event:)Devices_device_event_Variance_Inherited<private>():tuple(t, t, t, t, t) = external {}
 
         (/Fortnite.com/Devices/device_event:)Devices_device_event_Variance<private>(:t):tuple(t, t, t) = external {}
 

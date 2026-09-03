@@ -3,6 +3,7 @@
 Items<public> := module:
     # Module import path: /Fortnite.com/Items/KPopDemonHunters
     (/Fortnite.com/Items:)KPopDemonHunters<public> := module:
+        using {/Verse.org/Presentation}
         using {/Verse.org/SceneGraph}
         using {/Verse.org/Native}
         using {/UnrealEngine.com/Itemization}
@@ -21,6 +22,9 @@ Items<public> := module:
             @available {MinUploadedAtFNVersion := 4020}
             StackableComponent<override>:?basic_stackable_component = external {}
 
+            @available {MinUploadedAtFNVersion := 4210}
+            DescriptionComponent<override>:?description_component = external {}
+
         @preload
         TigersTeleportingMask_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
@@ -31,6 +35,9 @@ Items<public> := module:
 
             @available {MinUploadedAtFNVersion := 4020}
             RarityComponent<override>:?rarity_component = external {}
+
+            @available {MinUploadedAtFNVersion := 4210}
+            DescriptionComponent<override>:?description_component = external {}
 
         @preload
         ZoeysBubbleShield_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
@@ -46,10 +53,14 @@ Items<public> := module:
             @available {MinUploadedAtFNVersion := 4020}
             StackableComponent<override>:?basic_stackable_component = external {}
 
+            @available {MinUploadedAtFNVersion := 4210}
+            DescriptionComponent<override>:?description_component = external {}
+
 # Module import path: /Fortnite.com/Weapons
 Weapons<public> := module:
     # Module import path: /Fortnite.com/Weapons/KPopDemonHunters
     (/Fortnite.com/Weapons:)KPopDemonHunters<public> := module:
+        using {/Verse.org/Presentation}
         using {/Verse.org/SceneGraph}
         using {/Verse.org/Native}
         using {/UnrealEngine.com/Itemization}
@@ -64,3 +75,6 @@ Weapons<public> := module:
 
             @available {MinUploadedAtFNVersion := 4020}
             RarityComponent<override>:?rarity_component = external {}
+
+            @available {MinUploadedAtFNVersion := 4210}
+            DescriptionComponent<override>:?description_component = external {}

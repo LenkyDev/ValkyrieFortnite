@@ -117,7 +117,7 @@ fort_template_ability_effect_component<native><public> := class(ability_effect_c
 @available {MinUploadedAtFNVersion := 4200}
 @experimental
 fort_template_ability<native><public>(context_type:subtype(ability_context), prefab_type:subtype(fort_template_ability_effect)) := class<abstract>(ability(context_type, prefab_type)):
-    @available {MinUploadedAtFNVersion := 4294967041}
+    @available {MinUploadedAtFNVersion := 4210}
     (/Fortnite.com/Abilities/fort_template_ability:)Abilities_fort_template_ability_Variance_Inherited<private>(:context_type, :prefab_type, :context_type, :context_type):tuple(prefab_type, context_type, prefab_type, context_type, prefab_type) = external {}
 
     var (/Fortnite.com/Abilities/fort_template_ability:)Abilities_fort_template_ability_VarVariance_Inherited<private>:?tuple(prefab_type, prefab_type) = external {}

@@ -59,6 +59,7 @@ Items<public> := module:
     BananaOfTheGods_BR_CH5S2_Legendary<public> := class<final><concrete>(entity):
 
 
+    # LegacyBandage_BR_PreSeason_Common
     Bandage_BR_PreSeason_Common<public> := class<final><concrete>(entity):
 
 
@@ -147,6 +148,7 @@ Items<public> := module:
     ChugCannon_BR_CH2S5_Exotic<public> := class<final><concrete>(entity):
 
 
+    # LegacyChugJug_BR_CH1S2_Legendary
     ChugJug_BR_CH1S2_Legendary<public> := class<final><concrete>(entity):
 
 
@@ -515,6 +517,7 @@ Items<public> := module:
     MedMistSmokeGrenade_BR_CH6S2_Rare<public> := class<final><concrete>(entity):
 
 
+    # LegacyMedKit_BR_PreSeason_Uncommon
     MedKit_BR_PreSeason_Uncommon<public> := class<final><concrete>(entity):
 
 
@@ -728,6 +731,7 @@ Items<public> := module:
     ShieldMushroom_BR_CH1S4_Common<public> := class<final><concrete>(entity):
 
 
+    # LegacyShieldPotion_BR_PreSeason_Rare
     ShieldPotion_BR_PreSeason_Rare<public> := class<final><concrete>(entity):
 
 
@@ -797,6 +801,7 @@ Items<public> := module:
     SmallFry_BR_CH2S1_Common<public> := class<final><concrete>(entity):
 
 
+    # LegacySmallShieldPotion_BR_CH1S2_Uncommon
     SmallShieldPotion_BR_CH1S2_Uncommon<public> := class<final><concrete>(entity):
 
 
@@ -821,12 +826,15 @@ Items<public> := module:
     SnowyFlopper_BR_CH2S5_Uncommon<public> := class<final><concrete>(entity):
 
 
+    # SpeedBoost_Creative_V1_Uncommon
     SpeedBoostLow_Creative_V1_Uncommon<public> := class<final><concrete>(entity):
 
 
+    # SpeedBoost_Creative_V1_Rare
     SpeedBoostMedium_Creative_V1_Rare<public> := class<final><concrete>(entity):
 
 
+    # SpeedBoost_Creative_V1_Epic
     SpeedBoostHigh_Creative_V1_Epic<public> := class<final><concrete>(entity):
 
 
@@ -1540,9 +1548,11 @@ Weapons<public> := module:
     DragonsBreathSniper_BR_CH2S5_Exotic<public> := class<final><concrete>(entity):
 
 
+    # LegacyDragonsBreathShotgun_BR_CH2S5_Epic
     DragonsBreathShotgun_BR_CH2S5_Epic<public> := class<final><concrete>(entity):
 
 
+    # LegacyDragonsBreathShotgun_BR_CH2S5_Legendary
     DragonsBreathShotgun_BR_CH2S5_Legendary<public> := class<final><concrete>(entity):
 
 
@@ -1696,18 +1706,23 @@ Weapons<public> := module:
     EggLauncher_BR_CH2S6_Uncommon<public> := class<final><concrete>(entity):
 
 
+    # 8BitShotgun_BR_CH7S4_Common
     EightBitShotgun_BR_CH7S4_Common<public> := class<final><concrete>(entity):
 
 
+    # 8BitShotgun_BR_CH7S4_Uncommon
     EightBitShotgun_BR_CH7S4_Uncommon<public> := class<final><concrete>(entity):
 
 
+    # 8BitShotgun_BR_CH7S4_Rare
     EightBitShotgun_BR_CH7S4_Rare<public> := class<final><concrete>(entity):
 
 
+    # 8BitShotgun_BR_CH7S4_Epic
     EightBitShotgun_BR_CH7S4_Epic<public> := class<final><concrete>(entity):
 
 
+    # 8BitShotgun_BR_CH7S4_Legendary
     EightBitShotgun_BR_CH7S4_Legendary<public> := class<final><concrete>(entity):
 
 
@@ -3694,6 +3709,15 @@ Weapons<public> := module:
 
 
     ModularStrikerBurstRifle_BR_CH5S4_Legendary<public> := class<final><concrete>(entity):
+
+
+    StrikerBurstRifle_BR_CH7S4_Rare<public> := class<final><concrete>(entity):
+
+
+    StrikerBurstRifle_BR_CH7S4_Epic<public> := class<final><concrete>(entity):
+
+
+    StrikerBurstRifle_BR_CH7S4_Legendary<public> := class<final><concrete>(entity):
 
 
     StrikerPumpShotgun_BR_CH3S1_Common<public> := class<final><concrete>(entity):

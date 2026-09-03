@@ -3,8 +3,8 @@
 Restricted<public> := module:
     using {/Verse.org/Native}
     sticky_event<native><public>(t:type) := class(event(t)):
-        @available {MinUploadedAtFNVersion := 4294967041}
-        (/Verse.org/Restricted/sticky_event:)Restricted_sticky_event_Variance_Inherited<private>(:t, :t, :t):tuple(t, t, t) = external {}
+        @available {MinUploadedAtFNVersion := 4210}
+        (/Verse.org/Restricted/sticky_event:)Restricted_sticky_event_Variance_Inherited<private>(:t, :t, :t, :t):tuple(t, t, t, t) = external {}
 
         (/Verse.org/Restricted/sticky_event:)Restricted_sticky_event_Variance<private>(:t):tuple(t) = external {}
 

@@ -1,5 +1,6 @@
 # Verse path: /Fortnite.com/Itemization
 using {/Verse.org/Assets}
+using {/Verse.org/Presentation}
 using {/Verse.org/Simulation}
 using {/Verse.org/Native}
 using {/Verse.org/SceneGraph}
@@ -31,7 +32,7 @@ fort_br_inventory_legacy_quickbar_component<native><epic_internal> := class<abst
 fort_br_inventory_weapon_hotbar_component<native><epic_internal> := class(fort_br_inventory_legacy_quickbar_component):
 
 
-# `fort_inventory_weapon_hotbar_component` is the UEFN inventory for Fortnite weapons and gadgets.
+# `fort_inventory_weapon_hotbar_component` is the UEFN inventory for Fortnite weapons and gadgets. N.B. This inventory has the lowest priority and Items that do not have the WorldItem category will only be added to it if there is no space in any other valid inventory.
 fort_inventory_weapon_hotbar_component<native><public> := class<final>(fort_br_inventory_weapon_hotbar_component):
     # Returns the item currently selected, if there is one.
     GetEquippedItem<native><epic_internal>()<decides><reads>:item_component
@@ -157,7 +158,9 @@ fort_item_definition_entity<native><epic_internal> := class<concrete>(fort_item_
     @available {MinUploadedAtFNVersion := 4020}
     StackableComponent<native><protected>:?basic_stackable_component = external {}
 
-ExpandItemComponents<native><epic_internal>(InEntity:fort_item_definition_entity_base)<converges>:void
+    @field("Components")
+    @available {MinUploadedAtFNVersion := 4210}
+    DescriptionComponent<native><protected>:?description_component = external {}
 
 @available {MinUploadedAtFNVersion := 4040}
 @class_and_subclass_group_names("item")

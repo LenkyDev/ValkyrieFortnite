@@ -16,7 +16,7 @@ Verse<public> := module:
     @experimental
     # Modifier stacks provide an ordered application of modifiers.
     modifier_stack<native><public>(t:type) := class(modifier(t)):
-        @available {MinUploadedAtFNVersion := 4294967041}
+        @available {MinUploadedAtFNVersion := 4210}
         (/Verse.org/Verse/modifier_stack:)Verse_modifier_stack_Variance_Inherited<private>(:t):tuple(t) = external {}
 
         (/Verse.org/Verse/modifier_stack:)Verse_modifier_stack_Variance<private>(:t, :t, :t, :t):tuple(t, t, t, t) = external {}

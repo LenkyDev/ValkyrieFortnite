@@ -66,7 +66,7 @@ Concurrency<public> := module:
 
     @cpp_name("verse::task")
     task<native><public>(t:type) := class<abstract><final>(awaitable(t)):
-        @available {MinUploadedAtFNVersion := 4294967041}
+        @available {MinUploadedAtFNVersion := 4210}
         (/Verse.org/Concurrency/task:)Concurrency_task_Variance_Inherited<private>():tuple(t) = external {}
 
         (/Verse.org/Concurrency/task:)Concurrency_task_Variance<private>():tuple(t) = external {}

@@ -56,7 +56,7 @@ ai_session<native><public> := class<unique>:
     # Registers a fire-and-forget side-output the model can emit alongside any response, during prompts and goals.
     #  When Required is true, the model must emit this every response.
     #  Returns a cancelable that unregisters the action.
-    RegisterAction<native><public>(Definition:prompt_binding_definition, Required:logic, input_type:type, Callback:type {_(:input_type):void})<transacts>:cancelable
+    RegisterAction<native><public>(Definition:prompt_binding_definition, Required:logic, output_type:type, Callback:type {_(:output_type):void})<transacts>:cancelable
 
     OnAISessionConstructed<native><epic_internal>()<transacts>:void
 
@@ -65,6 +65,8 @@ ai_session<native><public> := class<unique>:
     SubscribeToVoiceChannelMemberRemoved<native_callable><epic_internal>(VoiceChannel:voice_channel(member_info) where member_info:subtype(has_voice_member_info))<transacts>:cancelable = external {}
 
     CancelAllVoiceChannelSubscriptions<native_callable><epic_internal>()<transacts>:void = external {}
+
+    CancelVoiceChannelSubscription<native_callable><epic_internal>(SubscriptionToCancel:cancelable)<transacts>:void = external {}
 
     OnAddMemberEvent<native><epic_internal>((Agent:agent, MemberInfo:member_info) where member_info:subtype(has_voice_member_info))<transacts>:void
 

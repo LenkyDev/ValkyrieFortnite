@@ -8,7 +8,7 @@ fort_inventory_component<native><public> := class<epic_internal>(inventory_compo
     # Returns the total number of slots in this inventory.
     GetMaxSlots<native><public>()<decides><reads>:int
 
-# `fort_inventory_weapon_hotbar_component` is the UEFN inventory for Fortnite weapons and gadgets.
+# `fort_inventory_weapon_hotbar_component` is the UEFN inventory for Fortnite weapons and gadgets. N.B. This inventory has the lowest priority and Items that do not have the WorldItem category will only be added to it if there is no space in any other valid inventory.
 fort_inventory_weapon_hotbar_component<native><public> := class<final>(fort_inventory_component):
     # Sets the total number of slots.
     SetMaxSlots<native><public>(InNumSlots:int):void

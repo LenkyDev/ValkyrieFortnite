@@ -22,18 +22,22 @@ Competitive<epic_internal> := module:
     ranked_leaderboard<native><epic_internal> := struct:
         Entries<native><public>:[]ranked_leaderboard_entry = external {}
 
+    tournament_stat_update<native><epic_internal> := struct:
+        Stat<native><public>:string = external {}
+
+        Value<native><public>:int = external {}
+
     competitive_manager<native><epic_internal> := class<internal>:
         # Sends tournaments stats for this team to the Events Service
         SendTournamentStatsForTeam<native><epic_internal>(InTeam:team, StatsMap:[string]int, ?GameIdOverride:string = external {}):void
+
+        # Sends a tournament stat HUD notification (scoring toast) to each active member of the given team.
+        NotifyTournamentStat<native><epic_internal>(InTeam:team, StatUpdate:tournament_stat_update):void
 
         # Returns the top players for a given mode
         GetRankedLeaderboard<native><epic_internal>(LeaderboardParams:ranked_leaderboard_params)<suspends>:ranked_leaderboard
 
     (Entity:entity).GetCompetitiveManager<native><epic_internal>()<transacts><decides>:competitive_manager
-
-    @deprecated
-    # Sends tournaments stats for this team to the Events Service
-    (InTeam:team).SendTournamentStats<native><epic_internal>(GameId:string, StatsMap:[string]int):void
 
 # Module import path: /Fortnite.com/Framework/CVarUtils
 CVarUtils<epic_internal> := module:
