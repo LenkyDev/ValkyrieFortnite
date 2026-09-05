@@ -1,0 +1,41 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "Valkyrie Editor (UEFN) Tests",
+	"Description": "Automated testing within the Unreal Editor for Fortnite",
+	"Category": "Testing",
+	"CreatedBy": "Epic Games, Inc.",
+	"CreatedByURL": "https://epicgames.com",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"CanContainVerse": true,
+	"VersePath": "/Fortnite.com/ValkyrieEditorTests",
+	"VerseScope": "InternalAPI",
+	"EnableSceneGraph": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "ValkyrieEditorTests",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit",
+			"TargetAllowList": [
+				"Editor"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "AutomationControllerRpc",
+			"Enabled": true
+		},
+		{
+			"Name": "EntityFramework",
+			"Enabled": true
+		}
+	]
+}
