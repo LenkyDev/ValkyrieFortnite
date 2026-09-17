@@ -56,6 +56,10 @@
 			"Enabled": true
 		},
 		{
+			"Name": "VersePresentation",
+			"Enabled": true
+		},
+		{
 			"Name": "VerseEngine",
 			"Enabled": true
 		},

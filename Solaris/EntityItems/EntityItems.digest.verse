@@ -907,6 +907,9 @@ Items<public> := module:
     SpectralTwine_Creative_V1_Uncommon<public> := class<final><concrete>(entity):
 
 
+    Unarmed_Creative_V1_Common<public> := class<final><concrete>(entity):
+
+
     UnstableBounceGrenade_BR_CH6S3_Exotic<public> := class<final><concrete>(entity):
 
 
@@ -968,6 +971,9 @@ Items<public> := module:
 # Module import path: /Fortnite.com/Weapons
 Weapons<public> := module:
     using {/Verse.org/SceneGraph}
+    AccelerantDrumGun_BR_CH7S4_Exotic<public> := class<final><concrete>(entity):
+
+
     AnvilRocketLauncher_BR_CH3S2_Rare<public> := class<final><concrete>(entity):
 
 
@@ -1056,6 +1062,9 @@ Weapons<public> := module:
 
 
     BallisticShield_BR_CH5S1_Epic<public> := class<final><concrete>(entity):
+
+
+    BalloonPopperAssaultRifle_BR_CH7S4_Exotic<public> := class<final><concrete>(entity):
 
 
     BankShotPistol_BR_CH7S3_Uncommon<public> := class<final><concrete>(entity):
@@ -2840,6 +2849,13 @@ Weapons<public> := module:
     UnstableYoinkShotgun_BR_CH6S3_Exotic<public> := class<final><concrete>(entity):
 
 
+    # Overclocked8BitShotgun_BR_CH7S4_Exotic
+    OverclockedEightBitShotgun_BR_CH7S4_Exotic<public> := class<final><concrete>(entity):
+
+
+    OverpoweredPumpShotgun_BR_CH7S4_Exotic<public> := class<final><concrete>(entity):
+
+
     EradicatorOXRRifle_BR_CH6S4_Exotic<public> := class<final><concrete>(entity):
 
 
@@ -3199,6 +3215,15 @@ Weapons<public> := module:
 
 
     ReaperModularSniperRifle_BR_CH5S1_Legendary<public> := class<final><concrete>(entity):
+
+
+    ReaperSniperRifle_BR_CH7S2_Legendary<public> := class<final><concrete>(entity):
+
+
+    ReaperSniperRifle_BR_CH7S4_Rare<public> := class<final><concrete>(entity):
+
+
+    ReaperSniperRifle_BR_CH7S4_Epic<public> := class<final><concrete>(entity):
 
 
     ReaperSniperRifle_Ballistic_V1_Common<public> := class<final><concrete>(entity):

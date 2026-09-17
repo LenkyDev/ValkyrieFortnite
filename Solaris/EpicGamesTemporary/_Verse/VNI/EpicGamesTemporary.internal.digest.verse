@@ -1,4 +1,46 @@
 # Verse path: /UnrealEngine.com/Temporary
+@experimental
+playable<epic_internal> := interface<epic_internal>:
+    @experimental
+    Play<public>():void
+
+    @experimental
+    Pause<public>():void
+
+    @experimental
+    Stop<public>(?BlendOutTime:float = external {}):void
+
+    @experimental
+    GetDuration<public>()<decides>:float
+
+    @experimental
+    GetOnFinishedEvent<public>()<decides><reads>:listenable(tuple())
+
+    @experimental
+    GetOnStoppedEvent<public>():listenable(tuple())
+
+    @experimental
+    GetOnPlayedEvent<public>():listenable(tuple())
+
+    @experimental
+    GetOnPausedEvent<public>():listenable(tuple())
+
+@deprecated {Message := "Use `CollisionChannels` and `CollisionProfiles` from `RigidPhysicsCore` instead."}
+# Module import path: /UnrealEngine.com/Temporary/SceneGraph
+SceneGraph<public> := module:
+    @deprecated {Message := "Use `CollisionChannels` from `RigidPhysicsCore` instead."}
+    # Module import path: /UnrealEngine.com/Temporary/SceneGraph/collision_channels
+    collision_channels<public> := module:
+
+
+    @deprecated {Message := "Use `CollisionProfiles` from `RigidPhysicsCore` instead."}
+    # Module import path: /UnrealEngine.com/Temporary/SceneGraph/collision_profiles
+    collision_profiles<public> := module:
+
+
+# Stably sort `Array` using `Less` where `Less` succeeding indicates `Left` should precede `Right`
+SortBy<native><public>((Array:[]t, Less:type {_(:t, :t)<computes><decides>:void}) where t:type)<computes>:[]t
+
 # Module import path: /UnrealEngine.com/Temporary/SpatialMath
 (/UnrealEngine.com/Temporary:)SpatialMath<public> := module:
     using {/Verse.org/Temporary/EpicGamesRestricted/Network}
@@ -420,45 +462,3 @@
 
     # Succeeds when each component of `V1` and `V2` are within `AbsoluteTolerance` of each other.
     (/UnrealEngine.com/Temporary/SpatialMath:)IsAlmostEqual<public>(V1:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, V2:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, AbsoluteTolerance:float)<computes><decides>:void = external {}
-
-@experimental
-playable<epic_internal> := interface<epic_internal>:
-    @experimental
-    Play<public>():void
-
-    @experimental
-    Pause<public>():void
-
-    @experimental
-    Stop<public>(?BlendOutTime:float = external {}):void
-
-    @experimental
-    GetDuration<public>()<decides>:float
-
-    @experimental
-    GetOnFinishedEvent<public>()<decides><reads>:listenable(tuple())
-
-    @experimental
-    GetOnStoppedEvent<public>():listenable(tuple())
-
-    @experimental
-    GetOnPlayedEvent<public>():listenable(tuple())
-
-    @experimental
-    GetOnPausedEvent<public>():listenable(tuple())
-
-@deprecated {Message := "Use `CollisionChannels` and `CollisionProfiles` from `RigidPhysicsCore` instead."}
-# Module import path: /UnrealEngine.com/Temporary/SceneGraph
-SceneGraph<public> := module:
-    @deprecated {Message := "Use `CollisionChannels` from `RigidPhysicsCore` instead."}
-    # Module import path: /UnrealEngine.com/Temporary/SceneGraph/collision_channels
-    collision_channels<public> := module:
-
-
-    @deprecated {Message := "Use `CollisionProfiles` from `RigidPhysicsCore` instead."}
-    # Module import path: /UnrealEngine.com/Temporary/SceneGraph/collision_profiles
-    collision_profiles<public> := module:
-
-
-# Stably sort `Array` using `Less` where `Less` succeeding indicates `Left` should precede `Right`
-SortBy<native><public>((Array:[]t, Less:type {_(:t, :t)<computes><decides>:void}) where t:type)<computes>:[]t

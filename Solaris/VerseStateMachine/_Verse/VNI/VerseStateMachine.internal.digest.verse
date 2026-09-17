@@ -45,7 +45,7 @@ StateMachine<public> := module:
 
     state_machine<native><epic_internal> := class(state_container, diagnosable):
         # Transition to the new leaf states, replacing all the active states.  Propagating from leaf to root, OnExit will be invoked on active states that are not in the new transition.  Then, propagating from root to leaf, OnEnter will be invoked for the new states that were not previously activated.  Other transitions can occur while invoking OnExit or in OnEnter.  The current OnExit or OnEnter invocation will complete before the new transition executes.  The previous transition will merge with the new transition. In case of conflict, the new transition takes precedence.
-        TransitionTo<final><public>(Leaves:[]state):void = external {}
+        TransitionTo<final><native_callable><public>(Leaves:[]state):void = external {}
 
         # Transition to the new leaf states, replacing all the active states child of Parent state, and keeping the other leaves active.  Propagating from leaf to root, OnExit will be invoked on active states that are not in the new transition.  Then, propagating from root to leaf, OnEnter will be invoked for the new states that were not previously activated.  Other transitions can occur while invoking OnExit or in OnEnter.  The current OnExit or OnEnter invocation will complete before the new transition executes.  The previous transition will merge with the new transition. In case of conflict, the new transition takes precedence.
         TransitionUnder<final><public>(Parent:state, Leaves:[]state):void = external {}

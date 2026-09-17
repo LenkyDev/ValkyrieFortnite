@@ -61,6 +61,9 @@ Characters<public> := module:
         # Succeeds if this `fort_character` is in the world and has not been eliminated. Most fort_character actions will silently fail if this fails. Please test IsActive if you want to handle these failure cases rather than allow them to silently fail.
         IsActive<public>()<transacts><decides>:void
 
+        # Signaled when this `fort_character` changes active state.
+        ActiveChangedEvent<epic_internal>():listenable(tuple(fort_character, logic))
+
         # Succeeds if this `fort_character` is in the 'Down But Not Out' state. In this state the character is down but can still be revived by teammates for a period of time.
         IsDownButNotOut<public>()<transacts><decides>:void
 
@@ -284,6 +287,8 @@ Characters<public> := module:
 
         SlidEvent<override>():listenable(tuple(fort_character, logic)) = external {}
 
+        ActiveChangedEvent<override>():listenable(tuple(fort_character, logic)) = external {}
+
         EliminatedEvent<override>():listenable(elimination_result) = external {}
 
         DownButNotOutEvent<override>():listenable(tuple(fort_character, ?fort_character, logic)) = external {}
@@ -364,10 +369,14 @@ Game<public> := module:
         # `fort_character` that eliminated `EliminatedCharacter` from the match. `EliminatingCharacter` will be false when `EliminatedCharacter` was eliminated through non-character actions, such as environmental damage.
         EliminatingCharacter<native><public>:?fort_character
 
+    @deprecated
     @experimental
-    fort_ability_component<native><epic_internal> := class:
+    fort_ability_component<native><epic_internal> := class<final_super>(component):
+        OnBeginSimulation<override><native>():void
 
+        OnEndSimulation<override><native>():void
 
+    @deprecated
     @experimental
     fort_damageable_component<native><epic_internal> := class(damageable_component):
         OnInitialized<native><override>():void

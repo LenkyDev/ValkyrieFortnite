@@ -51,6 +51,23 @@ Native<public> := module:
     property_changed_interface<native><epic_internal> := interface:
         OnPropertyChangedFromVerse<epic_internal>(PropertyName:string)<transacts>:void
 
+@cpp_name("verse::VerseNative_Verse_org_Persona_module_impl")
+# Module import path: /Verse.org/Persona
+Persona<epic_internal> := module:
+    # From a type produce a JSON schema.
+    ToJson<native><epic_internal>(__dupe___unnamed_parameter_0:type)<decides><reads><converges>:string
+
+    # From an array of types produce a JSON schema corresponding to an object with optional fields of name 0, 1, etc., i.e. a sparse array.
+    ToJson<native><epic_internal>(__dupe___unnamed_parameter_0:[]type)<decides><reads><converges>:string
+
+    # From a JSON string conforming to the schema for a type, produce a value of that type.
+    FromJson<native><epic_internal>(__dupe___unnamed_parameter_0:string, t:type)<decides><reads><converges>:t
+
+    # From a JSON string representing a sparse array where each element, if it exists, conforms to the corresponding type element, produce array of optional values.
+    FromJson<native><epic_internal>((__dupe___unnamed_parameter_0:string, __dupe___unnamed_parameter_1:[]subtype(t)) where t:type)<decides><reads><converges>:[]?t
+
+    Cast<native><epic_internal>(__dupe___unnamed_parameter_0:any, t:type)<decides><converges>:t
+
 # Module import path: /Verse.org/Concurrency
 Concurrency<public> := module:
     using {/Verse.org/Native}
@@ -104,20 +121,3 @@ Diagnostics<public> := module:
         Key<epic_internal>:string
 
         Value<epic_internal>:string
-
-@cpp_name("verse::VerseNative_Verse_org_Persona_module_impl")
-# Module import path: /Verse.org/Persona
-Persona<epic_internal> := module:
-    # From a type produce a JSON schema.
-    ToJson<native><epic_internal>(__dupe___unnamed_parameter_0:type)<decides><reads><converges>:string
-
-    # From an array of types produce a JSON schema corresponding to an object with optional fields of name 0, 1, etc., i.e. a sparse array.
-    ToJson<native><epic_internal>(__dupe___unnamed_parameter_0:[]type)<decides><reads><converges>:string
-
-    # From a JSON string conforming to the schema for a type, produce a value of that type.
-    FromJson<native><epic_internal>(__dupe___unnamed_parameter_0:string, t:type)<decides><reads><converges>:t
-
-    # From a JSON string representing a sparse array where each element, if it exists, conforms to the corresponding type element, produce array of optional values.
-    FromJson<native><epic_internal>((__dupe___unnamed_parameter_0:string, __dupe___unnamed_parameter_1:[]subtype(t)) where t:type)<decides><reads><converges>:[]?t
-
-    Cast<native><epic_internal>(__dupe___unnamed_parameter_0:any, t:type)<decides><converges>:t

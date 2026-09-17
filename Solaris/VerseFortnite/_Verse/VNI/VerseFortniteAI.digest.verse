@@ -370,13 +370,20 @@ Animation<public> := module:
             # The animation encountered an error during initialization or whilst playing.
             Error
 
+        # The body layer an animation plays on.
+        play_animation_layer<native><public> := enum<open>:
+            # The whole skeleton is driven by the animation.
+            FullBody
+            # The animation plays on the upper body when the character is in motion.
+            UpperBody
+
         # An interface for playing an animation on an object.
         play_animation_controller<native><public> := interface<epic_internal>:
             # Play an animation sequence.
-            PlayAndAwait<public>(AnimationSequence:animation_sequence, ?PlayRate:float = external {}, ?PlayCount:float = external {}, ?StartPositionSeconds:float = external {}, ?BlendInTime:float = external {}, ?BlendOutTime:float = external {})<suspends>:play_animation_result
+            PlayAndAwait<public>(AnimationSequence:animation_sequence, ?Layer:play_animation_layer = external {}, ?PlayRate:float = external {}, ?PlayCount:float = external {}, ?StartPositionSeconds:float = external {}, ?BlendInTime:float = external {}, ?BlendOutTime:float = external {})<suspends>:play_animation_result
 
             # Start an animation sequence and obtain an instance to query and manipulate.
-            Play<public>(AnimationSequence:animation_sequence, ?PlayRate:float = external {}, ?PlayCount:float = external {}, ?StartPositionSeconds:float = external {}, ?BlendInTime:float = external {}, ?BlendOutTime:float = external {}):play_animation_instance
+            Play<public>(AnimationSequence:animation_sequence, ?Layer:play_animation_layer = external {}, ?PlayRate:float = external {}, ?PlayCount:float = external {}, ?StartPositionSeconds:float = external {}, ?BlendInTime:float = external {}, ?BlendOutTime:float = external {}):play_animation_instance
 
         # An animation instance created from play_animation_controller.Play that can be queried and manipulated.
         play_animation_instance<native><public> := class<epic_internal>:

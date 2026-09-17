@@ -136,15 +136,27 @@ AI<public> := module:
     (InCharacter:fort_character).GetFortLeashable<public>()<transacts><decides>:fort_leashable = external {}
 
     # NPC Component
-    fort_npc_component<native><epic_internal> := class<final_super>(component, pawn_interop_interface):
+    fort_npc_component<native><epic_internal> := class<final_super>(component, pawn_interop_interface, transform_bridge_offset_interface):
         @editable
         # Path to AI spawner data to spawn the interop actor
         SpawnerData<native><epic_internal>:string = external {}
 
         @editable
+        HasAvatar<native><epic_internal>:logic = external {}
+
+        @editable
+        # Path to the anim instance class to apply to the interop pawn alongside the avatar mesh. Leave empty to keep the animation blueprint the pawn was authored with.
+        AvatarAnimClass<native><epic_internal>:string = external {}
+
+        @editable
         Logs<epic_internal>:logic = external {}
 
+        @editable
+        DrawSkeleton<native><epic_internal>:logic = external {}
+
         HandlePawnLinked<override><native>(Info:pawn_linked_info):void
+
+        GetTransformOffset<override><native>(Info:transform_bridge_offset_info)<reads>:?(/Verse.org/SpatialMath:)vector3
 
         OnBeginSimulation<override>():void = external {}
 
@@ -154,6 +166,13 @@ AI<public> := module:
     # Fortnite Wildlife AI actions management
     fort_wildlife_actions_component<native><epic_internal> := class<epic_internal>(npc_actions_component):
         OnInitialized<native><override>():void
+
+    # Shooting-accuracy tier for a Fortnite guard NPC. Mirrors the guard spawner's Accuracy option (LOW / MODERATE / HIGH / VERY HIGH).
+    npc_accuracy<native><epic_internal> := enum<open>:
+        Low
+        Moderate
+        High
+        VeryHigh
 
     @available {MinUploadedAtFNVersion := 3900}
     # Fortnite Guards AI actions management
@@ -203,6 +222,9 @@ AI<public> := module:
 
         # Untether the NPC.
         Untether<native><public>():void
+
+        # The guard's current shooting-accuracy tier. Setting it at runtime immediately re-applies the aiming/attacking skill on the live NPC.
+        var Accuracy<epic_internal>:npc_accuracy = external {}
 
     @available {MinUploadedAtFNVersion := 3900}
     # Fortnite Guard perception management
@@ -596,13 +618,20 @@ Animation<public> := module:
             # The animation encountered an error during initialization or whilst playing.
             Error
 
+        # The body layer an animation plays on.
+        play_animation_layer<native><public> := enum<open>:
+            # The whole skeleton is driven by the animation.
+            FullBody
+            # The animation plays on the upper body when the character is in motion.
+            UpperBody
+
         # An interface for playing an animation on an object.
         play_animation_controller<native><public> := interface<epic_internal>:
             # Play an animation sequence.
-            PlayAndAwait<public>(AnimationSequence:animation_sequence, ?PlayRate:float = external {}, ?PlayCount:float = external {}, ?StartPositionSeconds:float = external {}, ?BlendInTime:float = external {}, ?BlendOutTime:float = external {})<suspends>:play_animation_result
+            PlayAndAwait<public>(AnimationSequence:animation_sequence, ?Layer:play_animation_layer = external {}, ?PlayRate:float = external {}, ?PlayCount:float = external {}, ?StartPositionSeconds:float = external {}, ?BlendInTime:float = external {}, ?BlendOutTime:float = external {})<suspends>:play_animation_result
 
             # Start an animation sequence and obtain an instance to query and manipulate.
-            Play<public>(AnimationSequence:animation_sequence, ?PlayRate:float = external {}, ?PlayCount:float = external {}, ?StartPositionSeconds:float = external {}, ?BlendInTime:float = external {}, ?BlendOutTime:float = external {}):play_animation_instance
+            Play<public>(AnimationSequence:animation_sequence, ?Layer:play_animation_layer = external {}, ?PlayRate:float = external {}, ?PlayCount:float = external {}, ?StartPositionSeconds:float = external {}, ?BlendInTime:float = external {}, ?BlendOutTime:float = external {}):play_animation_instance
 
         # An animation instance created from play_animation_controller.Play that can be queried and manipulated.
         play_animation_instance<native><public> := class<epic_internal>:
@@ -648,23 +677,31 @@ Animation<public> := module:
             Error
 
         @import_as("/Script/VerseFortniteAI.UAIAnimationComponentData")
-        fort_npc_play_animation_settings<native><epic_internal> := class:
+        fort_play_animation_settings<native><epic_internal> := class:
 
 
         # Get the play_animation_controller for the specified character.
         (InCharacter:fort_character).GetPlayAnimationController<native><public>()<transacts><decides>:play_animation_controller
 
-        fort_npc_play_animation_component<native><epic_internal> := class<final_super><epic_internal>(component, play_animation_controller):
+        fort_play_animation_component<native><epic_internal> := class<final_super><epic_internal>(component, play_animation_controller):
             @editable
-            PlayAnimationSettings<native><epic_internal>:fort_npc_play_animation_settings = external {}
+            PlayAnimationSettings<native><epic_internal>:fort_play_animation_settings = external {}
+
+            @editable
+            # Animation slot used by play_animation_layer.FullBody.
+            FullBodySlot<native><epic_internal>:string = external {}
+
+            @editable
+            # Animation slot used by play_animation_layer.UpperBody.
+            UpperBodySlot<native><epic_internal>:string = external {}
 
             OnInitialized<native><override>():void
 
             OnUninitializing<native><override>():void
 
-            PlayAndAwait<override>(AnimationSequence:animation_sequence, ?PlayRate:float = external {}, ?PlayCount:float = external {}, ?StartPositionSeconds:float = external {}, ?BlendInTime:float = external {}, ?BlendOutTime:float = external {})<suspends>:play_animation_result = external {}
+            PlayAndAwait<override>(AnimationSequence:animation_sequence, ?Layer:play_animation_layer = external {}, ?PlayRate:float = external {}, ?PlayCount:float = external {}, ?StartPositionSeconds:float = external {}, ?BlendInTime:float = external {}, ?BlendOutTime:float = external {})<suspends>:play_animation_result = external {}
 
-            Play<override>(AnimationSequence:animation_sequence, ?PlayRate:float = external {}, ?PlayCount:float = external {}, ?StartPositionSeconds:float = external {}, ?BlendInTime:float = external {}, ?BlendOutTime:float = external {}):play_animation_instance = external {}
+            Play<override>(AnimationSequence:animation_sequence, ?Layer:play_animation_layer = external {}, ?PlayRate:float = external {}, ?PlayCount:float = external {}, ?StartPositionSeconds:float = external {}, ?BlendInTime:float = external {}, ?BlendOutTime:float = external {}):play_animation_instance = external {}
 
 # Module import path: /Fortnite.com/Assets
 (/Fortnite.com:)Assets<public> := module:

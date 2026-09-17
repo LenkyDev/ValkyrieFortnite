@@ -15,10 +15,6 @@ Devices<public> := module:
     using {/Verse.org/SpatialMath}
     using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/Fortnite.com/Playspaces}
-    # Module import path: /Fortnite.com/Devices/Animation
-    (/Fortnite.com/Devices:)Animation<public> := module:
-
-
     # Module import path: /Fortnite.com/Devices/CreativeAnimation
     CreativeAnimation<public> := module:
         using {/UnrealEngine.com/Temporary/SpatialMath}
@@ -813,3 +809,6 @@ Devices<public> := module:
 
     # Returns a `string` representation of `move_to_internal_result` objects.
     (/Fortnite.com/Devices:)ToString<epic_internal>(MoveToInternalResult:move_to_internal_result)<computes>:string = external {}
+
+    # Module import path: /Fortnite.com/Devices/Animation
+    (/Fortnite.com/Devices:)Animation<public> := module:

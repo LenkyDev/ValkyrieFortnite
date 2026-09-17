@@ -11,10 +11,6 @@ Devices<public> := module:
     using {/Verse.org/Native}
     using {/Verse.org/SpatialMath}
     using {/UnrealEngine.com/Temporary/SpatialMath}
-    # Module import path: /Fortnite.com/Devices/Animation
-    (/Fortnite.com/Devices:)Animation<public> := module:
-
-
     # Module import path: /Fortnite.com/Devices/CreativeAnimation
     CreativeAnimation<public> := module:
         using {/UnrealEngine.com/Temporary/SpatialMath}
@@ -410,3 +406,6 @@ Devices<public> := module:
         DestinationReached
         # The destination will not be reached. See debug log in UEFN for more info.
         WillNotReachDestination
+
+    # Module import path: /Fortnite.com/Devices/Animation
+    (/Fortnite.com/Devices:)Animation<public> := module:

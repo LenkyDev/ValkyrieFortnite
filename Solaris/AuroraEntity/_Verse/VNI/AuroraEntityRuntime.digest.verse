@@ -1,4 +1,4 @@
-# Verse path: /Fortnite.com/Marketplace
+# Verse path: /UnrealEngine.com/Marketplace
 using {/Verse.org/Simulation}
 using {/Verse.org/SceneGraph}
 offer_interactable_component<native><public> := class(interactable_component):

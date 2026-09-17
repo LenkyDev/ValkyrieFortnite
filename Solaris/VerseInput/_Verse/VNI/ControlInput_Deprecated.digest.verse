@@ -5,7 +5,8 @@ ControlInput<public> := module:
     using {/Verse.org/Native}
     using {/Verse.org/Simulation}
     @available {MinUploadedAtFNVersion := 3630}
-    # Input_events is a container for user input events which can be subscribed to.
+    @deprecated
+    # Deprecated: use 'input_events' from the '/Verse.org/Input' module instead. Input_events is a container for user input events which can be subscribed to.
     #   * Use the 'GetPlayerInput' and 'GetInputEvents' functions to retrieve an input_events object for a given player.
     #   * Low-level notifications of current user input: DetectionBeginEvent, DetectionOngoingEvent, and DetectionEndEvent.
     #   * High-level notifications of triggered events: ActivationTriggeredEvent and ActivationCanceledEvent.
@@ -47,11 +48,13 @@ ControlInput<public> := module:
         DetectionEndEvent<native><public>:listenable(tuple(player, float)) = external {}
 
     @available {MinUploadedAtFNVersion := 3630}
-    # Access input-related data and settings for a player.
+    @deprecated
+    # Deprecated: use 'GetPlayerInput' from the '/Verse.org/Input' module instead. Access input-related data and settings for a player.
     (/UnrealEngine.com/ControlInput:)GetPlayerInput<native><public>(Player:player)<transacts><decides>:(/UnrealEngine.com/ControlInput:)player_input
 
     @available {MinUploadedAtFNVersion := 3630}
-    # This is the main manager class for input-related settings and functions for a player.
+    @deprecated
+    # Deprecated: use 'player_input' from the '/Verse.org/Input' module instead. This is the main manager class for input-related settings and functions for a player.
     (/UnrealEngine.com/ControlInput:)player_input<native><public> := class:
         AddInputMapping<native><public>(InputMapping:input_mapping):void
 

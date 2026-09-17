@@ -7,7 +7,7 @@ using {/Verse.org/Simulation}
 using {/Verse.org/Chat}
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4000}
-ai_error<native><public> := class:
+ai_error<native><public> := class<castable>:
     Message<native><public>:message
 
 @available {MinUploadedAtFNVersion := 4000}
@@ -40,8 +40,6 @@ prompt_binding_definition<native><public> := struct:
 # Manages AI session state: conversation history, pinned entries, and registered capabilities (tools, signals, listenables).
 #  History is automatically compacted by the runtime. Completed goals are summarized into history.
 ai_session<native><public> := class<unique>:
-    var VoiceChannelSubscriptions<epic_internal>:[]cancelable = external {}
-
     # Removes all the history events from the session.
     ClearHistory<native><public>()<transacts>:void
 
@@ -63,8 +61,6 @@ ai_session<native><public> := class<unique>:
     SubscribeToVoiceChannelMemberAdded<native_callable><epic_internal>(VoiceChannel:voice_channel(member_info) where member_info:subtype(has_voice_member_info))<transacts>:cancelable = external {}
 
     SubscribeToVoiceChannelMemberRemoved<native_callable><epic_internal>(VoiceChannel:voice_channel(member_info) where member_info:subtype(has_voice_member_info))<transacts>:cancelable = external {}
-
-    CancelAllVoiceChannelSubscriptions<native_callable><epic_internal>()<transacts>:void = external {}
 
     CancelVoiceChannelSubscription<native_callable><epic_internal>(SubscriptionToCancel:cancelable)<transacts>:void = external {}
 
@@ -90,6 +86,16 @@ persona_interruption_rule<native><public> := enum<open>:
     InterruptOnPromptStart
     # Will interrupt when the response for the interrupting prompt is ready.
     InterruptOnResponseStart
+
+@available {MinUploadedAtFNVersion := 4220}
+# The decision made when evaluating an incoming prompt against the active interruption rule.
+interrupt_decision<native><epic_internal> := enum:
+    # The incoming prompt caused the active utterance to be interrupted.
+    Interrupted
+    # The incoming prompt was ignored because the persona cannot be interrupted.
+    Ignored
+    # The incoming prompt was queued and will be processed after the current utterance finishes.
+    Queued
 
 @available {MinUploadedAtFNVersion := 4000}
 @export_metadata {Category := "PublishingMutators"; Key := "Conversations"; Value := ""}
@@ -142,6 +148,15 @@ persona_component<native><public> := class<final_super>(component):
     # Listenable which is signaled when the target stops talking.
     #  1/ logic that is true when interrupted
     StopSayEvent<native><public>:listenable(logic) = external {}
+
+    @available {MinUploadedAtFNVersion := 4220}
+    # Listenable which is signaled when an incoming prompt is evaluated against the active interruption rule.
+    #  Receives the rule that was active and the decision that was made.
+    InterruptionEvaluatedEvent<native><epic_internal>:listenable(tuple(persona_interruption_rule, interrupt_decision)) = external {}
+
+    @available {MinUploadedAtFNVersion := 4220}
+    # Succeeds if the persona is currently speaking.
+    IsTalking<native><epic_internal>()<decides><reads>:void
 
     # Prompts the session with instructions and speaks the result to the channel parameter.
     #  Fails if the interrupt rule prevents the prompt being submitted or the persona isn't in a channel.

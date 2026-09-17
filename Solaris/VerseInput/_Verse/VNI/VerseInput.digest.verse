@@ -22,7 +22,7 @@ Input<public> := module:
         Gamepad
         Touch
 
-    # Flags for input devices currently available to the player. Updates at runtime as devices connect or disconnect. Note that `Keyboard` and `Mouse` always carry the same value because the engine groups them as a single capability today.
+    # Flags for input devices currently available to the player. Updates at runtime as devices connect or disconnect. `Touch` is a platform capability and does not change during a session. Note that `Keyboard` and `Mouse` always carry the same value because the engine groups them as a single capability today.
     available_input_devices<native><public> := struct:
         Gamepad<native><public>:logic = external {}
 

@@ -4,7 +4,7 @@ using {/Verse.org/Native}
 # Module import path: /UnrealEngine.com/Progression
 (/UnrealEngine.com:)Progression<public> := module:
     using {/Verse.org/StateMachine}
-    using {/Fortnite.com/Marketplace}
+    using {/UnrealEngine.com/Marketplace}
     using {/Verse.org/Native}
     using {/Verse.org/SceneGraph}
     using {/Verse.org}

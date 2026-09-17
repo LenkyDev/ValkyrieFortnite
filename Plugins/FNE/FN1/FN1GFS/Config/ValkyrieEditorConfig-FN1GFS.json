@@ -464,6 +464,17 @@
 				"LogEditorServer"
 			]
 		},
+		"AllowedCookModuleExportTypes": {
+			"-": [ "/Script/Engine.MaterialFunction" ]
+		},
+		"AllowedCookModuleImportTypes": {
+			"/Script/Engine.MaterialFunction": {
+				"AllowList": { "-": [ "/Script/Engine.MaterialFunction" ] }
+			},
+			"/Script/Engine.Material": {
+				"AllowList": { "-": [ "/Script/Engine.MaterialFunction" ] }
+			}
+		},
 		"bShowGFSTextFileAllowedAssetsInContentBrowser": true,
 		"bAllowShowUnexposedContent": true,
 		"bAllowShowUnexposedProperties": true,

@@ -4,7 +4,7 @@ using {/Verse.org/Native}
 # Module import path: /UnrealEngine.com/Progression
 (/UnrealEngine.com:)Progression<public> := module:
     using {/Verse.org}
-    using {/Fortnite.com/Marketplace}
+    using {/UnrealEngine.com/Marketplace}
     @experimental
     # Grants an entitlement to each eligible participant.
     entitlement_quest_reward<native><public> := class(quest_reward):

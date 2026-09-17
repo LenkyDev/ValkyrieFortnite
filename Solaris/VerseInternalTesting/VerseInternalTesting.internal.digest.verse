@@ -215,7 +215,7 @@ VerseFramework<public> := module:
     using {/UnrealEngine.com/Itemization}
     using {/Verse.org/Native}
     using {/Fortnite.com/AI}
-    using {/Fortnite.com/Marketplace}
+    using {/UnrealEngine.com/Marketplace}
     using {/Verse.org/SceneGraph}
     using {/Fortnite.com/Vehicles}
     using {/Fortnite.com/Game}
@@ -378,11 +378,11 @@ VerseFramework<public> := module:
         Subscribe<public>(Event:listenable(tuple(?agent, fort_vehicle, int))):void = external {}
 
     test_event_tuple_player_entitlement_change_handler_mock<public> := class(test_device_event_handler_mock):
-        var ArgTuple<public>:?tuple(player, []entitlement_change(entitlement)) = external {}
+        var ArgTuple<public>:?tuple(player, [](/UnrealEngine.com/Marketplace:)entitlement_change((/UnrealEngine.com/Marketplace:)entitlement)) = external {}
 
-        Subscribe<public>(Event:listenable(tuple(player, []entitlement_change(entitlement)))):void = external {}
+        Subscribe<public>(Event:listenable(tuple(player, [](/UnrealEngine.com/Marketplace:)entitlement_change((/UnrealEngine.com/Marketplace:)entitlement)))):void = external {}
 
-        HandleEvent<public>(InResult:tuple(player, []entitlement_change(entitlement))):void = external {}
+        HandleEvent<public>(InResult:tuple(player, [](/UnrealEngine.com/Marketplace:)entitlement_change((/UnrealEngine.com/Marketplace:)entitlement))):void = external {}
 
     @available {MinUploadedAtFNVersion := 3900}
     test_event_npc_target_info_handler_mock<public> := class(test_device_event_handler_mock):

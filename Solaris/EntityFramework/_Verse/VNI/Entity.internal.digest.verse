@@ -328,6 +328,7 @@ entity_origin<native><public> := class<final>(origin):
 actor_data<native><epic_internal> := struct<concrete>:
 
 
+@hide_in_editor
 # class to provide alternative origin to the 'transform_component' as an actor. This class should never be public and is intended for internal use only.
 actor_origin<native><epic_internal> := class(origin):
     @editable
@@ -337,6 +338,7 @@ actor_origin<native><epic_internal> := class(origin):
     GetTransform<native><override>()<transacts>:(/Verse.org/SpatialMath:)transform
 
 @experimental
+@hide_in_editor
 # Used to attach entities to a socket on an actor.
 socket_origin<native><epic_internal> := class(actor_origin):
     @editable

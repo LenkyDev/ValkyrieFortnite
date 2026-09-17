@@ -5,6 +5,120 @@ FN1Native<public> := module:
     using {/Verse.org/Simulation}
     using {/Verse.org/Colors}
     using {/Verse.org/Assets}
+    player_ui_display_info<native><epic_internal> := struct:
+        AvatarLargeImage<native>:texture
+
+        AvatarSmallImage<native>:texture
+
+        AvatarBackgroundColor<native>:color
+
+        AvatarHighlightColor<native>:color
+
+        SquadColor<native>:color
+
+    player_ui_display_info_manager<native><epic_internal> := class:
+        GetDisplayInfo<native><epic_internal>(InPlayer:player)<reads>:player_ui_display_info
+
+    reload_ui_bridge_component<native><epic_internal> := class<final><final_super>(component):
+
+
+    # Module import path: /Fortnite.com/FN1Native/BattleRoyaleUtils
+    BattleRoyaleUtils<public> := module:
+        using {/Verse.org/SceneGraph}
+        StoreGamePhaseSetup<native><epic_internal>(WorldContext:entity):void
+
+        StoreGamePhaseWarmup<native><epic_internal>(WorldContext:entity):void
+
+        StoreGamePhaseAircraft<native><epic_internal>(WorldContext:entity):void
+
+        StoreGamePhaseSafeZones<native><epic_internal>(WorldContext:entity):void
+
+        StoreGamePhaseEndGame<native><epic_internal>(WorldContext:entity):void
+
+        ClearGamePhase<native><epic_internal>(WorldContext:entity):void
+
+        StoreWarmupSubState<native><epic_internal>(WorldContext:entity, IsGettingReady:logic):void
+
+        ClearWarmupSubState<native><epic_internal>(WorldContext:entity):void
+
+        StoreAircraftSubState<native><epic_internal>(WorldContext:entity, IsLocked:logic):void
+
+        ClearAircraftSubState<native><epic_internal>(WorldContext:entity):void
+
+        StoreSafeZonesSubStateForming<native><epic_internal>(WorldContext:entity):void
+
+        StoreSafeZonesSubStateHolding<native><epic_internal>(WorldContext:entity):void
+
+        StoreSafeZonesSubStateShrinking<native><epic_internal>(WorldContext:entity):void
+
+        ClearSafeZonesSubState<native><epic_internal>(WorldContext:entity):void
+
+        StoreSafeZonePhaseIndex<native><epic_internal>(WorldContext:entity, SafeZonePhaseIndex:int):void
+
+        ClearSafeZonePhaseIndex<native><epic_internal>(WorldContext:entity):void
+
+    # Module import path: /Fortnite.com/FN1Native/FortPawnUtils
+    FortPawnUtils<public> := module:
+        using {/Verse.org/Simulation}
+        (Agent:agent).SetAgentInvincible<native><epic_internal>(IsInvincible:logic):void
+
+        (Agent:agent).SetAgentCanBuild<native><epic_internal>(CanBuild:logic):void
+
+        (Agent:agent).StopCarryingPlayer<native><epic_internal>():void
+
+    # Module import path: /Fortnite.com/FN1Native/FortPhysicsUtils
+    FortPhysicsUtils<public> := module:
+        using {/Verse.org/SpatialMath}
+        using {/Verse.org/SceneGraph}
+        (RigidBody:rigid_body).FindLineTraceHit<native><epic_internal>(TraceStart:(/Verse.org/SpatialMath:)vector3, TraceEnd:(/Verse.org/SpatialMath:)vector3)<transacts><decides>:sweep_hit
+
+        (RigidBody:rigid_body).GetSquaredDistance<native><epic_internal>(Point:(/Verse.org/SpatialMath:)vector3)<transacts><decides>:float
+
+    # Module import path: /Fortnite.com/FN1Native/ReloadUtils
+    ReloadUtils<public> := module:
+        using {/Verse.org/SceneGraph}
+        using {/Verse.org/Simulation}
+        reload_respawn_reward<native><epic_internal> := struct:
+            MessageTableId<native><public>:string = external {}
+
+            MessageKey<native><public>:string = external {}
+
+            RewardTime<native><public>:float = external {}
+
+        NotifyTeamRespawnReward<native><epic_internal>(TeamContext:agent, Reward:reload_respawn_reward):void
+
+        NotifyEnemyTeamEliminated<native><epic_internal>(InstigatorTeamContext:agent):void
+
+        StoreRespawnsEnabled<native><epic_internal>(WorldContextEntity:entity, EnableRespawns:logic)<transacts><decides>:void
+
+        ClearRespawnsEnabled<native><epic_internal>(WorldContextEntity:entity)<transacts><decides>:void
+
+        StoreRespawnsDisabledAtTime<native><epic_internal>(WorldContextEntity:entity, RespawnsDisabledAtTime:float)<transacts><decides>:void
+
+        ClearRespawnsDisabledAtTime<native><epic_internal>(WorldContextEntity:entity)<transacts><decides>:void
+
+        StoreRespawnDelay<native><epic_internal>(WorldContextEntity:entity, RespawnDelay:float)<transacts><decides>:void
+
+        ClearRespawnDelay<native><epic_internal>(WorldContextEntity:entity)<transacts><decides>:void
+
+        StoreTeamLives<native><epic_internal>(TeamContext:agent, TeamLives:int):void
+
+        ClearAllTeamLives<native><epic_internal>(WorldContextEntity:entity):void
+
+    # Module import path: /Fortnite.com/FN1Native/FortVolume
+    FortVolume<public> := module:
+        using {/Verse.org/SpatialMath}
+        using {/Verse.org/Native}
+        @import_as("/Script/FN1NativeRuntime.FVerseFortVolumeActorWrapper")
+        fort_volume_actor_wrapper<native><epic_internal> := struct<concrete>:
+
+
+        (Volume:fort_volume_actor_wrapper).InitializePhysics<native><epic_internal>():void
+
+        (Volume:fort_volume_actor_wrapper).EncompassesPoint<native><epic_internal>(Point:(/Verse.org/SpatialMath:)vector3)<decides><reads>:void
+
+        (Volume:fort_volume_actor_wrapper).GetLineTraceHit<native><epic_internal>(TraceStart:(/Verse.org/SpatialMath:)vector3, TraceEnd:(/Verse.org/SpatialMath:)vector3)<transacts><decides>:(/Verse.org/SpatialMath:)vector3
+
     # Module import path: /Fortnite.com/FN1Native/FortAircraft
     FortAircraft<public> := module:
         using {/Verse.org/SceneGraph}
@@ -255,110 +369,3 @@ FN1Native<public> := module:
             GetPhaseIndex<native><epic_internal>()<transacts><decides>:int
 
             SetCurrentPhase<native><epic_internal>(InCurrentPhase:int)<transacts>:void
-
-    player_ui_display_info<native><epic_internal> := struct:
-        AvatarLargeImage<native>:texture
-
-        AvatarSmallImage<native>:texture
-
-        AvatarBackgroundColor<native>:color
-
-        AvatarHighlightColor<native>:color
-
-        SquadColor<native>:color
-
-    player_ui_display_info_manager<native><epic_internal> := class:
-        GetDisplayInfo<native><epic_internal>(InPlayer:player)<reads>:player_ui_display_info
-
-    reload_ui_bridge_component<native><epic_internal> := class<final><final_super>(component):
-
-
-    # Module import path: /Fortnite.com/FN1Native/BattleRoyaleUtils
-    BattleRoyaleUtils<public> := module:
-        using {/Verse.org/SceneGraph}
-        StoreGamePhaseSetup<native><epic_internal>(WorldContext:entity):void
-
-        StoreGamePhaseWarmup<native><epic_internal>(WorldContext:entity):void
-
-        StoreGamePhaseAircraft<native><epic_internal>(WorldContext:entity):void
-
-        StoreGamePhaseSafeZones<native><epic_internal>(WorldContext:entity):void
-
-        StoreGamePhaseEndGame<native><epic_internal>(WorldContext:entity):void
-
-        ClearGamePhase<native><epic_internal>(WorldContext:entity):void
-
-        StoreWarmupSubState<native><epic_internal>(WorldContext:entity, IsGettingReady:logic):void
-
-        ClearWarmupSubState<native><epic_internal>(WorldContext:entity):void
-
-        StoreAircraftSubState<native><epic_internal>(WorldContext:entity, IsLocked:logic):void
-
-        ClearAircraftSubState<native><epic_internal>(WorldContext:entity):void
-
-        StoreSafeZonesSubStateForming<native><epic_internal>(WorldContext:entity):void
-
-        StoreSafeZonesSubStateHolding<native><epic_internal>(WorldContext:entity):void
-
-        StoreSafeZonesSubStateShrinking<native><epic_internal>(WorldContext:entity):void
-
-        ClearSafeZonesSubState<native><epic_internal>(WorldContext:entity):void
-
-        StoreSafeZonePhaseIndex<native><epic_internal>(WorldContext:entity, SafeZonePhaseIndex:int):void
-
-        ClearSafeZonePhaseIndex<native><epic_internal>(WorldContext:entity):void
-
-    # Module import path: /Fortnite.com/FN1Native/FortPawnUtils
-    FortPawnUtils<public> := module:
-        using {/Verse.org/Simulation}
-        (Agent:agent).SetAgentInvincible<native><epic_internal>(IsInvincible:logic):void
-
-        (Agent:agent).SetAgentCanBuild<native><epic_internal>(CanBuild:logic):void
-
-        (Agent:agent).StopCarryingPlayer<native><epic_internal>():void
-
-    # Module import path: /Fortnite.com/FN1Native/FortPhysicsUtils
-    FortPhysicsUtils<public> := module:
-        using {/Verse.org/SpatialMath}
-        using {/Verse.org/SceneGraph}
-        (RigidBody:rigid_body).FindLineTraceHit<native><epic_internal>(TraceStart:(/Verse.org/SpatialMath:)vector3, TraceEnd:(/Verse.org/SpatialMath:)vector3)<transacts><decides>:sweep_hit
-
-        (RigidBody:rigid_body).GetSquaredDistance<native><epic_internal>(Point:(/Verse.org/SpatialMath:)vector3)<transacts><decides>:float
-
-    # Module import path: /Fortnite.com/FN1Native/ReloadUtils
-    ReloadUtils<public> := module:
-        using {/Verse.org/SceneGraph}
-        using {/Verse.org/Simulation}
-        NotifyTeamRespawnReward<native><epic_internal>(TeamContext:agent, RewardType:string, RewardTime:float):void
-
-        NotifyEnemyTeamEliminated<native><epic_internal>(InstigatorTeamContext:agent):void
-
-        StoreRespawnsEnabled<native><epic_internal>(WorldContextEntity:entity, EnableRespawns:logic)<transacts><decides>:void
-
-        ClearRespawnsEnabled<native><epic_internal>(WorldContextEntity:entity)<transacts><decides>:void
-
-        StoreRespawnsDisabledAtTime<native><epic_internal>(WorldContextEntity:entity, RespawnsDisabledAtTime:float)<transacts><decides>:void
-
-        ClearRespawnsDisabledAtTime<native><epic_internal>(WorldContextEntity:entity)<transacts><decides>:void
-
-        StoreRespawnDelay<native><epic_internal>(WorldContextEntity:entity, RespawnDelay:float)<transacts><decides>:void
-
-        ClearRespawnDelay<native><epic_internal>(WorldContextEntity:entity)<transacts><decides>:void
-
-        StoreTeamLives<native><epic_internal>(TeamContext:agent, TeamLives:int):void
-
-        ClearAllTeamLives<native><epic_internal>(WorldContextEntity:entity):void
-
-    # Module import path: /Fortnite.com/FN1Native/FortVolume
-    FortVolume<public> := module:
-        using {/Verse.org/SpatialMath}
-        using {/Verse.org/Native}
-        @import_as("/Script/FN1NativeRuntime.FVerseFortVolumeActorWrapper")
-        fort_volume_actor_wrapper<native><epic_internal> := struct<concrete>:
-
-
-        (Volume:fort_volume_actor_wrapper).InitializePhysics<native><epic_internal>():void
-
-        (Volume:fort_volume_actor_wrapper).EncompassesPoint<native><epic_internal>(Point:(/Verse.org/SpatialMath:)vector3)<decides><reads>:void
-
-        (Volume:fort_volume_actor_wrapper).GetLineTraceHit<native><epic_internal>(TraceStart:(/Verse.org/SpatialMath:)vector3, TraceEnd:(/Verse.org/SpatialMath:)vector3)<transacts><decides>:(/Verse.org/SpatialMath:)vector3

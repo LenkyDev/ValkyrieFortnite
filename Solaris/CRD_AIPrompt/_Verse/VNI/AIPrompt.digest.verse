@@ -4,7 +4,7 @@ using {/Verse.org/Simulation}
 using {/Verse.org/SceneGraph}
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4000}
-ai_error<native><public> := class:
+ai_error<native><public> := class<castable>:
     Message<native><public>:message
 
 @available {MinUploadedAtFNVersion := 4000}

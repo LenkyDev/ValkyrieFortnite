@@ -1,4 +1,5 @@
 # Verse path: /Fortnite.com/Abilities
+using {/Fortnite.com/Animation/PlayAnimation}
 using {/Verse.org}
 using {/Verse.org/Assets}
 using {/Verse.org/SpatialMath}
@@ -246,18 +247,12 @@ fort_ability_timeline_element_span<native><public> := class<concrete>((/Verse.or
 
 @available {MinUploadedAtFNVersion := 4200}
 @experimental
-fort_ability_anim_layer<native><public> := enum:
-    FullBody
-    UpperBody
-
-@available {MinUploadedAtFNVersion := 4200}
-@experimental
 fort_ability_animation_element_span<native><public> := class<concrete>(fort_ability_timeline_element_span):
     @editable {}
-    Animation<native><public>:animation_sequence = external {}
+    AnimationSequence<native><public>:animation_sequence = external {}
 
     @editable {}
-    AnimationLayer<native><public>:fort_ability_anim_layer = external {}
+    AnimationLayer<native><public>:play_animation_layer = external {}
 
     @editable {}
     (/Fortnite.com/Abilities/fort_ability_animation_element_span:)EaseIn<native><public>:float = external {}

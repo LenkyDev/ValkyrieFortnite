@@ -33,6 +33,15 @@ fort_range_damage_multiplier<native><public> := struct<concrete>:
 fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_component):
     OnRemovingFromScene<native><override>():void
 
+    # Starts firing the weapon, as if the wielder had pressed the fire input and kept holding it, so an automatic weapon keeps firing until StopFire. Server only: does nothing when called on a client. The wielder's own trigger takes precedence: this is ignored while they are already firing, and their own press or release takes it back, so call StopFire then StartFire again to reassert. The request also outlives an unequip and is re-applied to whatever the wielder equips next, so always end it with StopFire rather than relying on the weapon being put away.
+    StartFire<native><epic_internal>():void
+
+    # Stops firing the weapon, as if the wielder had released the fire input. Server only: does nothing when called on a client. The wielder's own input is never suppressed, so this only takes back what StartFire asked for.
+    StopFire<native><epic_internal>():void
+
+    # True while the weapon is actually taking a shot, whoever pulled the trigger. This is the shot cadence rather than the request: it goes false between the rounds of a burst and while a reload or an equip is holding the shot back.
+    IsFiring<native><epic_internal>()<reads>:logic
+
     @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {1000.000000}}
     @category("Weapon Damage")
     @replicated("RepNotify")

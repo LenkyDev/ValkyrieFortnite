@@ -138,7 +138,7 @@ FortniteItemCategories<public> := module:
 
 @hide_in_editor
 fort_item_definition_entity_base<native><epic_internal> := class<concrete>(entity):
-
+    ExpandItemComponents<native><epic_internal>()<converges>:void
 
 @hide_in_editor
 fort_item_definition_entity<native><epic_internal> := class<concrete>(fort_item_definition_entity_base):
@@ -161,6 +161,35 @@ fort_item_definition_entity<native><epic_internal> := class<concrete>(fort_item_
     @field("Components")
     @available {MinUploadedAtFNVersion := 4210}
     DescriptionComponent<native><protected>:?description_component = external {}
+
+@experimental
+@hide_in_editor
+fort_character_pose_modifier<epic_internal> := class<abstract><epic_internal>(character_pose_modifier):
+
+
+@experimental
+fort_character_pose_modifier_assault_rifle<epic_internal> := class<final><concrete>(fort_character_pose_modifier):
+    ProxyTable<override>:proxy_table = external {}
+
+@experimental
+fort_character_pose_modifier_bow<epic_internal> := class<final><concrete>(fort_character_pose_modifier):
+    ProxyTable<override>:proxy_table = external {}
+
+@experimental
+fort_character_pose_modifier_fishing_rod<epic_internal> := class<final><concrete>(fort_character_pose_modifier):
+    ProxyTable<override>:proxy_table = external {}
+
+@experimental
+fort_character_pose_modifier_pistol<epic_internal> := class<final><concrete>(fort_character_pose_modifier):
+    ProxyTable<override>:proxy_table = external {}
+
+@experimental
+fort_character_pose_modifier_fire_torch<epic_internal> := class<final><concrete>(fort_character_pose_modifier):
+    ProxyTable<override>:proxy_table = external {}
+
+@experimental
+fort_item_owner_pose_modifier_component<epic_internal> := class<final>(item_owner_pose_modifier_component):
+
 
 @available {MinUploadedAtFNVersion := 4040}
 @class_and_subclass_group_names("item")
