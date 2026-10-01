@@ -360,6 +360,11 @@
 			"Name": "DependentPluginsEditor",
 			"Enabled": true,
 			"TargetAllowList": [ "Editor" ]
+		},
+		{
+			"Name": "ValkyrieEditorModeration",
+			"Enabled": true,
+			"TargetAllowList": [ "Editor" ]
 		}
 	]
 }

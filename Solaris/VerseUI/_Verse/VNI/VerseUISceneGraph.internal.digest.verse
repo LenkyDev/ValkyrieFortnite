@@ -9,29 +9,20 @@ using {/Verse.org/Native}
     using {/Verse.org/SpatialMath}
     using {/Verse.org/Colors}
     using {/Verse.org/Assets}
-    using {/Verse.org/Native}
     using {/Verse.org/Temporary/EpicGamesRestricted/Network}
     using {/Verse.org/Simulation}
+    using {/Verse.org/Native}
     @available {MinUploadedAtFNVersion := 4210}
     # Layout hints for a child placed inside an absolute_container. Positions the child relative to the container's rendered size, independent of its flow siblings.
     absolute_container_element_component<native><epic_internal> := class(container_element_component):
-        @editable
-        @replicated("")
-        @tool_tip("How this item is aligned along the horizontal axis within its containing block, after offsets are applied. Center and End require a finite container width; otherwise the item falls back to Start.")
         # How this item is aligned along the horizontal axis within its containing block, after offsets are applied. Center and End require a finite container width; otherwise the item falls back to Start.
-        var HorizontalAlignment<native><public>:ui_alignment = external {}
+        var HorizontalAlignment<public>:ui_alignment = external {}
 
-        @editable
-        @replicated("")
-        @tool_tip("How this item is aligned along the vertical axis within its containing block, after offsets are applied. Center and End require a finite container height; otherwise the item falls back to Start.")
         # How this item is aligned along the vertical axis within its containing block, after offsets are applied. Center and End require a finite container height; otherwise the item falls back to Start.
-        var VerticalAlignment<native><public>:ui_alignment = external {}
+        var VerticalAlignment<public>:ui_alignment = external {}
 
-        @editable
-        @replicated("")
-        @tool_tip("Inset from each edge of this item\'s containing block, in centimeters, applied before alignment.")
         # Inset from each edge of this item's containing block, in centimeters, applied before alignment.
-        var Offsets<native><public>:ui_margin = external {}
+        var Offsets<public>:ui_margin = external {}
 
     @available {MinUploadedAtFNVersion := 4210}
     ui_alignment<native><epic_internal> := enum:
@@ -56,6 +47,12 @@ using {/Verse.org/Native}
         Left<native>:float = external {}
 
     @available {MinUploadedAtFNVersion := 4210}
+    (Margin:ui_margin).GetMemberValue<epic_internal>(MemberName:[]char)<transacts>:float = external {}
+
+    @available {MinUploadedAtFNVersion := 4210}
+    (Margin:ui_margin).WithMemberValue<epic_internal>(MemberName:[]char, Value:float)<transacts>:ui_margin = external {}
+
+    @available {MinUploadedAtFNVersion := 4210}
     @hide_in_editor
     container_element_component<native><epic_internal> := class<final_super>(component):
 
@@ -63,23 +60,14 @@ using {/Verse.org/Native}
     @available {MinUploadedAtFNVersion := 4210}
     # Layout hints for a child placed inside a flex_container.
     flex_container_element_component<native><epic_internal> := class(container_element_component):
-        @editable
-        @replicated("")
-        @tool_tip("Margin applied around this element within its line, in centimeters.")
         # Margin applied around this element within its line, in centimeters.
-        var Margin<native><public>:ui_margin = external {}
+        var Margin<public>:ui_margin = external {}
 
-        @editable
-        @replicated("")
-        @tool_tip("How this item is aligned along the cross axis (perpendicular to FlexDirection) within its line.")
         # How this item is aligned along the cross axis (perpendicular to FlexDirection) within its line.
-        var AlignSelf<native><public>:ui_alignment = external {}
+        var AlignSelf<public>:ui_alignment = external {}
 
-        @editable
-        @replicated("")
-        @tool_tip("Alignment of this item along the main axis within an over-sized slot.")
         # Alignment of this item along the main axis within an over-sized slot.
-        var AlignSelfMajorAxis<native><public>:ui_alignment = external {}
+        var AlignSelfMajorAxis<public>:ui_alignment = external {}
 
         # Grow proportion along the main axis. If not set, the item does not grow. Negative values clamp to 0.
         var GrowProportion<public>:?float = external {}
@@ -116,29 +104,17 @@ using {/Verse.org/Native}
     @available {MinUploadedAtFNVersion := 4210}
     # Container widget that arranges its children in a one-dimensional flowing layout with optional wrapping.
     flex_container<native><epic_internal> := class((/Verse.org/SceneGraph/UI:)widget):
-        @editable
-        @replicated("")
-        @tool_tip("Direction children flow along the main axis.")
         # Direction children flow along the main axis. Reversed directions (RowReverse, ColumnReverse) require a finite main-axis MaxSize; Inf silently disables reversal.
-        var FlexDirection<native><public>:flex_direction = external {}
+        var FlexDirection<public>:flex_direction = external {}
 
-        @editable
-        @replicated("")
-        @tool_tip("How children wrap onto multiple lines.")
         # How children wrap onto multiple lines.
-        var WrapDirection<native><public>:flex_wrap = external {}
+        var WrapDirection<public>:flex_wrap = external {}
 
-        @editable
-        @replicated("")
-        @tool_tip("Alignment of items along the main axis within each line.")
         # Alignment of items along the main axis within each line.
-        var LineAlignment<native><public>:flex_content_alignment = external {}
+        var LineAlignment<public>:flex_content_alignment = external {}
 
-        @editable
-        @replicated("")
-        @tool_tip("Alignment of lines along the cross axis.")
         # Alignment of lines along the cross axis.
-        var ContentAlignment<native><public>:flex_content_alignment = external {}
+        var ContentAlignment<public>:flex_content_alignment = external {}
 
         # Spacing between columns, in centimeters.
         var ColumnGap<public>:float = external {}
@@ -149,17 +125,11 @@ using {/Verse.org/Native}
     @available {MinUploadedAtFNVersion := 4210}
     # Layout hints for a child placed inside a grid_container.
     grid_container_element_component<native><epic_internal> := class(container_element_component):
-        @editable
-        @replicated("")
-        @tool_tip("Row index of the cell this item occupies. 0 = first row. Negative values count from the end: -1 = last row, -2 = second-to-last. Out-of-range values clamp to the nearest valid row.")
         # Row index of this item's anchor cell. Zero-based from the start; negative values count from the end (-1 = last row). Out-of-range values are clamped to the nearest valid row.
-        var Row<native><public>:int = external {}
+        var Row<public>:int = external {}
 
-        @editable
-        @replicated("")
-        @tool_tip("Column index of the cell this item occupies. 0 = first column. Negative values count from the end: -1 = last column, -2 = second-to-last. Out-of-range values clamp to the nearest valid column.")
         # Column index of this item's anchor cell. Zero-based from the start; negative values count from the end (-1 = last column). Out-of-range values are clamped to the nearest valid column.
-        var Column<native><public>:int = external {}
+        var Column<public>:int = external {}
 
         # Number of rows this item spans across, starting at Row.
         var RowSpan<public>:int = external {}
@@ -167,20 +137,11 @@ using {/Verse.org/Native}
         # Number of columns this item spans across, starting at Column.
         var ColumnSpan<public>:int = external {}
 
-        @editable
-        @replicated("")
-        @tool_tip("How this item is aligned along the horizontal axis within its cell.")
-        var HorizontalAlignment<native><public>:ui_alignment = external {}
+        var HorizontalAlignment<public>:ui_alignment = external {}
 
-        @editable
-        @replicated("")
-        @tool_tip("How this item is aligned along the vertical axis within its cell.")
-        var VerticalAlignment<native><public>:ui_alignment = external {}
+        var VerticalAlignment<public>:ui_alignment = external {}
 
-        @editable
-        @replicated("")
-        @tool_tip("Margin applied around this element within its cell, in centimeters.")
-        var Margin<native><public>:ui_margin = external {}
+        var Margin<public>:ui_margin = external {}
 
     @available {MinUploadedAtFNVersion := 4210}
     # Container widget that arranges its children in a 2D row/column layout.

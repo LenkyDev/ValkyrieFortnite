@@ -771,6 +771,9 @@ Items<public> := module:
     SlapBerry_BR_CH4S1_Uncommon<public> := class<final><concrete>(entity):
 
 
+    SlapCandyCorn_BR_CH7S4_Exotic<public> := class<final><concrete>(entity):
+
+
     SlapJuice_BR_CH4S1_Rare<public> := class<final><concrete>(entity):
 
 
@@ -954,6 +957,9 @@ Items<public> := module:
 
 
     WitchBroom_BR_CH2S4_Mythic<public> := class<final><concrete>(entity):
+
+
+    WitchBroom_BR_CH6S4_Epic<public> := class<final><concrete>(entity):
 
 
     WolfTooth_Creative_V1_Uncommon<public> := class<final><concrete>(entity):
@@ -1701,6 +1707,9 @@ Weapons<public> := module:
 
 
     DualSuppressedPistols_BR_CH3S1_Legendary<public> := class<final><concrete>(entity):
+
+
+    EasyRidePumpkinLauncher_BR_CH7S4_Exotic<public> := class<final><concrete>(entity):
 
 
     EggLauncher_BR_CH1S3_Rare<public> := class<final><concrete>(entity):

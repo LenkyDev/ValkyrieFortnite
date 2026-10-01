@@ -1,4 +1,25 @@
 # Verse path: /Fortnite.com/Framework
+# Module import path: /Fortnite.com/Framework/AgentUtils
+AgentUtils<epic_internal> := module:
+    using {/Verse.org/Simulation}
+    using {/Verse.org/Colors}
+    using {/Verse.org/Assets}
+    player_display_snapshot<native><epic_internal> := struct:
+        Image<native><public>:texture
+
+        LargeImage<native><public>:texture
+
+        SmallImage<native><public>:texture
+
+        SquadColor<native><public>:color
+
+        CurrentXP<native><public>:int
+
+    # Suspends until the agent's cosmetic loadout has been applied to their pawn; reading it
+    # earlier yields the default character. Waits indefinitely - race against your own timeout if
+    # you need to give up. Allocates replicated textures per call, so cache the result.
+    (Agent:agent).GetDisplayInfo<native><epic_internal>()<suspends>:player_display_snapshot
+
 # Module import path: /Fortnite.com/Framework/Competitive
 Competitive<epic_internal> := module:
     using {/Verse.org/SceneGraph}

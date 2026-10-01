@@ -71,6 +71,10 @@ Assets<public> := module:
     control_rig_blueprint<native><epic_internal> := class<final><epic_internal>(asset, animation_asset):
 
 
+    @available {MinUploadedAtFNVersion := 4220}
+    uaf_system<native><epic_internal> := class<final><epic_internal>(asset, animation_asset):
+
+
     particle_system<native><public> := class<computes><final><epic_internal>(client_asset):
 
 

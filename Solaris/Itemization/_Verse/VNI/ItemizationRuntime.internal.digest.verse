@@ -1,4 +1,5 @@
 # Verse path: /Fortnite.com/Itemization
+using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 using {/Verse.org/Assets}
 using {/Verse.org/Presentation}
 using {/Verse.org/Simulation}
@@ -162,34 +163,60 @@ fort_item_definition_entity<native><epic_internal> := class<concrete>(fort_item_
     @available {MinUploadedAtFNVersion := 4210}
     DescriptionComponent<native><protected>:?description_component = external {}
 
-@experimental
 @hide_in_editor
-fort_character_pose_modifier<epic_internal> := class<abstract><epic_internal>(character_pose_modifier):
+proxy_table<native><epic_internal> := class<unique><final><epic_internal>(asset):
 
 
-@experimental
-fort_character_pose_modifier_assault_rifle<epic_internal> := class<final><concrete>(fort_character_pose_modifier):
-    ProxyTable<override>:proxy_table = external {}
+@hide_in_editor
+# Owner poses let an item affect their owner's default animation stance. 
+#  For example, to make a character hold an item like a torch, or a 2-handed weapon.
+fort_character_pose_modifier<native><epic_internal> := class<abstract><epic_internal>:
+    ProxyTable<native><epic_internal>:proxy_table
 
-@experimental
-fort_character_pose_modifier_bow<epic_internal> := class<final><concrete>(fort_character_pose_modifier):
-    ProxyTable<override>:proxy_table = external {}
-
-@experimental
-fort_character_pose_modifier_fishing_rod<epic_internal> := class<final><concrete>(fort_character_pose_modifier):
-    ProxyTable<override>:proxy_table = external {}
-
-@experimental
+@hide_in_editor
 fort_character_pose_modifier_pistol<epic_internal> := class<final><concrete>(fort_character_pose_modifier):
     ProxyTable<override>:proxy_table = external {}
 
-@experimental
+@hide_in_editor
+fort_character_pose_modifier_assault_rifle<epic_internal> := class<final><concrete>(fort_character_pose_modifier):
+    ProxyTable<override>:proxy_table = external {}
+
+@hide_in_editor
+fort_character_pose_modifier_sub_machine_gun<epic_internal> := class<final><concrete>(fort_character_pose_modifier):
+    ProxyTable<override>:proxy_table = external {}
+
+@hide_in_editor
+fort_character_pose_modifier_shotgun<epic_internal> := class<final><concrete>(fort_character_pose_modifier):
+    ProxyTable<override>:proxy_table = external {}
+
+@hide_in_editor
 fort_character_pose_modifier_fire_torch<epic_internal> := class<final><concrete>(fort_character_pose_modifier):
     ProxyTable<override>:proxy_table = external {}
 
-@experimental
-fort_item_owner_pose_modifier_component<epic_internal> := class<final>(item_owner_pose_modifier_component):
+@replicatable
+@import_as("/Script/ItemizationRuntime.FFortItemOwnerPoseModifierComponentData")
+fort_item_owner_pose_modifier_component_data<native><epic_internal> := struct<concrete>:
 
+
+@hide_in_editor
+fort_item_owner_pose_modifier_component<native><epic_internal> := class<final><epic_internal>(item_owner_pose_modifier_component):
+    OnAddedToScene<native><override>():void
+
+    OnRemovingFromScene<native><override>():void
+
+    OnRemovingFromSceneInternal<native><override>():void
+
+    @editable
+    # Animation layer to apply when this item is equipped. This can be unset if the item doesn't need custom animation logic for its owner.
+    var<private> EquippedPose<native><epic_internal>:?fort_character_pose_modifier = external {}
+
+    SetEquippedPose<native><epic_internal>(InPose:?fort_character_pose_modifier):void
+
+    @transient
+    @replicated("RepNotify")
+    var ComponentData<native><epic_internal>:fort_item_owner_pose_modifier_component_data = external {}
+
+    OnRep_ComponentData<native><epic_internal>():void
 
 @available {MinUploadedAtFNVersion := 4040}
 @class_and_subclass_group_names("item")
@@ -239,7 +266,7 @@ FortniteRarities<public> := module:
 @class_and_subclass_group_names("item")
 @experimental
 @hide_in_editor
-item_attributes_component<native><final><epic_internal> := class<final_super>(component):
+item_attributes_component<native><epic_internal> := class<final><final_super>(component):
     # Succeeds if the item entity is a consumable.
     IsItemConsumable<native><public>()<decides><reads>:void
 

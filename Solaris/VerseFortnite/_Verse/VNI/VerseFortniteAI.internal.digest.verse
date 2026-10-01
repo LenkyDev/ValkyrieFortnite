@@ -77,7 +77,7 @@ AI<public> := module:
 
     @experimental
     # Component that points to a decision system is responsible to Start, Stop, Pause or Resume it.
-    decision_system_component<native><final><epic_internal> := class<final_super><epic_internal>(component):
+    decision_system_component<native><epic_internal> := class<final><final_super><epic_internal>(component):
         @editable
         # The decision system that this component will run.
         var<private> DecisionSystem<native><public>:decision_system
@@ -222,6 +222,9 @@ AI<public> := module:
 
         # Untether the NPC.
         Untether<native><public>():void
+
+        # If true, any positive value is accepted for the movement speed multiplier.
+        var OverrideFortniteLimits<native><epic_internal>:logic = external {}
 
         # The guard's current shooting-accuracy tier. Setting it at runtime immediately re-applies the aiming/attacking skill on the live NPC.
         var Accuracy<epic_internal>:npc_accuracy = external {}

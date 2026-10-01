@@ -10,7 +10,7 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/FN1",
-	"FortReleaseVersion": "42.20",
+	"FortReleaseVersion": "42.30",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"InstallItem": {
@@ -75,9 +75,29 @@
 			"Optional": true
 		},
 		{
+			"Name": "CRD_AudioPlayer",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRP_Heist",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "CRP_TorchLight",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "DashberryMapContent",
 			"Enabled": true,
 			"Activate": true,
+			"Optional": true
+		},
+		{
+			"Name": "Drome_Assets",
+			"Enabled": true,
 			"Optional": true
 		},
 		{
@@ -120,6 +140,11 @@
 		},
 		{
 			"Name": "FNGameplayCues",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "FNMStalkerKnife",
 			"Enabled": true,
 			"Optional": true
 		},
@@ -210,6 +235,11 @@
 			"Optional": true
 		},
 		{
+			"Name": "RReels_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
 			"Name": "SolidWave_ExtraAssets",
 			"Enabled": true,
 			"Optional": true
@@ -266,6 +296,11 @@
 		},
 		{
 			"Name": "SWave_Quill_Assets",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "TeaCakeConsumables",
 			"Enabled": true,
 			"Optional": true
 		},

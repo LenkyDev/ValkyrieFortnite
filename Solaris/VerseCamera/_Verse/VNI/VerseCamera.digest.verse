@@ -5,7 +5,7 @@ using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
 # Camera body settings, e.g. sensor/film settings, shutter speed, etc
-camera_body<final><native><public> := class<computes>:
+camera_body<native><public> := class<final><computes>:
     # Width of camera sensor in millimeters.
     SensorWidthMillimeters<native><public>:float = external {}
 
@@ -63,7 +63,7 @@ camera_director_component<native><public> := class<final_super>(camera_component
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
 # Camera lens settings
-camera_lens<final><native><public> := class<computes>:
+camera_lens<native><public> := class<final><computes>:
     # Focal length of the lens in millimeters.
     FocalLengthMillimeters<native><public>:float = external {}
 
@@ -105,7 +105,7 @@ camera_projection_mode<native><public> := enum<open>:
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
-camera_state<final><native><public> := class<computes><epic_internal>:
+camera_state<native><public> := class<final><computes><epic_internal>:
     @experimental
     # Render location of the camera. This render location can be modified by camera directions (like camera shakes), without modifying the physical location of any camera entity
     RenderLocation<native><public>:(/Verse.org/SpatialMath:)vector3

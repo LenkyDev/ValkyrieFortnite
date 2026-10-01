@@ -17,7 +17,7 @@ Progression<public> := module:
 
         Delta<native><epic_internal>:float
 
-    gameplay_conditional_listener_handle<native><final><epic_internal> := class:
+    gameplay_conditional_listener_handle<native><epic_internal> := class<final>:
         GetParticipants<native><epic_internal>()<reads>:[]entity
 
         AddParticipant<native><epic_internal>(Participant:entity):void

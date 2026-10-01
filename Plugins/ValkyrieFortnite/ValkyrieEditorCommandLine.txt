@@ -1,1 +1,1 @@
--EnablePlugins=ValkyrieFortnite -saveddirsuffix=UEFN -enginesaveddirsuffix=UEFN -ini:Engine:[ConsoleVariables]:verse.ShowBuiltInSource=True
+-EnablePlugins=ValkyrieFortnite -SavedDirOverride=UnrealEditorFortnite -saveddirsuffix=UEFN -enginesaveddirsuffix=UEFN -ini:Engine:[ConsoleVariables]:verse.ShowBuiltInSource=True

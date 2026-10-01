@@ -16,7 +16,7 @@ Progression<public> := module:
 
         GetDelta<native_callable><epic_internal>(SceneEvent:scene_event):float
 
-    verb_listener_handle<native><final><public> := class<epic_internal>:
+    verb_listener_handle<native><public> := class<final><epic_internal>:
         GetParticipants<native><epic_internal>()<reads>:[]entity
 
         AddParticipant<native><epic_internal>(Entity:entity)<transacts>:void

@@ -292,7 +292,7 @@ item_ability_cooldown_velocity_based<native><epic_internal> := class(item_abilit
 
 
 @experimental
-item_ability_binding<native><final><epic_internal> := class<concrete>:
+item_ability_binding<native><epic_internal> := class<final><concrete>:
     @editable
     var<private> InputAction<native><public>:?input_action(type) = external {}
 
@@ -311,7 +311,7 @@ item_ability_binding<native><final><epic_internal> := class<concrete>:
 @class_and_subclass_group_names("item")
 @experimental
 @hide_in_editor
-item_ability_component<native><final><epic_internal> := class<final_super>(component):
+item_ability_component<native><epic_internal> := class<final><final_super>(component):
     @editable
     var<private> ItemAbilities<native><public>:[]item_ability_binding
 
@@ -333,7 +333,7 @@ item_mesh_attachment_definition<native><epic_internal> := class<concrete>(item_a
 
 @class_and_subclass_group_names("item")
 @experimental
-item_attach_component<native><final><epic_internal> := class<final_super>(component):
+item_attach_component<native><epic_internal> := class<final><final_super>(component):
     @editable
     Attachments<native><public>:[]item_attachment_definition = external {}
 
@@ -446,9 +446,12 @@ item_component<native><public> := class<final_super>(component):
     PickUp<native><public>(Inventory:inventory_component)<transacts><decides>:void
 
     @available {MinUploadedAtFNVersion := 4200}
-    @replicated("")
+    @replicated("RepNotify")
     ItemID<native><epic_internal>:item_id = external {}
 
+    OnRep_ItemID<native><epic_internal>():void
+
+    @replicated("")
     ItemDefinitionAsset<native><epic_internal>:?item_definition = external {}
 
 @available {MinUploadedAtFNVersion := 3800}
@@ -478,30 +481,11 @@ itemization_core_debug_library<native><epic_internal> := class:
 
     RemoveAllItems<native_callable><public>(InInventory:inventory_component):void = external {}
 
-@experimental
-@hide_in_editor
-proxy_table<native><epic_internal> := class<unique><final><epic_internal>(asset):
-
-
-@experimental
-@hide_in_editor
-# Owner poses let an item affect their owner's default animation stance. 
-#  For example, to make a character hold an item like a torch, or a 2-handed weapon.
-character_pose_modifier<native><epic_internal> := class<unique><abstract><epic_internal>:
-    ProxyTable<native><epic_internal>:proxy_table
-
 @class_and_subclass_group_names("item")
-@experimental
 @hide_in_editor
 # Item component setting owner pose data for this item.
 item_owner_pose_modifier_component<native><epic_internal> := class<final_super><epic_internal>(component):
-    @editable
-    # Animation layer to apply when this item is equipped. This can be unset if the item doesn't need custom animation logic for its owner.
-    EquippedPose<native><epic_internal>:?character_pose_modifier = external {}
 
-    @editable
-    # Animation layer to apply when this item is not equipped (but still present in the inventory). This can be unset if the item doesn't need custom animation logic for its owner.
-    NotEquippedPose<native><epic_internal>:?character_pose_modifier = external {}
 
 @class_and_subclass_group_names("item")
 @experimental

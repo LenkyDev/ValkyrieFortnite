@@ -1,4 +1,5 @@
 # Verse path: /Fortnite.com/Armory
+using {/Verse.org/Native}
 using {/Verse.org/SceneGraph}
 using {/Verse.org/Assets}
 using {/Verse.org/SpatialMath}
@@ -211,6 +212,18 @@ fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_compo
 
     SetOutOfAmmoSound<native><public>(Val:[]sound_wave):void
 
+    @editable {}
+    # Enable/Disable Aim Down Sights while in the air
+    var<private> AllowAimDownSightsInAir<native><public>:logic = external {}
+
+    SetAllowAimDownSightsInAir<native><public>(Val:logic):void
+
+    @editable {}
+    # Enable/Disable Aim Down Sights while the weapon is reloading
+    var<private> AllowAimDownSightsDuringReload<native><public>:logic = external {}
+
+    SetAllowAimDownSightsDuringReload<native><public>(Val:logic):void
+
 # Base component for weapon related properties
 fort_weapon_component<native><public> := class<abstract><final_super><internal>(component):
     OnAddedToScene<native><override>():void
@@ -247,3 +260,8 @@ shotgun_mesh<public> := class<final>(mesh_component):
 
 # The entity prefab for a creator customizable shotgun
 shotgun_template<public> := class<concrete><final>(entity):
+
+
+@available {MinUploadedAtFNVersion := 4230}
+# The entity prefab for a creator customizable held item
+held_item_template<public> := class<concrete><final>(entity):

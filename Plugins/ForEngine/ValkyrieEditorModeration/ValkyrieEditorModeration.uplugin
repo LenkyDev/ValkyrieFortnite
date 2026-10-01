@@ -1,0 +1,30 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "Valkyrie Editor Moderation",
+	"Description": "Adds user nudging that highlights violative assets reported by Asset Service for Moderation Registration (ASMR)",
+	"Category": "Other",
+	"CreatedBy": "Epic Games, Inc.",
+	"CreatedByURL": "http://epicgames.com",
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": true,
+	"Installed": false,
+	"EditorOnly": true,
+	"EnabledByDefault": false,
+	"Modules": [
+		{
+			"Name": "ValkyrieEditorModeration",
+			"Type": "Editor",
+			"LoadingPhase": "Default",
+			"TargetAllowList": ["Editor"]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "Valkyrie",
+			"Enabled": true
+		}
+	]
+}

@@ -3,11 +3,15 @@ using {/Fortnite.com/Itemization}
 using {/Verse.org/Presentation}
 using {/UnrealEngine.com/Itemization}
 using {/Verse.org/SceneGraph}
-using {/Verse.org/Native}
 using {/Verse.org/Assets}
 using {/Verse.org/SpatialMath}
+using {/Verse.org/Native}
 using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 using {/Verse.org/Simulation}
+# The component that defines an item that is held when equipped
+fort_held_item_component<native><epic_internal> := class<internal>(fort_weapon_component):
+
+
 # The multi trace specific subtype of trace_weapon_component which adds multiple traces per shot properties
 fort_multi_trace_weapon_component<native><public> := class<final_super><internal>(fort_trace_weapon_component):
     @editable_number(int) {MinValue := option {1}; MaxValue := option {20}}
@@ -33,14 +37,17 @@ fort_range_damage_multiplier<native><public> := struct<concrete>:
 fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_component):
     OnRemovingFromScene<native><override>():void
 
-    # Starts firing the weapon, as if the wielder had pressed the fire input and kept holding it, so an automatic weapon keeps firing until StopFire. Server only: does nothing when called on a client. The wielder's own trigger takes precedence: this is ignored while they are already firing, and their own press or release takes it back, so call StopFire then StartFire again to reassert. The request also outlives an unequip and is re-applied to whatever the wielder equips next, so always end it with StopFire rather than relying on the weapon being put away.
-    StartFire<native><epic_internal>():void
+    @available {MinUploadedAtFNVersion := 4230}
+    # Begins firing the weapon, as if the wielder had pressed the fire input and kept holding it.
+    BeginFire<native><epic_internal>():void
 
-    # Stops firing the weapon, as if the wielder had released the fire input. Server only: does nothing when called on a client. The wielder's own input is never suppressed, so this only takes back what StartFire asked for.
-    StopFire<native><epic_internal>():void
+    @available {MinUploadedAtFNVersion := 4230}
+    # Ends firing the weapon, as if the wielder had released the fire input.
+    EndFire<native><epic_internal>():void
 
-    # True while the weapon is actually taking a shot, whoever pulled the trigger. This is the shot cadence rather than the request: it goes false between the rounds of a burst and while a reload or an equip is holding the shot back.
-    IsFiring<native><epic_internal>()<reads>:logic
+    @available {MinUploadedAtFNVersion := 4230}
+    # Succeeds while the weapon is actually taking a shot. Note that this could be false even if the BeginFire was called when the weapon is reloading for example.
+    IsFiring<native><epic_internal>()<decides><reads>:void
 
     @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {1000.000000}}
     @category("Weapon Damage")
@@ -290,6 +297,22 @@ fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_compo
 
     SetOutOfAmmoSound<native><public>(Val:[]sound_wave):void
 
+    @editable {}
+    @category("Weapon Aim Down Sights")
+    @replicated("RepNotify")
+    # Enable/Disable Aim Down Sights while in the air
+    var<private> AllowAimDownSightsInAir<native><public>:logic = external {}
+
+    SetAllowAimDownSightsInAir<native><public>(Val:logic):void
+
+    @editable {}
+    @category("Weapon Aim Down Sights")
+    @replicated("RepNotify")
+    # Enable/Disable Aim Down Sights while the weapon is reloading
+    var<private> AllowAimDownSightsDuringReload<native><public>:logic = external {}
+
+    SetAllowAimDownSightsDuringReload<native><public>(Val:logic):void
+
 @replicatable
 @import_as("/Script/ArmoryRuntime.FFortWeaponComponentData")
 fort_weapon_component_data<native><epic_internal> := struct<concrete>:
@@ -332,6 +355,9 @@ pistol_template<public> := class<concrete><final>(weapon_entity):
 
     WeaponComponent<override>:?fort_weapon_component = external {}
 
+    @available {MinUploadedAtFNVersion := 4230}
+    PoseModifierComponent<override>:?item_owner_pose_modifier_component = external {}
+
 assault_rifle_mesh<public> := class<final>(mesh_component):
     Mesh<override>:mesh = external {}
 
@@ -351,6 +377,9 @@ assault_rifle_template<public> := class<concrete><final>(weapon_entity):
     MeshComponent<override>:?mesh_component = external {}
 
     WeaponComponent<override>:?fort_weapon_component = external {}
+
+    @available {MinUploadedAtFNVersion := 4230}
+    PoseModifierComponent<override>:?item_owner_pose_modifier_component = external {}
 
 sub_machine_gun_mesh<public> := class<final>(mesh_component):
     Mesh<override>:mesh = external {}
@@ -372,6 +401,9 @@ sub_machine_gun_template<public> := class<concrete><final>(weapon_entity):
 
     WeaponComponent<override>:?fort_weapon_component = external {}
 
+    @available {MinUploadedAtFNVersion := 4230}
+    PoseModifierComponent<override>:?item_owner_pose_modifier_component = external {}
+
 shotgun_mesh<public> := class<final>(mesh_component):
     Mesh<override>:mesh = external {}
 
@@ -391,6 +423,27 @@ shotgun_template<public> := class<concrete><final>(weapon_entity):
     MeshComponent<override>:?mesh_component = external {}
 
     WeaponComponent<override>:?fort_weapon_component = external {}
+
+    @available {MinUploadedAtFNVersion := 4230}
+    PoseModifierComponent<override>:?item_owner_pose_modifier_component = external {}
+
+@available {MinUploadedAtFNVersion := 4230}
+@preload
+# The entity prefab for a creator customizable held item
+held_item_template<public> := class<concrete><final>(weapon_entity):
+    ItemComponent<override>:?item_component = external {}
+
+    IconComponent<override>:?icon_component = external {}
+
+    DescriptionComponent<override>:?description_component = external {}
+
+    RarityComponent<override>:?rarity_component = external {}
+
+    MeshComponent<override>:?mesh_component = external {}
+
+    WeaponComponent<override>:?fort_weapon_component = external {}
+
+    PoseModifierComponent<override>:?item_owner_pose_modifier_component = external {}
 
 @hide_in_editor
 weapon_entity<native><epic_internal> := class<concrete><internal>(fort_item_definition_entity_base):
@@ -417,6 +470,10 @@ weapon_entity<native><epic_internal> := class<concrete><internal>(fort_item_defi
     @field("Components")
     @available {MinUploadedAtFNVersion := 4000}
     WeaponComponent<native><epic_internal>:?fort_weapon_component = external {}
+
+    @field("Components")
+    @available {MinUploadedAtFNVersion := 4230}
+    PoseModifierComponent<native><epic_internal>:?item_owner_pose_modifier_component = external {}
 
     @field("Components")
     @available {MinUploadedAtFNVersion := 4040}

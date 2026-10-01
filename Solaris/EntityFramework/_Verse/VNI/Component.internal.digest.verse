@@ -386,7 +386,7 @@ has_collision<native><epic_internal> := interface<epic_internal>(has_mesh_part_s
     GetEndOverlapEvent<final><native_callable><epic_internal>():listenable(generator(overlap_hit)) = external {}
 
 @available {MinUploadedAtFNVersion := 4100}
-has_collision_impl<native><final><epic_internal> := class<epic_internal>:
+has_collision_impl<native><epic_internal> := class<final><epic_internal>:
     GetCollidableImpl<native><epic_internal>()<reads>:logic
 
     SetCollidableImpl<native><epic_internal>(In:logic):void
@@ -438,7 +438,7 @@ has_dynamics<native><epic_internal> := interface<epic_internal>(has_mesh_part_su
     GetMass<final><native_callable><epic_internal>():float = external {}
 
 @available {MinUploadedAtFNVersion := 4100}
-has_dynamics_impl<native><final><epic_internal> := class<epic_internal>:
+has_dynamics_impl<native><epic_internal> := class<final><epic_internal>:
     GetDynamicImpl<native><epic_internal>()<reads>:logic
 
     SetDynamicImpl<native><epic_internal>(In:logic):void
@@ -469,7 +469,7 @@ has_origin<native><epic_internal> := interface<epic_internal>(has_mesh_part_supp
 
 @available {MinUploadedAtFNVersion := 4200}
 @experimental
-has_origin_impl<native><final><epic_internal> := class<epic_internal>:
+has_origin_impl<native><epic_internal> := class<final><epic_internal>:
     GetOriginImpl<native><epic_internal>()<decides><reads>:presentation_origin
 
 @available {MinUploadedAtFNVersion := 4100}
@@ -549,7 +549,7 @@ has_ue_physics_properties<native><epic_internal> := interface<epic_internal>:
     SetPhysicsTransform<native_callable><epic_internal>(InTranslation:(/Verse.org/SpatialMath:)vector3, InRotation:(/Verse.org/SpatialMath:)rotation)<transacts>:void = external {}
 
 @available {MinUploadedAtFNVersion := 4100}
-has_ue_physics_properties_impl<native><final><epic_internal> := class:
+has_ue_physics_properties_impl<native><epic_internal> := class<final>:
     GetGravityEnabledImpl<native><epic_internal>()<reads>:logic
 
     SetGravityEnabledImpl<native><epic_internal>(In:logic):void
@@ -1162,6 +1162,9 @@ mesh_part<native><epic_internal> := class<abstract><unique><epic_internal>(diagn
 
     @available {MinUploadedAtFNVersion := 4200}
     HasOriginImpl<native><epic_internal>:has_origin_impl = external {}
+
+    @available {MinUploadedAtFNVersion := 4200}
+    ApplyShow<native><epic_internal>(NewShow:logic)<transacts>:void
 
     GetDiagnostic<override><native>()<reads>:diagnostic
 

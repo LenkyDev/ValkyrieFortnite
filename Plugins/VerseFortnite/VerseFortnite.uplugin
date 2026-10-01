@@ -154,6 +154,10 @@
 		{
 			"Name": "ValkyrieEngine",
 			"Enabled": true
+		},
+		{
+			"Name": "CosmeticsFrameworkLoadouts",
+			"Enabled": true
 		}
 	]
 }

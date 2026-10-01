@@ -490,6 +490,22 @@
 	"PropertyEditorClassPermissionList": {
 		"+": [
 			{
+				"Type": "/Game/Athena/Apollo/Environments/BuildingActors/SkarkIsland/BP_SharkIsland_Chandelier.BP_SharkIsland_Chandelier_C",
+				"AllowList": [ "bEditorOnlyRenderCustomDepth" ]
+			},
+			{
+				"Type": "/Game/Athena/Items/Components/BuildingActorLootDropOnDeathComponent.BuildingActorLootDropOnDeathComponent_C",
+				"AllowList": [ "OffsetLocation" ]
+			},
+			{
+				"Type": "/Game/Sounds/Fort_Audio_Blueprints/PropAmbientAudioComponent/FortPropAudioComponent.FortPropAudioComponent_C",
+				"AllowList": [ "bRegisterMusic", "MusicEventTag", "MusicGroupName" ]
+			},
+			{
+				"Type": "/Script/FortniteGame.BaseBuildingStaticMeshComponent",
+				"AllowList": [ "bIgnoreRadialImpulse" ]
+			},
+			{
 				"Type": "/Script/FortniteGame.BuildingLevelInstance",
 				"AllowList": [ "WorldAsset", "DesiredRuntimeBehavior" ]
 			},
@@ -702,6 +718,10 @@
 			{
 				"Type": "/Game/Creative/Devices/Lighting/BP_DaySequenceModifier_Device.BP_DaySequenceModifier_Device_C",
 				"DenyList": [ "UserDaySequence" ]
+			},
+			{
+				"Type": "/Script/FortniteGame.BuildingTextureData",
+				"DenyList": [ "Displacement", "Magnitude", "Center", "UVChannel", "MaskUVChannel" ]
 			}
 		]
 	},
@@ -723,6 +743,10 @@
 	},
 	"HiddenPropertyClassPermissionList": {
 		"+": [
+			{
+				"Type": "/Game/Athena/Effects/Blueprints/Environments/Smoke/BP_Smoke_Colored_LightPost.BP_Smoke_Colored_LightPost_C",
+				"AllowList": [ "DefaultSceneRoot", "SM_Smokestack_Sprites_01" ]
+			},
 			{
 				"Type": "/WildEstate/Environment/Terrain/Roads/Meshes/MeshDecals/BP_ParkingLot.BP_ParkingLot_C",
 				"AllowList": [ "DefaultSceneRoot", "SM_ParkingLotDecal_01" ],
@@ -756,6 +780,16 @@
 			{
 				"Type": "/Game/Athena/Prototype/Blueprints/CalendarProps/BP_CalendarProps_V2.BP_CalendarProps_V2_C",
 				"AllowList": [ "EditMode(Don'tTouch)", "EventName", "Propdata", "Scene" ],
+				"WarnForDisallowedPropertiesPhase": 2
+			},
+			{
+				"Type": "/Script/FortniteGame.BuildingTextureData",
+				"AllowList": [ "Center", "Displacement", "Magnitude" ],
+				"WarnForDisallowedPropertiesPhase": 2
+			},
+			{
+				"Type": "/Script/Engine.LevelInstanceComponent",
+				"AllowList": [ "ShadowDesiredRuntimeBehavior" ],
 				"WarnForDisallowedPropertiesPhase": 2
 			}
 		]

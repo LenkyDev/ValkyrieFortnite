@@ -258,6 +258,8 @@ Verse<public> := module:
 
     MakeMessageInternal<native><epic_internal>(K:string, D:string, S:[string]localizable_value)<converges>:message
 
+    MakeMessageLiteral<native><epic_internal>(K:string, D:string)<converges>:message
+
     # Pi, the ratio of the circumference of a circle to its diameter.
     PiFloat<public>:float = external {}
 

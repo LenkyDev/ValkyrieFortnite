@@ -18,7 +18,7 @@ fort_item_ability_component_data<native><public> := struct<concrete>:
 @available {MinUploadedAtFNVersion := 4200}
 @class_and_subclass_group_names("item")
 @experimental
-fort_item_ability_component<native><final><public> := class<final_super>(component):
+fort_item_ability_component<native><public> := class<final><final_super>(component):
     @editable {}
     @replicated("RepNotify")
     var<private> ItemAbilities<native><public>:[]?ability(ability_context, ability_effect) = external {}
@@ -117,13 +117,12 @@ fort_template_ability_effect_component<native><public> := class(ability_effect_c
 
 @available {MinUploadedAtFNVersion := 4200}
 @experimental
-fort_template_ability<native><public>(context_type:subtype(ability_context), prefab_type:subtype(fort_template_ability_effect)) := class<abstract>(ability(context_type, prefab_type)):
-    @available {MinUploadedAtFNVersion := 4210}
-    (/Fortnite.com/Abilities/fort_template_ability:)Abilities_fort_template_ability_Variance_Inherited<private>(:context_type, :prefab_type, :context_type, :context_type):tuple(prefab_type, context_type, prefab_type, context_type, prefab_type) = external {}
+fort_template_ability<native><public> := class(ability(ability_context, fort_template_ability_effect)):
+    var ActiveEffects<override>:[]fort_template_ability_effect = external {}
 
-    var (/Fortnite.com/Abilities/fort_template_ability:)Abilities_fort_template_ability_VarVariance_Inherited<private>:?tuple(prefab_type, prefab_type) = external {}
+    MakeContext<override>()<transacts>:ability_context = external {}
 
-    (/Fortnite.com/Abilities/fort_template_ability:)Abilities_fort_template_ability_Variance<private>(:context_type):tuple() = external {}
+    MakeAbility<override>()<transacts>:fort_template_ability_effect = external {}
 
     @editable {}
     @replicated("")
@@ -155,18 +154,72 @@ fort_ability_attach_socket<native><public> := enum:
 
 @available {MinUploadedAtFNVersion := 4200}
 @experimental
-fort_cancel_reason_ended<native><final><public> := class<castable>(cancel_reason):
+fort_cancel_reason_ended<native><public> := class<final><castable>(cancel_reason):
 
 
 @available {MinUploadedAtFNVersion := 4200}
 @experimental
-fort_cancel_reason_canceled<native><final><public> := class<castable>(cancel_reason):
+fort_cancel_reason_canceled<native><public> := class<final><castable>(cancel_reason):
 
 
 @available {MinUploadedAtFNVersion := 4200}
 @experimental
-fort_cancel_reason_invalid<native><final><public> := class<castable>(cancel_reason):
+fort_cancel_reason_invalid<native><public> := class<final><castable>(cancel_reason):
 
+
+@available {MinUploadedAtFNVersion := 4200}
+@experimental
+fort_ability_attribute<native><epic_internal> := enum<open>:
+    MaxHealth
+    MaxShields
+    Speed
+    Gravity
+
+@available {MinUploadedAtFNVersion := 4200}
+@experimental
+fort_ability_attribute_modifier<native><epic_internal> := enum<open>:
+    Add
+    Multiply
+    Override
+
+@available {MinUploadedAtFNVersion := 4200}
+@experimental
+fort_attribute_modifier<native><epic_internal> := struct<concrete>:
+    @editable {}
+    Attribute<native><public>:fort_ability_attribute = external {}
+
+    @editable {}
+    Modifier<native><public>:fort_ability_attribute_modifier = external {}
+
+    @editable {}
+    Value<native><public>:float = external {}
+
+@available {MinUploadedAtFNVersion := 4200}
+@experimental
+fort_ability_attribute_modifier_span<native><epic_internal> := class<concrete>(fort_ability_timeline_element_span):
+    @editable {}
+    AttributeModifiers<native><public>:[]fort_attribute_modifier = external {}
+
+    @editable {}
+    ApplyToInstigator<native><public>:logic = external {}
+
+    @editable {}
+    ApplyToTargets<native><public>:logic = external {}
+
+@available {MinUploadedAtFNVersion := 4200}
+@experimental
+fort_ability_attribute_modifier_point<native><epic_internal> := class<concrete>(fort_ability_timeline_element_point):
+    @editable {}
+    AttributeModifiers<native><public>:[]fort_attribute_modifier = external {}
+
+    @editable {}
+    ApplyToInstigator<native><public>:logic = external {}
+
+    @editable {}
+    ApplyToTargets<native><public>:logic = external {}
+
+    @editable {}
+    Duration<native><public>:float = external {}
 
 @available {MinUploadedAtFNVersion := 4200}
 @experimental
@@ -231,7 +284,14 @@ fort_ability_status_effect_pepper_point<native><public> := class<final>(fort_abi
 @available {MinUploadedAtFNVersion := 4200}
 @experimental
 fort_ability_status_effect_burn_point<native><public> := class<final>(fort_ability_status_effect_point):
+    @editable {}
+    var DamagePerSecond<native><public>:float = external {}
 
+@available {MinUploadedAtFNVersion := 4200}
+@experimental
+fort_ability_status_effect_removal_point<native><public> := class<final>(fort_ability_timeline_element_point):
+    @editable {}
+    StatusEffects<native><public>:[]concrete_subtype(fort_ability_status_effect_point) = external {}
 
 @available {MinUploadedAtFNVersion := 4200}
 @hide_in_editor
@@ -322,8 +382,8 @@ self_ability_target_query<native><public> := class(ability_target_query):
 @available {MinUploadedAtFNVersion := 4200}
 @experimental
 fort_target_query_affiliation<native><public> := enum:
-    Any
     Friendly
+    Neutral
     Hostile
 
 @available {MinUploadedAtFNVersion := 4200}
@@ -331,7 +391,7 @@ fort_target_query_affiliation<native><public> := enum:
 fort_reticle_ability_target_query<native><public> := class<concrete>(ability_target_query):
     @editable {}
     @replicated("")
-    Target<native><public>:fort_target_query_affiliation = external {}
+    Targets<native><public>:[]fort_target_query_affiliation = external {}
 
     @editable {}
     @replicated("")
@@ -342,7 +402,7 @@ fort_reticle_ability_target_query<native><public> := class<concrete>(ability_tar
 fort_wedge_ability_target_query<native><public> := class<concrete>(ability_target_query):
     @editable {}
     @replicated("")
-    Target<native><public>:fort_target_query_affiliation = external {}
+    Targets<native><public>:[]fort_target_query_affiliation = external {}
 
     @editable {}
     @replicated("")
