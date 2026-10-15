@@ -5,7 +5,7 @@ Predicts<public> := module:
 
     PredictsServerMarkObjectField<native><epic_internal>(Obj:any, FieldName:string)<transacts>:void
 
-    PredictsIsRunningOnServer<native><epic_internal>()<transacts><decides><predicts>:void
+    PredictsIsRunningOnServer<native><epic_internal>()<transacts><decides>:void
 
     PredictsDebugServerMode<native><epic_internal>()<transacts>:void
 
@@ -41,7 +41,7 @@ Predicts<public> := module:
 
     PredictsDebugUseReachabilityBasedReplication<native><epic_internal>()<transacts>:void
 
-    PredictsDebugRegisterFunc<native><epic_internal>(__dupe___unnamed_parameter_0:int, __dupe___unnamed_parameter_1:type {_()<predicts>:void})<transacts>:int
+    PredictsDebugRegisterFunc<native><epic_internal>(__dupe___unnamed_parameter_0:int, __dupe___unnamed_parameter_1:type {_():void})<transacts>:int
 
     PredictsDebugUnregisterFunc<native><epic_internal>(__dupe___unnamed_parameter_0:int)<transacts>:void
 

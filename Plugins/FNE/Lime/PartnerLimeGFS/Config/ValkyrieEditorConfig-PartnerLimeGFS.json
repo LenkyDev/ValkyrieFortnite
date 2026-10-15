@@ -454,5 +454,14 @@
 				"bAllowListAllSubclassProperties": true
 			}
 		]
-    }
+    },
+	"HiddenPropertyClassPermissionList" : {
+		"+": [
+			{
+				"Type": "/Lime/ExperienceSettings/Device_ExperienceSettings_Lime.Device_ExperienceSettings_Lime_C",
+				"AllowList": [ "FortUserOptionFilter" ],
+				"WarnForDisallowedPropertiesPhase": 2
+			}
+		]
+	}
 }

@@ -427,6 +427,10 @@ shotgun_template<public> := class<concrete><final>(weapon_entity):
     @available {MinUploadedAtFNVersion := 4230}
     PoseModifierComponent<override>:?item_owner_pose_modifier_component = external {}
 
+@available {MinUploadedAtFNVersion := 4240}
+torch_mesh<public> := class<final>(mesh_component):
+    Mesh<override>:mesh = external {}
+
 @available {MinUploadedAtFNVersion := 4230}
 @preload
 # The entity prefab for a creator customizable held item

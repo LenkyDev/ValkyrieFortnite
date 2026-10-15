@@ -1122,6 +1122,8 @@
 /CRG_DelMar/SetupAssets/Blueprints/FNEC_Asteria_NeonCity_SignFrame_E_10.FNEC_Asteria_NeonCity_SignFrame_E_10_C
 /CRG_DelMar/SetupAssets/Blueprints/FNEC_Asteria_NeonCity_SignFrame_E_11.FNEC_Asteria_NeonCity_SignFrame_E_11_C
 /CRG_DelMar/SetupAssets/Blueprints/FNEC_Asteria_NeonCity_SignFrame_E_12.FNEC_Asteria_NeonCity_SignFrame_E_12_C
+/CRG_DelMar/Track/TrackAssets/Models/Base/Accessories/Flags/Sim/BP_DM_Flag0.BP_DM_Flag0
+/CRG_DelMar/Track/TrackAssets/Models/Base/Accessories/Flags/Sim/BP_DM_Flag1.BP_DM_Flag1
 /CRG_Modular/SetupAssets/Meshes/S_ModularCliff_A.S_ModularCliff_A
 /CRG_Modular/SetupAssets/Meshes/S_ModularCliff_B.S_ModularCliff_B
 /CRG_Modular/SetupAssets/Meshes/S_ModularCliff_C.S_ModularCliff_C
@@ -1919,8 +1921,6 @@
 /DelMarGame/Track/Desert/Materials/MI_Sand_Decal_StrongFade.MI_Sand_Decal_StrongFade
 /DelMarGame/Track/Desert/Materials/MI_Sand_Decal_TireMarks.MI_Sand_Decal_TireMarks
 /DelMarGame/Track/TrackAssets/Materials/Base/Accessories/Decals/MAT_Decal_Puddle.MAT_Decal_Puddle
-/DelMarGame/Track/TrackAssets/Models/Base/Accessories/Flags/Sim/BP_DM_Flag0.BP_DM_Flag0
-/DelMarGame/Track/TrackAssets/Models/Base/Accessories/Flags/Sim/BP_DM_Flag1.BP_DM_Flag1
 /DelMarGame/VFX/Environments/Caustics/MI_Decal_Caustics.MI_Decal_Caustics
 /DelMarGame/VFX/Environments/WaterFalls/Maps/Olympus/BP_Olympus_OOB_waterfall_1.BP_Olympus_OOB_waterfall_1
 /DelMarGame/VFX/Environments/WaterFalls/Maps/Olympus/BP_Olympus_waterfall_Tall_1.BP_Olympus_waterfall_Tall_1

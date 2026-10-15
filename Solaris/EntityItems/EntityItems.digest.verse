@@ -2008,6 +2008,15 @@ Weapons<public> := module:
     CerberusModularGatekeeperShotgun_BR_CH5S2_Mythic<public> := class<final><concrete>(entity):
 
 
+    GatekeeperShotgun_BR_CH7S2_Legendary<public> := class<final><concrete>(entity):
+
+
+    GatekeeperShotgun_BR_CH7S4_Rare<public> := class<final><concrete>(entity):
+
+
+    GatekeeperShotgun_BR_CH7S4_Epic<public> := class<final><concrete>(entity):
+
+
     GrappleBlade_BR_CH5S1_Epic<public> := class<final><concrete>(entity):
 
 

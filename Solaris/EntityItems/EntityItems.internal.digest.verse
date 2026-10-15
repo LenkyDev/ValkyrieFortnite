@@ -8047,6 +8047,39 @@ Weapons<public> := module:
         RarityComponent<override>:?rarity_component = external {}
 
     @preload
+    GatekeeperShotgun_BR_CH7S2_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+    @preload
+    GatekeeperShotgun_BR_CH7S4_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+    @preload
+    GatekeeperShotgun_BR_CH7S4_Epic<public> := class<final><concrete>(fort_item_definition_entity):
+        @available {MinUploadedAtFNVersion := 4000}
+        ItemComponent<override>:item_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        IconComponent<override>:?icon_component = external {}
+
+        @available {MinUploadedAtFNVersion := 4020}
+        RarityComponent<override>:?rarity_component = external {}
+
+    @preload
     GrappleBlade_BR_CH5S1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
         @available {MinUploadedAtFNVersion := 4000}
         ItemComponent<override>:item_component = external {}

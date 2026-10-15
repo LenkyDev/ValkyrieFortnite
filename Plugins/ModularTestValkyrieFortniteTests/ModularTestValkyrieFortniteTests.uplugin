@@ -1,0 +1,44 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "Modular Test Valkyrie Fortnite Self-Tests",
+	"Description": "Companion plugin that smoke-tests the Modular Test Valkyrie Fortnite plugin.",
+	"Category": "Testing",
+	"IsExperimentalVersion": true,
+	"CanContainContent": false,
+	"EnabledByDefault": false,
+	"ExplicitlyLoaded": true,
+	"TestPlugin": true,
+	"Modules": [
+		{
+			"Name": "ModularTestValkyrieFortniteTests",
+			"Type": "DeveloperTool",
+			"LoadingPhase": "Default",
+			"TargetAllowList": [ "Editor" ],
+			"TargetConfigurationDenyList": [ "Shipping" ]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ModularTestFramework",
+			"Enabled": true
+		},
+		{
+			"Name": "ModularTestValkyrieFortnite",
+			"Enabled": true
+		},
+		{
+			"Name": "ModularTestGFP",
+			"Enabled": true
+		},
+		{
+			"Name": "Valkyrie",
+			"Enabled": true
+		},
+		{
+			"Name": "ValkyrieFortnite",
+			"Enabled": true
+		}
+	]
+}

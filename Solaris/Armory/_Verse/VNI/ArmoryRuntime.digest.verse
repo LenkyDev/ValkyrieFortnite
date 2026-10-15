@@ -262,6 +262,10 @@ shotgun_mesh<public> := class<final>(mesh_component):
 shotgun_template<public> := class<concrete><final>(entity):
 
 
+@available {MinUploadedAtFNVersion := 4240}
+torch_mesh<public> := class<final>(mesh_component):
+
+
 @available {MinUploadedAtFNVersion := 4230}
 # The entity prefab for a creator customizable held item
 held_item_template<public> := class<concrete><final>(entity):

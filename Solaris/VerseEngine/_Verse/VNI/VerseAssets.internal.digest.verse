@@ -75,6 +75,10 @@ Assets<public> := module:
     uaf_system<native><epic_internal> := class<final><epic_internal>(asset, animation_asset):
 
 
+    @available {MinUploadedAtFNVersion := 4240}
+    uaf_shared_variables<native><epic_internal> := class<epic_internal>(asset, animation_asset):
+
+
     particle_system<native><public> := class<computes><final><epic_internal>(client_asset):
 
 

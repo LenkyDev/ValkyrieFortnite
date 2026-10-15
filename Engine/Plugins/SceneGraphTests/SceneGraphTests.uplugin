@@ -1,0 +1,55 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"FriendlyName": "SceneGraph Tests",
+	"Description": "MTF companion testing EntityFramework edge cases: lifecycle, hierarchy, error paths, integration. C++ and Verse tests.",
+	"Category": "Testing",
+	"EnabledByDefault": false,
+	"ExplicitlyLoaded": true,
+	"TestPlugin": true,
+	"CanContainContent": true,
+	"CanContainVerse": true,
+	"VersePath": "/UnrealEngine.com/SceneGraphTests",
+	"VerseScope": "InternalAPI",
+	"Modules": [
+		{
+			"Name": "SceneGraphTestLibrary",
+			"Type": "DeveloperTool",
+			"LoadingPhase": "Default",
+			"TargetConfigurationDenyList": [ "Shipping" ]
+		},
+		{
+			"Name": "SceneGraphTests",
+			"Type": "DeveloperTool",
+			"LoadingPhase": "Default",
+			"TargetConfigurationDenyList": [ "Shipping" ]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ModularTestFramework",
+			"Enabled": true
+		},
+		{
+			"Name": "EntityFramework",
+			"Enabled": true
+		},
+		{
+			"Name": "EntityFrameworkTests",
+			"Enabled": true,
+			"TargetAllowList": [ "Editor" ]
+		},
+		{
+			"Name": "ModularTestVerse",
+			"Enabled": true
+		},
+		{
+			"Name": "Solaris",
+			"Enabled": true
+		},
+		{
+			"Name": "Verse",
+			"Enabled": true
+		}
+	]
+}

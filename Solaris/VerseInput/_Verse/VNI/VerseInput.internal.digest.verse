@@ -155,7 +155,7 @@ Input<public> := module:
     (Player:player).DeprojectViewportToWorld<native><public>(ViewportPosition:(/Verse.org/SpatialMath:)vector3)<reads>:deproject_results
 
     @available {MinUploadedAtFNVersion := 4200}
-    # Diagnostic helper for verifying client-side code execution. Logs the timestamp and the current net mode to LogVerseInput. Call from a Verse function to confirm the same Verse code runs on both server and client — the log line will appear once with NetMode=DedicatedServer/ListenServer and once with NetMode=Client (or just NetMode=Standalone in PIE single-process).
+    # Logs the timestamp and current net mode to LogVerseInput.
     VerseInput_TestPredictsPing<native><epic_internal>()<transacts>:void
 
     @available {MinUploadedAtFNVersion := 4000}

@@ -111,6 +111,11 @@ camera_director_component<native><public> := class<final_super>(camera_component
     # Returns the current camera transform if available.
     GetActiveCameraTransform<native><epic_internal>()<decides><reads>:(/Verse.org/SpatialMath:)transform
 
+    @replicated("")
+    @experimental
+    @available {MinUploadedAtFNVersion := 4230}
+    var UseCameraLocationAsAudioListenerPosition<native><epic_internal>:logic = external {}
+
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
 # Camera lens settings
@@ -169,7 +174,7 @@ camera_modifier<native><public> := class(modifier(camera_state)):
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
-# Epic internal-only camera_modifier class that is free of the restrictions temporarily in place on camera_modifier
+# Epic internal-only camera_modifier class that supports client execution.
 internal_camera_modifier<native><epic_internal> := class(camera_modifier):
 
 

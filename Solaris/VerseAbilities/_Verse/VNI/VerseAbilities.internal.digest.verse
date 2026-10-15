@@ -1,32 +1,25 @@
 # Verse path: /UnrealEngine.com/Abilities
 using {/Verse.org/Assets}
-using {/Verse.org/SceneGraph}
 using {/Verse.org/Simulation}
 using {/Verse.org/Native}
+using {/Verse.org/SceneGraph}
 @available {MinUploadedAtFNVersion := 4130}
-@experimental
-MakeAbilityEffectComponent<native><public>(component_type:castable_subtype(ability_effect_component))<converges>:component_type
-
-@available {MinUploadedAtFNVersion := 4130}
-@experimental
 # Data passed on activation of an ability. Holds who fired, who helped, and what got hit. 
 #  Subclass to provide specific context for custom ability effects
 ability_context<native><public> := class<concrete>:
-    var Instigator<native><public>:?agent = external {}
+    var Instigator<native><public>:?entity = external {}
 
     var Participants<native><public>:[]entity = external {}
 
     var Targets<native><public>:[]entity = external {}
 
 @available {MinUploadedAtFNVersion := 4130}
-@experimental
 # Prefab to provide a central location for handling desired ability and gameplay logic.
 ability_effect<native><public> := class<concrete>(entity):
     @field("Components")
     AbilityComponent<native><public>:ability_effect_component = external {}
 
 @available {MinUploadedAtFNVersion := 4130}
-@experimental
 # Lives in the scene graph and is the high level description of an ability. 
 #  Knows if an ability can run, cooldowns, distance and targeting requirements etc...
 ability<native><public>(context_type:subtype(ability_context), ability_effect_type:subtype(ability_effect)) := class<abstract>(has_icon):
@@ -46,28 +39,24 @@ ability<native><public>(context_type:subtype(ability_context), ability_effect_ty
 
     MakeAbility<public>()<transacts>:ability_effect_type
 
-    var<private> ActiveEffects<native><public>:[]ability_effect_type
+    var<private> ActiveEffects<native><public>:[]ability_effect_type = external {}
 
     var Icon<override>:texture = external {}
 
 @available {MinUploadedAtFNVersion := 4130}
-@experimental
 # Lightweight tag explaining why an effect ended.
 cancel_reason<native><public> := class<abstract><castable>:
 
 
 @available {MinUploadedAtFNVersion := 4130}
-@experimental
 ability_ended<public> := class<castable>(cancel_reason):
 
 
 @available {MinUploadedAtFNVersion := 4130}
-@experimental
 ability_removed_from_scene<native><public> := class(cancel_reason):
 
 
 @available {MinUploadedAtFNVersion := 4130}
-@experimental
 # Guaranteed Ability component on Ability prefab entities. Handles Ability lifecycle.
 ability_effect_component<native><public> := class<final_super>(component):
     OnBeginUse<native_callable><protected>()<transacts>:void = external {}
