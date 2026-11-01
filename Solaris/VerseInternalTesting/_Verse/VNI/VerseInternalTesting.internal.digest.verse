@@ -1,6 +1,7 @@
 # Verse path: /Fortnite.com/VerseInternalTesting
 # Module import path: /Fortnite.com/VerseInternalTesting/VerseFramework
 VerseFramework<public> := module:
+    using {/Verse.org/Assets}
     using {/Fortnite.com/Characters}
     verse_internal_testing_utils<native><epic_internal> := class<final>:
         HasServerCommandLineOption<native><epic_internal>(Option:string)<decides><reads>:void
@@ -13,3 +14,5 @@ VerseFramework<public> := module:
         Flying
 
     SetTestMovementMode<native><epic_internal>(Character:fort_character, Mode:test_movement_mode)<transacts><decides>:void
+
+    SyncLoad<native><epic_internal>(Asset:asset):logic

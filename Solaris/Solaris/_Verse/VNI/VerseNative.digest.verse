@@ -15,7 +15,7 @@ Native<public> := module:
 Concurrency<public> := module:
     using {/Verse.org/Native}
     # A parametric interface implemented by events with a `payload` that can be waited on. Matched with `signalable.`
-    awaitable<native><public>(payload:type) := interface:
+    awaitable<public>(payload:type) := interface:
         (/Verse.org/Concurrency/awaitable:)Concurrency_awaitable_Variance<private>():tuple(payload) = external {}
 
         # Suspends the current task until resumed by a matching call to `signalable.Signal`. Returns the event `payload`.
@@ -33,3 +33,14 @@ Concurrency<public> := module:
 
 # Module import path: /Verse.org/Diagnostics
 Diagnostics<public> := module:
+    @attribscope_class
+    @attribscope_struct
+    @attribscope_data
+    @attribscope_function
+    @attribscope_interface
+    export_metadata<epic_internal> := class<computes>(attribute):
+        Category<public>:string
+
+        Key<public>:string
+
+        Value<public>:string

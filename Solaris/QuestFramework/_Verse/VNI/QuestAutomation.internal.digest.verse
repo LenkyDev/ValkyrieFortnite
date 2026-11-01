@@ -1,9 +1,8 @@
 # Verse path: /Verse.org
 using {/Verse.org/Native}
-@available {MinUploadedAtFNVersion := 4110}
+@available {MinUploadedAtFNVersion := 4300}
 # Module import path: /Verse.org/Progression
 Progression<public> := module:
-    @experimental
     quest_lifecycle_event_observer<native><epic_internal> := class<epic_internal>:
         var<private> Subscriptions<native><epic_internal>:[]cancelable = external {}
 
@@ -22,3 +21,5 @@ Progression<public> := module:
         OnQuestStateChanged<native><final><epic_internal>(Quest:quest, OldState:quest_state, NewState:quest_state):void
 
         OnStateChanged<final><epic_internal>(Transition:tuple(quest, quest_state, quest_state)):void = external {}
+
+        OnCompleteEvent<final><epic_internal>(Data:objective_complete_event_data):void = external {}

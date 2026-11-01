@@ -1,7 +1,7 @@
 # Verse path: /Fortnite.com/Itemization
 using {/Verse.org/Native}
-using {/Verse.org/Simulation}
 using {/Verse.org/SceneGraph}
+using {/Verse.org/Simulation}
 using {/UnrealEngine.com/Itemization}
 # `fort_inventory_component` is a shared class for all Fortnite inventories, with appropriate default UI and behavior. The HUD when using the BR Style Inventory Configuration will only be shown when using the default configuration. If new inventories are added you will need to create your own custom HUD using Verse UI.
 fort_inventory_component<native><public> := class<epic_internal>(inventory_component):
@@ -53,6 +53,37 @@ FortniteItemCategories<public> := module:
     WeaponMelee<public>:item_category = external {}
 
     WeaponRanged<public>:item_category = external {}
+
+# Owner poses let an item affect their owner's default animation stance. 
+#  For example, to make a character hold an item like a torch, or a 2-handed weapon.
+fort_character_pose_modifier<native><public> := class<abstract><epic_internal>:
+
+
+fort_character_pose_modifier_fire_torch<public> := class<final><concrete>(fort_character_pose_modifier):
+
+
+fort_character_pose_modifier_consumable_small<public> := class<final><concrete>(fort_character_pose_modifier):
+
+
+fort_character_pose_modifier_consumable_large<public> := class<final><concrete>(fort_character_pose_modifier):
+
+
+fort_character_pose_modifier_flashlight<public> := class<final><concrete>(fort_character_pose_modifier):
+
+
+fort_character_pose_modifier_map<public> := class<final><concrete>(fort_character_pose_modifier):
+
+
+fort_item_owner_pose_modifier_component<native><public> := class<final><epic_internal>(item_owner_pose_modifier_component):
+    OnAddedToScene<native><override>():void
+
+    OnRemovingFromScene<native><override>():void
+
+    @editable
+    # Animation layer to apply when this item is equipped. This can be unset if the item doesn't need custom animation logic for its owner.
+    var<private> EquippedPose<native><public>:?fort_character_pose_modifier = external {}
+
+    SetEquippedPose<native><public>(InPose:?fort_character_pose_modifier):void
 
 @available {MinUploadedAtFNVersion := 4040}
 # Place this component onto an entity to allow it to be added to an agent inventory on interaction. The owning entity should have an item_component and a mesh_component. This component expects the interacting agent to have a subentity with an inventory_component.

@@ -41,6 +41,7 @@ Tags<public> := module:
     # Utility function to allow for easy construction from subclass
     MakeTagFromSubClass<native><epic_internal>(tag_type:subtype(tag))<transacts><decides>:tag
 
+    @deprecated {Message := "`tag_container` is part of the old tag API. Use `has_tags` via entity or the experimental `tag_set` instead."}
     # A mutable collection of tags.
     tag_container<native><epic_internal> := class<concrete>(tag_view):
         # Add the specified tag to the container.
@@ -88,12 +89,15 @@ Tags<public> := module:
         # Returns a generator for the tags in this container. This is an expensive operation since it will create new tag instances for all tags in the container. Do preferably not use this function for anything else than debugging.
         GetTags<native><epic_internal>()<transacts>:generator(tag)
 
+    @deprecated {Message := "Part of the old `tag_container` API. Use `has_tags` via entity or the experimental `tag_set` instead.."}
     # Returns abbreviated human readable Tag list. Useful for debugging.
     (/Verse.org/Simulation/Tags:)ToString<native><epic_internal>(__dupe___unnamed_parameter_0:tag_container)<computes>:string
 
+    @deprecated {Message := "Part of the old `tag_container` API. Use `has_tags` via entity or the experimental `tag_set` instead.."}
     # Create a tag container from an array of tags.
     MakeTagContainer<native><epic_internal>(InTags:[]tag)<transacts>:tag_container
 
+    @deprecated {Message := "Part of the old `tag_container` API. To \"compare\" sets of tags use `tag_set` in combination with a setup of `[]castable_concrete_subtype(tag)`."}
     # Succeeds if all tags in Left are found in Right and all tags in Right are found in Left.
     Equals<native><epic_internal>(Left:tag_container, Right:tag_container)<transacts><decides>:void
 
@@ -110,6 +114,7 @@ Tags<public> := module:
         Unsorted
         Sorted
 
+    @deprecated {Message := "`tag_search_criteria` is part of the old tag API. Use `FindCreativeObjectsWithTag` with a `tag` type instead."}
     # Advanced tag search criteria
     tag_search_criteria<native><public> := class:
         # Tags required to be on the object.
@@ -172,13 +177,20 @@ Tags<public> := module:
     tag_type_info_container<native><epic_internal> := struct<concrete>:
 
 
-    # Utility function to allow for easy construction from editor exposable tag_type_info_container
+    @experimental
+    # Returns the `tag` types selected in `TagTypeInfoContainer`, ready for use with the `has_tags` queries.
+    # Entries that do not name a valid, concrete `tag` type are skipped.
+    GetTagTypes<native><epic_internal>(TagTypeInfoContainer:tag_type_info_container)<transacts>:[]castable_concrete_subtype(tag)
+
+    @deprecated {Message := "Part of the old `tag_container` API. Use the experimental `GetTagTypes` and the `has_tags` interface instead."}
+    # Utility function to allow for easy construction from editor exposable `tag_type_info_container`
     MakeTagContainer<native><epic_internal>(TagTypeInfoContainer:tag_type_info_container)<transacts><decides>:tag_container
 
     @deprecated {Message := "Use `tag_type_info_container` instead."}
     # Deprecated alias, use `tag_type_info_container` instead.
     tag_selector_container<epic_internal> := tag_type_info_container
 
+    @deprecated {Message := "`tag_view` is part of the old tag API. Use the `has_tags` interface instead."}
     # A queryable collection of tags.
     tag_view<native><public> := interface<epic_internal>:
         # Determine if TagToCheck is present in this container, also checking against parent tags {"A.1"}.Has("A") will return True, {"A"}.Has("A.1") will return False If TagToCheck is not Valid it will always return False.

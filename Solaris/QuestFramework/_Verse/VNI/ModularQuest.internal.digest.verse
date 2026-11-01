@@ -1,30 +1,36 @@
 # Verse path: /UnrealEngine.com
 using {/Verse.org/Native}
-@available {MinUploadedAtFNVersion := 4110}
+@available {MinUploadedAtFNVersion := 4300}
 # Module import path: /UnrealEngine.com/Progression
 (/UnrealEngine.com:)Progression<public> := module:
     using {/Verse.org}
-    @experimental
-    modular_quest<native><epic_internal> := class<epic_internal>(basic_quest):
-        OnActivate<override><native><native_callable>():void
+    # Implemented by quests that carry a quest_extension list. The interface owns the storage.
+    has_quest_extensions<native><epic_internal> := interface:
+        # Replaces the extension list. An override owns the write.
+        SetQuestExtensions<native_callable><epic_internal>(InExtensions:[]quest_extension)<transacts>:void = external {}
 
-        OnDeactivate<override><native><native_callable>():void
+        # Extensions attached to this quest. Write it with SetQuestExtensions.
+        var<protected> QuestExtensions<native><epic_internal>:[]quest_extension = external {}
 
-        CanJoin<override><native><native_callable>(QuestParticipant:(/Verse.org:)Progression.quest_participant)<reads>:result(void, [](/Verse.org:)Progression.join_quest_error)
+    modular_quest<native><epic_internal> := class<epic_internal>(basic_quest, has_quest_extensions):
+        OnActivate<override><native><native_callable>()<transacts>:void
 
-        CanAbandon<override><native><native_callable>(QuestParticipant:(/Verse.org:)Progression.quest_participant)<reads>:result(void, [](/Verse.org:)Progression.abandon_quest_error)
+        OnDeactivate<override><native><native_callable>()<transacts>:void
 
-        OnJoin<override><native><native_callable>(QuestParticipant:(/Verse.org:)Progression.quest_participant):void
+        CanJoin<override><native><native_callable>(Participant:(/Verse.org:)Progression.quest_participant, Info:(/Verse.org:)Progression.quest_participant_info)<reads>:result(void, [](/Verse.org:)Progression.quest_error)
 
-        OnAbandon<override><native><native_callable>(QuestParticipant:(/Verse.org:)Progression.quest_participant):void
+        CanAbandon<override><native><native_callable>(Participant:(/Verse.org:)Progression.quest_participant, Info:(/Verse.org:)Progression.quest_participant_info)<reads>:result(void, [](/Verse.org:)Progression.quest_error)
 
-        OnComplete<override><native><native_callable>():void
+        OnJoin<override><native><native_callable>(Participant:(/Verse.org:)Progression.quest_participant, Info:(/Verse.org:)Progression.quest_participant_info)<transacts>:void
 
-        CanGrantRewards<override><native><native_callable>()<decides><reads>:void
+        OnAbandon<override><native><native_callable>(Participant:(/Verse.org:)Progression.quest_participant, Info:(/Verse.org:)Progression.quest_participant_info)<transacts>:void
 
-        Extensions<native><epic_internal>:[]quest_extension
+        OnComplete<override><native><native_callable>(Reason:(/Verse.org:)Progression.complete_objective_reason)<transacts>:void
 
-    @experimental
+        CanGrantRewards<override>(Memberships:[](/Verse.org:)Progression.quest_membership)<reads>:result(void, []quest_reward_error) = external {}
+
+        ExtensionGrantRefusals<epic_internal>(Memberships:[](/Verse.org:)Progression.quest_membership)<reads>:[][]quest_reward_error = external {}
+
     quest_extension<native><epic_internal> := class<abstract><castable><epic_internal>:
         OnActivate<native><native_callable><epic_internal>():void
 
@@ -38,8 +44,8 @@ using {/Verse.org/Native}
 
         OnAbandon<native><native_callable><epic_internal>(QuestParticipant:(/Verse.org:)Progression.quest_participant):void
 
-        OnComplete<native><native_callable><epic_internal>():void
+        OnComplete<native><native_callable><epic_internal>(Reason:(/Verse.org:)Progression.complete_objective_reason):void
 
-        CanGrantRewards<native><native_callable><epic_internal>()<decides><reads>:void
+        CanGrantRewards<native><native_callable><epic_internal>(Memberships:[](/Verse.org:)Progression.quest_membership)<reads>:result(void, []quest_reward_error)
 
-        GetOwningQuest<native><final><epic_internal>()<reads>:(/Verse.org:)Progression.quest
+        GetOwningQuest<native><final><epic_internal>()<decides><reads>:(/Verse.org:)Progression.quest

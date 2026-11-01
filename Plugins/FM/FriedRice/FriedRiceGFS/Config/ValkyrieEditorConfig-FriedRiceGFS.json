@@ -361,7 +361,7 @@
 			},
 			{
 				"Type": "/Script/FortniteGame.FortPoi_DiscoverableComponent",
-				"AllowList": [ "PlayerFacingName" , "QuestPartOf", "DiscoveredSoundCue", "DiscoverMinimapBitId", "EventDrivenBitIds", "bIsPlayerFacingNameLocalizable", "MapLocationTextLocationOffset"]
+				"AllowList": [ "PlayerFacingName" , "QuestPartOf", "DiscoveredSoundCue", "DiscoverMinimapBitId", "bIsPlayerFacingNameLocalizable", "MapLocationTextLocationOffset"]
 			},
 			{
 				"Type": "/Script/DaySequence.DaySequenceModifierComponent",

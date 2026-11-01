@@ -82,6 +82,14 @@
 			"Type": "Editor"
 		},
 		{
+			"Name": "ComponentVisualizerFramework",
+			"Type": "Editor"
+		},
+		{
+			"Name": "EntityInteractiveVisualizers",
+			"Type": "Editor"
+		},
+		{
 			"Name": "EntityEditor",
 			"Type": "Editor"
 		},
@@ -113,6 +121,10 @@
 		{
 			"Name": "EntityModifiers",
 			"Type": "Runtime"
+		},
+		{
+			"Name": "EntityInteractiveTools",
+			"Type": "Editor"
 		}
 	],
 	"Plugins": [
@@ -175,13 +187,6 @@
 			]
 		},
 		{
-			"Name": "InstanceDataObjectFixupTool",
-			"Enabled": true,
-			"TargetAllowList": [
-				"Editor"
-			]
-		},
-		{
 			"Name": "AdvancedRenamer",
 			"Enabled": true,
 			"TargetAllowList": [
@@ -211,6 +216,16 @@
 		{
 			"Name": "UAFControlRig",
 			"Enabled": true
+		},
+		{
+			"Name": "MeshModelingToolset",
+			"Enabled": true,
+			"TargetAllowList": [ "Editor" ]
+		},
+		{
+			"Name": "ModelingToolsEditorMode",
+			"Enabled": true,
+			"TargetAllowList": [ "Editor" ]
 		}
 	],
 	"IsExperimentalVersion": false

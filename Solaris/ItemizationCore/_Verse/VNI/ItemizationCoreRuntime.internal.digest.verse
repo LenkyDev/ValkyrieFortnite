@@ -169,13 +169,13 @@ inventory_component<native><public> := class<final_super>(component):
     ItemsSlotChangedEvent<native><final><epic_internal>:listenable(change_items_slot_result) = external {}
 
     @available {MinUploadedAtFNVersion := 3800}
-    MakeCanAddItemResultInternal<final><native_callable><epic_internal>(IsSuccess:logic):result(comparable, []add_item_error) = external {}
+    MakeCanAddItemResultInternal<final><native_callable><epic_internal>(IsSuccess:logic):result(void, []add_item_error) = external {}
 
     @available {MinUploadedAtFNVersion := 3800}
     MakeAddItemResultInternal<final><native_callable><epic_internal>(IsSuccess:logic, AddItemResult:add_item_result):result(add_item_result, []add_item_error) = external {}
 
     @available {MinUploadedAtFNVersion := 3800}
-    MakeCanRemoveItemResultInternal<final><native_callable><epic_internal>(IsSuccess:logic):result(comparable, []remove_item_error) = external {}
+    MakeCanRemoveItemResultInternal<final><native_callable><epic_internal>(IsSuccess:logic):result(void, []remove_item_error) = external {}
 
     @available {MinUploadedAtFNVersion := 3800}
     MakeRemoveItemResultInternal<final><native_callable><epic_internal>(IsSuccess:logic, RemoveItemResult:remove_item_result):result(remove_item_result, []remove_item_error) = external {}
@@ -429,10 +429,10 @@ item_component<native><public> := class<final_super>(component):
     Categories<native><public>:[]item_category = external {}
 
     @available {MinUploadedAtFNVersion := 3800}
-    MakeEquipResultInternal<final><native_callable><epic_internal>(IsSuccess:logic):result(comparable, []equip_item_error) = external {}
+    MakeEquipResultInternal<final><native_callable><epic_internal>(IsSuccess:logic):result(void, []equip_item_error) = external {}
 
     @available {MinUploadedAtFNVersion := 3800}
-    MakeUnequipResultInternal<final><native_callable><epic_internal>(IsSuccess:logic):result(comparable, []unequip_item_error) = external {}
+    MakeUnequipResultInternal<final><native_callable><epic_internal>(IsSuccess:logic):result(void, []unequip_item_error) = external {}
 
     # Removes the item from its inventory and places it in the simulation world. Works on orphaned items i.e. outside the world or any inventory.
     #  Fails if the item is already a pickup. The transform of the item will not be altered except to unparent it from any inventory.
@@ -484,7 +484,7 @@ itemization_core_debug_library<native><epic_internal> := class:
 @class_and_subclass_group_names("item")
 @hide_in_editor
 # Item component setting owner pose data for this item.
-item_owner_pose_modifier_component<native><epic_internal> := class<final_super><epic_internal>(component):
+item_owner_pose_modifier_component<native><public> := class<final_super><epic_internal>(component):
 
 
 @class_and_subclass_group_names("item")
@@ -494,99 +494,6 @@ item_owner_pose_modifier_component<native><epic_internal> := class<final_super><
 item_slot_size_component<native><epic_internal> := class<final_super>(component):
     @editable
     SlotSize<native><public>:int = external {}
-
-@experimental
-# Spawns loot to the world or award it to an agent inventory.
-loot_component<native><epic_internal> := class<final_super>(component, enableable):
-    Enable<native><override>():void
-
-    Disable<native><override>():void
-
-    IsEnabled<native><override>()<transacts><decides>:void
-
-    SpawnPickups<native><public>(Instigators:[]agent):[]entity
-
-    AwardLoot<native><public>(Target:entity, Instigators:[]agent, DestroyOverflow:logic):[]entity
-
-    @editable
-    Items<native><public>:[]subtype(entity) = external {}
-
-    @editable
-    LootPools<native><public>:[]loot_pool = external {}
-
-@experimental
-# The Data for the loot component to work with
-loot_pool<native><epic_internal> := class<concrete>:
-
-
-@experimental
-# It can be overriden. It will return how many times the loot can be rolled
-loot_count_calculator<native><epic_internal> := class<concrete>:
-
-
-@experimental
-calculate_count_info<native><epic_internal> := struct:
-    Owner<native>:entity = external {}
-
-    Instigators<native>:[]agent = external {}
-
-@experimental
-# Fixed amount of rolls
-loot_count_calculator_fixed<native><epic_internal> := class<concrete>(loot_count_calculator):
-
-
-@experimental
-# Random range of rolls
-loot_count_calculator_range<native><epic_internal> := class<concrete>(loot_count_calculator):
-
-
-@experimental
-loot_distribution<native><epic_internal> := struct<concrete>:
-    @category("Values")
-    @editable
-    Count<native>:int = external {}
-
-    @category("Values")
-    @editable
-    Weight<native>:float = external {}
-
-@experimental
-# Weighted amount of rolls
-loot_count_calculator_weighted<native><epic_internal> := class<concrete>(loot_count_calculator):
-
-
-@experimental
-# Loot Data
-loot<native><epic_internal> := struct<concrete>:
-    @editable
-    Weight<native>:loot_weight_calculator = external {}
-
-    @editable
-    MaxSelections<native>:?int = external {}
-
-    @editable
-    Items<native>:[]subtype(entity) = external {}
-
-    @editable
-    LootPools<native>:[]loot_pool = external {}
-
-@experimental
-loot_weight_calculator_info<native><epic_internal> := struct:
-    Owner<native>:?entity = external {}
-
-    Instigators<native>:[]agent = external {}
-
-    Items<native>:[]subtype(entity) = external {}
-
-    LootPools<native>:[]loot_pool = external {}
-
-@experimental
-loot_weight_calculator<native><epic_internal> := class<concrete>:
-
-
-@experimental
-loot_weight_calculator_fixed<epic_internal> := class<concrete>(loot_weight_calculator):
-
 
 @available {MinUploadedAtFNVersion := 4000}
 @experimental

@@ -31,6 +31,11 @@
 			]
 		},
 		{
+			"Name": "ValkyrieMCPBeacon",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		},
+		{
 			"Name": "ValkyrieAccount",
 			"Type": "Editor",
 			"LoadingPhase": "Default"
@@ -115,6 +120,11 @@
 		}
 	],
 	"Plugins": [
+		{
+			"Name": "ModelContextProtocol",
+			"Enabled": false,
+			"Optional": true
+		},
 		{
 			"Name": "VerseAutomatedTestingUtils",
 			"Enabled": true
@@ -260,6 +270,10 @@
 			"Enabled": true
 		},
 		{
+			"Name": "MCPBeacon",
+			"Enabled": true
+		},
+		{
 			"Name": "MatchmakingService",
 			"Enabled": true
 		},
@@ -350,6 +364,13 @@
 			]
 		},
 		{
+			"Name": "InterchangeOpenUSD",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
 			"Name": "AINavigation",
 			"Enabled": true
 		},
@@ -370,6 +391,15 @@
 			"Name": "ValkyrieEditorModeration",
 			"Enabled": true,
 			"TargetAllowList": [ "Editor" ]
+		},
+		{
+			"Name": "PluginDependenciesFromSettingsEditor",
+			"Enabled": true,
+			"TargetAllowList": [ "Editor" ]
+		},		
+		{
+			"Name": "PolarisSurveys",
+			"Enabled": true
 		}
 	]
 }

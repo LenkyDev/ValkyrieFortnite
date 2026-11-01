@@ -81,7 +81,7 @@ fort_projectile_component<native><public> := class<final_super>(component):
 
 @available {MinUploadedAtFNVersion := 4200}
 # Base entity for a spawnable projectile.
-projectile_template<native><public> := class<concrete><internal>(entity):
+projectile_template<native><public> := class<concrete>(entity):
     # Projectile component required to define the behavior of the projectile. Can be changed in derived entities.
     ProjectileComponent<native><public>:?fort_projectile_component = external {}
 
@@ -349,3 +349,11 @@ fort_wedge_ability_target_query<native><public> := class<concrete>(ability_targe
 
     @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {6.283185}}
     Angle<native><public>:float = external {}
+
+    @available {MinUploadedAtFNVersion := 4300}
+    @editable_number(float) {MinValue := option {0.000000}}
+    Height<native><public>:float = external {}
+
+    @available {MinUploadedAtFNVersion := 4300}
+    @editable {}
+    HeightOffset<native><public>:float = external {}

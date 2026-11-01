@@ -1,4 +1,6 @@
 # Verse path: /Fortnite.com
+using {/Verse.org/Native}
+@available {MinUploadedAtFNVersion := 4000}
 # Module import path: /Fortnite.com/Weapons
 Weapons<public> := module:
     # Module import path: /Fortnite.com/Weapons/TheWalkingDead
@@ -8,7 +10,7 @@ Weapons<public> := module:
         using {/UnrealEngine.com/Itemization}
         using {/Fortnite.com/Itemization}
         @preload
-        Lucille_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+        Lucille_V1_Mythic<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -19,7 +21,7 @@ Weapons<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        ShivaShotgun_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+        ShivaShotgun_V1_Mythic<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 

@@ -23,6 +23,12 @@
 			"Type": "DeveloperTool",
 			"LoadingPhase": "Default",
 			"TargetConfigurationDenyList": [ "Shipping" ]
+		},
+		{
+			"Name": "SceneGraphEditorTests",
+			"Type": "EditorNoCommandlet",
+			"LoadingPhase": "Default",
+			"TargetConfigurationDenyList": [ "Shipping" ]
 		}
 	],
 	"Plugins": [
@@ -40,7 +46,16 @@
 			"TargetAllowList": [ "Editor" ]
 		},
 		{
+			"Name": "EntityFrameworkEditorTests",
+			"Enabled": true,
+			"TargetAllowList": [ "Editor" ]
+		},
+		{
 			"Name": "ModularTestVerse",
+			"Enabled": true
+		},
+		{
+			"Name": "VerseEngineAssets",
 			"Enabled": true
 		},
 		{

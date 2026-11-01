@@ -19,8 +19,14 @@
         # Makes states from a list of factories.  Try each factory in order and compare the weighted score of each factory.  The factory with the biggest weighted score wins.  Returns the leaf states of the factory that succeed and has the biggest score.  Fails if no factory succeed.
         MaxWeightSelector<epic_internal>(Factories:[]type {_()<transacts><decides>:scored_leaves_result})<transacts><decides>:select_scored_leaves_result = external {}
 
-        # Makes states from a list of factories.  Try each factory in order and compare the weighted score of each factory.  The factory with the biggest weighted score wins.  Returns the leaf states of the factory that succeed  and has the biggest score.  Fails if no factory succeed.  Used when the states can be injected or dynamic.
+        # Makes states from a list of factories.  Try each factory in order and compare the weighted score of each factory.  The factory with the biggest weighted score wins.  Returns the leaf states of the factory that succeed and has the biggest score.  Fails if no factory succeed.  Used when the states can be injected or dynamic.
         MaxWeightSelectorFrom<epic_internal>((Parent:t, Factories:[]type {_(:t)<transacts><decides>:scored_leaves_result}) where t:type)<transacts><decides>:select_scored_leaves_result = external {}
+
+        # Makes states from a list of factories.  Try each factory in order and compare the weighted score of each factory.  The factory with the lowest weighted score wins.  Returns the leaf states of the factory that succeed and has the lowest score.  Fails if no factory succeed.
+        MinWeightSelector<epic_internal>(Factories:[]type {_()<transacts><decides>:scored_leaves_result})<transacts><decides>:select_scored_leaves_result = external {}
+
+        # Makes states from a list of factories.  Try each factory in order and compare the weighted score of each factory.  The factory with the lowest weighted score wins.  Returns the leaf states of the factory that succeed and has the lowest score.  Fails if no factory succeed.  Used when the states can be injected or dynamic.
+        MinWeightSelectorFrom<epic_internal>((Parent:t, Factories:[]type {_(:t)<transacts><decides>:scored_leaves_result}) where t:type)<transacts><decides>:select_scored_leaves_result = external {}
 
         # Makes states from a list of factories.  Try each factory in the sequence from the provided Index.  Returns the leaf states of the first factory that succeed from Index.  Fails if no factory succeed.
         TrySequencer<epic_internal>(Factories:[]type {_()<transacts><decides>:make_leaves_result}, Index:int)<transacts><decides>:select_leaves_result = external {}
@@ -44,14 +50,15 @@
     # Creates a new unique state handle. Each call returns a handle with a unique Id.
     MakeStateHandle<native><public>():state_handle
 
+    # The result of a make state function.  Contains the terminal states of the selection.  It can returns more than one leaf if it contains parallel states.
+    make_leaves_result<epic_internal> := struct:
+        Leaves:[]state = external {}
+
+    # The result of a make state function.  Contains the created state and terminal states of the selection.  It can returns more than one leaf if it contains parallel states.
     make_state_result<epic_internal>(state_type:type) := struct:
         State:state_type
 
         Leaves:[]state
-
-    # The result of a MakeLeaves function.  Contains the terminal states of the selection.  It can returns more than one leaf if it contains parallel states.
-    make_leaves_result<epic_internal> := struct:
-        Leaves:[]state = external {}
 
     # The result of a selector pattern such as LinearSelector or RandomSelector.  Contains the terminal states of the selection and the index of the selected factory.
     select_leaves_result<epic_internal> := struct:
@@ -59,13 +66,13 @@
 
         Index:int
 
-    # The result of a MakeLeaves with an heuristic function.  Contains the terminal states of the selection and the index of the selected factory.
+    # The result of a make state function with an heuristic function.  Contains the terminal states of the selection and the score of the selected factory.
     scored_leaves_result<epic_internal> := struct:
         Leaves:[]state = external {}
 
         Score:float
 
-    # The result of a heuristic selector pattern such as UtilitiesWeightedSelector. .  Contains the terminal states of the selection and the index of the selected factory.
+    # The result of a heuristic selector pattern such as MinWeightedSelector.  Contains the terminal states of the selection, the index of the selected factory .
     select_scored_leaves_result<epic_internal> := struct:
         Leaves:[]state = external {}
 

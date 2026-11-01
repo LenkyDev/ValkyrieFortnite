@@ -3,7 +3,6 @@
 Devices<public> := module:
     using {/Fortnite.com/AI}
     using {/UnrealEngine.com/Temporary/Diagnostics}
-    using {/Verse.org/Simulation/Tags}
     using {/Fortnite.com/Game}
     using {/Verse.org/SceneGraph}
     using {/Fortnite.com/Vehicles}
@@ -11,6 +10,7 @@ Devices<public> := module:
     using {/Verse.org/Assets}
     using {/Verse.org/Colors}
     using {/Verse.org/Simulation}
+    using {/Verse.org/Simulation/Tags}
     using {/Verse.org/Native}
     using {/Verse.org/SpatialMath}
     using {/UnrealEngine.com/Temporary/SpatialMath}
@@ -264,6 +264,38 @@ Devices<public> := module:
         # Hides this device in the world.
         Hide<native><public>()<transacts>:void
 
+        @available {MinUploadedAtFNVersion := 4300}
+        # Adds a `tag` instance to this device. Returns a `tag_key` that is uniquely associated with the added instance.
+        AddTag<override><native><final>(Tag:tag)<transacts>:tag_key
+
+        @available {MinUploadedAtFNVersion := 4300}
+        # Removes the tag instance associated with the `tag_key`, succeeds if an instance was removed, fails otherwise.
+        RemoveTag<override><native><final>(Key:tag_key)<transacts><decides>:void
+
+        @available {MinUploadedAtFNVersion := 4300}
+        # Removes all tag instances of type `tag_type`, succeeds if at least one instance was removed, fails otherwise.
+        RemoveAllTags<override><native><final>(tag_type:castable_subtype(tag))<transacts><decides>:void
+
+        @available {MinUploadedAtFNVersion := 4300}
+        # Removes all tag instances that are not of type `tag_type`, succeeds if at least one instance was removed, fails otherwise.
+        RemoveAllTagsExcept<override><native><final>(tag_type:castable_subtype(tag))<transacts><decides>:void
+
+        @available {MinUploadedAtFNVersion := 4300}
+        # Removes all tag instances that are not of any of the types in `tag_types`, succeeds if at least one instance was removed, fails otherwise.
+        RemoveAllTagsExcept<override><native><final>(tag_types:[]castable_subtype(tag))<transacts><decides>:void
+
+        @available {MinUploadedAtFNVersion := 4300}
+        # Succeeds if at least one tag of type `tag_type` is found on this device, fails otherwise.
+        ContainsTag<override><native><final>(tag_type:castable_subtype(tag))<decides><reads>:void
+
+        @available {MinUploadedAtFNVersion := 4300}
+        # Fails if at least one type in `tag_types` cannot be found on this device, succeeds otherwise. Note that this means that if `tag_types` is empty this call succeeds.
+        ContainsAllTags<override><native><final>(tag_types:[]castable_subtype(tag))<decides><reads>:void
+
+        @available {MinUploadedAtFNVersion := 4300}
+        # Succeeds if at least one of the types in `tag_types` is found on this device, fails otherwise. Note that this means that if `tag_types` is empty this call fails.
+        ContainsAnyTag<override><native><final>(tag_types:[]castable_subtype(tag))<decides><reads>:void
+
     # Base class for creative_device.
     creative_device_base<native><public> := class<abstract><epic_internal>(creative_object):
         # Set this device visible in the world.
@@ -403,12 +435,45 @@ Devices<public> := module:
         # Sets the team to a specific user. 0 is no team.
         SetTeam<native><epic_internal>(TeamIndex:type{_X:int where 0 <= _X, _X <= 255}):void
 
+        @available {MinUploadedAtFNVersion := 4300}
+        # Adds a `tag` instance to this object. Returns a `tag_key` that is uniquely associated with the added instance.
+        AddTag<override><native><final>(Tag:tag)<transacts>:tag_key
+
+        @available {MinUploadedAtFNVersion := 4300}
+        # Removes the tag instance associated with the `tag_key`, succeeds if an instance was removed, fails otherwise.
+        RemoveTag<override><native><final>(Key:tag_key)<transacts><decides>:void
+
+        @available {MinUploadedAtFNVersion := 4300}
+        # Removes all tag instances of type `tag_type`, succeeds if at least one instance was removed, fails otherwise.
+        RemoveAllTags<override><native><final>(tag_type:castable_subtype(tag))<transacts><decides>:void
+
+        @available {MinUploadedAtFNVersion := 4300}
+        # Removes all tag instances that are not of type `tag_type`, succeeds if at least one instance was removed, fails otherwise.
+        RemoveAllTagsExcept<override><native><final>(tag_type:castable_subtype(tag))<transacts><decides>:void
+
+        @available {MinUploadedAtFNVersion := 4300}
+        # Removes all tag instances that are not of any of the types in `tag_types`, succeeds if at least one instance was removed, fails otherwise.
+        RemoveAllTagsExcept<override><native><final>(tag_types:[]castable_subtype(tag))<transacts><decides>:void
+
+        @available {MinUploadedAtFNVersion := 4300}
+        # Succeeds if at least one tag of type `tag_type` is found on this object, fails otherwise.
+        ContainsTag<override><native><final>(tag_type:castable_subtype(tag))<decides><reads>:void
+
+        @available {MinUploadedAtFNVersion := 4300}
+        # Fails if at least one type in `tag_types` cannot be found on this object, succeeds otherwise. Note that this means that if `tag_types` is empty this call succeeds.
+        ContainsAllTags<override><native><final>(tag_types:[]castable_subtype(tag))<decides><reads>:void
+
+        @available {MinUploadedAtFNVersion := 4300}
+        # Succeeds if at least one of the types in `tag_types` is found on this object, fails otherwise. Note that this means that if `tag_types` is empty this call fails.
+        ContainsAnyTag<override><native><final>(tag_types:[]castable_subtype(tag))<decides><reads>:void
+
     # Makes a `string` from `creative_object`.
     (/Fortnite.com/Devices:)ToString<native><epic_internal>(InCreativeObject:creative_object)<computes>:string
 
     # Succeeds if Left and Right are equal.
     (/Fortnite.com/Devices:)Equals<native><epic_internal>(Left:creative_object, Right:creative_object)<transacts><decides>:void
 
+    @deprecated {Message := "Use the `has_tags` interface on the creative object instead of `GetTags`."}
     # Returns a queryable `tag_view` which can be used to query the tags on `CreativeObject`.
     (CreativeObject:creative_object_interface).GetTags<native><public>()<transacts>:tag_view
 
@@ -424,7 +489,7 @@ Devices<public> := module:
     #   * Fails if this `creative_object` is not operating in a context with a valid SimulationEntity.
     (CreativeObject:creative_object).(/Fortnite.com/Devices:)GetSimulationEntity<native><public>()<transacts><decides>:entity
 
-    creative_object_interface<native><public> := interface<epic_internal>(positional):
+    creative_object_interface<native><public> := interface<epic_internal>(positional, @available {MinUploadedAtFNVersion := 4300} has_tags):
         # Returns the `fort_playspace` that `CreativeObject` belongs to.
         GetPlayspaceEpicInternal<native_callable><epic_internal>()<transacts>:fort_playspace
 
@@ -606,8 +671,9 @@ Devices<public> := module:
 
 
     # Implementation of `device_event(:type)` with a `tuple(player, creative_device_base)` payload.
-    device_event_player_creative_device<native><epic_internal> := class(device_event(tuple(player, creative_device_base))):
-
+    device_event_player_creative_device<native><epic_internal>(device_type:subtype(creative_device_base)) := class(device_event(tuple(player, device_type))):
+        @available {MinUploadedAtFNVersion := 4210}
+        (/Fortnite.com/Devices/device_event_player_creative_device:)Devices_device_event_player_creative_device_Variance_Inherited<private>(:device_type):tuple(device_type, device_type, device_type, device_type, device_type, device_type) = external {}
 
     # Implementation of `device_event(:type)` with required `fort_vehicle` payload.
     device_event_vehicle<native><epic_internal> := class(device_event(fort_vehicle)):

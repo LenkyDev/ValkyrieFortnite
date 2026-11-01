@@ -78,7 +78,7 @@ ItemizationTests<epic_internal> := module:
 
     @experimental
     @hide_in_editor
-    TestPrefab_AmmoHeavyBullets_BR_PreSeason_Common<epic_internal> := class<final><concrete>(fort_item_definition_entity):
+    TestPrefab_AmmoHeavyBullets_BR_PreSeason_Common<epic_internal> := class<concrete>(fort_item_definition_entity):
         @available {MinUploadedAtFNVersion := 4000}
         ItemComponent<override>:item_component = external {}
 

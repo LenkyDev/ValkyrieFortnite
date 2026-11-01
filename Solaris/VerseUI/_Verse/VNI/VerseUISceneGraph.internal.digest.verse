@@ -219,6 +219,27 @@ using {/Verse.org/Native}
         # The material used to render the image.
         var Material<public>:material_like = external {}
 
+    @available {MinUploadedAtFNVersion := 4300}
+    # Sets the size of the widget it is attached to, in centimeters: a preferred size, a smallest and a largest. Never exceeds the size the parent allows.
+    size_constraint_component<native><epic_internal> := class<final_super>(component):
+        # Smallest width in centimeters, never exceeding the width the parent allows.
+        var MinWidth<public>:float = external {}
+
+        # Smallest height in centimeters, never exceeding the height the parent allows.
+        var MinHeight<public>:float = external {}
+
+        # Preferred width in centimeters, clamped by MinWidth and MaxWidth. If not set, the width comes from the content. Measured before any rotation.
+        var Width<public>:?float = external {}
+
+        # Preferred height in centimeters, clamped by MinHeight and MaxHeight. If not set, the height comes from the content. Measured before any rotation.
+        var Height<public>:?float = external {}
+
+        # Largest width in centimeters, unlimited by default. If MinWidth is larger, MinWidth wins.
+        var MaxWidth<public>:float = external {}
+
+        # Largest height in centimeters, unlimited by default. If MinHeight is larger, MinHeight wins.
+        var MaxHeight<public>:float = external {}
+
     @available {MinUploadedAtFNVersion := 4000}
     text_effect<native><epic_internal> := class<abstract><epic_internal>:
 

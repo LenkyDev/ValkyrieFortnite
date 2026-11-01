@@ -1,4 +1,6 @@
 # Verse path: /Fortnite.com
+using {/Verse.org/Native}
+@available {MinUploadedAtFNVersion := 4000}
 # Module import path: /Fortnite.com/Items
 Items<public> := module:
     # Module import path: /Fortnite.com/Items/StarWars
@@ -8,7 +10,7 @@ Items<public> := module:
         using {/UnrealEngine.com/Itemization}
         using {/Fortnite.com/Itemization}
         @preload
-        CivilianFemaleDelta_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        CivilianFemaleDelta_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -19,7 +21,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        CivilianFemaleLambda_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        CivilianFemaleLambda_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -30,7 +32,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        CivilianFemaleLimit_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        CivilianFemaleLimit_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -41,7 +43,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        CivilianFemalePrime_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        CivilianFemalePrime_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -52,7 +54,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        CivilianFemaleSigma_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        CivilianFemaleSigma_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -63,7 +65,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        CivilianFemaleVector_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        CivilianFemaleVector_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -74,7 +76,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        CivilianMaleDelta_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        CivilianMaleDelta_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -85,7 +87,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        CivilianMaleLambda_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        CivilianMaleLambda_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -96,7 +98,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        CivilianMaleLimit_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        CivilianMaleLimit_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -107,7 +109,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        CivilianMalePrime_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        CivilianMalePrime_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -118,7 +120,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        CivilianMaleSigma_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        CivilianMaleSigma_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -129,7 +131,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        CivilianMaleVector_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        CivilianMaleVector_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -140,7 +142,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        Disguise212thBattalionTrooper_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        Disguise212thBattalionTrooper_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -151,7 +153,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        Disguise501stTrooper_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        Disguise501stTrooper_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -162,7 +164,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseAhsokasCloneTrooper_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseAhsokasCloneTrooper_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -173,7 +175,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseAWRTrooper_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseAWRTrooper_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -184,7 +186,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseCloneTrooper_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseCloneTrooper_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -195,7 +197,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseCoruscantGuard_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseCoruscantGuard_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -206,7 +208,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseFirstOrderStormtrooper_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseFirstOrderStormtrooper_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -217,7 +219,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseMandalorianHonor_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseMandalorianHonor_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -228,7 +230,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseMandalorianHonorGreen_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseMandalorianHonorGreen_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -239,7 +241,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseMandalorianHonorYellow_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseMandalorianHonorYellow_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -250,7 +252,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseMandalorianLoyalty_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseMandalorianLoyalty_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -261,7 +263,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseMandalorianLoyaltyBlue_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseMandalorianLoyaltyBlue_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -272,7 +274,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseMandalorianLoyaltyGold_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseMandalorianLoyaltyGold_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -283,7 +285,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseMandalorianSpirit_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseMandalorianSpirit_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -294,7 +296,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseMandalorianSpiritGreen_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseMandalorianSpiritGreen_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -305,7 +307,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseMandalorianSpiritRed_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseMandalorianSpiritRed_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -316,7 +318,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseMandalorianStrength_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseMandalorianStrength_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -327,7 +329,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseMandalorianStrengthBlue_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseMandalorianStrengthBlue_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -338,7 +340,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseMandalorianStrengthRed_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseMandalorianStrengthRed_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -349,7 +351,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseRebelTrooperFemaleArctic_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseRebelTrooperFemaleArctic_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -360,7 +362,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseRebelTrooperFemaleDeckside_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseRebelTrooperFemaleDeckside_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -371,7 +373,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseRebelTrooperFemaleDust_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseRebelTrooperFemaleDust_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -382,7 +384,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseRebelTrooperFemaleForest_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseRebelTrooperFemaleForest_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -393,7 +395,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseRebelTrooperFemaleOcean_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseRebelTrooperFemaleOcean_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -404,7 +406,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseRebelTrooperFemaleSand_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseRebelTrooperFemaleSand_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -415,7 +417,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseRebelTrooperFemaleTundra_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseRebelTrooperFemaleTundra_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -426,7 +428,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseRebelTrooperMaleArctic_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseRebelTrooperMaleArctic_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -437,7 +439,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseRebelTrooperMaleDeckside_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseRebelTrooperMaleDeckside_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -448,7 +450,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseRebelTrooperMaleDust_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseRebelTrooperMaleDust_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -459,7 +461,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseRebelTrooperMaleForest_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseRebelTrooperMaleForest_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -470,7 +472,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseRebelTrooperMaleOcean_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseRebelTrooperMaleOcean_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -481,7 +483,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseRebelTrooperMaleSand_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseRebelTrooperMaleSand_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -492,7 +494,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseRebelTrooperMaleTundra_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseRebelTrooperMaleTundra_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -503,7 +505,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseSithTrooper_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseSithTrooper_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -514,7 +516,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseStormtrooper_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseStormtrooper_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -525,7 +527,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseStormtrooperSamurai_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseStormtrooperSamurai_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -536,7 +538,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        DisguiseWolfPackTrooper_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        DisguiseWolfPackTrooper_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -547,7 +549,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        EnhancedMandalorianJetpack_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+        EnhancedMandalorianJetpack_V1_Mythic<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -558,7 +560,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        ImperialAirStrike_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
+        ImperialAirStrike_V1_Legendary<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -572,7 +574,7 @@ Items<public> := module:
             StackableComponent<override>:?basic_stackable_component = external {}
 
         @preload
-        MoonTraderFemaleDelta_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        MoonTraderFemaleDelta_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -583,7 +585,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        MoonTraderFemaleLambda_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        MoonTraderFemaleLambda_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -594,7 +596,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        MoonTraderFemaleLimit_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        MoonTraderFemaleLimit_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -605,7 +607,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        MoonTraderFemalePrime_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        MoonTraderFemalePrime_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -616,7 +618,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        MoonTraderFemaleSigma_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        MoonTraderFemaleSigma_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -627,7 +629,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        MoonTraderFemaleVector_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        MoonTraderFemaleVector_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -638,7 +640,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        MoonTraderMaleDelta_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        MoonTraderMaleDelta_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -649,7 +651,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        MoonTraderMaleLambda_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        MoonTraderMaleLambda_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -660,7 +662,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        MoonTraderMaleLimit_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        MoonTraderMaleLimit_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -671,7 +673,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        MoonTraderMalePrime_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        MoonTraderMalePrime_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -682,7 +684,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        MoonTraderMaleSigma_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        MoonTraderMaleSigma_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -693,7 +695,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        MoonTraderMaleVector_V1_Rare<public> := class<final><concrete>(fort_item_definition_entity):
+        MoonTraderMaleVector_V1_Rare<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -704,7 +706,7 @@ Items<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        RebelAirStrike_V1_Legendary<public> := class<final><concrete>(fort_item_definition_entity):
+        RebelAirStrike_V1_Legendary<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -717,6 +719,7 @@ Items<public> := module:
             @available {MinUploadedAtFNVersion := 4020}
             StackableComponent<override>:?basic_stackable_component = external {}
 
+@available {MinUploadedAtFNVersion := 4000}
 # Module import path: /Fortnite.com/Weapons
 Weapons<public> := module:
     # Module import path: /Fortnite.com/Weapons/StarWars
@@ -726,7 +729,7 @@ Weapons<public> := module:
         using {/UnrealEngine.com/Itemization}
         using {/Fortnite.com/Itemization}
         @preload
-        DarthVadersLightsaber_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+        DarthVadersLightsaber_V1_Mythic<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -737,7 +740,7 @@ Weapons<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        JediPadawanLightsaberBlue_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+        JediPadawanLightsaberBlue_V1_Mythic<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -748,7 +751,7 @@ Weapons<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        JediPadawanLightsaberGreen_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+        JediPadawanLightsaberGreen_V1_Mythic<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -759,7 +762,7 @@ Weapons<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        JediTrainingLightsaber_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+        JediTrainingLightsaber_V1_Mythic<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -770,7 +773,7 @@ Weapons<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        KyloRensLightsaber_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+        KyloRensLightsaber_V1_Mythic<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -781,7 +784,7 @@ Weapons<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        LukesBlueLightsaber_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+        LukesBlueLightsaber_V1_Mythic<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -792,7 +795,7 @@ Weapons<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        LukesGreenLightsaber_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+        LukesGreenLightsaber_V1_Mythic<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -803,7 +806,7 @@ Weapons<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        MaceWindusLightsaber_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+        MaceWindusLightsaber_V1_Mythic<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -814,7 +817,7 @@ Weapons<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        ObiWansLightsaber_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+        ObiWansLightsaber_V1_Mythic<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -825,7 +828,7 @@ Weapons<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        ReysLightsaber_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+        ReysLightsaber_V1_Mythic<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -836,7 +839,7 @@ Weapons<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        SithApprenticeLightsaber_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+        SithApprenticeLightsaber_V1_Mythic<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 

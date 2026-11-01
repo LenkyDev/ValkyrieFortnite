@@ -205,6 +205,12 @@ entity<native><public> := class<concrete><unique><transacts><castable>(has_tags)
 entity_prefab<native><public> := class<computes><epic_internal>:
 
 
+@available {MinUploadedAtFNVersion := 4300}
+# Refers to an entity without granting access to it.
+entity_handle<public> := class<computes><epic_internal>:
+    # Returns the entity this handle refers to. Fails if the entity is not accessible.
+    GetEntity<public>()<decides><reads>:entity = external {}
+
 # Finds all descendant entities including `InEntity` that has any tags of type `tag_type`.
 # When querying from the simulation entity, the simulation entity itself is not included in the results.
 # The order of the returned entities is unspecified and subject to change.

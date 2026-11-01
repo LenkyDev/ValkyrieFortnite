@@ -37,17 +37,17 @@ fort_range_damage_multiplier<native><public> := struct<concrete>:
 fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_component):
     OnRemovingFromScene<native><override>():void
 
-    @available {MinUploadedAtFNVersion := 4230}
+    @available {MinUploadedAtFNVersion := 4300}
     # Begins firing the weapon, as if the wielder had pressed the fire input and kept holding it.
-    BeginFire<native><epic_internal>():void
+    BeginFire<native><public>():void
 
-    @available {MinUploadedAtFNVersion := 4230}
+    @available {MinUploadedAtFNVersion := 4300}
     # Ends firing the weapon, as if the wielder had released the fire input.
-    EndFire<native><epic_internal>():void
+    EndFire<native><public>():void
 
-    @available {MinUploadedAtFNVersion := 4230}
-    # Succeeds while the weapon is actually taking a shot. Note that this could be false even if the BeginFire was called when the weapon is reloading for example.
-    IsFiring<native><epic_internal>()<decides><reads>:void
+    @available {MinUploadedAtFNVersion := 4300}
+    # Fails if the weapon is not currently firing. Note that this could fail even if 'BeginFire' was called when the weapon is reloading for example.
+    IsFiring<native><public>()<decides><reads>:void
 
     @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {1000.000000}}
     @category("Weapon Damage")
@@ -340,7 +340,7 @@ pistol_mesh<public> := class<final>(mesh_component):
 
 @preload
 # The entity prefab for a creator customizable pistol
-pistol_template<public> := class<concrete><final>(weapon_entity):
+pistol_template<public> := class<concrete>(weapon_entity):
     ItemComponent<override>:?item_component = external {}
 
     @available {MinUploadedAtFNVersion := 4020}
@@ -354,16 +354,13 @@ pistol_template<public> := class<concrete><final>(weapon_entity):
     MeshComponent<override>:?mesh_component = external {}
 
     WeaponComponent<override>:?fort_weapon_component = external {}
-
-    @available {MinUploadedAtFNVersion := 4230}
-    PoseModifierComponent<override>:?item_owner_pose_modifier_component = external {}
 
 assault_rifle_mesh<public> := class<final>(mesh_component):
     Mesh<override>:mesh = external {}
 
 @preload
 # The entity prefab for a creator customizable assault rifle
-assault_rifle_template<public> := class<concrete><final>(weapon_entity):
+assault_rifle_template<public> := class<concrete>(weapon_entity):
     ItemComponent<override>:?item_component = external {}
 
     @available {MinUploadedAtFNVersion := 4020}
@@ -377,16 +374,13 @@ assault_rifle_template<public> := class<concrete><final>(weapon_entity):
     MeshComponent<override>:?mesh_component = external {}
 
     WeaponComponent<override>:?fort_weapon_component = external {}
-
-    @available {MinUploadedAtFNVersion := 4230}
-    PoseModifierComponent<override>:?item_owner_pose_modifier_component = external {}
 
 sub_machine_gun_mesh<public> := class<final>(mesh_component):
     Mesh<override>:mesh = external {}
 
 @preload
 # The entity prefab for a creator customizable SMG
-sub_machine_gun_template<public> := class<concrete><final>(weapon_entity):
+sub_machine_gun_template<public> := class<concrete>(weapon_entity):
     ItemComponent<override>:?item_component = external {}
 
     @available {MinUploadedAtFNVersion := 4020}
@@ -400,16 +394,13 @@ sub_machine_gun_template<public> := class<concrete><final>(weapon_entity):
     MeshComponent<override>:?mesh_component = external {}
 
     WeaponComponent<override>:?fort_weapon_component = external {}
-
-    @available {MinUploadedAtFNVersion := 4230}
-    PoseModifierComponent<override>:?item_owner_pose_modifier_component = external {}
 
 shotgun_mesh<public> := class<final>(mesh_component):
     Mesh<override>:mesh = external {}
 
 @preload
 # The entity prefab for a creator customizable shotgun
-shotgun_template<public> := class<concrete><final>(weapon_entity):
+shotgun_template<public> := class<concrete>(weapon_entity):
     ItemComponent<override>:?item_component = external {}
 
     @available {MinUploadedAtFNVersion := 4020}
@@ -423,9 +414,6 @@ shotgun_template<public> := class<concrete><final>(weapon_entity):
     MeshComponent<override>:?mesh_component = external {}
 
     WeaponComponent<override>:?fort_weapon_component = external {}
-
-    @available {MinUploadedAtFNVersion := 4230}
-    PoseModifierComponent<override>:?item_owner_pose_modifier_component = external {}
 
 @available {MinUploadedAtFNVersion := 4240}
 torch_mesh<public> := class<final>(mesh_component):
@@ -434,7 +422,7 @@ torch_mesh<public> := class<final>(mesh_component):
 @available {MinUploadedAtFNVersion := 4230}
 @preload
 # The entity prefab for a creator customizable held item
-held_item_template<public> := class<concrete><final>(weapon_entity):
+held_item_template<public> := class<concrete>(weapon_entity):
     ItemComponent<override>:?item_component = external {}
 
     IconComponent<override>:?icon_component = external {}

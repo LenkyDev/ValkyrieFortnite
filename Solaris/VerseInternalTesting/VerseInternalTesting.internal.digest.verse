@@ -92,9 +92,9 @@ NexusFramework<public> := module:
 
         AfterEach<public>()<suspends>:void = external {}
 
-        StartPhase<public>(PhaseName:string, ?Category:?nexus_failure_category = external {}):void = external {}
+        StartPhase<public>((local:)PhaseName:string, ?Category:?nexus_failure_category = external {}):void = external {}
 
-        EndPhase<public>(PhaseName:string):void = external {}
+        EndPhase<public>((local:)PhaseName:string):void = external {}
 
         RunHeartbeat<public>(IntervalSeconds:float)<suspends>:void = external {}
 
@@ -140,9 +140,9 @@ NexusFramework<public> := module:
 
         ResetGuard<public>():void = external {}
 
-        StartPhase<public>(PhaseName:string, ?Category:?nexus_failure_category = external {}):void = external {}
+        StartPhase<public>((local:)PhaseName:string, ?Category:?nexus_failure_category = external {}):void = external {}
 
-        EndPhase<public>(PhaseName:string):void = external {}
+        EndPhase<public>((local:)PhaseName:string):void = external {}
 
         RunHeartbeat<public>(IntervalSeconds:float)<suspends>:void = external {}
 
@@ -189,9 +189,9 @@ NexusFramework<public> := module:
 
         GetPassCount<public>(Category:nexus_failure_category):int = external {}
 
-        StartPhase<public>(PhaseName:string):void = external {}
+        StartPhase<public>((local:)PhaseName:string):void = external {}
 
-        EndPhase<public>(PhaseName:string):void = external {}
+        EndPhase<public>((local:)PhaseName:string):void = external {}
 
         Heartbeat<public>(ComponentName:string):void = external {}
 
@@ -222,6 +222,12 @@ VerseFramework<public> := module:
     using {/Verse.org/Simulation}
     using {/Fortnite.com/Devices}
     using {/Fortnite.com/Characters}
+    using {/Verse.org/Assets}
+    fname_canary_framework_holder<epic_internal> := class<computes>:
+        Tex<epic_internal>:texture
+
+    FNameCanaryFrameworkHolder<epic_internal>:fname_canary_framework_holder = external {}
+
     TapTestInput<epic_internal>((local:)Character:fort_character, KeyName:string)<transacts>:void = external {}
 
     HoldTestInput<epic_internal>((local:)Character:fort_character, KeyName:string, DurationSeconds:float)<suspends>:void = external {}
@@ -404,7 +410,6 @@ VerseFramework<public> := module:
 
         (/Fortnite.com/VerseInternalTesting/VerseFramework/test_event_guard_alert_level_handler_mock:)Await<public>(GuardAlertLevel:guard_alert_level)<suspends>:void = external {}
 
-    @experimental
     test_event_add_item_result_handler_mock<public> := class(test_device_event_handler_mock):
         var ArgAddResult<public>:?add_item_result = external {}
 
@@ -414,7 +419,6 @@ VerseFramework<public> := module:
 
         Subscribe<public>(Event:listenable(add_item_result)):void = external {}
 
-    @experimental
     test_event_remove_item_result_handler_mock<public> := class(test_device_event_handler_mock):
         var ArgRemoveResult<public>:?remove_item_result = external {}
 
@@ -492,6 +496,26 @@ VerseFramework<public> := module:
 
         Subscribe<public>(Event:listenable(change_max_stack_size_result)):void = external {}
 
+    test_filter_clause<epic_internal> := struct:
+        Values<public>:[]string = external {}
+
+    test_filter_expression<epic_internal> := struct:
+        Clauses<public>:[]test_filter_clause = external {}
+
+    SplitTestFilterText<epic_internal>(Source:string, Separator:char)<transacts>:[]string = external {}
+
+    TrimTestFilterText<epic_internal>(Source:string)<transacts>:string = external {}
+
+    ParseTestFilterExpression<epic_internal>(Source:string)<transacts><decides>:test_filter_expression = external {}
+
+    TryStripPrefix<epic_internal>(Value:string, Prefix:string)<transacts><decides>:string = external {}
+
+    IsGroupTag<epic_internal>(Category:string)<transacts><decides>:void = external {}
+
+    HasNoGroupTag<epic_internal>(Categories:[]string)<transacts><decides>:void = external {}
+
+    MatchesTestFilterExpression<epic_internal>(Expression:test_filter_expression, Categories:[]string, SuiteName:string, TestName:string)<transacts><decides>:void = external {}
+
     node_status<epic_internal> := enum<open>:
         Pending
         Available
@@ -501,27 +525,27 @@ VerseFramework<public> := module:
         Blocked
         Warned
 
-    node<epic_internal> := class:
+    (/Fortnite.com/VerseInternalTesting/VerseFramework:)node<epic_internal> := class:
 
 
-    test_suite_node<epic_internal> := class(node):
+    test_suite_node<epic_internal> := class((/Fortnite.com/VerseInternalTesting/VerseFramework:)node):
         TestSuite<epic_internal>:test_suite
 
-    test_case_node<epic_internal> := class(node):
+    test_case_node<epic_internal> := class((/Fortnite.com/VerseInternalTesting/VerseFramework:)node):
         TestCase<epic_internal>:test_case
 
     dependency_tree<epic_internal> := class:
-        AddNode<public>(InNode:node):void = external {}
+        AddNode<public>(InNode:(/Fortnite.com/VerseInternalTesting/VerseFramework:)node):void = external {}
 
-        GetNode<public>(Name:string)<transacts><decides>:node = external {}
+        GetNode<public>(Name:string)<transacts><decides>:(/Fortnite.com/VerseInternalTesting/VerseFramework:)node = external {}
 
         AddDependency<public>(NodeName:string, PreReqName:string):void = external {}
 
-        GetAvailableNodes<public>():[]node = external {}
+        GetAvailableNodes<public>():[](/Fortnite.com/VerseInternalTesting/VerseFramework:)node = external {}
 
         SetNodeStatusByName<epic_internal>(Name:string, Status:node_status):void = external {}
 
-        SetNodeStatus<epic_internal>(Node:node, Status:node_status):void = external {}
+        SetNodeStatus<epic_internal>(Node:(/Fortnite.com/VerseInternalTesting/VerseFramework:)node, Status:node_status):void = external {}
 
     test_case<public> := struct:
         Name<public>:string
@@ -629,9 +653,15 @@ VerseFramework<public> := module:
 
         AddExcludeFilter<public>(Filter:string)<transacts>:void = external {}
 
+        ResetTestFilter<public>()<transacts>:void = external {}
+
+        SetTestFilterFromText<public>(FilterText:string)<transacts><decides>:void = external {}
+
+        ReadTestFilterExpressionOverride<public>()<suspends>:?string = external {}
+
         AddSkipVVMFilterIfNeeded<public>()<transacts>:void = external {}
 
-        IsTestCaseIncluded<public>(TestCase:test_case)<transacts><decides>:void = external {}
+        IsTestCaseIncluded<public>(TestCase:test_case, ?SuiteName:string = external {})<transacts><decides>:void = external {}
 
         BuildRunPlan<public>():void = external {}
 
@@ -730,6 +760,8 @@ VerseFramework<public> := module:
         Setup
         (/Fortnite.com/VerseInternalTesting/VerseFramework/test_runner_status:)Running
         Complete
+
+    TestFilterTooltip<localizes><epic_internal>:message = external {}
 
     test_runner_device<epic_internal> := class(creative_device):
         @editable

@@ -5,102 +5,14 @@ using {/Verse.org/Native}
 # Module import path: /Fortnite.com/SceneGraphCameras
 SceneGraphCameras<public> := module:
     using {/Verse.org/SpatialMath}
+    using {/Verse.org/Temporary/EpicGamesRestricted/Network}
     using {/Verse.org/Assets}
     using {/Verse.org/Native}
-    using {/Verse.org/Temporary/EpicGamesRestricted/Network}
     using {/Verse.org/SceneGraph}
-    @available {MinUploadedAtFNVersion := 4200}
-    @experimental
-    # Base class for nodes that frame a target
-    fort_base_framing_camera_modifier<native><epic_internal> := class<abstract>(camera_modifier):
-        @experimental
-        @replicated("")
-        # Targets to frame
-        var Targets<native><public>:[entity]float = external {}
-
-        @experimental
-        @replicated("")
-        # The ideal horizontal screen-space position of the target.
-        var IdealFramingLocationScreenSpaceLeft<native><public>:float = external {}
-
-        @experimental
-        @replicated("")
-        # The ideal vertical screen-space position of the target.
-        var IdealFramingLocationScreenSpaceUp<native><public>:float = external {}
-
-        @experimental
-        @replicated("")
-        # The damping factor for how fast the framing recenters on the target.
-        var ReframeDampingFactor<native><public>:float = external {}
-
-        @experimental
-        @replicated("")
-        # If valid, the recentering damping factor will interpolate between LowReframeDampingFactor and ReframeDampingFactor as the target moves between the ideal target position and the boundaries of the hard-zone. 
-        # If invalid, no interpolation occurs and the damping factor is always equal to ReframeDampingFactor.
-        var LowReframeDampingFactor<native><public>:?float = external {}
-
-        @experimental
-        @replicated("")
-        # The time spent ramping up the reframing after exiting the dead zone. If set to zero or a negative value, reframing will immediately restart once the target has exited the dead zone. Otherwise the ReframeDampingFactor will interpolate from zero to its desired value over the specified amount of seconds.
-        var ReengageTimeSeconds<native><public>:float = external {}
-
-        @experimental
-        @replicated("")
-        # The time spent ramping down the reframing after entering the dead zone. If set to zero or a negative value, reframing will immediately stop once the target has entered the dead zone. Otherwise, the ReframeDampingFactor will interpolate towards zero over the specified amount of seconds.
-        var DisengageTimeSeconds<native><public>:float = external {}
-
-        @experimental
-        @replicated("")
-        var TargetMovementAnticipationTimeSeconds<native><public>:float = external {}
-
-        @experimental
-        @replicated("")
-        # The size of the dead zone, i.e. the zone inside which the target can freely move.
-        # Sizes are expressed screen percentages around the desired framing location.
-        var DeadZoneScreenSpaceLeft<native><public>:float = external {}
-
-        @experimental
-        @replicated("")
-        # The size of the dead zone, i.e. the zone inside which the target can freely move.
-        # Sizes are expressed screen percentages around the desired framing location.
-        var DeadZoneScreenSpaceRight<native><public>:float = external {}
-
-        @experimental
-        @replicated("")
-        # The size of the dead zone, i.e. the zone inside which the target can freely move.
-        # Sizes are expressed screen percentages around the desired framing location.
-        var DeadZoneScreenSpaceTop<native><public>:float = external {}
-
-        @experimental
-        @replicated("")
-        # The size of the dead zone, i.e. the zone inside which the target can freely move.
-        # Sizes are expressed screen percentages around the desired framing location.
-        var DeadZoneScreenSpaceBottom<native><public>:float = external {}
-
-        @experimental
-        @replicated("")
-        # The margins of the soft zone, i.e. the zone inside which the reframing will engage, in order to bring the target back towards the ideal framing position. If the target is outside of the soft zone, it will be forcibly and immedialy brought back to its edges, so this zone also defines the "hard" or "safe" zone of framing. Sizes are expressed in screen percentages from the edges.
-        var SoftZoneScreenSpaceLeft<native><public>:float = external {}
-
-        @experimental
-        @replicated("")
-        # The margins of the soft zone, i.e. the zone inside which the reframing will engage, in order to bring the target back towards the ideal framing position. If the target is outside of the soft zone, it will be forcibly and immedialy brought back to its edges, so this zone also defines the "hard" or "safe" zone of framing. Sizes are expressed in screen percentages from the edges.
-        var SoftZoneScreenSpaceRight<native><public>:float = external {}
-
-        @experimental
-        @replicated("")
-        # The margins of the soft zone, i.e. the zone inside which the reframing will engage, in order to bring the target back towards the ideal framing position. If the target is outside of the soft zone, it will be forcibly and immedialy brought back to its edges, so this zone also defines the "hard" or "safe" zone of framing. Sizes are expressed in screen percentages from the edges.
-        var SoftZoneScreenSpaceTop<native><public>:float = external {}
-
-        @experimental
-        @replicated("")
-        # The margins of the soft zone, i.e. the zone inside which the reframing will engage, in order to bring the target back towards the ideal framing position. If the target is outside of the soft zone, it will be forcibly and immedialy brought back to its edges, so this zone also defines the "hard" or "safe" zone of framing. Sizes are expressed in screen percentages from the edges.
-        var SoftZoneScreenSpaceBottom<native><public>:float = external {}
-
-    @available {MinUploadedAtFNVersion := 4200}
+    @available {MinUploadedAtFNVersion := 4300}
     @experimental
     # Camera modifier that frames a target by moving along a sideways rail (left/right relative to the camera transform) and optionally also up and down..
-    fort_dolly_framing_camera_modifier<native><epic_internal> := class<concrete>(fort_base_framing_camera_modifier):
+    fort_dolly_framing_camera_modifier<epic_internal> := class<concrete>(dolly_framing_camera_modifier):
 
 
     @available {MinUploadedAtFNVersion := 4200}
@@ -202,9 +114,8 @@ SceneGraphCameras<public> := module:
         var RotationOffset<native><public>:(/Verse.org/SpatialMath:)rotation = external {}
 
         @experimental
-        @replicated("")
-        # Entities to frame in the camera.
-        TargetEntities<native><public>:[]entity = external {}
+        # Targets to frame, mapping each target entity to the weight it contributes to the framing calculation.
+        var TargetEntities<public>:[entity]float = external {}
 
         @experimental
         @replicated("")
@@ -215,6 +126,11 @@ SceneGraphCameras<public> := module:
         @replicated("")
         # The ideal vertical screen-space position of the target. Values are normalized where `0.5` is center of the screen
         var IdealFramingLocationScreenSpaceUp<native><public>:float = external {}
+
+        @experimental
+        @replicated("")
+        # The time spent ramping down the reframing after entering the dead zone. If set to zero or a negative value, reframing will immediately stop once the target has entered the dead zone. Otherwise, the ReframeDampingFactor will interpolate towards zero over the specified amount of seconds.
+        var DisengageTimeSeconds<native><public>:float = external {}
 
         @experimental
         @replicated("")
@@ -387,7 +303,7 @@ SceneGraphCameras<public> := module:
         # Rotation offset applied to the camera's orientation.
         var RotationOffset<native><public>:(/Verse.org/SpatialMath:)rotation = external {}
 
-    @available {MinUploadedAtFNVersion := 4200}
+    @available {MinUploadedAtFNVersion := 4300}
     @experimental
     # Camera modifier that frames a target by rotating in place.
-    fort_panning_framing_camera_modifier<native><epic_internal> := class<concrete>(fort_base_framing_camera_modifier):
+    fort_panning_framing_camera_modifier<epic_internal> := class<concrete>(panning_framing_camera_modifier):

@@ -30,6 +30,20 @@
 			"Enabled": true
 		},
 		{
+			"Name": "EditorDataStorage",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "EditorDataStorageFeatures",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
 			"Name": "EntityActor",
 			"Enabled": true
 		},

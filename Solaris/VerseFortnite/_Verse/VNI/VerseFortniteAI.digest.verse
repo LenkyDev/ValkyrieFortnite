@@ -18,30 +18,39 @@ AI<public> := module:
         # The action was not allowed to start.
         Disallowed
 
+    @deprecated {Message := "Use `npc_actions_component` instead."}
     focus_interface<public> := interface<epic_internal>:
+        @deprecated {Message := "Use `npc_actions_component.Focus` instead."}
         # Look At specified location. Will never complete unless interrupted.
         MaintainFocus<public>(Location:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<suspends>:void
 
+        @deprecated {Message := "Use `npc_actions_component.Focus` instead."}
         # Look At specified Agent. Will never complete unless interrupted.
         MaintainFocus<public>(Agent:agent)<suspends>:void
 
+    @deprecated {Message := "Use `npc_actions_component` instead."}
     # Get the focus_interface interface for the specified character.
     (InCharacter:fort_character).GetFocusInterface<public>()<transacts><decides>:focus_interface = external {}
 
+    @deprecated {Message := "Use `guard_actions_component` instead."}
     fort_leashable<public> := interface<epic_internal>:
+        @deprecated {Message := "Use `guard_actions_component.Tether` instead."}
         # Set custom leash position.
         #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
         #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
         SetLeashPosition<public>(Location:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, InnerRadius:float, OuterRadius:float):void
 
+        @deprecated {Message := "Use `guard_actions_component.Tether` instead."}
         # Set the agent to be the new center of the leash.
         #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
         #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
         SetLeashAgent<public>(Agent:agent, InnerRadius:float, OuterRadius:float):void
 
+        @deprecated {Message := "Use `guard_actions_component.Untether` instead."}
         # Removes the current leash.
         ClearLeash<public>():void
 
+    @deprecated {Message := "Use `guard_actions_component` instead."}
     # Get the current fort_leashable interface for the specified character.
     (InCharacter:fort_character).GetFortLeashable<public>()<transacts><decides>:fort_leashable = external {}
 
@@ -125,6 +134,7 @@ AI<public> := module:
     # Generate a navigation_target from an agent.
     MakeNavigationTarget<native><public>(Agent:agent):navigation_target
 
+    @deprecated {Message := "Use `navigation_action_success_type` or `navigation_action_error_type` instead."}
     # Result of a navigation request
     navigation_result<native><public> := enum:
         # The destination has been reached
@@ -161,28 +171,36 @@ AI<public> := module:
         (/Fortnite.com/AI/movement_type:)Running
         Sprinting
 
+    @deprecated {Message := "Use `movement_type` instead."}
     # Module import path: /Fortnite.com/AI/movement_types
     movement_types<public> := module:
         Walking<public>:movement_type = external {}
 
         Running<public>:movement_type = external {}
 
+    @deprecated {Message := "Use `npc_actions_component` instead."}
     navigatable<public> := interface<epic_internal>:
+        @deprecated {Message := "Use `npc_actions_component.GetCurrentDestination` instead."}
         # Return the current destination of the character
         GetCurrentDestination<public>()<transacts><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
+        @deprecated {Message := "Use `npc_actions_component.NavigateTo` instead."}
         # Navigate toward the specified target
         NavigateTo<public>(Target:navigation_target, ?MovementType:movement_type = external {}, ?ReachRadius:float = external {}, ?AllowPartialPath:logic = external {})<suspends>:navigation_result
 
+        @deprecated {Message := "Use `npc_actions_component.StopNavigation` instead."}
         # Stop navigation
         StopNavigation<public>():void
 
+        @deprecated {Message := "Use `npc_actions_component.Idle` instead."}
         # Wait for a specific duration
         Wait<public>(?Duration:float = external {})<suspends>:void
 
+        @deprecated {Message := "Use `npc_actions_component.MovementSpeedMultiplier` instead."}
         # Apply a multiplier on the movement speed (Multiplier is clamped between 0.5 and 2)
         SetMovementSpeedMultiplier<public>(Multiplier:float):void
 
+    @deprecated {Message := "Use `npc_actions_component` instead."}
     # Get the navigatable interface for the specified character
     (InCharacter:fort_character).GetNavigatable<public>()<transacts><decides>:navigatable = external {}
 

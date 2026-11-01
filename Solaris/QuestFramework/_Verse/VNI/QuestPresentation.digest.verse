@@ -1,30 +1,37 @@
 # Verse path: /UnrealEngine.com
 using {/Verse.org/Native}
-@available {MinUploadedAtFNVersion := 4110}
+@available {MinUploadedAtFNVersion := 4300}
 # Module import path: /UnrealEngine.com/Progression
 (/UnrealEngine.com:)Progression<public> := module:
-    using {/Verse.org/Native}
     using {/Verse.org/Presentation}
     using {/Verse.org/Assets}
-    @available {MinUploadedAtFNVersion := 4200}
-    @experimental
-    # A category in the quest UI.
+    # A category to represent a set of quests, usually for UI purposes.
     quest_category<native><public> := class<abstract><unique><castable>(has_icon, has_description):
-        # Relative ordering among categories in the quest UI; lower values sort first.
+        # Relative ordering among categories; lower values sort first.
         SortOrder<native><public>:rational
 
-        # The owning category that this category is considered nested under.
+        # The category this one is nested under; `false` is a top-level category.
         Parent<native><public>:?quest_category = external {}
 
-    @available {MinUploadedAtFNVersion := 4200}
-    @experimental
-    # Implement on a quest class to customize how it displays in the quest UI.
-    has_quest_presentation<native><public> := interface:
-        # Whether HUD notifications play for this quest's granted/progress/completed moments.
-        var ShowNotification<native><public>:logic
+    # Implement on a quest to control presentation settings.
+    has_quest_presentation<native><public> := interface(has_icon, has_description):
+        # Sets `ShowNotification` and refreshes this quest in the quest UI; an unchanged write does nothing.
+        SetShowNotification<final><native_callable><public>(InShowNotification:logic)<transacts>:void = external {}
 
-        # Whether players may favorite this quest to the HUD quest tracker.
-        var AllowFavorite<native><public>:logic
+        # Sets `AllowFavorite` and refreshes this quest in the quest UI; an unchanged write does nothing.
+        SetAllowFavorite<final><native_callable><public>(InAllowFavorite:logic)<transacts>:void = external {}
 
-        # The categories this quest is grouped under in the quest UI. Empty = uncategorized.
-        var Categories<native><public>:[]quest_category
+        # Sets `Categories` and refreshes this quest in the quest UI; an unchanged write does nothing.
+        SetCategories<final><native_callable><public>(InCategories:[]quest_category)<transacts>:void = external {}
+
+        # Whether notifications play for this quest.
+        # Write it with `SetShowNotification`.
+        var<private> ShowNotification<native><public>:logic
+
+        # Whether players may favorite this quest.
+        # Write it with `SetAllowFavorite`.
+        var<private> AllowFavorite<native><public>:logic
+
+        # The categories this quest is grouped under; an empty array leaves it uncategorized.
+        # Write it with `SetCategories`.
+        var<private> Categories<native><public>:[]quest_category

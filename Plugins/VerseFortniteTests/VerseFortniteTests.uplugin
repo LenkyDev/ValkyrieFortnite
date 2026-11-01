@@ -1,0 +1,38 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "VerseFortnite Tests",
+	"Description": "MTF companion for the VerseFortnite plugin: scene graph simulation lifecycle at UEFN content mount/unmount boundaries.",
+	"Category": "Testing",
+	"EnabledByDefault": false,
+	"ExplicitlyLoaded": true,
+	"TestPlugin": true,
+	"CanContainContent": false,
+	"Modules": [
+		{
+			"Name": "VerseFortniteTests",
+			"Type": "DeveloperTool",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ModularTestFramework",
+			"Enabled": true
+		},
+		{
+			"Name": "EntityFramework",
+			"Enabled": true
+		},
+		{
+			"Name": "EntityFrameworkTests",
+			"Enabled": true,
+			"TargetAllowList": [ "Editor" ]
+		},
+		{
+			"Name": "VerseFortnite",
+			"Enabled": true
+		}
+	]
+}

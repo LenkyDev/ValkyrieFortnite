@@ -1,65 +1,97 @@
 # Verse path: /UnrealEngine.com
 using {/Verse.org/Native}
-@available {MinUploadedAtFNVersion := 4110}
+@available {MinUploadedAtFNVersion := 4300}
 # Module import path: /UnrealEngine.com/Progression
 (/UnrealEngine.com:)Progression<public> := module:
     using {/Verse.org/Presentation}
     using {/Verse.org/Assets}
     using {/Verse.org}
-    @experimental
-    # Standard quest that follows the "do x, get y" paradigm.
-    # Auto-completion: when Objective.IsComplete() succeeds, calls Complete() automatically.
-    # Auto-rewarding: on completion, rewards are granted to eligible participants
-    # via GetRecipients() then GrantReward().
-    basic_quest<native><public> := class<abstract>((/Verse.org:)Progression.quest, has_icon, has_description):
-        # Replaces the progression model on a live quest. Auto-completes if the new objective is
-        # already completed.
-        SetObjective<native><final><public>(InObjective:quest_objective)<transacts>:void
+    # A quest that auto-completes when its `Objective` is or becomes `Complete`, and grants its `Rewards` once over the quest's live memberships on a succeeding completion.
+    # Represents the "Do X, Get Y" paradigm for goal setting: for example, pick up 5 apples, where each apple picked up adds progress, and on completion a reward is distributed to the participants set to receive.
+    basic_quest<native><public> := class<abstract>((/Verse.org:)Progression.quest, (/Verse.org:)Progression.has_objective, has_quest_rewards):
+        # Succeeds if this quest may be activated: this quest's own errors concatenated with the inner `Objective`'s `CanActivate` errors.
+        CanActivate<override><native><native_callable>()<reads>:result(void, [](/Verse.org:)Progression.objective_error)
 
-        # Progression model for the quest.
-        var<private> Objective<native><public>:quest_objective
+        # Succeeds if this quest may be deactivated: this quest's own errors concatenated with the inner `Objective`'s `CanDeactivate` errors.
+        CanDeactivate<override><native><native_callable>()<reads>:result(void, [](/Verse.org:)Progression.objective_error)
 
-        # Rewards granted to eligible participants on completion.
-        var Rewards<native><public>:[]quest_reward = external {}
+        # Succeeds if this quest may be completed: this quest's own errors concatenated with the inner `Objective`'s `CanComplete` errors.
+        CanComplete<override><native><native_callable>(Reason:(/Verse.org:)Progression.complete_objective_reason)<reads>:result(void, [](/Verse.org:)Progression.objective_error)
 
-    @experimental
-    # Abstract base class for all quest objectives.
-    quest_objective<native><public> := class<abstract>(has_icon, has_description):
-        # Returns a progress message (e.g. "3 / 10").
-        GetProgress<native><native_callable><public>()<reads>:message
+        # Called when this quest activates; propagates the activation to the `Objective`.
+        OnActivate<override><native><native_callable>()<transacts>:void
 
-        # Determines which participants can contribute to this objective.
-        # Override to customize contributor selection.
-        # Default: all participants where Info.Contributes = true.
-        GetContributors<native><native_callable><public>(Memberships:[](/Verse.org:)Progression.quest_membership)<reads>:[](/Verse.org:)Progression.quest_participant
+        # Called when this quest deactivates; propagates to the `Objective`.
+        OnDeactivate<override><native><native_callable>()<transacts>:void
 
-        # Succeeds if this objective is currently complete.
-        IsComplete<native><native_callable><public>()<decides><reads>:void
+        # Called when this quest completes; grants `Rewards` only for a `succeed_objective_reason`.
+        OnComplete<override><native><native_callable>(Reason:(/Verse.org:)Progression.complete_objective_reason)<transacts>:void
 
-        # Signals ProgressEvent. Call from a subclass to notify progress subscribers.
-        SignalProgressEvent<native><final><protected>()<transacts>:void
+        # Called when a participant joins this quest; enrolls `agent_quest_participant` memberships as `Objective` contributors when `Info` has `Contribute` and that `Objective` tracks them.
+        OnJoin<override><native><native_callable>(Participant:(/Verse.org:)Progression.quest_participant, Info:(/Verse.org:)Progression.quest_participant_info)<transacts>:void
 
-        # Signaled when this objective is considered complete.
-        CompleteEvent<native><final><public>:listenable(quest_objective) = external {}
+        # Called when a participant abandons this quest; withdraws an `agent_quest_participant` membership's `Objective` contribution, mirroring `OnJoin`.
+        OnAbandon<override><native><native_callable>(Participant:(/Verse.org:)Progression.quest_participant, Info:(/Verse.org:)Progression.quest_participant_info)<transacts>:void
 
-        # Signaled when this objective's progress changes. Payload: this objective.
-        ProgressEvent<native><final><public>:listenable(quest_objective) = external {}
+        # Writes `Objective`, moves the contributing agents across and activates it if this quest is still running; completes this quest if the new objective is already complete.
+        SetObjective<override><native><final>(InObjective:(/Verse.org:)Progression.objective)<transacts>:void
 
-    @experimental
+        # Writes `Rewards` and refreshes what this quest shows in the quest UI.
+        SetRewards<override><native><final>(InRewards:[]quest_reward)<transacts>:void
+
+    # Implemented by quests that carry a reward list.
+    has_quest_rewards<native><public> := interface:
+        # Grants every reward in `Rewards`, in array order, to the memberships whose `Info` has `Receive` and that `CanReceive` accepts for it, and returns the recipients of each reward whose `Grant` succeeded.
+        # An error means not everything was granted: rewards whose `Grant` succeeded stay granted, and the errors are every failing `Grant`'s, concatenated.
+        GrantRewards<final><native_callable><public>(Memberships:[](/Verse.org:)Progression.quest_membership)<transacts>:result([quest_reward][](/Verse.org:)Progression.quest_membership, []quest_reward_error) = external {}
+
+        # Returns what `GrantRewards` would grant right now.
+        # A reward whose `CanGrant` refuses is omitted, and an empty list is a reward that pays nobody.
+        PreviewRewards<final><public>(Memberships:[](/Verse.org:)Progression.quest_membership)<reads>:[quest_reward][](/Verse.org:)Progression.quest_membership = external {}
+
+        # Replaces the reward list; nothing is granted and no event fires.
+        SetRewards<native_callable><public>(InRewards:[]quest_reward)<transacts>:void = external {}
+
+        # Succeeds if `Membership` may receive `Reward` from this quest; the default accepts everyone.
+        # A refusal drops that membership from that reward's list and is not an error.
+        CanReceive<public>(Membership:(/Verse.org:)Progression.quest_membership, Reward:quest_reward)<reads>:result(void, []quest_reward_error) = external {}
+
+        # The rewards `GrantRewards` pays to eligible memberships.
+        # Write it with `SetRewards`.
+        var<protected> Rewards<native><public>:[]quest_reward = external {}
+
     # Returned when a reward cannot be granted.
-    grant_quest_reward_error<native><public> := class:
+    quest_reward_error<native><public> := class<abstract><computes><castable>:
 
 
-    @experimental
-    # Abstract base class for all quest rewards.
-    quest_reward<native><public> := class<abstract>(has_icon, has_description):
-        # Determines which participants should receive this reward.
-        # Override to customize recipient selection.
-        # Default: all participants where Info.Receives = true.
-        GetRecipients<native><native_callable><public>(Memberships:[](/Verse.org:)Progression.quest_membership)<reads>:[](/Verse.org:)Progression.quest_participant
+    # Delivered by `quest_reward.GrantEvent`.
+    quest_reward_grant_event_data<native><public> := struct<epic_internal>:
+        # The reward that was granted.
+        Reward<native><public>:quest_reward
 
-        # Grants this reward to the eligible participants.
-        GrantReward<native><native_callable><public>(EligibleParticipants:[](/Verse.org:)Progression.quest_participant)<transacts>:result(void, []grant_quest_reward_error)
+        # The memberships the reward was issued to, which may be empty.
+        Recipients<native><public>:[](/Verse.org:)Progression.quest_membership
 
-        # Signaled after this reward has been granted to recipients.
-        GrantEvent<native><final><public>:listenable(tuple(quest_reward, [](/Verse.org:)Progression.quest_participant)) = external {}
+    # A unit of payout a quest hands to its memberships. Subclass it to grant anything: an item, currency, experience or an unlock.
+    #   * Grant 100 gold to every participant set to receive when the quest completes.
+    #   * Unlock the next area for the whole server.
+    #   * Grant a bonus reward to participants whose membership `Info` matches a condition.
+    quest_reward<native><public> := class<abstract><unique><castable>(has_icon, has_description):
+        # Grants this reward over `Memberships` and returns the ones it handed to `OnGrant`: asks `CanGrant`, keeps the memberships `CanReceive` accepts, collapses duplicates and hands that set to `OnGrant`.
+        # A `CanGrant` refusal is the only error: nothing is delivered and the guard's own errors come back.
+        Grant<native><final><public>(Memberships:[](/Verse.org:)Progression.quest_membership)<transacts>:result([](/Verse.org:)Progression.quest_membership, []quest_reward_error)
+
+        # Returns the memberships `Grant` would pay right now; runs no payout and fires nothing.
+        Preview<native><final><public>(Memberships:[](/Verse.org:)Progression.quest_membership)<reads>:[](/Verse.org:)Progression.quest_membership
+
+        # Succeeds if this reward may be granted at all; the default succeeds, and a veto is an error return.
+        CanGrant<native><native_callable><public>()<reads>:result(void, []quest_reward_error)
+
+        # Succeeds if `Membership` may receive this reward; the default succeeds, and a refusal drops that membership from the grant and is not an error on `Grant`.
+        CanReceive<native><native_callable><public>(Membership:(/Verse.org:)Progression.quest_membership)<reads>:result(void, []quest_reward_error)
+
+        # Delivers this reward over `Memberships`, the ones `CanReceive` accepted.
+        OnGrant<native_callable><protected>(Memberships:[](/Verse.org:)Progression.quest_membership)<transacts>:void
+
+        # Signaled after `Grant` handed its recipients to `OnGrant`.
+        GrantEvent<native><final><public>:listenable(quest_reward_grant_event_data) = external {}

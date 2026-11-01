@@ -1,10 +1,9 @@
 # Verse path: /UnrealEngine.com
 using {/Verse.org/Native}
-@available {MinUploadedAtFNVersion := 4110}
+@available {MinUploadedAtFNVersion := 4300}
 # Module import path: /UnrealEngine.com/Progression
 (/UnrealEngine.com:)Progression<public> := module:
     using {/Verse.org}
-    @experimental
     progress_objective_snapshot<native><epic_internal> := class<final><persistable><epic_internal>:
         ObjectiveId<native><epic_internal>:string = external {}
 
@@ -14,7 +13,6 @@ using {/Verse.org/Native}
 
         RequiredCount<native><epic_internal>:float = external {}
 
-    @experimental
     composite_objective_snapshot<native><epic_internal> := class<final><persistable><epic_internal>:
         ObjectiveId<native><epic_internal>:string = external {}
 
@@ -26,7 +24,6 @@ using {/Verse.org/Native}
 
         Children<native><epic_internal>:[]objective_snapshot = external {}
 
-    @experimental
     sequential_objective_snapshot<native><epic_internal> := class<final><persistable><epic_internal>:
         ObjectiveId<native><epic_internal>:string = external {}
 
@@ -36,7 +33,6 @@ using {/Verse.org/Native}
 
         Children<native><epic_internal>:[]objective_snapshot = external {}
 
-    @experimental
     timed_objective_snapshot<native><epic_internal> := class<final><persistable><epic_internal>:
         ObjectiveId<native><epic_internal>:string = external {}
 
@@ -46,7 +42,6 @@ using {/Verse.org/Native}
 
         Inner<native><epic_internal>:?objective_snapshot = external {}
 
-    @experimental
     state_machine_objective_snapshot<native><epic_internal> := class<final><persistable><epic_internal>:
         ObjectiveId<native><epic_internal>:string = external {}
 
@@ -54,7 +49,6 @@ using {/Verse.org/Native}
 
         CurrentStateId<native><epic_internal>:string = external {}
 
-    @experimental
     objective_snapshot<native><epic_internal> := class<final><persistable><epic_internal>:
         Progress<native><epic_internal>:?progress_objective_snapshot = external {}
 
@@ -66,13 +60,21 @@ using {/Verse.org/Native}
 
         StateMachine<native><epic_internal>:?state_machine_objective_snapshot = external {}
 
-    @experimental
     SnapshotQuestData<native><epic_internal>(Quest:(/Verse.org:)Progression.quest)<reads>:quest_progress_data
 
-    @experimental
     RestoreQuestData<native><epic_internal>(Data:quest_progress_data)<transacts><decides>:(/Verse.org:)Progression.quest
 
-    @experimental
+    FindPersistedParticipation<native><epic_internal>(Data:quest_progress_data, Participant:(/Verse.org:)Progression.quest_participant)<decides><reads>:quest_membership_data
+
+    quest_membership_data<native><epic_internal> := class<final><persistable><epic_internal>:
+        ParticipantKey<native><epic_internal>:string = external {}
+
+        Contributes<native><epic_internal>:logic = external {}
+
+        Observes<native><epic_internal>:logic = external {}
+
+        Receives<native><epic_internal>:logic = external {}
+
     quest_progress_data<native><epic_internal> := class<final><persistable><epic_internal>:
         QuestId<native><epic_internal>:string = external {}
 
@@ -80,4 +82,8 @@ using {/Verse.org/Native}
 
         State<native><epic_internal>:(/Verse.org:)Progression.quest_state = external {}
 
+        Failed<native><epic_internal>:logic = external {}
+
         Objective<native><epic_internal>:?objective_snapshot = external {}
+
+        Memberships<native><epic_internal>:[]quest_membership_data = external {}

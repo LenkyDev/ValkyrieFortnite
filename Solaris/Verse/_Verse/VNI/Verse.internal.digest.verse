@@ -51,11 +51,22 @@ Verse<public> := module:
     # Fails if ElementToFind does not exist in the array.
     (Input:[]t where t:subtype(comparable)).Find<public>(ElementToFind:t)<computes><decides>:int = external {}
 
+    @available {MinUploadedAtFNVersion := 4300}
+    # Returns the last element in `Input` if one exists.
+    # Fails if `Input.Length = 0`.
+    (Input:[]t where t:type).Last<public>()<computes><decides>:t = external {}
+
+    @available {MinUploadedAtFNVersion := 4300}
+    # Returns the element at the position `OffsetFromLast` before the last element of `Input`.
+    # Fails if Input.Length <= OffsetFromLast, or if OffsetFromLast is negative.
+    (Input:[]t where t:type).Last<public>(OffsetFromLast:int)<computes><decides>:t = external {}
+
     CanCallerAccessEpicInternal_Impl<native><epic_internal>()<transacts>:logic
 
     # Returns whether the Verse code that called the currently-executing function can access epic_internal definitions (i.e. is Epic-authored, or belongs to an internal-user package).
     CanCallerAccessEpicInternal<native_callable><epic_internal>()<transacts>:logic = external {}
 
+    @cpp_name("verse::cancelable")
     # Implemented by classes that allow users to cancel an operation. For example, calling `subscribable.Subscribe` with a callback returns a `cancelable` object. Calling `Cancel` on the return object unsubscribes the callback.
     cancelable<native><public> := interface:
         # Prevents any current or future work from completing.
@@ -70,6 +81,7 @@ Verse<public> := module:
     GetCastableFinalSuperClassFromType<native><epic_internal>(base_type:type, sub_type:subtype(base_type))<decides><reads>:castable_subtype(base_type)
 
     @experimental
+    @cpp_name("verse::classifiable_subset")
     # A `classifiable_subset` is a container that holds a set of elements. A classifiable_subset can hold multiple elements of the same type.
     classifiable_subset<native><public>(element_type:type) := class<final><computes><internal>(diagnosable):
         (/Verse.org/Verse/classifiable_subset:)Verse_classifiable_subset_Variance<private>():tuple(element_type, element_type, element_type) = external {}
@@ -80,6 +92,7 @@ Verse<public> := module:
         GetDiagnostic<override><native>()<reads>:diagnostic
 
     @experimental
+    @cpp_name("verse::classifiable_subset_key")
     # A `classifiable_subset_key` is used to remove dynamically added elements from a `classifiable_subset`. The returned key will also work in resulting sets from usage of the `+` operator as well as `FilterByType`.
     classifiable_subset_key<native><epic_internal>(element_type:type) := class<final><unique><transacts><internal>(diagnosable):
         (/Verse.org/Verse/classifiable_subset_key:)Verse_classifiable_subset_key_Variance<private>():tuple(element_type) = external {}
@@ -118,6 +131,7 @@ Verse<public> := module:
     (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).FilterByType<native><public>(element_type:castable_subtype(k))<transacts>:classifiable_subset(t)
 
     @experimental
+    @cpp_name("verse::classifiable_subset_var")
     # TEMPORARY. Acts as a wrapper class for a classifiable_subset until `ref` keyword exists. This wrapper class will be removed once https://jira.it.epicgames.com/browse/SOL-7982 is complete.
     classifiable_subset_var<native><epic_internal>(element_type:type) := class<final><reads><internal>(diagnosable):
         (/Verse.org/Verse/classifiable_subset_var:)Verse_classifiable_subset_var_Variance<private>(:element_type):tuple(element_type) = external {}
@@ -166,9 +180,28 @@ Verse<public> := module:
     # TEMPORARY. Returns a new set that contains all the elements in `InSet` that are of type `element_type`.
     (InSet:classifiable_subset_var(t) where t:castable_subtype(k), k:type).FilterByType<epic_internal>(element_type:castable_subtype(k))<transacts>:classifiable_subset(t) = external {}
 
+    @cpp_name("::Eaccessor")
     accessor<native><epic_internal> := enum:
         Dummy
 
+    @available {MinUploadedAtFNVersion := 4300}
+    @cpp_name("verse::clock")
+    # A clock is an object that represents a current time.
+    clock<native><public> := interface<computes><epic_internal>:
+        @available {MinUploadedAtFNVersion := 4300}
+        # Get the current time from this clock
+        GetSeconds<public>()<reads>:float
+
+    @available {MinUploadedAtFNVersion := 4300}
+    # Internal object that represents a clock as the number of seconds since January 1, 1970 UTC via `GetSecondsSinceEpoch`.
+    seconds_since_epoch_clock<epic_internal> := class<computes>(clock):
+        GetSeconds<override>()<reads>:float = external {}
+
+    @available {MinUploadedAtFNVersion := 4300}
+    # Globally accessible clock object that returns the number of seconds  January 1, 1970 UTC, ignoring leap seconds.
+    SecondsSinceEpochClock<public>:clock = external {}
+
+    @cpp_name("verse::diagnostic")
     # An opaque diagnostic message that only shows up in diagnostic logs. The format of the diagnostic may change at any time without warning and may not be inspected by Verse code.
     diagnostic<native><public> := class<computes><epic_internal>(diagnosable):
         String<native><epic_internal>:string
@@ -187,10 +220,12 @@ Verse<public> := module:
     # Converts any Verse value into an opaque diagnostic message.
     ToDiagnostic<native><public>(Value:any)<reads>:diagnostic
 
+    @cpp_name("verse::diagnosable")
     # Provides a hook for class-specific ToDiagnostic behavior; ToDiagnostic will call this interface when provided a class that implements it.
     diagnosable<native><epic_internal> := interface<computes>:
         GetDiagnostic<native_callable><epic_internal>()<reads>:diagnostic
 
+    @cpp_name("verse::disposable")
     # Implemented by classes whose instances have limited lifetimes.
     disposable<native><public> := interface:
         # Cleans up this object.
@@ -230,6 +265,7 @@ Verse<public> := module:
         # Ease-in-out interpolation function. `EaseInOut` animations are similar to `Ease` but the start and end animation speed is symmetric.
         EaseInOut<native_callable><public>(Value:float)<reads>:float = external {}
 
+    @cpp_name("verse::enableable")
     # Implemented by classes whose instances can be enabled and disabled.
     enableable<native><public> := interface<public>:
         # Enable this object.
@@ -244,18 +280,17 @@ Verse<public> := module:
     # Halts the Verse runtime with error `Message`.
     Err<native><public>(Message:string)<computes>:false
 
-    # Prints the Verse runtime callstack with warning `Message`.
-    Warn<native><epic_internal>(Message:string)<computes>:void
-
+    @cpp_name("verse::event_base_intrnl")
     event_base_intrnl<native><epic_internal> := class:
 
 
+    @cpp_name("verse::event")
     # A *recurring*, successively signaled parametric `event` with a `payload` allowing a simple mechanism to coordinate between concurrent tasks.
-    event<native><public>(t:type) := class(event_base_intrnl, signalable(t), awaitable(t)):
+    event<native><public>(t:type) := class(event_base_intrnl, signalable(t), awaitable(t), @available {MinUploadedAtFNVersion := 4300} listenable(t)):
         @available {MinUploadedAtFNVersion := 4210}
-        (/Verse.org/Verse/event:)Verse_event_Variance_Inherited<private>(:t):tuple(t, t) = external {}
+        (/Verse.org/Verse/event:)Verse_event_Variance_Inherited<private>(:t):tuple(t, t, t) = external {}
 
-        (/Verse.org/Verse/event:)Verse_event_Variance<private>(:t):tuple(t) = external {}
+        (/Verse.org/Verse/event:)Verse_event_Variance<private>(:t):tuple(t, t) = external {}
 
         # Suspends the current task until another task calls `Signal`.
         # If called during another invocation of `Signal`, the the task will still suspend and resume during the next call to `Signal`.
@@ -266,9 +301,15 @@ Verse<public> := module:
         # Tasks are resumed in the order they were suspended. Each task will perform as much work as it can until it encounters a blocking call, whereupon it will transfer control to the next suspended task.
         Signal<native><override>(Val:t):void
 
+        @available {MinUploadedAtFNVersion := 4300}
+        # Registers `Callback` to be invoked each time `Signal` is called.
+        # Call `Cancel` on the returned `cancelable` to unregister `Callback`.
+        Subscribe<native><override>(Callback:type {_(:t):void})<transacts>:cancelable
+
     # A *recurring*, successively signaled event allowing a simple mechanism to coordinate between concurrent tasks.
     event<public>() := event(tuple())
 
+    @cpp_name("verse::subscribable_event_intrnl")
     subscribable_event_intrnl<native><epic_internal>(t:type) := class(event(t), listenable(t)):
         @available {MinUploadedAtFNVersion := 4210}
         (/Verse.org/Verse/subscribable_event_intrnl:)Verse_subscribable_event_intrnl_Variance_Inherited<private>(:t):tuple(t, t, t) = external {}
@@ -308,11 +349,13 @@ Verse<public> := module:
     # Makes a printable `string` representation of `Val`.
     ToString<native><public>(Val:int)<computes>:string
 
+    @cpp_name("verse::invalidatable")
     # Implemented by classes whose instances can become invalid at runtime.
     invalidatable<native><public> := interface(disposable):
         # Succeeds if this object is still valid.
         IsValid<public>()<transacts><decides>:void
 
+    @cpp_name("verse::listenable")
     # A parametric interface combining `awaitable` and `subscribable`.
     listenable<native><public>(payload:type) := interface(awaitable(payload), subscribable(payload)):
         @available {MinUploadedAtFNVersion := 4210}
@@ -321,10 +364,12 @@ Verse<public> := module:
     # A parameterless interface combining `awaitable` and `subscribable`.
     listenable<public>() := listenable(tuple())
 
+    @cpp_name("verse::locale")
     # Used for message localization.
     locale<native><public> := struct<epic_internal>:
 
 
+    @cpp_name("verse::message")
     # A localizable text message.
     message<native><public> := class<epic_internal>:
         Key<native><epic_internal>:string = external {}
@@ -340,24 +385,29 @@ Verse<public> := module:
     # Makes a `message` by concatenating `Separator` between the elements of `Messages`.
     Join<native><public>(Messages:[]message, Separator:message)<transacts>:message
 
+    @cpp_name("verse::localizable_value")
     localizable_value<native><epic_internal> := class:
 
 
+    @cpp_name("verse::localizable_string")
     localizable_string<native><epic_internal> := class<internal>(localizable_value):
 
 
     MakeLocalizableValue<epic_internal>(V:string):localizable_string = external {}
 
+    @cpp_name("verse::localizable_int")
     localizable_int<native><epic_internal> := class<internal>(localizable_value):
 
 
     MakeLocalizableValue<epic_internal>(V:int):localizable_int = external {}
 
+    @cpp_name("verse::localizable_float")
     localizable_float<native><epic_internal> := class<internal>(localizable_value):
 
 
     MakeLocalizableValue<epic_internal>(V:float):localizable_float = external {}
 
+    @cpp_name("verse::localizable_message")
     localizable_message<native><epic_internal> := class<internal>(localizable_value):
 
 
@@ -534,6 +584,7 @@ Verse<public> := module:
     IsAlmostEqual<public>(Val1:float, Val2:float, AbsoluteTolerance:float)<computes><decides>:void = external {}
 
     @available {MinUploadedAtFNVersion := 3800}
+    @cpp_name("verse::result")
     # Implemented by classes that provide a result for an operation, which can fail or be successful
     result<native><public>(success_type:type, error_type:type) := interface<computes><internal>:
         (/Verse.org/Verse/result:)Verse_result_Variance<private>():tuple(success_type, error_type) = external {}
@@ -550,11 +601,13 @@ Verse<public> := module:
     @available {MinUploadedAtFNVersion := 3800}
     MakeError<public>(Result:error_type where error_type:type)<computes>:result(false, error_type) = external {}
 
+    @cpp_name("verse::showable")
     # Implemented by classes whose instances can change visibility to be shown or hidden.
     showable<native><public> := interface:
         # Set this value to hide or show the class.
         var Show<public>:logic
 
+    @cpp_name("verse::signalable")
     # A parametric interface implemented by events with a `payload` that can be signaled.
     # Can be used with `awaitable`, `subscribable`, or both (see: `listenable`).
     signalable<native><public>(payload:type) := interface:
@@ -575,6 +628,7 @@ Verse<public> := module:
     # Makes a `string` by converting `Character` to UTF-8 from UTF-32.
     ToString<native><epic_internal>(Character:char32)<computes>:string
 
+    @cpp_name("verse::subscribable")
     # A parametric interface implemented by events with a `payload` that can be subscribed to.
     # Matched with `signalable.`
     subscribable<native><public>(t:type) := interface:
@@ -586,6 +640,83 @@ Verse<public> := module:
 
     # A parameterless interface implemented by events that can be subscribed to.
     subscribable<public>() := subscribable(tuple())
+
+    @available {MinUploadedAtFNVersion := 4300}
+    # Enum used to describe why a playable stopped.
+    playable_stop_reason<public> := enum<open>:
+        # Stopped because Stop() was called.
+        Explicit
+        # Stopped when naturally finished.
+        Finished
+
+    @available {MinUploadedAtFNVersion := 4300}
+    @experimental
+    @cpp_name("verse::playable")
+    # This interface describes any abstract playable object in Verse that has Play/Pause/Resume/Stop semantics
+    playable<native><public> := interface:
+        # Begin updating from the starting state. Subsequent calls to Play() should restart.
+        Play<public>():void
+
+        # Pause updating. Calling Pause() when IsPaused = true should do nothing.
+        Pause<public>():void
+
+        # Resume updating. Calling Resume() when IsPaused = false should do nothing.
+        Resume<public>():void
+
+        # Pause, and reset to the initial state.
+        # Should pass the `Explicit` reason to the `StopEvent`.
+        # Should do nothing if `not IsPlaying`.
+        Stop<public>():void
+
+        # Indicates whether this playable is currently playing.
+        var<protected> IsPlaying<public>:logic = external {}
+
+        # Indicates whether this playable is currently paused.
+        var<protected> IsPaused<public>:logic = external {}
+
+        # Internal event used to signal when this playable has begun playing
+        SignalablePlayEvent<final><protected>:event(tuple()) = external {}
+
+        # Internal event used to signal when this playable has been paused
+        SignalablePauseEvent<final><protected>:event(tuple()) = external {}
+
+        # Internal event used to signal when this playable has been resumed
+        SignalableResumeEvent<final><protected>:event(tuple()) = external {}
+
+        # Internal event used to signal when this playable has been stopped
+        SignalableStopEvent<final><protected>:event(playable_stop_reason) = external {}
+
+        # Called after the playable transitions from `not IsPlaying` to `IsPlaying`.
+        PlayEvent<final><public>:listenable(tuple()) = external {}
+
+        # Called after the playable transitions from `not IsPaused` to `IsPaused`.
+        PauseEvent<final><public>:listenable(tuple()) = external {}
+
+        # Called after the playable transitions from `IsPaused` to `not IsPaused`.
+        ResumeEvent<final><public>:listenable(tuple()) = external {}
+
+        # Called when updating when the playable has finished or `Stop` has been called.
+        # Supplies a reason for stopping, such as "finished" or "stopped explicitly".
+        StopEvent<final><public>:listenable(playable_stop_reason) = external {}
+
+    @available {MinUploadedAtFNVersion := 4300}
+    @cpp_name("verse::proxy_listenable(payload)")
+    # A listenable class that proxies to an inner implementation to prevent casting.
+    proxy_listenable<native><public>(payload:type) := class<internal>(listenable(payload)):
+        @available {MinUploadedAtFNVersion := 4210}
+        (/Verse.org/Verse/proxy_listenable:)Verse_proxy_listenable_Variance_Inherited<private>():tuple(payload, payload, payload) = external {}
+
+        (/Verse.org/Verse/proxy_listenable:)Verse_proxy_listenable_Variance<private>():tuple(payload, payload) = external {}
+
+        # Subscribe to the underlying listenable with the specified callback.Identical in behavior to subscribing to the underlying listenable directly if it were accessible.
+        Subscribe<override>(Callback:type {_(:payload):void})<transacts>:cancelable = external {}
+
+        # Await the signal of the underlying listenable.Identical in behavior to awaiting the underlying listenable directly if it were accessible.
+        Await<override>()<suspends>:payload = external {}
+
+    @available {MinUploadedAtFNVersion := 4300}
+    # Construct a new proxy listenable object by wrapping another listenable.
+    MakeProxyListenable<native><public>(L:listenable(payload) where payload:type)<reads><converges>:proxy_listenable(payload)
 
 # Module import path: /Verse.org/Random
 Random<public> := module:

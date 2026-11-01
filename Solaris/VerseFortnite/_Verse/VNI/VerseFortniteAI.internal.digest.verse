@@ -4,6 +4,7 @@ AI<public> := module:
     using {/Fortnite.com/Animation/PlayAnimation}
     using {/Fortnite.com/Teams}
     using {/Fortnite.com/Playspaces}
+    using {/Fortnite.com/Vehicles}
     using {/Fortnite.com/Assets}
     using {/Verse.org/Assets}
     using {/Fortnite.com/Characters}
@@ -37,13 +38,13 @@ AI<public> := module:
     MakeAIActionSuccessResult<native_callable><epic_internal>(SuccessType:success_type where success_type:type):result(success_type, false) = external {}
 
     @available {MinUploadedAtFNVersion := 3950}
-    MakeAIActionSuccessEmptyResult<native_callable><epic_internal>():result(comparable, false) = external {}
+    MakeAIActionSuccessEmptyResult<native_callable><epic_internal>():result(void, false) = external {}
 
     @available {MinUploadedAtFNVersion := 3900}
     MakeAIActionErrorResult<native_callable><epic_internal>(ErrorType:error_type where error_type:type):result(false, error_type) = external {}
 
     @available {MinUploadedAtFNVersion := 3950}
-    MakeAIActionErrorEmptyResult<native_callable><epic_internal>():result(false, comparable) = external {}
+    MakeAIActionErrorEmptyResult<native_callable><epic_internal>():result(false, void) = external {}
 
     @experimental
     ai_target_component<native><epic_internal> := class<final><final_super>(component):
@@ -88,16 +89,21 @@ AI<public> := module:
 
         SetDecisionSystem<native><public>(InDecisionSystem:decision_system)<transacts>:void
 
+    @deprecated {Message := "Use `npc_actions_component` instead."}
     focus_interface<public> := interface<epic_internal>:
+        @deprecated {Message := "Use `npc_actions_component.Focus` instead."}
         # Look At specified location. Will never complete unless interrupted.
         MaintainFocus<public>(Location:(/UnrealEngine.com/Temporary/SpatialMath:)vector3)<suspends>:void
 
+        @deprecated {Message := "Use `npc_actions_component.Focus` instead."}
         # Look At specified location. Will never complete unless interrupted.
         MaintainFocus<epic_internal>(Location:(/Verse.org/SpatialMath:)vector3)<suspends>:void
 
+        @deprecated {Message := "Use `npc_actions_component.Focus` instead."}
         # Look At specified Agent. Will never complete unless interrupted.
         MaintainFocus<public>(Agent:agent)<suspends>:void
 
+    @deprecated {Message := "Use `npc_actions_component` instead."}
     # Get the focus_interface interface for the specified character.
     (InCharacter:fort_character).GetFocusInterface<public>()<transacts><decides>:focus_interface = external {}
 
@@ -113,50 +119,53 @@ AI<public> := module:
     fort_bot_actions_component<native><epic_internal> := class<epic_internal>(guard_actions_component):
 
 
+    @deprecated {Message := "Use `guard_actions_component` instead."}
     fort_leashable<public> := interface<epic_internal>:
+        @deprecated {Message := "Use `guard_actions_component.Tether` instead."}
         # Set custom leash position.
         #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
         #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
         SetLeashPosition<public>(Location:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, InnerRadius:float, OuterRadius:float):void
 
+        @deprecated {Message := "Use `guard_actions_component.Tether` instead."}
         # Set custom leash position.
         #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
         #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
         SetLeashPosition<epic_internal>(Location:(/Verse.org/SpatialMath:)vector3, InnerRadius:float, OuterRadius:float):void
 
+        @deprecated {Message := "Use `guard_actions_component.Tether` instead."}
         # Set the agent to be the new center of the leash.
         #  'InnerRadius' ranges from 0.0 to 20000.0 (in centimeters).
         #  'OuterRadius' ranges from 0.0 to 20000.0 (in centimeters) and no less than 'InnerRadius'.
         SetLeashAgent<public>(Agent:agent, InnerRadius:float, OuterRadius:float):void
 
+        @deprecated {Message := "Use `guard_actions_component.Untether` instead."}
         # Removes the current leash.
         ClearLeash<public>():void
 
+    @deprecated {Message := "Use `guard_actions_component` instead."}
     # Get the current fort_leashable interface for the specified character.
     (InCharacter:fort_character).GetFortLeashable<public>()<transacts><decides>:fort_leashable = external {}
 
     # NPC Component
-    fort_npc_component<native><epic_internal> := class<final_super>(component, pawn_interop_interface, transform_bridge_offset_interface):
+    fort_npc_component<native><epic_internal> := class<final_super><epic_internal>(component, pawn_interop_interface, transform_bridge_offset_interface):
         @editable
         # Path to AI spawner data to spawn the interop actor
-        SpawnerData<native><epic_internal>:string = external {}
+        SpawnerData<native><protected>:string = external {}
 
         @editable
-        HasAvatar<native><epic_internal>:logic = external {}
+        HasCosmetic<native><protected>:logic = external {}
 
         @editable
         # Path to the anim instance class to apply to the interop pawn alongside the avatar mesh. Leave empty to keep the animation blueprint the pawn was authored with.
-        AvatarAnimClass<native><epic_internal>:string = external {}
+        CosmeticAnimClass<native><protected>:string = external {}
 
         @editable
-        Logs<epic_internal>:logic = external {}
-
-        @editable
-        DrawSkeleton<native><epic_internal>:logic = external {}
+        NPCBehavior<native><public>:?npc_behavior = external {}
 
         HandlePawnLinked<override><native>(Info:pawn_linked_info):void
 
-        GetTransformOffset<override><native>(Info:transform_bridge_offset_info)<reads>:?(/Verse.org/SpatialMath:)vector3
+        GetTransformOrigin<override><native>()<reads>:?transform_bridge_origin
 
         OnBeginSimulation<override>():void = external {}
 
@@ -167,6 +176,14 @@ AI<public> := module:
     fort_wildlife_actions_component<native><epic_internal> := class<epic_internal>(npc_actions_component):
         OnInitialized<native><override>():void
 
+    @available {MinUploadedAtFNVersion := 4300}
+    @experimental
+    # Base NPC component shared by all wildlife
+    fort_wildlife_component<native><epic_internal> := class<final_super>(fort_npc_component):
+        var AllowTaming<public>:logic = external {}
+
+        var AllowRiding<public>:logic = external {}
+
     # Shooting-accuracy tier for a Fortnite guard NPC. Mirrors the guard spawner's Accuracy option (LOW / MODERATE / HIGH / VERY HIGH).
     npc_accuracy<native><epic_internal> := enum<open>:
         Low
@@ -176,8 +193,10 @@ AI<public> := module:
 
     @available {MinUploadedAtFNVersion := 3900}
     # Fortnite Guards AI actions management
-    guard_actions_component<native><public> := class<final_super><epic_internal>(npc_actions_component):
+    guard_actions_component<native><public> := class<final_super><epic_internal>(npc_actions_component, pawn_controller_interop_interface):
         OnInitialized<native><override>():void
+
+        HandlePawnControllerChanged<override><native>(Info:pawn_linked_info):void
 
         # Roam around the current position. Use 'Tether' to specify the radius; otherwise, the Fortnite guard will roam anywhere.
         RoamAround<native><public>(?MovementType:movement_type = external {})<suspends>:result(void, ai_action_error_type)
@@ -320,6 +339,11 @@ AI<public> := module:
     # Generate a navigation_target from an agent.
     MakeNavigationTarget<native><public>(Agent:agent):navigation_target
 
+    @available {MinUploadedAtFNVersion := 4400}
+    # Generate a navigation_target from a fort_vehicle_seat.
+    MakeNavigationTarget<native><epic_internal>(FortVehicleSeat:fort_vehicle_seat):navigation_target
+
+    @deprecated {Message := "Use `navigation_action_success_type` or `navigation_action_error_type` instead."}
     # Result of a navigation request
     navigation_result<native><public> := enum:
         # The destination has been reached
@@ -356,37 +380,47 @@ AI<public> := module:
         (/Fortnite.com/AI/movement_type:)Running
         Sprinting
 
+    @deprecated {Message := "Use `movement_type` instead."}
     # Module import path: /Fortnite.com/AI/movement_types
     movement_types<public> := module:
         Walking<public>:movement_type = external {}
 
         Running<public>:movement_type = external {}
 
+    @deprecated {Message := "Use `npc_actions_component` instead."}
     navigatable<public> := interface<epic_internal>:
+        @deprecated {Message := "Use `npc_actions_component.GetCurrentDestination` instead."}
         # Return the current destination of the character
         GetCurrentDestination<public>()<transacts><decides>:(/UnrealEngine.com/Temporary/SpatialMath:)vector3
 
+        @deprecated {Message := "Use `npc_actions_component.NavigateTo` instead."}
         # Navigate toward the specified target
         NavigateTo<public>(Target:navigation_target, ?MovementType:movement_type = external {}, ?ReachRadius:float = external {}, ?AllowPartialPath:logic = external {})<suspends>:navigation_result
 
+        @deprecated {Message := "Use `npc_actions_component.StopNavigation` instead."}
         # Stop navigation
         StopNavigation<public>():void
 
+        @deprecated {Message := "Use `npc_actions_component.Idle` instead."}
         # Wait for a specific duration
         Wait<public>(?Duration:float = external {})<suspends>:void
 
+        @deprecated {Message := "Use `npc_actions_component.MovementSpeedMultiplier` instead."}
         # Apply a multiplier on the movement speed (Multiplier is clamped between 0.5 and 2)
         SetMovementSpeedMultiplier<public>(Multiplier:float):void
 
+    @deprecated {Message := "Use `npc_actions_component` instead."}
     # Get the navigatable interface for the specified character
     (InCharacter:fort_character).GetNavigatable<public>()<transacts><decides>:navigatable = external {}
 
     @available {MinUploadedAtFNVersion := 3900}
     # Fortnite NPC AI actions management
-    npc_actions_component<native><public> := class<final_super><epic_internal>(component):
+    npc_actions_component<native><public> := class<final_super><epic_internal>(component, pawn_interop_interface):
         OnInitialized<native><override>():void
 
         OnUninitializing<native><override>():void
+
+        HandlePawnLinked<override><native>(Info:pawn_linked_info):void
 
         # Return the current destination of the character.
         GetCurrentDestination<native><public>()<transacts><decides>:(/Verse.org/SpatialMath:)vector3
@@ -483,6 +517,28 @@ AI<public> := module:
 
         SetNPCBehavior<native><public>(NewNPCBehavior:npc_behavior)<transacts>:void
 
+    @available {MinUploadedAtFNVersion := 4400}
+    # Component to manage AI vehicle actions. Allows AI to interact with and drive vehicles.
+    npc_vehicle_actions_component<native><epic_internal> := class<final_super><epic_internal>(component):
+        OnInitialized<native><override>():void
+
+        OnUninitializing<native><override>():void
+
+        # The NPC immediately enters `Vehicle` (teleporting from their current location). If `Seat` is specified the NPC will attempt to enter that seat, otherwise selects the first available seat, with the driver seat prioritized.
+        # Fails if the vehicle is invalid, the NPC is unable to reserve the seat, or the vehicle rejects the entry.
+        EnterVehicle<native><epic_internal>(Vehicle:fort_vehicle, ?Seat:?fort_vehicle_seat = external {})<suspends>:result(void, ai_action_error_type)
+
+        # Exits the vehicle the NPC is currently occupying.
+        # Fails if the NPC is not in a vehicle.
+        ExitVehicle<native><epic_internal>()<suspends>:result(void, ai_action_error_type)
+
+        # If the NPC is driving a vehicle, navigates directly to the `Location` specified.
+        # `DrivingSpeed` is the desired speed in m/s. If `DrivingSpeed` is unset, or negative, the default vehicle speed is used.
+        # When `AggressiveDriving` is true, the vehicle will use a higher default speed, avoid fewer entities, and use a shorter stop distance.
+        # When `AllowPartialPath` is true, the NPC will attempt to navigate close to `Location` if a complete path cannot be found.
+        # Fails if the NPC is not driving a vehicle. Navigation-specific errors will be reported in the result.
+        DriveTo<native><epic_internal>(Location:(/Verse.org/SpatialMath:)vector3, ?DrivingSpeed:?float = external {}, ?AggressiveDriving:logic = external {}, ?AllowPartialPath:logic = external {})<suspends>:result(navigation_action_success_type, navigation_action_error_type)
+
     @available {MinUploadedAtFNVersion := 3900}
     # The different alert levels of a Fortnite Guard.
     guard_alert_level<native><public> := enum:
@@ -567,7 +623,7 @@ AI<public> := module:
 
     @available {MinUploadedAtFNVersion := 3800}
     # Component to manage functionality specifically for an NPC Sidekick.
-    npc_sidekick_component<native><public> := class<final_super><epic_internal>(sidekick_component):
+    npc_sidekick_component<native><public> := class<final_super><epic_internal>(sidekick_component, pawn_interop_interface):
         # By default, Sidekicks will change their mood depending on actions in the game.
         # This value will lock the Sidekick into the mood passed in, overriding the automatic mood system.
         var MoodOverride<override>:?sidekick_mood = external {}
@@ -602,6 +658,8 @@ AI<public> := module:
 
         # Play an animation on the Sidekick and wait for it to complete.
         PlayAnimAndWait<native><epic_internal>(AnimationSequence:animation_sequence, BlendInTime:float, BlendOutTime:float)<suspends>:play_animation_result
+
+        HandlePawnLinked<override><native>(Info:pawn_linked_info):void
 
 # Module import path: /Fortnite.com/Animation
 Animation<public> := module:
@@ -686,7 +744,9 @@ Animation<public> := module:
         # Get the play_animation_controller for the specified character.
         (InCharacter:fort_character).GetPlayAnimationController<native><public>()<transacts><decides>:play_animation_controller
 
-        fort_play_animation_component<native><epic_internal> := class<final_super><epic_internal>(component, play_animation_controller):
+        fort_play_animation_component<native><epic_internal> := class<final_super><epic_internal>(component, play_animation_controller, pawn_interop_interface):
+            HandlePawnLinked<override><native>(Info:pawn_linked_info):void
+
             @editable
             PlayAnimationSettings<native><epic_internal>:fort_play_animation_settings = external {}
 

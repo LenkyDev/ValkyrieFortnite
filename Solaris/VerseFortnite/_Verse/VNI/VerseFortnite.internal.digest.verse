@@ -80,6 +80,9 @@ Characters<public> := module:
         #  - 1: `true` if the character being marked. `false` if the character is being unmarked.
         MarkedEvent<epic_internal>():listenable(tuple(fort_character, logic))
 
+        # Signaled when this `fort_character` emotes. The second arg is the type of emote.
+        EmotedEvent<epic_internal>():listenable(tuple(fort_character, fort_emote_type))
+
         # Succeeds if this `fort_character` is crouching.
         IsCrouching<public>()<transacts><decides>:void
 
@@ -106,6 +109,9 @@ Characters<public> := module:
 
         # Succeeds if this `fort_character` is marked by the enemy team due to a recon grenade or other surveillance device.
         IsMarked<epic_internal>()<transacts><decides>:void
+
+        # Returns the type of emote this `fort_character` is currently playing. Fails if this `fort_character` is not emoting.
+        GetEmoteType<epic_internal>()<transacts><decides>:fort_emote_type
 
         # Puts this `fort_character` into stasis, preventing certain types of movement specified by `Args`.
         PutInStasis<public>(Args:stasis_args)<transacts>:void
@@ -169,6 +175,15 @@ Characters<public> := module:
         # Controls if `fort_character` can still perform emotes while in stasis.
         AllowEmotes<native><public>:logic = external {}
 
+    fort_emote_type<native><epic_internal> := enum<open>:
+        Unknown
+        Dance
+        Emoji
+        Spray
+        Toy
+        SquadComm
+        Juno
+
     # Puts the player in the skydiving movement mode.
     (Character:fort_character).BeginSkydiving<native><epic_internal>(FromBus:logic)<transacts>:void
 
@@ -208,6 +223,8 @@ Characters<public> := module:
         IsSliding<override>()<transacts><decides>:void = external {}
 
         IsMarked<override>()<transacts><decides>:void = external {}
+
+        GetEmoteType<override>()<transacts><decides>:fort_emote_type = external {}
 
         GetHealth<override>()<transacts>:float = external {}
 
@@ -297,11 +314,16 @@ Characters<public> := module:
 
         MarkedEvent<override>():listenable(tuple(fort_character, logic)) = external {}
 
+        EmotedEvent<override>():listenable(tuple(fort_character, fort_emote_type)) = external {}
+
     pawn_linked_info<native><epic_internal> := struct:
 
 
-    pawn_interop_interface<native><epic_internal> := interface<epic_internal>:
-        HandlePawnLinked<native_callable><protected>(Info:pawn_linked_info):void
+    pawn_interop_interface<native><epic_internal> := interface:
+        HandlePawnLinked<native_callable><epic_internal>(Info:pawn_linked_info):void
+
+    pawn_controller_interop_interface<native><epic_internal> := interface:
+        HandlePawnControllerChanged<native_callable><epic_internal>(Info:pawn_linked_info):void
 
 # Module import path: /Fortnite.com/FortPlayerUtilities
 FortPlayerUtilities<public> := module:
@@ -770,8 +792,12 @@ Teams<public> := module:
         # Get the team associated with the tag `InTag`. Fails if no such team is associated with `InTag` 
         GetTeamByTag<epic_internal>(InTeamTag:team_tag)<transacts><decides>:team
 
-        # Get all of the tags associated with the team `InTeam`. Fails if `InTeam` is not a valid team within the team collection
+        @deprecated {Message := "`GetTeamTags` returns the deprecated `tag_container`. Use `GetTagsForTeam` instead, which returns `[]tag`."}
+        # Get all of the `tag`s associated with the team `InTeam`. Fails if `InTeam` is not a valid team within the team collection
         GetTeamTags<epic_internal>(InTeam:team)<transacts><decides>:tag_container
+
+        # Get all of the `tag`s associated with the team `InTeam` as a `[]tag`. Fails if `InTeam` is not a valid team within the team collection
+        GetTagsForTeam<epic_internal>(InTeam:team)<transacts><decides>:[]tag
 
         # Adds `InAgent` to `InTeam`.
         # Fails if `InTeam` is not part of the `fort_team_collection`.
@@ -880,6 +906,8 @@ Teams<public> := module:
 
 # Module import path: /Fortnite.com/Vehicles
 Vehicles<public> := module:
+    using {/Verse.org/Native}
+    using {/Verse.org/SpatialMath}
     using {/Verse.org/SceneGraph}
     using {/UnrealEngine.com/Temporary/SpatialMath}
     using {/Verse.org/Simulation}
@@ -915,6 +943,9 @@ Vehicles<public> := module:
         # Returns the maximum fuel capacity of the vehicle. If the vehicle uses fuel, this value will be between 1.0 and Inf. Otherwise, this value will be -1.0.
         GetFuelCapacity<public>()<transacts>:float
 
+        # Sets remaining amount of fuel. Clamped between 0.0 and max fuel capacity.
+        SetFuelRemaining<public>(Amount:float)<transacts>:void
+
         # Teleports the `fort_vehicle` to the specified `Position` and `Rotation`.
         TeleportTo<public>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts><decides>:void
 
@@ -923,6 +954,24 @@ Vehicles<public> := module:
 
         # The current speed of the vehicle in m/s.
         var<private> Speed<public>:float
+
+        # Amount of fuel used per second while driving.
+        var<private> FuelUsageDriving<public>:float
+
+        # Amount of fuel used per second while boosting.
+        var<private> FuelUsageBoosting<public>:float
+
+        # Amount of fuel used per second while idle.
+        var<private> FuelUsageIdle<public>:float
+
+        # Sets amount of fuel used per second while driving.
+        SetFuelUsageDriving<public>(Value:float)<transacts>:void
+
+        # Sets amount of fuel used per second while boosting.
+        SetFuelUsageBoosting<public>(Value:float)<transacts>:void
+
+        # Sets amount of fuel used per second while idle.
+        SetFuelUsageIdle<public>(Value:float)<transacts>:void
 
         # The boost state of the vehicle. If the vehicle uses boost, this value will be between 0.0 and `BoostCapacity`. Otherwise, this value will be false.
         var<private> BoostRemaining<public>:?float
@@ -946,6 +995,12 @@ Vehicles<public> := module:
     fort_vehicle_seat<native><public> := class<unique><epic_internal>:
         # Succeeds if this is a driver seat.
         IsDriverSeat<native><public>()<decides><reads>:void
+
+        @available {MinUploadedAtFNVersion := 4400}
+        # Returns a location near this seat, where `RequestingAgent` could enter from. `RequireNavMesh` will project the location to the NavMesh used by the agent.
+        # When doing NavMesh projection, `NavMeshProjectionDistance` is the distance (in cm) the location will be projected. Unset and non-positive values will use the NavMesh's default projection distance.
+        # This function fails if no NavMesh is found when `RequireNavMesh` is true. An invalid seat or invalid `RequestingAgent` will also fail.
+        GetEnterLocation<native><epic_internal>(RequestingAgent:agent, ?RequireNavMesh:logic = external {}, ?NavMeshProjectionDistance:?float = external {})<transacts><decides>:(/Verse.org/SpatialMath:)vector3
 
         # The `agent` currently occupying this seat, if any.
         var<private> Occupant<public>:?agent
@@ -978,6 +1033,15 @@ Vehicles<public> := module:
 
         # Returns the maximum fuel capacity of the vehicle. If the vehicle uses fuel, this value will be between 1.0 and Inf. Otherwise, this value will be -1.0.
         GetFuelCapacity<override>()<transacts>:float = external {}
+
+        # Sets remaining amount of fuel. Clamped between 0.0 and max fuel capacity.
+        SetFuelRemaining<override>(Amount:float)<transacts>:void = external {}
+
+        SetFuelUsageDriving<override>(Value:float)<transacts>:void = external {}
+
+        SetFuelUsageBoosting<override>(Value:float)<transacts>:void = external {}
+
+        SetFuelUsageIdle<override>(Value:float)<transacts>:void = external {}
 
         # Teleports the vehicle to the specified `Position` and `Rotation`.
         TeleportTo<override>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts><decides>:void = external {}

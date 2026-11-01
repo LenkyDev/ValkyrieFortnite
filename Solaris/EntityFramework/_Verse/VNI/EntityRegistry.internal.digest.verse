@@ -41,6 +41,8 @@ slow_entity_array_copy_query_iterator<native><epic_internal> := class<epic_inter
 # The order of the returned entities is unspecified and subject to change.
 (InEntity:entity).FindAncestorEntitiesWithComponent<native><public>(component_type:castable_subtype(component))<transacts>:generator(entity)
 
+(InEntity:entity).FindAncestorEntitiesWithComponentPredicts<native><epic_internal>(component_type:castable_subtype(component))<transacts>:generator(entity)
+
 # Finds all components attached to ancestor entities to `InEntity` of type `component_type`.
 # The order of the returned components is unspecified and subject to change.
 (InEntity:entity).FindAncestorComponents<native><public>(component_type:castable_subtype(component))<transacts>:generator(component_type)

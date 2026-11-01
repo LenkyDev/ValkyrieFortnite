@@ -1,32 +1,8 @@
 # Verse path: /Fortnite.com/Devices
+using {/UnrealEngine.com/Temporary/SpatialMath}
 using {/Fortnite.com/Game}
 using {/Verse.org/Native}
 using {/Verse.org/Simulation}
-using {/UnrealEngine.com/Temporary/SpatialMath}
-# Used in conjunction with `advanced_storm_controller_device` to customize individual storm phases.
-advanced_storm_beacon_device<public> := class<concrete><final>(creative_device_base):
-    # Teleports the `advanced_storm_beacon_device` to the specified `Position` and `Rotation`. 
-    # Existing storms will not target the new location, but newly generated storms will.
-    TeleportTo<override>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts><decides>:void = external {}
-
-    # Teleports the `advanced_storm_beacon_device` to the specified location defined by `Transform`, also applies rotation and scale accordingly. 
-    # Existing storms will not target the new location, but newly generated storms will.
-    TeleportTo<override>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform)<transacts><decides>:void = external {}
-
-    # Moves the `advanced_storm_beacon_device` to the specified `Position` and `Rotation` over the specified time, in seconds. 
-    # Existing storms will not target the new location, but newly generated storms will.
-    MoveTo<override>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, OverTime:float)<suspends>:move_to_result = external {}
-
-    # Moves the `advanced_storm_beacon_device` to the specified `Transform` over the specified time, in seconds. 
-    # Existing storms will not target the new location, but newly generated storms will.
-    MoveTo<override>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, OverTime:float)<suspends>:move_to_result = external {}
-
-# Used to control a Battle Royale-style storm with up to 50 phases.
-# 
-# Like `basic_storm_controller_device`s, you can use this storm to keep players inside a playable area, but unlike the `basic_storm_controller_device`, this device generates multiple storm phases. When used in conjunction with `advanced_storm_beacon_device`s, you can customize each phase of the storm by applying one or more beacons and setting customization options for the specific phase you assign to that beacon.
-advanced_storm_controller_device<public> := class<concrete><final>(storm_controller_device):
-
-
 # Used to boost `agent`s, vehicles, and other objects upwards into the air.
 air_vent_device<public> := class<concrete><final>(creative_device_base):
     # Enables this device.
@@ -70,11 +46,6 @@ base_item_spawner_device<public> := class<abstract><epic_internal>(creative_devi
 
     # Disables this device.
     Disable<public>():void = external {}
-
-# A simplified storm device that provides a way to create a single-phase storm and control its basic behaviors.
-# To control multiple phases of the storm see `advanced_storm_controller_device`.
-basic_storm_controller_device<public> := class<concrete><final>(storm_controller_device):
-
 
 # Used to show an in world visual effect and/or a HUD marker at the desired location.
 beacon_device<public> := class<concrete><final>(creative_device_base):
@@ -1205,33 +1176,6 @@ shooting_range_target_track_device<public> := class<concrete><final>(creative_de
     # Starts the target moving toward the start of the track.
     MoveToStart<public>():void = external {}
 
-# Base class for various specialized storm devices. See also: * `basic_storm_controller_device` * `advanced_storm_controller_device`
-storm_controller_device<public> := class<abstract><epic_internal>(creative_device_base):
-    # Signaled when storm resizing ends. Use this with the *On Finish Behavior* option for better controls.
-    PhaseEndedEvent<public>:listenable(tuple()) = external {}
-
-    # Generates the storm. *Generate Storm On Game Start* must be set to *No* if you choose to use `GenerateStorm`.
-    GenerateStorm<public>():void = external {}
-
-    # Destroys the storm.
-    DestroyStorm<public>():void = external {}
-
-    # Teleports the `storm_controller_device` to the specified `Position` and `Rotation`. 
-    # Existing storms will not target the new location, but newly generated storms will.
-    TeleportTo<override>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts><decides>:void = external {}
-
-    # Teleports the `storm_controller_device` to the specified location defined by `Transform`, also applies rotation and scale accordingly. 
-    # Existing storms will not target the new location, but newly generated storms will.
-    TeleportTo<override>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform)<transacts><decides>:void = external {}
-
-    # Moves the `storm_controller_device` to the specified `Position` and `Rotation` over the specified time, in seconds. 
-    # Existing storms will not target the new location, but newly generated storms will.
-    MoveTo<override>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation, OverTime:float)<suspends>:move_to_result = external {}
-
-    # Moves the `storm_controller_device` to the specified `Transform` over the specified time, in seconds. 
-    # Existing storms will not target the new location, but newly generated storms will.
-    MoveTo<override>(Transform:(/UnrealEngine.com/Temporary/SpatialMath:)transform, OverTime:float)<suspends>:move_to_result = external {}
-
 # DEPRECATED This device is no longer supported.Used to inform players of other content made by a creator using a Support-A-Creator code. When players activate the device, it will bring up the same Support-A-Creator dialog box they would see in the Creative hub. The Support-A-Creator information shows when the dialog box opens for the player.
 support_a_creator_device<public> := class<concrete><final>(creative_device_base):
 
@@ -1294,8 +1238,8 @@ team_settings_and_inventory_device<public> := class<concrete><final>(creative_de
     # * If this is set to FALSE, it prevents members of this team from using an Emote to invite other players to this team.
     var AllowTemporaryTeamMemberInvitations<public>:?logic = external {}
 
-# Customizable rift that allows `agent`s to move instantly between locations. You can use this to move players around your island, or create multi-island experiences with teleporters that take players from one island to another.
-teleporter_device<public> := class<concrete><final>(creative_device_base):
+# Customizable rift that allows `agent`s and `creative_props` to move instantly between locations. You can use this to move players around your island, or create multi-island experiences with teleporters that take players from one island to another.
+teleporter_device<public> := class<concrete><final>(creative_device_base, enableable):
     # Signaled when an `agent` enters this device.
     # Sends the `agent` that entered this device.
     EnterEvent<public>:listenable(agent) = external {}
@@ -1303,12 +1247,6 @@ teleporter_device<public> := class<concrete><final>(creative_device_base):
     # Signaled when an `agent` emerges from this device.
     # Sends the `agent` that emerged from this device.
     TeleportedEvent<public>:listenable(agent) = external {}
-
-    # Enables this device.
-    Enable<public>():void = external {}
-
-    # Disables this device.
-    Disable<public>():void = external {}
 
     # Teleport `Agent` to the target group using this device.
     Activate<public>(Agent:agent):void = external {}
@@ -1324,6 +1262,26 @@ teleporter_device<public> := class<concrete><final>(creative_device_base):
 
     # Teleport `Agent` to this device.
     Teleport<public>(Agent:agent):void = external {}
+
+    # Signaled when a 'creative_prop' enters this device.
+    # Sends the 'creative_prop' that entered this device.
+    EnterPropEvent<public>:listenable(creative_prop) = external {}
+
+    # Signaled when a `creative_prop` emerges from this device.
+    # Sends the `creative_prop` that emerged from this device.
+    TeleportPropEvent<public>:listenable(creative_prop) = external {}
+
+    Enable<override>():void = external {}
+
+    Disable<override>():void = external {}
+
+    IsEnabled<override>()<transacts><decides>:void = external {}
+
+    # Teleport `Prop` to the target group using this device.
+    Activate<public>(Prop:creative_prop):void = external {}
+
+    # Teleport `Prop` to this device.
+    Teleport<public>(Prop:creative_prop):void = external {}
 
 # Configures game modes where players can start or stop timers to advance gameplay objectives, such as Attack/Defend Bomb objectives.
 timed_objective_device<public> := class<concrete><final>(creative_device_base):

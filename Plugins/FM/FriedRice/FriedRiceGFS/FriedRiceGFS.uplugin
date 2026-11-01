@@ -10,10 +10,11 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FM/FriedRice",
-	"FortReleaseVersion": "42.40",
+	"FortReleaseVersion": "43.00",
 	"VerseVersion": 0,
 	"IsGameFeatureSet": true,
 	"InstallItem": {
+		"InstallPhase": "Modular",
 		"Name": "FriedRiceGFS",
 		"DependsOn": "Creative",
 		"BootStage": "Product"
@@ -58,18 +59,6 @@
 		},
 		{
 			"Name": "SpotlightCamera",
-			"Enabled": true,
-			"Activate": true,
-			"Optional": true
-		},
-		{
-			"Name": "SparksMicrophone",
-			"Enabled": true,
-			"Activate": true,
-			"Optional": true
-		},
-		{
-			"Name": "SparksVocalStreaming",
 			"Enabled": true,
 			"Activate": true,
 			"Optional": true

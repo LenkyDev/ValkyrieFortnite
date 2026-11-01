@@ -32,6 +32,15 @@ Input<public> := module:
 
         Touch<native><public>:logic = external {}
 
+    @available {MinUploadedAtFNVersion := 4300}
+    @experimental
+    # The screen orientation of a player's device, reported by `player_input.ScreenOrientation`.
+    screen_orientation<native><epic_internal> := enum:
+        # The device is wider than it is tall.
+        Landscape
+        # The device is taller than it is wide.
+        Portrait
+
     @available {MinUploadedAtFNVersion := 4000}
     # Access input-related data and settings for a player.
     GetPlayerInput<native><public>(Player:player)<transacts><decides>:player_input
@@ -115,9 +124,28 @@ Input<public> := module:
         # The set of input device capabilities currently available to the player, updated at runtime as devices connect or disconnect.
         var<internal> AvailableInputDevices<native><public>:available_input_devices = external {}
 
+        @experimental
+        @available {MinUploadedAtFNVersion := 4300}
+        # Whether the player's device may use portrait orientation in addition to landscape. Defaults to `false`, so every experience supports landscape. Only a device with an orientation sensor acts on a change; every other platform always stays in `Landscape`.
+        var SupportsPortrait<native><epic_internal>:logic = external {}
+
+        @experimental
+        @available {MinUploadedAtFNVersion := 4300}
+        # The orientation the player's device is in. Reports `Landscape` on a device with no orientation sensor.
+        var<internal> ScreenOrientation<native><epic_internal>:screen_orientation = external {}
+
+        @experimental
+        @available {MinUploadedAtFNVersion := 4300}
+        # Signaled after the player's device settles into a new orientation. Sends the new `screen_orientation`, which matches `ScreenOrientation`. Never signaled on a device with no orientation sensor.
+        ScreenOrientationChangeEvent<native><epic_internal>:listenable(screen_orientation) = external {}
+
         @available {MinUploadedAtFNVersion := 4200}
         @deprecated {Message := "Use GetInputEvents."}
         GetPredictsInputEvents<epic_internal>(ActionToBind:input_action(t) where t:type):predicts_input_events(t) = external {}
+
+        @available {MinUploadedAtFNVersion := 4300}
+        @experimental
+        MakeScreenOrientationChangeEvent<native_callable><epic_internal>():listenable(screen_orientation) = external {}
 
         MakeLogicInputEvents<native_callable><epic_internal>():input_events(logic) = external {}
 
@@ -155,7 +183,7 @@ Input<public> := module:
     (Player:player).DeprojectViewportToWorld<native><public>(ViewportPosition:(/Verse.org/SpatialMath:)vector3)<reads>:deproject_results
 
     @available {MinUploadedAtFNVersion := 4200}
-    # Logs the timestamp and current net mode to LogVerseInput.
+    # Logs the timestamp and the current net mode to LogVerseInput.
     VerseInput_TestPredictsPing<native><epic_internal>()<transacts>:void
 
     @available {MinUploadedAtFNVersion := 4000}
@@ -261,5 +289,4 @@ Input<public> := module:
         PointerSelect<public>:input_action((/Verse.org/SpatialMath:)vector3) = external {}
 
         @available {MinUploadedAtFNVersion := 4120}
-        @experimental
         PointerZoom<public>:input_action((/Verse.org/SpatialMath:)vector3) = external {}

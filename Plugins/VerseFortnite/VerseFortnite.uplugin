@@ -15,6 +15,10 @@
 	"CanContainVerse": true,
 	"IsBetaVersion": true,
 	"Installed": false,
+	"TestConfig":
+	{
+		"TestPlugin": "VerseFortniteTests"
+	},
 	"Modules": [
 		{
 			"Name": "VerseFortnite",
@@ -120,6 +124,10 @@
 		},
 		{
 			"Name": "VerseEngine",
+			"Enabled": true
+		},
+		{
+			"Name": "VersePerception",
 			"Enabled": true
 		},
 		{

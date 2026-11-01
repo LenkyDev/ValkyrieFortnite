@@ -2,6 +2,7 @@
 using {/Verse.org/Chat}
 using {/Verse.org/Simulation}
 using {/Verse.org/SceneGraph}
+using {/Verse.org/Diagnostics}
 using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4000}
 ai_error<native><public> := class<castable>:
@@ -33,6 +34,7 @@ prompt_binding_definition<native><public> := struct:
     Description<native><public>:message
 
 @available {MinUploadedAtFNVersion := 4000}
+@export_metadata {Category := "PublishingMutators"; Key := "Conversations"; Value := ""}
 # Manages AI session state: conversation history, pinned entries, and registered capabilities (tools, signals, listenables).
 #  History is automatically compacted by the runtime. Completed goals are summarized into history.
 ai_session<native><public> := class<unique>:
@@ -63,6 +65,7 @@ persona_interruption_rule<native><public> := enum<open>:
     InterruptOnResponseStart
 
 @available {MinUploadedAtFNVersion := 4000}
+@export_metadata {Category := "PublishingMutators"; Key := "Conversations"; Value := ""}
 # NPC Persona component
 persona_component<native><public> := class<final_super>(component):
     # The personality of the persona

@@ -1,7 +1,4 @@
 # Verse path: /UnrealEngine.com/Conversations
-llm_fact<native><epic_internal> := class(cancelable):
-    Cancel<native><override>()<transacts>:void
-
 llm_string<native><epic_internal> := class:
     Value<native><epic_internal>:string
 

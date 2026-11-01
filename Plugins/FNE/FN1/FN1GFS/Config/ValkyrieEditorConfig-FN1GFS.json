@@ -48,8 +48,6 @@
 			"/Script/CoreUObject.Color": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/Engine.RuntimeVirtualTexture": { "Rules": [ "View", "Create", "ModuleAPI" ] },
 			"/Script/Engine.VirtualTextureBuilder": { "Rules": [ "View" ] },
-			"/Script/PCGEditor.PCGBuilderSettings": { "Rules": [ "View", "Create" ] },
-			"/Script/PCG.PCGGraphInstance": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/DaySequence.DaySequence": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/DaySequence.DaySequenceCollectionAsset": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/CommonUI.CommonHardwareVisibilityBorder": { "Rules": [ "View", "Create" ] },
@@ -66,7 +64,7 @@
 			"/Script/Engine.DataTable": { "Rules": [ "View", "Create" ] },
 			"/Script/Engine.Font": { "Rules": [ "View" ] },
 			"/Script/Engine.MaterialExpressionConvert": { "Rules": [ "View", "Create" ] },
-			"/Script/Engine.MaterialFunction": { "Rules": [ "View", "Create" ] },
+			"/Script/Engine.MaterialFunction": { "Rules": [ "View", "Create", "ModuleAPI" ] },
 			"/Script/Engine.SoundConcurrency": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/Engine.SoundSubmix": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
 			"/Script/Engine.World": { "Rules": [ "View", "Create", "Import", "ModuleAPI" ] },
@@ -116,7 +114,6 @@
 			"/Script/LagerRuntime.FortAthenaLivingWorldStaticPointProvider": { "Rules": [ "View", "Create", "Import" ] },
 			"/Script/LagerRuntime.FortAthenaLivingWorldVolume": { "Rules": [ "View", "Create", "Import" ] },
 			"/Script/MidMatchRadioTowerGameplayRuntime.RemoveFoliageBoxComponent": { "Rules": [ "View", "Create", "Import" ] },
-			"/Script/PCG.PCGVolume": { "Rules": [ "View", "Create", "Import" ] },
 			"/Script/StaticLandscapeSystem.LandscapeStaticMesh": { "Rules": [ "View", "Create", "Import" ] },
 			"/Script/StaticLandscapeSystem.LandscapeStaticMeshComponent": { "Rules": [ "View", "Create", "Import" ] },
 			"/Script/UnrealEd.ConeBuilder": { "Rules": [ "View", "Create", "Import" ] }
@@ -176,19 +173,8 @@
 			"/Script/FortniteGame.SpatialGameplayOverlapComponent": {"Visible": true},
 			"/Script/FortniteUI.FortVisualAttachment": { "Visible": true },
 			"/Script/MovieScene.MovieSceneBindingOverrides": {},
-			"/Script/PCG.PCGComponent": {},
-			"/Script/PCG.PCGGraphInstance": { "Visible": true },
-			"/Script/PCG.PCGLandscapeCache": {},
-			"/Script/PCG.PCGMetadata": {},
-			"/Script/PCG.PCGParamData": {},
-			"/Script/PCG.PCGPartitionActor": {},
-			"/Script/PCG.PCGPointData": {},
-			"/Script/PCG.PCGPointArrayData": {},
-			"/Script/PCG.PCGSchedulingPolicyDistanceAndDirection": {},
-			"/Script/PCG.PCGWorldActor": {},
-			"/Script/PCG.PCGManagedISMComponent": {},
-			"/Script/PCG.PCGManagedActors": {},
-			"/Script/PCGEditor.PCGBuilderSettings": { "Visible": true },
+			"/Script/VersePCG.PCGEntityComponentExecutionSource": { "Visible": true },
+			"/Script/PCG.PCGManagedEntities": { "Visible": true },
 			"/Script/NavigationSystem.NavModifierVolume": { "Visible": true },
 			"/Script/NavigationSystem.NavMeshBoundsVolume": { "Visible": true },
 			"/Script/AIModule.EnvQuery": { "Visible": true },
@@ -356,7 +342,7 @@
 			},
 			"LevelEditor.MainMenu.Build": {
 				"AllowList": {
-					"+": [ "BuildPathsOnly", "BuildVirtualTextureOnly", "PCG" ]
+					"+": [ "BuildPathsOnly", "BuildVirtualTextureOnly" ]
 				}
 			},
 			"LevelEditor.MainMenu.ToolsWorkshop": {
@@ -464,17 +450,6 @@
 				"LogEditorServer"
 			]
 		},
-		"AllowedCookModuleExportTypes": {
-			"-": [ "/Script/Engine.MaterialFunction" ]
-		},
-		"AllowedCookModuleImportTypes": {
-			"/Script/Engine.MaterialFunction": {
-				"AllowList": { "-": [ "/Script/Engine.MaterialFunction" ] }
-			},
-			"/Script/Engine.Material": {
-				"AllowList": { "-": [ "/Script/Engine.MaterialFunction" ] }
-			}
-		},
 		"bShowGFSTextFileAllowedAssetsInContentBrowser": true,
 		"bAllowShowUnexposedContent": true,
 		"bAllowShowUnexposedProperties": true,
@@ -552,7 +527,7 @@
 			},
 			{
 				"Type": "/Script/FortniteGame.FortPoi_DiscoverableComponent",
-				"AllowList": [ "PlayerFacingName", "QuestPartOf", "DiscoveredSoundCue", "DiscoverMinimapBitId", "EventDrivenBitIds", "bIsPlayerFacingNameLocalizable", "MapLocationTextLocationOffset" ]
+				"AllowList": [ "PlayerFacingName", "QuestPartOf", "DiscoveredSoundCue", "DiscoverMinimapBitId", "bIsPlayerFacingNameLocalizable", "MapLocationTextLocationOffset" ]
 			},
 			{
 				"Type": "/Script/FortniteGame.SpatialGameplayOverlapComponent",
@@ -711,7 +686,11 @@
 			},
 			{
 				"Type": "/Script/Engine.PostProcessSettings",
-				"AllowList":[ "DepthOfFieldScale", "DepthOfFieldFocalRegion" ]				
+				"AllowList":[ "DepthOfFieldScale", "DepthOfFieldFocalRegion" ]
+			},
+			{
+				"Type": "/BlastBerry/Components/BP_Reload_SlurpWaterMaterialOverride.BP_Reload_SlurpWaterMaterialOverride_C",
+				"AllowList": [ "SlurpWaterMaterialOverride" ]
 			}
 		],
 		"-": [
@@ -790,6 +769,26 @@
 			{
 				"Type": "/Script/Engine.LevelInstanceComponent",
 				"AllowList": [ "ShadowDesiredRuntimeBehavior" ],
+				"WarnForDisallowedPropertiesPhase": 2
+			},
+			{
+				"Type": "/Game/Athena/SafeZone/BP_SafeZoneStorm.BP_SafeZoneStorm_C",
+				"AllowList": [ "CloudsOuterRing", "SM_CloudBottomBlend", "SM_CloudRing_Mobile", "SM_CloudRingTopBlend", "StaticMesh", "StaticMesh1", "StaticMesh2", "StaticMesh3", "StaticMesh4", "StaticMesh5", "StaticMesh6", "StaticMesh7", "StaticMesh8", "StaticMesh9", "StaticMesh10", "StormQuadMain", "StormQuadMain1", "StormQuadMain2", "StormQuadMain3", "StormQuadMain4", "StormQuadMain5", "StormQuadMain6", "StormQuadMain7", "StormQuadMain8", "StormQuadMain9", "StormQuadMain10", "StormQuadMain11", "StormQuadMain12", "StormQuadMain13", "StormQuadMain14", "StormQuadMain15", "StormQuadMain16", "StormRings" ],
+				"WarnForDisallowedPropertiesPhase": 2
+			},
+			{
+				"Type": "/Game/Environments/Helios/FX/Hades/BP/BP_Brimstone_RiverLightingAdjustable_Reload.BP_Brimstone_RiverLightingAdjustable_Reload_C",
+				"AllowList": [ "DefaultSceneRoot", "Lumen Sphere" ],
+				"WarnForDisallowedPropertiesPhase": 2
+			},
+			{
+				"Type": "/Script/FortniteGame.FortMixModComponent",
+				"AllowList": [ "SoundMixModifiers" ],
+				"WarnForDisallowedPropertiesPhase": 2
+			},
+			{
+				"Type": "/Script/CascadeRuntime.Emitter",
+				"AllowList": [ "ParticleSystemComponent", "SpriteComponent", "ArrowComponent" ],
 				"WarnForDisallowedPropertiesPhase": 2
 			}
 		]

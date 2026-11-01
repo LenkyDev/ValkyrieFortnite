@@ -67,11 +67,19 @@ dynamic_volume_component<native><epic_internal> := class<final_super>(component,
     # The time this component started loading, in seconds since Unix epoch (same source as GetSecondsSinceEpoch()). Returns 0.0 if no load is in progress.
     var<private> LoadStartTime<public>:float
 
+    # The time this component started unloading, in seconds since Unix epoch (same source as GetSecondsSinceEpoch()). Returns 0.0 if no unload is in progress.
+    var<private> UnloadStartTime<public>:float
+
     # Set to true to wait until all the clients have preloaded the required assets before loading the level. False loads it on the server as soon as the server is ready.
     var<private> PreloadContentOnAllClients<public>:logic
 
     # Set the visibility of the level. To have the server and the clients show the level at the same time, set this to false, PreloadContentOnAllClients to true and await on LoadedEvent before setting this back to true
     var<private> ShowLevel<public>:logic
+
+# Carries a reference to the dynamic_volume_component that spawned this entity
+dynamic_volume_context_component<native><epic_internal> := class<final_super>(component):
+    # Returns the dynamic_volume_component that spawned this entity. Fails if no reference has been set.
+    GetDynamicVolume<native><epic_internal>()<decides><reads>:dynamic_volume_component
 
 dynamic_volume<native><public> := class(tag):
 

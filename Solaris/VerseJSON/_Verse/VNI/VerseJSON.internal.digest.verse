@@ -1,4 +1,6 @@
 # Verse path: /UnrealEngine.com/JSON
+using {/Verse.org/Native}
+@cpp_name("verse::value")
 value<native><public> := class:
     # Retrieve an object value or fail if value is not a json object
     AsObject<native><public>()<transacts><decides>:[string]value

@@ -65,7 +65,7 @@ interactable_component<native><public> := class<final_super>(component, enableab
     CanceledEvent<native><public>:listenable(agent) = external {}
 
     # Attempt to start an interaction. Fails if the agent does not pass the CanInteract function.
-    Start<native><final><public>(Agent:agent)<transacts><decides>:void
+    Start<final><public>(Agent:agent)<transacts><decides>:void = external {}
 
     # Fires the StartedEvent event.
     SignalStartEvent<native><protected>(Agent:agent)<transacts>:void
@@ -103,26 +103,33 @@ interactable_cooldown<native><public> := class<concrete>:
 interactable_cooldown_per_agent<native><public> := class<concrete>:
     @editable
     # The duration in seconds after a successful interaction, before the interacting agent can initiate a subsequent interaction.
-    # This is only used if the duration is greater than 0.0. Modifying this does not affect any RemainingPerAgentCooldownDuration.
+    # This is only used if the duration is greater than 0.0. Modifying this does not affect the cooldown remaining for an agent already on cooldown.
     # This property gives other agents time to interact, when there is a limited number of Simultaneous Interactors.
     var Duration<native><public>:float = external {}
 
-    # The cooldown remaining, in seconds, before a particular agent is able to initiate an interaction on this component.
+    @deprecated {Message := "Use `GetRemainingDurationForAgent` instead."}
+    # Deprecated. The cooldown remaining, in seconds, before a particular agent is able to initiate an interaction on this component. Use GetRemainingDurationForAgent instead.
     var<private> RemainingDuration<native><public>:[agent]float = external {}
 
     # Event which fires when the per agent cooldown expires. Sends the agent which was previously affected by the cooldown.
     ExpiredEvent<native><public>:listenable(agent) = external {}
 
+    @available {MinUploadedAtFNVersion := 4300}
+    # Set the remaining per agent cooldown duration in seconds, for the agent supplied.When a cooldown starts on the component for an agent, if there is an in progress interaction for that agent, it is canceled.
+    SetRemainingDurationForAgent<final><native><public>(Agent:agent, InRemainingDuration:float)<transacts>:void
+
+    @available {MinUploadedAtFNVersion := 4300}
+    # Get the remaining per agent cooldown duration in seconds, for the agent supplied. Returns zero when that agent has no cooldown running.
+    GetRemainingDurationForAgent<final><native><public>(Agent:agent)<transacts>:float
+
 # Used to set an interaction duration.
 interactable_duration<native><public> := class<concrete>:
-    @editable
     # The number of seconds an agent must spend interacting with the object to successfully complete an interaction.
     # 0.0 or less results in an immediate successful interaction.
     # If set during an interaction, the value given will be used for the next interaction and the remaining duration will be updated subtracting the new given value with the current time elapsed.
     # If the subtraction were zero or less it will immediately conclude.
     var InteractDuration<public>:float = external {}
 
-    @editable
     # The max number of simultaneous interactors. A value of false is unlimited.  This value represents how many agents may have active interactions.
     # If this changes to a value less than the current number of active interactions, those interactions are not canceled but new interactions will not start.
     var MaxSimultaneousInteractors<public>:?int = external {}

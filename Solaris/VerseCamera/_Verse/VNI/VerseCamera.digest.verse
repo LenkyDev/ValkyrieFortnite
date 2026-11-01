@@ -5,7 +5,7 @@ using {/Verse.org/Native}
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
 # Camera body settings, e.g. sensor/film settings, shutter speed, etc
-camera_body<native><public> := class<final><computes>:
+camera_body<native><public> := class<computes>:
     # Width of camera sensor in millimeters.
     SensorWidthMillimeters<native><public>:float = external {}
 
@@ -26,8 +26,19 @@ camera_body<native><public> := class<final><computes>:
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
+# Constructor that clones an existing camera_body. Useful for writing camera modifiers as it makes it easier to create a camera_body that is a copy of another with some values modified.
+CloneCameraBody<constructor><public>(CameraBody:camera_body)<computes>:camera_body = external {}
+
+@available {MinUploadedAtFNVersion := 4110}
+@experimental
 # Represents the physical body, lens of the camera and other cinematographic qualities, such as sensor size, aspect ratio lock/constraint, focal length, focus distance, post-process settings, etc.
-camera_component<native><public> := class<final_super><abstract>(component, has_camera_modifier):
+camera_component<native><public> := class<final_super><abstract>(component):
+    @editable
+    @experimental
+    # Camera modifiers allow the behavior of a camera to be modified with custom logic.
+    # A camera modifier has an Evaluate function that takes in the current state of the camera (taking into account all previously executed modifiers) and returns the desired output camera state
+    CameraModifiers<native><public>:modifier_stack(camera_state) = external {}
+
     @editable
     @experimental
     # Optionally override the near clipping plane distance. If value is <= 0.0 then use the default settings
@@ -47,23 +58,52 @@ camera_component<native><public> := class<final_super><abstract>(component, has_
     GetEnterTransition<native_callable><public>(SourceCamera:camera_component)<transacts><decides>:camera_transition = external {}
 
 @available {MinUploadedAtFNVersion := 4110}
-GlobalModifierPosition<public>:rational = external {}
-
-@available {MinUploadedAtFNVersion := 4110}
-VisualModifierPosition<public>:rational = external {}
-
-@available {MinUploadedAtFNVersion := 4110}
 @experimental
 # Responsible for selecting a camera and blending when the active camera changes. 
-# Also allows global settings to be shared between different cameras (such as post process settings) and modifications to the final blended camera state, such as camera shakes
+# The execution of the camera director is split into multiple layers. 
+#  
+#  * The Pre-Camera layer - These modifiers run before everything else and allow default values to be set before the rest of the camera system evaluates. 
+#  * The Main layer - The camera_component with the highest priority (defined by the priority given to AddCamera) executes here. 
+#  * The Post-Camera layer - These modifiers run on the accumulated result of the PreCamera and Main layers. This layer runs after any blending that may occur between active cameras, if we are currently transitioning between active camera_components. Intended to be the final Gameplay state of the camera system. 
+#  * The Presentation layer - These modifiers run on the accumulated result of the PreCamera, Main layer and Post-Camera layers. Intended for cosmetic effects like camera shake, that don't affect gameplay. '
+# 
+# Since a camera_director_component is a camera_component, camera directors can be nested. 
+# If the active camera is a camera director, then each layer of the entire active camera system will be evaluated in order. 
+# The entire Pre-Camera layer of all directors will evaluate, starting with the outermost director.
+# The active camera of the innermost director will then evaluate, followed by any modifiers on the Main layer of the camera_director_component (the CameraModifiers modifier stack we inherit from camera_component).
+# The entire Post-Camera layer of all directors will evaluate, starting with the outermost director.
+# The entire Presentation layer of all directors will evaluate, starting with the outermost director.
 camera_director_component<native><public> := class<final_super>(camera_component):
+    @editable
+    @experimental
+    @available {MinUploadedAtFNVersion := 4230}
+    # Modifier stack containing modifiers that should run on the Pre-Camera layer before any camera_components are evaluated.
+    # Useful for setting default values that you want to be shared by the entire camera system.
+    PreCameraModifiers<native><public>:modifier_stack(camera_state) = external {}
+
+    @editable
+    @experimental
+    @available {MinUploadedAtFNVersion := 4230}
+    # Modifier stack containing modifiers that should run after the Pre-Camera and Main layers (the active camera_component) have been evaluated.
+    # In the case where we are blending between cameras, the Post Camera modifiers will run on the blended output state after all blending cameras have been evaluated.
+    # The Post Camera layer is useful for modifiers that you don't want to run multiple times when blending. Such as collision detection, or weapon recoil.
+    PostCameraModifiers<native><public>:modifier_stack(camera_state) = external {}
+
+    @editable
+    @experimental
+    @available {MinUploadedAtFNVersion := 4230}
+    # Modifier stack containing modifiers that should run after the Pre-Camera, Main and Post-Camera layers.
+    # The Presentation layer is intended to be used for purely cosmetic effects like camera shake. In future the intention is that you can use the PostCameraModifiers layer to define the "Gameplay" state of the camera system (for uses like aiming and character movement).
+    # Purely cosmetic effects that you don't want to affect the player's aim or movement direction can live in the Presentation layer.
+    PresentationCameraModifiers<native><public>:modifier_stack(camera_state) = external {}
+
     # Add a camera to the director. The camera with the highest priority will be chosen to be the active camera
     AddCamera<native><public>(Camera:camera_component, Priority:rational)<transacts><decides>:cancelable
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
 # Camera lens settings
-camera_lens<native><public> := class<final><computes>:
+camera_lens<native><public> := class<computes>:
     # Focal length of the lens in millimeters.
     FocalLengthMillimeters<native><public>:float = external {}
 
@@ -78,6 +118,11 @@ camera_lens<native><public> := class<final><computes>:
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
+# Constructor that clones an existing camera_lens. Useful for writing camera modifiers as it makes it easier to create a camera_lens that is a copy of another with some values modified.
+CloneCameraLens<constructor><public>(CameraLens:camera_lens)<computes>:camera_lens = external {}
+
+@available {MinUploadedAtFNVersion := 4110}
+@experimental
 # Modifier stack for camera state.
 camera_modifier_stack<native><public> := class(modifier_stack(camera_state)):
     # Returns a camera_state which is the input evaluated against each modifier in the stack, executed in position order.
@@ -85,15 +130,8 @@ camera_modifier_stack<native><public> := class(modifier_stack(camera_state)):
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
-# Interface for classes that own a camera modifier stack.
-has_camera_modifier<native><public> := interface:
-    @editable
-    @experimental
-    CameraModifiers<public>:modifier_stack(camera_state) = external {}
-
-@available {MinUploadedAtFNVersion := 4110}
-@experimental
-# Base class for objects that can modify camera state.
+# Base class for objects that can modify camera state. 
+# You can also implement the modifier(camera_state) interface directly, but camera_modifier provides an convenient, overridable Tick function for modifiers that need to maintain state (since Evaluate is <reads>).
 camera_modifier<native><public> := class(modifier(camera_state)):
     Evaluate<override><native_callable>(InValue:camera_state)<reads>:camera_state = external {}
 
@@ -105,7 +143,7 @@ camera_projection_mode<native><public> := enum<open>:
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
-camera_state<native><public> := class<final><computes><epic_internal>:
+camera_state<native><public> := class<final><computes>:
     @experimental
     # Render location of the camera. This render location can be modified by camera directions (like camera shakes), without modifying the physical location of any camera entity
     RenderLocation<native><public>:(/Verse.org/SpatialMath:)vector3
@@ -139,6 +177,11 @@ camera_state<native><public> := class<final><computes><epic_internal>:
 
     @experimental
     FarClippingPlaneDistance<native><public>:float = external {}
+
+@available {MinUploadedAtFNVersion := 4110}
+@experimental
+# Constructor that clones an existing camera_state. Useful for writing camera modifiers as it makes it easier to create a camera_state that is a copy of another with some values modified.
+CloneCameraState<constructor><public>(CameraState:camera_state)<computes>:camera_state = external {}
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
@@ -210,8 +253,8 @@ orthographic_camera_component<native><public> := class<final_super>(camera_compo
 perspective_camera_component<native><public> := class<final_super>(camera_component):
     @editable
     @experimental
-    # Horizontal field of view in degrees, specified for an aspect ratio of 16:9 /nThis is then to calculate an effective horizontal field of view for the display’s real aspect ratio /nIf for example the screen is an ultrawide (21:9, or 32:9 being common ultrawide aspect ratios) then in practice the actual field of view will be wider. This is known as the Hor+ view scaling method and is generally accepted to be the best solution for ultrawide displays.
-    var FieldOfViewDegrees<native><public>:float = external {}
+    # Horizontal field of view in radians, specified for an aspect ratio of 16:9 /nThis is then to calculate an effective horizontal field of view for the display’s real aspect ratio /nIf for example the screen is an ultrawide (21:9, or 32:9 being common ultrawide aspect ratios) then in practice the actual field of view will be wider. This is known as the Hor+ view scaling method and is generally accepted to be the best solution for ultrawide displays.
+    var FieldOfView<native><public>:float = external {}
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental

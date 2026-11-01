@@ -1,8 +1,8 @@
 # Verse path: /Fortnite.com/Armory
-using {/Verse.org/Native}
 using {/Verse.org/SceneGraph}
 using {/Verse.org/Assets}
 using {/Verse.org/SpatialMath}
+using {/Verse.org/Native}
 using {/Verse.org/Simulation}
 # The multi trace specific subtype of trace_weapon_component which adds multiple traces per shot properties
 fort_multi_trace_weapon_component<native><public> := class<final_super><internal>(fort_trace_weapon_component):
@@ -25,6 +25,18 @@ fort_range_damage_multiplier<native><public> := struct<concrete>:
 # The component on weapons entities like pistols and assault rifles for tweaking weapon properties
 fort_trace_weapon_component<native><public> := class<internal>(fort_weapon_component):
     OnRemovingFromScene<native><override>():void
+
+    @available {MinUploadedAtFNVersion := 4300}
+    # Begins firing the weapon, as if the wielder had pressed the fire input and kept holding it.
+    BeginFire<native><public>():void
+
+    @available {MinUploadedAtFNVersion := 4300}
+    # Ends firing the weapon, as if the wielder had released the fire input.
+    EndFire<native><public>():void
+
+    @available {MinUploadedAtFNVersion := 4300}
+    # Fails if the weapon is not currently firing. Note that this could fail even if 'BeginFire' was called when the weapon is reloading for example.
+    IsFiring<native><public>()<decides><reads>:void
 
     @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {1000.000000}}
     # The damage dealt by the weapon
@@ -238,28 +250,28 @@ pistol_mesh<public> := class<final>(mesh_component):
 
 
 # The entity prefab for a creator customizable pistol
-pistol_template<public> := class<concrete><final>(entity):
+pistol_template<public> := class<concrete>(entity):
 
 
 assault_rifle_mesh<public> := class<final>(mesh_component):
 
 
 # The entity prefab for a creator customizable assault rifle
-assault_rifle_template<public> := class<concrete><final>(entity):
+assault_rifle_template<public> := class<concrete>(entity):
 
 
 sub_machine_gun_mesh<public> := class<final>(mesh_component):
 
 
 # The entity prefab for a creator customizable SMG
-sub_machine_gun_template<public> := class<concrete><final>(entity):
+sub_machine_gun_template<public> := class<concrete>(entity):
 
 
 shotgun_mesh<public> := class<final>(mesh_component):
 
 
 # The entity prefab for a creator customizable shotgun
-shotgun_template<public> := class<concrete><final>(entity):
+shotgun_template<public> := class<concrete>(entity):
 
 
 @available {MinUploadedAtFNVersion := 4240}
@@ -268,4 +280,4 @@ torch_mesh<public> := class<final>(mesh_component):
 
 @available {MinUploadedAtFNVersion := 4230}
 # The entity prefab for a creator customizable held item
-held_item_template<public> := class<concrete><final>(entity):
+held_item_template<public> := class<concrete>(entity):

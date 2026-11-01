@@ -172,6 +172,11 @@
 			"Enabled": true
 		},
 		{
+			"Name": "InstanceDataObjectFixupTool",
+			"Enabled": true,
+			"TargetAllowList": [ "Editor" ]
+		},
+		{
 			"Name": "PCG",
 			"Enabled": true
 		},

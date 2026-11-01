@@ -1,5 +1,4 @@
 # Verse path: /UnrealEngine.com/Conversations
-using {/Fortnite.com/Devices}
 using {/Verse.org/Colors}
 using {/Verse.org/SceneGraph}
 using {/Verse.org/Diagnostics}
@@ -72,10 +71,27 @@ ai_session<native><public> := class<unique>:
 session_type_subscription<native><epic_internal> := class(cancelable):
     Cancel<native><override>()<transacts>:void
 
+llm_fact<native><epic_internal> := class(cancelable):
+    Cancel<native><override>()<transacts>:void
+
 @available {MinUploadedAtFNVersion := 4100}
 @import_as("/Script/AIPrompt.UPersonaPrompt")
 persona_editor_prompt<native><epic_internal> := class<concrete><final><epic_internal>:
 
+
+@available {MinUploadedAtFNVersion := 4000}
+MakePersonaSuccessResult<native_callable><epic_internal>(Result:success_type where success_type:type):result(success_type, false) = external {}
+
+@available {MinUploadedAtFNVersion := 4000}
+MakePersonaErrorResult<native_callable><epic_internal>(Result:error_type where error_type:type):result(false, error_type) = external {}
+
+internal_response_data<native><epic_internal> := struct:
+    @ai_description("Use this to output the name of the targeted conversation participant")
+    TargetAgent<native>:?agent
+
+@available {MinUploadedAtFNVersion := 4000}
+persona_utterance<native><epic_internal> := class(cancelable):
+    Cancel<native><override>()<transacts>:void
 
 @available {MinUploadedAtFNVersion := 4000}
 # Defines the way the persona will handle attempts to prompt it while it is processing.
@@ -194,151 +210,6 @@ persona_component<native><public> := class<final_super>(component):
 @available {MinUploadedAtFNVersion := 4000}
 # Unbind player from prompting personas
 (Player:player).ClearConversationTarget<native><public>()<transacts>:void
-
-@available {MinUploadedAtFNVersion := 4000}
-non_parametric_agent_subscribable_persona_event<epic_internal> := class(subscribable_event_intrnl(agent)):
-
-
-@available {MinUploadedAtFNVersion := 4000}
-MakePersonaSuccessResult<native_callable><epic_internal>(Result:success_type where success_type:type):result(success_type, false) = external {}
-
-@available {MinUploadedAtFNVersion := 4000}
-MakePersonaErrorResult<native_callable><epic_internal>(Result:error_type where error_type:type):result(false, error_type) = external {}
-
-@available {MinUploadedAtFNVersion := 4000}
-conversation_target<native><epic_internal> := interface<unique><epic_internal>:
-    # Succeeds if the agent can target Self for conversation.
-    CanConversationTargeterBeAdded<native_callable><epic_internal>(ConversationTargeter:agent)<decides><reads>:void = external {}
-
-    # When agent targets Self for conversation.
-    AddConversationTargeterEvent<final><public>:listenable(agent) = external {}
-
-    # When agent untargets Self for conversation.
-    RemoveConversationTargeterEvent<final><public>:listenable(agent) = external {}
-
-    # All the agents currently targeting Self for conversation.
-    var<private> ConversationTargeters<public>:[]agent
-
-    # Allow player to to talk to this persona.
-    AddPlayer<native_callable><epic_internal>(Player:agent)<transacts><decides>:void = external {}
-
-    # Stop player from being able to talk to this persona.
-    RemovePlayer<native_callable><epic_internal>(Player:agent)<transacts><decides>:void = external {}
-
-    # Signals the AddConversationTargeterEvent.
-    SignalAddConversationTargeterEvent<native_callable><epic_internal>(Agent:agent):void = external {}
-
-    # Signals the RemoveConversationTargeterEvent.
-    SignalRemoveConversationTargeterEvent<native_callable><epic_internal>(Agent:agent):void = external {}
-
-@available {MinUploadedAtFNVersion := 4000}
-# A participant can only speak to one conversation target at a time.
-#  A conversation target can be spoken to by many participants at a time.
-#  Fails if the conversation target refuses the addition, or if the participant is assigned to a different conversation target.
-(Participant:agent).SetConversationTargetForAgent<native><epic_internal>(ConversationTarget:conversation_target)<transacts><decides>:void
-
-@available {MinUploadedAtFNVersion := 4000}
-# Removes any persona assignment for a participant.
-(Participant:agent).ClearConversationTargetForAgent<native><epic_internal>()<transacts>:void
-
-@available {MinUploadedAtFNVersion := 4000}
-# Returns the persona a participant is assigned to, fails if unassigned.
-(Participant:agent).GetConversationTargetForAgent<native><epic_internal>()<decides><reads>:conversation_target
-
-internal_response_data<native><epic_internal> := struct:
-    @ai_description("Use this to output the name of the targeted conversation participant")
-    TargetAgent<native>:?agent
-
-@available {MinUploadedAtFNVersion := 4000}
-persona_conversation_target<native><epic_internal> := class(conversation_target):
-    # All the agents currently targeting Self for conversation.
-    var ConversationTargeters<override>:[]agent = external {}
-
-    # Fails if the participant is not in the list of participants
-    CanConversationTargeterBeAdded<override><native>(ConversationTargeter:agent)<decides><reads>:void
-
-    # Allow player to to talk to this persona.
-    AddPlayer<native><override>(Player:agent)<transacts><decides>:void
-
-    # Stop player from being able to talk to this persona.
-    RemovePlayer<native><override>(Player:agent)<transacts><decides>:void
-
-    # Add information about, or known by, the persona. Cancelable is used to remove the fact.
-    # # The persona knows these facts, and device facts.
-    AddFact<native><public>(Fact:string)<transacts>:cancelable
-
-    # Adds a fact which is assessed at when a persona is prompted. The fact is generated by calling the FactFunc.
-    AddDynamicFact<native><public>(FactFunc:type {_()<reads>:string})<transacts>:cancelable
-
-    # Requests the Persona to talk on the topic provided.
-    PromptToTalk<native><public>(Topic:string):void
-
-    # Requests the Persona to talk on the topic provided.
-    PromptToTalk<native><public>(Topic:message):void
-
-    # Returns a diagnostic of the Persona facts, both static and dynamic.
-    DiagnoseFacts<native><public>()<reads>:diagnostic
-
-@available {MinUploadedAtFNVersion := 4000}
-persona_utterance<native><epic_internal> := class(cancelable):
-    Cancel<native><override>()<transacts>:void
-
-@available {MinUploadedAtFNVersion := 4000}
-# A persona device manages conversations involving one or multiple persona objects
-# that are either standalone (announcer) or in the future attachable to NPCs,
-# behind the scenes using a single LLM session.
-# The persona device sees all conversations by all personas and participants.
-# The persona device only sees facts added to the device.
-# A persona also sees all conversations among all of its device's personas and participants.
-# A persona sees all facts added to its device and itself.
-persona_device<native><epic_internal> := class<concrete><final>(creative_device_base):
-    # Add general information to the device. Cancelable is used to remove the fact.
-    # The persona knows these facts, and their persona facts.
-    AddFact<native><epic_internal>(Fact:string)<transacts>:cancelable
-
-    # Adds a fact which is assessed at when the device, or a persona is prompted. The fact is generated by calling the FactFunc.
-    AddDynamicFact<native><epic_internal>(FactFunc:type {_()<reads>:string})<transacts>:cancelable
-
-    @available {MinUploadedAtFNVersion := 3810}
-    # The result will conform to the result type. The result type must be a struct or a concrete class with no private fields which can contain
-    # numeric types, messages, bools and enums, as well as structs, concrete classes with no private fields or arrays which only contain those types, anything else results in an error.
-    # Use the names of the fields and name of the type of the struct to direct the prompt or facts on how to fill out the data structure.
-    Prompt<native><epic_internal>(UserPrompt:string, response_type:type)<suspends>:result(response_type, ai_error)
-
-    # Removes all conversation history from the device.
-    ClearHistory<native><public>()<transacts>:void
-
-    # Attempts to add a player to the list of participants on this device.
-    # Does nothing if the agent does not meet the criteria of participation configured on the device.
-    AddParticipant<public>(Agent:agent):void = external {}
-
-    # Removes an agent from the participants.
-    RemoveParticipant<public>(Agent:agent):void = external {}
-
-    # Returns the ID for the player.
-    GetPlayerParticipantId<native><public>(Player:player)<reads>:string
-
-    # Attempts to add a persona on this device.
-    AddPersona<native><public>((local:)Persona:agent)<transacts><decides>:persona_conversation_target
-
-    # Attempts to remove a persona on this device.
-    RemovePersona<native><public>((local:)Persona:agent)<transacts>:void
-
-    # All the players in the channel with the personas managed by this device.
-    var<private> Participants<public>:[]agent = external {}
-
-    # Direct access to all personas configured on this device.
-    var<private> Personas<public>:[]persona_conversation_target = external {}
-
-    # Different criteria, which if the LLM evaluates to be true, will fire the corresponding event
-    var<private> ResponseEventCriteria<public>:[int][]string = external {}
-
-    # Fired when one of the response event criteria are met.
-    # 1/ the agent, if any, which prompted the persona to trigger the event
-    # 2/ the ID of the response event criteria which was met
-    ResponseEvent<public>:listenable(tuple(?agent, int)) = external {}
-
-    GetBPFunctionNamesForValidation<override>():[]string = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 # The persona voice used when converting text-to-voice

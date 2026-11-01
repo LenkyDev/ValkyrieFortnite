@@ -223,8 +223,12 @@ Simulation<public> := module:
     @attribscope_class
     @attribscope_data
     @customattribhandler
-    field_attribute<epic_internal> := class<computes><internal>(attribute):
+    field_attribute<epic_internal> := class<computes><epic_internal>(attribute):
+        FieldName<epic_internal>:string
 
+        Access<epic_internal>:string = external {}
+
+        AccessScopes<epic_internal>:[]string = external {}
 
     field<constructor><epic_internal>(FieldName:string)<computes>:field_attribute = external {}
 

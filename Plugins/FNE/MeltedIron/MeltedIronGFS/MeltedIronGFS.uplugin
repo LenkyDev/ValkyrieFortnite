@@ -10,10 +10,11 @@
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
 	"EditorCustomVirtualPath": "FNE/MeltedIron",
-	"FortReleaseVersion": "42.40",
+	"FortReleaseVersion": "43.00",
 	"ProductChunkId": 13,
 	"IsGameFeatureSet": true,
 	"InstallItem": {
+		"InstallPhase": "Modular",
 		"Name": "MeltedIronGFS",
 		"DependsOn": "Creative",
 		"BootStage": "Product"

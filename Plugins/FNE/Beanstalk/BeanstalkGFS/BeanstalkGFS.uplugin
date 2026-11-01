@@ -9,9 +9,10 @@
 	"BuiltInAutoRegister": true,
 	"BuiltInAutoLoad": false,
 	"BuiltInAutoActivate": false,
-	"FortReleaseVersion": "42.40",
+	"FortReleaseVersion": "43.00",
 	"IsGameFeatureSet": true,
 	"InstallItem": {
+		"InstallPhase": "Modular",
 		"Name": "BeanstalkGFS",
 		"DependsOn": "Creative",
 		"BootStage": "Product"

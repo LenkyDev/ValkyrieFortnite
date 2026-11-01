@@ -277,6 +277,17 @@ entity<native><public> := class<concrete><unique><transacts><castable>(diagnosab
 entity_prefab<native><public> := class<computes><epic_internal>(asset):
 
 
+@available {MinUploadedAtFNVersion := 4300}
+GetEntity_Internal<native><epic_internal>(Entity:entity)<decides><reads>:entity
+
+@available {MinUploadedAtFNVersion := 4300}
+# Refers to an entity without granting access to it.
+entity_handle<public> := class<computes><epic_internal>:
+    # Returns the entity this handle refers to. Fails if the entity is not accessible.
+    GetEntity<public>()<decides><reads>:entity = external {}
+
+    Entity<epic_internal>:?entity = external {}
+
 # Finds all descendant entities including `InEntity` that has any tags of type `tag_type`.
 # When querying from the simulation entity, the simulation entity itself is not included in the results.
 # The order of the returned entities is unspecified and subject to change.
@@ -555,6 +566,8 @@ transform_component<native><public> := class<final><final_super>(component):
 
 # Returns the global transform of this entity, in the case the entity does not have a transform_component it will return the transform of the first parent that has a transform
 (InEntity:entity).GetGlobalTransform<native><public>()<transacts>:(/Verse.org/SpatialMath:)transform
+
+(InEntity:entity).GetGlobalTransformPredicts<native><epic_internal>()<transacts>:(/Verse.org/SpatialMath:)transform
 
 # Returns the local transform of this entity, in the case the entity does not have a transform_component it will return identity
 (InEntity:entity).GetLocalTransform<native><public>()<transacts>:(/Verse.org/SpatialMath:)transform

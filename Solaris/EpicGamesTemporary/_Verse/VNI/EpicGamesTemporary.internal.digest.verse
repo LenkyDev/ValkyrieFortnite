@@ -1,30 +1,4 @@
 # Verse path: /UnrealEngine.com/Temporary
-@experimental
-playable<epic_internal> := interface<epic_internal>:
-    @experimental
-    Play<public>():void
-
-    @experimental
-    Pause<public>():void
-
-    @experimental
-    Stop<public>(?BlendOutTime:float = external {}):void
-
-    @experimental
-    GetDuration<public>()<decides>:float
-
-    @experimental
-    GetOnFinishedEvent<public>()<decides><reads>:listenable(tuple())
-
-    @experimental
-    GetOnStoppedEvent<public>():listenable(tuple())
-
-    @experimental
-    GetOnPlayedEvent<public>():listenable(tuple())
-
-    @experimental
-    GetOnPausedEvent<public>():listenable(tuple())
-
 @deprecated {Message := "Use `CollisionChannels` and `CollisionProfiles` from `RigidPhysicsCore` instead."}
 # Module import path: /UnrealEngine.com/Temporary/SceneGraph
 SceneGraph<public> := module:

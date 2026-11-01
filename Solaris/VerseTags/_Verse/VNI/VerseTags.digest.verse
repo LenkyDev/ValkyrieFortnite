@@ -41,6 +41,7 @@ Tags<public> := module:
         Unsorted
         Sorted
 
+    @deprecated {Message := "`tag_search_criteria` is part of the old tag API. Use `FindCreativeObjectsWithTag` with a `tag` type instead."}
     # Advanced tag search criteria
     tag_search_criteria<native><public> := class:
         # Tags required to be on the object.
@@ -55,6 +56,7 @@ Tags<public> := module:
         # Flag to request sorting the results by tag.
         SortType<native><public>:tag_search_sort_type = external {}
 
+    @deprecated {Message := "`tag_view` is part of the old tag API. Use the `has_tags` interface instead."}
     # A queryable collection of tags.
     tag_view<native><public> := interface<epic_internal>:
         # Determine if TagToCheck is present in this container, also checking against parent tags {"A.1"}.Has("A") will return True, {"A"}.Has("A.1") will return False If TagToCheck is not Valid it will always return False.

@@ -5,7 +5,7 @@ Predicts<public> := module:
 
     PredictsServerMarkObjectField<native><epic_internal>(Obj:any, FieldName:string)<transacts>:void
 
-    PredictsIsRunningOnServer<native><epic_internal>()<transacts><decides>:void
+    PredictsIsRunningOnServer<native><epic_internal>()<transacts><decides><predicts>:void
 
     PredictsDebugServerMode<native><epic_internal>()<transacts>:void
 
@@ -41,7 +41,13 @@ Predicts<public> := module:
 
     PredictsDebugUseReachabilityBasedReplication<native><epic_internal>()<transacts>:void
 
-    PredictsDebugRegisterFunc<native><epic_internal>(__dupe___unnamed_parameter_0:int, __dupe___unnamed_parameter_1:type {_():void})<transacts>:int
+    PredictsDebugSetClientCallLimits<native><epic_internal>(TimeoutSeconds:float, MaxLoopIterations:int)<transacts>:void
+
+    PredictsDebugSetCircuitBreakerParams<native><epic_internal>(Capacity:float, LeakRate:float)<transacts>:void
+
+    PredictsDebugSetPredictsEnabledCVar<native><epic_internal>(Enabled:logic)<transacts>:void
+
+    PredictsDebugRegisterFunc<native><epic_internal>(__dupe___unnamed_parameter_0:int, __dupe___unnamed_parameter_1:type {_()<predicts>:void})<transacts>:int
 
     PredictsDebugUnregisterFunc<native><epic_internal>(__dupe___unnamed_parameter_0:int)<transacts>:void
 
@@ -55,4 +61,4 @@ Predicts<public> := module:
 
     PredictsDebugGCUnpinObject<native><epic_internal>(__dupe___unnamed_parameter_0:any)<transacts>:void
 
-    PredictsDebugCheckClientAbortedContentScopeAndReset<native><epic_internal>()<transacts><decides>:void
+    PredictsDebugCheckClientAbortedContextAndReset<native><epic_internal>()<transacts><decides>:void

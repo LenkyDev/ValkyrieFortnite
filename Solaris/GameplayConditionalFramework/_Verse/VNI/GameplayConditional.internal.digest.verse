@@ -1,9 +1,8 @@
 # Verse path: /UnrealEngine.com
 using {/Verse.org/Native}
-@available {MinUploadedAtFNVersion := 4110}
+@available {MinUploadedAtFNVersion := 4300}
 # Module import path: /UnrealEngine.com/Progression
 Progression<public> := module:
-    using {/Verse.org/Native}
     using {/Verse.org/SceneGraph}
     register_gameplay_conditional_error<native><public> := class<epic_internal>:
 
@@ -20,11 +19,11 @@ Progression<public> := module:
     gameplay_conditional_listener_handle<native><epic_internal> := class<final>:
         GetParticipants<native><epic_internal>()<reads>:[]entity
 
-        AddParticipant<native><epic_internal>(Participant:entity):void
+        AddParticipant<native><epic_internal>(Participant:entity)<transacts>:void
 
-        RemoveParticipant<native><epic_internal>(Participant:entity):void
+        RemoveParticipant<native><epic_internal>(Participant:entity)<transacts>:void
 
-        Unregister<native><epic_internal>():void
+        Unregister<native><epic_internal>()<transacts>:void
 
         IsRegistered<native><epic_internal>()<transacts><decides>:void
 
@@ -51,7 +50,6 @@ Progression<public> := module:
     RegisterGameplayConditional<native><epic_internal>(ContextAnchor:entity, GameplayConditional:concrete_subtype(gameplay_conditional), Callback:type {_(:gameplay_conditional_context):void})<transacts>:result(gameplay_conditional_listener_handle, []register_gameplay_conditional_error)
 
     has_gameplay_conditionals<native><epic_internal> := interface<epic_internal>:
-        @available {MinUploadedAtFNVersion := 4200}
         Conditionals<epic_internal>:[]concrete_subtype(gameplay_conditional) = external {}
 
         OnConditionalExecuted<native_callable><epic_internal>(Context:gameplay_conditional_context):void

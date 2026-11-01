@@ -4,7 +4,6 @@ Assets<public> := module:
     using {/Verse.org/Colors}
     using {/Verse.org/Simulation}
     using {/Verse.org/Native}
-    using {/Verse.org/Restricted}
     @attribscope_class
     @customattribhandler
     asset_proxy_attribute<epic_internal> := class<computes><internal>(attribute):
@@ -25,12 +24,6 @@ Assets<public> := module:
     MakeTextureAsset<native><epic_internal>(AssetPath:string, Width:float, Height:float)<converges>:texture
 
     asset<native><epic_internal> := class<computes><epic_internal>:
-        SyncLoad<native><epic_internal>():logic
-
-        Async_Load<native><epic_internal>():sticky_event(void)
-
-        GetAsyncLoadEvent<native><epic_internal>()<decides>:sticky_event(void)
-
         GetAssetType<native><epic_internal>()<transacts><decides>:subtype(asset)
 
         InitializeNetworkReplication<native><epic_internal>()<transacts>:void
@@ -52,8 +45,6 @@ Assets<public> := module:
     material<native><public> := class<epic_internal>(asset, property_changed_interface, material_like):
         @transient
         MaterialPath<native><epic_internal>:string = external {}
-
-        bUsesGetSetters<native><epic_internal>:logic = external {}
 
         OnPropertyChangedFromVerse<native><override>(PropertyName:string)<transacts>:void
 

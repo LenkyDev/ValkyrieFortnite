@@ -223,11 +223,11 @@ add_channel_error<public> := class<computes>:
 
 @available {MinUploadedAtFNVersion := 4000}
 # Used in native to create a channel result when registering a channel.
-MakeAddChannelResult<native_callable><epic_internal>(IsSuccess:logic):result(comparable, add_channel_error) = external {}
+MakeAddChannelResult<native_callable><epic_internal>(IsSuccess:logic):result(void, add_channel_error) = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 # Used in native to create a channel result when unregistering a channel.
-MakeRemoveChannelResult<native_callable><epic_internal>(IsSuccess:logic):result(comparable, remove_channel_error) = external {}
+MakeRemoveChannelResult<native_callable><epic_internal>(IsSuccess:logic):result(void, remove_channel_error) = external {}
 
 @available {MinUploadedAtFNVersion := 4000}
 # Error returned when a channel cannot be removed via the `RemoveChatChannel` function.

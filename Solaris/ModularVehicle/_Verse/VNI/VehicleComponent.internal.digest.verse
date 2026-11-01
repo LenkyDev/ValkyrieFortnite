@@ -54,16 +54,16 @@ modular_vehicle_component<native><epic_internal> := class<final_super><epic_inte
     ModuleRemovedEvent<native><final><epic_internal>:listenable(module_info) = external {}
 
     @experimental
-    @available {MinUploadedAtFNVersion := 4100}
+    @available {MinUploadedAtFNVersion := 4300}
     CollisionEnteredEvent<native><epic_internal>:listenable(generator(collision_hit)) = external {}
 
     @experimental
-    @available {MinUploadedAtFNVersion := 4100}
+    @available {MinUploadedAtFNVersion := 4300}
     CollisionEvent<native><epic_internal>:listenable(generator(collision_hit)) = external {}
 
     @experimental
-    @available {MinUploadedAtFNVersion := 4100}
-    CollisionExitedEvent<native><epic_internal>:listenable(generator(collision_volume_pair)) = external {}
+    @available {MinUploadedAtFNVersion := 4300}
+    CollisionExitedEvent<native><epic_internal>:listenable(generator(collision_hit)) = external {}
 
     # Replace the current control input configuration
     SetupControlInputConfiguration<native_callable><public>(ControlInputConfigurationIn:[]vehicle_input_setup):void = external {}

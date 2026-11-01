@@ -11,6 +11,6 @@ zipline_device<epic_internal> := class<concrete><final>(creative_device_base):
     DetachEvent<public>:listenable(agent) = external {}
 
     # Returns true if `Agent`is currently attached to this zipline.
-    IsAttached<public>(Agent:agent)<transacts><decides>:void = external {}
+    (/Fortnite.com/Devices/zipline_device:)IsAttached<public>(Agent:agent)<transacts><decides>:void = external {}
 
     GetBPFunctionNamesForValidation<override>():[]string = external {}

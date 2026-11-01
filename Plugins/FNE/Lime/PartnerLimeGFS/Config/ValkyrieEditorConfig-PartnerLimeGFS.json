@@ -429,7 +429,7 @@
 			},
 			{
 				"Type": "/Script/AtomRuntime.AtomPrimitiveStaticMeshComponent",
-				"DenyList": [ "Color", "StaticMesh", "OverrideMaterials", "CustomPrimitiveData", "AssetUserData", "AssetUserDataEditorOnly" ],
+				"DenyList": [ "Color", "OverrideMaterials", "CustomPrimitiveData", "AssetUserData", "AssetUserDataEditorOnly" ],
 				"bAllowListAllProperties": true,
 				"bAllowListAllSubclassProperties": true
 			},

@@ -216,3 +216,6 @@ item_component<native><public> := class<final_super>(component):
 
 @available {MinUploadedAtFNVersion := 3800}
 (Item:item_component).CanUnequip<native><public>()<transacts>:result(false, []unequip_item_error)
+
+# Item component setting owner pose data for this item.
+item_owner_pose_modifier_component<native><public> := class<final_super><epic_internal>(component):

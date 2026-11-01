@@ -145,23 +145,23 @@ fort_item_definition_entity_base<native><epic_internal> := class<concrete>(entit
 fort_item_definition_entity<native><epic_internal> := class<concrete>(fort_item_definition_entity_base):
     @field("Components")
     @available {MinUploadedAtFNVersion := 4000}
-    ItemComponent<native><protected>:item_component = external {}
+    ItemComponent<native><epic_internal>:item_component = external {}
 
     @field("Components")
     @available {MinUploadedAtFNVersion := 4020}
-    IconComponent<native><protected>:?icon_component = external {}
+    IconComponent<native><epic_internal>:?icon_component = external {}
 
     @field("Components")
     @available {MinUploadedAtFNVersion := 4020}
-    RarityComponent<native><protected>:?rarity_component = external {}
+    RarityComponent<native><epic_internal>:?rarity_component = external {}
 
     @field("Components")
     @available {MinUploadedAtFNVersion := 4020}
-    StackableComponent<native><protected>:?basic_stackable_component = external {}
+    StackableComponent<native><epic_internal>:?basic_stackable_component = external {}
 
     @field("Components")
     @available {MinUploadedAtFNVersion := 4210}
-    DescriptionComponent<native><protected>:?description_component = external {}
+    DescriptionComponent<native><epic_internal>:?description_component = external {}
 
 @hide_in_editor
 proxy_table<native><epic_internal> := class<unique><final><epic_internal>(asset):
@@ -170,27 +170,22 @@ proxy_table<native><epic_internal> := class<unique><final><epic_internal>(asset)
 @hide_in_editor
 # Owner poses let an item affect their owner's default animation stance. 
 #  For example, to make a character hold an item like a torch, or a 2-handed weapon.
-fort_character_pose_modifier<native><epic_internal> := class<abstract><epic_internal>:
+fort_character_pose_modifier<native><public> := class<abstract><epic_internal>:
     ProxyTable<native><epic_internal>:proxy_table
 
-@hide_in_editor
-fort_character_pose_modifier_pistol<epic_internal> := class<final><concrete>(fort_character_pose_modifier):
+fort_character_pose_modifier_fire_torch<public> := class<final><concrete>(fort_character_pose_modifier):
     ProxyTable<override>:proxy_table = external {}
 
-@hide_in_editor
-fort_character_pose_modifier_assault_rifle<epic_internal> := class<final><concrete>(fort_character_pose_modifier):
+fort_character_pose_modifier_consumable_small<public> := class<final><concrete>(fort_character_pose_modifier):
     ProxyTable<override>:proxy_table = external {}
 
-@hide_in_editor
-fort_character_pose_modifier_sub_machine_gun<epic_internal> := class<final><concrete>(fort_character_pose_modifier):
+fort_character_pose_modifier_consumable_large<public> := class<final><concrete>(fort_character_pose_modifier):
     ProxyTable<override>:proxy_table = external {}
 
-@hide_in_editor
-fort_character_pose_modifier_shotgun<epic_internal> := class<final><concrete>(fort_character_pose_modifier):
+fort_character_pose_modifier_flashlight<public> := class<final><concrete>(fort_character_pose_modifier):
     ProxyTable<override>:proxy_table = external {}
 
-@hide_in_editor
-fort_character_pose_modifier_fire_torch<epic_internal> := class<final><concrete>(fort_character_pose_modifier):
+fort_character_pose_modifier_map<public> := class<final><concrete>(fort_character_pose_modifier):
     ProxyTable<override>:proxy_table = external {}
 
 @replicatable
@@ -198,8 +193,7 @@ fort_character_pose_modifier_fire_torch<epic_internal> := class<final><concrete>
 fort_item_owner_pose_modifier_component_data<native><epic_internal> := struct<concrete>:
 
 
-@hide_in_editor
-fort_item_owner_pose_modifier_component<native><epic_internal> := class<final><epic_internal>(item_owner_pose_modifier_component):
+fort_item_owner_pose_modifier_component<native><public> := class<final><epic_internal>(item_owner_pose_modifier_component):
     OnAddedToScene<native><override>():void
 
     OnRemovingFromScene<native><override>():void
@@ -208,9 +202,9 @@ fort_item_owner_pose_modifier_component<native><epic_internal> := class<final><e
 
     @editable
     # Animation layer to apply when this item is equipped. This can be unset if the item doesn't need custom animation logic for its owner.
-    var<private> EquippedPose<native><epic_internal>:?fort_character_pose_modifier = external {}
+    var<private> EquippedPose<native><public>:?fort_character_pose_modifier = external {}
 
-    SetEquippedPose<native><epic_internal>(InPose:?fort_character_pose_modifier):void
+    SetEquippedPose<native><public>(InPose:?fort_character_pose_modifier):void
 
     @transient
     @replicated("RepNotify")

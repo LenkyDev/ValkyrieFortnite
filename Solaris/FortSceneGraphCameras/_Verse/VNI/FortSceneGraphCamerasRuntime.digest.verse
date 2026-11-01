@@ -60,8 +60,8 @@ SceneGraphCameras<public> := module:
         var RotationOffset<native><public>:(/Verse.org/SpatialMath:)rotation = external {}
 
         @experimental
-        # Entities to frame in the camera.
-        TargetEntities<native><public>:[]entity = external {}
+        # Targets to frame, mapping each target entity to the weight it contributes to the framing calculation.
+        var TargetEntities<public>:[entity]float = external {}
 
         @experimental
         # The ideal horizontal screen-space position of the target in screen space. Values are normalized where `0.5` is center of the screen
@@ -70,6 +70,10 @@ SceneGraphCameras<public> := module:
         @experimental
         # The ideal vertical screen-space position of the target. Values are normalized where `0.5` is center of the screen
         var IdealFramingLocationScreenSpaceUp<native><public>:float = external {}
+
+        @experimental
+        # The time spent ramping down the reframing after entering the dead zone. If set to zero or a negative value, reframing will immediately stop once the target has entered the dead zone. Otherwise, the ReframeDampingFactor will interpolate towards zero over the specified amount of seconds.
+        var DisengageTimeSeconds<native><public>:float = external {}
 
         @experimental
         # The time spent ramping up the reframing after exiting the dead zone. 

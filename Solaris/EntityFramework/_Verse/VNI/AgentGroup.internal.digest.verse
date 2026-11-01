@@ -39,14 +39,14 @@ agent_group<native><public>(member_info:subtype(member_info_interface)) := class
     GetMemberMap<override><native_callable>()<reads>:[agent]member_info = external {}
 
     # Attempt to add the given agent to this agent group.This function returns a result that will either succeed or return an error.
-    AddMember<public>(Agent:agent, MemberInfo:member_info)<transacts>:result(comparable, add_member_error) = external {}
+    AddMember<public>(Agent:agent, MemberInfo:member_info)<transacts>:result(void, add_member_error) = external {}
 
-    AddMemberInternal<final><native_callable><epic_internal>(Agent:agent, MemberInfo:member_info)<transacts>:result(comparable, add_member_error) = external {}
+    AddMemberInternal<final><native_callable><epic_internal>(Agent:agent, MemberInfo:member_info)<transacts>:result(void, add_member_error) = external {}
 
     # Attempt to remove the given agent from this agent group.This function returns a result that will either succeed or return an error.
-    RemoveMember<public>(Agent:agent)<transacts>:result(comparable, remove_member_error) = external {}
+    RemoveMember<public>(Agent:agent)<transacts>:result(void, remove_member_error) = external {}
 
-    RemoveMemberInternal<final><native_callable><epic_internal>(Agent:agent)<transacts>:result(comparable, remove_member_error) = external {}
+    RemoveMemberInternal<final><native_callable><epic_internal>(Agent:agent)<transacts>:result(void, remove_member_error) = external {}
 
     # Signalled whenever an agent successfully joins this agent group.Passes in the agent that joined along with their member_info.
     AddMemberEvent<override><native><final>:listenable(tuple(agent, member_info)) = external {}

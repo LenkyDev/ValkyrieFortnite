@@ -88,7 +88,7 @@ fort_projectile_component<native><public> := class<final_super>(component):
 
 @available {MinUploadedAtFNVersion := 4200}
 # Base entity for a spawnable projectile.
-projectile_template<native><public> := class<concrete><internal>(entity):
+projectile_template<native><public> := class<concrete>(entity):
     @field("Components")
     # Projectile component required to define the behavior of the projectile. Can be changed in derived entities.
     ProjectileComponent<native><public>:?fort_projectile_component = external {}
@@ -104,6 +104,19 @@ fort_ability_spec_handle<native><public> := struct<concrete>:
 fort_template_ability_effect<native><public> := class<concrete>(ability_effect):
     @field("Components")
     AbilityComponent<override>:ability_effect_component = external {}
+
+@available {MinUploadedAtFNVersion := 4200}
+@replicatable
+fort_ability_cosmetic_event<native><epic_internal> := struct<concrete>:
+    AssetPath<native><public>:string = external {}
+
+    Location<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+    IsSound<native><public>:logic = external {}
+
+    InstanceID<native><public>:int = external {}
+
+    IsRemoval<native><public>:logic = external {}
 
 @available {MinUploadedAtFNVersion := 4200}
 fort_template_ability_effect_component<native><public> := class(ability_effect_component):
@@ -223,6 +236,18 @@ fort_ability_damage_point<native><public> := class<concrete>(fort_ability_timeli
     @editable {}
     Behavior<native><public>:fort_damage_behavior = external {}
 
+@available {MinUploadedAtFNVersion := 4300}
+@experimental
+fort_ability_damage_span<native><epic_internal> := class<concrete>(fort_ability_timeline_element_span):
+    @editable {}
+    Amount<native><public>:float = external {}
+
+    @editable {}
+    Interval<native><public>:float = external {}
+
+    @editable {}
+    Behavior<native><public>:fort_damage_behavior = external {}
+
 @available {MinUploadedAtFNVersion := 4200}
 @hide_in_editor
 fort_ability_timeline_element_point<native><public> := class<concrete>((/Verse.org:)Timeline.timeline_element_point):
@@ -322,6 +347,18 @@ fort_ability_heal_point<native><public> := class<concrete>(fort_ability_timeline
     @editable {}
     Behavior<native><public>:fort_heal_behavior = external {}
 
+@available {MinUploadedAtFNVersion := 4300}
+@experimental
+fort_ability_heal_span<native><epic_internal> := class<concrete>(fort_ability_timeline_element_span):
+    @editable {}
+    Amount<native><public>:float = external {}
+
+    @editable {}
+    Interval<native><public>:float = external {}
+
+    @editable {}
+    Behavior<native><public>:fort_heal_behavior = external {}
+
 @available {MinUploadedAtFNVersion := 4200}
 # Fires a projectile defined by a projectile_template.
 fort_ability_projectile_point<native><public> := class<concrete>(fort_ability_timeline_element_point):
@@ -376,3 +413,13 @@ fort_wedge_ability_target_query<native><public> := class<concrete>(ability_targe
     @units("Radians")
     @replicated("")
     Angle<native><public>:float = external {}
+
+    @available {MinUploadedAtFNVersion := 4300}
+    @editable_number(float) {MinValue := option {0.000000}}
+    @replicated("")
+    Height<native><public>:float = external {}
+
+    @available {MinUploadedAtFNVersion := 4300}
+    @editable {}
+    @replicated("")
+    HeightOffset<native><public>:float = external {}

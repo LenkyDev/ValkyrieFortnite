@@ -1,0 +1,28 @@
+{
+	"FileVersion": 1,
+	"Version": 1,
+	"VersionName": "0.1",
+	"FriendlyName": "EvoFramework",
+	"Description": "Durable home for the Evo framework layer.",
+	"Category": "Evo",
+	"CreatedBy": "Epic Games, Inc.",
+	"CreatedByURL": "http://epicgames.com",
+	"EnabledByDefault": true,
+	"CanContainContent": false,
+	"IsBetaVersion": true,
+	"Installed": false,
+	"FortReleaseVersion": "44.00",
+	"Modules": [
+		{
+			"Name": "EvoFramework",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "LinkCodes",
+			"Enabled": true
+		}
+	]
+}

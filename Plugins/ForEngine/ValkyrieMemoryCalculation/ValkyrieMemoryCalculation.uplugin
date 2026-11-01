@@ -20,6 +20,17 @@
 			"Name": "ValkyrieMemoryCalculation",
 			"Type": "RuntimeAndProgram",
 			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "ValkyrieMemoryCalculationEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "SpatialMetrics",
+			"Enabled": true
 		}
 	]
 }

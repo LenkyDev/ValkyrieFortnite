@@ -51,6 +51,16 @@ Verse<public> := module:
     # Fails if ElementToFind does not exist in the array.
     (Input:[]t where t:subtype(comparable)).Find<public>(ElementToFind:t)<computes><decides>:int = external {}
 
+    @available {MinUploadedAtFNVersion := 4300}
+    # Returns the last element in `Input` if one exists.
+    # Fails if `Input.Length = 0`.
+    (Input:[]t where t:type).Last<public>()<computes><decides>:t = external {}
+
+    @available {MinUploadedAtFNVersion := 4300}
+    # Returns the element at the position `OffsetFromLast` before the last element of `Input`.
+    # Fails if Input.Length <= OffsetFromLast, or if OffsetFromLast is negative.
+    (Input:[]t where t:type).Last<public>(OffsetFromLast:int)<computes><decides>:t = external {}
+
     # Implemented by classes that allow users to cancel an operation. For example, calling `subscribable.Subscribe` with a callback returns a `cancelable` object. Calling `Cancel` on the return object unsubscribes the callback.
     cancelable<native><public> := interface:
         # Prevents any current or future work from completing.
@@ -91,6 +101,17 @@ Verse<public> := module:
     @experimental
     # Returns a new set that contains all the elements in `InSet` that are of type `element_type`.
     (InSet:classifiable_subset(t) where t:castable_subtype(k), k:type).FilterByType<native><public>(element_type:castable_subtype(k))<transacts>:classifiable_subset(t)
+
+    @available {MinUploadedAtFNVersion := 4300}
+    # A clock is an object that represents a current time.
+    clock<native><public> := interface<computes><epic_internal>:
+        @available {MinUploadedAtFNVersion := 4300}
+        # Get the current time from this clock
+        GetSeconds<public>()<reads>:float
+
+    @available {MinUploadedAtFNVersion := 4300}
+    # Globally accessible clock object that returns the number of seconds  January 1, 1970 UTC, ignoring leap seconds.
+    SecondsSinceEpochClock<public>:clock = external {}
 
     # An opaque diagnostic message that only shows up in diagnostic logs. The format of the diagnostic may change at any time without warning and may not be inspected by Verse code.
     diagnostic<native><public> := class<computes><epic_internal>:
@@ -162,11 +183,11 @@ Verse<public> := module:
     Err<native><public>(Message:string)<computes>:false
 
     # A *recurring*, successively signaled parametric `event` with a `payload` allowing a simple mechanism to coordinate between concurrent tasks.
-    event<native><public>(t:type) := class(signalable(t), awaitable(t)):
+    event<native><public>(t:type) := class(signalable(t), awaitable(t), @available {MinUploadedAtFNVersion := 4300} listenable(t)):
         @available {MinUploadedAtFNVersion := 4210}
-        (/Verse.org/Verse/event:)Verse_event_Variance_Inherited<private>(:t):tuple(t, t) = external {}
+        (/Verse.org/Verse/event:)Verse_event_Variance_Inherited<private>(:t):tuple(t, t, t) = external {}
 
-        (/Verse.org/Verse/event:)Verse_event_Variance<private>(:t):tuple(t) = external {}
+        (/Verse.org/Verse/event:)Verse_event_Variance<private>(:t):tuple(t, t) = external {}
 
         # Suspends the current task until another task calls `Signal`.
         # If called during another invocation of `Signal`, the the task will still suspend and resume during the next call to `Signal`.
@@ -176,6 +197,11 @@ Verse<public> := module:
         # 
         # Tasks are resumed in the order they were suspended. Each task will perform as much work as it can until it encounters a blocking call, whereupon it will transfer control to the next suspended task.
         Signal<native><override>(Val:t):void
+
+        @available {MinUploadedAtFNVersion := 4300}
+        # Registers `Callback` to be invoked each time `Signal` is called.
+        # Call `Cancel` on the returned `cancelable` to unregister `Callback`.
+        Subscribe<native><override>(Callback:type {_(:t):void})<transacts>:cancelable
 
     # A *recurring*, successively signaled event allowing a simple mechanism to coordinate between concurrent tasks.
     event<public>() := event(tuple())
@@ -476,6 +502,81 @@ Verse<public> := module:
 
     # A parameterless interface implemented by events that can be subscribed to.
     subscribable<public>() := subscribable(tuple())
+
+    @available {MinUploadedAtFNVersion := 4300}
+    # Enum used to describe why a playable stopped.
+    playable_stop_reason<public> := enum<open>:
+        # Stopped because Stop() was called.
+        Explicit
+        # Stopped when naturally finished.
+        Finished
+
+    @available {MinUploadedAtFNVersion := 4300}
+    @experimental
+    # This interface describes any abstract playable object in Verse that has Play/Pause/Resume/Stop semantics
+    playable<native><public> := interface:
+        # Begin updating from the starting state. Subsequent calls to Play() should restart.
+        Play<public>():void
+
+        # Pause updating. Calling Pause() when IsPaused = true should do nothing.
+        Pause<public>():void
+
+        # Resume updating. Calling Resume() when IsPaused = false should do nothing.
+        Resume<public>():void
+
+        # Pause, and reset to the initial state.
+        # Should pass the `Explicit` reason to the `StopEvent`.
+        # Should do nothing if `not IsPlaying`.
+        Stop<public>():void
+
+        # Indicates whether this playable is currently playing.
+        var<protected> IsPlaying<public>:logic = external {}
+
+        # Indicates whether this playable is currently paused.
+        var<protected> IsPaused<public>:logic = external {}
+
+        # Internal event used to signal when this playable has begun playing
+        SignalablePlayEvent<final><protected>:event(tuple()) = external {}
+
+        # Internal event used to signal when this playable has been paused
+        SignalablePauseEvent<final><protected>:event(tuple()) = external {}
+
+        # Internal event used to signal when this playable has been resumed
+        SignalableResumeEvent<final><protected>:event(tuple()) = external {}
+
+        # Internal event used to signal when this playable has been stopped
+        SignalableStopEvent<final><protected>:event(playable_stop_reason) = external {}
+
+        # Called after the playable transitions from `not IsPlaying` to `IsPlaying`.
+        PlayEvent<final><public>:listenable(tuple()) = external {}
+
+        # Called after the playable transitions from `not IsPaused` to `IsPaused`.
+        PauseEvent<final><public>:listenable(tuple()) = external {}
+
+        # Called after the playable transitions from `IsPaused` to `not IsPaused`.
+        ResumeEvent<final><public>:listenable(tuple()) = external {}
+
+        # Called when updating when the playable has finished or `Stop` has been called.
+        # Supplies a reason for stopping, such as "finished" or "stopped explicitly".
+        StopEvent<final><public>:listenable(playable_stop_reason) = external {}
+
+    @available {MinUploadedAtFNVersion := 4300}
+    # A listenable class that proxies to an inner implementation to prevent casting.
+    proxy_listenable<native><public>(payload:type) := class<internal>(listenable(payload)):
+        @available {MinUploadedAtFNVersion := 4210}
+        (/Verse.org/Verse/proxy_listenable:)Verse_proxy_listenable_Variance_Inherited<private>():tuple(payload, payload, payload) = external {}
+
+        (/Verse.org/Verse/proxy_listenable:)Verse_proxy_listenable_Variance<private>():tuple(payload, payload) = external {}
+
+        # Subscribe to the underlying listenable with the specified callback.Identical in behavior to subscribing to the underlying listenable directly if it were accessible.
+        Subscribe<override>(Callback:type {_(:payload):void})<transacts>:cancelable = external {}
+
+        # Await the signal of the underlying listenable.Identical in behavior to awaiting the underlying listenable directly if it were accessible.
+        Await<override>()<suspends>:payload = external {}
+
+    @available {MinUploadedAtFNVersion := 4300}
+    # Construct a new proxy listenable object by wrapping another listenable.
+    MakeProxyListenable<native><public>(L:listenable(payload) where payload:type)<reads><converges>:proxy_listenable(payload)
 
 # Module import path: /Verse.org/Random
 Random<public> := module:

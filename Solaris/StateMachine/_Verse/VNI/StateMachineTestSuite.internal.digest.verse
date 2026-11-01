@@ -106,20 +106,20 @@ StateMachineTestSuite<public> := module:
             (/UnrealEngine.com/StateMachineTestSuite/Patterns_LinearSelector/LocomotionStateMachine:)move<public> := class<final_super>(state):
                 Parent<override>:(/UnrealEngine.com/StateMachineTestSuite/Patterns_LinearSelector/LocomotionStateMachine:)root
 
-                TryMakeChildren<public>()<transacts><decides>:make_leaves_result = external {}
+                MakeChildren<public>()<transacts><decides>:make_leaves_result = external {}
 
-                TryMakeWalk<protected>()<transacts><decides>:make_leaves_result = external {}
+                MakeWalk<protected>()<transacts><decides>:make_leaves_result = external {}
 
-                TryMakeRun<protected>()<transacts><decides>:make_leaves_result = external {}
+                MakeRun<protected>()<transacts><decides>:make_leaves_result = external {}
 
-                TryMakeUseVehicle<protected>()<transacts><decides>:make_leaves_result = external {}
+                MakeUseVehicle<protected>()<transacts><decides>:make_leaves_result = external {}
 
             (/UnrealEngine.com/StateMachineTestSuite/Patterns_LinearSelector/LocomotionStateMachine:)walk<public> := class<final_super>(state):
                 Parent<override>:(/UnrealEngine.com/StateMachineTestSuite/Patterns_LinearSelector/LocomotionStateMachine:)move
 
                 CanEnter<public>()<transacts><decides>:void = external {}
 
-                TryMakeChildren<public>()<transacts><decides>:make_leaves_result = external {}
+                MakeChildren<public>()<transacts><decides>:make_leaves_result = external {}
 
             (/UnrealEngine.com/StateMachineTestSuite/Patterns_LinearSelector/LocomotionStateMachine:)run<public> := class<final_super>(state):
                 Parent<override>:(/UnrealEngine.com/StateMachineTestSuite/Patterns_LinearSelector/LocomotionStateMachine:)move
@@ -141,25 +141,25 @@ StateMachineTestSuite<public> := module:
             (/UnrealEngine.com/StateMachineTestSuite/Patterns_OverrideState/LocomotionStateMachine:)root<public> := class<final_super>(state):
                 Parent<override>:(/UnrealEngine.com/StateMachineTestSuite/Patterns_OverrideState/LocomotionStateMachine:)locomotion_state_machine
 
-                TryMakeChildren<public>()<transacts><decides>:make_leaves_result = external {}
+                MakeChildren<public>()<transacts><decides>:make_leaves_result = external {}
 
-                TryMakeMove<protected>()<transacts><decides>:make_leaves_result = external {}
+                MakeMove<protected>()<transacts><decides>:make_leaves_result = external {}
 
             (/UnrealEngine.com/StateMachineTestSuite/Patterns_OverrideState/LocomotionStateMachine:)move<public> := class<final_super>(state):
                 Parent<override>:(/UnrealEngine.com/StateMachineTestSuite/Patterns_OverrideState/LocomotionStateMachine:)root
 
-                TryMakeChildren<public>()<transacts><decides>:make_leaves_result = external {}
+                MakeChildren<public>()<transacts><decides>:make_leaves_result = external {}
 
-                TryMakeWalk<protected>()<transacts><decides>:make_leaves_result = external {}
+                MakeWalk<protected>()<transacts><decides>:make_leaves_result = external {}
 
-                TryMakeRun<protected>()<transacts><decides>:make_leaves_result = external {}
+                MakeRun<protected>()<transacts><decides>:make_leaves_result = external {}
 
-                (/UnrealEngine.com/StateMachineTestSuite/Patterns_OverrideState/LocomotionStateMachine/move:)TryMakeSwim<protected>()<transacts><decides>:make_leaves_result = external {}
+                (/UnrealEngine.com/StateMachineTestSuite/Patterns_OverrideState/LocomotionStateMachine/move:)MakeSwim<protected>()<transacts><decides>:make_leaves_result = external {}
 
             (/UnrealEngine.com/StateMachineTestSuite/Patterns_OverrideState/LocomotionStateMachine:)walk<public> := class<final_super>(state):
                 Parent<override>:(/UnrealEngine.com/StateMachineTestSuite/Patterns_OverrideState/LocomotionStateMachine:)move
 
-                TryMakeChildren<public>()<transacts><decides>:make_leaves_result = external {}
+                MakeChildren<public>()<transacts><decides>:make_leaves_result = external {}
 
                 OnEnter<override>():void = external {}
 
@@ -177,10 +177,10 @@ StateMachineTestSuite<public> := module:
                 OnEnter<override>():void = external {}
 
             my_move<public> := class((/UnrealEngine.com/StateMachineTestSuite/Patterns_OverrideState/LocomotionStateMachine:)move):
-                TryMakeWalk<override>()<transacts><decides>:make_leaves_result = external {}
+                MakeWalk<override>()<transacts><decides>:make_leaves_result = external {}
 
             my_root<public> := class((/UnrealEngine.com/StateMachineTestSuite/Patterns_OverrideState/LocomotionStateMachine:)root):
-                TryMakeMove<override>()<transacts><decides>:make_leaves_result = external {}
+                MakeMove<override>()<transacts><decides>:make_leaves_result = external {}
 
             my_locomotion_state_machine<public> := class((/UnrealEngine.com/StateMachineTestSuite/Patterns_OverrideState/LocomotionStateMachine:)locomotion_state_machine):
                 MakeRoot<override>():make_leaves_result = external {}

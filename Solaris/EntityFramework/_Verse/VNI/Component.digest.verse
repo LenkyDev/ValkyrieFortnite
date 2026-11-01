@@ -1,7 +1,7 @@
 # Verse path: /Verse.org/SceneGraph
-using {/Verse.org/Native}
 using {/Verse.org/Simulation}
 using {/Verse.org/Colors}
+using {/Verse.org/Native}
 using {/Verse.org/SpatialMath}
 # A `capsule_light_component` emits light in all directions into the scene from a capsule shaped source with a specified radius and length. A radius and length of 0 makes it a point light. You can use these
 # to simulate any kind of light sources that emit in all directions and need an elongated source shape, such as a long light bulb.
@@ -129,6 +129,14 @@ overlap_hit<native><public> := struct<epic_internal>:
     # The volume that was hit by SourceVolume
     TargetVolume<native><public>:collision_element
 
+    @available {MinUploadedAtFNVersion := 4300}
+    # Handle to the mesh part on the source end of the hit
+    SourceMeshHandle<public>:mesh_part_handle
+
+    @available {MinUploadedAtFNVersion := 4300}
+    # Handle to the mesh part on the target end of the hit
+    TargetMeshHandle<public>:mesh_part_handle
+
 # The results of a sweep query. See entity.FindSweepHits(). We will get one sweep_hit for each intersection of any volume in SourceVolumes with any other volume.
 sweep_hit<native><public> := struct<epic_internal>:
     # The source component and volume (query input). For compound inputs (like an entity hierarchy) this will be a component/volume in that hierarchy. The SourceGlobalTransform is the transform of SourceVolume at the start of the sweep. For single volume inputs like a sphere, the volume and transform are just the inputs to the sweep, and the component is false.
@@ -143,14 +151,22 @@ sweep_hit<native><public> := struct<epic_internal>:
     # The world-space translation (relative to SourceStartGlobalTransform) of SourceVolume when it touches TargetVolume.
     SourceHitTranslation<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
 
-    # The Distance along the sweep at which SourceVolume touches TargetVolume.
-    SourceHitDistance<native><public>:float = external {}
-
     # The component that was hit by SourceVolume.
     TargetComponent<native><public>:component
 
     # The volume that was hit by SourceVolume.
     TargetVolume<native><public>:collision_element
+
+    @available {MinUploadedAtFNVersion := 4300}
+    # Handle to the mesh part on the source end of the hit
+    SourceMeshHandle<public>:mesh_part_handle
+
+    @available {MinUploadedAtFNVersion := 4300}
+    # Handle to the mesh part on the target end of the hit
+    TargetMeshHandle<public>:mesh_part_handle
+
+    # The Distance along the sweep at which SourceVolume touches TargetVolume.
+    SourceHitDistance<native><public>:float = external {}
 
     # The point of contact between SourceVolume and TargetVolume.
     ContactPosition<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
@@ -200,6 +216,14 @@ collision_point<native><public> := class<concrete>(collision_element):
 # An axis-aligned collision box.
 collision_box<native><public> := class(collision_element):
     var Extents<public>:(/Verse.org/SpatialMath:)vector3
+
+@available {MinUploadedAtFNVersion := 4300}
+# Refers to a component of type `t` without granting access to it.
+component_handle<public>(t:subtype(component)) := class<computes><epic_internal>(entity_handle):
+    (/Verse.org/SceneGraph/component_handle:)SceneGraph_component_handle_Variance<private>():tuple(t, t) = external {}
+
+    # Returns the component this handle refers to. Fails if it is unset or not accessible.
+    GetComponent<public>()<decides><reads>:t = external {}
 
 # A `directional_light_component` simulates light that is being emitted from a source that is infinitely far away. This means that all shadows cast by this light will be parallel, making this the ideal choice for simulating sunlight.
 directional_light_component<native><public> := class<final>(light_component):
@@ -413,11 +437,19 @@ mesh_component<native><public> := class<final_super><epic_internal>(component, e
     # Enable/disable visibility of this mesh.
     var Visible<public>:logic = external {}
 
+    # When enabled, this mesh's collision can contribute to AI navigation. Still requires collision that blocks pawns. Use with care: NPCs will not route around meshes that do not affect navigation. Server-authoritative: this value is not replicated.
+    var CanAffectNavigation<public>:logic = external {}
+
     # Triggered at the beginning of each tick when another entity first overlaps this entity.
     EntityEnteredEvent<native><public>:listenable(entity) = external {}
 
     # Triggered at the beginning of each tick when another entity is no longer overlapping this entity
     EntityExitedEvent<native><public>:listenable(entity) = external {}
+
+@available {MinUploadedAtFNVersion := 4300}
+# Refers to the mesh_component and optional mesh_part at one end of a sweep_hit, overlap_hit or collision_hit, without granting access to them.
+mesh_part_handle<public> := class<computes><final><epic_internal>(component_handle(mesh_component)):
+
 
 # Used to spawn a `particle_system` at the location of this entity. The `particle_system` will simulate while the `particle_system_component` is in the scene.
 # 

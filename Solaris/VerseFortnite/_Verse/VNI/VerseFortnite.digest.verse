@@ -444,11 +444,32 @@ Vehicles<public> := module:
         # Returns the maximum fuel capacity of the vehicle. If the vehicle uses fuel, this value will be between 1.0 and Inf. Otherwise, this value will be -1.0.
         GetFuelCapacity<public>()<transacts>:float
 
+        # Sets remaining amount of fuel. Clamped between 0.0 and max fuel capacity.
+        SetFuelRemaining<public>(Amount:float)<transacts>:void
+
         # Teleports the `fort_vehicle` to the specified `Position` and `Rotation`.
         TeleportTo<public>(Position:(/UnrealEngine.com/Temporary/SpatialMath:)vector3, Rotation:(/UnrealEngine.com/Temporary/SpatialMath:)rotation)<transacts><decides>:void
 
         # The current speed of the vehicle in m/s.
         var<private> Speed<public>:float
+
+        # Amount of fuel used per second while driving.
+        var<private> FuelUsageDriving<public>:float
+
+        # Amount of fuel used per second while boosting.
+        var<private> FuelUsageBoosting<public>:float
+
+        # Amount of fuel used per second while idle.
+        var<private> FuelUsageIdle<public>:float
+
+        # Sets amount of fuel used per second while driving.
+        SetFuelUsageDriving<public>(Value:float)<transacts>:void
+
+        # Sets amount of fuel used per second while boosting.
+        SetFuelUsageBoosting<public>(Value:float)<transacts>:void
+
+        # Sets amount of fuel used per second while idle.
+        SetFuelUsageIdle<public>(Value:float)<transacts>:void
 
         # The boost state of the vehicle. If the vehicle uses boost, this value will be between 0.0 and `BoostCapacity`. Otherwise, this value will be false.
         var<private> BoostRemaining<public>:?float

@@ -1,4 +1,6 @@
 # Verse path: /Fortnite.com
+using {/Verse.org/Native}
+@available {MinUploadedAtFNVersion := 4000}
 # Module import path: /Fortnite.com/Items
 Items<public> := module:
     # Module import path: /Fortnite.com/Items/TMNT
@@ -8,7 +10,7 @@ Items<public> := module:
         using {/UnrealEngine.com/Itemization}
         using {/Fortnite.com/Itemization}
         @preload
-        TMNTPizzaParty_V1_Epic<public> := class<final><concrete>(fort_item_definition_entity):
+        TMNTPizzaParty_V1_Epic<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -18,6 +20,7 @@ Items<public> := module:
             @available {MinUploadedAtFNVersion := 4020}
             RarityComponent<override>:?rarity_component = external {}
 
+@available {MinUploadedAtFNVersion := 4000}
 # Module import path: /Fortnite.com/Weapons
 Weapons<public> := module:
     # Module import path: /Fortnite.com/Weapons/TMNT
@@ -27,7 +30,7 @@ Weapons<public> := module:
         using {/UnrealEngine.com/Itemization}
         using {/Fortnite.com/Itemization}
         @preload
-        DonatellosStaff_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+        DonatellosStaff_V1_Mythic<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -38,7 +41,7 @@ Weapons<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        LeonardosKatanas_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+        LeonardosKatanas_V1_Mythic<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -49,7 +52,7 @@ Weapons<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        MichelangelosNunchaku_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+        MichelangelosNunchaku_V1_Mythic<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 
@@ -60,7 +63,7 @@ Weapons<public> := module:
             RarityComponent<override>:?rarity_component = external {}
 
         @preload
-        RaphaelsSai_V1_Mythic<public> := class<final><concrete>(fort_item_definition_entity):
+        RaphaelsSai_V1_Mythic<public> := class<concrete>(fort_item_definition_entity):
             @available {MinUploadedAtFNVersion := 4000}
             ItemComponent<override>:item_component = external {}
 

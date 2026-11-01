@@ -71,9 +71,8 @@ Persona<epic_internal> := module:
 # Module import path: /Verse.org/Concurrency
 Concurrency<public> := module:
     using {/Verse.org/Native}
-    @cpp_name("verse::awaitable")
     # A parametric interface implemented by events with a `payload` that can be waited on. Matched with `signalable.`
-    awaitable<native><public>(payload:type) := interface:
+    awaitable<public>(payload:type) := interface:
         (/Verse.org/Concurrency/awaitable:)Concurrency_awaitable_Variance<private>():tuple(payload) = external {}
 
         # Suspends the current task until resumed by a matching call to `signalable.Signal`. Returns the event `payload`.
@@ -116,8 +115,8 @@ Diagnostics<public> := module:
     @attribscope_function
     @attribscope_interface
     export_metadata<epic_internal> := class<computes>(attribute):
-        Category<epic_internal>:string
+        Category<public>:string
 
-        Key<epic_internal>:string
+        Key<public>:string
 
-        Value<epic_internal>:string
+        Value<public>:string
