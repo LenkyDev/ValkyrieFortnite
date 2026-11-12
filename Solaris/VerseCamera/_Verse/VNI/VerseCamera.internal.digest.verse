@@ -1,8 +1,8 @@
 # Verse path: /Verse.org/SceneGraph
 using {/Verse.org/Assets}
 using {/Verse.org/SpatialMath}
-using {/Verse.org/Simulation}
 using {/Verse.org/Native}
+using {/Verse.org/Simulation}
 using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
@@ -11,18 +11,21 @@ using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 attach_to_entity_camera_modifier<native><epic_internal> := class<concrete>(camera_modifier):
     @experimental
     @replicated("")
+    @editable
     # Entity to attach to.
     var TargetEntity<native><public>:entity = external {}
 
     @experimental
     @replicated("")
+    @editable
     # Modify the render location to attach to the target's location?'
-    var AttachToLocation<native><public>:logic = external {}
+    var ShouldFollowTranslation<native><public>:logic = external {}
 
     @experimental
     @replicated("")
+    @editable
     # Modify the render rotation to attach to the target's rotation?'
-    var AttachToRotation<native><public>:logic = external {}
+    var ShouldFollowOrientation<native><public>:logic = external {}
 
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
@@ -36,90 +39,107 @@ base_framing_camera_modifier<native><epic_internal> := class<abstract>(camera_mo
     @experimental
     @replicated("")
     @display_name("TargetEntities")
+    @editable
     var WeightedTargets<native><protected>:[]weighted_target_entity = external {}
 
     @experimental
     @replicated("")
+    @editable
     # Whether to frame the target with the ideal framing immediately on the first frame.
-    InitializeWithIdealFraming<native><public>:logic = external {}
+    ShouldInitializeWithIdealFraming<native><public>:logic = external {}
 
     @experimental
     @replicated("")
+    @editable
     # The ideal horizontal screen-space position of the target.
     var IdealFramingLocationScreenSpaceLeft<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # The ideal vertical screen-space position of the target.
     var IdealFramingLocationScreenSpaceUp<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # The damping factor for how fast the framing recenters on the target.
     var ReframeDampingFactor<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # If valid, the recentering damping factor will interpolate between LowReframeDampingFactor and ReframeDampingFactor as the target moves between the ideal target position and the boundaries of the hard-zone. 
     # If invalid, no interpolation occurs and the damping factor is always equal to ReframeDampingFactor.
     var LowReframeDampingFactor<native><public>:?float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # The time spent ramping up the reframing after exiting the dead zone. If set to zero or a negative value, reframing will immediately restart once the target has exited the dead zone. Otherwise the ReframeDampingFactor will interpolate from zero to its desired value over the specified amount of seconds.
     var ReengageTimeSeconds<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # The time spent ramping down the reframing after entering the dead zone. If set to zero or a negative value, reframing will immediately stop once the target has entered the dead zone. Otherwise, the ReframeDampingFactor will interpolate towards zero over the specified amount of seconds.
     var DisengageTimeSeconds<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # How far ahead to look in time when attempting to anticipate the movement of the target.
     var TargetMovementAnticipationTimeSeconds<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # The size of the dead zone, i.e. the zone inside which the target can freely move.
     # Sizes are expressed screen percentages around the desired framing location.
     var DeadZoneScreenSpaceLeft<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # The size of the dead zone, i.e. the zone inside which the target can freely move.
     # Sizes are expressed screen percentages around the desired framing location.
     var DeadZoneScreenSpaceRight<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # The size of the dead zone, i.e. the zone inside which the target can freely move.
     # Sizes are expressed screen percentages around the desired framing location.
     var DeadZoneScreenSpaceTop<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # The size of the dead zone, i.e. the zone inside which the target can freely move.
     # Sizes are expressed screen percentages around the desired framing location.
     var DeadZoneScreenSpaceBottom<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # The margins of the soft zone, i.e. the zone inside which the reframing will engage, in order to bring the target back towards the ideal framing position. If the target is outside of the soft zone, it will be forcibly and immedialy brought back to its edges, so this zone also defines the "hard" or "safe" zone of framing. Sizes are expressed in screen percentages from the edges.
     var SoftZoneScreenSpaceLeft<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # The margins of the soft zone, i.e. the zone inside which the reframing will engage, in order to bring the target back towards the ideal framing position. If the target is outside of the soft zone, it will be forcibly and immedialy brought back to its edges, so this zone also defines the "hard" or "safe" zone of framing. Sizes are expressed in screen percentages from the edges.
     var SoftZoneScreenSpaceRight<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # The margins of the soft zone, i.e. the zone inside which the reframing will engage, in order to bring the target back towards the ideal framing position. If the target is outside of the soft zone, it will be forcibly and immedialy brought back to its edges, so this zone also defines the "hard" or "safe" zone of framing. Sizes are expressed in screen percentages from the edges.
     var SoftZoneScreenSpaceTop<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # The margins of the soft zone, i.e. the zone inside which the reframing will engage, in order to bring the target back towards the ideal framing position. If the target is outside of the soft zone, it will be forcibly and immedialy brought back to its edges, so this zone also defines the "hard" or "safe" zone of framing. Sizes are expressed in screen percentages from the edges.
     var SoftZoneScreenSpaceBottom<native><public>:float = external {}
 
@@ -129,7 +149,7 @@ camera_auto_rotate_direction<native><epic_internal> := enum<open>:
     Facing
     Movement
     MovementOrFacing
-    ZeroDirection
+    GlobalForward
 
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
@@ -138,34 +158,46 @@ camera_auto_rotate_direction<native><epic_internal> := enum<open>:
 auto_rotate_camera_modifier_settings<native><epic_internal> := class<concrete>:
     @experimental
     @replicated("")
+    @editable
     # Whether to enable auto-rotation
-    var Enable<native><public>:logic = external {}
+    var IsEnabled<native><public>:logic = external {}
 
     @experimental
     @replicated("")
+    @editable
     # The direction to re-align towards
     Direction<native><public>:camera_auto_rotate_direction = external {}
 
     @experimental
     @replicated("")
+    @editable
     # The time in seconds, to wait before re-aligning.
     WaitTime<native><public>:float = external {}
 
     @experimental
     @replicated("")
     @units("Radians")
+    @editable
     # The minimum player-induced/manual rotation in radians, to deactivate auto-rotation.
-    DeactivationThreshold<native><public>:float = external {}
+    DisableThreshold<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # Whether to auto-rotate yaw.
-    AutoRotateYaw<native><public>:logic = external {}
+    ShouldAutoRotateYaw<native><public>:logic = external {}
 
     @experimental
     @replicated("")
+    @editable
     # Whether to auto-rotate pitch.
-    AutoRotatePitch<native><public>:logic = external {}
+    ShouldAutoRotatePitch<native><public>:logic = external {}
+
+    @experimental
+    @replicated("")
+    @editable
+    # Interpolation settings to use when re-aligning towards the auto-rotate direction.
+    InterpolationSettings<native><public>:camera_value_interpolation_settings = external {}
 
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
@@ -174,37 +206,43 @@ auto_rotate_camera_modifier_settings<native><epic_internal> := class<concrete>:
 boom_arm_camera_modifier<native><epic_internal> := class<concrete>(camera_modifier):
     @experimental
     @replicated("")
+    @editable
     # The offset of the boom. Rotation occurs at the base (i.e. before the offset).
     var BoomOffset<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
 
     @experimental
     @replicated("")
+    @editable
     # The maximum amount of forward movement the interpolator can introduce, expressed as a factor of the default boom length. If the value is less than 0.0 then there is no limit.
     var MaxForwardInterpolationFactor<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # The maximum amount of backward movement the interpolator can introduce, expressed as a factor of the default boom length. If the value is less than 0.0 then there is no limit.
     var MaxBackwardInterpolationFactor<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # If true, the boom arm's rotation will add to the existing rotation instead of being absolute.
     IsRotationAdditive<native><public>:logic = external {}
 
     @experimental
     @replicated("")
-    # Optional auto rotation settings
-    AutoRotateSettings<native><public>:?auto_rotate_camera_modifier_settings = external {}
+    @editable
+    # Auto rotation settings
+    AutoRotateSettings<native><public>:auto_rotate_camera_modifier_settings = external {}
 
     @experimental
     @replicated("")
+    @editable
     # Interpolation settings to use for changing the boom length based on its pivot's movements.
     BoomLengthInterpolationSettings<native><public>:camera_value_interpolation_settings = external {}
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
-# Camera body settings, e.g. sensor/film settings, shutter speed, etc
+# Camera body settings, e.g. sensor/film settings, shutter speed, etc.
 camera_body<native><public> := class<computes>:
     @replicated("")
     # Width of camera sensor in millimeters.
@@ -223,11 +261,11 @@ camera_body<native><public> := class<computes>:
     SensorVerticalOffsetMillimeters<native><public>:float = external {}
 
     @replicated("")
-    # The camera sensor sensitivity to light.
+    # The camera sensor sensitivity to light (ISO value, unitless).
     ISO<native><public>:float = external {}
 
     @replicated("")
-    # Camera shutter speed.
+    # Camera shutter speed, in seconds.
     ShutterSpeed<native><public>:float = external {}
 
 @available {MinUploadedAtFNVersion := 4110}
@@ -254,26 +292,30 @@ camera_component<native><public> := class<final_super><abstract>(component):
     # A camera modifier has an Evaluate function that takes in the current state of the camera (taking into account all previously executed modifiers) and returns the desired output camera state
     CameraModifiers<native><public>:modifier_stack(camera_state) = external {}
 
-    AddCameraModifier<native_callable><epic_internal>(Modifier:camera_modifier, Priority:rational):cancelable = external {}
+    AddCameraModifier<native_callable><epic_internal>(Modifier:camera_modifier):cancelable = external {}
 
     @editable
     @replicated("")
     @experimental
-    # Optionally override the near clipping plane distance. If value is <= 0.0 then use the default settings
+    # Optionally override the near clipping plane distance, in centimeters. If value is <= `0.0` then use the default settings.
     var NearClippingPlaneDistance<native><public>:float = external {}
 
     @editable
     @replicated("")
     @experimental
-    # Optionally override the far clipping plane distance. If value is Inf then use the default settings
+    # Optionally override the far clipping plane distance, in centimeters. If value is `Inf` then use the default settings.
     var FarClippingPlaneDistance<native><public>:float = external {}
 
     @experimental
-    # Get transition to use when exiting this camera mode to transition to the destination camera mode
+    # Get transition to use when exiting this camera mode to transition to `DestinationCamera`. `GetExitTransition` of the outgoing `camera_component` will always take precedence over the `GetEnterTransition` of the incoming `camera_component`.
+    # Fails if this camera does not provide an exit transition, in which case the transition returned by `GetEnterTransition` of the incoming `camera_component` is used.
+    # The default implementation always fails, which is expected to be the most typical use case. Override this function to successfully return a `camera_transition` if you want to explicitly control how this camera transitions out to another.
     GetExitTransition<native_callable><public>(DestinationCamera:camera_component)<transacts><decides>:camera_transition = external {}
 
     @experimental
-    # Get transition to use when entering this camera mode to transition to the specified camera mode
+    # Get transition to use when entering this camera mode from `SourceCamera`. Only used if `GetExitTransition` of `SourceCamera` fails.
+    # Fails if this camera does not provide an enter transition, in which case the camera system instantly transitions to this `camera_component` without a blend.
+    # The default implementation never fails, and returns a `camera_transition` with a quick linear blend.
     GetEnterTransition<native_callable><public>(SourceCamera:camera_component)<transacts><decides>:camera_transition = external {}
 
     @experimental
@@ -343,7 +385,12 @@ camera_director_component<native><public> := class<final_super>(camera_component
     # Purely cosmetic effects that you don't want to affect the player's aim or movement direction can live in the Presentation layer.
     PresentationCameraModifiers<native><public>:modifier_stack(camera_state) = external {}
 
-    # Add a camera to the director. The camera with the highest priority will be chosen to be the active camera
+    # Add a camera to the director. The camera with the highest priority will be chosen to be the active camera.
+    # Fails if:
+    #  * `Camera` is not added to an entity.
+    #  * The entity `Camera` is attached to is not in the scene.
+    #  * Adding `Camera` would (directly or indirectly) result in this `camera_director_component` being recursively added to itself.
+    # Since a `camera_director_component` is a `camera_component`, camera directors can be nested to support more complex scenarios.
     AddCamera<native><public>(Camera:camera_component, Priority:rational)<transacts><decides>:cancelable
 
     # Returns the current camera transform if available.
@@ -351,20 +398,20 @@ camera_director_component<native><public> := class<final_super>(camera_component
 
     @available {MinUploadedAtFNVersion := 4230}
     @experimental
-    AddPreCameraLayerModifier<native_callable><epic_internal>(Modifier:camera_modifier, Priority:rational):cancelable = external {}
+    AddPreCameraLayerModifier<native_callable><epic_internal>(Modifier:camera_modifier):cancelable = external {}
 
     @available {MinUploadedAtFNVersion := 4230}
     @experimental
-    AddPostCameraLayerModifier<native_callable><epic_internal>(Modifier:camera_modifier, Priority:rational):cancelable = external {}
+    AddPostCameraLayerModifier<native_callable><epic_internal>(Modifier:camera_modifier):cancelable = external {}
 
     @available {MinUploadedAtFNVersion := 4230}
     @experimental
-    AddPresentationLayerModifier<native_callable><epic_internal>(Modifier:camera_modifier, Priority:rational):cancelable = external {}
+    AddPresentationLayerModifier<native_callable><epic_internal>(Modifier:camera_modifier):cancelable = external {}
 
     @replicated("")
     @experimental
     @available {MinUploadedAtFNVersion := 4230}
-    var UseCameraLocationAsAudioListenerPosition<native><epic_internal>:logic = external {}
+    var ShouldUseCameraLocationAsAudioListenerPosition<native><epic_internal>:logic = external {}
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
@@ -403,13 +450,12 @@ MakeCameraModifierStack<native><epic_internal>()<converges>:modifier_stack(camer
 @experimental
 # Modifier stack for camera state.
 camera_modifier_stack<native><public> := class(modifier_stack(camera_state)):
-    # Returns a camera_state which is the input evaluated against each modifier in the stack, executed in position order.
+    # Returns a camera_state which is the input evaluated against each modifier in the stack, executed in stack order.
     Evaluate<native><override>(InValue:camera_state)<reads>:camera_state
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
-# Base class for objects that can modify camera state. 
-# You can also implement the modifier(camera_state) interface directly, but camera_modifier provides an convenient, overridable Tick function for modifiers that need to maintain state (since Evaluate is <reads>).
+# Base class for objects that can modify the output state of a camera.
 camera_modifier<native><public> := class(modifier(camera_state)):
     @experimental
     Tick<native_callable><epic_internal>(DeltaTime:float)<transacts>:void = external {}
@@ -421,60 +467,67 @@ camera_modifier<native><public> := class(modifier(camera_state)):
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
-# Epic internal-only camera_modifier class that is free of the restrictions temporarily in place on camera_modifier until we have full <predicts> support
+@hide_in_editor
+# Epic internal-only `camera_modifier` class that is free of the restrictions temporarily in place on `camera_modifier` until we have full `<predicts>` support.
 internal_camera_modifier<native><epic_internal> := class(camera_modifier):
 
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
+# Describes the projection mode of a camera: Perspective, or Orthographic.
 camera_projection_mode<native><public> := enum<open>:
+    # Perspective projection, where objects further from the camera appear smaller. Field of view is controlled by `perspective_camera_component.FieldOfView`.
     Perspective
+    # Orthographic projection, where objects appear the same size regardless of their distance from the camera. Visible width is controlled by `orthographic_camera_component.OrthographicProjectionWidth`.
     Orthographic
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
+# Represents the entire state of a camera. It is used by the camera modifier API to allow modification of the output state of a camera.
 camera_state<native><public> := class<final><computes>:
     @experimental
     @replicated("")
-    # Render location of the camera. This render location can be modified by camera directions (like camera shakes), without modifying the physical location of any camera entity
+    # Render location of the camera. This render location can be modified by camera directions (like camera shakes), without modifying the physical location of any camera entity.
     RenderLocation<native><public>:(/Verse.org/SpatialMath:)vector3
 
     @experimental
     @replicated("")
-    # Render rotation of the camera. This render rotation can be modified by camera directions (like camera shakes), without modifying the physical location of any camera entity
+    # Render rotation of the camera. This render rotation can be modified by camera directions (like camera shakes), without modifying the physical location of any camera entity.
     RenderRotation<native><public>:(/Verse.org/SpatialMath:)rotation
 
     @experimental
     @replicated("")
-    # Determines how wide the camera projects in orthographic mode, in centimeters - Used only if projection mode is orthographic
+    # Determines how wide the camera projects in orthographic mode, in centimeters - Used only if projection mode is orthographic.
     OrthographicProjectionWidth<native><public>:float = external {}
 
     @experimental
     @replicated("")
-    # Physical camera body settings
+    # Physical camera body settings.
     Body<native><public>:camera_body = external {}
 
     @experimental
     @replicated("")
-    # Physical camera lens settings
+    # Physical camera lens settings.
     Lens<native><public>:camera_lens = external {}
 
     @experimental
     @replicated("")
-    # Projection mode - perspective or orthographic
+    # Projection mode - perspective or orthographic.
     ProjectionMode<native><public>:camera_projection_mode = external {}
 
     @experimental
     @replicated("")
-    # How much to apply physical camera settings between 0.0 and 1.0
+    # How much to apply physical camera settings, from `0.0` (not applied) to `1.0` (fully applied). Values outside this range are clamped.
     PhysicalCameraWeight<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    # Near clipping plane distance override, in centimeters. If value is <= `0.0` then use the default settings.
     NearClippingPlaneDistance<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    # Far clipping plane distance override, in centimeters. If value is `Inf` then use the default settings.
     FarClippingPlaneDistance<native><public>:float = external {}
 
 @available {MinUploadedAtFNVersion := 4110}
@@ -484,23 +537,27 @@ CloneCameraState<constructor><public>(CameraState:camera_state)<computes>:camera
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
-# Controls how a camera mode transitions to another
-camera_transition_initial_orientation<native><public> := enum:
+# Controls the initial orientation of the incoming camera when a `camera_transition` starts.
+camera_transition_initial_orientation<native><public> := enum<open>:
+    # Orient the incoming camera in the same direction as the outgoing camera.
     PreviousYawPitch
+    # Make the incoming camera point at the same target as the outgoing camera's target on its last frame.
     PreviousAbsoluteTarget
+    # Make the incoming camera point at the outgoing camera's target on its last frame, offset by how much the camera's context has moved and turned since that frame.
     PreviousRelativeTarget
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
-# Controls how a camera mode transitions to another
+# Controls how a camera mode transitions to another.
 camera_transition<native><public> := class<concrete>:
     @editable
     @replicated("")
+    # Controls how the camera transition blends between the outgoing camera and incoming camera.
     Blend<native><public>:camera_mode_blend = external {}
 
     @editable
     @replicated("")
-    # Sets the duration of the camera transition
+    # Sets the duration of the camera transition, in seconds.
     Duration<native><public>:float = external {}
 
     @editable
@@ -510,39 +567,40 @@ camera_transition<native><public> := class<concrete>:
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
 @hide_in_editor
-# Configurable blend between two camera modes
+# Configurable blend between two camera modes.
 camera_mode_blend<native><public> := class<concrete>:
 
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
-# Instantly snap to target mode
+# Instantly snap to target mode.
 camera_mode_blend_pop<native><public> := class<concrete>(camera_mode_blend):
 
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
-# Linear blend between camera modes
+# Linear blend between camera modes.
 camera_mode_blend_linear<native><public> := class<concrete>(camera_mode_blend):
 
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
-# Camera mode blend that uses the smoothstep function to blend between the two camera modes
+# Camera mode blend that uses the smoothstep function to blend between the two camera modes.
 camera_mode_blend_smoothstep<native><public> := class<concrete>(camera_mode_blend):
 
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
-# Camera mode blend that uses the smootherstep function to blend between the two camera modes
+# Camera mode blend that uses the smootherstep function to blend between the two camera modes.
 camera_mode_blend_smootherstep<native><public> := class<concrete>(camera_mode_blend):
 
 
 @available {MinUploadedAtFNVersion := 4110}
 @experimental
-# Configurable blend between two camera modes
+# Camera mode blend that attempts to orbit around the camera's pivot point.
 camera_mode_blend_orbit<native><public> := class<concrete>(camera_mode_blend):
     @replicated("")
+    # The underlying blend used by the orbit blend. This controls how the interpolation is performed during the orbit blend.
     DrivingBlend<native><public>:camera_mode_blend = external {}
 
 @available {MinUploadedAtFNVersion := 4300}
@@ -593,7 +651,7 @@ critical_damper_camera_value_interpolation_settings<native><epic_internal> := cl
 @experimental
 @hide_in_editor
 # Infinite impulse response filter interpolator.
-infinite_impulse_response_camera_value_interpolation_settings<native><epic_internal> := class<concrete>(camera_value_interpolation_settings):
+iir_camera_value_interpolation_settings<native><epic_internal> := class<concrete>(camera_value_interpolation_settings):
     @experimental
     @replicated("")
     # The speed of interpolation.
@@ -602,13 +660,13 @@ infinite_impulse_response_camera_value_interpolation_settings<native><epic_inter
     @experimental
     @replicated("")
     # Whether to use fixed-step evaluation.
-    UseFixedStep<native><public>:logic = external {}
+    ShouldUseFixedStep<native><public>:logic = external {}
 
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
 @hide_in_editor
 #  Double infinite impulse response filter interpolator.
-double_infinite_impulse_response_camera_value_interpolation_settings<native><epic_internal> := class<concrete>(camera_value_interpolation_settings):
+double_iir_camera_value_interpolation_settings<native><epic_internal> := class<concrete>(camera_value_interpolation_settings):
     @experimental
     @replicated("")
     # The primary speed of interpolation.
@@ -622,7 +680,7 @@ double_infinite_impulse_response_camera_value_interpolation_settings<native><epi
     @experimental
     @replicated("")
     # Whether to use fixed-step evaluation.
-    UseFixedStep<native><public>:logic = external {}
+    ShouldUseFixedStep<native><public>:logic = external {}
 
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
@@ -631,76 +689,89 @@ double_infinite_impulse_response_camera_value_interpolation_settings<native><epi
 collision_push_camera_modifier<native><epic_internal> := class<concrete>(camera_modifier):
     @experimental
     @replicated("")
+    @editable
     # Collision will ignore the specified entities only.
     var IgnoreEntities<native><public>:[]entity = external {}
 
     @experimental
     @replicated("")
+    @editable
     # Collision will ignore the specified entities and all their descendants. If an entity is in both arrays, then this one takes precedence as being in IgnoreEntities doesn't specifically exclude an entity's descendants from being included, it just doesn't add them'.
     var IgnoreEntitiesAndDescendants<native><public>:[]entity = external {}
 
     @experimental
     @replicated("")
-    # World-space offset from the target to the line trace's end..
-    var SafePositionOffset<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
+    @editable
+    # Global-space offset from the target to the line trace's end..
+    var SafeLocationOffset<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
 
     @experimental
     @replicated("")
+    @editable
     # Sphere radius to use for collision shape cast.
     var CollisionSphereRadius<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # Interpolation settings to use when pushing camera out, away from the pivot point.
     PushInterpolationSettings<native><public>:camera_value_interpolation_settings = external {}
 
     @experimental
     @replicated("")
+    @editable
     # Interpolation settings to use when pulling camera in, towards the pivot point.
     PullInterpolationSettings<native><public>:camera_value_interpolation_settings = external {}
 
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
 @hide_in_editor
-# Camera modifier that smooths the camera's rotation. Each axis is damped independently, so a camera can ease into a new yaw while pitching immediately. A damping factor of zero leaves that axis undamped.
+# Camera modifier that smooths the camera's rotation using a critically damped spring. Each axis is damped independently, so a camera can ease into a new yaw while pitching immediately. A damping factor of zero leaves that axis undamped.
 dampen_rotation_camera_modifier<native><epic_internal> := class<concrete>(camera_modifier):
     @experimental
     @replicated("")
+    @editable
     # Damping factor for the camera yaw.
     var YawDampingFactor<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # Damping factor for the camera pitch.
     var PitchDampingFactor<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # Damping factor for the camera roll.
     var RollDampingFactor<native><public>:float = external {}
 
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
 @hide_in_editor
-# Camera modifier that smooths the camera's movement. Each axis is damped independently, so a camera can lag behind vertically while tracking laterally without delay. A damping factor of zero leaves that axis undamped.
+# Camera modifier that smooths the camera's movement using a critically damped spring. Each axis is damped independently, so a camera can lag behind vertically while tracking laterally without delay. A damping factor of zero leaves that axis undamped.
 dampen_translation_camera_modifier<native><epic_internal> := class<concrete>(camera_modifier):
     @experimental
     @replicated("")
+    @editable
     # Damping factor for camera movement along the Forward axis.
     var ForwardDampingFactor<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # Damping factor for camera movement along the Left axis.
     var LeftDampingFactor<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # Damping factor for camera movement along the Up axis.
     var UpDampingFactor<native><public>:float = external {}
 
     @experimental
     @replicated("")
+    @editable
     # The space the damping axes are measured in.
     DampenSpace<native><public>:camera_offset_space = external {}
 
@@ -711,11 +782,13 @@ dampen_translation_camera_modifier<native><epic_internal> := class<concrete>(cam
 dolly_framing_camera_modifier<native><epic_internal> := class<concrete>(base_framing_camera_modifier):
     @experimental
     @replicated("")
+    @editable
     # Whether the dolly can move horizontally.
     CanMoveHorizontally<native><public>:logic = external {}
 
     @experimental
     @replicated("")
+    @editable
     # Whether the dolly can move vertically.
     CanMoveVertically<native><public>:logic = external {}
 
@@ -724,7 +797,7 @@ dolly_framing_camera_modifier<native><epic_internal> := class<concrete>(base_fra
 camera_offset_space<native><epic_internal> := enum<open>:
     CameraSpace
     PivotSpace
-    WorldSpace
+    GlobalSpace
 
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
@@ -733,17 +806,20 @@ camera_offset_space<native><epic_internal> := enum<open>:
 offset_camera_modifier<native><epic_internal> := class<concrete>(camera_modifier):
     @experimental
     @replicated("")
+    @editable
     # The translation offset to apply to the camera.
     var TranslationOffset<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
 
     @experimental
     @replicated("")
+    @editable
     # The rotation offset to apply to the camera.
     var RotationOffset<native><public>:(/Verse.org/SpatialMath:)rotation = external {}
 
     @experimental
     @replicated("")
-    # The space in which to apply the offset. Constant - baked in when the camera node is created.
+    @editable
+    # The space in which to apply the offset.
     OffsetSpace<native><public>:camera_offset_space = external {}
 
 @available {MinUploadedAtFNVersion := 4110}
@@ -769,11 +845,13 @@ orthographic_camera_component<native><public> := class<final_super>(camera_compo
 panning_framing_camera_modifier<native><epic_internal> := class<concrete>(base_framing_camera_modifier):
     @experimental
     @replicated("")
+    @editable
     # Whether the camera can rotate laterally (yaw).
     CanYaw<native><public>:logic = external {}
 
     @experimental
     @replicated("")
+    @editable
     # Whether the camera can rotate vertically (pitch).
     CanPitch<native><public>:logic = external {}
 
@@ -791,7 +869,9 @@ perspective_camera_component<native><public> := class<final_super>(camera_compon
     @replicated("")
     @experimental
     @units("Radians")
-    # Horizontal field of view in radians, specified for an aspect ratio of 16:9 /nThis is then to calculate an effective horizontal field of view for the display’s real aspect ratio /nIf for example the screen is an ultrawide (21:9, or 32:9 being common ultrawide aspect ratios) then in practice the actual field of view will be wider. This is known as the Hor+ view scaling method and is generally accepted to be the best solution for ultrawide displays.
+    # Horizontal field of view in radians, specified for an aspect ratio of 16:9. This is then used to calculate an effective horizontal field of view for the display’s real aspect ratio. 
+    # If for example the screen is an ultrawide (21:9, or 32:9 being common ultrawide aspect ratios), then in practice the actual horizontal field of view will be wider. 
+    # This is known as the Hor+ view scaling method and is generally accepted to be the best solution for ultrawide displays.
     var FieldOfView<native><public>:float = external {}
 
 @available {MinUploadedAtFNVersion := 4110}
@@ -820,21 +900,23 @@ physical_camera_component<native><public> := class<final_super>(camera_component
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
 @hide_in_editor
-# Camera modifier that sets the camera's rotation, replacing whatever the camera state arrived with rather than offsetting it. The rotation is always in world space.
+# Camera modifier that sets the camera's rotation, replacing whatever the camera state arrived with rather than offsetting it. The rotation is always in global-space.
 set_rotation_camera_modifier<native><epic_internal> := class<concrete>(camera_modifier):
     @experimental
     @replicated("")
-    # The world-space rotation to set on the camera.
+    @editable
+    # The global-space rotation to set on the camera.
     var Rotation<native><public>:(/Verse.org/SpatialMath:)rotation = external {}
 
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
 @hide_in_editor
-# Camera modifier that sets the camera's translation, replacing whatever the camera state arrived with rather than offsetting it. The translation is always in world space.
+# Camera modifier that sets the camera's translation, replacing whatever the camera state arrived with rather than offsetting it. The translation is always in global-space.
 set_translation_camera_modifier<native><epic_internal> := class<concrete>(camera_modifier):
     @experimental
     @replicated("")
-    # The world-space translation to set on the camera.
+    @editable
+    # The global-space translation to set on the camera.
     var Translation<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
 
 @available {MinUploadedAtFNVersion := 4300}

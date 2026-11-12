@@ -177,6 +177,32 @@ sweep_hit<native><public> := struct<epic_internal>:
     # If TargetVolume is a polygonal object (mesh, convex hull, etc.) and the contact point is on an edge or vertex, this is the most-opposing face normal of the faces that share that edge or vertex. Otherwise it is the same as HitNormal.
     ContactFaceNormal<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
 
+@available {MinUploadedAtFNVersion := 4300}
+@experimental
+contact_point<native><public> := struct<epic_internal>:
+    ContactPosition<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+    ContactNormal<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+    ContactImpulse<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
+
+    ContactDepth<native><public>:float = external {}
+
+@available {MinUploadedAtFNVersion := 4300}
+@experimental
+# The result of a collision in the physics engine. See has_collision::GetCollisionEvent()
+collision_hit<native><public> := struct<epic_internal>:
+    @available {MinUploadedAtFNVersion := 4300}
+    # Handle to the mesh part on the source end of the hit
+    SourceMeshHandle<public>:mesh_part_handle
+
+    @available {MinUploadedAtFNVersion := 4300}
+    # Handle to the mesh part on the target end of the hit
+    TargetMeshHandle<public>:mesh_part_handle
+
+    # Array of physical contact points between the two meshes/mesh_parts.
+    ContactPoints<native><public>:[]contact_point
+
 # Collision Volumes represent the collision shapes of meshes. They can be detected by Overlap and Sweep queries and generate collisions in the physics simulation.
 collision_volume<native><public> := class<abstract>:
     # Enable/disable collision on this volume.

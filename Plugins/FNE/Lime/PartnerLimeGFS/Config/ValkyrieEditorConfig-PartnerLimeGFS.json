@@ -266,6 +266,18 @@
 			"/Script/LimeNativeEditor.AtomActorValidator_Scale": {
 				"Visible": false
 			},
+			"/Script/LimeNativeEditor.LimeAtomValidation_ScaleValidator": {
+				"Visible": false
+			},
+			"/Script/LimeNativeEditor.LimeAtomValidation_MaterialsValidator": {
+				"Visible": false
+			},
+			"/Script/LimeNativeEditor.LimeAtomValidation_OverlapValidator": {
+				"Visible": false
+			},
+			"/Script/LimeNativeEditor.LimeAtomValidation_BuildingOverlapValidator": {
+				"Visible": false
+			},
 			"/FigureCharacter/Figure_Core/Rig/CR_Minifig_v3.CR_Minifig_v3_C": {
 				"Visible": true
 			},
@@ -301,7 +313,13 @@
 						"NudgeLeft",
 						"NudgeUp",
 						"NudgeDown",
-						"SnapPaintMode"
+						"SnapPaintMode",
+						"ValidateSelected",
+						"GoToClosestValidationIssue",
+						"ValidateLoadedLevel",
+						"FocusValidationActors",
+						"CopyValidationMessages",
+						"DrawSelectedOverlaps"
 					]
 				}
 			}
@@ -322,7 +340,8 @@
 			"Global": {
 				"AllowList": {
 					"+": [
-						"AtomDBManagement"
+						"AtomDBManagement",
+						"AtomValidation"
 					]
 				}
 			},
@@ -330,7 +349,8 @@
 				"AllowList": {
 					"+": [
 						"AtomDBManagement",
-						"AtomPaletteTab_v2"
+						"AtomPaletteTab_v2",
+						"AtomValidation"
 					]
 				}
 			}

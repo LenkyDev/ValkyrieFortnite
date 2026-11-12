@@ -171,18 +171,20 @@ AI<public> := module:
 
         OnEndSimulation<override><final>():void = external {}
 
+    @available {MinUploadedAtFNVersion := 4300}
+    @experimental
+    # Controls whether a creature can be tamed and ridden
+    fort_riding_component<native><epic_internal> := class<final_super><epic_internal>(component, pawn_interop_interface):
+        HandlePawnLinked<override><native>(Info:pawn_linked_info):void
+
+        var AllowTaming<public>:logic = external {}
+
+        var AllowRiding<public>:logic = external {}
+
     @available {MinUploadedAtFNVersion := 3900}
     # Fortnite Wildlife AI actions management
     fort_wildlife_actions_component<native><epic_internal> := class<epic_internal>(npc_actions_component):
         OnInitialized<native><override>():void
-
-    @available {MinUploadedAtFNVersion := 4300}
-    @experimental
-    # Base NPC component shared by all wildlife
-    fort_wildlife_component<native><epic_internal> := class<final_super>(fort_npc_component):
-        var AllowTaming<public>:logic = external {}
-
-        var AllowRiding<public>:logic = external {}
 
     # Shooting-accuracy tier for a Fortnite guard NPC. Mirrors the guard spawner's Accuracy option (LOW / MODERATE / HIGH / VERY HIGH).
     npc_accuracy<native><epic_internal> := enum<open>:

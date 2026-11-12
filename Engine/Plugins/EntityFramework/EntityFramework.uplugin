@@ -74,6 +74,10 @@
 			"Type": "Runtime"
 		},
 		{
+			"Name": "Vehicle",
+			"Type": "Runtime"
+		},
+		{
 			"Name": "TedsVerseEntityFields",
 			"Type": "Editor"
 		},

@@ -16,22 +16,10 @@
 					"message_pattern": "^Function \\(/Verse\\.org/[\\w/]+:\\)\\w+ has an <override> attribute, but could not find a parent function to override \\(perhaps the parent function's access specifiers are too restrictive\\?\\)\\.$"
 				},
 				{
-					"name": "type-var-result-position",
-					"severity": "Error",
-					"code": "3503",
-					"message_pattern": "^Type variable \\w+ used only in a result position\\."
-				},
-				{
 					"name": "non-abstract-missing-impl",
 					"severity": "Error",
 					"code": "3591",
 					"message_pattern": "^Non-abstract class inherits abstract function `\\w+` from `\\w+` but does not provide an implementation\\.$"
-				},
-				{
-					"name": "predicts-unsupported-member",
-					"severity": "Error",
-					"code": "3502",
-					"message_pattern": "^<predicts> data members of type `.*` are not supported yet\\.$"
 				},
 				{
 					"name": "preceding-type-access",
@@ -69,22 +57,10 @@
 					"message_pattern": "^Function \\(/Verse\\.org/[\\w/]+:\\)\\w+ has an <override> attribute, but could not find a parent function to override \\(perhaps the parent function's access specifiers are too restrictive\\?\\)\\.$"
 				},
 				{
-					"name": "type-var-result-position",
-					"severity": "Error",
-					"code": "3503",
-					"message_pattern": "^Type variable \\w+ used only in a result position\\."
-				},
-				{
 					"name": "non-abstract-missing-impl",
 					"severity": "Error",
 					"code": "3591",
 					"message_pattern": "^Non-abstract class inherits abstract function `\\w+` from `\\w+` but does not provide an implementation\\.$"
-				},
-				{
-					"name": "predicts-unsupported-member",
-					"severity": "Error",
-					"code": "3502",
-					"message_pattern": "^<predicts> data members of type `.*` are not supported yet\\.$"
 				},
 				{
 					"name": "preceding-type-access",
@@ -122,22 +98,10 @@
 					"message_pattern": "^Function \\(/Verse\\.org/[\\w/]+:\\)\\w+ has an <override> attribute, but could not find a parent function to override \\(perhaps the parent function's access specifiers are too restrictive\\?\\)\\.$"
 				},
 				{
-					"name": "type-var-result-position",
-					"severity": "Error",
-					"code": "3503",
-					"message_pattern": "^Type variable \\w+ used only in a result position\\."
-				},
-				{
 					"name": "non-abstract-missing-impl",
 					"severity": "Error",
 					"code": "3591",
 					"message_pattern": "^Non-abstract class inherits abstract function `\\w+` from `\\w+` but does not provide an implementation\\.$"
-				},
-				{
-					"name": "predicts-unsupported-member",
-					"severity": "Error",
-					"code": "3502",
-					"message_pattern": "^<predicts> data members of type `.*` are not supported yet\\.$"
 				},
 				{
 					"name": "preceding-type-access",
@@ -175,22 +139,10 @@
 					"message_pattern": "^Function \\(/Verse\\.org/[\\w/]+:\\)\\w+ has an <override> attribute, but could not find a parent function to override \\(perhaps the parent function's access specifiers are too restrictive\\?\\)\\.$"
 				},
 				{
-					"name": "type-var-result-position",
-					"severity": "Error",
-					"code": "3503",
-					"message_pattern": "^Type variable \\w+ used only in a result position\\."
-				},
-				{
 					"name": "non-abstract-missing-impl",
 					"severity": "Error",
 					"code": "3591",
 					"message_pattern": "^Non-abstract class inherits abstract function `\\w+` from `\\w+` but does not provide an implementation\\.$"
-				},
-				{
-					"name": "predicts-unsupported-member",
-					"severity": "Error",
-					"code": "3502",
-					"message_pattern": "^<predicts> data members of type `.*` are not supported yet\\.$"
 				},
 				{
 					"name": "preceding-type-access",
@@ -228,22 +180,10 @@
 					"message_pattern": "^Function \\(/Verse\\.org/[\\w/]+:\\)\\w+ has an <override> attribute, but could not find a parent function to override \\(perhaps the parent function's access specifiers are too restrictive\\?\\)\\.$"
 				},
 				{
-					"name": "type-var-result-position",
-					"severity": "Error",
-					"code": "3503",
-					"message_pattern": "^Type variable \\w+ used only in a result position\\."
-				},
-				{
 					"name": "non-abstract-missing-impl",
 					"severity": "Error",
 					"code": "3591",
 					"message_pattern": "^Non-abstract class inherits abstract function `\\w+` from `\\w+` but does not provide an implementation\\.$"
-				},
-				{
-					"name": "predicts-unsupported-member",
-					"severity": "Error",
-					"code": "3502",
-					"message_pattern": "^<predicts> data members of type `.*` are not supported yet\\.$"
 				},
 				{
 					"name": "preceding-type-access",
@@ -281,22 +221,10 @@
 					"message_pattern": "^Function \\(/Verse\\.org/[\\w/]+:\\)\\w+ has an <override> attribute, but could not find a parent function to override \\(perhaps the parent function's access specifiers are too restrictive\\?\\)\\.$"
 				},
 				{
-					"name": "type-var-result-position",
-					"severity": "Error",
-					"code": "3503",
-					"message_pattern": "^Type variable \\w+ used only in a result position\\."
-				},
-				{
 					"name": "non-abstract-missing-impl",
 					"severity": "Error",
 					"code": "3591",
 					"message_pattern": "^Non-abstract class inherits abstract function `\\w+` from `\\w+` but does not provide an implementation\\.$"
-				},
-				{
-					"name": "predicts-unsupported-member",
-					"severity": "Error",
-					"code": "3502",
-					"message_pattern": "^<predicts> data members of type `.*` are not supported yet\\.$"
 				},
 				{
 					"name": "preceding-type-access",
@@ -334,22 +262,10 @@
 					"message_pattern": "^Function \\(/Verse\\.org/[\\w/]+:\\)\\w+ has an <override> attribute, but could not find a parent function to override \\(perhaps the parent function's access specifiers are too restrictive\\?\\)\\.$"
 				},
 				{
-					"name": "type-var-result-position",
-					"severity": "Error",
-					"code": "3503",
-					"message_pattern": "^Type variable \\w+ used only in a result position\\."
-				},
-				{
 					"name": "non-abstract-missing-impl",
 					"severity": "Error",
 					"code": "3591",
 					"message_pattern": "^Non-abstract class inherits abstract function `\\w+` from `\\w+` but does not provide an implementation\\.$"
-				},
-				{
-					"name": "predicts-unsupported-member",
-					"severity": "Error",
-					"code": "3502",
-					"message_pattern": "^<predicts> data members of type `.*` are not supported yet\\.$"
 				},
 				{
 					"name": "preceding-type-access",

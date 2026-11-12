@@ -278,6 +278,22 @@ QuestFrameworkTests<public> := module:
 
 
     @hide_in_editor
+    verse_only_plain_presented_quest<epic_internal> := class((/Verse.org:)Progression.quest, (/Verse.org:)Progression.has_objective, (/UnrealEngine.com:)Progression.has_quest_rewards):
+
+
+    @hide_in_editor
+    chaining_set_objective_quest<epic_internal> := class((/Verse.org:)Progression.quest, (/Verse.org:)Progression.has_objective):
+        SetObjective<override>(InObjective:(/Verse.org:)Progression.objective)<transacts>:void = external {}
+
+    @hide_in_editor
+    unchained_set_objective_quest<epic_internal> := class((/Verse.org:)Progression.quest, (/Verse.org:)Progression.has_objective):
+        SetObjective<override>(InObjective:(/Verse.org:)Progression.objective)<transacts>:void = external {}
+
+    @hide_in_editor
+    verse_only_holder_objective<epic_internal> := class((/Verse.org:)Progression.objective, (/Verse.org:)Progression.has_objective):
+
+
+    @hide_in_editor
     verse_only_contributor_objective<epic_internal> := class((/Verse.org:)Progression.objective, (/Verse.org:)Progression.has_objective_contributors):
         var Added<epic_internal>:[]agent = external {}
 
@@ -816,6 +832,18 @@ QuestFrameworkTests<public> := module:
 
         TEST_HasQuestRewards_SetRewardsWritesField<native_callable><epic_internal>():logic = external {}
 
+        TEST_PlainQuestViewDirty_MakePresentedQuest<native_callable><epic_internal>(InObjective:(/Verse.org:)Progression.objective):(/Verse.org:)Progression.quest = external {}
+
+        TEST_PlainQuestViewDirty_MakeChainingQuest<native_callable><epic_internal>(InObjective:(/Verse.org:)Progression.objective):(/Verse.org:)Progression.quest = external {}
+
+        TEST_PlainQuestViewDirty_MakeUnchainedQuest<native_callable><epic_internal>(InObjective:(/Verse.org:)Progression.objective):(/Verse.org:)Progression.quest = external {}
+
+        TEST_PlainQuestViewDirty_MakeHolderObjective<native_callable><epic_internal>(InObjective:(/Verse.org:)Progression.objective):(/Verse.org:)Progression.objective = external {}
+
+        TEST_PlainQuestViewDirty_SetObjective<native_callable><epic_internal>(Target:(/Verse.org:)Progression.objective, InObjective:(/Verse.org:)Progression.objective):logic = external {}
+
+        TEST_PlainQuestViewDirty_SetRewards<native_callable><epic_internal>(Target:(/Verse.org:)Progression.quest, InRewards:[](/UnrealEngine.com:)Progression.quest_reward):logic = external {}
+
         TEST_HasQuestRewards_DoorsFilterOnReceives<native_callable><epic_internal>():logic = external {}
 
         TEST_HasObjectiveContributors_DoorsRecordTheAgent<native_callable><epic_internal>():logic = external {}
@@ -1146,13 +1174,17 @@ QuestFrameworkTests<public> := module:
 
         VerseContributorsOf<native_callable><epic_internal>(InQuest:(/UnrealEngine.com:)Progression.basic_quest)<reads>:[]agent = external {}
 
-        TEST_ParticipantInfo_OneInfoTwoJoins_NoCrossTalk<native_callable><epic_internal>():logic = external {}
+        TEST_ParticipantInfo_OneInfoTwoJoins_SharedByReference<native_callable><epic_internal>():logic = external {}
 
         TEST_ParticipantInfo_JoinPreservesInfoSubclass<native_callable><epic_internal>():logic = external {}
 
         TEST_ParticipantInfo_MembershipInfoFiltersBySubtype<native_callable><epic_internal>():logic = external {}
 
-        TEST_ParticipantInfo_LiveInfoAsTemplate_CopiesValuesNotMembership<native_callable><epic_internal>():logic = external {}
+        TEST_ParticipantInfo_SharedInfoAcrossQuests_SetMovesEveryMembership<native_callable><epic_internal>():logic = external {}
+
+        TEST_ParticipantInfo_AbandonDetachesInfo_SetNoLongerMovesQuest<native_callable><epic_internal>():logic = external {}
+
+        TEST_ParticipantInfo_SharedInfo_SetContributeMovesEveryMembership<native_callable><epic_internal>():logic = external {}
 
         TEST_Collection_CompleteEvent_FiresOncePerQuest<native_callable><epic_internal>():logic = external {}
 

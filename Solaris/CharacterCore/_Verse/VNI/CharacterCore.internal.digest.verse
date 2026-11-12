@@ -1,4 +1,5 @@
 # Verse path: /UnrealEngine.com/Character
+using {/Verse.org/Temporary/EpicGamesRestricted/Network}
 using {/Verse.org/SceneGraph/Movement}
 using {/Verse.org/Assets}
 using {/UnrealEngine.com/Abilities}
@@ -698,6 +699,33 @@ locomotion_state<epic_internal> := class<final_super>(fsm_state):
     RegisterNode<override>(InStateMachine:character_state_machine, ?Pack:?hfsm_pack_component = external {}):void = external {}
 
     OnUpdate<override>(Ctx:character_context, DeltaTime:float):void = external {}
+
+@hide_in_editor
+network_physics_component<native><epic_internal> := class<final_super><epic_internal>(component):
+    OnBeginSimulationInternal<native><override>():void
+
+    OnEndSimulationInternal<native><override>():void
+
+    @replicated("RepNotify")
+    var OwnerInputHistory<native><epic_internal>:network_physics_input_history = external {}
+
+    @replicated("RepNotify")
+    var StateHistory<native><epic_internal>:network_physics_state_history = external {}
+
+    @replicated("RepNotify")
+    var RemoteInputHistory<native><epic_internal>:network_physics_remote_input_history = external {}
+
+@replicatable
+network_physics_input_history<native><epic_internal> := struct:
+
+
+@replicatable
+network_physics_remote_input_history<native><epic_internal> := struct:
+
+
+@replicatable
+network_physics_state_history<native><epic_internal> := struct:
+
 
 @available {MinUploadedAtFNVersion := 4200}
 @experimental

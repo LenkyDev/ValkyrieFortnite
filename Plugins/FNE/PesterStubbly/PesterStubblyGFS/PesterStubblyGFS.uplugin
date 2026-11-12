@@ -1,0 +1,78 @@
+{
+	"FileVersion": 3,
+	"CanContainContent": true,
+	"NoCode": true,
+	"NoGameFeatureContent": true,
+	"ExplicitlyLoaded": true,
+	"EnabledByDefault": false,
+	"BuiltInInitialFeatureState": "Installed",
+	"BuiltInAutoRegister": true,
+	"BuiltInAutoLoad": false,
+	"BuiltInAutoActivate": false,
+	"EditorCustomVirtualPath": "FNE/PesterStubbly",
+	"FortReleaseVersion": "43.10",
+	"NoRedist": false,
+	"IsGameFeatureSet": true,
+	"InstallItem": {
+		"InstallPhase": "Modular",
+		"Name": "PesterStubblyGFS",
+		"DependsOn": "Creative",
+		"BootStage": "Product"
+	},
+	"ProductChunkId": 13,
+	"CookAsDLC": "Creative",
+	"RequiredEntitlements": {
+		"Create": {
+			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
+			"VKIPAgreement": "32927964d7964134b0f80d20ab02d082",
+			"VKCreateUGCPesterStubbly": "6b5ecc4e622d4982924bc01fb0a7761f"
+		},
+		"Edit": {
+			"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
+			"VKCreateUGCPesterStubbly": "6b5ecc4e622d4982924bc01fb0a7761f"
+		}
+	},
+	"Plugins": [
+		{
+			"Name": "PesterStubbly",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "PesterStubblyPawnOverride",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "PesterStubblyGFSMetaData",
+			"Enabled": true,
+			"Optional": true
+		},
+		{
+			"Name": "PesterStubblyIslandUIOverrides",
+			"Enabled": true,
+			"Optional": true,
+			"Activate": true
+		},
+		{
+			"Name": "FNE_PesterStubbly_Hammer",
+			"Enabled": true,
+			"Optional": true
+		}
+	],
+	"Version": 0,
+	"VersionName": "",
+	"FriendlyName": "",
+	"Description": "",
+	"Category": "",
+	"CreatedBy": "",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false
+}

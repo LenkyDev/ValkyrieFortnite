@@ -326,6 +326,10 @@ fort_self_ability_target_query<native><public> := class(ability_target_query):
 
 
 @available {MinUploadedAtFNVersion := 4200}
+@deprecated {Message := "Use `fort_self_ability_target_query` instead."; DiscontinuedAtFNVersion := 4400}
+self_ability_target_query<public> := fort_self_ability_target_query
+
+@available {MinUploadedAtFNVersion := 4200}
 fort_target_query_affiliation<native><public> := enum<open>:
     Friendly
     Neutral

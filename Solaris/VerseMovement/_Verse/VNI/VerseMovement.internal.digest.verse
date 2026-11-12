@@ -103,16 +103,12 @@ Movement<epic_internal> := module:
     move_modifier_stack<native><public> := class<abstract><internal>(modifier_stack(proposed_move)):
         Evaluate<override><final><native>(InValue:proposed_move)<reads>:proposed_move
 
-        AddModifier<override>(Modifier:modifier(proposed_move), Position:rational)<transacts>:cancelable = external {}
-
         AddPhase<public>(Phase:move_modifier_phase)<transacts>:cancelable = external {}
 
     @available {MinUploadedAtFNVersion := 4100}
     @experimental
     move_modifier_phase<native><public> := class(move_modifier_stack):
-        (/Verse.org/Verse/modifier_stack:)AddModifier<override>(Modifier:modifier(proposed_move), Position:rational)<transacts>:cancelable = external {}
-
-        (/Verse.org/SceneGraph/Movement/move_modifier_phase:)AddModifier<public>(Modifier:move_modifier)<transacts>:cancelable = external {}
+        AddModifier<override>(Modifier:modifier(proposed_move))<transacts>:cancelable = external {}
 
     @available {MinUploadedAtFNVersion := 4100}
     @experimental

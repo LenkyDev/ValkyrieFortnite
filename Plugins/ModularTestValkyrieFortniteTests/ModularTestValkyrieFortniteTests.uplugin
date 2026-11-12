@@ -29,6 +29,10 @@
 			"Enabled": true
 		},
 		{
+			"Name": "ModularTestValkyrieFortniteEditor",
+			"Enabled": true
+		},
+		{
 			"Name": "ModularTestGFP",
 			"Enabled": true
 		},

@@ -183,7 +183,7 @@ Input<public> := module:
     (Player:player).DeprojectViewportToWorld<native><public>(ViewportPosition:(/Verse.org/SpatialMath:)vector3)<reads>:deproject_results
 
     @available {MinUploadedAtFNVersion := 4200}
-    # Logs the timestamp and the current net mode to LogVerseInput.
+    # Diagnostic helper that logs the timestamp and current net mode to LogVerseInput.
     VerseInput_TestPredictsPing<native><epic_internal>()<transacts>:void
 
     @available {MinUploadedAtFNVersion := 4000}
@@ -290,3 +290,7 @@ Input<public> := module:
 
         @available {MinUploadedAtFNVersion := 4120}
         PointerZoom<public>:input_action((/Verse.org/SpatialMath:)vector3) = external {}
+
+        @available {MinUploadedAtFNVersion := 4310}
+        @experimental
+        PointerRotate<public>:input_action((/Verse.org/SpatialMath:)vector3) = external {}

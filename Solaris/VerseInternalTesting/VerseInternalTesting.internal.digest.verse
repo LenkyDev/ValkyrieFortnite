@@ -213,14 +213,15 @@ VerseFramework<public> := module:
     using {/UnrealEngine.com/Temporary/Diagnostics}
     using {/UnrealEngine.com/Temporary/Testing}
     using {/UnrealEngine.com/Itemization}
-    using {/Verse.org/Native}
     using {/Fortnite.com/AI}
     using {/UnrealEngine.com/Marketplace}
     using {/Verse.org/SceneGraph}
     using {/Fortnite.com/Vehicles}
     using {/Fortnite.com/Game}
-    using {/Verse.org/Simulation}
     using {/Fortnite.com/Devices}
+    using {/Fortnite.com/Playspaces}
+    using {/Verse.org/Simulation}
+    using {/Verse.org/Native}
     using {/Fortnite.com/Characters}
     using {/Verse.org/Assets}
     fname_canary_framework_holder<epic_internal> := class<computes>:
@@ -231,6 +232,52 @@ VerseFramework<public> := module:
     TapTestInput<epic_internal>((local:)Character:fort_character, KeyName:string)<transacts>:void = external {}
 
     HoldTestInput<epic_internal>((local:)Character:fort_character, KeyName:string, DurationSeconds:float)<suspends>:void = external {}
+
+    @available {MinUploadedAtFNVersion := 4310}
+    VerseLateJoinMarkerFileName<epic_internal>:string = external {}
+
+    @available {MinUploadedAtFNVersion := 4310}
+    VerseLateJoinReadyKey<epic_internal>:string = external {}
+
+    @available {MinUploadedAtFNVersion := 4310}
+    VerseLateJoinReadyLogLine<epic_internal>:string = external {}
+
+    @available {MinUploadedAtFNVersion := 4310}
+    VerseLateJoinPollIntervalSeconds<epic_internal>:float = external {}
+
+    @available {MinUploadedAtFNVersion := 4310}
+    ConsumeVerseLateJoinStartCount<epic_internal>():int = external {}
+
+    @available {MinUploadedAtFNVersion := 4310}
+    PublishLateJoinReady<epic_internal>(StartCount:int):void = external {}
+
+    @available {MinUploadedAtFNVersion := 4310}
+    HasActiveCharacter<epic_internal>(Player:player)<transacts><decides>:void = external {}
+
+    @available {MinUploadedAtFNVersion := 4310}
+    ActivePlayersIn<epic_internal>(Playspace:fort_playspace)<transacts>:[]player = external {}
+
+    @available {MinUploadedAtFNVersion := 4310}
+    CountActiveCharacters<epic_internal>(Playspace:fort_playspace):int = external {}
+
+    @available {MinUploadedAtFNVersion := 4310}
+    AwaitActiveCharacterCountAtLeast<epic_internal>(Playspace:fort_playspace, TargetCount:int, TimeoutSeconds:float)<suspends>:logic = external {}
+
+    @available {MinUploadedAtFNVersion := 4310}
+    AwaitNewPlayer<epic_internal>(Playspace:fort_playspace, KnownPlayers:[]player, TimeoutSeconds:float)<suspends>:?player = external {}
+
+    @available {MinUploadedAtFNVersion := 4310}
+    AwaitActiveCharacter<epic_internal>(Player:player, TimeoutSeconds:float)<suspends>:logic = external {}
+
+    VerseVtfPlayerCountAtStartKey<epic_internal>:string = external {}
+
+    VerseVtfPlayerCountPostHoldKey<epic_internal>:string = external {}
+
+    VerseVtfPlayerCountHoldSeconds<epic_internal>:float = external {}
+
+    PublishPlayerCountSample<epic_internal>(Playspace:fort_playspace, Key:string, Token:string):void = external {}
+
+    PublishPlayerCountSamplesWithHold<epic_internal>(Playspace:fort_playspace, Token:string, HoldSeconds:float)<suspends>:void = external {}
 
     test_device<epic_internal> := class(creative_device):
         var TestRunner<public>:test_runner = external {}

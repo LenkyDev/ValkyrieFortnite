@@ -1423,10 +1423,12 @@ teleporter_device<public> := class<concrete><final>(creative_device_base, enable
     # Teleport `Agent` to this device.
     Teleport<public>(Agent:agent):void = external {}
 
+    @available {MinUploadedAtFNVersion := 4300}
     # Signaled when a 'creative_prop' enters this device.
     # Sends the 'creative_prop' that entered this device.
     EnterPropEvent<public>:listenable(creative_prop) = external {}
 
+    @available {MinUploadedAtFNVersion := 4300}
     # Signaled when a `creative_prop` emerges from this device.
     # Sends the `creative_prop` that emerged from this device.
     TeleportPropEvent<public>:listenable(creative_prop) = external {}
@@ -1437,9 +1439,11 @@ teleporter_device<public> := class<concrete><final>(creative_device_base, enable
 
     IsEnabled<override>()<transacts><decides>:void = external {}
 
+    @available {MinUploadedAtFNVersion := 4300}
     # Teleport `Prop` to the target group using this device.
     Activate<public>(Prop:creative_prop):void = external {}
 
+    @available {MinUploadedAtFNVersion := 4300}
     # Teleport `Prop` to this device.
     Teleport<public>(Prop:creative_prop):void = external {}
 

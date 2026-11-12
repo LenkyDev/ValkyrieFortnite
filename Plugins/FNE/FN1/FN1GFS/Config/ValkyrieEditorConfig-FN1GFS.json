@@ -174,7 +174,6 @@
 			"/Script/FortniteUI.FortVisualAttachment": { "Visible": true },
 			"/Script/MovieScene.MovieSceneBindingOverrides": {},
 			"/Script/VersePCG.PCGEntityComponentExecutionSource": { "Visible": true },
-			"/Script/PCG.PCGManagedEntities": { "Visible": true },
 			"/Script/NavigationSystem.NavModifierVolume": { "Visible": true },
 			"/Script/NavigationSystem.NavMeshBoundsVolume": { "Visible": true },
 			"/Script/AIModule.EnvQuery": { "Visible": true },

@@ -217,3 +217,7 @@ Input<public> := module:
 
         @available {MinUploadedAtFNVersion := 4120}
         PointerZoom<public>:input_action((/Verse.org/SpatialMath:)vector3) = external {}
+
+        @available {MinUploadedAtFNVersion := 4310}
+        @experimental
+        PointerRotate<public>:input_action((/Verse.org/SpatialMath:)vector3) = external {}

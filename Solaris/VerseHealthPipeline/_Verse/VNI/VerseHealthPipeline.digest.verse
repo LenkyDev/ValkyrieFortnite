@@ -187,6 +187,10 @@ health_pool_entry<native><public> := class<concrete><unique>:
 #   the next pool, where the layers are consulted again. Whatever survives
 #   every pool lands in Result.Excess at its unwound value.
 # 
+#   A zero HealthDelta entry adjusts nothing but still records one 0.0 result
+#   entry on the pool it would land on (first with capacity in the event's
+#   direction, else the last eligible pool), with no Excess.
+# 
 #   Example: a 70 damage entry against shields at 50 carrying a 2x pool trait,
 #   with a 3x record on the event: multiplier 2 * 3 = 6, so 420 to apply;
 #   shields absorb 50; the remaining 370 unwinds to ~61.7 and continues to
@@ -268,7 +272,7 @@ health_adjustment_modifier<public> := class(modifier(health_adjustment_entry)):
 # An ordered stack of health adjustment modifiers. 
 #  Itself a modifier, so stacks nest; the Pre/PostEvaluate broadcasts forward evaluation state down the chain.
 health_adjustment_modifier_stack<public> := class(modifier_stack(health_adjustment_entry)):
-    AddModifier<override>(Modifier:modifier(health_adjustment_entry), Position:rational)<transacts>:cancelable = external {}
+    AddModifier<override>(Modifier:modifier(health_adjustment_entry))<transacts>:cancelable = external {}
 
     PreEvaluate<public>(InContext:?health_adjustment_context, InTarget:?entity, InPool:?health_pool_entry)<transacts>:void = external {}
 

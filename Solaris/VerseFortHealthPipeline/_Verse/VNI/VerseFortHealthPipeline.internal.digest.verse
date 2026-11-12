@@ -1,6 +1,7 @@
 # Verse path: /Fortnite.com
 # Module import path: /Fortnite.com/FortHealthPipeline
 FortHealthPipeline<public> := module:
+    using {/Verse.org/Simulation}
     using {/Verse.org/SceneGraph}
     using {/Fortnite.com/Characters}
     using {/Verse.org/Native}
@@ -42,6 +43,7 @@ FortHealthPipeline<public> := module:
         Tag<override>:health_pool_tag = external {}
 
     @available {MinUploadedAtFNVersion := 4300}
+    @hide_in_editor
     @experimental
     # The Fortnite bridge for the Verse health pipeline: mirrors the pawn's
     #  native Health/Shield/Overshield attributes into three health pools, routes

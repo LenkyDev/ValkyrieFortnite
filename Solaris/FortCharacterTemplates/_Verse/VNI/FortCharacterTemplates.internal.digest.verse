@@ -7,13 +7,13 @@ using {/Verse.org/SceneGraph}
 @experimental
 # Component encapsulating an amplified launch impulse when jumping from a ledge while sprinting
 fort_boosted_jump_component<native><epic_internal> := class<final_super><epic_internal>(component, enableable):
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {10000.000000}}
     # Vertical jump velocity during a boosted jump, in cm/s.
     var<private> VerticalVelocity<native><public>:float = external {}
 
     SetVerticalVelocity<native><public>(NewVerticalVelocity:float)<transacts>:void
 
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {10000.000000}}
     # Horizontal velocity the character is instantly boosted to when performing a boosted jump, in cm/s.
     var<private> HorizontalVelocity<native><public>:float = external {}
 
@@ -30,8 +30,8 @@ fort_boosted_jump_component<native><epic_internal> := class<final_super><epic_in
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
 # Component encapsulating crouch settings to drive Fortnite crouched movement
-fort_crouch_component<native><epic_internal> := class<final_super><epic_internal>(component, enableable):
-    @editable {}
+fort_crouch_component<native><public> := class<final_super><epic_internal>(component, enableable):
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {10000.000000}}
     # Movement speed while crouched, in cm/s.
     var<private> CrouchSpeed<native><public>:float = external {}
 
@@ -50,14 +50,14 @@ fort_crouch_component<native><epic_internal> := class<final_super><epic_internal
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
 # Component encapsulating Down But Not Out settings for a Fortnite character
-fort_down_but_not_out_component<native><epic_internal> := class<final_super><epic_internal>(component, enableable):
-    @editable {}
+fort_down_but_not_out_component<native><public> := class<final_super><epic_internal>(component, enableable):
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {10000.000000}}
     # Maximum movement speed while in the downed state, in cm/s.
     var<private> MaxSpeed<native><public>:float = external {}
 
     SetMaxSpeed<native><public>(NewMaxSpeed:float)<transacts>:void
 
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {100.000000}}
     # Percentage of maximum health restored by a successful revive.
     var<private> PercentageHealthAfterRevive<native><public>:float = external {}
 
@@ -69,7 +69,7 @@ fort_down_but_not_out_component<native><epic_internal> := class<final_super><epi
 
     SetRevivable<native><public>(NewRevivable:logic)<transacts>:void
 
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {3600.000000}}
     # Seconds a reviver must hold the revive interaction to complete it.
     var<private> TimeToRevive<native><public>:float = external {}
 
@@ -88,20 +88,20 @@ fort_down_but_not_out_component<native><epic_internal> := class<final_super><epi
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
 # Component encapsulating a deployable glider providing steerable, speed-limited descent
-fort_glide_component<native><epic_internal> := class<final_super><epic_internal>(component, enableable):
-    @editable {}
+fort_glide_component<native><public> := class<final_super><epic_internal>(component, enableable):
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {100.000000}}
     # Horizontal friction applied while gliding, damping lateral drift.
     var<private> LateralFriction<native><public>:float = external {}
 
     SetLateralFriction<native><public>(NewLateralFriction:float)<transacts>:void
 
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {10000.000000}}
     # Maximum horizontal speed while gliding, in cm/s.
     var<private> MaxLateralSpeed<native><public>:float = external {}
 
     SetMaxLateralSpeed<native><public>(NewMaxLateralSpeed:float)<transacts>:void
 
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {10000.000000}}
     # Maximum downward speed while gliding, in cm/s.
     var<private> TerminalVelocity<native><public>:float = external {}
 
@@ -113,13 +113,13 @@ fort_glide_component<native><epic_internal> := class<final_super><epic_internal>
 
     SetGliderRedeploy<native><public>(NewGliderRedeploy:logic)<transacts>:void
 
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {100000.000000}}
     # Minimum height above the ground at which the glider can be deployed, in cm.
     var<private> MinimumDeployHeight<native><public>:float = external {}
 
     SetMinimumDeployHeight<native><public>(NewMinimumDeployHeight:float)<transacts>:void
 
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {100000.000000}}
     # Height above the ground at which the glider deploys automatically, in cm.
     var<private> AutoDeployHeight<native><public>:float = external {}
 
@@ -162,14 +162,14 @@ fort_hurdle_component<native><epic_internal> := class<final_super><epic_internal
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
 # Component encapsulating jumping settings to drive Fortnite movement settings
-fort_jump_component<native><epic_internal> := class<final_super><epic_internal>(component, enableable):
-    @editable {}
+fort_jump_component<native><public> := class<final_super><epic_internal>(component, enableable):
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {10000.000000}}
     # Initial vertical velocity applied when the pawn jumps, in cm/s.
     var<private> JumpVelocity<native><public>:float = external {}
 
     SetJumpVelocity<native><public>(NewJumpVelocity:float)<transacts>:void
 
-    @editable
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {3600.000000}}
     # The max time between jumps, sequencing through values in the JumpChainVelocityScalars.
     var<private> JumpChainInterval<native><public>:float = external {}
 
@@ -193,31 +193,31 @@ fort_jump_component<native><epic_internal> := class<final_super><epic_internal>(
 @experimental
 # Component encapsulating base movement capability: ground speeds and airborne directional control
 fort_locomotion_component<native><public> := class<final_super><epic_internal>(component):
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {10000.000000}}
     # Minimum movement speed (cm/s) the character can move. Clamps at 0.0.
     var<private> WalkSpeed<native><public>:float = external {}
 
     SetWalkSpeed<native><public>(NewWalkSpeed:float)<transacts>:void
 
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {10000.000000}}
     # Ground speed while moving without sprinting, in cm/s. The character is always sprinting when moving forward, so this applies when it isn't, such as backwards.
     var<private> RunSpeed<native><public>:float = external {}
 
     SetRunSpeed<native><public>(NewRunSpeed:float)<transacts>:void
 
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {10000.000000}}
     # Ground speed while sprinting, in cm/s. By default, the character is always considered to be sprinting when moving forward, so this is the forward speed.
     var<private> SprintSpeed<native><public>:float = external {}
 
     SetSprintSpeed<native><public>(NewSprintSpeed:float)<transacts>:void
 
-    @editable
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {100000.000000}}
     # Sets the maximum acceleration, which is the rate of change of velocity.
     var<private> Acceleration<native><public>:float = external {}
 
     SetAcceleration<native><public>(NewAcceleration:float)<transacts>:void
 
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {1.000000}}
     # Degree of horizontal control, from 0.0 to 1.0, the character has while airborne.
     var<private> AirControl<native><public>:float = external {}
 
@@ -231,13 +231,13 @@ fort_locomotion_component<native><public> := class<final_super><epic_internal>(c
 @experimental
 # Component encapsulating traversal onto ledges above hurdle height
 fort_mantle_component<native><epic_internal> := class<final_super><epic_internal>(component, enableable):
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {10000.000000}}
     # Minimum ledge height the character can mantle onto, in cm.
     var<private> MinLedgeHeight<native><public>:float = external {}
 
     SetMinLedgeHeight<native><public>(NewMinLedgeHeight:float)<transacts>:void
 
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {10000.000000}}
     # Minimum ledge height the character can mantle onto while in water, in cm.
     var<private> MinLedgeHeightInWater<native><public>:float = external {}
 
@@ -254,26 +254,26 @@ fort_mantle_component<native><epic_internal> := class<final_super><epic_internal
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
 # Component encapsulating free-fall descent with lateral steering and a capped fall speed
-fort_skydive_component<native><epic_internal> := class<final_super><epic_internal>(component, enableable):
-    @editable {}
+fort_skydive_component<native><public> := class<final_super><epic_internal>(component, enableable):
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {100000.000000}}
     # Maximum acceleration achievable while skydiving, in cm/s^2.
     var<private> MaxAcceleration<native><public>:float = external {}
 
     SetMaxAcceleration<native><public>(NewMaxAcceleration:float)<transacts>:void
 
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {100.000000}}
     # Horizontal friction applied while skydiving, damping lateral drift.
     var<private> LateralFriction<native><public>:float = external {}
 
     SetLateralFriction<native><public>(NewLateralFriction:float)<transacts>:void
 
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {10000.000000}}
     # Maximum horizontal speed while skydiving, in cm/s.
     var<private> MaxLateralSpeed<native><public>:float = external {}
 
     SetMaxLateralSpeed<native><public>(NewMaxLateralSpeed:float)<transacts>:void
 
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {10000.000000}}
     # Maximum downward speed while skydiving, in cm/s.
     var<private> TerminalVelocity<native><public>:float = external {}
 
@@ -293,7 +293,7 @@ fort_skydive_component<native><epic_internal> := class<final_super><epic_interna
 @experimental
 # Component encapsulating a momentum-preserving slide with optional slide-kick functionality
 fort_slide_component<native><epic_internal> := class<final_super><epic_internal>(component, enableable):
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {10000.000000}}
     # Maximum speed the character can reach while sliding, in cm/s.
     var<private> MaxSlideSpeed<native><public>:float = external {}
 
@@ -318,8 +318,8 @@ fort_slide_component<native><epic_internal> := class<final_super><epic_internal>
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
 # Component encapsulating surface water traversal with a dedicated movement speed
-fort_swim_component<native><epic_internal> := class<final_super><epic_internal>(component, enableable):
-    @editable {}
+fort_swim_component<native><public> := class<final_super><epic_internal>(component, enableable):
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {10000.000000}}
     # Maximum speed while swimming, in cm/s.
     var<private> SwimSpeed<native><public>:float = external {}
 
@@ -339,19 +339,19 @@ fort_swim_component<native><epic_internal> := class<final_super><epic_internal>(
 @experimental
 # Component encapsulating tactical sprint settings to drive Fortnite sprinting movement
 fort_tactical_sprint_component<native><epic_internal> := class<final_super><epic_internal>(component, enableable):
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {100000.000000}}
     # Sets the maximum acceleration, which is the rate of change of velocity.
     var<private> TacticalSprintAcceleration<native><public>:float = external {}
 
     SetTacticalSprintAcceleration<native><public>(NewAcceleration:float)<transacts>:void
 
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {10000.000000}}
     # Energy consumption per second, when actively Sprinting.
     var<private> TacticalSprintEnergyCost<native><public>:float = external {}
 
     SetTacticalSprintEnergyCost<native><public>(NewSprintEnergyCost:float)<transacts>:void
 
-    @editable {}
+    @editable_number(float) {MinValue := option {0.000000}; MaxValue := option {10000.000000}}
     # Energy consumed each time the character jumps while sprinting.
     var<private> TacticalSprintJumpEnergyCost<native><public>:float = external {}
 

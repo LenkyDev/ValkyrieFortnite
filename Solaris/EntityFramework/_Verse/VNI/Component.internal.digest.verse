@@ -227,7 +227,7 @@ sweep_hit<native><public> := struct<epic_internal>:
 
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
-contact_point<native><epic_internal> := struct<epic_internal>:
+contact_point<native><public> := struct<epic_internal>:
     ContactPosition<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
 
     ContactNormal<native><public>:(/Verse.org/SpatialMath:)vector3 = external {}
@@ -254,7 +254,7 @@ MakeCollisionHit<native_callable><epic_internal>(SourceMeshPartHandleData:mesh_p
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
 # The result of a collision in the physics engine. See has_collision::GetCollisionEvent()
-collision_hit<native><epic_internal> := struct<epic_internal>:
+collision_hit<native><public> := struct<epic_internal>:
     @available {MinUploadedAtFNVersion := 4300}
     # Handle to the mesh part on the source end of the hit
     SourceMeshHandle<public>:mesh_part_handle

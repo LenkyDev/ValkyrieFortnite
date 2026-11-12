@@ -85,6 +85,7 @@ MakePersonaSuccessResult<native_callable><epic_internal>(Result:success_type whe
 @available {MinUploadedAtFNVersion := 4000}
 MakePersonaErrorResult<native_callable><epic_internal>(Result:error_type where error_type:type):result(false, error_type) = external {}
 
+@available {MinUploadedAtFNVersion := 4100}
 internal_response_data<native><epic_internal> := struct:
     @ai_description("Use this to output the name of the targeted conversation participant")
     TargetAgent<native>:?agent

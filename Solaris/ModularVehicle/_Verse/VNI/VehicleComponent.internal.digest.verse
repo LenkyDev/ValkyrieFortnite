@@ -1,7 +1,8 @@
-# Verse path: /Verse.org/SceneGraph
+# Verse path: /UnrealEngine.com/Vehicles
 using {/Verse.org/Simulation}
 using {/Verse.org/SpatialMath}
 using {/Verse.org/Native}
+using {/Verse.org/SceneGraph}
 # Enumerated presets for the types of control input variable; Equates to what enhanced input can provide
 module_input_value_type<native><public> := enum:
     MBoolean
@@ -99,15 +100,15 @@ modular_vehicle_component<native><epic_internal> := class<final_super><epic_inte
     SetState<native><public>(InputName:string, Value:(/Verse.org/SpatialMath:)vector3):void
 
 @experimental
-vehicle_aerofoil_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
+modular_vehicle_aerofoil_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
 
 
 @experimental
-vehicle_clutch_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
+modular_vehicle_clutch_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
 
 
 @experimental
-vehicle_engine_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
+modular_vehicle_engine_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
     GetRPM<epic_internal>(Accessor:accessor)<transacts>:float = external {}
 
     GetTorque<epic_internal>(Accessor:accessor)<transacts>:float = external {}
@@ -148,7 +149,7 @@ vehicle_sim_base_component<native><epic_internal> := class<final_super><epic_int
 
 
 @experimental
-vehicle_suspension_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
+modular_vehicle_suspension_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
     GetSpringDisplacement<epic_internal>(Accessor:accessor)<transacts>:float = external {}
 
     GetSpringDisplacementVector<epic_internal>(Accessor:accessor)<transacts>:(/Verse.org/SpatialMath:)vector3 = external {}
@@ -158,7 +159,7 @@ vehicle_suspension_component<native><epic_internal> := class<final><epic_interna
     GetImpactNormal<epic_internal>(Accessor:accessor)<transacts>:(/Verse.org/SpatialMath:)vector3 = external {}
 
 @experimental
-vehicle_thruster_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
+modular_vehicle_thruster_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
 
 
 @experimental
@@ -167,7 +168,7 @@ gear_change_info<native><epic_internal> := struct<epic_internal>:
     ChangedToGear<native><public>:int
 
 @experimental
-vehicle_transmission_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
+modular_vehicle_transmission_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
     @experimental
     GearChangeEvent<native><final><epic_internal>:listenable(gear_change_info) = external {}
 
@@ -179,7 +180,7 @@ wheel_touch_change_info<native><epic_internal> := struct<epic_internal>:
     IsInContact<native><public>:logic
 
 @experimental
-vehicle_wheel_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
+modular_vehicle_wheel_component<native><epic_internal> := class<final><epic_internal>(vehicle_sim_base_component):
     @experimental
     WheelTouchChangeEvent<native><final><epic_internal>:listenable(wheel_touch_change_info) = external {}
 

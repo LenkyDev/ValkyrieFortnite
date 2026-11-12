@@ -173,6 +173,18 @@ fort_cancel_reason_canceled<native><public> := class<final><castable>(cancel_rea
 fort_cancel_reason_invalid<native><public> := class<final><castable>(cancel_reason):
 
 
+@available {MinUploadedAtFNVersion := 4310}
+@hide_in_editor
+fort_ability_point<native><epic_internal> := class(fort_ability_timeline_element_point):
+    AbilityPoint<native_callable><public>(AbilityEffect:ability_effect_component)<suspends>:void = external {}
+
+@available {MinUploadedAtFNVersion := 4310}
+@hide_in_editor
+fort_ability_span<native><epic_internal> := class(fort_ability_timeline_element_span):
+    AbilitySpanStarted<native_callable><public>(AbilityEffect:ability_effect_component)<suspends>:void = external {}
+
+    AbilitySpanStopped<native_callable><public>(AbilityEffect:ability_effect_component)<suspends>:void = external {}
+
 @available {MinUploadedAtFNVersion := 4200}
 fort_ability_attribute<native><public> := enum<open>:
     MaxHealth
@@ -382,6 +394,10 @@ ability_target_query<native><public> := class:
 @available {MinUploadedAtFNVersion := 4200}
 fort_self_ability_target_query<native><public> := class(ability_target_query):
 
+
+@available {MinUploadedAtFNVersion := 4200}
+@deprecated {Message := "Use `fort_self_ability_target_query` instead."; DiscontinuedAtFNVersion := 4400}
+self_ability_target_query<public> := fort_self_ability_target_query
 
 @available {MinUploadedAtFNVersion := 4200}
 fort_target_query_affiliation<native><public> := enum<open>:

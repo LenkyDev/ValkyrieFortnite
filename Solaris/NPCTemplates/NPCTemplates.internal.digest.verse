@@ -25,7 +25,7 @@ boar_mesh_component<public> := class<final><epic_internal>(mesh_component, has_s
 
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
-fort_boar_component<epic_internal> := class<final><epic_internal>(fort_wildlife_component):
+fort_boar_component<epic_internal> := class<final><epic_internal>(fort_npc_component):
     SpawnerData<override>:string = external {}
 
     CosmeticAnimClass<override>:string = external {}
@@ -53,6 +53,8 @@ boar_template<public> := class<concrete>(wildlife_template):
 
     LocomotionComponent<override>:fort_locomotion_component = external {}
 
+    RidingComponent<override>:?fort_riding_component = external {}
+
     HealthComponent<override>:health_component = external {}
 
     Cosmetic<override>:entity = external {}
@@ -73,7 +75,7 @@ chicken_mesh_component<public> := class<final><epic_internal>(mesh_component, ha
 
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
-fort_chicken_component<epic_internal> := class<final><epic_internal>(fort_wildlife_component):
+fort_chicken_component<epic_internal> := class<final><epic_internal>(fort_npc_component):
     SpawnerData<override>:string = external {}
 
     CosmeticAnimClass<override>:string = external {}
@@ -128,7 +130,7 @@ raptor_mesh_component<public> := class<final><epic_internal>(mesh_component, has
 
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
-fort_raptor_component<epic_internal> := class<final><epic_internal>(fort_wildlife_component):
+fort_raptor_component<epic_internal> := class<final><epic_internal>(fort_npc_component):
     SpawnerData<override>:string = external {}
 
     CosmeticAnimClass<override>:string = external {}
@@ -156,6 +158,8 @@ raptor_template<public> := class<concrete>(wildlife_template):
 
     LocomotionComponent<override>:fort_locomotion_component = external {}
 
+    RidingComponent<override>:?fort_riding_component = external {}
+
     HealthComponent<override>:health_component = external {}
 
     Cosmetic<override>:entity = external {}
@@ -176,7 +180,7 @@ wolf_mesh_component<public> := class<final><epic_internal>(mesh_component, has_s
 
 @available {MinUploadedAtFNVersion := 4300}
 @experimental
-fort_wolf_component<epic_internal> := class<final><epic_internal>(fort_wildlife_component):
+fort_wolf_component<epic_internal> := class<final><epic_internal>(fort_npc_component):
     SpawnerData<override>:string = external {}
 
     CosmeticAnimClass<override>:string = external {}
@@ -203,6 +207,8 @@ wolf_template<public> := class<concrete>(wildlife_template):
     PlayAnimationComponent<override>:fort_play_animation_component = external {}
 
     LocomotionComponent<override>:fort_locomotion_component = external {}
+
+    RidingComponent<override>:?fort_riding_component = external {}
 
     HealthComponent<override>:health_component = external {}
 

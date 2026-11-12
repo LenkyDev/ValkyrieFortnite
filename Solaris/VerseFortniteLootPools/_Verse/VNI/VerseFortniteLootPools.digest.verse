@@ -1,0 +1,1 @@
+# Verse path: /Fortnite.com/LootPools

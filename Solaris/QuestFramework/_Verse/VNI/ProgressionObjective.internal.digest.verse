@@ -95,6 +95,9 @@ Progression<public> := module:
 
         CanProgress<native><native_callable><epic_internal>()<decides><reads>:void
 
+        # Marks this objective's view dirty so holders re-render it.
+        MarkObjectiveViewDirty<native><final><epic_internal>()<transacts>:void
+
         # Starts this objective; returns an error when it is already running or its type refuses to start it, otherwise the errors `CanActivate` returned.
         Activate<native><final><public>()<transacts>:result(void, []objective_error)
 

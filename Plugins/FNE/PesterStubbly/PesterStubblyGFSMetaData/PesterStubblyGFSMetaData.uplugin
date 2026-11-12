@@ -1,0 +1,47 @@
+{
+	"FileVersion": 3,
+	"CanContainContent": true,
+	"ExplicitlyLoaded": true,
+	"EnabledByDefault": false,
+	"BuiltInInitialFeatureState": "Registered",
+	"BuiltInAutoRegister": true,
+	"BuiltInAutoLoad": true,
+	"builtInAutoActivate": false,
+	"FortReleaseVersion": "43.10",
+	"NoRedist": false,
+	"EditorCustomVirtualPath": "FNE/PesterStubbly",
+	"CookAsDLC": "Creative",
+	"RequiredEntitlements":
+	{
+		"VKCreateUGCEpicDeveloper": "13bed52c90d4405abb84bb59f1e9c3ad",
+		"VKCreateUGCPesterStubbly": "6b5ecc4e622d4982924bc01fb0a7761f"
+	},
+	"ValkyrieSettings":
+	{
+		"libraryFolderMode": "Absent",
+		"libraryCustomPath": ""
+	},
+	"Version": 0,
+	"VersionName": "",
+	"FriendlyName": "",
+	"Description": "",
+	"Category": "",
+	"CreatedBy": "",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Plugins": [
+		{
+			"Name": "GFSMetaDataCommon",
+			"Enabled": true
+		},
+		{
+			"Name": "CR_Legacy",
+			"Enabled": true
+		}
+	]
+}
